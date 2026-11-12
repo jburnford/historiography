@@ -59,7 +59,13 @@ LINKED_D = ("CASE WHEN bool_or(e.evidence = 'keylog') THEN NULL ELSE "
             " WHEN 'work-people:jstor-author' THEN 'JSTOR author' WHEN 'work-people:author' THEN 'OpenAlex/Crossref author list'"
             " WHEN 'volume-editors:crossref' THEN 'Crossref editor list' WHEN 'volume-editors:lc' THEN 'LC editor statement'"
             " WHEN 'edition-roles:lc-main-entry' THEN 'LC main entry'"
+            " WHEN 'name-only:openalex' THEN 'OpenAlex author list' WHEN 'name-only:crossref' THEN 'Crossref author list'"
+            " WHEN 'name-only:crossref-volume' THEN 'Crossref chapter list of the volume' WHEN 'name-only:jstor' THEN 'JSTOR author list'"
+            " WHEN 'name-only:ojs' THEN 'journal OJS author list'"
             " ELSE e.source END || ')', '; ') || '; not a key-log claim' END")
+# EDITOR_OF (2026-11-12): the volume, marked when the row rests on a linked PART_OF, editor or author credit
+VOLUME_D = ("(SELECT label FROM nodes WHERE key = any_value(e.volume)) || CASE WHEN count(DISTINCT e.volume) > 1 THEN ' and others' ELSE '' END "
+            "|| CASE WHEN bool_and(e.evidence = 'linked') THEN ' (linked: a volume link or credit outside the key log)' ELSE '' END")
 BOOK_D = "(SELECT label FROM nodes WHERE key = any_value(e.book)) || CASE WHEN bool_and(e.evidence = 'linked') THEN ' (linked)' ELSE '' END"
 POSSIBLE_D = ("'unconfirmed: ' || CASE WHEN any_value(e.reason) IS NOT NULL THEN any_value(e.reason) || ' -- not credited' "
               "WHEN any_value(e.n_candidates) = 1 THEN 'name match only (the sole candidate left after the "
@@ -70,9 +76,11 @@ VOL_D = "(SELECT note FROM vol_note WHERE key = any_value(e.\"to\"))"
 WORK_ROW_D = f"concat_ws(' · ', {LINKED_D}, {VOL_D})"
 PART_D = ("CASE WHEN bool_or(e.evidence = 'keylog') THEN NULL ELSE 'linked: ' || string_agg(DISTINCT CASE e.source "
           "WHEN 'orcid-container' THEN 'the ORCID record names the volume' WHEN 'doi-container' THEN 'the DOI record names the volume' "
-          "WHEN 'author-works-container' THEN 'the OpenAlex/Crossref record names the volume' ELSE e.source END || ' (' || "
+          "WHEN 'author-works-container' THEN 'the OpenAlex/Crossref record names the volume' "
+          "WHEN 'name-only-volume' THEN 'Crossref lists the chapter under the volume' ELSE e.source END || ' (' || "
           "CASE e.volume_basis WHEN 'title' THEN 'one volume with that title' WHEN 'book-doi' THEN 'book DOI' "
           "WHEN 'new-unkeyed-volume' THEN 'volume made from the record' WHEN 'main-title' THEN 'main title only' "
+          "WHEN 'chapter-doi' THEN 'chapter DOI extends the book DOI' WHEN 'isbn' THEN 'the volume ISBN' "
           "ELSE e.volume_basis END || ')', '; ') || '; not a key-log claim' END")
 CONTRIB_D = ("'contributor (' || string_agg(DISTINCT CASE e.basis WHEN 'lc-foreword' THEN 'foreword, by the LC record' "
              "WHEN 'series-foreword-pattern' THEN 'series foreword' "
@@ -93,8 +101,8 @@ REL = {
         ('reviewed_by', 'Reviewed by', 'reviewed', 'to', 'from', BOOK_D),
         ('coauthors', 'Co-authors', 'coauthored', None, None, None),
         ('coeditors', 'Co-editors', 'coedited', None, None, None),
-        ('editor_of', 'Edited chapters by', 'editor_of', 'from', 'to', None),
-        ('in_volumes_of', 'Chapters in volumes edited by', 'editor_of', 'to', 'from', None),
+        ('editor_of', 'Edited chapters by', 'editor_of', 'from', 'to', VOLUME_D),
+        ('in_volumes_of', 'Chapters in volumes edited by', 'editor_of', 'to', 'from', VOLUME_D),
         ('cited_by_people', 'Cited by (people)', None, None, None, None),
         ('cited_by_works', 'Cited by (works)', None, None, None, None),
         ('cites_people', 'Cites (people)', None, None, None, None),
@@ -131,7 +139,7 @@ REL = {
         ('theses', 'Theses awarded', 'awarded_by', 'to', 'from', None),
     ],
 }
-EVIDENCE_TABLES = ('authored', 'edited', 'reviewed', 'coauthored', 'part_of', 'contributed')
+EVIDENCE_TABLES = ('authored', 'edited', 'reviewed', 'coauthored', 'part_of', 'contributed', 'editor_of', 'advised')
 LINKS = {'wd': 'https://www.wikidata.org/wiki/{}', 'orcid': 'https://orcid.org/{}',
          'lcnaf': 'https://id.loc.gov/authorities/names/{}', 'viaf': 'https://viaf.org/viaf/{}',
          'gnd': 'https://d-nb.info/gnd/{}', 'isni': 'https://isni.org/isni/{}', 'idref': 'https://www.idref.fr/{}',

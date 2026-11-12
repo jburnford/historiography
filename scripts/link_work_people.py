@@ -530,6 +530,7 @@ def titlematch(args):
 # ---------------------------------------------------------------- link
 
 import link_cited_work_authors as L   # noqa: E402
+L.GRAPH = GRAPH      # WP_GRAPH (a check build) for the linker's People too (2026-11-12)
 from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 keylog_sql = keylog
 
@@ -675,7 +676,8 @@ def make_pos(r):
     p = dict(src=r['source'], swork=r['oa_work'] or r['work'], work_id=r['work'], oa_id=r['oa_work'], pos=r['pos'],
              role=r['role'], name=apos(r['name']), title=r['title'], year=r['year'], book=False, lc=[], lc_how='',
              orcid=r['orcid'] or '', oa_author=r['oa_author'] or '', rors=list(r['rors'] or []), insts=list(r['insts'] or []),
-             raw_aff=list(r['raw_aff'] or []), citing=0, sb=None, sd=None, initial_check='', venue='', oa_type='')
+             raw_aff=list(r['raw_aff'] or []), citing=0, sb=None, sd=None, initial_check='', venue='', oa_type='',
+             kind=r.get('kind') or '')
     if r['inst_ror'] and r['inst_ror'] not in p['rors']:
         p['rors'].append(r['inst_ror'])
     p['forms'] = forms(p['name'])
@@ -777,6 +779,23 @@ def rule_wp(people, p, fe, pop, P, use_dup=True):
         good, how = L.date_test(c, p['year'], p['book'], P)
         if good and not (set(c['why']) - {'orcid-differs'}) and 'orcid-differs' not in c['why'] and fullform_rare(fe, c, pop, P, cands):
             return 'linked', cands[0], 'unique-rare-fullform', cands, sig + [f'date:{how}', 'fullform-rare']
+    if st == 'possible' and len(cands) > 1 and br == 'several-several-dated' and P.get('ONE_NETWORK_FACT'):
+        # 2026-11-12 (Andrew Watson probe): several candidates fit the dates and exactly one of them has a network fact
+        # for this position (a co-author, co-editor, advisor / student or dated colleague of someone credited on the work
+        # by the key log or an identifier; the volume's editors or other chapters' authors; the candidate edits the
+        # volume; a dated printed institution), and no other candidate has any positive fact (an OpenAlex tie included):
+        # linked, branch several-dated-one-fact. No contradiction on the one (orcid-differs only with a fact, as rule()).
+        def fx(x):
+            return {f.split(':')[0] for f in fe['cands'][x]['facts']}
+        any_fact = [x for x in cands if fx(x) & (set(P['FACTS']) | set(L.NEW_FACTS))]
+        net = [x for x in cands if fx(x) & set(NETWORK_FACTS)]
+        if len(net) == 1 and any_fact == net:
+            x = net[0]
+            c = fe['cands'][x]
+            good, how = L.date_test(c, p['year'], p['book'], P)
+            if good and not (set(c['why']) - {'orcid-differs'}):
+                facts = sorted(f for f in c['facts'] if f.split(':')[0] in NETWORK_FACTS)
+                return 'linked', x, 'several-dated-one-fact', cands, sig + [f'date:{how}'] + facts + [f'others={len(cands) - 1}']
     if st == 'possible' and len(cands) > 1:
         # owner 2026-11-11: a candidate is listed only when it is the only one left or has a positive fact for this
         # position; otherwise the position is an ambiguous name, with no rows on anybody's page
@@ -902,6 +921,126 @@ def iter_rows(t, mask=None):
         yield from b.to_pylist()
 
 
+TOPIC_STOP = set("""history histories historical historiography study studies introduction review reviews essay essays
+toward towards through between within without among against during after before since under over into from with their
+there these those that this which what when where whose about other others more most some such than then them they very
+also only same each both into upon onto vers dans pour avec entre leurs dont sous sans plus mais pero para como entre
+sobre desde hasta dans eine einer eines einem einen nach durch unter zwischen gegen ohne uber über""".split())
+TOPIC_RE = re.compile(r'[a-z]{4,}')
+
+
+def topic_terms(title):
+    """distinctive words of a title: letters only, accents folded, four letters or more, not a function word"""
+    return {t for t in TOPIC_RE.findall(nfold(title or '')) if t not in TOPIC_STOP}
+
+
+class Topics:
+    """2026-11-12 (owner, Labelle probe): topic may SUPPORT a works link, never exclude one. Each person key's profile is
+    the words of the titles of its key-log works (thesis included); a position's work title shares words with a
+    candidate's profile; the score is the sum of their inverse document frequencies over all graph work titles (Wendat,
+    Muskoka weigh; history, Canada do not). The gold test's hidden work is left out of the profile."""
+    def __init__(self, db, people):
+        import math
+        G = GRAPH
+        df = Counter()
+        n = 0
+        cur = db.execute(f"SELECT label FROM '{G}/work.parquet' WHERE label IS NOT NULL")
+        while True:
+            rows = cur.fetchmany(200000)
+            if not rows:
+                break
+            for (lab,) in rows:
+                df.update(topic_terms(lab))
+                n += 1
+        self.idf = {t: math.log(n / c) for t, c in df.items() if c <= n * 0.002}    # common words carry no weight
+        del df
+        self.prof = defaultdict(dict)      # key -> {term: number of the key's works with it}
+        self.wterms = {}
+        for k, w, lab in db.execute(f"""SELECT a."from", a."to", w.label FROM {keylog(G, 'authored')} a
+                JOIN '{G}/work.parquet' w ON w.key = a."to" WHERE w.label IS NOT NULL""").fetchall():
+            ts = [t for t in topic_terms(lab) if t in self.idf]
+            d = self.prof[k]
+            for t in ts:
+                d[t] = d.get(t, 0) + 1
+        print('topics:', len(self.idf), 'weighted words,', len(self.prof), 'profiles', flush=True)
+
+    def score(self, k, title, hide_work_title=None):
+        d = self.prof.get(k)
+        if not d:
+            return 0.0, []
+        hidden = topic_terms(hide_work_title) if hide_work_title else set()
+        shared = [t for t in topic_terms(title) if t in d and t in self.idf and not (t in hidden and d[t] <= 1)]
+        return sum(self.idf[t] for t in shared), shared
+
+
+def nameonly_features(db, people, topic_min=0.0):
+    """L.features plus the facts of the name-only class (FACTS_NAMEONLY): pairs from the key log only (COEDITED key-log
+    rows, ADVISED from the key log's supervision claims and Wikidata), the volume's people from S/volume-people.parquet.
+    The gold test's hidden credit is never among them: volume people are the volume's editors and the other chapters'
+    authors."""
+    G = GRAPH
+    coed = set()
+    for a, b in db.execute(f"SELECT \"from\", \"to\" FROM {keylog(G, 'coedited')}").fetchall():
+        coed.add((a, b))
+        coed.add((b, a))
+    adv = set()
+    for a, b in db.execute(f"SELECT \"from\", \"to\" FROM {keylog(G, 'advised')}").fetchall():
+        adv.add((a, b))
+        adv.add((b, a))
+    vp = defaultdict(set)
+    ved = defaultdict(set)
+    if (SCRATCH / 'volume-people.parquet').exists():
+        for w, k, how in db.execute(f"SELECT work, key, how FROM '{SCRATCH}/volume-people.parquet' WHERE work <> ''").fetchall():
+            vp[w].add(k)
+            if how == 'volume-editor':
+                ved[w].add(k)
+    print('name-only facts:', len(coed) // 2, 'co-editor pairs,', len(adv) // 2, 'advisor pairs,', len(vp), 'chapters with volume people', flush=True)
+    topics = Topics(db, people) if topic_min > 0 else None
+
+    def features(people_, p, mask=None, exacts=None, refkeys=None, citers_of=None):
+        fe = L.features(people_, p, mask=mask, exacts=exacts, refkeys=refkeys, citers_of=citers_of)
+        if fe.get('exact'):
+            return fe
+        w = p['work_id']
+        h = HIDE[0]
+        review_like = p.get('kind') == 'review' or bool(REVIEWISH.search(p['title'] or '')) or bool(
+            re.match(r'^\s*[^.:]{3,60}\.\s+\S', p['title'] or '')) or p.get('role') == 'reviewer'
+        for k, c in fe['cands'].items():
+            # not on a review record: its title is the reviewed book's, so the book's author shares it (hand audit
+            # 2026-11-12: 3 of 40 topic rows were the reviewed book's author printed on the review record)
+            if topics is not None and c.get('lev') in ('full', 'variant') and not review_like:
+                # the gold test hides the credited work: its own title is not part of the hidden key's profile
+                sc, shared = topics.score(k, p['title'], p['title'] if (h and h[1] == k and h[0] == w) else None)
+                if sc >= topic_min:
+                    c['facts'].append(f'topic:{sc:.1f}')
+            for k2 in exacts or ():
+                if k2 != k and ((k, k2) in coed or (k, k2) in adv):
+                    c['facts'].append(f'coauthor-network:{k2}')
+                    break
+            # a co-author credited on the work (key log / identifier) shares a dated affiliation (independent sources,
+            # WPPeople.aff) with the candidate, both windows covering the work's year (L.SLACK either side)
+            y = p['year']
+            if y and exacts:
+                mine = [(ror, fy, ly) for ror, _, fy, ly in people_.aff.get(k, ())
+                        if (fy or ly) - L.SLACK <= y <= (ly or fy) + L.SLACK]
+                if mine:
+                    rs = {ror for ror, _, _ in mine}
+                    for k2 in exacts:
+                        if k2 != k and any(ror in rs and (fy or ly) - L.SLACK <= y <= (ly or fy) + L.SLACK
+                                           for ror, _, fy, ly in people_.aff.get(k2, ())):
+                            c['facts'].append(f'coauthor-colleague:{k2}')
+                            break
+            for k2 in vp.get(w, ()):
+                if k2 != k and not (h and h[0] == w and h[1] == k2) and (
+                        (k, k2) in people_.coauth or (k, k2) in coed or (k, k2) in adv):
+                    c['facts'].append(f'volume-network:{k2}')
+                    break
+            if k in ved.get(w, ()):
+                c['facts'].append('volume-editor')
+        return fe
+    return features
+
+
 def link(args):
     import random
     import time
@@ -918,6 +1057,14 @@ def link(args):
     for k, w in db.execute(f"SELECT DISTINCT \"from\", \"to\" FROM {keylog(G, 'authored')}").fetchall():
         if w in works:
             authors[w].add(k)
+    features = L.features
+    if getattr(args, 'nameonly', False) and (SCRATCH / 'credited-extra.parquet').exists():
+        # name-only class (2026-11-12): identifier credits are the work's known authors
+        for w, k in db.execute(f"SELECT work, key FROM '{SCRATCH}/credited-extra.parquet' WHERE work <> ''").fetchall():
+            if w in works:
+                authors[w].add(k)
+    if getattr(args, 'nameonly', False) or getattr(args, 'new_facts', False):
+        features = nameonly_features(db, people, topic_min=args.topic_min)       # facts FACTS_NAMEONLY added (2026-11-12)
     # theses citing each work (for the 'a thesis the key supervised cites the work' fact)
     citers_of = defaultdict(set)
     for w, d in db.execute(f"""SELECT c."to", replace(a, 'diss-thesis:', '') FROM '{G}/cites.parquet' c
@@ -979,19 +1126,25 @@ def link(args):
     P['FACTS'] = tuple(P['FACTS'])
     P['XDATE'] = tuple(P['XDATE'])
     L.PARAMS.update({k: v for k, v in P.items() if k in L.PARAMS})
+    if getattr(args, 'nameonly', False) or getattr(args, 'new_facts', False):
+        P['FACTS'] = P['FACTS'] + tuple(f for f in (args.facts.split(',') if args.facts else FACTS_NAMEONLY) if f and f != 'none')
+        P['ONE_NETWORK_FACT'] = not args.no_one_fact and args.facts != 'none'
+        if args.topic_min > 0 and args.facts != 'none':
+            P['FACTS'] = P['FACTS'] + ('topic',)
+        print('facts', P['FACTS'], flush=True)
 
     # pass 1: ORCID exacts per work (co-author fact)
     exact_of = defaultdict(set)
     for r in iter_rows(T, pc.and_(pc.equal(T.column('credited'), ''), pc.not_equal(T.column('orcid'), ''))):
         if True:
-            fe = L.features(people, make_pos(r))
+            fe = features(people, make_pos(r))
             if fe.get('exact'):
                 exact_of[r['work']].update(fe['exact'])
     # pass 2: every uncredited position
     out = []
     for n, r in enumerate(iter_rows(T, pc.equal(T.column('credited'), ''))):
         p = make_pos(r)
-        fe = L.features(people, p, exacts=authors.get(r['work'], set()) | exact_of.get(r['work'], set()),
+        fe = features(people, p, exacts=authors.get(r['work'], set()) | exact_of.get(r['work'], set()),
                         refkeys=refkeys.get(r['work']), citers_of=citers_of)
         st, k, br, cands, sig = rule_wp(people, p, fe, pop, P, use_dup=not args.no_dup)
         st, k, br, sig = guard(r, st, k, br, sig, fe, P, book_titles, reviewed_authors, outside)
@@ -1027,11 +1180,14 @@ def link(args):
         for r in rs:
             g = r['credited']
             p = make_pos(r)
+            if getattr(args, 'gold_no_oa', False):
+                # the name-only case: the record carries no OpenAlex author id (a Crossref chapter, a JSTOR record)
+                p['oa_author'] = ''
             HIDE[0] = (r['work'], g)
             by_orcid = r['credited_how'] == 'orcid'
             m = dict(key=g, orcid={r['orcid']} if by_orcid else set(), src_orcid=not by_orcid)
             ex = (authors.get(r['work'], set()) | exact_of.get(r['work'], set())) - {g}
-            fe = L.features(people, p, mask=m, exacts=ex, refkeys=refkeys.get(r['work']), citers_of=citers_of)
+            fe = features(people, p, mask=m, exacts=ex, refkeys=refkeys.get(r['work']), citers_of=citers_of)
             for use_dup in (False, True):
                 st, k, br, cands, sig = rule_wp(people, p, fe, pop, P, use_dup=use_dup)
                 st, k, br, sig = guard(r, st, k, br, sig, fe, P, book_titles, reviewed_authors, outside)
@@ -1052,7 +1208,7 @@ def link(args):
                         or (b1 and b2 and abs(b1 - b2) > 1) or (p1 and p2 and abs(p1 - p2) > 1) or k2 in people.not_same.get(g, ())):
                     continue
                 m2 = dict(drop={g}, key=k2, lc=set(people.lcnaf.get(k2, ())), orcid=set(people.orcid.get(k2, ())), src_orcid=False)
-                fe2 = L.features(people, p, mask=m2, exacts=ex, refkeys=refkeys.get(r['work']), citers_of=citers_of)
+                fe2 = features(people, p, mask=m2, exacts=ex, refkeys=refkeys.get(r['work']), citers_of=citers_of)
                 st, k, br, cands, sig = rule_wp(people, p, fe2, pop, P, use_dup=not args.no_dup)
                 st, k, br, sig = guard(r, st, k, br, sig, fe2, P, book_titles, reviewed_authors, outside)
                 ns_out.append(dict(test='masked-author', pid=r['pid'], role=role, proven=k2, true=g, state=st, key=k or '',
@@ -1070,7 +1226,7 @@ def link(args):
         if not people.orcid.get(k):
             continue
         m = dict(key=k, orcid=set(people.orcid[k]), src_orcid=False)
-        fe = L.features(people, p, mask=m, exacts=authors.get(r['work'], set()), refkeys=refkeys.get(r['work']), citers_of=citers_of)
+        fe = features(people, p, mask=m, exacts=authors.get(r['work'], set()), refkeys=refkeys.get(r['work']), citers_of=citers_of)
         st, kk, br, cands, sig = rule_wp(people, p, fe, pop, P, use_dup=not args.no_dup)
         st, kk, br, sig = guard(r, st, kk, br, sig, fe, P, book_titles, reviewed_authors, outside)
         ns_out.append(dict(test='orcid-namesake', pid=r['pid'], role=r['role'], proven=k, true='', state=st, key=kk or '',
@@ -2315,6 +2471,744 @@ def title_filter(args):
               Counter(drop.column('oa_type').to_pylist()).most_common(5))
 
 
+# ---------------------------------------------------------------- name-only authors of works whose author list was not read
+
+# 2026-11-12 (owner's probe: Jim Clifford p-24137, "Greater London's Rapid Growth" in A Mighty Capital under Threat,
+# in OpenAlex and Crossref without his ORCID). The class: a work the graph holds (or a chapter of a volume it holds) whose
+# printed author list names a keyed person by name only and was never read by a linker:
+#   - unkeyed works with an id (doi:, openalex:, ojs:): the works of keyed people found through one co-author's ORCID
+#     (author-works: the other printed authors), the Crossref / Crossref-metadata / journal-metadata / OpenAlex matches of
+#     cited works (cited-works works with no author rows; JSTOR-note matches), with their OpenAlex, Crossref, JSTOR or OJS
+#     records;
+#   - keyed works with a DOI or OpenAlex anchor that the positions of the 11-11 run did not cover (records found since);
+#   - the chapters of volumes the graph holds with key-log volume editors and a book DOI, listed by Crossref under the
+#     volume's title (one targeted Crossref call per volume, `nameonly-siblings`): only chapters whose DOI extends the
+#     volume's DOI, or that carry its ISBN, are read; those not in the graph enter it only when a printed author is
+#     credited to a key.
+# Every position goes through the same rule (rule_wp, guard) as the work-people positions. Facts added for this class
+# (FACTS_NAMEONLY, each admitted only if it holds on the masked-gold and namesake tests; see nameonly-report):
+#   coauthor-network  a person credited on the same work by the key log or by an identifier is the candidate's
+#                     key-log co-editor, advisor or student (co-author is the existing 'coauthor' fact);
+#   volume-network    a person credited (key log) as editor of the chapter's volume, or (key log / identifier) on another
+#                     chapter of it, is the candidate's key-log co-author, co-editor, advisor or student;
+#   volume-editor     the candidate is a key-log editor of the chapter's volume (an introduction, a chapter of one's own
+#                     volume).
+# Outputs: NAMEONLY scratch (positions, results, tests), data/graph/name-only/ (credits.csv.gz, chapters.csv.gz),
+# data/identifiers/name-only-credits-2026-11-12/ (report.json, links, audit sample).
+
+WP_BASE = Path(os.environ.get('WP_BASE', '/tmp/claude-1000/-home-jic823-historiography/'
+                              'd3abee1e-2938-4bf9-afec-f3685cadff31/scratchpad/workpeople'))   # the 11-11 positions
+AW_FETCH = ROOT / 'build/openalex-author-works-2026-11-11'
+CR_META_WORKS = Path('/mnt/e/crossref-meta-2026-11-11/works')
+CR_CONTAINERS = ROOT / 'build/crossref-containers-2026-11-11'
+CR_BOOKS = ROOT / 'build/crossref-volume-editors-2026-11-11'
+CR_SIBLINGS = ROOT / 'build/crossref-volume-chapters-2026-11-12'
+JM_OAI = ROOT / 'build/journal-meta-2026-11-11/oai'
+NO_OUT = ROOT / 'data/identifiers/name-only-credits-2026-11-12'
+NO_TABLE = ROOT / 'data/graph/name-only'
+FACTS_NAMEONLY = ('coauthor-network', 'coauthor-colleague', 'volume-network', 'volume-editor')
+# facts that may single out one of several dated candidates (rule_wp, ONE_NETWORK_FACT): ties of people, not topic, not
+# an OpenAlex profile
+NETWORK_FACTS = ('coauthor', 'inst') + FACTS_NAMEONLY + ('topic',)   # topic: 2026-11-12 owner ruling (supports only)
+CR_DOI_ANY = re.compile(r'"DOI":\s*"([^"]+)"')
+UA_GENERIC = 'historiography-kg/0.1'      # no contact address (privacy guard, 2026-11-12)
+
+
+def _cr_any(args):
+    """Crossref records (one JSON object per line) whose top-level DOI is wanted -> [(doi, authors, kind, title, year,
+    container, isbn)]"""
+    path, want_file = args
+    want = set(open(want_file).read().split())
+    out = []
+    op = gzip.open if str(path).endswith('.gz') else open
+    with op(path, 'rt', encoding='utf-8') as f:
+        for line in f:
+            m = CR_DOI_ANY.search(line)
+            if not m:
+                continue
+            d = None
+            if m.group(1).lower() not in want:
+                if '"_doi"' not in line:
+                    continue
+                d = json.loads(line)
+                if (d.get('_doi') or '').lower() not in want:
+                    continue
+            d = d or json.loads(line)
+            doi = (d.get('DOI') or d.get('_doi') or '').lower()
+            if doi not in want:
+                continue
+            out.append(dict(doi=doi, authors=cr_authors(d), type=d.get('type'), title=((d.get('title') or [''])[0] or '')[:300],
+                            year=cr_year(d), container=((d.get('container-title') or [''])[0] or '')[:300],
+                            isbn=[re.sub(r'[^0-9X]', '', x) for x in d.get('ISBN') or []]))
+    return out
+
+
+def cr_authors(d):
+    au = []
+    for a in d.get('author') or []:
+        nm = ' '.join(x for x in (a.get('given'), a.get('family')) if x) or a.get('name') or ''
+        au.append(dict(name=nm, orcid=(a.get('ORCID') or '').rsplit('/', 1)[-1],
+                       aff=[x.get('name') for x in a.get('affiliation') or [] if x.get('name')][:2]))
+    return au
+
+
+def cr_year(d):
+    for k in ('issued', 'published-print', 'published-online', 'published'):
+        try:
+            return int(d[k]['date-parts'][0][0])
+        except Exception:
+            continue
+    return None
+
+
+def nameonly_targets(db, S):
+    """works whose printed author list no linker has read -> S/targets.parquet (work, kind, year, journal, title, ids)"""
+    G = GRAPH
+    db.execute(f"CREATE OR REPLACE TABLE oldpos AS SELECT DISTINCT work FROM '{WP_BASE}/positions*.parquet'")
+    # works the cited-works author linker read (by their cited-works id, which is the node key unless the log holds it)
+    db.execute(f"""CREATE OR REPLACE TABLE cwa AS SELECT DISTINCT work FROM read_csv('{ROOT / 'data/graph/cited-works/authors.csv.gz'}',
+                   all_varchar=true)""")
+    db.execute(f"""CREATE OR REPLACE TABLE tg AS SELECT key AS work, resolution, kind, year, journal, label AS title, anchors
+            FROM '{G}/work.parquet' w
+            WHERE ((resolution = 'unkeyed' AND (key LIKE 'doi:%' OR key LIKE 'openalex:%' OR key LIKE 'ojs:%'))
+                   OR (resolution <> 'unkeyed' AND kind <> 'thesis'
+                       AND len(list_filter(anchors, x -> x LIKE 'doi:%' OR x LIKE 'openalex:%')) > 0
+                       AND key NOT IN (SELECT work FROM oldpos)))
+              AND key NOT IN (SELECT work FROM cwa)""")
+    db.execute("""DELETE FROM tg WHERE work IN (SELECT DISTINCT work FROM (SELECT work, unnest(anchors) a FROM tg)
+                  WHERE a IN (SELECT work FROM cwa))""")
+    print(db.execute("SELECT resolution = 'unkeyed', kind, count(*) FROM tg GROUP BY ALL ORDER BY 3 DESC").fetchall(), flush=True)
+    db.execute(f"COPY tg TO '{S}/targets.parquet'")
+
+
+def nameonly_extract(args):
+    """records for the targets: OpenAlex (History harvest, DOI lookup, the author-works ORCID fetch), Crossref (metadata
+    harvest, chapter and book fetches, the reference harvest, the volume-chapter fetch), JSTOR metadata, OJS records"""
+    import subprocess
+    S = SCRATCH
+    S.mkdir(parents=True, exist_ok=True)
+    db = duck()
+    if not (S / 'targets.parquet').exists() or args.retarget:
+        nameonly_targets(db, S)
+    db.execute(f"CREATE OR REPLACE TABLE tg AS SELECT * FROM '{S}/targets.parquet'")
+    db.execute("""CREATE OR REPLACE TABLE ids AS SELECT DISTINCT work, a FROM (SELECT work, unnest(list_append(anchors, work)) a FROM tg)
+                  WHERE a LIKE 'doi:%' OR a LIKE 'openalex:%' OR a LIKE 'ojs:%'""")
+    # OpenAlex work ids: anchors, the author-works table, and the authorship rows by DOI
+    db.execute(f"""CREATE OR REPLACE TABLE oaw AS
+            SELECT DISTINCT substr(a, 10) oa FROM ids WHERE a LIKE 'openalex:%'
+            UNION SELECT DISTINCT openalex FROM read_csv('{ROOT / 'data/graph/author-works/works.csv.gz'}', all_varchar=true)
+                  WHERE ('doi:' || lower(doi)) IN (SELECT a FROM ids) OR id IN (SELECT a FROM ids)
+            UNION SELECT DISTINCT r.work FROM read_parquet('{OA_ROWS}', union_by_name=true) r
+                  WHERE r.doi <> '' AND ('doi:' || lower(r.doi)) IN (SELECT a FROM ids)""")
+    want = [w[1:] for (w,) in db.execute("SELECT oa FROM oaw WHERE oa LIKE 'W%'").fetchall()]
+    print(len(want), 'OpenAlex ids wanted', flush=True)
+    (S / 'want-oa.txt').write_text('\n'.join(want))
+    out = S / 'oa'
+    out.mkdir(parents=True, exist_ok=True)
+    if not args.skip_oa:
+        jobs = [(p, str(S / 'want-oa.txt'), str(out / (p.parent.name + '-' + p.name.replace('.jsonl.gz', '.jsonl'))))
+                for p in sorted(HARVEST.glob('*.jsonl.gz')) + sorted(DOILOOK.glob('part-*.jsonl.gz'))]
+        with mp.get_context('fork').Pool(args.workers) as pool:
+            print('OpenAlex harvest records', sum(n for _, n in pool.imap_unordered(_oa_one, jobs)), flush=True)
+        got = set()
+        for fn in out.glob('*.jsonl'):
+            for line in open(fn, encoding='utf-8'):
+                got.add(line[10:40].split('"')[0][1:])
+        (S / 'want-oa2.txt').write_text('\n'.join(w for w in want if w not in got))
+        # the author-works ORCID fetch: works outside the History harvest (named doi-lookup-* so that the History
+        # population's rarity does not speak for them: guard 'outside-history-rarity-only')
+        jobs = [(p, str(S / 'want-oa2.txt'), str(out / ('doi-lookup-aw-' + p.name.replace('.jsonl.gz', '.jsonl'))))
+                for p in sorted(AW_FETCH.glob('batch-*.jsonl.gz'))]
+        with mp.get_context('fork').Pool(args.workers) as pool:
+            print('OpenAlex author-works records', sum(n for _, n in pool.imap_unordered(_oa_one, jobs)), flush=True)
+    # which DOIs have an OpenAlex record now
+    have = set()
+    for fn in out.glob('*.jsonl'):
+        for line in open(fn, encoding='utf-8'):
+            r = json.loads(line)
+            if r['doi']:
+                have.add(r['doi'])
+            have.add('W:' + r['work'])
+    dois = [a[4:].lower() for (a,) in db.execute("SELECT DISTINCT a FROM ids WHERE a LIKE 'doi:%'").fetchall()]
+    rest = [d for d in dois if d not in have]
+    print(len(dois), 'DOIs;', len(rest), 'without an OpenAlex record', flush=True)
+    (S / 'want-cr.txt').write_text('\n'.join(rest))
+    if not args.skip_cr:
+        files = sorted(CR_META_WORKS.glob('*.jsonl.gz')) + sorted(CR_CONTAINERS.glob('*.jsonl')) + sorted(CR_BOOKS.glob('*.jsonl'))
+        if not args.skip_refs:
+            files += sorted(CROSSREF.glob('journal_*.jsonl.gz'))
+        recs = {}
+        with mp.get_context('fork').Pool(args.workers) as pool:
+            for n, o in enumerate(pool.imap_unordered(_cr_any, [(f, str(S / 'want-cr.txt')) for f in files], chunksize=8)):
+                for r in o:
+                    if r['doi'] not in recs or len(r['authors']) > len(recs[r['doi']]['authors']):
+                        recs[r['doi']] = r
+                if n % 2000 == 0:
+                    print('crossref files', n, len(recs), flush=True)
+        with open(S / 'crossref.jsonl', 'w', encoding='utf-8') as f:
+            for r in recs.values():
+                f.write(json.dumps(r, ensure_ascii=False) + '\n')
+        print(len(recs), 'Crossref records', flush=True)
+    # JSTOR metadata for 10.2307 DOIs still without a record
+    cr_have = set()
+    if (S / 'crossref.jsonl').exists():
+        for line in open(S / 'crossref.jsonl', encoding='utf-8'):
+            r = json.loads(line)
+            if r['authors']:
+                cr_have.add(r['doi'])
+    jrest = {d for d in rest if d.startswith('10.2307/') and d not in cr_have}
+    if not args.skip_jstor and jrest:
+        import orjson
+        c = sqlite3.connect(f'file:{JSTOR_RECORDS}?mode=ro', uri=True)
+        keep = {iid: doi.strip().lower() for iid, doi in c.execute("SELECT item_id, doi FROM records WHERE doi IS NOT NULL")
+                if doi.strip().lower() in jrest}
+        print(len(keep), 'JSTOR records wanted', flush=True)
+        p = subprocess.Popen(['zcat', JSTOR_META], stdout=subprocess.PIPE, bufsize=1 << 20)
+        with open(S / 'jstor.jsonl', 'w', encoding='utf-8') as o:
+            for line in p.stdout:
+                d = orjson.loads(line)
+                iid = d.get('item_id')
+                if iid not in keep:
+                    continue
+                cr = sorted(d.get('creators') or [], key=lambda x: x.get('order') or 0)
+                names = []
+                for x in cr:
+                    fn = re.sub(r'<[^>]+>[^<]*</[^>]+>', ' ', x.get('first_name') or '').strip()
+                    ln = re.sub(r'<[^>]+>[^<]*</[^>]+>', ' ', x.get('last_name') or '').strip()
+                    if ln or fn:
+                        names.append((fn + ' ' + ln).strip())
+                o.write(json.dumps(dict(doi=keep[iid], iid=iid, names=names), ensure_ascii=False) + '\n')
+    # OJS records (journal-metadata harvest) of ojs: works
+    want_ojs = {a for (a,) in db.execute("SELECT DISTINCT a FROM ids WHERE a LIKE 'ojs:%'").fetchall()}
+    if want_ojs:
+        with open(S / 'ojs.jsonl', 'w', encoding='utf-8') as o:
+            for fn in sorted(JM_OAI.glob('*')):
+                op = gzip.open if fn.name.endswith('.gz') else open
+                with op(fn, 'rt', encoding='utf-8') as f:
+                    for line in f:
+                        d = json.loads(line)
+                        if d.get('sid') in want_ojs and d.get('authors_are_full_names'):
+                            o.write(json.dumps(dict(sid=d['sid'], names=[x for x in d.get('authors') or [] if x and x.strip(', ')]),
+                                               ensure_ascii=False) + '\n')
+    print('extract done', flush=True)
+
+
+def nameonly_siblings(args):
+    """Chapters of volumes the graph holds with key-log editors and a book DOI, found by Crossref under the volume's
+    title (query.container-title within the book DOI's prefix; the chapters are then kept only by DOI or ISBN, see
+    sibling_chapters; one call per volume; resumable, records of the first trial query, an exact container-title
+    filter, have no 'query' field and are not counted as done; build/crossref-volume-chapters-2026-11-12/part-NNN.jsonl). Polite: one call at
+    a time, a pause between calls, a generic client name, no contact address."""
+    import time
+    import urllib.parse
+    import urllib.request
+    db = duck()
+    G = GRAPH
+    CR_SIBLINGS.mkdir(parents=True, exist_ok=True)
+    db.execute(f"""CREATE TABLE ed AS SELECT DISTINCT "to" v FROM {keylog(G, 'edited')}
+                   UNION SELECT DISTINCT "to" FROM {keylog(G, 'authored')} WHERE role = 'volume-editor'""")
+    # the book DOI: the volume's own anchor, else the one container DOI its chapters' records give (work-containers.csv.gz;
+    # volumes with two or more container DOIs are left out)
+    db.execute(f"""CREATE TABLE cdoi AS SELECT volume_work v, any_value('doi:' || lower(container_doi)) d
+            FROM read_csv('{ROOT / 'data/graph/work-containers.csv.gz'}', all_varchar=true)
+            WHERE container_doi IS NOT NULL AND volume_work IS NOT NULL GROUP BY 1 HAVING count(DISTINCT lower(container_doi)) = 1""")
+    vols = db.execute(f"""SELECT w.key, w.label, w.year, CASE WHEN len(list_filter(w.anchors, x -> x LIKE 'doi:%')) > 0
+                THEN list_filter(w.anchors, x -> x LIKE 'doi:%') ELSE [c.d] END FROM '{G}/work.parquet' w LEFT JOIN cdoi c ON c.v = w.key
+            WHERE w.key IN (SELECT DISTINCT "to" FROM '{G}/part_of.parquet') AND w.key IN (SELECT v FROM ed)
+              AND (len(list_filter(w.anchors, x -> x LIKE 'doi:%')) > 0 OR c.d IS NOT NULL) ORDER BY w.key""").fetchall()
+    done = set()
+    for fn in CR_SIBLINGS.glob('part-*.jsonl'):
+        for line in open(fn, encoding='utf-8'):
+            r = json.loads(line)
+            if r.get('query') == 'container-title-in-prefix':
+                done.add(r['volume'])
+    # a stable random order, so that a run stopped early has fetched a random sample of the volumes
+    import hashlib
+    todo = sorted((v for v in vols if v[0] not in done), key=lambda v: hashlib.md5(v[0].encode()).hexdigest())[:args.max]
+    print(len(vols), 'volumes;', len(done), 'done;', len(todo), 'to fetch', flush=True)
+    part = CR_SIBLINGS / f'part-{len(list(CR_SIBLINGS.glob("part-*.jsonl"))):03d}.jsonl'
+    calls = 0
+    with open(part, 'a', encoding='utf-8') as o:
+        for key, label, year, dois in todo:
+            title = re.split(r'\s+/\s+|:\s', label or '')[0].strip()
+            if len(title) < 4:
+                o.write(json.dumps(dict(volume=key, title=title, query='container-title-in-prefix', status='no-title', items=[])) + '\n')
+                continue
+            prefix = dois[0][4:].split('/')[0]
+            q = urllib.parse.urlencode({'query.container-title': title, 'filter': f'prefix:{prefix}', 'rows': 100,
+                                        'select': 'DOI,type,title,author,editor,container-title,ISBN,issued,publisher'})
+            url = f'https://api.crossref.org/works?{q}'
+            items, status = [], 'ok'
+            for attempt in range(3):
+                try:
+                    req = urllib.request.Request(url, headers={'User-Agent': UA_GENERIC})
+                    with urllib.request.urlopen(req, timeout=60) as r:
+                        items = json.loads(r.read())['message']['items']
+                    break
+                except Exception as e:
+                    status = f'error:{str(e)[:80]}'
+                    time.sleep(5 * (attempt + 1))
+            calls += 1
+            o.write(json.dumps(dict(volume=key, title=title, year=year, dois=dois, query='container-title-in-prefix',
+                                    status=status if not items else 'ok',
+                                    items=items), ensure_ascii=False) + '\n')
+            o.flush()
+            if calls % 100 == 0:
+                print(calls, 'calls', flush=True)
+            time.sleep(args.pause)
+    print('calls', calls, flush=True)
+
+
+def sibling_chapters(G, db):
+    """the fetched chapter lists -> {chapter doi: dict(volume, title, year, authors, kind)} for chapters whose DOI
+    extends the volume's DOI (next character not a letter or digit) or that carry the volume's ISBN"""
+    isbn = {k: re.sub(r'[^0-9X]', '', (i or '').upper()) for k, i in db.execute(f"SELECT key, isbn FROM '{G}/work.parquet' WHERE isbn IS NOT NULL").fetchall()}
+    out = {}
+    for fn in sorted(CR_SIBLINGS.glob('part-*.jsonl')):
+        for line in open(fn, encoding='utf-8'):
+            r = json.loads(line)
+            vd = [d[4:].lower() for d in r.get('dois') or []]
+            for it in r.get('items') or []:
+                doi = (it.get('DOI') or '').lower()
+                if not doi or doi in vd or it.get('type') not in ('book-chapter', 'book-section', 'book-part', 'reference-entry', 'other'):
+                    continue
+                ok = any(doi.startswith(v) and len(doi) > len(v) and not doi[len(v)].isalnum() for v in vd)
+                basis = 'chapter-doi'
+                if not ok and isbn.get(r['volume']):
+                    ok = isbn[r['volume']] in {re.sub(r'[^0-9X]', '', x.upper()) for x in it.get('ISBN') or []}
+                    basis = 'isbn'
+                if not ok:
+                    continue
+                t = ((it.get('title') or [''])[0] or '').strip()
+                if not it.get('author') or re.match(r'(?i)^(front|back) matter|^(table of )?contents$|^index$|^notes$|^bibliography$', t):
+                    continue
+                out[doi] = dict(volume=r['volume'], title=t[:300], year=cr_year(it), authors=cr_authors(it), kind='chapter',
+                                publisher=it.get('publisher') or '', basis=basis)
+    return out
+
+
+# identifier credits used as a work's known authors: an ORCID that OpenAlex put on its author profile (not printed on
+# the work) is not one (2026-11-12: OpenAlex profiles merge namesakes; Andrew Watson p-21351)
+KNOWN_EXACT_SQL = "(a.evidence = 'keylog' OR (a.state = 'exact' AND coalesce(a.source, '') <> 'author-works:openalex-author-orcid'))"
+
+
+def volume_people_rows(db, G, chap, extra=None):
+    """[dict(work=chapter, key, how, volume)]: key-log editors of the chapter's volume (EDITED, AUTHORED volume-editor) and
+    the key-log / identifier authors of its other chapters"""
+    vol_of = defaultdict(set)
+    for c, v in db.execute(f"SELECT \"from\", \"to\" FROM '{G}/part_of.parquet'").fetchall():
+        if c in chap:
+            vol_of[c].add(v)
+    for c, v in (extra or {}).items():
+        vol_of[c].add(v)
+    vols = sorted({v for vs in vol_of.values() for v in vs})
+    db.register('vv', db.execute('SELECT unnest(?) AS v', [vols]).df())
+    ved = defaultdict(set)
+    for k, v in db.execute(f"""SELECT "from", "to" FROM {keylog(G, 'edited')} JOIN vv ON vv.v = "to"
+            UNION SELECT "from", "to" FROM {keylog(G, 'authored')} JOIN vv ON vv.v = "to" WHERE role = 'volume-editor'""").fetchall():
+        ved[v].add(k)
+    vch = defaultdict(set)
+    for k, c, v in db.execute(f"""SELECT a."from", p."from", p."to" FROM '{G}/part_of.parquet' p JOIN vv ON vv.v = p."to"
+            JOIN '{G}/authored.parquet' a ON a."to" = p."from" WHERE {KNOWN_EXACT_SQL}""").fetchall():
+        vch[v].add((k, c))
+    vp = []
+    for c, vs in vol_of.items():
+        for v in vs:
+            for k in ved.get(v, ()):
+                vp.append(dict(work=c, key=k, how='volume-editor', volume=v))
+            for k, c2 in vch.get(v, ()):
+                if c2 != c:
+                    vp.append(dict(work=c, key=k, how='other-chapter', volume=v))
+    return vp
+
+
+def volume_people_cmd(args):
+    """S/volume-people.parquet for the chapters among S/positions*.parquet (the 11-11 positions: link --new-facts)"""
+    import pyarrow as pa
+    import pyarrow.parquet as pq
+    db = duck()
+    chap = {w for (w,) in db.execute(f"""SELECT DISTINCT p.work FROM '{SCRATCH}/positions*.parquet' p
+            JOIN '{GRAPH}/work.parquet' w ON w.key = p.work WHERE w.kind = 'chapter'""").fetchall()}
+    vp = volume_people_rows(db, GRAPH, chap)
+    pq.write_table(pa.Table.from_pylist(vp or [dict(work='', key='', how='', volume='')]), SCRATCH / 'volume-people.parquet')
+    print(len(chap), 'chapters,', len(vp), 'rows')
+
+
+def nameonly_positions(args):
+    """S/positions.parquet (role author, the work-people schema) for the targets and the fetched sibling chapters, with
+    `credited` set where a printed name agrees with a person the graph already credits on the work by the key log or
+    an identifier (the gold rows); names agreeing with a person credited there by a rule are dropped (already linked).
+    Also S/credited-extra.parquet (work, key: identifier credits, read as the work's known authors) and
+    S/volume-people.parquet (chapter, key, how: key-log editors of its volume, key-log or identifier authors of its other
+    chapters)."""
+    import pyarrow as pa
+    import pyarrow.parquet as pq
+    S, G = SCRATCH, GRAPH
+    db = duck()
+    db.execute(f"CREATE OR REPLACE TABLE tg AS SELECT * FROM '{S}/targets.parquet'")
+    label = dict(db.execute(f"SELECT key, label FROM '{G}/person.parquet'").fetchall())
+    orcid_of = defaultdict(set)
+    for k, o in db.execute(f"SELECT key, a FROM (SELECT key, unnest(anchors) a FROM '{G}/person.parquet') WHERE a LIKE 'orcid:%'").fetchall():
+        orcid_of[k].add(o[6:])
+    work = {k: (kind, year, journal, title) for k, kind, year, journal, title in
+            db.execute("SELECT work, kind, year, journal, title FROM tg").fetchall()}
+    id_work = defaultdict(set)
+    for w, a in db.execute("SELECT DISTINCT work, a FROM (SELECT work, unnest(list_append(anchors, work)) a FROM tg)").fetchall():
+        id_work[a.lower() if a.startswith('doi:') else a].add(w)
+    # credits on the targets: key log or identifier (gold), rule (already linked)
+    sib = sibling_chapters(G, db)
+    known = {}
+    for d in db.execute(f"SELECT key FROM '{G}/work.parquet' WHERE key LIKE 'doi:%'").fetchall():
+        known[d[0]] = 1
+    for a, k in db.execute(f"""SELECT a, key FROM (SELECT key, unnest(anchors) a FROM '{G}/work.parquet') WHERE a LIKE 'doi:%'""").fetchall():
+        known[a.lower()] = k
+    # chapters an earlier export of this class added to the graph count as not held (they exist only through it)
+    for (c,) in db.execute(f"""SELECT DISTINCT "from" FROM '{G}/part_of.parquet' WHERE source = 'name-only-volume'""").fetchall():
+        known.pop(c, None)
+    new_sib = {d: v for d, v in sib.items() if ('doi:' + d) not in known}
+    print(len(sib), 'sibling chapters;', len(new_sib), 'not in the graph', flush=True)
+    keys = sorted(work)
+    db.register('kk', db.execute('SELECT unnest(?) AS key', [keys]).df())
+    gold_cr, rule_cr = defaultdict(set), defaultdict(set)
+    # this class's own earlier credits (source name-only:*, loaded by an earlier build) are neither gold nor 'already linked'
+    for k, w, known in db.execute(f"""SELECT a."from", a."to", {KNOWN_EXACT_SQL} FROM '{G}/authored.parquet' a
+            JOIN kk ON kk.key = a."to" WHERE coalesce(a.source, '') NOT LIKE 'name-only:%'""").fetchall():
+        (gold_cr if known else rule_cr)[w].add(k)
+    extra = [dict(work=w, key=k) for w, ks in gold_cr.items() for k in ks]
+    # positions from the records
+    rows = []
+    stats = Counter()
+
+    def add(role_src, w, i, n, nm, orcid='', oa_author='', rors=(), insts=(), raw_aff=(), oa_work='', inst=''):
+        kind, year, journal, title = work[w]
+        row = dict(role='author', source=role_src, work=w, pos=i, n_auth=n, name=nm, year=year, journal=journal or '',
+                   kind=kind or '', title=(title or '')[:200], orcid=orcid or '', oa_author=oa_author or '', rors=list(rors),
+                   insts=list(insts), raw_aff=list(raw_aff), oa_work=oa_work, inst_printed=(inst or '')[:200], inst_ror='',
+                   inst_ror_name='', sig_conf=0.0, credited='', credited_how='')
+        ks = gold_cr.get(w, ())
+        hit = [k for k in ks if row['orcid'] and row['orcid'] in orcid_of.get(k, ())]
+        if hit:
+            row.update(credited=hit[0], credited_how='orcid')
+        else:
+            best = None
+            for k in ks:
+                lev = agree_level(nm, label.get(k, ''))
+                if lev and (best is None or ('full', 'variant', 'initial').index(lev) < ('full', 'variant', 'initial').index(best[1])):
+                    best = (k, lev)
+            if best:
+                row.update(credited=best[0], credited_how='name:' + best[1])
+            elif any(agree_level(nm, label.get(k, '')) for k in rule_cr.get(w, ())):
+                stats['dropped_already_linked_by_rule'] += 1
+                return
+        rows.append(row)
+    done = set()
+    # OpenAlex records first (the most authors when two)
+    best = {}
+    for fn in sorted((S / 'oa').glob('*.jsonl')):
+        for line in open(fn, encoding='utf-8'):
+            r = json.loads(line)
+            ws = set(id_work.get('openalex:' + r['work'], ())) | (set(id_work.get('doi:' + r['doi'], ())) if r['doi'] else set())
+            for w in ws:
+                if w not in best or len(r['authorships']) > len(best[w]['authorships']):
+                    best[w] = r
+    refs = {}
+    book_like = ('book', 'edited-book', 'monograph')
+    for w, r in best.items():
+        if work[w][0] == 'book' and (r.get('type') or '') not in book_like:
+            stats['dropped_book_with_nonbook_record'] += 1     # title_filter: a review record on a book key
+            continue
+        done.add(w)
+        refs[r['work']] = r['refs']
+        for a in r['authorships']:
+            nm = a['name'] or a['raw'] or ''
+            if a['raw'] and forms(nm) and initial_only(forms(nm)[0][2]) and forms(a['raw']) and not initial_only(forms(a['raw'])[0][2]):
+                nm = a['raw']
+            if nm:
+                add('openalex', w, a['pos'], len(r['authorships']), nm, a['orcid'], a['author'], a['rors'], a['insts'], a['raw_aff'], r['work'])
+    stats['works_openalex'] = len(done)
+    # Crossref
+    if (S / 'crossref.jsonl').exists():
+        for line in open(S / 'crossref.jsonl', encoding='utf-8'):
+            r = json.loads(line)
+            for w in id_work.get('doi:' + r['doi'], ()):
+                if w in done or not r['authors']:
+                    continue
+                if work[w][0] == 'book' and r['type'] not in ('book', 'monograph', 'edited-book', 'reference-book'):
+                    stats['dropped_book_with_nonbook_record'] += 1
+                    continue
+                done.add(w)
+                stats['works_crossref'] += 1
+                for i, a in enumerate(r['authors']):
+                    if a['name']:
+                        add('crossref', w, i, len(r['authors']), a['name'], a['orcid'], raw_aff=a['aff'], inst=(a['aff'] or [''])[0])
+    if (S / 'jstor.jsonl').exists():
+        for line in open(S / 'jstor.jsonl', encoding='utf-8'):
+            r = json.loads(line)
+            for w in id_work.get('doi:' + r['doi'], ()):
+                if w in done or not r['names']:
+                    continue
+                done.add(w)
+                stats['works_jstor'] += 1
+                for i, nm in enumerate(r['names']):
+                    add('jstor', w, i, len(r['names']), nm)
+    if (S / 'ojs.jsonl').exists():
+        for line in open(S / 'ojs.jsonl', encoding='utf-8'):
+            r = json.loads(line)
+            for w in id_work.get(r['sid'], ()):
+                if w in done or not r['names']:
+                    continue
+                done.add(w)
+                stats['works_ojs'] += 1
+                for i, nm in enumerate(r['names']):
+                    add('ojs', w, i, len(r['names']), nm)
+    # sibling chapters not in the graph: works of their own (unkeyed doi: ids), positions source crossref-volume
+    sib_rows = []
+    vyear = dict(db.execute(f"SELECT key, year FROM '{G}/work.parquet' WHERE key IN (SELECT unnest(?))", [sorted({v['volume'] for v in new_sib.values()})]).fetchall())
+    for d, v in new_sib.items():
+        w = 'doi:' + d
+        work[w] = ('chapter', v['year'] or vyear.get(v['volume']), None, v['title'])
+        sib_rows.append(dict(id=w, doi=d, title=v['title'], year=v['year'] or vyear.get(v['volume']), kind='chapter',
+                             volume_work=v['volume'], volume_basis=v['basis'], publisher=v['publisher'], n_authors=len(v['authors']),
+                             authors=json.dumps([dict(pos=i, name=a['name'], orcid=a['orcid'], aff=a['aff']) for i, a in enumerate(v['authors'])],
+                                                ensure_ascii=False)))
+        stats['works_crossref_volume'] += 1
+        for i, a in enumerate(v['authors']):
+            if a['name']:
+                add('crossref-volume', w, i, len(v['authors']), a['name'], a['orcid'], raw_aff=a['aff'], inst=(a['aff'] or [''])[0])
+    stats['target_works'] = len(keys)
+    stats['works_without_record'] = len(set(keys) - done)
+    for i, r in enumerate(rows):
+        r['pid'] = 10_000_000 + i          # apart from the 11-11 pids
+    # one credited key per position (the better agreement keeps it), as in positions()
+    by = defaultdict(list)
+    for i, r in enumerate(rows):
+        if r['credited']:
+            by[r['work'], r['credited']].append(i)
+    rank = lambda r: (0 if r['credited_how'] == 'orcid' else 1 + ('full', 'variant', 'initial').index(r['credited_how'][5:]), r['pos'])
+    for ids in by.values():
+        for i in sorted(ids, key=lambda i: rank(rows[i]))[1:]:
+            rows[i]['credited'], rows[i]['credited_how'] = '', ''
+    schema = pq.read_schema(WP_BASE / 'positions.parquet')
+    pq.write_table(pa.Table.from_pylist(rows, schema=schema), S / 'positions.parquet')
+    pq.write_table(pa.Table.from_pylist(extra or [dict(work='', key='')]), S / 'credited-extra.parquet')
+    pq.write_table(pa.Table.from_pylist(sib_rows or [dict(id='', doi='', title='', year=None, kind='', volume_work='', volume_basis='', publisher='',
+                                                          n_authors=0, authors='')]), S / 'sibling-chapters.parquet')
+    with open(S / 'oa-refs.jsonl', 'w') as f:
+        for k, v in refs.items():
+            if v:
+                f.write(json.dumps([k, v]) + '\n')
+    # people on each chapter's volume: key-log editors of the volume, key-log / identifier authors of its other chapters
+    vp = volume_people_rows(db, G, {w for w in work if work[w][0] == 'chapter'}, {'doi:' + d: v['volume'] for d, v in new_sib.items()})
+    pq.write_table(pa.Table.from_pylist(vp or [dict(work='', key='', how='', volume='')]), S / 'volume-people.parquet')
+    stats['positions'] = len(rows)
+    stats['positions_credited_gold'] = sum(1 for r in rows if r['credited'])
+    stats['volume_people_rows'] = len(vp)
+    print(json.dumps(dict(stats), indent=1), flush=True)
+    (S / 'positions-stats.json').write_text(json.dumps(dict(stats), indent=1) + '\n')
+
+
+def _facts_of(sig):
+    out = set()
+    for t in (sig or '').split():
+        f = t.split(':')[0]
+        if f in ('inst', 'coauthor', 'oa-author-tie', 'selfcite', 'student-thesis-cites', 'journal', 'own-thesis-cites',
+                 'inst-name', 'topic') + FACTS_NAMEONLY:
+            out.add(f)
+    return out
+
+
+def nameonly_report(args):
+    """NO_OUT/report.json: the class (positions with a name-compatible key), states, branches, the gold and namesake
+    tests by branch and by fact, the ablation against a run without FACTS_NAMEONLY (S/*-base.parquet, if present), and
+    NO_OUT/audit-sample.csv (40 linked rows for reading)."""
+    db = duck()
+    S, G = SCRATCH, GRAPH
+    NO_OUT.mkdir(parents=True, exist_ok=True)
+    q = lambda sql: db.execute(sql).fetchall()
+    db.execute(f"""CREATE TABLE allp AS SELECT p.*, coalesce(r.state, CASE WHEN p.credited <> '' THEN 'credited' END) state,
+            r.key, r.branch, r.candidates, r.n_candidates, r.signals, r.already_credited
+            FROM '{S}/positions.parquet' p LEFT JOIN '{S}/results.parquet' r USING (pid)""")
+    stats = json.loads((S / 'positions-stats.json').read_text())
+    rep = dict(date='2026-11-12', graph=str(G), what=(
+        'printed author positions on works whose author list no linker had read (unkeyed works with an id, keyed works '
+        'outside the 11-11 positions, chapters of key-log edited volumes listed by Crossref); see link_work_people.py, '
+        'section name-only'), extraction=stats)
+    rep['targets'] = {f'{u}|{k}': n for u, k, n in q(f"""SELECT CASE WHEN resolution = 'unkeyed' THEN 'unkeyed' ELSE 'keyed' END, kind, count(*)
+            FROM '{S}/targets.parquet' GROUP BY ALL ORDER BY 3 DESC""")}
+    rep['positions_by_source_state'] = {f'{a}|{b}': n for a, b, n in q("SELECT source, state, count(*) FROM allp GROUP BY ALL ORDER BY 1, 3 DESC")}
+    named = "state IN ('exact', 'linked', 'possible', 'ambiguous') OR branch IN ('only-date-excluded', 'only-proven-namesakes', 'author-of-reviewed-book', 'same-title-as-own-book')"
+    c = q(f"""SELECT count(*), count(DISTINCT work), count(*) FILTER (WHERE {named}), count(DISTINCT work) FILTER (WHERE {named}),
+              count(*) FILTER (WHERE state IN ('exact', 'linked') AND NOT already_credited),
+              count(DISTINCT work) FILTER (WHERE state IN ('exact', 'linked') AND NOT already_credited),
+              count(*) FILTER (WHERE state IN ('possible', 'ambiguous')), count(DISTINCT work) FILTER (WHERE state IN ('possible', 'ambiguous'))
+           FROM allp WHERE state <> 'credited'""")[0]
+    rep['class'] = dict(
+        uncredited_positions=c[0], works=c[1],
+        positions_naming_a_keyed_person_by_name=c[2], works_naming_a_keyed_person=c[3],
+        credited_now_exact_or_linked=c[4], works_credited_now=c[5],
+        open_possible_or_ambiguous=c[6], works_open=c[7],
+        note=('a position names a keyed person when at least one key bears a compatible name before the date test '
+              '(states exact/linked/possible/ambiguous, and none when every such key was ruled out by dates, a proven '
+              'namesake, or the book-author check); exact = an ORCID printed on the record is on the key'))
+    rep['by_state_branch'] = {f'{a}|{b}': n for a, b, n in q("SELECT state, branch, count(*) FROM allp WHERE state NOT IN ('credited') GROUP BY ALL ORDER BY 1, 3 DESC")}
+    rep['linked_by_fact'] = dict(Counter(f for (sig,) in q("SELECT signals FROM allp WHERE state = 'linked' AND NOT already_credited")
+                                         for f in _facts_of(sig)))
+    orc = {k for (k,) in q(f"SELECT key FROM '{G}/person.parquet' WHERE len(list_filter(anchors, x -> x LIKE 'orcid:%')) > 0")}
+    lk_rows = q("SELECT key, signals, branch FROM allp WHERE state = 'linked' AND NOT already_credited")
+    rep['linked_by_person_orcid'] = dict(with_orcid=sum(1 for k, _, _ in lk_rows if k in orc),
+                                         without_orcid=sum(1 for k, _, _ in lk_rows if k not in orc))
+    t_only = [k for k, sig, br in lk_rows if _facts_of(sig) == {'topic'}]
+    rep['linked_resting_on_topic_alone'] = dict(positions=len(t_only), with_orcid=sum(1 for k in t_only if k in orc),
+                                                without_orcid=sum(1 for k in t_only if k not in orc))
+    rep['linked_without_fact_by_branch'] = dict(Counter(br for sig, br in q("SELECT signals, branch FROM allp WHERE state = 'linked' AND NOT already_credited")
+                                                        if not _facts_of(sig)))
+    # ---- gold (masked: the credit, its ORCID and what came from that work hidden) and namesake tests
+    def tests(tag=''):
+        gold = q(f"SELECT state, key, true, cls, branch, sig, half, how FROM '{S}/gold{tag}.parquet' WHERE dup")
+        ns = q(f"SELECT test, false_link, branch, sig, state FROM '{S}/namesake{tag}.parquet'")
+        out = dict(gold_rows=len(gold))
+        lk = [g for g in gold if g[0] == 'linked']
+        right = [g for g in lk if g[3] in ('right', 'dup')]
+        out['gold'] = dict(linked=len(lk), right_or_duplicate_key=len(right), wrong=len(lk) - len(right),
+                           precision=round(len(right) / len(lk), 4) if lk else None, recall=round(len(right) / len(gold), 4) if gold else None)
+        out['gold_by_how_credited'] = {}
+        for how in sorted({g[7].split(':')[0] for g in gold}):
+            gg = [g for g in gold if g[7].split(':')[0] == how]
+            l2 = [g for g in gg if g[0] == 'linked']
+            r2 = [g for g in l2 if g[3] in ('right', 'dup')]
+            out['gold_by_how_credited'][how] = dict(rows=len(gg), linked=len(l2), right=len(r2), recall=round(len(r2) / len(gg), 4) if gg else None,
+                                                    precision=round(len(r2) / len(l2), 4) if l2 else None)
+        byf = defaultdict(lambda: [0, 0])
+        for g in lk:
+            fs = _facts_of(g[5]) or {'(no fact: rarity)'}
+            for f in fs:
+                byf[f][0] += 1
+                byf[f][1] += g[3] in ('right', 'dup')
+        out['gold_by_fact'] = {f: dict(linked=a, right=b, precision=round(b / a, 4) if a else None, recall=round(b / len(gold), 4))
+                               for f, (a, b) in sorted(byf.items())}
+        # links that rest on one fact alone (second-fact branches with that fact only)
+        alone = defaultdict(lambda: [0, 0])
+        for g in lk:
+            fs = _facts_of(g[5])
+            if g[4] in ('unique-second-fact', 'several-one-survives') and len(fs) == 1:
+                f = next(iter(fs))
+                alone[f][0] += 1
+                alone[f][1] += g[3] in ('right', 'dup')
+        out['gold_links_resting_on_one_fact'] = {f: dict(linked=a, right=b, precision=round(b / a, 4) if a else None) for f, (a, b) in sorted(alone.items())}
+        byb = defaultdict(lambda: [0, 0])
+        for g in lk:
+            byb[g[4]][0] += 1
+            byb[g[4]][1] += g[3] in ('right', 'dup')
+        out['gold_by_branch'] = {b: dict(linked=x, right=y, precision=round(y / x, 4)) for b, (x, y) in sorted(byb.items())}
+        out['gold_not_linked'] = dict(Counter(f'{g[0]}|{g[4]}' for g in gold if g[0] != 'linked').most_common(15))
+        out['namesake'] = {t: dict(rows=sum(1 for x in ns if x[0] == t), false_links=sum(1 for x in ns if x[0] == t and x[1]))
+                           for t in sorted({x[0] for x in ns})}
+        nf = Counter()
+        for x in ns:
+            if x[1]:
+                for f in _facts_of(x[3]) or {'(no fact: rarity)'}:
+                    nf[f] += 1
+        out['namesake_false_links_by_fact'] = dict(nf)
+        out['namesake_false_links_by_branch'] = dict(Counter(x[2] for x in ns if x[1]))
+        return out
+    rep['tests'] = tests()
+    if (S / 'gold-base.parquet').exists():
+        rep['tests_without_new_facts'] = tests('-base')
+        d = q(f"""SELECT count(*) FROM '{S}/results.parquet' r JOIN '{S}/results-base.parquet' b USING (pid)
+                 WHERE r.state = 'linked' AND b.state <> 'linked'""")[0][0]
+        d2 = q(f"""SELECT count(*) FROM '{S}/results.parquet' r JOIN '{S}/results-base.parquet' b USING (pid)
+                 WHERE r.state <> 'linked' AND b.state = 'linked'""")[0][0]
+        d3 = q(f"""SELECT count(*) FROM '{S}/results.parquet' r JOIN '{S}/results-base.parquet' b USING (pid)
+                 WHERE r.state = 'linked' AND b.state = 'linked' AND r.key <> b.key""")[0][0]
+        rep['ablation'] = dict(linked_only_with_new_facts=d, linked_only_without=d2, linked_to_another_key=d3)
+    # ---- OpenAlex author ids that span two keyed people (is the tie fact safe?)
+    t = q(f"""WITH t AS (SELECT DISTINCT r.author, r.person FROM read_parquet('{OA_ROWS}', union_by_name=true) r
+                JOIN {keylog(G, 'authored')} au ON au."from" = r.person AND au."to" = r.graph_work
+                WHERE r.tie LIKE '%work%' AND r.person <> '' AND r.author <> '')
+            SELECT count(*), count(*) FILTER (WHERE n >= 2), sum(n) FILTER (WHERE n >= 2) FROM (SELECT author, count(*) n FROM t GROUP BY 1)""")[0]
+    rep['openalex_author_ids'] = dict(tied_to_keys_by_keylog_credits=t[0], tied_to_two_or_more_keys=t[1], keys_on_those=t[2],
+                                      share=round(t[1] / t[0], 4) if t[0] else None,
+                                      note='ids tied to two or more keys are dropped from the oa-author-tie fact (WPPeople.ties)')
+    (NO_OUT / 'report.json').write_text(json.dumps(rep, indent=1, ensure_ascii=False, default=str) + '\n')
+    # ---- 40 linked rows for reading
+    db.execute("SELECT setseed(0.1212)")
+    rows = q("""SELECT pid, source, work, name, year, journal, kind, title, inst_printed, raw_aff, branch, key, signals FROM allp
+                WHERE state = 'linked' AND NOT already_credited ORDER BY random() LIMIT 40""")
+    rows += q("""SELECT pid, source, work, name, year, journal, kind, title, inst_printed, raw_aff, branch, key, signals FROM allp
+                WHERE state = 'linked' AND NOT already_credited AND signals LIKE '%topic:%' ORDER BY random() LIMIT 40""")
+    rows = [r for r in rows if r[10] != 'identifier']
+    seen_ = set()
+    rows = [r for r in rows if not (r[0] in seen_ or seen_.add(r[0]))]
+    out = []
+    for pid, src, w, nm, y, j, kind, title, inst, raw, br, k, sig in rows:
+        lab, an = db.execute(f"SELECT label, anchors FROM '{G}/person.parquet' WHERE key = ?", [k]).fetchone()
+        ws = db.execute(f"""SELECT w.year, w.kind, coalesce(w.journal, ''), left(w.label, 60) FROM {keylog(G, 'authored')} a
+                JOIN '{G}/work.parquet' w ON w.key = a."to" WHERE a."from" = ? ORDER BY w.year NULLS LAST LIMIT 8""", [k]).fetchall()
+        af = db.execute(f"""SELECT i.label, a.source, a.first_year, a.last_year FROM '{G}/affiliated_with.parquet' a
+                JOIN '{G}/institution.parquet' i ON i.key = a."to" WHERE a."from" = ? LIMIT 5""", [k]).fetchall()
+        out.append(dict(pid=pid, source=src, work=w, printed=nm, year=y, kind=kind, journal=j, title=(title or '')[:100],
+                        printed_institution=inst or '; '.join(raw or [])[:100], branch=br, signals=sig, key=k, key_label=lab,
+                        key_ids=' '.join(a for a in an if a.split(':')[0] in ('lcnaf', 'orcid', 'wd', 'aha-phd')),
+                        key_works=' | '.join(f'{y_} {kd} {j_[:25]} {t_}' for y_, kd, j_, t_ in ws),
+                        key_affiliations=' | '.join(f'{l} ({s_} {a}-{b})' for l, s_, a, b in af)))
+    with open(NO_OUT / 'audit-sample.csv', 'w', newline='', encoding='utf-8') as f:
+        w_ = csv.DictWriter(f, fieldnames=list(out[0]))
+        w_.writeheader()
+        w_.writerows(out)
+    print(json.dumps({k: rep[k] for k in ('class', 'linked_by_fact', 'linked_without_fact_by_branch', 'openalex_author_ids')}, indent=1))
+    print(json.dumps(rep['tests'], indent=1))
+    if 'ablation' in rep:
+        print(json.dumps(rep['ablation']), json.dumps(rep['tests_without_new_facts']['gold']), json.dumps(rep['tests_without_new_facts']['namesake']))
+
+
+def nameonly_export(args):
+    """data/graph/name-only/credits.csv.gz (exact, linked, possible and ambiguous positions; the build loads exact and
+    linked as AUTHORED evidence linked, possible as author_candidates, and counts ambiguous), chapters.csv.gz (the
+    sibling chapters the graph did not hold that have an exact or linked position: they become unkeyed chapter nodes with
+    a PART_OF link to their volume), and NO_OUT/links/ (every uncredited position, `none` included, for the record)."""
+    db = duck()
+    S = SCRATCH
+    q = f"""SELECT p.work, p.role, p.pos AS position, p.n_auth AS n_authors, p.name AS printed_name, p.inst_printed AS printed_institution,
+               p.source, concat_ws(';', CASE WHEN p.orcid <> '' THEN 'orcid:' || p.orcid END,
+               CASE WHEN p.oa_author <> '' THEN 'openalex:' || p.oa_author END) AS source_person_id, p.year,
+               r.state, r.key AS person_key, r.candidates, r.n_candidates, r.branch, r.signals
+            FROM '{S}/results.parquet' r JOIN '{S}/positions.parquet' p USING (pid) WHERE NOT r.already_credited"""
+    cols = ['work', 'role', 'position', 'n_authors', 'printed_name', 'printed_institution', 'source', 'source_person_id', 'year',
+            'state', 'person_key', 'candidates', 'n_candidates', 'branch', 'signals']
+
+    def rows(where):
+        cur = db.execute(q + where + ' ORDER BY p.work, p.pos')
+        while True:
+            b = cur.fetchmany(20000)
+            if not b:
+                break
+            for r in b:
+                yield dict(zip(cols, r))
+    NO_TABLE.mkdir(parents=True, exist_ok=True)
+    n = 0
+    with gzip.open(NO_TABLE / 'credits.csv.gz', 'wt', newline='', encoding='utf-8') as f:
+        w = csv.DictWriter(f, fieldnames=cols)
+        w.writeheader()
+        for r in rows(" AND r.state IN ('exact', 'linked', 'possible', 'ambiguous')"):
+            w.writerow(r)
+            n += 1
+    print('credits', n)
+    keep = {w for (w,) in db.execute(f"""SELECT DISTINCT p.work FROM '{S}/results.parquet' r JOIN '{S}/positions.parquet' p USING (pid)
+            WHERE r.state IN ('exact', 'linked') AND p.source = 'crossref-volume'""").fetchall()}
+    ccols = ['id', 'doi', 'title', 'year', 'kind', 'volume_work', 'volume_basis', 'publisher', 'n_authors', 'authors']
+    m = 0
+    with gzip.open(NO_TABLE / 'chapters.csv.gz', 'wt', newline='', encoding='utf-8') as f:
+        w = csv.writer(f)
+        w.writerow(ccols)
+        for r in db.execute(f"SELECT {', '.join(ccols)} FROM '{S}/sibling-chapters.parquet' WHERE id <> '' ORDER BY id").fetchall():
+            if r[0] in keep:
+                w.writerow(r)
+                m += 1
+    print('chapters', m)
+    parts = write_parts(NO_OUT / 'links', rows(''), cols)
+    print('links', [(p.name, p.stat().st_size) for p in parts])
+
+
 # ---------------------------------------------------------------- main
 
 def main():
@@ -2328,6 +3222,12 @@ def main():
     a.add_argument('--limit', type=int, default=0, help='a sample: about 1 work in 2*LIMIT')
     a.add_argument('--gold', type=int, default=20000, help='gold rows per role')
     a.add_argument('--no-dup', action='store_true')
+    a.add_argument('--nameonly', action='store_true', help='the name-only class (WP_SCRATCH must point at its scratch)')
+    a.add_argument('--facts', default='', help='with --nameonly: the added facts allowed (default FACTS_NAMEONLY)')
+    a.add_argument('--gold-no-oa', action='store_true', help='gold and masked-author tests without the OpenAlex author id')
+    a.add_argument('--new-facts', action='store_true', help='FACTS_NAMEONLY on the 11-11 positions (run volume-people first)')
+    a.add_argument('--no-one-fact', action='store_true', help='without the several-dated-one-fact branch')
+    a.add_argument('--topic-min', type=float, default=0.0, help='topic fact at or above this score (0: off)')
     sub.add_parser('mints')
     sub.add_parser('panel')
     sub.add_parser('audit')
@@ -2343,10 +3243,26 @@ def main():
     a.add_argument('--workers', type=int, default=3)
     a = sub.add_parser('report')
     a.add_argument('--limit', type=int, default=0)
+    a = sub.add_parser('nameonly-extract')
+    a.add_argument('--workers', type=int, default=3)
+    a.add_argument('--retarget', action='store_true')
+    a.add_argument('--skip-oa', action='store_true')
+    a.add_argument('--skip-cr', action='store_true')
+    a.add_argument('--skip-refs', action='store_true')
+    a.add_argument('--skip-jstor', action='store_true')
+    a = sub.add_parser('nameonly-siblings')
+    a.add_argument('--max', type=int, default=3000)
+    a.add_argument('--pause', type=float, default=0.5)
+    sub.add_parser('nameonly-positions')
+    sub.add_parser('nameonly-report')
+    sub.add_parser('volume-people')
+    sub.add_parser('nameonly-export')
     args = ap.parse_args()
     {'extract': extract, 'positions': positions, 'link': link, 'report': report, 'mints': mints, 'panel': panel, 'audit': audit, 'export': export, 'crossref': crossref, 'titlematch': titlematch, 'defects': defects,
      'recheck-cited': recheck_cited, 'contributors': contributors,
-     'title-filter': title_filter}[args.cmd](args)
+     'title-filter': title_filter, 'nameonly-extract': nameonly_extract, 'nameonly-siblings': nameonly_siblings,
+     'nameonly-positions': nameonly_positions, 'nameonly-report': nameonly_report,
+     'nameonly-export': nameonly_export, 'volume-people': volume_people_cmd}[args.cmd](args)
 
 
 if __name__ == '__main__':

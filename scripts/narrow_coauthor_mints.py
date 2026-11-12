@@ -20,6 +20,12 @@ p-6823); and the general class behind it, an OpenAlex author attribution that di
   log credits to an existing person key or under a printed family name that disagrees with the mint's name;
 - the mention's ORCID only inferred (no `raw_orcid`) while the person's other mentions print it: kept only when
   its printed name agrees in full; otherwise dropped.
+Roles (2026-11-12): a mention is not a co-author, and is dropped, when its position is a foreword writer or series
+editor (link_work_people contributors: role contributor), when the historian is credited on the work (key log or by
+identifier) only under another role than author (`role` of AUTHORED: volume-editor, edition-editor, translator,
+introducer, series-editor, contributor), or when its printed name agrees with a person in CONTRIBUTED or EDITED on the
+work, an AUTHORED credit with a non-author role, or a printed editor of the work in data/graph/volume-editors.csv.gz
+(series-editor state included).
 Twin check (after the duplicate merges of person-dup-merges-2026-11-11 and the cited-author promotion
 cited-work-authors-promote-2026-11-11, assumed applied): a person whose ORCID is already on a key, or whose name agrees
 in full (family name, first given name written out and identical) with a live person key or an LC heading the
@@ -189,10 +195,47 @@ def build(args):
     db.execute('CREATE TABLE m(work VARCHAR, pos BIGINT)')
     db.executemany('INSERT INTO m VALUES (?, ?)', sorted({x for v in men.values() for x in v}))
     pos = {}
-    for w, p, role, name, orcid, oa_author, oa_work, n_auth in db.execute(f"""SELECT DISTINCT ON (work, pos) p.work, p.pos,
-            p.role, p.name, p.orcid, p.oa_author, p.oa_work, p.n_auth FROM read_parquet('{WPS}/positions*.parquet', union_by_name=true) p
+    for w, p, role, name, orcid, oa_author, oa_work, n_auth, pid in db.execute(f"""SELECT DISTINCT ON (work, pos) p.work, p.pos,
+            p.role, p.name, p.orcid, p.oa_author, p.oa_work, p.n_auth, p.pid FROM read_parquet('{WPS}/positions*.parquet', union_by_name=true) p
             JOIN m USING (work, pos) WHERE p.role IN ('author', 'jstor-author')""").fetchall():
-        pos[(w, p)] = dict(role=role, name=name, orcid=orcid or '', oa_author=oa_author or '', oa_work=oa_work or '', n_auth=n_auth)
+        pos[(w, p)] = dict(role=role, name=name, orcid=orcid or '', oa_author=oa_author or '', oa_work=oa_work or '', n_auth=n_auth, pid=pid)
+    # ---- roles (2026-11-12): series editors, foreword writers and other contributors are not co-authors, and a printed
+    # list on a work the historian is credited with only under another role (volume editor, edition editor, translator,
+    # introducer, series editor, contributor) is not a co-author list
+    from link_work_people import agree_level
+    contrib_pids = set()
+    if (WPS / 'contributors.parquet').exists():
+        contrib_pids = {x for (x,) in db.execute(f"SELECT pid FROM '{WPS}/contributors.parquet' WHERE role = 'contributor'").fetchall()}
+    mworks = sorted({w for w, _ in pos})
+    db.execute('CREATE TABLE mw(w VARCHAR)')
+    db.executemany('INSERT INTO mw VALUES (?)', [(w,) for w in mworks])
+    roles_on = defaultdict(set)
+    for w, role in db.execute(f"""SELECT "to", coalesce(role, 'author') FROM '{G}/authored.parquet'
+            WHERE "to" IN (SELECT w FROM mw) AND (evidence = 'keylog' OR state = 'exact')""").fetchall():
+        roles_on[w].add(role)
+    plab = dict(db.execute(f"SELECT key, label FROM '{G}/person.parquet'").fetchall())
+    other_role_names = defaultdict(list)       # printed or keyed names on the work in a non-author role
+    for k, w, src in db.execute(f"""SELECT "from", "to", 'contributed' FROM '{G}/contributed.parquet' WHERE "to" IN (SELECT w FROM mw)
+            UNION ALL SELECT "from", "to", 'edited' FROM '{G}/edited.parquet' WHERE "to" IN (SELECT w FROM mw)
+            UNION ALL SELECT "from", "to", 'authored:' || role FROM '{G}/authored.parquet' WHERE "to" IN (SELECT w FROM mw)
+                  AND role IS NOT NULL AND role <> 'author'""").fetchall():
+        other_role_names[w].append((plab.get(k, ''), src))
+    VE = ROOT / 'data/graph/volume-editors.csv.gz'
+    if VE.exists():
+        for w, nm, st in db.execute(f"""SELECT volume, printed_name, state FROM read_csv('{VE}', all_varchar=true)
+                WHERE volume IN (SELECT w FROM mw)""").fetchall():
+            other_role_names[w].append((nm or '', 'volume-editors:series-editor' if st == 'series-editor' else 'volume-editors:editor'))
+
+    def role_drop(m, p):
+        if p.get('pid') in contrib_pids:
+            return 'contributor-position'
+        rs = roles_on.get(m[0], set())
+        if rs and 'author' not in rs:
+            return 'historian-credit-role-' + sorted(rs)[0]
+        for nm, src in other_role_names.get(m[0], ()):
+            if nm and p['name'] and agree_level(p['name'], nm) in ('full', 'variant', 'initial'):
+                return 'printed-name-in-role-' + src.replace(':', '-')
+        return None
     raw = {}
     with open(RAW, encoding='utf-8') as f:
         for line in f:
@@ -275,6 +318,10 @@ def build(args):
                 continue
             if p is None:
                 why_drop[m] = 'position-not-found'
+                continue
+            rd = role_drop(m, p)
+            if rd:
+                why_drop[m] = rd
                 continue
             r = raw.get((p['oa_work'], m[1])) if p['role'] == 'author' else None
             if r and r['orcid'] and r['raw_orcid'] and r['orcid'] != r['raw_orcid']:
@@ -419,8 +466,12 @@ def build(args):
         R['keylog_seq'] = st.seq
         for name, path in (('p1', P1), ('p2', P2)):
             if path.exists():
-                ev, _ = I.materialise(st, json.loads(path.read_text()), 'dry-run', 'dry-run', inplace=True)
-                R[f'dry_run_after_{name}_events'] = len(ev)
+                # 2026-11-12: both were applied that day; a proposal already in the log is skipped, not replayed
+                try:
+                    ev, _ = I.materialise(st, json.loads(path.read_text()), 'dry-run', 'dry-run', inplace=True)
+                    R[f'dry_run_after_{name}_events'] = len(ev)
+                except Exception as e:
+                    R[f'dry_run_after_{name}'] = f'skipped (already applied or does not apply: {type(e).__name__})'
         ev, names = I.materialise(st, proposal, 'dry-run', 'dry-run', inplace=True)
         R['dry_run_events'] = len(ev)
     rep = {k: v for k, v in sorted(R.items())}

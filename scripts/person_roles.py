@@ -52,7 +52,7 @@ def main():
     db = duckdb.connect()
     people = db.execute(f"SELECT key, label, anchors, wd, orcid FROM '{G}/person.parquet'").fetchall()
     supervisors = {k for (k,) in db.execute(f"""SELECT "from" FROM '{G}/supervised.parquet'
-                                               UNION SELECT "from" FROM '{G}/advised.parquet'""").fetchall()}
+                                               UNION SELECT "from" FROM {keylog(G, 'advised')}""").fetchall()}
     reviewers = {k for (k,) in db.execute(f"""SELECT DISTINCT a."from" FROM {keylog(G, 'authored')} a
             JOIN '{G}/work.parquet' w ON w.key = a."to"
             WHERE len(w.reviewer_names) > 0 OR w.kind = 'review' OR w.key IN (SELECT "from" FROM '{G}/reviews.parquet')""").fetchall()}
@@ -80,7 +80,7 @@ def main():
     works = dict(db.execute(f"""SELECT "from", count(DISTINCT "to") FROM {keylog(G, 'authored')} GROUP BY 1""").fetchall())
     partners = defaultdict(set)
     for t in ('reviewed', 'advised', 'coauthored', 'coedited', 'editor_of'):
-        for a, b in db.execute(f"""SELECT "from", "to" FROM '{G}/{t}.parquet'""").fetchall():
+        for a, b in db.execute(f"""SELECT "from", "to" FROM {keylog(G, t)}""").fetchall():   # key-log rows only (2026-11-12)
             if a != b:
                 partners[a].add(b)
                 partners[b].add(a)

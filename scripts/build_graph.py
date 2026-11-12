@@ -101,6 +101,13 @@ is untracked) and writes to build/graph/ (git-ignored):
   do not); AUTHORED credits with role volume-editor join COEDITED, which now has `evidence` (keylog: key-log EDITED
   and key-log AUTHORED volume-editor credits; linked: linked EDITED credits with an editor role and linked AUTHORED
   volume-editor credits, lists over 25 skipped) and `linked_works` / `linked_work_keys` as COAUTHORED.
+- 2026-11-12 (name-only class, scripts/link_work_people.py nameonly-*): data/graph/name-only/credits.csv.gz holds the
+  printed authors of works whose author list no linker had read (unkeyed works with a DOI / OpenAlex / OJS id, keyed
+  works outside the 11-11 positions, chapters of key-log edited volumes listed by Crossref): exact and linked positions
+  are AUTHORED with evidence linked (source name-only:<record source>), possible ones author_candidates, ambiguous ones
+  counted; chapters.csv.gz gives the chapters the graph lacked that a keyed person wrote (unkeyed chapter nodes, PART_OF
+  evidence linked, source name-only-volume, volume_basis chapter-doi / isbn). Report:
+  `name_only_works_with_a_keyed_name_candidate_and_no_link` and the name_only|* counts.
 The key-log state comes from the SQLite cache (build/keylog-state.sqlite, scripts/keylog_snapshot.py; 2026-11-10),
 caught up to the log's last event first and then read in bulk, so the build no longer replays the whole log (10 GB);
 --replay replays it instead (the old path, for checking one against the other).
@@ -166,6 +173,11 @@ MISSING_AUTHORS = ER_DIR / 'missing-authors.csv.gz'            # the LC main ent
 LC_CONFLICTS = ROOT / 'data/identifiers/work-people-2026-11-11/lc-author-conflicts.csv.gz'   # authored credits on a book
                                                                # whose LC main entry is someone else (not audited)
 WY_REPORT = ROOT / 'data/identifiers/work-years-2026-11-11/report.json'
+UNSAFE_PROFILE = AUTHOR_WORKS / 'unsafe-profile-credits.csv.gz'   # linked credits through an OpenAlex profile's ORCID that
+                                                                  # a trusted test contradicts (audit 2026-11-12, defect 28)
+NAME_ONLY = ROOT / 'data/graph/name-only'   # scripts/link_work_people.py nameonly-* (2026-11-12): printed authors of works whose
+                                            # author list no linker had read, linked to person keys (credits.csv.gz), and the
+                                            # chapters of key-log edited volumes they wrote that the graph lacked (chapters.csv.gz)
 # roles under which a credit is not a citation of the person's own work (class 15): they prepared someone else's work;
 # 'contributor' (2026-11-12, class 23): a qualified editor ('cartographic editor', 'associate editor', 'maps edited by')
 EDITION_ROLE_SET = ('edition-editor', 'translator', 'introducer', 'series-editor', 'contributor')
@@ -740,6 +752,80 @@ def author_work_credits(state, types, have, aw_key, resolve, report):
     return linked, list(cands.values())
 
 
+def name_only_nodes(types, works, wi, unkeyed, resolve, report):
+    """Unkeyed chapter nodes from data/graph/name-only/chapters.csv.gz (chapters of key-log edited volumes, listed by
+    Crossref, with a printed author credited to a key; 2026-11-12) unless the graph holds the DOI; and their PART_OF
+    links (evidence linked, source name-only-volume, volume_basis chapter-doi / isbn)."""
+    node, part = {}, []
+    for r in read_rows(NAME_ONLY / 'chapters.csv.gz'):
+        n = resolve(r['id'])
+        if not n:
+            n = r['id']
+            unkeyed.add(n)
+            types[n] = 'work'
+            w = dict(key=n, label=r['title'] or None, resolution='unkeyed', anchors=[n], kind=r['kind'] or 'chapter', lccn=None,
+                     year=int(r['year']) if (r['year'] or '').isdigit() else None, reviewer_names=[], journal=None)
+            works.append(w)
+            wi[n] = w
+            report['name_only_chapters_added'] += 1
+        else:
+            report['name_only_chapters_on_existing_nodes'] += 1
+        node[r['id']] = n
+        v = resolve(r['volume_work'])
+        if v and v != n:
+            part.append({'from': n, 'to': v, 'claim': f"name-only-volume:{r['volume_basis']}", 'resolution': 'linked',
+                         'evidence': 'linked', 'source': 'name-only-volume', 'volume_basis': r['volume_basis']})
+    return node, part
+
+
+def name_only_credits(state, types, rels, resolve, chapter_node, report):
+    """AUTHORED rows (evidence linked, source name-only:<record source>) for exact and linked positions of
+    data/graph/name-only/credits.csv.gz, author_candidates rows for possible ones; ambiguous positions (several keys bear
+    the name and none has a fact for this position) are counted, not listed. Works resolve to a key, a node the graph
+    holds (cited works, author works, JSTOR matches), or a chapter added above."""
+    have = {(r['from'], r['to']) for r in rels['AUTHORED']}
+    linked, cands, seen = [], {}, set()
+    open_works = set()
+
+    def person(name):
+        ks = [k for k in state.lookup(name) if types.get(k) == 'person'] if name else []
+        return ks[0] if len(ks) == 1 else None
+    for r in read_rows(NAME_ONLY / 'credits.csv.gz'):
+        w = chapter_node.get(r['work']) or resolve(r['work'])
+        st = r['state']
+        if not w:
+            # a chapter of a volume (crossref-volume) with no credited author is not added to the graph (chapters.csv.gz
+            # lists only chapters a keyed person wrote): its possible / ambiguous rows have no node
+            report[f"name_only|{st}|{'chapter_not_added' if r['source'] == 'crossref-volume' else 'work_unresolved'}"] += 1
+            continue
+        if st in ('exact', 'linked'):
+            ks = {k for x in r['person_key'].split(';') if (k := person(x))}
+            if len(ks) != 1:
+                report[f'name_only|{st}|person_unresolved'] += 1
+                continue
+            k = ks.pop()
+            if (k, w) in have:
+                report[f'name_only|{st}|already_in_log'] += 1
+            elif (k, w) not in seen:
+                seen.add((k, w))
+                report[f'name_only|{st}'] += 1
+                linked.append({'from': k, 'to': w, 'claim': f"name-only:{r['source']}:{r['position']}", 'resolution': 'linked',
+                               'source': f"name-only:{r['source']}", 'state': st})
+        elif st == 'possible':
+            ks = sorted({k for c in r['candidates'].split('|') if (k := person(c))})
+            report['name_only|possible'] += 1
+            open_works.add(w)
+            for k in ks:
+                if (k, w) not in have:
+                    cands.setdefault((k, w), {'from': k, 'to': w, 'n_candidates': len(ks), 'signals': r['signals'] or None,
+                                              'source': f"name-only:{r['source']}", 'role': 'author'})
+        elif st == 'ambiguous':
+            report['name_only|ambiguous'] += 1
+            open_works.add(w)
+    report['name_only_works_with_a_keyed_name_candidate_and_no_link'] = len(open_works)
+    return linked, list(cands.values())
+
+
 def volume_links(state, types, rels, vol_key, aw_part, resolve, report):
     """PART_OF rows with evidence linked: a chapter -> its volume, from data/graph/work-containers.csv.gz (keyed chapters;
     source orcid-container or doi-container) and author-works/works.csv.gz (author-works-container); only the bases in
@@ -1123,11 +1209,14 @@ def main():
     fact_files = [p for p in (WORK_CONTAINERS, WORK_JOURNALS) if p.exists()]
     fact_files = fact_files if len(fact_files) == 2 else []
     # 2026-11-12: volume editors, edition roles, first years, canonical fixes, missing LC authors, LC author conflicts
-    pass4 = {p: p.exists() for p in (VOLUME_EDITORS, EDITION_ROLES, WORK_YEARS, EDITION_FIXES, MISSING_AUTHORS, LC_CONFLICTS)}
+    pass4 = {p: p.exists() for p in (VOLUME_EDITORS, EDITION_ROLES, WORK_YEARS, EDITION_FIXES, MISSING_AUTHORS, LC_CONFLICTS,
+                                      UNSAFE_PROFILE)}
     pass4_files = [p for p, ok in pass4.items() if ok]
+    no_files = [NAME_ONLY / 'credits.csv.gz', NAME_ONLY / 'chapters.csv.gz']
+    no_files = no_files if all(p.exists() for p in no_files) else []
     require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS) if p.exists()] + crossref_parts + article_parts
                     + ([] if args.untracked_ok else cited_files + edition_files + jc_files + wp_files + aw_files + fact_files
-                       + pass4_files))
+                       + pass4_files + no_files))
     state = ReplayView(args.state) if args.replay else CacheView(args.state)
     OUT.mkdir(parents=True, exist_ok=True)
     report = Counter()
@@ -1177,6 +1266,8 @@ def main():
     # works by keyed people absent from the graph and the volumes chapters are in (data/graph/author-works, 2026-11-11)
     vol_key, aw_key, aw_part, aw_long = (author_work_nodes(state, types, works, wi, unkeyed, resolve, report) if aw_files
                                          else ({}, {}, [], set()))
+    # chapters a keyed person wrote, by name only, in a key-log edited volume (data/graph/name-only, 2026-11-12)
+    no_node, no_part = name_only_nodes(types, works, wi, unkeyed, resolve, report) if no_files else ({}, [])
     if fact_files:                  # journal, ISSN, proposed kind of keyed works (export_work_containers.py)
         work_facts(state, types, wi, report)
     if pass4[WORK_YEARS]:           # first publication year beside `year` (2026-11-12)
@@ -1247,6 +1338,16 @@ def main():
         skip = {(r['from'], r['to']) for r in possible_authors} | {(r['from'], r['to']) for r in linked['AUTHORED']}
         possible_authors = possible_authors + [r for r in aw_cands if (r['from'], r['to']) not in skip]
         del cw_have, skip
+    if no_files:                    # name-only authors of works whose author list no linker had read (2026-11-12)
+        no_linked, no_cands = name_only_credits(state, types, rels, resolve, no_node, report)
+        linked = dict(linked)
+        cw_have = {(x['from'], x['to']) for x in linked.get('AUTHORED', [])}
+        linked['AUTHORED'] = list(linked.get('AUTHORED', [])) + [r for r in no_linked if (r['from'], r['to']) not in cw_have]
+        report['name_only_credits_already_linked'] = sum(1 for r in no_linked if (r['from'], r['to']) in cw_have)
+        skip = {(r['from'], r['to']) for r in possible_authors} | {(r['from'], r['to']) for r in linked['AUTHORED']}
+        possible_authors = possible_authors + [r for r in no_cands if (r['from'], r['to']) not in skip]
+        report['name_only_candidates_added'] = sum(1 for r in no_cands if (r['from'], r['to']) not in skip)
+        del cw_have, skip, no_linked, no_cands
     # 2026-11-12 (integration pass four): roles of credits, missing LC main-entry authors, LC author conflicts, volume
     # editors. Key-log rows are never dropped or rewritten: the role qualifies a credit, the evidence stays.
     er = edition_roles() if pass4[EDITION_ROLES] else {}
@@ -1301,6 +1402,35 @@ def main():
                   'author_candidates; key-log credits left as they are (an open measure)'),
             linked_in_table=len(conf), linked_demoted=len(dem), keylog_open=open_keylog)
         del keep, dem, pa_have, conf
+    if pass4[UNSAFE_PROFILE]:       # a credit found only under an OpenAlex profile carrying the key's ORCID, contradicted
+        unsafe = {}
+        for r in read_rows(UNSAFE_PROFILE):
+            k, w = person1(r['person']), (resolve(r['work']) or r['work'])
+            if k and w:
+                unsafe[k, w] = r
+        keep, dem = [], []
+        for x in linked['AUTHORED']:
+            (dem if x.get('source') == 'author-works:openalex-author-orcid' and (x['from'], x['to']) in unsafe
+             else keep).append(x)
+        linked['AUTHORED'] = keep
+        pa_have = {(r['from'], r['to']) for r in possible_authors}
+        for x in dem:
+            r = unsafe[x['from'], x['to']]
+            if (x['from'], x['to']) not in pa_have:
+                possible_authors.append({'from': x['from'], 'to': x['to'], 'n_candidates': 1, 'signals': r['reason'] or None,
+                                         'source': x['source'], 'role': 'author',
+                                         'reason': f"linked credit ({x['source']}) demoted: found only under OpenAlex author "
+                                                   f"{r['oa_author']}, whose ORCID is the key's but the work is contradicted "
+                                                   f"({r['reason'].replace(';', ', ')})"})
+        report['unsafe_profile_credits'] = dict(
+            note=('data/graph/author-works/unsafe-profile-credits.csv.gz (scripts/audit_openalex_profiles.py, 2026-11-12): the '
+                  "audit's 2,673 contradicted credits (23 judged: 14 another person, 3 a key that mixes two people) plus 6,310 "
+                  'profile-contaminated credits (reasons then also include name-given-differs;profile-contaminated and '
+                  'other-key-holds-title;profile-contaminated): linked author-works:openalex-author-orcid credits demoted to '
+                  'author_candidates'),
+            in_table=len(unsafe), demoted=len(dem),
+            by_reason=dict(Counter(r['reason'] for r in unsafe.values())))
+        del unsafe, keep, dem, pa_have
     if ve_series:                   # series editors named in Crossref editor lists (class 19): contributors, not editors
         have_c = {(r['from'], r['to']) for r in contributed}
         add = [r for r in ve_series if (r['from'], r['to']) not in have_c]
@@ -1352,10 +1482,18 @@ def main():
     # PART_OF: the key log's chapter -> volume claims (evidence keylog) and the volume links of 2026-11-11 (evidence
     # linked, source and volume_basis; identity scripts read the keylog rows only, scripts/graph_tables.py)
     part_linked = volume_links(state, types, rels, vol_key, aw_part, resolve, report) if (aw_files and fact_files) else []
+    if no_part:                     # chapters added from data/graph/name-only (2026-11-12)
+        have_p = {(r['from'], r['to']) for r in part_linked} | {(r['from'], r['to']) for r in rels['PART_OF']}
+        keyed_from = {r['from'] for r in rels['PART_OF']}
+        add = [r for r in no_part if (r['from'], r['to']) not in have_p and r['from'] not in keyed_from]
+        report['part_of_linked|name-only-volume'] = len(add)
+        part_linked = part_linked + add
+        del have_p, keyed_from, add
     report['PART_OF'] = write('part_of', [dict(r, evidence='keylog', source=None, volume_basis=None) for r in rels['PART_OF']]
                               + part_linked, pa.schema([('from', s), ('to', s), ('claim', s), ('resolution', s), ('evidence', s),
                                                         ('source', s), ('volume_basis', s)]))
     report['PART_OF_by_evidence'] = dict(keylog=len(rels['PART_OF']), linked=len(part_linked))
+    part_linked_pairs = [(r['from'], r['to']) for r in part_linked]       # for EDITOR_OF (2026-11-12)
     del part_linked
     # CONTRIBUTED (Person -> Work): foreword writers and series editors printed on a work (work-people role contributor,
     # exact/linked); never authors (2026-11-11)
@@ -1459,19 +1597,57 @@ def main():
     del rl
     # editor -> contributor: a volume's editors -> the authors of a chapter in it (user, 2026-11-05: editors of
     # books I've published in)
+    # 2026-11-12 (§8 class 26): from every PART_OF (key log and linked), every volume editor (key-log EDITED of any role
+    # and key-log AUTHORED volume-editor credits; linked EDITED credits with an editor role and linked AUTHORED
+    # volume-editor credits) and every chapter author (AUTHORED with role author, key log and linked). evidence keylog
+    # only when the PART_OF row, the editor credit and the author credit are all the key log's; identity scripts read
+    # those rows only (scripts/graph_tables.py). Linked rows skip editor or author lists over 25.
     editors = defaultdict(set)
     for r in rels['EDITED']:
         editors[r['to']].add(r['from'])
-    editor_of = sorted({(e, a, r['from'], r['to']) for r in rels['PART_OF'] for e in editors[r['to']]
-                        for a in authors[r['from']] if e != a})
-    report['EDITOR_OF'] = write('editor_of', [{'from': e, 'to': a, 'chapter': c, 'volume': v} for e, a, c, v in editor_of],
-                                pa.schema([('from', s), ('to', s), ('chapter', s), ('volume', s)]))
+    for w, ks in auth_editors.items():
+        editors[w] |= ks
+    leditors = defaultdict(set)
+    for p_, w in linked_coeditor:
+        leditors[w].add(p_)
+    for w, ks in lauth_editors.items():
+        leditors[w] |= ks
+    eo = {}
+    for parts, part_ev in ((((r['from'], r['to']) for r in rels['PART_OF']), 'keylog'), (part_linked_pairs, 'linked')):
+        for c, v in parts:
+            ek, el = editors.get(v, set()), leditors.get(v, set()) - editors.get(v, set())
+            ak, al = authors.get(c, set()), lauth_all.get(c, set()) - authors.get(c, set())
+            if not (ek or el) or not (ak or al):
+                continue
+            for e in ek | el:
+                for a in ak | al:
+                    if e == a:
+                        continue
+                    ev = 'keylog' if part_ev == 'keylog' and e in ek and a in ak else 'linked'
+                    if ev == 'linked' and (len(ek | el) > 25 or len(ak | al) > 25):
+                        report['EDITOR_OF_linked_skipped_long_lists'] += 1
+                        continue
+                    if eo.get((e, a, c, v)) != 'keylog':
+                        eo[(e, a, c, v)] = ev
+    del part_linked_pairs, leditors
+    report['EDITOR_OF'] = write('editor_of', [{'from': e, 'to': a, 'chapter': c, 'volume': v, 'evidence': ev}
+                                              for (e, a, c, v), ev in sorted(eo.items())],
+                                pa.schema([('from', s), ('to', s), ('chapter', s), ('volume', s), ('evidence', s)]))
+    report['EDITOR_OF_by_evidence'] = dict(Counter(eo.values()))
+    del eo
     # advisor -> student: a supervised thesis's authors, and Wikidata's person-to-person advised claims
-    advised = {(r['from'], b): (r['claim'], r['to']) for r in rels['SUPERVISED'] for b in authors[r['to']] if b != r['from']}
+    # 2026-11-12 (§8 class 26): a thesis author credited only by a linked credit makes a linked pair (evidence column)
+    advised = {(r['from'], b): (r['claim'], r['to'], 'keylog') for r in rels['SUPERVISED'] for b in authors[r['to']] if b != r['from']}
     for r in rels['ADVISED']:
-        advised.setdefault((r['from'], r['to']), (r['claim'], ''))
-    report['ADVISED'] = write('advised', [{'from': a, 'to': b, 'claim': c, 'thesis': t} for (a, b), (c, t) in sorted(advised.items())],
-                              pa.schema([('from', s), ('to', s), ('claim', s), ('thesis', s)]))
+        advised.setdefault((r['from'], r['to']), (r['claim'], '', 'keylog'))
+    for r in rels['SUPERVISED']:
+        for b in lauth_all.get(r['to'], ()):
+            if b != r['from']:
+                advised.setdefault((r['from'], b), (r['claim'], r['to'], 'linked'))
+    report['ADVISED'] = write('advised', [{'from': a, 'to': b, 'claim': c, 'thesis': t, 'evidence': ev}
+                                          for (a, b), (c, t, ev) in sorted(advised.items())],
+                              pa.schema([('from', s), ('to', s), ('claim', s), ('thesis', s), ('evidence', s)]))
+    report['ADVISED_by_evidence'] = dict(Counter(v[2] for v in advised.values()))
 
     # co-authors: people who authored the same works, once per pair, with how many works, the years and the
     # works (user, 2026-11-05: a count matters; several joint articles are an ongoing collaboration, not a one-off)
@@ -1845,9 +2021,9 @@ def load_db(report):
                  'source STRING, volume_basis STRING)')
     conn.execute('CREATE REL TABLE CONTRIBUTED(FROM Person TO Work, claim STRING, resolution STRING, evidence STRING, '
                  'source STRING, state STRING, basis STRING)')
-    conn.execute('CREATE REL TABLE EDITOR_OF(FROM Person TO Person, chapter STRING, volume STRING)')
+    conn.execute('CREATE REL TABLE EDITOR_OF(FROM Person TO Person, chapter STRING, volume STRING, evidence STRING)')
     conn.execute('CREATE REL TABLE REVIEWED(FROM Person TO Person, review STRING, book STRING, evidence STRING)')
-    conn.execute('CREATE REL TABLE ADVISED(FROM Person TO Person, claim STRING, thesis STRING)')
+    conn.execute('CREATE REL TABLE ADVISED(FROM Person TO Person, claim STRING, thesis STRING, evidence STRING)')
     conn.execute('CREATE REL TABLE COEDITED(FROM Person TO Person, works INT32, titles INT32, first_year INT32, last_year INT32, '
                  'work_keys STRING[])')
     conn.execute('CREATE REL TABLE COAUTHORED(FROM Person TO Person, works INT32, titles INT32, first_year INT32, last_year INT32, '
