@@ -5,6 +5,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'scripts'))
 from graph_scored_links import scored_layer  # noqa: E402
+from reviewed_authors import build as reviewed  # noqa: E402
 
 
 def row(work, pos, key, decision, score='7.0', role='author', rule_state='', rule_key='', source='openalex'):
@@ -13,13 +14,13 @@ def row(work, pos, key, decision, score='7.0', role='author', rule_state='', rul
                 source=source)
 
 
-def run(rows, wi=None, review_works=(), keylog=(), linked=None, cands=None):
+def run(rows, wi=None, review_works=(), keylog=(), linked=None, cands=None, ra=None):
     rels = {'AUTHORED': [{'from': a, 'to': b} for a, b in keylog], 'EDITED': []}
     linked = linked or {'AUTHORED': [], 'EDITED': []}
     cands = cands if cands is not None else []
     rep = {}
     scored_layer(lambda p: rows, Path('x'), lambda k: k or None, lambda w: w, wi or {}, set(review_works), rels, linked,
-                 cands, rep)
+                 cands, rep, ra=ra)
     return linked, cands, rep['scored_links']
 
 
@@ -36,6 +37,23 @@ class Scored(unittest.TestCase):
             self.assertEqual(linked['AUTHORED'], [])
         linked, _, _ = run([row('w1', 0, 'p-1', 'link', role='reviewer', source='review')], wi={'w1': {'kind': 'review', 'label': 'x'}})
         self.assertEqual(len(linked['AUTHORED']), 1)                 # the reviewer of a review is its author
+
+    def test_review_link_with_known_reviewed_author(self):
+        # pass seven: the review w1 reviews book b1 by p-2 (Becher's case: the reviewed author printed as the author)
+        ra = reviewed([('w1', 'b1')], [('p-2', 'b1')], [], {'p-1': 'Reviewer, Ann', 'p-2': 'Becher, Ursula'})
+        wi = {'w1': {'kind': 'review', 'label': 'x'}}
+        linked, _, rep = run([row('w1', 0, 'p-2', 'link'), row('w1', 1, 'p-1', 'link')], wi=wi, ra=ra)
+        self.assertEqual([r['from'] for r in linked['AUTHORED']], ['p-1'])
+        self.assertEqual(rep['link|author|review|is_reviewed_author:book-credit'], 1)
+        # printed reviewed author only (no book node): family and initial
+        ra = reviewed([], [], [('w1', 'Ursula A. J. Becher')], {'p-1': 'Reviewer, Ann', 'p-2': 'Becher, Ursula'})
+        linked, _, _ = run([row('w1', 0, 'p-2', 'link'), row('w1', 1, 'p-1', 'link')], wi=wi, ra=ra)
+        self.assertEqual([r['from'] for r in linked['AUTHORED']], ['p-1'])
+        # nobody known: excluded as before
+        ra = reviewed([], [], [], {})
+        linked, _, rep = run([row('w1', 1, 'p-1', 'link')], wi=wi, ra=ra)
+        self.assertEqual(linked['AUTHORED'], [])
+        self.assertEqual(rep['link|author|review|reviewed_author_unknown'], 1)
 
     def test_same_as_rule_annotates(self):
         ex = {'from': 'p-1', 'to': 'w1', 'source': 'name-only:openalex'}

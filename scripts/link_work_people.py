@@ -652,6 +652,9 @@ class WPPeople(L.People):
         for k, lab in self.label.items():
             for f, form, g in forms(apos(lab)):
                 self.index[f].append((k, form, g))
+        # 2026-11-12 (class 37): stated alternate family-name forms (data/graph/name-form-ties.csv.gz) make candidates only
+        L.add_name_form_ties(self, apos)
+        self.tied_form = {(k, f): src for (k, form), src in self.tied_kform.items() for f in [form.split(',')[0]]}
         G = GRAPH
         from key_review_credit_merges import is_system
         # placing facts: dated affiliations from independent sources only (no review-credit / signature routes)
@@ -777,7 +780,26 @@ def phd_window(people, p, fe):
     return dict(fe, cands=cands)
 
 
+TIE_FACTS_EXCLUDED = ('topic', 'oa-author-tie')   # a tied candidate needs a fact about people, not a topic or a profile
+
+
 def rule_wp(people, p, fe, pop, P, use_dup=True):
+    """rule_wp_core, then (class 37) a candidate that came in only through a stated alternate family-name form is marked
+    (signal name-form-tie:<source>) and is linked only with a positive fact for this position; a rarity or full-name
+    link through a tie is held as possible (branch name-form-tie-no-fact)."""
+    st, k, br, cands, sig = rule_wp_core(people, p, fe, pop, P, use_dup)
+    tied = {x: c['tied'] for x, c in fe.get('cands', {}).items() if c.get('tied')}
+    if not tied:
+        return st, k, br, cands, sig
+    sig = sig + sorted({'name-form-tie:' + t.split(':')[0] for t in tied.values()})
+    if st == 'linked' and k and any(x in tied for x in k.split(';')):
+        allowed = (set(P['FACTS']) | set(L.NEW_FACTS) | set(NETWORK_FACTS)) - set(TIE_FACTS_EXCLUDED)
+        if not any(f.split(':')[0] in allowed for x in k.split(';') for f in fe['cands'].get(x, {}).get('facts', ())):
+            return 'possible', None, 'name-form-tie-no-fact', cands, sig
+    return st, k, br, cands, sig
+
+
+def rule_wp_core(people, p, fe, pop, P, use_dup=True):
     if fe.get('exact'):
         return L.rule(p, fe, pop, P)
     fe = phd_window(people, p, fe)
@@ -2705,70 +2727,144 @@ def nameonly_extract(args):
     print('extract done', flush=True)
 
 
+class CrossrefRefused(Exception):
+    pass
+
+
+class PoliteCrossref:
+    """One request at a time, at most one per `gap` seconds, a generic client name and no contact address (a local
+    privacy guard refuses requests carrying it). A 429 or 403 stops the run: it is written to `refusals` and raised,
+    never retried or worked around. Other errors are retried twice with a pause."""
+
+    def __init__(self, refusals, gap=1.0):
+        self.refusals, self.gap, self.last, self.calls = Path(refusals), gap, 0.0, 0
+
+    def get(self, url):
+        import time
+        import urllib.error
+        import urllib.request
+        status = 'error'
+        for attempt in range(3):
+            wait = self.last + self.gap - time.time()
+            if wait > 0:
+                time.sleep(wait)
+            self.last = time.time()
+            self.calls += 1
+            try:
+                req = urllib.request.Request(url, headers={'User-Agent': UA_GENERIC})
+                with urllib.request.urlopen(req, timeout=60) as r:
+                    return 'ok', json.loads(r.read())['message']
+            except urllib.error.HTTPError as e:
+                if e.code in (403, 429):
+                    rec = dict(at=time.strftime('%Y-%m-%dT%H:%M:%S'), code=e.code, url=url, calls=self.calls,
+                               retry_after=e.headers.get('Retry-After') if e.headers else None)
+                    with open(self.refusals, 'a') as f:
+                        f.write(json.dumps(rec) + '\n')
+                    raise CrossrefRefused(rec)
+                if e.code == 404:
+                    return 'not-found', None
+                status = f'error:{str(e)[:80]}'
+            except Exception as e:
+                status = f'error:{str(e)[:80]}'
+            time.sleep(5 * (attempt + 1))
+        return status, None
+
+
+def sibling_targets(db, G, tier):
+    """volumes to fetch, in priority order -> [(key, label, year, dois, priority)]
+    tier keylog: volumes with key-log editors (EDITED, AUTHORED volume-editor) and chapters in the graph;
+    tier linked: volumes whose editors are linked only (EDITED evidence linked with role volume-editor, author-editor or
+    unknown; AUTHORED volume-editor), chapters in the graph or kind book.
+    The book DOI is the volume's own doi: anchor, else the one container DOI its chapters' records give.
+    Priority 0: a chapter of the volume has a key-log author, or the volume (or a chapter) is cited by 5+ theses;
+    then a stable random order."""
+    db.execute(f"""CREATE OR REPLACE TABLE ed_k AS SELECT DISTINCT "to" v FROM {keylog(G, 'edited')}
+                   UNION SELECT DISTINCT "to" FROM {keylog(G, 'authored')} WHERE role = 'volume-editor'""")
+    db.execute(f"""CREATE OR REPLACE TABLE ed_l AS SELECT DISTINCT "to" v FROM '{G}/edited.parquet'
+                   WHERE evidence = 'linked' AND coalesce(role, 'unknown') IN ('volume-editor', 'author-editor', 'unknown')
+                   UNION SELECT DISTINCT "to" FROM '{G}/authored.parquet' WHERE evidence = 'linked' AND role = 'volume-editor'""")
+    db.execute(f"""CREATE OR REPLACE TABLE cdoi AS SELECT volume_work v, any_value('doi:' || lower(container_doi)) d
+            FROM read_csv('{ROOT / 'data/graph/work-containers.csv.gz'}', all_varchar=true)
+            WHERE container_doi IS NOT NULL AND volume_work IS NOT NULL GROUP BY 1 HAVING count(DISTINCT lower(container_doi)) = 1""")
+    db.execute(f"""CREATE OR REPLACE TABLE pv AS SELECT DISTINCT "to" v FROM '{G}/part_of.parquet'""")
+    if tier == 'keylog':
+        sel = "w.key IN (SELECT v FROM pv) AND w.key IN (SELECT v FROM ed_k)"
+    else:
+        sel = ("(w.key IN (SELECT v FROM pv) OR w.kind = 'book') AND w.key IN (SELECT v FROM ed_l) "
+               "AND w.key NOT IN (SELECT v FROM ed_k)")
+    db.execute(f"""CREATE OR REPLACE TABLE vols AS SELECT w.key, w.label, w.year,
+                CASE WHEN len(list_filter(w.anchors, x -> x LIKE 'doi:%')) > 0
+                THEN list_filter(w.anchors, x -> x LIKE 'doi:%') ELSE [c.d] END dois
+            FROM '{G}/work.parquet' w LEFT JOIN cdoi c ON c.v = w.key
+            WHERE {sel} AND (len(list_filter(w.anchors, x -> x LIKE 'doi:%')) > 0 OR c.d IS NOT NULL)""")
+    db.execute(f"""CREATE OR REPLACE TABLE pri AS
+            WITH ch AS (SELECT p."from" c, p."to" v FROM '{G}/part_of.parquet' p JOIN vols ON vols.key = p."to"),
+                 ka AS (SELECT DISTINCT ch.v FROM ch JOIN {keylog(G, 'authored')} a ON a."to" = ch.c WHERE coalesce(a.role, 'author') = 'author'),
+                 th AS (SELECT x.v, count(DISTINCT t."from") n FROM (SELECT key v, key w FROM vols UNION ALL SELECT v, c FROM ch) x
+                        JOIN '{G}/cites.parquet' t ON t."to" = x.w WHERE t.source LIKE '%thesis%' GROUP BY 1)
+            SELECT vols.key, (vols.key IN (SELECT v FROM ka)) has_ka, coalesce(th.n, 0) theses
+            FROM vols LEFT JOIN th ON th.v = vols.key""")
+    import hashlib
+    rows = db.execute("SELECT v.key, v.label, v.year, v.dois, p.has_ka, p.theses FROM vols v JOIN pri p USING (key)").fetchall()
+    out = []
+    for key, label, year, dois, ka, th in rows:
+        pr = 0 if (ka or th >= 5) else 1
+        out.append((pr, hashlib.md5(key.encode()).hexdigest(), key, label, year, dois, ka, th))
+    out.sort()
+    return out
+
+
 def nameonly_siblings(args):
-    """Chapters of volumes the graph holds with key-log editors and a book DOI, found by Crossref under the volume's
-    title (query.container-title within the book DOI's prefix; the chapters are then kept only by DOI or ISBN, see
-    sibling_chapters; one call per volume; resumable, records of the first trial query, an exact container-title
-    filter, have no 'query' field and are not counted as done; build/crossref-volume-chapters-2026-11-12/part-NNN.jsonl). Polite: one call at
-    a time, a pause between calls, a generic client name, no contact address."""
-    import time
+    """Chapters of volumes the graph holds with editors and a book DOI, found by Crossref under the volume's title
+    (query.container-title within the book DOI's prefix; the chapters are then kept only by DOI or ISBN, see
+    sibling_chapters; one call per volume; resumable: records of the first trial query, an exact container-title filter,
+    have no 'query' field and are not counted as done; build/crossref-volume-chapters-2026-11-12/part-NNN.jsonl).
+    --tier keylog: volumes with key-log editors (the 11-12 list); --tier linked: volumes whose editors are linked only
+    (pass seven), capped by --max. Priority first (sibling_targets), then a stable random order. Polite: PoliteCrossref
+    (one call at a time, at most one a second, generic client name, no contact address; stops on 429/403, recorded in
+    refusals.jsonl)."""
     import urllib.parse
-    import urllib.request
     db = duck()
     G = GRAPH
     CR_SIBLINGS.mkdir(parents=True, exist_ok=True)
-    db.execute(f"""CREATE TABLE ed AS SELECT DISTINCT "to" v FROM {keylog(G, 'edited')}
-                   UNION SELECT DISTINCT "to" FROM {keylog(G, 'authored')} WHERE role = 'volume-editor'""")
-    # the book DOI: the volume's own anchor, else the one container DOI its chapters' records give (work-containers.csv.gz;
-    # volumes with two or more container DOIs are left out)
-    db.execute(f"""CREATE TABLE cdoi AS SELECT volume_work v, any_value('doi:' || lower(container_doi)) d
-            FROM read_csv('{ROOT / 'data/graph/work-containers.csv.gz'}', all_varchar=true)
-            WHERE container_doi IS NOT NULL AND volume_work IS NOT NULL GROUP BY 1 HAVING count(DISTINCT lower(container_doi)) = 1""")
-    vols = db.execute(f"""SELECT w.key, w.label, w.year, CASE WHEN len(list_filter(w.anchors, x -> x LIKE 'doi:%')) > 0
-                THEN list_filter(w.anchors, x -> x LIKE 'doi:%') ELSE [c.d] END FROM '{G}/work.parquet' w LEFT JOIN cdoi c ON c.v = w.key
-            WHERE w.key IN (SELECT DISTINCT "to" FROM '{G}/part_of.parquet') AND w.key IN (SELECT v FROM ed)
-              AND (len(list_filter(w.anchors, x -> x LIKE 'doi:%')) > 0 OR c.d IS NOT NULL) ORDER BY w.key""").fetchall()
+    vols = sibling_targets(db, G, args.tier)
     done = set()
     for fn in CR_SIBLINGS.glob('part-*.jsonl'):
         for line in open(fn, encoding='utf-8'):
             r = json.loads(line)
-            if r.get('query') == 'container-title-in-prefix':
+            if r.get('query') == 'container-title-in-prefix' and not str(r.get('status', '')).startswith('error'):
                 done.add(r['volume'])
-    # a stable random order, so that a run stopped early has fetched a random sample of the volumes
-    import hashlib
-    todo = sorted((v for v in vols if v[0] not in done), key=lambda v: hashlib.md5(v[0].encode()).hexdigest())[:args.max]
-    print(len(vols), 'volumes;', len(done), 'done;', len(todo), 'to fetch', flush=True)
+    first = [k for k in (args.first or '').split(',') if k]
+    todo = [v for v in vols if v[2] not in done]
+    todo.sort(key=lambda v: (v[2] not in first, v[0], v[1]))
+    todo = todo[:args.max]
+    print(args.tier, len(vols), 'volumes;', sum(v[2] in done for v in vols), 'done;', len(todo), 'to fetch;',
+          sum(v[0] == 0 for v in todo), 'priority', flush=True)
     part = CR_SIBLINGS / f'part-{len(list(CR_SIBLINGS.glob("part-*.jsonl"))):03d}.jsonl'
-    calls = 0
+    cr = PoliteCrossref(CR_SIBLINGS / 'refusals.jsonl', gap=max(1.0, args.gap))
+    n = 0
     with open(part, 'a', encoding='utf-8') as o:
-        for key, label, year, dois in todo:
+        for pr, _h, key, label, year, dois, ka, th in todo:
             title = re.split(r'\s+/\s+|:\s', label or '')[0].strip()
+            base = dict(volume=key, title=title, year=year, dois=dois, query='container-title-in-prefix', tier=args.tier,
+                        priority=pr)
             if len(title) < 4:
-                o.write(json.dumps(dict(volume=key, title=title, query='container-title-in-prefix', status='no-title', items=[])) + '\n')
+                o.write(json.dumps(dict(base, status='no-title', items=[])) + '\n')
                 continue
             prefix = dois[0][4:].split('/')[0]
             q = urllib.parse.urlencode({'query.container-title': title, 'filter': f'prefix:{prefix}', 'rows': 100,
                                         'select': 'DOI,type,title,author,editor,container-title,ISBN,issued,publisher'})
-            url = f'https://api.crossref.org/works?{q}'
-            items, status = [], 'ok'
-            for attempt in range(3):
-                try:
-                    req = urllib.request.Request(url, headers={'User-Agent': UA_GENERIC})
-                    with urllib.request.urlopen(req, timeout=60) as r:
-                        items = json.loads(r.read())['message']['items']
-                    break
-                except Exception as e:
-                    status = f'error:{str(e)[:80]}'
-                    time.sleep(5 * (attempt + 1))
-            calls += 1
-            o.write(json.dumps(dict(volume=key, title=title, year=year, dois=dois, query='container-title-in-prefix',
-                                    status=status if not items else 'ok',
-                                    items=items), ensure_ascii=False) + '\n')
+            try:
+                status, msg = cr.get(f'https://api.crossref.org/works?{q}')
+            except CrossrefRefused as e:
+                print('refused, stopping:', e, flush=True)
+                break
+            o.write(json.dumps(dict(base, status=status, items=(msg or {}).get('items') or []), ensure_ascii=False) + '\n')
             o.flush()
-            if calls % 100 == 0:
-                print(calls, 'calls', flush=True)
-            time.sleep(args.pause)
-    print('calls', calls, flush=True)
+            n += 1
+            if n % 100 == 0:
+                print(n, 'volumes', cr.calls, 'calls', flush=True)
+    print('volumes', n, 'calls', cr.calls, flush=True)
 
 
 def sibling_chapters(G, db):
@@ -3176,7 +3272,8 @@ def nameonly_report(args):
 def nameonly_export(args):
     """data/graph/name-only/credits.csv.gz (exact, linked, possible and ambiguous positions; the build loads exact and
     linked as AUTHORED evidence linked, possible as author_candidates, and counts ambiguous), chapters.csv.gz (the
-    sibling chapters the graph did not hold that have an exact or linked position: they become unkeyed chapter nodes with
+    sibling chapters the graph did not hold that have an exact or linked position, or (pass seven) a possible position with
+    one candidate: they become unkeyed chapter nodes with
     a PART_OF link to their volume), and NO_OUT/links/ (every uncredited position, `none` included, for the record)."""
     db = duck()
     S = SCRATCH
@@ -3206,7 +3303,9 @@ def nameonly_export(args):
             n += 1
     print('credits', n)
     keep = {w for (w,) in db.execute(f"""SELECT DISTINCT p.work FROM '{S}/results.parquet' r JOIN '{S}/positions.parquet' p USING (pid)
-            WHERE r.state IN ('exact', 'linked') AND p.source = 'crossref-volume'""").fetchall()}
+            WHERE (r.state IN ('exact', 'linked') OR (r.state = 'possible' AND r.n_candidates = 1)) AND p.source = 'crossref-volume'""").fetchall()}
+    # pass seven: also a chapter whose author is one dated, name-compatible key without a confirming fact ('possible', one
+    # candidate): the chapter is a node in its volume and the person an unconfirmed candidate on it, never credited
     ccols = ['id', 'doi', 'title', 'year', 'kind', 'volume_work', 'volume_basis', 'publisher', 'n_authors', 'authors']
     m = 0
     with gzip.open(NO_TABLE / 'chapters.csv.gz', 'wt', newline='', encoding='utf-8') as f:
@@ -3341,8 +3440,10 @@ def nameonly_extra(args):
             continue
         want[wid] = (w, (title, int(year) if (year or '').isdigit() else None, kind, container))
     seen = set()
+    jm_files = [JM_FULLER / 'fuller.jsonl'] if (JM_FULLER / 'fuller.jsonl').exists() else []
     for sub in ('openalex', 'oai', 'crossref'):
-        for fn in sorted((JM_RECORDS / sub).glob('*')):
+        jm_files += sorted((JM_RECORDS / sub).glob('*'))
+    for fn in jm_files:
             op = gzip.open if fn.name.endswith('.gz') else open
             with op(fn, 'rt', encoding='utf-8') as f:
                 for line in f:
@@ -3355,6 +3456,8 @@ def nameonly_extra(args):
                     names = [x for x in d.get('authors') or [] if x and x.strip(', ')]
                     if not names:
                         continue
+                    if d.get('basis'):
+                        stats['journal_meta_fuller_record|' + d['basis'].split(':')[0]] += 1
                     if not d.get('authors_are_full_names'):
                         stats['journal_meta_family_name_only'] += 1      # Crossref records here print family names only
                         continue
@@ -3363,7 +3466,8 @@ def nameonly_extra(args):
                     targets.append((w, 'unkeyed' if w == wid else 'keyed', meta[2], meta[1], meta[3], meta[0], [wid]))
                     stats['journal_meta_works'] += 1
                     for i, nm in enumerate(names):
-                        add('journal-meta', w, i, len(names), nm, '', meta)
+                        add('journal-meta-doi' if d.get('basis') else 'journal-meta',
+                            w, i, len(names), nm, '', meta)
     stats['journal_meta_no_full_name_record'] = len(set(want) - seen)
     for i, r in enumerate(rows):
         r['pid'] = 20_000_000 + i
@@ -3377,6 +3481,174 @@ def nameonly_extra(args):
     stats['positions_credited_gold'] = sum(1 for r in rows if r['credited'])
     print(json.dumps(dict(stats), indent=1), flush=True)
     (S / 'positions-extra-stats.json').write_text(json.dumps(dict(stats), indent=1) + '\n')
+
+
+JM_FULLER = ROOT / 'build/journal-meta-fuller-2026-11-12'     # pass seven: fuller names for family-name-only records
+
+
+def family_only_works(db, S):
+    """journal-metadata cited works whose only record prints family names (the journal harvest's Crossref records) and that
+    no other record we hold gives a position for (S/positions*.parquet: the OpenAlex harvest, DOI lookup and author-works
+    fetch, the Crossref metadata / reference / container / book harvests and JSTOR metadata, read by nameonly-extract)
+    -> {doi: (node, [family names])}"""
+    keyof = {}
+    for a, k in db.execute(f"""SELECT a, key FROM (SELECT key, unnest(anchors) a FROM '{GRAPH}/work.parquet' WHERE resolution <> 'unkeyed')
+                              WHERE a LIKE 'doi:%'""").fetchall():
+        keyof[a.lower()] = k
+    have_pos = {w for (w,) in db.execute(f"SELECT DISTINCT work FROM '{S}/positions*.parquet'").fetchall()}
+    jm = {}
+    for wid, aliases in db.execute(f"""SELECT id, alias_ids FROM read_csv('{ROOT / 'data/graph/cited-works/works.csv.gz'}', all_varchar=true)
+                                       WHERE source = 'journal-meta'""").fetchall():
+        for x in [wid] + [a for a in (aliases or '').split(';') if a]:
+            if x.startswith('doi:'):
+                jm[x.lower()] = keyof.get(x.lower(), wid)
+    full, fam = set(), {}
+    for sub in ('openalex', 'oai', 'crossref'):
+        for fn in sorted((JM_RECORDS / sub).glob('*')):
+            op = gzip.open if fn.name.endswith('.gz') else open
+            with op(fn, 'rt', encoding='utf-8') as f:
+                for line in f:
+                    d = json.loads(line)
+                    doi = 'doi:' + d['doi'].lower() if d.get('doi') else (d.get('sid') or '').lower()
+                    if doi not in jm:
+                        continue
+                    names = [x for x in d.get('authors') or [] if x and x.strip(', ')]
+                    if not names:
+                        continue
+                    if d.get('authors_are_full_names'):
+                        full.add(doi)
+                    else:
+                        fam.setdefault(doi, names)
+    return {d: (jm[d], names) for d, names in fam.items() if d not in full and jm[d] not in have_pos}
+
+
+OA_DOI_RE = re.compile(r'"doi":\s*"https://doi\.org/([^"]+)"')
+
+
+def _doi_scan_one(args):
+    """one OpenAlex or Crossref file -> [(doi, source, [names])] for the wanted DOIs (names as printed: OpenAlex raw author
+    names, else display names; Crossref given + family)"""
+    path, want_file, kind = args
+    want = set(open(want_file).read().split())
+    out = []
+    op = gzip.open if str(path).endswith('.gz') else open
+    rx = OA_DOI_RE if kind == 'openalex' else CR_DOI_ANY
+    with op(path, 'rt', encoding='utf-8') as f:
+        for line in f:
+            m = rx.search(line)
+            if not m or ('doi:' + m.group(1).lower()) not in want:
+                continue
+            d = json.loads(line)
+            if kind == 'openalex':
+                names = [a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or '' for a in d.get('authorships') or []]
+            else:
+                names = [a['name'] for a in cr_authors(d)]
+            out.append(('doi:' + m.group(1).lower(), f'{kind}:{Path(path).parent.name}', names))
+    return out
+
+
+def nameonly_fuller(args):
+    """Family-name-only journal records (pass seven; ARCHITECTURE.md section 8, class 33): for each, a Crossref lookup by
+    DOI (PoliteCrossref; at most --max requests; resumable) -> JM_FULLER/crossref-doi.jsonl. A fetched record is used only
+    when it prints given names and its family names are the family-only record's, in order (fuller.jsonl, read by
+    nameonly-extra as a full-name record). Report JM_FULLER/report.json."""
+    import urllib.parse
+    S = SCRATCH
+    db = duck()
+    F = family_only_works(db, S)
+    JM_FULLER.mkdir(parents=True, exist_ok=True)
+    # records we hold first: the OpenAlex harvest and DOI lookup, the Crossref metadata and reference harvests
+    local = {}
+    if not args.skip_local:
+        want = JM_FULLER / 'want.txt'
+        want.write_text('\n'.join(sorted(F)) + '\n')
+        jobs = ([(p, str(want), 'openalex') for p in sorted(HARVEST.glob('*.jsonl.gz')) + sorted(DOILOOK.glob('part-*.jsonl.gz'))]
+                + [(p, str(want), 'crossref') for p in sorted(CR_META_WORKS.glob('*.jsonl.gz'))])
+        with mp.Pool(args.workers) as pool:
+            for res in pool.imap_unordered(_doi_scan_one, jobs):
+                for doi, src, names in res:
+                    local.setdefault(doi, []).append((src, names))
+        with open(JM_FULLER / 'local-records.jsonl', 'w', encoding='utf-8') as o:
+            for doi, recs in sorted(local.items()):
+                o.write(json.dumps(dict(doi=doi, records=recs), ensure_ascii=False) + '\n')
+        print(len(jobs), 'files;', len(local), 'family-name-only works with another record held', flush=True)
+    raw = JM_FULLER / 'crossref-doi.jsonl'
+    done = {}
+    if raw.exists():
+        for line in open(raw, encoding='utf-8'):
+            r = json.loads(line)
+            if not str(r.get('status', '')).startswith('error'):
+                done[r['doi']] = r
+    todo = sorted(d for d in F if d not in done)[:args.max] if args.max else []
+    print(len(F), 'family-name-only works;', len(done), 'fetched;', len(todo), 'to fetch', flush=True)
+    cr = PoliteCrossref(JM_FULLER / 'refusals.jsonl', gap=max(1.0, args.gap))
+    refused = None
+    with open(raw, 'a', encoding='utf-8') as o:
+        for d in todo:
+            try:
+                status, msg = cr.get('https://api.crossref.org/works/' + urllib.parse.quote(d[4:], safe='/()._-;:'))
+            except CrossrefRefused as e:
+                refused = str(e)
+                print('refused, stopping:', e, flush=True)
+                break
+            rec = dict(doi=d, status=status, authors=cr_authors(msg) if msg else [])
+            o.write(json.dumps(rec, ensure_ascii=False) + '\n')
+            o.flush()
+            done[d] = rec
+            if cr.calls % 100 == 0:
+                print(cr.calls, 'calls', flush=True)
+    st = Counter()
+    with open(JM_FULLER / 'fuller.jsonl', 'w', encoding='utf-8') as o:
+        for d, (node, fams) in sorted(F.items()):
+            got = None
+            for src, names in local.get(d, ()):
+                v = fuller_names(fams, [dict(name=n) for n in names])
+                st[f'local|{v[0]}'] += 1
+                if v[0] == 'fuller' and not got:
+                    got = (v[1], f'local:{src}')
+            if got:
+                st['fuller|local'] += 1
+                o.write(json.dumps(dict(sid=d, doi=d[4:], authors=got[0], authors_are_full_names=True, basis=got[1]),
+                                   ensure_ascii=False) + '\n')
+                continue
+            r = done.get(d)
+            if not r:
+                st['not_fetched'] += 1
+                continue
+            if r['status'] != 'ok':
+                st[f"status_{r['status'][:20]}"] += 1
+                continue
+            v = fuller_names(fams, r['authors'])
+            st[v[0]] += 1
+            if v[0] == 'fuller':
+                st['fuller|crossref-doi-lookup'] += 1
+                o.write(json.dumps(dict(sid=d, doi=d[4:], authors=v[1], authors_are_full_names=True,
+                                        basis='crossref-doi-lookup'), ensure_ascii=False) + '\n')
+    rep = dict(family_only_works=len(F), with_another_record_held=len(local), requests=cr.calls, refused=refused,
+               outcome=dict(sorted(st.items())))
+    (JM_FULLER / 'report.json').write_text(json.dumps(rep, indent=1) + '\n')
+    print(json.dumps(rep, indent=1))
+
+
+def _fam_fold(s):
+    import unicodedata
+    s = unicodedata.normalize('NFKD', s or '').encode('ascii', 'ignore').decode().lower()
+    return re.sub(r'[^a-z]', '', s)
+
+
+def fuller_names(families, authors):
+    """(outcome, names): the record's names replace the family-only list when every author has a given name of two or more
+    letters or an initial, and the family names agree position by position (folded); else ('still-family-only' |
+    'families-differ' | 'no-authors', [])"""
+    if not authors:
+        return 'no-authors', []
+    fam_rec = [_fam_fold(a['name'].split()[-1] if a['name'] else '') for a in authors]
+    fam_old = [_fam_fold(f.split(',')[0].split()[-1] if f.split() else '') for f in families]
+    if len(fam_rec) != len(fam_old) or any(a != b and not (a.endswith(b) or b.endswith(a)) for a, b in zip(fam_rec, fam_old)):
+        return 'families-differ', []
+    if any(len(a['name'].split()) < 2 for a in authors):
+        return 'still-family-only', []
+    return 'fuller', [a['name'] for a in authors]
 
 
 # ---------------------------------------------------------------- main
@@ -3422,18 +3694,25 @@ def main():
     a.add_argument('--skip-jstor', action='store_true')
     a = sub.add_parser('nameonly-siblings')
     a.add_argument('--max', type=int, default=3000)
-    a.add_argument('--pause', type=float, default=0.5)
+    a.add_argument('--gap', type=float, default=1.0, help='seconds between request starts (at least 1)')
+    a.add_argument('--tier', choices=('keylog', 'linked'), default='keylog')
+    a.add_argument('--first', default='', help='volume keys fetched before the rest (a probe)')
     sub.add_parser('nameonly-positions')
     sub.add_parser('nameonly-report')
     sub.add_parser('volume-people')
     sub.add_parser('nameonly-export')
     sub.add_parser('nameonly-extra')
+    a = sub.add_parser('nameonly-fuller')
+    a.add_argument('--max', type=int, default=2000, help='Crossref lookups by DOI (0: none)')
+    a.add_argument('--workers', type=int, default=3)
+    a.add_argument('--skip-local', action='store_true')
+    a.add_argument('--gap', type=float, default=1.0)
     args = ap.parse_args()
     {'extract': extract, 'positions': positions, 'link': link, 'report': report, 'mints': mints, 'panel': panel, 'audit': audit, 'export': export, 'crossref': crossref, 'titlematch': titlematch, 'defects': defects,
      'recheck-cited': recheck_cited, 'contributors': contributors,
      'title-filter': title_filter, 'nameonly-extract': nameonly_extract, 'nameonly-siblings': nameonly_siblings,
      'nameonly-positions': nameonly_positions, 'nameonly-report': nameonly_report,
-     'nameonly-export': nameonly_export, 'volume-people': volume_people_cmd, 'nameonly-extra': nameonly_extra}[args.cmd](args)
+     'nameonly-export': nameonly_export, 'volume-people': volume_people_cmd, 'nameonly-extra': nameonly_extra, 'nameonly-fuller': nameonly_fuller}[args.cmd](args)
 
 
 if __name__ == '__main__':

@@ -27,13 +27,14 @@ EDGES = ['authored', 'cites', 'reviews', 'reviewed', 'supervised', 'advised', 'a
 OPTIONAL = ['edition_of',                               # translation/edition node -> canonical work (2026-11-11)
             'author_candidates',
             'contributed',                              # foreword writers, series editors -> work (2026-11-11)
-            'awarded', 'prize_candidates']              # Prize -> Person | Work, unconfirmed winners (2026-11-12)
+            'awarded', 'prize_candidates',              # Prize -> Person | Work, unconfirmed winners (2026-11-12)
+            'same_work']                                # one work under two keys, hidden -> shown (pass seven, class 11)
 # columns a newer build adds; an older build gets them as NULL so the explorer still builds against it
 ADDED = {'part_of': [('evidence', "'keylog'"), ('source', 'NULL'), ('volume_basis', 'NULL')],
          'author_candidates': [('reason', 'NULL')],
          # the part a person had in the work (2026-11-12, data/graph/edition-roles.csv.gz, volume-editors.csv.gz)
-         'authored': [('role', "'author'"), ('role_basis', 'NULL')],
-         'edited': [('role', "'unknown'"), ('role_basis', 'NULL')],
+         'authored': [('role', "'author'"), ('role_basis', 'NULL'), ('n_claims', "'1'"), ('claims', 'NULL')],
+         'edited': [('role', "'unknown'"), ('role_basis', 'NULL'), ('n_claims', "'1'"), ('claims', 'NULL')],
          # co-editor pairs resting on linked editor credits (2026-11-12)
          'coedited': [('evidence', "'keylog'"), ('linked_works', '0')],
          # reviews of a book found by title or a review-style label (2026-11-12, scripts/review_books.py)
@@ -85,7 +86,15 @@ POSSIBLE_D = ("'unconfirmed: ' || CASE WHEN any_value(e.reason) IS NOT NULL THEN
               "name' END || CASE WHEN any_value(e.reason) IS NOT NULL THEN '' ELSE ' -- ' || any_value(e.role) || ' of the work; not credited' END")
 # a chapter's volume, as a note on a work row ('in <volume>, edited by <editors>'), from the vol_note table
 VOL_D = "(SELECT note FROM vol_note WHERE key = any_value(e.\"to\"))"
-WORK_ROW_D = f"concat_ws(' · ', {LINKED_D}, {VOL_D})"
+# pass seven (class 11): a pair the key log holds two or more claims for is one row, with each claim and its route
+CLAIMS_D = ("CASE WHEN max(coalesce(e.n_claims, 1)::INT) > 1 THEN max(e.n_claims) || ' key-log claims, one work: ' "
+            "|| any_value(e.claims) END")
+# and one work held under two keys (SAME_WORK) is listed once on a person credited on both: the other key is named
+ALSO_D = ("(SELECT 'also held as ' || string_agg(coalesce(n.label, '') || ' [' || d.hidden || '; ' || d.basis || ']', ' | ') "
+          "FROM dup_hide d JOIN nodes n ON n.key = d.hidden WHERE d.person = $k AND d.shown = any_value(e.\"to\"))")
+# class 37: a credit found through a stated alternate family-name form (the form is a source note, never a label or alias)
+TIE_D = "CASE WHEN bool_or(e.role_basis LIKE 'name-form-tie:%') THEN substr(any_value(e.role_basis), 16) END"
+WORK_ROW_D = f"concat_ws(' · ', {LINKED_D}, {VOL_D}, {CLAIMS_D}, {ALSO_D}, {TIE_D})"
 PART_D = ("CASE WHEN bool_or(e.evidence = 'keylog') THEN NULL ELSE 'linked: ' || string_agg(DISTINCT CASE e.source "
           "WHEN 'orcid-container' THEN 'the ORCID record names the volume' WHEN 'doi-container' THEN 'the DOI record names the volume' "
           "WHEN 'author-works-container' THEN 'the OpenAlex/Crossref record names the volume' "
@@ -113,7 +122,8 @@ REV_D = ("CASE WHEN bool_or(e.evidence = 'keylog') THEN NULL ELSE 'linked: ' || 
 # `e` is the edge row, `o` the other node. Rows are grouped by the other node (n = number of edges to it).
 REL = {
     'person': [
-        ('authored', 'Works authored', 'authored', 'from', 'to', WORK_ROW_D, f"coalesce(e.role, 'author') NOT IN {NOT_AUTHOR}"),
+        ('authored', 'Works authored', 'authored', 'from', 'to', WORK_ROW_D, f"coalesce(e.role, 'author') NOT IN {NOT_AUTHOR} "
+         "AND e.\"to\" NOT IN (SELECT hidden FROM dup_hide WHERE person = $k)"),
         ('edited', 'Works edited', None, None, None, None),     # EDITED (not edition roles) + AUTHORED as volume editor
         ('editions_prepared', 'Editions, translations and other contributions they prepared', None, None, None, None),
         ('contributed', 'Forewords and series contributions', 'contributed', 'from', 'to', CONTRIB_D),
@@ -155,6 +165,10 @@ REL = {
         ('reviewed_in', 'Reviewed in', 'reviews', 'to', 'from', REV_D),
         ('part_of', 'Part of', 'part_of', 'from', 'to', PART_D),
         ('contains', 'Contains (chapters)', 'part_of', 'to', 'from', PART_D),
+        ('same_work', 'The same work under another key (listed once on people pages; not merged)', 'same_work', 'from', 'to',
+         "any_value(e.basis)"),
+        ('same_work_of', 'The same work under another key (listed once on people pages; not merged)', 'same_work', 'to', 'from',
+         "any_value(e.basis)"),
         ('published_as', 'Published as', 'published_as', 'from', 'to', None),
         ('published_from', 'Published from', 'published_as', 'to', 'from', None),
         ('prizes', 'Prizes', 'awarded', 'to', 'from', PRIZE_D, 'e.shown'),
@@ -201,8 +215,17 @@ def build():
         LEFT JOIN (SELECT "to" k, count(*) n FROM e_reviews_t GROUP BY 1) r ON r.k = w.key""")
     # one row per (person, work) even when the key log holds two authored claims for it; credits under an edition role
     # (edition editor, translator, introducer, series editor, contributor) are not the person's own work (2026-11-12)
+    # one work under two keys (pass seven, class 11): the hidden key of a SAME_WORK pair is not listed or counted for a
+    # person credited on both
+    if (G / 'same_work.parquet').exists():
+        db.execute("""CREATE TABLE dup_hide AS SELECT DISTINCT a."from" AS person, sw."from" AS hidden, sw."to" AS shown, sw.basis
+            FROM e_same_work_f sw JOIN e_authored_t a ON a."to" = sw."from" JOIN e_authored_t b ON b."to" = sw."to" AND b."from" = a."from"
+            ORDER BY person""")
+    else:
+        db.execute("CREATE TABLE dup_hide (person VARCHAR, hidden VARCHAR, shown VARCHAR, basis VARCHAR)")
     db.execute(f"""CREATE TABLE person_w AS SELECT a."from" AS key, count(*) works, sum(w.cited) cited, sum(w.reviewed) reviewed
-        FROM (SELECT DISTINCT "from", "to" FROM e_authored_f WHERE coalesce(role, 'author') NOT IN {EDITION_ROLES}) a
+        FROM (SELECT DISTINCT x."from", x."to" FROM e_authored_f x ANTI JOIN dup_hide d ON d.person = x."from" AND d.hidden = x."to"
+              WHERE coalesce(x.role, 'author') NOT IN {EDITION_ROLES}) a
         JOIN work_w w ON w.key = a."to" GROUP BY 1""")
     wcols = {r[0] for r in db.execute(f"DESCRIBE SELECT * FROM '{G}/work.parquet'").fetchall()}
     wx = ', '.join([f'w.{c}' if c in wcols else f'NULL::VARCHAR AS {c}' for c in WORK_ADDED]
@@ -302,7 +325,7 @@ class Graph:
         """SQL yielding (other_key, n, detail) rows for one relation of one node."""
         rid, _, table, me, other, detail = rel[:6]
         where = f' AND {rel[6]}' if len(rel) > 6 else ''
-        if rid in ('editions', 'edition_of', 'candidates', 'contributed', 'contributors') and not self.has(table):
+        if rid in ('editions', 'edition_of', 'candidates', 'contributed', 'contributors', 'same_work', 'same_work_of') and not self.has(table):
             return 'SELECT NULL k, 0 n, NULL d, 0 lk WHERE false'
         if rid in ('edited', 'editors'):  # EDITED (not an edition role) and AUTHORED credits that are volume editorships
             me, other = ('from', 'to') if rid == 'edited' else ('to', 'from')

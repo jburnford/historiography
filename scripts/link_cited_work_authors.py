@@ -293,6 +293,33 @@ HARD = {'lcnaf-differs', 'orcid-owner-out-of-window', 'birth-differs', 'death-di
 
 # ---------------------------------------------------------------- the graph's people
 
+NAME_FORM_TIES = ROOT / 'data/graph/name-form-ties.csv.gz'   # scripts/name_form_ties.py (2026-11-12, class 37)
+TIE_RELATIONS = ('drops-second-family', 'drops-first-family', 'hyphen-part-dropped', 'middle-as-family', 'suffix-dropped',
+                 'family-changed')
+
+
+def add_name_form_ties(people, norm=lambda s: s):
+    """Stated alternate family-name forms of a key (LC 400 cross-references, ORCID, AHA; class 37) join the family index:
+    they only make the key a candidate for a name printed in that form. people.tied_kform[(key, form)] = 'source:id'
+    marks the index entries that came from a tie (a form the key's own label also gives is not a tie). A tied candidate
+    never enters an identifier route and its authorities do not count in the rarity test; the facts and date tests decide
+    (rule_wp in link_work_people.py: a tied candidate links only with a fact). WP_NO_NAME_TIES=1 turns it off."""
+    people.tied_kform = {}
+    if not NAME_FORM_TIES.exists() or os.environ.get('WP_NO_NAME_TIES'):
+        return
+    with gzip.open(NAME_FORM_TIES, 'rt', encoding='utf-8') as fh:
+        for r in csv.DictReader(fh):
+            k = r['key']
+            if k not in people.label or r['relation'] not in TIE_RELATIONS:
+                continue
+            mine = {(f, form) for f, form, _ in forms(norm(people.label[k]))}
+            for f, form, g in forms(norm(r['form'])):
+                if (f, form) in mine or (k, form) in people.tied_kform:
+                    continue
+                people.index[f].append((k, form, g))
+                people.tied_kform[(k, form)] = f"{r['source']}:{r['source_id']}"
+
+
 class People:
     def __init__(self, db):
         self.db = db
@@ -320,6 +347,7 @@ class People:
         for k, label in self.label.items():
             for f, form, g in forms(label):
                 self.index[f].append((k, form, g))
+        add_name_form_ties(self)
         # life years with their sources
         self.life = {}
         with gzip.open(ROOT / 'data/person-facts/life-years.csv.gz', 'rt', encoding='utf-8') as f:
@@ -750,7 +778,9 @@ def features(people, p, mask=None, exacts=None, refkeys=None, citers_of=None):
                         if (fy is None and ly is None or (fy or ly) - SLACK <= year <= (ly or fy) + SLACK) and agree(raw, label)), None)
             if hit:
                 facts.append(f'inst-name:{hit}')
-        fe['cands'][k] = dict(why=why, win=w, span=sp, facts=facts, lev=lev, label=people.label[k], klc=klc,
+        tied = getattr(people, 'tied_kform', {}).get((k, kform))
+        fe['cands'][k] = dict(why=why, win=w, span=sp, facts=facts, lev=lev, label=people.label[k], klc=set() if tied else klc,
+                              tied=tied,
                               ns=people.not_same.get(k, set()), g=tuple(g), kg=tuple(kg), fam=form and fam_norm(form.split(',')[0]),
                               cspan=people.cspan.get(k), supaff=people.supaff.get(k), cite_lo=people.cite_lo.get(k))
     return fe

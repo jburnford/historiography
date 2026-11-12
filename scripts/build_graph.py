@@ -186,6 +186,10 @@ PRIZE_FILES = [PRIZES / f'{n}.csv.gz' for n in ('prizes', 'winners', 'works', 'l
 LC_CREDITS = ROOT / 'data/graph/lc-credits.csv.gz'   # scripts/lc_catalogue_credits.py: LC main / added entries on a key
                                                      # for works with an LCCN and no credit
 REVIEW_BOOKS = ROOT / 'data/graph/review-books.csv.gz'
+# pass seven (2026-11-12): printed reviewed authors of review-like records (scripts/review_books.py; class 29b) and works
+# held under two keys (scripts/work_dup_pairs.py; class 11)
+REVIEW_AUTHORS = ROOT / 'data/graph/review-authors.csv.gz'
+WORK_DUPS = ROOT / 'data/graph/work-duplicates.csv.gz'
 SCORED_LINKS = ROOT / 'data/graph/scored-links/links.csv.gz'   # scripts/score_links.py (Fellegi-Sunter scorer), loaded by graph_scored_links.py
 LC_BOOKS = ROOT / 'data/graph/lc-books-by-authority.csv.gz'   # lc_catalogue_credits.py measure: LC books of keys with
                                                               # scholarly evidence the graph lacked (unkeyed lccn: nodes)   # scripts/review_books.py: articles that review a book (class 29)
@@ -277,6 +281,9 @@ class ReplayView:
     def lookup(self, name):
         return self.state.lookup(name)
 
+    def claim_anchors(self, claims):
+        return {c: sorted(self.state.keys[c]['anchors']) for c in claims if c in self.state.keys}
+
 
 class CacheView:
     """The same reads from the SQLite cache, in bulk: node records and the needed members in one scan each, relation
@@ -325,6 +332,15 @@ class CacheView:
                 f'SELECT r.claim, r.subject, r.predicate, r.object, k.resolution FROM relation r JOIN keys k ON k.key = r.claim '
                 f'WHERE k.status NOT IN ({",".join("?" * len(retired))}) ORDER BY r.claim', retired):
             yield claim, self.lookup(subj), pred, self.lookup(obj), res
+
+    def claim_anchors(self, claims):
+        """claim key -> its anchors (the routes that asserted it), read in chunks"""
+        out, claims = {}, list(claims)
+        for i in range(0, len(claims), 900):
+            part = claims[i:i + 900]
+            for k, a in self.con.execute(f"SELECT key, anchors FROM keys WHERE key IN ({','.join('?' * len(part))})", part):
+                out[k] = sorted(json.loads(a))
+        return out
 
     def _key(self, name):
         """The key a name names (a key itself, an active anchor, or an alias), as State.lookup's first step."""
@@ -820,8 +836,13 @@ def name_only_credits(state, types, rels, resolve, chapter_node, report):
             elif (k, w) not in seen:
                 seen.add((k, w))
                 report[f'name_only|{st}'] += 1
-                linked.append({'from': k, 'to': w, 'claim': f"name-only:{r['source']}:{r['position']}", 'resolution': 'linked',
-                               'source': f"name-only:{r['source']}", 'state': st})
+                row = {'from': k, 'to': w, 'claim': f"name-only:{r['source']}:{r['position']}", 'resolution': 'linked',
+                       'source': f"name-only:{r['source']}", 'state': st}
+                tie = next((x for x in (r.get('signals') or '').split() if x.startswith('name-form-tie:')), None)
+                if tie:             # class 37: found through a stated alternate family-name form of the key
+                    row.update(role='author', role_basis=f"name-form-tie: printed as \"{r['printed_name']}\"; tie: {tie[14:]}")
+                    report['name_only|linked_through_name_form_tie'] += 1
+                linked.append(row)
         elif st == 'possible':
             ks = sorted({k for c in r['candidates'].split('|') if (k := person(c))})
             report['name_only|possible'] += 1
@@ -845,6 +866,18 @@ def review_book_nodes(state, types, works, wi, unkeyed, resolve, report):
     out, seen = [], set()
     for r in read_rows(REVIEW_BOOKS):
         rv, bk = resolve(r['review']), resolve(r['book'])
+        if rv and not bk and r['book'].startswith('lccn:') and r.get('book_lccn'):
+            # pass seven: an LC record the review names and the graph lacked: an unkeyed book node from the catalogue
+            # record (never from the label); its LC main entry is credited in main() (lc_main_lcnaf)
+            bk = r['book']
+            unkeyed.add(bk)
+            types[bk] = 'work'
+            w = dict(key=bk, label=r['book_title'] or None, resolution='unkeyed', anchors=[bk], kind='book',
+                     lccn=r['book_lccn'], year=int(r['book_year']) if (r['book_year'] or '').isdigit() else None,
+                     reviewer_names=[], journal=None)
+            works.append(w)
+            wi[bk] = w
+            report['review_books_lc_book_nodes_added'] += 1
         if not rv or not bk or rv == bk or rv not in wi:
             report['review_books_unresolved'] += 1
             continue
@@ -859,7 +892,7 @@ def review_book_nodes(state, types, works, wi, unkeyed, resolve, report):
         if (rv, bk) not in seen:
             seen.add((rv, bk))
             out.append({'from': rv, 'to': bk, 'claim': f"review-books:{r['rule']}:{r['basis']}", 'resolution': 'linked',
-                        'evidence': 'linked', 'source': f"review-books:{r['rule']}"})
+                        'evidence': 'linked', 'source': f"review-books:{r['rule']}", 'lc_main_lcnaf': r.get('lc_main_lcnaf') or ''})
     report['review_books_REVIEWS_linked'] = len(out)
     return out
 
@@ -1253,7 +1286,7 @@ def main():
     no_files = [NAME_ONLY / 'credits.csv.gz', NAME_ONLY / 'chapters.csv.gz']
     no_files = no_files if all(p.exists() for p in no_files) else []
     prize_files = PRIZE_FILES if all(p.exists() for p in PRIZE_FILES) else []
-    p5_files = [p for p in (LC_CREDITS, REVIEW_BOOKS, LC_BOOKS) if p.exists()]
+    p5_files = [p for p in (LC_CREDITS, REVIEW_BOOKS, LC_BOOKS, REVIEW_AUTHORS, WORK_DUPS) if p.exists()]
     if os.environ.get('BUILD_PASS5_OFF'):          # a baseline build without the pass-five layers (check builds only)
         prize_files, p5_files = [], []
     require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS) if p.exists()] + crossref_parts + article_parts
@@ -1466,6 +1499,24 @@ def main():
         report['lc_authority_books_AUTHORED_added'] = len(add)
         linked['AUTHORED'] += add
         del have, add
+    if any(r.get('lc_main_lcnaf') for r in rb_rows):   # pass seven: the LC main entry of a reviewed book found in LC
+        have_w = ({r['to'] for r in rels['AUTHORED']} | {r['to'] for r in rels['EDITED']}
+                  | {x['to'] for x in linked['AUTHORED']} | {x['to'] for x in linked['EDITED']})
+        add = []
+        for r in rb_rows:
+            if not r.get('lc_main_lcnaf') or r['to'] in have_w:
+                continue
+            k = person1(f"lcnaf:{r['lc_main_lcnaf']}")
+            if not k:
+                report['review_books_lc_main_entry_not_on_a_key'] += 1
+                continue
+            have_w.add(r['to'])
+            add.append({'from': k, 'to': r['to'], 'claim': f"review-books:lc-main-entry:{r['lc_main_lcnaf']}",
+                        'resolution': 'linked', 'source': 'review-books:lc-main-entry', 'state': 'exact', 'role': 'author',
+                        'role_basis': 'lc-main-entry'})
+        report['review_books_lc_main_entry_AUTHORED_added'] = len(add)
+        linked['AUTHORED'] += add
+        del have_w, add
     if LC_CREDITS in p5_files or pz:   # 2026-11-12: LC main / added entries on a key, and prize winners, for works with no credit
         credited_w = ({r['to'] for r in rels['AUTHORED']} | {r['to'] for r in rels['EDITED']}
                       | {x['to'] for x in linked['AUTHORED']} | {x['to'] for x in linked['EDITED']})
@@ -1570,6 +1621,49 @@ def main():
             in_table=len(unsafe), demoted=len(dem),
             by_reason=dict(Counter(r['reason'] for r in unsafe.values())))
         del unsafe, keep, dem, pa_have
+    # pass seven (class 29b, scripts/reviewed_authors.py): the reviewed book's author is never the review's author. A linked
+    # credit on a review whose person is credited on the reviewed book, or bears a printed reviewed-author name, is
+    # demoted to a candidate; key-log claims of that kind are counted and listed (no key-log change)
+    from reviewed_authors import build as reviewed_build
+    ra_printed = [(r['review'], r['names'] or r['families']) for r in read_rows(REVIEW_AUTHORS)] if REVIEW_AUTHORS in p5_files else []
+    ra_printed = [(resolve(rv) or rv, n) for rv, n in ra_printed]
+    plabel = {x['key']: x['label'] for x in people}
+    ra = reviewed_build([(r['from'], r['to']) for r in rels['REVIEWS']] + [(r['from'], r['to']) for r in rb_rows],
+                        [(r['from'], r['to']) for r in rels['AUTHORED']] + [(r['from'], r['to']) for r in rels['EDITED']]
+                        + [(x['from'], x['to']) for x in linked['AUTHORED']] + [(x['from'], x['to']) for x in linked['EDITED']],
+                        ra_printed, plabel)
+    keep, dem, ra_list = [], [], []
+    for x in linked['AUTHORED']:
+        why = ra.why(x['from'], x['to']) if ra.is_review(x['to']) else None
+        (dem if why else keep).append((x, why) if why else x)
+    linked['AUTHORED'] = keep
+    pa_have = {(r['from'], r['to']) for r in possible_authors}
+    for x, why in dem:
+        ra_list.append(dict(person=x['from'], work=x['to'], evidence='linked', source=x.get('source'), why=why))
+        if (x['from'], x['to']) not in pa_have:
+            possible_authors.append({'from': x['from'], 'to': x['to'], 'n_candidates': 1, 'signals': why, 'source': x.get('source'),
+                                     'role': 'author', 'reason': f"linked credit ({x.get('source')}) demoted: the person is the "
+                                     f"author of the book this review reviews ({why}), not its reviewer"})
+    kl_open = 0
+    for r in rels['AUTHORED']:
+        if ra.is_review(r['to']):
+            why = ra.why(r['from'], r['to'])
+            if why:
+                kl_open += 1
+                ra_list.append(dict(person=r['from'], work=r['to'], evidence='keylog', source=r['claim'], why=why))
+    with open(OUT / 'reviewed_author_credits.csv', 'w', newline='', encoding='utf-8') as fh:
+        wcsv = csv.DictWriter(fh, fieldnames=['person', 'work', 'evidence', 'source', 'why'])
+        wcsv.writeheader()
+        wcsv.writerows(ra_list)
+    report['class_29b_reviewed_author'] = dict(
+        note=('pass seven: credits on a review whose person is the reviewed book\'s author (credited on the book, or the '
+              'printed reviewed-author name): linked credits demoted to author_candidates, key-log claims counted; list in '
+              'reviewed_author_credits.csv beside the tables'),
+        reviews_with_known_reviewed_author=sum(1 for w in set(ra.reviews) | set(ra.printed) if ra.known(w)),
+        linked_demoted=len(dem), linked_demoted_by=dict(Counter(why for _, why in dem)),
+        linked_demoted_by_source=dict(Counter((x.get('source') or '').split(':')[0] for x, _ in dem)),
+        keylog_open=kl_open)
+    del keep, dem, pa_have, ra_list, ra_printed
     if ve_series:                   # series editors named in Crossref editor lists (class 19): contributors, not editors
         have_c = {(r['from'], r['to']) for r in contributed}
         add = [r for r in ve_series if (r['from'], r['to']) not in have_c]
@@ -1625,6 +1719,20 @@ def main():
     report['REVIEWS'] = write('reviews', [dict(r, evidence='keylog', source=None) for r in rels['REVIEWS']] + rb_rows,
                               pa.schema([('from', s), ('to', s), ('claim', s), ('resolution', s), ('evidence', s), ('source', s)]))
     report['REVIEWS_by_evidence'] = dict(keylog=len(rels['REVIEWS']), linked=len(rb_rows))
+    # pass seven (class 11): one work under two keys (scripts/work_dup_pairs.py): SAME_WORK hidden -> shown, for display
+    # (the explorer lists the pair once); no merge here (exact-identifier merges are a key-log proposal, not applied)
+    same = []
+    if WORK_DUPS in p5_files:
+        seen_sw = set()
+        for r in read_rows(WORK_DUPS):
+            h, sh = resolve(r['hidden']), resolve(r['shown'])
+            if not h or not sh or h == sh or (h, sh) in seen_sw:
+                report['same_work_unresolved_or_merged'] += 1
+                continue
+            seen_sw.add((h, sh))
+            same.append({'from': h, 'to': sh, 'basis': r['basis']})
+    report['SAME_WORK'] = write('same_work', same, pa.schema([('from', s), ('to', s), ('basis', s)]))
+    del same
     del kl_rev
     # PART_OF: the key log's chapter -> volume claims (evidence keylog) and the volume links of 2026-11-11 (evidence
     # linked, source and volume_basis; identity scripts read the keylog rows only, scripts/graph_tables.py)
@@ -1658,10 +1766,28 @@ def main():
     if SCORED_LINKS.exists() and not os.environ.get('BUILD_SCORED_OFF'):
         from graph_scored_links import scored_layer
         scored_layer(read_rows, SCORED_LINKS, person1, resolve, scored_wi, {r['from'] for r in rb_rows}, rels, linked,
-                     possible_authors, report)
-    del scored_wi
+                     possible_authors, report, ra=ra)
+    del scored_wi, ra, plabel
     ev_schema = pa.schema([('from', s), ('to', s), ('claim', s), ('resolution', s), ('evidence', s), ('source', s), ('state', s),
-                           ('role', s), ('role_basis', s), ('score', pa.float64())])
+                           ('role', s), ('role_basis', s), ('score', pa.float64()), ('n_claims', pa.int32()), ('claims', s)])
+    # pass seven (class 11): two or more key-log claims for one person and work. The rows stay (identity scripts and
+    # audits read claims); every row of such a pair carries n_claims and the claims with the routes that asserted them
+    # (their anchors' schemes), and the explorer lists the pair once with that provenance
+    dup_prov = {}
+    for name in ('AUTHORED', 'EDITED'):
+        by = defaultdict(list)
+        for r in rels[name]:
+            by[(r['from'], r['to'])].append(r['claim'])
+        dups = {pq_: cs for pq_, cs in by.items() if len(cs) > 1}
+        anc = state.claim_anchors({c for cs in dups.values() for c in cs})
+        for pq_, cs in dups.items():
+            dup_prov[name, pq_] = (len(cs), '; '.join(f"{c} ({', '.join(sorted({a.split(':', 1)[0] for a in anc.get(c, [])})) or 'no anchor'})"
+                                                       for c in sorted(cs))[:500])
+        report[f'class_11_{name}_pairs_with_two_or_more_claims'] = len(dups)
+        report[f'class_11_{name}_extra_claim_rows'] = sum(len(cs) - 1 for cs in dups.values())
+        report[f'class_11_{name}_by_routes'] = dict(Counter(
+            ' + '.join(sorted({a.split(':', 1)[0] for c in cs for a in anc.get(c, [])[:1]})) for cs in dups.values()).most_common(15))
+        del by, dups, anc
     role_count = Counter()
 
     def role_of(name, r):
@@ -1701,10 +1827,12 @@ def main():
                 elif name == 'EDITED' and ev == 'linked' and role in ('volume-editor', 'author-editor', 'unknown'):
                     linked_coeditor.add((r['from'], r['to']))
                 role_count[f'{name}|{ev}|{role}'] += 1
+                dp = dup_prov.get((name, (r['from'], r['to']))) if ev == 'keylog' else None
                 rows_.append({'from': r['from'], 'to': r['to'], 'claim': r['claim'], 'resolution': r['resolution'],
                               'evidence': ev, 'source': r.get('source') if ev == 'linked' else None,
                               'state': r.get('state') if ev == 'linked' else None, 'role': role, 'role_basis': basis,
-                              'score': r.get('score') if ev == 'linked' else None})
+                              'score': r.get('score') if ev == 'linked' else None,
+                              'n_claims': dp[0] if dp else 1, 'claims': dp[1] if dp else None})
         report[name] = write(name.lower(), rows_, ev_schema)
         report[f'{name}_by_evidence'] = dict(keylog=len(rels[name]), linked=len(lrows))
         report[f'{name}_by_role'] = {k.split('|', 1)[1]: v for k, v in sorted(role_count.items()) if k.startswith(name + '|')}
@@ -2188,10 +2316,11 @@ def load_db(report):
                  'ror STRING, PRIMARY KEY (key))')
     for name in ('AUTHORED', 'EDITED'):
         conn.execute(f'CREATE REL TABLE {name}(FROM Person TO Work, claim STRING, resolution STRING, evidence STRING, '
-                     'source STRING, state STRING, role STRING, role_basis STRING)')
+                     'source STRING, state STRING, role STRING, role_basis STRING, score DOUBLE, n_claims INT32, claims STRING)')
     conn.execute('CREATE REL TABLE SUPERVISED(FROM Person TO Work, claim STRING, resolution STRING)')
     conn.execute('CREATE REL TABLE PUBLISHED_AS(FROM Work TO Work, claim STRING, resolution STRING)')
-    conn.execute('CREATE REL TABLE REVIEWS(FROM Work TO Work, claim STRING, resolution STRING)')
+    conn.execute('CREATE REL TABLE REVIEWS(FROM Work TO Work, claim STRING, resolution STRING, evidence STRING, source STRING)')
+    conn.execute('CREATE REL TABLE SAME_WORK(FROM Work TO Work, basis STRING)')
     conn.execute('CREATE REL TABLE PART_OF(FROM Work TO Work, claim STRING, resolution STRING, evidence STRING, '
                  'source STRING, volume_basis STRING)')
     conn.execute('CREATE REL TABLE CONTRIBUTED(FROM Person TO Work, claim STRING, resolution STRING, evidence STRING, '
@@ -2212,7 +2341,7 @@ def load_db(report):
         conn.execute('CREATE REL TABLE EDITION_OF(FROM Work TO Work, relation STRING, route STRING, theses INT32)')
     for table, file in (('Person', 'person'), ('Work', 'work'), ('Institution', 'institution'),
                         ('AUTHORED', 'authored'), ('EDITED', 'edited'), ('SUPERVISED', 'supervised'),
-                        ('PUBLISHED_AS', 'published_as'), ('REVIEWS', 'reviews'), ('PART_OF', 'part_of'), ('EDITOR_OF', 'editor_of'), ('REVIEWED', 'reviewed'), ('ADVISED', 'advised'),
+                        ('PUBLISHED_AS', 'published_as'), ('REVIEWS', 'reviews'), ('SAME_WORK', 'same_work'), ('PART_OF', 'part_of'), ('EDITOR_OF', 'editor_of'), ('REVIEWED', 'reviewed'), ('ADVISED', 'advised'),
                         ('COAUTHORED', 'coauthored'), ('COEDITED', 'coedited'),
                         ('AWARDED_BY', 'awarded_by'), ('POSSIBLY_SAME', 'possibly_same'), ('AFFILIATED_WITH', 'affiliated_with'),
                         ('CITES', 'cites'), ('CONTRIBUTED', 'contributed')):

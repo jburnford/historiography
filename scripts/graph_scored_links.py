@@ -9,7 +9,9 @@ Specification (from the scorer's report):
    state `scored`, with the score; author-role positions (author, jstor-author, LC main entry) on a work that reads as
    a review (title 'Review of' / 'Rezension' / 'Reseña' / 'Compte rendu' ..., kind or proposed kind review, or a review in
    data/graph/review-books.csv.gz) are excluded: the scorer linked a reviewed book's author as the review's author in
-   a hand-read case (Becher);
+   a hand-read case (Becher). Pass seven (2026-11-12, scripts/reviewed_authors.py): such a link loads when the review's
+   reviewed authors are known (a person credited on the reviewed book, or a printed reviewed-author name) and the
+   person is not one of them; it stays excluded when the person is the reviewed author or nobody knows who is;
 4. `exact` rows are identifier links the rule path already makes: not loaded again;
 5. `review` rows become author_candidates (up to three per position, best scores first; reason `scored-review`, score
    and top fields in signals) where the position has no credit and the person no candidate row on the work;
@@ -27,8 +29,9 @@ REVIEW_TITLE = re.compile(r'(?i)^\s*(review of|reviewed work|rezension|reseña|r
 AUTHOR_ROLES = ('author', 'jstor-author', 'main')
 
 
-def scored_layer(read_rows, path, person1, resolve, wi, review_works, rels, linked, possible_authors, report):
-    """Adds rows to linked['AUTHORED'] / linked['EDITED'] and possible_authors in place."""
+def scored_layer(read_rows, path, person1, resolve, wi, review_works, rels, linked, possible_authors, report, ra=None):
+    """Adds rows to linked['AUTHORED'] / linked['EDITED'] and possible_authors in place. ra: a
+    reviewed_authors.ReviewedAuthors (None: every author-role link on a review stays excluded)."""
     R = Counter()
     have = {name: {(r['from'], r['to']) for r in rels[name]} for name in ('AUTHORED', 'EDITED')}
     lidx = {name: {} for name in ('AUTHORED', 'EDITED')}
@@ -50,7 +53,14 @@ def scored_layer(read_rows, path, person1, resolve, wi, review_works, rels, link
     def is_review(w):
         x = wi.get(w) or {}
         return (w in review_works or x.get('kind') == 'review' or x.get('kind_proposed') == 'review'
-                or bool(REVIEW_TITLE.search(x.get('label') or '')))
+                or bool(REVIEW_TITLE.search(x.get('label') or '')) or (ra is not None and ra.is_review(w)))
+
+    def review_block(k, w):
+        """None when the link may load on this review, else the reason it may not"""
+        if ra is None or not ra.known(w):
+            return 'reviewed_author_unknown'
+        why = ra.why(k, w)
+        return f'is_reviewed_author:{why}' if why else None
     rows = read_rows(path)
     for r in rows:
         d = r['decision']
@@ -90,14 +100,22 @@ def scored_layer(read_rows, path, person1, resolve, wi, review_works, rels, link
         if ruled:                          # the rule linked this position to this key but the row is not in the table
             R[f'link|{name}|same_as_rule_row_absent'] += 1
             continue
+        review_checked = False
         if r['role'] in AUTHOR_ROLES and is_review(w):
-            R[f'link|{r["role"]}|work_reads_as_review_excluded'] += 1
-            continue
+            block = review_block(k, w)
+            if block:
+                R[f'link|{r["role"]}|review|{block}'] += 1
+                continue
+            review_checked = True
+            R[f'link|{r["role"]}|review|reviewer_checked_loaded'] += 1
         row = {'from': k, 'to': w, 'claim': f"scored-links:{r['source']}:{r['role']}:{r['position']}", 'resolution': 'linked',
                'source': 'scored-links', 'state': 'scored', 'score': float(r['score']) if r['score'] else None}
         if role:
             row['role'] = role
             row['role_basis'] = 'scored-links:volume-editors'
+        if review_checked:
+            row['role'] = row.get('role') or 'author'
+            row['role_basis'] = 'scored-links:reviewer-checked'
         add[name].append(row)
         lidx[name][(k, w)] = row
         R[f'added|{name}|{r["role"]}|{r["source"]}'] += 1
@@ -118,7 +136,7 @@ def scored_layer(read_rows, path, person1, resolve, wi, review_works, rels, link
             if (k, w) in cand_pairs:
                 R['review|candidate_row_exists'] += 1
                 continue
-            if r['role'] in AUTHOR_ROLES and is_review(w):
+            if r['role'] in AUTHOR_ROLES and is_review(w) and review_block(k, w):
                 R['review|work_reads_as_review_excluded'] += 1
                 continue
             possible_authors.append({'from': k, 'to': w, 'n_candidates': len(cs), 'role': 'editor' if name == 'EDITED' else r['role'],

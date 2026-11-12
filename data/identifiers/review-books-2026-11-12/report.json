@@ -1,18 +1,44 @@
 {
  "date": "2026-11-12",
- "graph": "build/graph-base11",
+ "pass_": "seven",
+ "graph": "/home/jic823/historiography/build/graph",
  "counts": {
-  "candidate_articles": 999891,
-  "labels_parsed_as_review": 33567,
+  "review_like_records": 115690,
+  "review_like_with_printed_names": 55817,
+  "parsed_by_pass_five_parser": 33476,
+  "lc_records_considered": 1337628,
+  "rule_B": {
+   "held|several-books": 1111,
+   "matched|label-isbn|graph": 210,
+   "matched|label-isbn|lc-in-graph": 2540,
+   "matched|label-isbn|lc-new-node": 442,
+   "matched|label-title-family|graph": 22751,
+   "matched|label-title-family|lc-in-graph": 2939,
+   "matched|label-title-family|lc-new-node": 4604,
+   "remaining|no-book-held-with-the-title": 2639,
+   "remaining|no-printed-author": 46082,
+   "remaining|title-and-author-disagree": 32372
+  },
+  "rule_A": {
+   "title|held-common-title": 81,
+   "title|held-several-books": 223,
+   "title|label-rule-matched": 1,
+   "title|matched": 7697
+  },
   "matched_reviews_by_rule": {
-   "label": 2808,
-   "title": 9050
+   "label": 33486,
+   "title": 7697
   },
-  "held_several_books": 175,
-  "by_resolution": {
-   "keyed": 8200,
-   "unkeyed": 3658
+  "matched_by_resolution": {
+   "keyed": 20710,
+   "unkeyed": 20473
   },
-  "labels_parsed_no_book": 30679
+  "lc_book_nodes_new": 4724,
+  "remaining_by_cause": {
+   "no-printed-author": 46082,
+   "title-and-author-disagree": 32372,
+   "no-book-held-with-the-title": 2639
+  },
+  "review_authors_rows": 66918
  }
 }
