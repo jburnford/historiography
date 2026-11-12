@@ -136,6 +136,93 @@ class AuditRound1(unittest.TestCase):
         self.assertEqual(role(rec, ['g'], 'Graff, Henry')['role'], 'series-editor')
 
 
+class QualifiedEditors(unittest.TestCase):
+    """2026-11-12 (class 23): a qualified role word ('cartographic editor', 'assistant editor', 'maps edited by') is
+    another job on the book, not editing the volume; role contributor (not counted as the person's own work)."""
+    WYNN = ('edited by Phillip A. Buckner and John G. Reid ; Eric Leinberger, cartographer ; '
+            'Graeme Wynn, cartographic editor ; Mitchell A. McNutt, picture editor')
+
+    def test_clause_after_name(self):
+        self.assertEqual(er.clause_role(self.WYNN, 'wynn'), 'qualified-editor')
+        self.assertEqual(er.clause_role(self.WYNN, 'mcnutt'), 'qualified-editor')
+        self.assertEqual(er.clause_role(self.WYNN, 'buckner'), 'editor')
+        self.assertEqual(er.clause_role(self.WYNN, 'reid'), 'editor')
+        for resp, fam in (('Paul G. Pierpaoli Jr., associate editor', 'pierpaoli'),
+                          ('John Beynon, Douglas Eisner, assistant editors', 'beynon'),
+                          ('John Beynon, Douglas Eisner, assistant editors', 'eisner'),
+                          ('Susan Allred Whetstone, photo-editor', 'whetstone'),
+                          ('Jack Rabin, founding editor', 'rabin'),
+                          ('Michael Berenbaum, executive editor', 'berenbaum')):
+            self.assertEqual(er.clause_role(resp, fam), 'qualified-editor', resp)
+
+    def test_clause_before_name(self):
+        self.assertEqual(er.clause_role('edited by A. B. Smith ; assistant editor, Sabine Freitag', 'freitag'), 'qualified-editor')
+        self.assertEqual(er.clause_role('edited by Paul Harvey ; bibliography edited by Randall Stephens', 'stephens'), 'qualified-editor')
+        self.assertEqual(er.clause_role('edited by Jane Roe ; Maps edited by John Doe', 'doe'), 'qualified-editor')
+        self.assertEqual(er.clause_role('edited by Jane Roe ; Maps edited by John Doe', 'roe'), 'editor')
+
+    def test_nearest_role_word_governs(self):
+        resp = 'Frederick F. Wherry, editor, Juliet Schor, consulting editor'
+        self.assertEqual(er.clause_role(resp, 'wherry'), 'editor')
+        self.assertEqual(er.clause_role(resp, 'schor'), 'series-editor')
+
+    def test_plain_and_allowed_qualifiers_stay_editors(self):
+        for resp, fam in (('John Smith and Jane Doe, editors', 'smith'), ('Jane Roe, co-editor', 'roe'),
+                          ('Mary Poe, guest editor', 'poe'), ('D. M. Bose, chief editor', 'bose'),
+                          ('Henry J. Aaron and Michael J. Boskin, editors', 'aaron')):
+            self.assertEqual(er.clause_role(resp, fam), 'editor', resp)
+
+    def test_role_first_clause(self):
+        # the role after a name opens the next name's credit when the clause opens with a role (hand check 2026-11-12)
+        self.assertEqual(er.clause_role('editor-in-chief, Edwin R.A. Seligman, associate editor, Alvin Johnson', 'seligman'), 'editor')
+        self.assertEqual(er.clause_role('editor-in-chief, Edwin R.A. Seligman, associate editor, Alvin Johnson', 'johnson'), 'qualified-editor')
+        self.assertEqual(er.clause_role('edited by Joseph H. Greenberg, associate editors, Charles A. Ferguson & Edith A. Moravcsik',
+                                        'greenberg'), 'editor')
+        self.assertEqual(er.clause_role('edited by Joseph H. Greenberg, associate editors, Charles A. Ferguson & Edith A. Moravcsik',
+                                        'moravcsik'), 'qualified-editor')
+        # a clause that opens with names: the role after each name is its own
+        resp = 'Salo W. Baron, George S. Wise, editors, Lenn E. Goodman, associate editor'
+        self.assertEqual(er.clause_role(resp, 'goodman'), 'qualified-editor')
+        self.assertEqual(er.clause_role(resp, 'baron'), 'editor')
+
+    def test_singular_role_after_a_list_is_the_last_name(self):
+        resp = 'Newt Gingrich, William R. Forstchen and Albert S. Haner, contributing editor'
+        self.assertEqual(er.clause_role(resp, 'haner'), 'qualified-editor')
+        self.assertNotEqual(er.clause_role(resp, 'forstchen'), 'qualified-editor')
+        self.assertEqual(er.clause_role('Phelan Powell ; Arthur M. Schlesinger, Jr., senior consulting editor', 'schlesinger'),
+                         'series-editor')
+
+    def test_list_with_other_words_is_not_governed(self):
+        # 'with' stands between Buckner and the cartographic editor: Buckner keeps 'edited by'
+        self.assertEqual(er.clause_role('edited by Phillip A. Buckner with Graeme Wynn, cartographic editor', 'buckner'), 'editor')
+
+    def test_role_of_the_credit(self):
+        rec = dict(title='The Atlantic region to Confederation : a history', resp=self.WYNN,
+                   heads=[head(0, '700', 'Buckner, Phillip A. (Phillip Alfred), 1942-', 'b'), head(1, '700', 'Reid, John G. (John Graham), 1948-', 'r'),
+                          head(2, '700', 'Wynn, Graeme, 1946-', 'w')])
+        r = role(rec, ['w'], 'Wynn, Graeme')
+        self.assertEqual((r['role'], r['basis']), ('contributor', 'lc-245c-qualified-editor'))
+        self.assertEqual(role(rec, ['w'], 'Wynn, Graeme', 'authored')['role'], 'contributor')
+        self.assertEqual(role(rec, ['b'], 'Buckner, Phillip A.')['role'], 'volume-editor')
+
+    def test_sole_qualified_editor_keeps_the_volume(self):
+        # hand check 2026-11-12: no main entry and no other editor named: the qualified editor is the volume's editor
+        rec = dict(title='Business and social progress', resp='Clarence C. Walton, contributing editor',
+                   heads=[head(0, '700', 'Walton, Clarence C.', 'w')])
+        self.assertEqual(role(rec, ['w'], 'Walton, Clarence')['role'], 'volume-editor')
+        self.assertTrue(er.names_an_editor('editor, S. Rachman ; founding editor, H.J. Eysenck'))
+        self.assertFalse(er.names_an_editor('Keith Lye, consultant editor ; Jane Roe, assistant editor'))
+        self.assertEqual(er.clause_role('Candace S. Greene, proceedings editor', 'greene'), 'editor')
+
+    def test_re_edited_is_editing(self):
+        self.assertEqual(er.clause_role('re-edited by Frederick J. Furnivall', 'furnivall'), 'editor')
+
+    def test_picture_editor_of_a_monograph(self):
+        rec = dict(title='A history', resp='Alan Trachtenberg ; picture editor, Jane Roe',
+                   heads=[head(0, '100', 'Trachtenberg, Alan', 't'), head(1, '700', 'Roe, Jane', 'j')])
+        self.assertEqual(role(rec, ['j'], 'Roe, Jane')['role'], 'contributor')
+
+
 class Authored(unittest.TestCase):
     def test_absent_person(self):
         rec = dict(title="Le Mexique de l'Ancien Régime à la Révolution", resp='François-Xavier Guerra ; préface de François Chevalier',

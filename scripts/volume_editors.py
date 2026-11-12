@@ -313,10 +313,8 @@ def split_names(seg):
 
 # 2026-11-12: a role word before 'editor' that names another job ('Graeme Wynn, cartographic editor', 'picture editor',
 # 'assistant editor') or a part of the book that is not the volume ('maps edited by', 'series edited by'): the name is
-# not the volume's editor. Words that keep the plain editor role:
-EDITOR_QUALIFIER_OK = {'co', 'joint', 'volume', 'guest', 'book', 'coordinating', 'director', 'y', 'and', 'the', 'others', 'al'}
-NOT_VOLUME_PART = re.compile(r'(?i)\b(series|maps?|cartograph\w*|illustrations?|photographs?|pictures?|plates|music|index|'
-                             r'indexes|appendix|appendices|bibliograph\w*|glossary|gazetteer|atlas|charts?|figures)\b')
+# not the volume's editor. The word lists and the qualifier test are shared with scripts/edition_roles.py.
+from editor_qualifiers import EDITOR_QUALIFIER_OK, NOT_VOLUME_PART, names_other_job, tail_qualifiers  # noqa: E402,F401
 
 
 def edit_clause_names(resp):
@@ -344,8 +342,7 @@ def edit_clause_names(resp):
                 continue
             # lower-case words just before the role word qualify it ('cartographic editor'): another job unless 'co-',
             # 'joint', 'volume', 'guest', 'book', 'coordinating'
-            tail = re.search(r'((?:\b[a-z][a-z-]*\s*)+)$', m.group(1).rstrip(' ,('))
-            if tail and any(w.strip('-') not in EDITOR_QUALIFIER_OK for w in tail.group(1).split()):
+            if names_other_job(tail_qualifiers(m.group(1))):
                 continue
             names += split_names(m.group(1))
     return names

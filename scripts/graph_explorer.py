@@ -39,10 +39,13 @@ WORK_ADDED = ('issn', 'journal_source', 'kind_proposed', 'isbn', 'editors_printe
 WORK_ADDED_INT = ('first_year', 'first_year_catalogue')
 # credits under which a person prepared someone else's work (an edition, a translation, an introduction, a series):
 # shown apart and never counted as citations of the person's own work (class 15, 2026-11-12)
-EDITION_ROLES = "('edition-editor','translator','introducer','series-editor')"
-NOT_AUTHOR = "('edition-editor','translator','introducer','series-editor','volume-editor')"
+# 'contributor' (2026-11-12, class 23): a qualified editor of the book ('cartographic editor', 'associate editor',
+# 'maps edited by'), not its volume editor
+EDITION_ROLES = "('edition-editor','translator','introducer','series-editor','contributor')"
+NOT_AUTHOR = "('edition-editor','translator','introducer','series-editor','contributor','volume-editor')"
 ROLE_L = ("CASE e.role WHEN 'edition-editor' THEN 'edited this edition' WHEN 'translator' THEN 'translator' "
-          "WHEN 'introducer' THEN 'introduction' WHEN 'series-editor' THEN 'series editor' ELSE e.role END")
+          "WHEN 'introducer' THEN 'introduction' WHEN 'series-editor' THEN 'series editor' "
+          "WHEN 'contributor' THEN 'contributor (associate, assistant, consulting, picture or map editor ...)' ELSE e.role END")
 # a thesis citing a translation or later edition is a CITES edge to the canonical work (edition = true unless it also
 # cites the work directly; cited_as = the node it was cited as); the canonical work counts the citation
 EDITION_D = ("CASE WHEN bool_or(e.edition) OR any_value(e.cited_as) IS NOT NULL THEN 'cited in translation or another edition'"
@@ -81,7 +84,7 @@ REL = {
     'person': [
         ('authored', 'Works authored', 'authored', 'from', 'to', WORK_ROW_D, f"coalesce(e.role, 'author') NOT IN {NOT_AUTHOR}"),
         ('edited', 'Works edited', None, None, None, None),     # EDITED (not edition roles) + AUTHORED as volume editor
-        ('editions_prepared', 'Editions and translations they prepared', None, None, None, None),
+        ('editions_prepared', 'Editions, translations and other contributions they prepared', None, None, None, None),
         ('contributed', 'Forewords and series contributions', 'contributed', 'from', 'to', CONTRIB_D),
         ('supervised', 'Supervised theses', 'supervised', 'from', 'to', None),
         ('students', 'Students', 'advised', 'from', 'to', "(SELECT label FROM nodes WHERE key = any_value(e.thesis))"),
@@ -102,7 +105,7 @@ REL = {
     'work': [
         ('authors', 'Authors', 'authored', 'to', 'from', LINKED_D, f"coalesce(e.role, 'author') NOT IN {NOT_AUTHOR}"),
         ('editors', 'Editors', None, None, None, None),
-        ('edition_people', 'This edition prepared by (editors, translators, introductions, series editors)', None, None, None, None),
+        ('edition_people', 'This edition prepared by (editors, translators, introductions, series editors, contributors)', None, None, None, None),
         ('volume_editors', 'Editors of the volume it is in', None, None, None, None),
         ('contributors', 'Contributors (foreword, series editor)', 'contributed', 'to', 'from', CONTRIB_D),
         ('chapter_authors', 'Contributors (authors of its chapters)', None, None, None, None),
@@ -155,7 +158,7 @@ def build():
         LEFT JOIN (SELECT "to" k, count(*) n FROM e_cites_t GROUP BY 1) c ON c.k = w.key
         LEFT JOIN (SELECT "to" k, count(*) n FROM e_reviews_t GROUP BY 1) r ON r.k = w.key""")
     # one row per (person, work) even when the key log holds two authored claims for it; credits under an edition role
-    # (edition editor, translator, introducer, series editor) are not the person's own work (2026-11-12)
+    # (edition editor, translator, introducer, series editor, contributor) are not the person's own work (2026-11-12)
     db.execute(f"""CREATE TABLE person_w AS SELECT a."from" AS key, count(*) works, sum(w.cited) cited, sum(w.reviewed) reviewed
         FROM (SELECT DISTINCT "from", "to" FROM e_authored_f WHERE coalesce(role, 'author') NOT IN {EDITION_ROLES}) a
         JOIN work_w w ON w.key = a."to" GROUP BY 1""")
@@ -262,7 +265,7 @@ class Graph:
                          WHERE "{me}" = $k AND coalesce(role, 'unknown') NOT IN {EDITION_ROLES}
                         UNION ALL SELECT "from", "to", evidence, state, source, role_basis, 'authored' FROM e_authored_{side}
                          WHERE "{me}" = $k AND role = 'volume-editor') e GROUP BY 1""")
-        if rid in ('editions_prepared', 'edition_people'):    # edition editor, translator, introducer, series editor
+        if rid in ('editions_prepared', 'edition_people'):    # edition editor, translator, introducer, series editor, contributor
             me, other = ('from', 'to') if rid == 'editions_prepared' else ('to', 'from')
             side = 'f' if me == 'from' else 't'
             return (f"""SELECT e."{other}" k, 1 n, concat_ws(' · ', string_agg(DISTINCT {ROLE_L}, ', '), {LINKED_D},

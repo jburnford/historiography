@@ -47,6 +47,10 @@ from pathlib import Path
 
 import duckdb
 
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from editor_qualifiers import qualified_role  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 G = Path(os.environ.get('ER_GRAPH', ROOT / 'build/graph'))
 LC = Path('/mnt/e/lc-bib-2016/index')
@@ -70,14 +74,15 @@ FEST = re.compile(r'(?i)essays? (in|presented|offered|written) (honou?r|memory)|
 SERIES = re.compile(r'(?i)consulting editor|series editor|general editors?\b|editor[- ]in[- ]chief|series ed\b|advisory editor|'
                     r'directeur de (la )?collection|direction de la collection|coordenador da cole|herausgegeben von der|reihe')
 DIRECTOR = re.compile(r'(?i)dire[cç][aã]o|sous la direction|direction|direcci[oó]n|direzione|leitung|coordena[cç][aã]o|organiza[cç][aã]o')
-STRICT_EDIT = re.compile(r'(?i)\bedit|\bed\.|\beds\.|compil|hrsg|herausg|a cura|cura di|organiz|\borg\.|\bcoord|\bdir\.')
+# '\bedit(?!h)': 'Edith' is a name, not a role word (2026-11-12: Edith Wharton, Edith Saurer read as 'edited')
+STRICT_EDIT = re.compile(r'(?i)\bedit(?!h)|\bed\.|\beds\.|compil|hrsg|herausg|a cura|cura di|organiz|\borg\.|\bcoord|\bdir\.')
 V_TRANS = re.compile(r'(?i)translat|traduc|tradu[zçi]|übers|ubers|vertaal|overs[aæ]t|englished|rendered into')
-V_EDIT = re.compile(r'(?i)\bedit|\bed\.|\beds\.|compil|select|hrsg|herausg|\bcoord|\bdir\.|sous la dir|bajo la dir|'
+V_EDIT = re.compile(r'(?i)\bedit(?!h)|\bed\.|\beds\.|compil|select|hrsg|herausg|\bcoord|\bdir\.|sous la dir|bajo la dir|'
                     r'organiz|organis|\borg\.|presentaci|présent|establi|annot|arrang|collect|abridg|gathered|chosen|'
                     r'prepared|edición|edición|edizione|a cura|cura di|introduction, notes|redactie|r[eé]daction|redakt|redig|'
                     r'bearbeit|onder red|pod red')
 V_INTRO = re.compile(r'(?i)introduc|introd\.|einf[uü]hr|preface|pr[ée]face|foreword|avant-propos|pref[aá]cio|pr[oó]logo|'
-                     r'einleitung|vorwort|afterword|postface|commentary')
+                     r'einleitung|vorwort|nachwort|afterword|postface|commentary')
 
 
 def fold(s):
@@ -229,6 +234,59 @@ def _role_word(t):
                          'senior', 'volume', 'textual', 'assistant', 'associate', 'managing'})
 
 
+# 'ed.' / 'eds.' only in lower case and not before a name ('Ed. Lemoine' is Edouard Lemoine)
+NOUN_ROLE = re.compile(r'(?<![A-Za-z])((?i:editors?|compilers?)|eds?\.(?!\s*[A-Z][a-z]))(?![a-z])')
+LIST_WORDS = PARTICLES | {'and', 'und', 'et', 'y', 'e', '&', 'jr', 'sr', 'jr.', 'sr.'}
+
+
+def noun_role_after(rest):
+    """The role noun that follows a name in its clause and governs it (2026-11-12, class 23): 'plain' ('X, editor';
+    'X and Y, editors'), 'other' ('X, cartographic editor'; 'X, Y, assistant editors'), 'series' ('X, consulting
+    editor') or None (no role noun follows, or other words stand between). The nearest role noun governs:
+    'Frederick F. Wherry, editor, Juliet Schor, consulting editor' -> Wherry plain."""
+    m = NOUN_ROLE.search(rest)
+    if not m or re.match(r'(?i)\s*(by|von|par|de|di|por)\b', rest[m.end():]):
+        return None                        # 'Ed. by William Crookes': a verb, not a role after a name
+    lead = rest[:m.start()]
+    singular = not re.match(r'(?i)(editors|compilers|eds\.)', m.group(1))
+    q = []
+    h = re.search(r'([A-Za-z]+)-$', lead)  # 'co-editor', 'photo-editor'
+    if h:
+        q, lead = [h.group(1)], lead[:h.start()]
+    while True:                            # lower-case words just before the noun ('cartographic', 'assistant')
+        w = re.search(r'([a-z][a-z-]*)\s*$', lead)
+        if not w or w.group(1) in LIST_WORDS:
+            break
+        q.insert(0, w.group(1))
+        lead = lead[:w.start()]
+    # the text between the name and the role: names, initials, 'and', commas only, ending in a comma or bracket
+    if not re.fullmatch(r"[\w\s.,'’&()\[\]-]*?[,(\[]\s*", lead):
+        return None
+    if any(t[:1].islower() and t.lower() not in LIST_WORDS for t in re.findall(r"[A-Za-z][A-Za-z'.-]*", lead)):
+        return None                        # 'Reid with Graeme Wynn, cartographic editor': not a list of names
+    # a singular role after a list is the last name's: 'Newt Gingrich, William R. Forstchen and Albert S. Haner,
+    # contributing editor' (Jr., Sr. and roman numerals are part of the name)
+    if singular and re.search(r',|\band\b|&|\bund\b|\bet\b', re.sub(r'^\s*,?\s*(jr|sr|[ivx]+)\.?', '', lead, flags=re.I).rstrip(' ,([')):
+        return None
+    return qualified_role(' '.join(q) + ' ', 'editor') or 'plain' if q else 'plain'
+
+
+def names_an_editor(resp):
+    """the statement names someone as the volume's editor (plain, or a general / series editor): 'edited by ...',
+    'X, editor', 'general editor, Y'. Without one, a qualified editor ('Candace S. Greene, proceedings editor', 'Clarence
+    C. Walton, contributing editor') is the nearest thing to the volume's editor and keeps the earlier role."""
+    for m in re.finditer(r'(?i)(?<![a-z])(editors?|edited|compiled|compilers?)(?![a-z])', resp or ''):
+        if qualified_role(resp[:m.start()], m.group(1)) != 'other':
+            return True
+    return False
+
+
+def role_first(clause):
+    """The clause opens with its role ('editor, Arthur M. Schlesinger', 'General editor: ...', 'edited by ...', 'Maps
+    edited by ...'): a role after a later name belongs to the next name, not to the one before it."""
+    return bool(re.match(r'^\W*(?:[A-Za-z][a-z-]*\s+)?(?:[a-z][a-z-]*\s+){0,2}(?i:editors?\b|edited\b|compiled\b|compilers?\b|eds?\.)', clause))
+
+
 def clause_role(resp, fam, giv='', strict=False):
     """The role 245 $c gives the person (by family name): series-editor / director / translator / editor /
     introducer / author / None. The governing phrase is the text between the previous name and this one (the
@@ -258,6 +316,15 @@ def clause_role(resp, fam, giv='', strict=False):
         m = ms[0]
         post = a[m.end() - len(m.group(2)):][:60]
         rest = a[m.end() - len(m.group(2)):]
+        # 2026-11-12 (class 23): in a clause that opens with a name, the nearest role noun after the name governs it; a
+        # qualifier naming another job ('Graeme Wynn, cartographic editor', 'Mitchell A. McNutt, picture editor') is
+        # not editing the volume. In a clause that opens with its role ('editor-in-chief, Edwin R.A. Seligman,
+        # associate editor, Alvin Johnson') the role before the name governs (the phrase below)
+        gov = None if role_first(a) else noun_role_after(rest)
+        if gov == 'other':
+            return 'qualified-editor'
+        if gov == 'series':
+            return 'series-editor'
         # 'Henry J. Aaron and Michael J. Boskin, editors', 'A, B, C (Hrsg.)': a role after the list covers every name
         if re.search(r'(?i)[,(]\s*\[?(eds\.|editors|editores|editoras|organizadores|organizadoras|orgs\.|coords\.|coordinadores|'
                      r'coordenadores|coordenadoras|coordinateurs|hrsg\.?\)|hg\.?\)|dirs\.|compilers|comps\.|herausgeber)', rest) and \
@@ -266,6 +333,8 @@ def clause_role(resp, fam, giv='', strict=False):
         if re.search(r'(?i)(collaboration|mitarbeit|contribu(tions?|tors?|ted)|beitr[aä]ge|assisted|colabora|collaborazione|essays by|textes de|texts by|'
                      r'contributi di|contribuciones|autores|auteurs)', a[:m.start()][-100:]) or re.match(r'(?i)^[\w\s.]{0,30}?(\.\.\.\s*)?\[?(and others|et al|u\.a\.|e outros|y otros)', rest0 := a[m.end() - len(m.group(2)):]):
             return 'contributor'
+        if gov == 'plain':
+            return 'editor'
         if re.search(r'(?i)[,;(]\s*(general|series|consulting|advisory)\s+editors?\b', rest0) and \
                 re.match(r"(?i)^[\w\s.,'’&-]*?(\band\b|&|,)", rest0):
             return 'series-editor'
@@ -275,7 +344,8 @@ def clause_role(resp, fam, giv='', strict=False):
                     r'orgs?\.|coord|comp\.|compiler|hrsg|dir\.|trad\.|tr\.|translator|redac|redakt)', post):
             m2 = re.search(r'(?i)(trad\.|tr\.|translator)', post)
             return 'translator' if m2 and not re.search(r'(?i)ed\.|editor|organiz|hrsg|coord|comp', post[:m2.start()]) else 'editor'
-        toks = re.findall(r"[A-Za-z][A-Za-z'.-]*|&", a[:m.start() + len(m.group(1))])
+        tm = list(re.finditer(r"[A-Za-z][A-Za-z'.-]*|&", a[:m.start() + len(m.group(1))]))
+        toks = [x.group() for x in tm]
         k = len(toks)
 
         def skip_name(k):
@@ -295,6 +365,22 @@ def clause_role(resp, fam, giv='', strict=False):
             phrase.insert(0, t)
             k -= 1
         ph = ' '.join(phrase).lower()
+        # 2026-11-12 (class 23): the role word of the phrase with the words just before it in the text ('cartographic
+        # editor, Graeme Wynn'; 'Assistant editor, Sabine Freitag'; 'Maps edited by ...'; 'bibliography edited by ...')
+        for i, t in enumerate(phrase):
+            rw = re.match(r'(?i)^(?:([a-z]+)-)?(editors?|edited|compiled|compilers?)$', t)
+            if rw:
+                if rw.group(1) and rw.group(2).lower().startswith(('edited', 'compiled')):
+                    j = None                  # 're-edited', 'co-edited': the verb is still editing
+                elif rw.group(1):
+                    j = qualified_role(rw.group(1) + ' ', 'editor')
+                else:
+                    j = qualified_role(a[:tm[k + i].start()], rw.group(2))
+                if j == 'other':
+                    return 'qualified-editor'
+                if j == 'series':
+                    return 'series-editor'
+                break
         if SERIES.search(ph):
             return 'series-editor'
         if DIRECTOR.search(ph):
@@ -355,6 +441,12 @@ def classify_record(L, ctl, lcids, fam, giv, credit):
             res.update(role='volume-editor', basis='lc-100-is-editor')
         else:
             res.update(role='author-editor' if credit == 'edited' else 'author', basis='lc-main-entry-is-person')
+        return res
+    if crole == 'qualified-editor' and (main or names_an_editor(resp)):
+        # 2026-11-12 (class 23): 'cartographic editor', 'picture editor', 'assistant editor', 'maps edited by': another
+        # job on the book, not editing the volume (and not authorship): role contributor, not counted as own work.
+        # Only where the book has an author (main entry) or the statement names another editor of the volume
+        res.update(role='contributor', basis='lc-245c-qualified-editor')
         return res
     if main and main['rel'] & EDITOR_REL and not main['rel'] & AUTHOR_REL:
         res.update(role='volume-editor', basis='lc-100-is-editor')
@@ -421,7 +513,8 @@ def classify_record(L, ctl, lcids, fam, giv, credit):
     return res
 
 
-PRIORITY = ['author-editor', 'author', 'edition-editor', 'translator', 'introducer', 'series-editor', 'volume-editor', 'absent', 'unknown']
+PRIORITY = ['author-editor', 'author', 'edition-editor', 'translator', 'introducer', 'series-editor', 'contributor', 'volume-editor',
+            'absent', 'unknown']
 
 
 def classify(args):
@@ -491,7 +584,7 @@ def classify(args):
                 role = 'author-editor'
             elif credit == 'authored' and 'author' in roles:
                 role = 'author'
-            elif len(roles) > 1 and 'volume-editor' in roles and roles.keys() & {'edition-editor', 'translator', 'introducer', 'series-editor'}:
+            elif len(roles) > 1 and 'volume-editor' in roles and roles.keys() & {'edition-editor', 'translator', 'introducer', 'series-editor', 'contributor'}:
                 role = 'unknown'      # the work's records disagree (audit: pooled keys, catalogues): not decided
             else:
                 top = max(roles.values())
@@ -502,7 +595,8 @@ def classify(args):
             row['basis'] = bases.most_common(1)[0][0] + ('' if len(roles) == 1 else ';mixed') + ('' if asserted or credit == 'authored' else ';work-records')
             mains = [r['main'] for r in pick if r.get('main') and (r['basis'] in ('lc-100-compiler-long-dead', 'lc-700-historical-author')
                      or not (r['main']['rel'] & EDITOR_REL and not r['main']['rel'] & AUTHOR_REL))]
-            if role in ('edition-editor', 'translator', 'introducer', 'absent') and mains:
+            # the book's own author (LC main entry): also behind a series editor or a contributor (2026-11-12)
+            if role in ('edition-editor', 'translator', 'introducer', 'absent', 'series-editor', 'contributor') and mains:
                 m = Counter((x['lcid'], x['heading']) for x in mains).most_common(1)[0][0]
                 row['author_lcnaf'], row['printed_author'] = m[0], m[1]
                 ks = key_of_lcid.get(m[0], set()) if m[0] else set()
@@ -566,7 +660,7 @@ def report(args):
           LEFT JOIN er ON er.person = a."from" AND er.work = a."to" AND er.credit = 'authored'
         UNION ALL SELECT e."from", e."to", 'edited', coalesce(er.role, 'unknown') FROM ed e
           LEFT JOIN er ON er.person = e."from" AND er.work = e."to" AND er.credit = 'edited'""")
-    EXCL = "('edition-editor','translator','introducer','series-editor')"
+    EXCL = "('edition-editor','translator','introducer','series-editor','contributor')"
     c.execute("CREATE OR REPLACE TEMP TABLE tw AS SELECT DISTINCT src, dst FROM cites")
     c.execute(f"""CREATE OR REPLACE TEMP TABLE pt AS SELECT c.person, t.src, bool_or(c.role NOT IN {EXCL}) own,
                   bool_or(c.role IN {EXCL}) via_edition FROM cred c JOIN tw t ON t.dst = c.work GROUP BY 1, 2""")
@@ -586,9 +680,9 @@ def report(args):
         WHERE rk.r <= 500 GROUP BY 1) WHERE e >= 0.5 * n""").fetchone()[0]
     # gainers: proposed AUTHORED rows to the real author
     c.execute("""CREATE OR REPLACE TEMP TABLE newau AS SELECT DISTINCT author_key AS person, work FROM er
-                 WHERE author_new = 'yes' AND role IN ('edition-editor','translator','introducer') AND coalesce(author_key, '') <> ''""")
+                 WHERE author_new = 'yes' AND role IN ('edition-editor','translator','introducer','series-editor','contributor') AND coalesce(author_key, '') <> ''""")
     c.execute("""CREATE OR REPLACE TEMP TABLE before_a AS SELECT DISTINCT c.person, t.src FROM cred c JOIN tw t ON t.dst = c.work
-                 WHERE c.role NOT IN ('edition-editor','translator','introducer','series-editor')""")
+                 WHERE c.role NOT IN ('edition-editor','translator','introducer','series-editor','contributor')""")
     gain = c.execute("""SELECT n.person, pe.label, count(DISTINCT t.src) theses_via_new,
             count(DISTINCT t.src) FILTER (WHERE b.src IS NULL) theses_gained,
             (SELECT count(*) FROM before_a x WHERE x.person = n.person) theses_before, count(DISTINCT n.work) works
@@ -598,7 +692,7 @@ def report(args):
     # the real authors of the works whose editors lose the citation: theses on those works, and how many reach
     # the author only through the proposed AUTHORED row
     real = c.execute("""WITH ew AS (SELECT DISTINCT author_key AS person, work FROM er WHERE coalesce(author_key, '') <> ''
-                            AND role IN ('edition-editor','translator','introducer','series-editor'))
+                            AND role IN ('edition-editor','translator','introducer','series-editor','contributor'))
         SELECT ew.person, pe.label, count(DISTINCT t.src) theses_on_edition_works,
                count(DISTINCT t.src) FILTER (WHERE b.src IS NULL) theses_new_to_author, count(DISTINCT ew.work) works,
                bool_or(ew.work IN (SELECT work FROM newau WHERE person = ew.person)) gets_new_row
@@ -609,7 +703,7 @@ def report(args):
     rep['top_real_authors_15'] = real.head(15)[['person', 'label', 'theses_on_edition_works', 'theses_new_to_author']].values.tolist()
     rep['edition_credit_theses_already_reaching_author'] = c.execute("""
         WITH ew AS (SELECT DISTINCT author_key AS person, work FROM er WHERE coalesce(author_key, '') <> ''
-                    AND role IN ('edition-editor','translator','introducer','series-editor'))
+                    AND role IN ('edition-editor','translator','introducer','series-editor','contributor'))
         SELECT count(DISTINCT (ew.person, t.src)), count(DISTINCT (ew.person, t.src)) FILTER (WHERE b.src IS NOT NULL)
         FROM ew JOIN tw t ON t.dst = ew.work LEFT JOIN before_a b ON b.person = ew.person AND b.src = t.src""").fetchone()
     rep['proposed_authored_rows'] = c.execute('SELECT count(*), count(DISTINCT person), count(DISTINCT work) FROM newau').fetchone()

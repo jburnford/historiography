@@ -84,7 +84,8 @@ is untracked) and writes to build/graph/ (git-ignored):
   series-editor / unknown; AUTHORED 'author' unless the table names translator, introducer, edition-editor,
   series-editor or volume-editor, or data/graph/volume-editors.csv.gz credits the person as the volume's editor (ORCID
   'edited-book' records filed as authorship). Credits with role edition-editor, translator, introducer or series-editor
-  are not citations of the person's own work (report `class_15_edition_roles`). volume-editors.csv.gz
+  are not citations of the person's own work (report `class_15_edition_roles`; 'contributor' joined them on 2026-11-12:
+  a qualified editor such as 'cartographic editor', 'associate editor', 'maps edited by', class 23). volume-editors.csv.gz
   (scripts/volume_editors.py) also gives `editors_printed` and EDITED rows with evidence linked (source
   volume-editors:<source>; not for a series editor or contributor of the volume), possible editors as author_candidates
   (role editor); the LC main entries of edition-role works (data/identifiers/edition-roles-2026-11-11/missing-authors)
@@ -165,8 +166,9 @@ MISSING_AUTHORS = ER_DIR / 'missing-authors.csv.gz'            # the LC main ent
 LC_CONFLICTS = ROOT / 'data/identifiers/work-people-2026-11-11/lc-author-conflicts.csv.gz'   # authored credits on a book
                                                                # whose LC main entry is someone else (not audited)
 WY_REPORT = ROOT / 'data/identifiers/work-years-2026-11-11/report.json'
-# roles under which a credit is not a citation of the person's own work (class 15): they prepared someone else's work
-EDITION_ROLE_SET = ('edition-editor', 'translator', 'introducer', 'series-editor')
+# roles under which a credit is not a citation of the person's own work (class 15): they prepared someone else's work;
+# 'contributor' (2026-11-12, class 23): a qualified editor ('cartographic editor', 'associate editor', 'maps edited by')
+EDITION_ROLE_SET = ('edition-editor', 'translator', 'introducer', 'series-editor', 'contributor')
 # AUTHORED rows keep role 'author' unless edition-roles names one of these (or the volume-editors table credits them)
 AUTHORED_ROLES = EDITION_ROLE_SET + ('volume-editor',)
 # volume links (PART_OF, evidence linked) loaded by basis: exact title (one candidate), the book DOI, one of several
@@ -1012,7 +1014,7 @@ def class_measures(out, report):
                    bool_or(c.credit = 'authored' AND c.role NOT IN {ex}) au FROM cred c JOIN tw t ON t.dst = c.work GROUP BY 1, 2""")
     db.execute("CREATE TABLE rk AS SELECT person, count(*) n, rank() OVER (ORDER BY count(*) DESC) r FROM pt GROUP BY 1")
     c15 = dict(note=('cited people = person keys with a credit on a work a thesis cites (AUTHORED and EDITED, any evidence); '
-                     'counting = credits whose role is not edition-editor, translator, introducer or series-editor (those '
+                     'counting = credits whose role is not edition-editor, translator, introducer, series-editor or contributor (those '
                      'prepared someone else\'s work and are not citations of the person\'s own)'))
     c15['cited_people_all_credits'], c15['cited_people_counting'] = db.execute(
         'SELECT count(DISTINCT person), count(DISTINCT person) FILTER (WHERE own) FROM pt').fetchone()
@@ -1311,7 +1313,8 @@ def main():
         auth_pairs = {(r['from'], r['to']) for r in rels['AUTHORED']} | {(x['from'], x['to']) for x in linked['AUTHORED']}
         ed_keylog = {(r['from'], r['to']) for r in rels['EDITED']}
         series = {(p, w) for (p, w, c), (role, _) in er.items() if role == 'series-editor'}
-        contrib = {(r['from'], r['to']) for r in contributed}
+        # CONTRIBUTED pairs and edition-roles 'contributor' credits (a qualified editor of the volume, class 23)
+        contrib = {(r['from'], r['to']) for r in contributed} | {(p, w) for (p, w, c), (role, _) in er.items() if role == 'contributor'}
         ed_have = {(x['from'], x['to']) for x in linked['EDITED']}
         for r in ve_rows:
             p = (r['from'], r['to'])
