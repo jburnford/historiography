@@ -1,0 +1,553 @@
+{
+ "candidate_keys": 5478,
+ "candidate_pairs": 3913,
+ "clusters_back_to_B": 2,
+ "dry_run_events": 158,
+ "facts_admitted_alone": [],
+ "gold": {
+  "neg_stated_lc_differs_masked_B": 103,
+  "neg_stated_lc_differs_masked": 103,
+  "positives": 160,
+  "negatives_cross-form-lc-or-wd-differs": 611,
+  "negatives": 4611,
+  "negatives_masked-namesake": 4000,
+  "prior_stated_share": 0.1214
+ },
+ "gold_fact_measure": {
+  "any": {
+   "pos": 30,
+   "neg": 44,
+   "m": 0.1875,
+   "u": 0.00954,
+   "u_upper95": 0.01019
+  },
+  "any-uncontested": {
+   "pos": 0,
+   "neg": 12,
+   "m": 0.0,
+   "u": 0.0026,
+   "u_upper95": 0.00325
+  },
+  "phd-school": {
+   "pos": 1,
+   "neg": 5,
+   "m": 0.0063,
+   "u": 0.00108,
+   "u_upper95": 0.00173,
+   "precision_at_prior": 0.4463
+  },
+  "same-institution": {
+   "pos": 13,
+   "neg": 29,
+   "m": 0.0813,
+   "u": 0.00629,
+   "u_upper95": 0.00694,
+   "precision_at_prior": 0.641
+  },
+  "same-institution-uncontested": {
+   "pos": 0,
+   "neg": 7,
+   "m": 0.0,
+   "u": 0.00152,
+   "u_upper95": 0.00217
+  },
+  "same-openalex-author": {
+   "pos": 1,
+   "neg": 0,
+   "m": 0.0063,
+   "u": 0.0,
+   "u_upper95": 0.00065,
+   "precision_lower_at_prior": 0.5725
+  },
+  "shared-coauthor": {
+   "pos": 1,
+   "neg": 2,
+   "m": 0.0063,
+   "u": 0.00043,
+   "u_upper95": 0.00108,
+   "precision_at_prior": 0.6693
+  },
+  "shared-title": {
+   "pos": 15,
+   "neg": 7,
+   "m": 0.0938,
+   "u": 0.00152,
+   "u_upper95": 0.00217,
+   "precision_at_prior": 0.895
+  },
+  "shared-title-uncontested": {
+   "pos": 0,
+   "neg": 2,
+   "m": 0.0,
+   "u": 0.00043,
+   "u_upper95": 0.00108
+  },
+  "shared-work": {
+   "pos": 2,
+   "neg": 5,
+   "m": 0.0125,
+   "u": 0.00108,
+   "u_upper95": 0.00173,
+   "precision_at_prior": 0.6153
+  },
+  "shared-work-uncontested": {
+   "pos": 0,
+   "neg": 3,
+   "m": 0.0,
+   "u": 0.00065,
+   "u_upper95": 0.0013
+  },
+  "two-kinds": {
+   "pos": 3,
+   "neg": 4,
+   "m": 0.0187,
+   "u": 0.00087,
+   "u_upper95": 0.00152
+  }
+ },
+ "keylog_seq": 5816693,
+ "keys_with_stated_alternate_form": 6221,
+ "keys_with_stated_forms": 183589,
+ "label_structure": {
+  "plain|single": 77104,
+  "plain-double-reading|double": 11092,
+  "plain|hyphenated": 3500,
+  "comma|single": 170524,
+  "comma|hyphenated": 3403,
+  "comma|double": 3747,
+  "comma|compound": 102,
+  "plain-double-reading|single": 100,
+  "none|none": 390,
+  "plain-double|single": 51,
+  "plain-double-reading|compound": 21
+ },
+ "live_person_keys": 258821,
+ "merges_with_label_note": 9,
+ "probe_stated_forms": {
+  "p-253598": [
+   {
+    "key": "p-253598",
+    "label": "Chust Calero, Manuel",
+    "form": "Chust, Manuel",
+    "relation": "drops-second-family",
+    "long": "label",
+    "source": "lc-400",
+    "source_id": "n87849485"
+   },
+   {
+    "key": "p-253598",
+    "label": "Chust Calero, Manuel",
+    "form": "Chust, M. (Manuel)",
+    "relation": "drops-second-family",
+    "long": "label",
+    "source": "lc-400",
+    "source_id": "n87849485"
+   }
+  ],
+  "p-6329": [
+   {
+    "key": "p-6329",
+    "label": "Manuel Chust",
+    "form": "Chust Calero, Manuel",
+    "relation": "drops-second-family",
+    "long": "form",
+    "source": "orcid-record",
+    "source_id": "0000-0001-5679-5082"
+   }
+  ],
+  "p-256246": [
+   {
+    "key": "p-256246",
+    "label": "Bolufer Peruga, Mónica",
+    "form": "Bolufer, Mónica",
+    "relation": "drops-second-family",
+    "long": "label",
+    "source": "lc-400",
+    "source_id": "n99033239"
+   }
+  ],
+  "p-18131": [
+   {
+    "key": "p-18131",
+    "label": "Mónica Bolufer",
+    "form": "Monica Bolufer Peruga",
+    "relation": "drops-second-family",
+    "long": "form",
+    "source": "orcid-record-other",
+    "source_id": "0000-0002-6532-4191"
+   },
+   {
+    "key": "p-18131",
+    "label": "Mónica Bolufer",
+    "form": "Monica Bolufer-Peruga",
+    "relation": "hyphen-part-dropped",
+    "long": "form",
+    "source": "orcid-record-other",
+    "source_id": "0000-0002-6532-4191"
+   },
+   {
+    "key": "p-18131",
+    "label": "Mónica Bolufer",
+    "form": "Mónica Bolufer Peruga",
+    "relation": "drops-second-family",
+    "long": "form",
+    "source": "orcid-record-other",
+    "source_id": "0000-0002-6532-4191"
+   }
+  ],
+  "p-88959": [
+   {
+    "key": "p-88959",
+    "label": "Smith, Martha",
+    "form": "Smith-Norris, Martha",
+    "relation": "hyphen-part-dropped",
+    "long": "form",
+    "source": "lc-heading",
+    "source_id": "no2015106357"
+   },
+   {
+    "key": "p-88959",
+    "label": "Smith, Martha",
+    "form": "Norris, Martha Smith-",
+    "relation": "middle-as-family",
+    "long": "form",
+    "source": "lc-400",
+    "source_id": "no2015106357"
+   }
+  ],
+  "p-71685": [],
+  "p-53033": [],
+  "p-179250": []
+ },
+ "probes": {
+  "p-253598": [
+   {
+    "other": "p-6329",
+    "tier": "A",
+    "why": "stated:lc-400+orcid-record",
+    "relation": "drops-second-family",
+    "stated": [
+     "lc-400:n87849485",
+     "orcid-record:0000-0001-5679-5082"
+    ],
+    "facts": [],
+    "n_contest": 0
+   }
+  ],
+  "p-6329": [
+   {
+    "other": "p-253598",
+    "tier": "A",
+    "why": "stated:lc-400+orcid-record",
+    "relation": "drops-second-family",
+    "stated": [
+     "lc-400:n87849485",
+     "orcid-record:0000-0001-5679-5082"
+    ],
+    "facts": [],
+    "n_contest": 0
+   }
+  ],
+  "p-256246": [
+   {
+    "other": "p-18131",
+    "tier": "A",
+    "why": "stated:lc-400+orcid-record-other",
+    "relation": "drops-second-family",
+    "stated": [
+     "lc-400:n99033239",
+     "orcid-record-other:0000-0002-6532-4191"
+    ],
+    "facts": [],
+    "n_contest": 0
+   }
+  ],
+  "p-18131": [
+   {
+    "other": "p-256246",
+    "tier": "A",
+    "why": "stated:lc-400+orcid-record-other",
+    "relation": "drops-second-family",
+    "stated": [
+     "lc-400:n99033239",
+     "orcid-record-other:0000-0002-6532-4191"
+    ],
+    "facts": [],
+    "n_contest": 0
+   }
+  ],
+  "p-88959": [
+   {
+    "other": "p-71685",
+    "tier": "A",
+    "why": "stated:lc-heading;facts:phd-school",
+    "relation": "hyphen-part-dropped",
+    "stated": [
+     "lc-heading:no2015106357"
+    ],
+    "facts": [
+     "phd-school:Toronto"
+    ],
+    "n_contest": 0
+   }
+  ],
+  "p-71685": [
+   {
+    "other": "p-115158",
+    "tier": "B",
+    "why": "no-stated-tie-no-fact",
+    "relation": "hyphen-part-dropped",
+    "stated": [],
+    "facts": [],
+    "n_contest": 26
+   },
+   {
+    "other": "p-88959",
+    "tier": "A",
+    "why": "stated:lc-heading;facts:phd-school",
+    "relation": "hyphen-part-dropped",
+    "stated": [
+     "lc-heading:no2015106357"
+    ],
+    "facts": [
+     "phd-school:Toronto"
+    ],
+    "n_contest": 0
+   }
+  ],
+  "p-53033": [],
+  "p-179250": []
+ },
+ "stated_alternate_forms": 9236,
+ "stated_alternate_forms_by_relation": {
+  "hyphen-part-dropped": 925,
+  "middle-as-family": 2538,
+  "family-changed": 1854,
+  "drops-second-family": 2816,
+  "drops-first-family": 1030,
+  "suffix-dropped": 73
+ },
+ "stated_alternate_forms_by_source": {
+  "lc-400": 8665,
+  "lc-heading": 21,
+  "aha-dissertation": 18,
+  "lc-tied-400": 230,
+  "orcid-name": 80,
+  "lc-tied-heading": 74,
+  "orcid-record-other": 56,
+  "orcid-record": 63,
+  "aha-directory": 13,
+  "orcid-credit": 12,
+  "orcid-record-credit": 4
+ },
+ "stated_pairs": 494,
+ "structural_pairs": 3696,
+ "structural_pairs_by_relation": {
+  "drops-second-family|plain-double": 1336,
+  "drops-second-family|comma": 329,
+  "hyphen-part-dropped|comma": 964,
+  "hyphen-part-dropped|plain": 557,
+  "same-words|same-words": 175,
+  "drops-first-family|comma": 312,
+  "suffix-dropped|comma": 14,
+  "drops-first-family|plain-double": 7,
+  "suffix-dropped|plain-double": 2
+ },
+ "tierA_merges": 158,
+ "tiers": {
+  "B": 2868,
+  "C": 885,
+  "A": 160
+ },
+ "tiers_by_relation": {
+  "B|drops-second-family": 1335,
+  "C|hyphen-part-dropped": 403,
+  "B|hyphen-part-dropped": 1071,
+  "A|drops-second-family": 86,
+  "B|same-words": 170,
+  "B|drops-first-family": 212,
+  "C|same-words": 5,
+  "A|hyphen-part-dropped": 47,
+  "C|drops-second-family": 244,
+  "C|drops-first-family": 114,
+  "A|suffix-dropped": 4,
+  "B|suffix-dropped": 5,
+  "C|suffix-dropped": 7,
+  "A|drops-first-family": 3,
+  "B|family-spelling": 44,
+  "C|family-spelling": 60,
+  "A|family-changed": 10,
+  "B|family-changed": 13,
+  "B|middle-as-family": 18,
+  "A|middle-as-family": 10,
+  "C|middle-as-family": 13,
+  "C|family-changed": 39
+ },
+ "tiers_final": {
+  "B": 2870,
+  "C": 885,
+  "A": 158
+ },
+ "tiers_final_by_relation": {
+  "B|drops-second-family": 1336,
+  "C|hyphen-part-dropped": 403,
+  "B|hyphen-part-dropped": 1071,
+  "A|drops-second-family": 85,
+  "B|same-words": 170,
+  "B|drops-first-family": 212,
+  "C|same-words": 5,
+  "A|hyphen-part-dropped": 47,
+  "C|drops-second-family": 244,
+  "C|drops-first-family": 114,
+  "A|suffix-dropped": 4,
+  "B|suffix-dropped": 5,
+  "C|suffix-dropped": 7,
+  "A|drops-first-family": 3,
+  "B|family-spelling": 44,
+  "C|family-spelling": 60,
+  "A|family-changed": 9,
+  "B|family-changed": 14,
+  "B|middle-as-family": 18,
+  "A|middle-as-family": 10,
+  "C|middle-as-family": 13,
+  "C|family-changed": 39
+ },
+ "ties_rows": 9519,
+ "why_A": {
+  "stated:lc-400": 88,
+  "stated:lc-400;facts:shared-title": 10,
+  "stated:orcid-record": 1,
+  "stated:lc-400;facts:same-institution": 2,
+  "stated:aha-directory+aha-dissertation+orcid-name+orcid-record;facts:shared-title": 1,
+  "stated:lc-heading": 1,
+  "stated:lc-tied-400": 4,
+  "stated:lc-tied-heading+orcid-record": 1,
+  "stated:lc-400+orcid-record-other;facts:shared-title": 2,
+  "stated:orcid-record-other;facts:shared-title": 2,
+  "stated:aha-directory": 1,
+  "stated:aha-directory+lc-400": 1,
+  "stated:lc-400+orcid-record;facts:same-openalex-author": 2,
+  "stated:aha-directory;facts:same-institution": 3,
+  "stated:lc-400+orcid-record": 4,
+  "stated:orcid-record+orcid-record-other": 1,
+  "stated:orcid-record-other;facts:same-institution": 3,
+  "stated:lc-tied-400+lc-tied-heading;facts:same-institution": 1,
+  "stated:lc-400+orcid-name+orcid-record": 4,
+  "stated:lc-400+orcid-record-other": 1,
+  "stated:orcid-name+orcid-record;facts:shared-title": 1,
+  "stated:lc-400;facts:shared-coauthor": 1,
+  "stated:orcid-name+orcid-record": 2,
+  "stated:orcid-record+orcid-record-other;facts:shared-coauthor": 1,
+  "stated:orcid-record-other": 2,
+  "stated:lc-400+orcid-record;facts:same-institution+shared-title": 1,
+  "stated:lc-tied-400+lc-tied-heading": 1,
+  "stated:lc-400+orcid-name+orcid-record;facts:shared-coauthor": 1,
+  "stated:lc-tied-heading": 3,
+  "stated:orcid-credit+orcid-record-credit+orcid-record-other;facts:shared-title": 1,
+  "stated:lc-400+orcid-record;facts:same-institution": 1,
+  "stated:lc-tied-400+orcid-record-credit;facts:same-institution": 1,
+  "stated:lc-heading;facts:phd-school": 1,
+  "stated:orcid-record-credit;facts:same-institution": 1,
+  "stated:lc-400+orcid-record+orcid-record-credit;facts:shared-title": 1,
+  "stated:lc-tied-heading;facts:same-institution": 1,
+  "stated:lc-400;facts:phd-school": 2,
+  "stated:aha-dissertation+orcid-record-other;facts:same-institution": 1,
+  "stated:lc-400;facts:same-institution+shared-work": 1,
+  "stated:lc-400+orcid-record-other;facts:shared-coauthor": 1,
+  "stated:lc-400;facts:same-institution+shared-title": 1,
+  "stated:aha-dissertation+orcid-record-other;facts:same-institution+shared-work": 1
+ },
+ "why_B": {
+  "no-stated-tie-no-fact": 2594,
+  "stated-tie-but-short-form-contested-no-fact": 157,
+  "two-orcids": 73,
+  "two-phd-years": 167,
+  "no-stated-tie-contested": 37,
+  "no-stated-tie-facts-below-measured-bar": 59,
+  "orcid-record-name-disagrees:0000-0001-9898-2038": 1,
+  "orcid-record-name-disagrees:0000-0002-7941-9562": 1,
+  "orcid-record-name-disagrees:0000-0002-0904-0186": 1,
+  "orcid-record-name-disagrees:0000-0003-1456-6569": 1,
+  "orcid-record-name-disagrees:0000-0003-1132-3369": 1,
+  "orcid-record-name-disagrees:0000-0002-7027-0220": 1,
+  "orcid-record-name-disagrees:0000-0003-2840-6574": 4,
+  "orcid-record-name-disagrees:0000-0002-9647-7238": 1,
+  "orcid-record-name-disagrees:0000-0002-3321-7615": 2,
+  "orcid-record-name-disagrees:0000-0003-1584-6685": 1,
+  "orcid-record-name-disagrees:0000-0002-8589-7691": 1,
+  "orcid-record-name-disagrees:0009-0006-9711-3221": 2,
+  "orcid-record-name-disagrees:0000-0002-0136-8312": 1,
+  "orcid-record-name-disagrees:0000-0002-6264-7323": 1,
+  "orcid-record-name-disagrees:0000-0003-2243-0151": 1,
+  "orcid-record-name-disagrees:0009-0000-0122-2447": 1,
+  "orcid-record-name-disagrees:0009-0001-7228-743X": 1,
+  "orcid-record-name-disagrees:0000-0003-1316-4293": 1,
+  "orcid-record-name-disagrees:0000-0001-7679-1919": 1,
+  "family-spelling-out-of-scope": 44,
+  "orcid-record-name-disagrees:0000-0002-3080-5550": 1,
+  "orcid-record-name-disagrees:0000-0003-4096-9599": 1,
+  "orcid-record-name-disagrees:0000-0003-2020-6244": 1
+ },
+ "why_C": {
+  "activity-before-adulthood": 42,
+  "lcnaf-differs": 703,
+  "wd-differs": 14,
+  "no-activity-in-lifetime": 49,
+  "activity-after-death": 75,
+  "birth-differs": 2
+ },
+ "works": {
+  "tie_forms_indexed": 9533,
+  "positions_matching_a_tied_form": 10364,
+  "keys_with_matching_positions": 1430,
+  "already_credited_to_the_tied_key": 2367,
+  "credited_to_another_key": 3279,
+  "uncredited_candidate_positions": 5063,
+  "uncredited_candidate_works": 4944,
+  "uncredited_candidate_keys": 1273,
+  "uncredited_by_relation": {
+   "hyphen-part-dropped": 1268,
+   "drops-second-family": 2010,
+   "family-changed": 773,
+   "middle-as-family": 1093,
+   "drops-first-family": 15,
+   "suffix-dropped": 15
+  },
+  "uncredited_by_tie_source": {
+   "lc-400": 3731,
+   "pair-stated-unmerged": 1013,
+   "lc-tied-heading": 41,
+   "lc-heading": 45,
+   "lc-tied-400": 101,
+   "orcid-record-other": 24,
+   "orcid-record": 57,
+   "orcid-name": 129,
+   "aha-dissertation": 15,
+   "orcid-credit": 16,
+   "aha-directory": 1,
+   "orcid-record-credit": 1
+  },
+  "uncredited_by_table": {
+   "no": 1922,
+   "wp": 2357,
+   "jm": 1,
+   "cw": 710,
+   "ve": 161,
+   "cr": 23
+  },
+  "sim_possible": 1119,
+  "sim_ambiguous": 1348,
+  "sim_none": 632,
+  "sim_exact_to_other": 254,
+  "sim_linked_to_tied_key": 1747,
+  "sim_linked_to_other": 74,
+  "sim_linked_positions": 1747,
+  "sim_linked_works": 1709,
+  "sim_linked_keys": 612,
+  "masked_same_key_n": 1517,
+  "masked_same_key_linked_right": 693,
+  "masked_other_key_n": 1560,
+  "masked_other_key_linked_right": 476,
+  "masked_other_key_linked_to_tied_key": 11
+ }
+}
