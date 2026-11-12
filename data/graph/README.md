@@ -19,7 +19,8 @@ every node and edge type. In brief:
 - **From the log's claims:** AUTHORED, EDITED, SUPERVISED (person → work); PUBLISHED_AS, REVIEWS, PART_OF
   (work → work); ADVISED (also Wikidata's advisor claims); AWARDED_BY (thesis → institution).
 - **Derived:** REVIEWED (reviewer → author), EDITOR_OF (volume editor → chapter author), COAUTHORED and COEDITED
-  (with counts and years), POSSIBLY_SAME (`possible` / `very_likely` from key-log marks).
+  (with counts and years), POSSIBLY_SAME (`possible` / `very_likely` from key-log marks). Since 2026-11-12 only AUTHORED
+  credits with role author make COAUTHORED and REVIEWED; volume-editor credits make COEDITED.
 - **From the tables here:** CITES and AFFILIATED_WITH.
 
 ## Tables in this folder
@@ -45,7 +46,7 @@ every node and edge type. In brief:
 | `author-works/volumes.csv.gz` | 105,602 | `scripts/export_work_containers.py export` | Volumes the chapters are in that the graph did not hold: id (`volume:<hash>` or `doi:`), title, year, ISBN, DOI, editors as printed, publisher, source, chapters, keyed contributors |
 | `work-containers.csv.gz` | 307,724 | the same | Keyed chapters (and works the source calls chapters) without a volume: container title, ISBN, DOI, editors, year, publisher, source, `proposed_kind`, `volume_work` (a graph work, or a volume in `author-works/volumes.csv.gz`), `volume_basis`, candidates |
 | `work-journals.csv.gz` | 343,942 | the same | Keyed article and other works without a journal: journal, ISSN, source (OpenAlex, ORCID, JSTOR, Crossref), `proposed_kind` |
-| `volume-editors.csv.gz`, `volume-editors-report.json` | 69,409 (2026-11-11) | `scripts/volume_editors.py export` | Printed editors of the volumes chapters are in (LC 2016 245 $c / 700 relators, Crossref book and chapter records): volume, position, printed name, source (lc / crossref), state (`exact` / `linked` / `credited`: agrees with a key-log or linked credit on the volume itself / `possible` / `ambiguous` / `none` / `held`: a list of more than six names), person key, candidates, basis |
+| `volume-editors.csv.gz`, `volume-editors-report.json` | 69,365 (2026-11-12) | `scripts/volume_editors.py export` | Printed editors of the volumes chapters are in (LC 2016 245 $c / 700 relators, Crossref book and chapter records): volume, position, printed name, source (lc / crossref), state (`exact` / `linked` / `credited`: agrees with a key-log or linked credit on the volume itself / `possible` / `ambiguous` / `none` / `held`: a list of more than six names / `series-editor`: the series-editor rule, 2026-11-12), person key, candidates, basis. Report `series_editor_rule` (counts, audit judgments from `data/identifiers/volume-editors-2026-11-12/series-editor-audit.csv`, and the rule counted over the other editor credits of the last build) |
 | `edition-roles.csv.gz` | 201,102 (2026-11-11) | `scripts/edition_roles.py` (report and audit in `data/identifiers/edition-roles-2026-11-11/`) | The role behind each AUTHORED and EDITED credit, read from the LC record: person, work, credit (authored / edited), evidence, source, role (author, volume-editor, author-editor, edition-editor, translator, introducer, series-editor, unknown, absent), basis, the LC main entry's key / LC authority / printed name, `author_new` |
 | `work-years.csv.gz` | 106,669 (2026-11-11) | `scripts/work_first_years.py` (report in `data/identifiers/work-years-2026-11-11/`) | First publication year of a work key dated by a reprint: key, year, `first_year` (all evidence), `first_year_catalogue` (catalogue evidence only), basis (LC notes, 008 reprint dates, LC and edition clusters, printed thesis years), sources, flags |
 | `edition-canonical-fixes.csv.gz` | 2,165 (2026-11-11) | the same | Canonical keys of the translation roll-up that are themselves translations while the original is known: cluster, current and proposed canonical, basis, original language and year, theses citing the current key (hand check 19 of 20) |
@@ -147,6 +148,19 @@ not enter AUTHORED, COAUTHORED, the REVIEWED derivation or `author_candidates`.
 - `data/identifiers/work-people-2026-11-11/lc-author-conflicts.csv.gz` (not audited): linked AUTHORED credits on a book
   whose LC main entry is someone else and who is not in the LC record are demoted to `author_candidates` (reason
   names the main entry); key-log credits stay and are counted (`lc_author_conflicts.keylog_open`).
+- Follow-up (2026-11-12): `volume-editors.csv.gz` rows with state `series-editor` are printed only (not `editors_printed`,
+  no EDITED row); where the person key is kept (the linker had credited the person) the pair is CONTRIBUTED (claim
+  `volume-editors:series-editor:<position>`, basis `series-editor-pattern`). The rule (scripts/volume_editors.py
+  `series_editor_flags`): the Crossref book record prints one or two authors not among its editors and names the person as
+  editor, and the person is printed that way on 2+ books of one publisher by different authors (plus the person's
+  listings after another editor at that publisher when the pattern covers 3+ books and half of them). The LC 245 $c
+  parser no longer takes qualified roles ('cartographic editor', 'associate editor', 'maps edited by') as volume editors.
+- Derived edges and roles (2026-11-12): COAUTHORED and REVIEWED (both sides) read only AUTHORED credits with role author;
+  volume-editor, edition-editor, translator, introducer and series-editor credits make neither. AUTHORED credits with role
+  volume-editor join COEDITED. `coedited.parquet` has `evidence` (keylog: key-log EDITED of any role, as before, and
+  key-log AUTHORED volume-editor credits; linked: linked EDITED credits with role volume-editor, author-editor or unknown
+  and linked AUTHORED volume-editor credits; lists over 25 make none), `linked_works` and `linked_work_keys` as
+  COAUTHORED. Report: `derived_not_author_credits`, `COEDITED_by_evidence`.
 - `work-years.csv.gz` gives Work `first_year`, `first_year_catalogue`, `first_year_basis`; `year` is unchanged.
 - `edition-canonical-fixes.csv.gz`: a thesis or JSTOR citation of a fixed canonical key moves to the original (CITES
   source thesis-edition / jstor-edition, `cited_as` the translation key, edition true unless the work is also cited

@@ -15,6 +15,15 @@ Sources of printed editors, in order of precedence:
             (the resumable chapter fetch of export_work_containers.py, same raw folder): its `editor` list.
   (OpenAlex records carry no editors, so it is not a source here.)
 
+2026-11-12: the 245 $c parser no longer takes a name whose role word is qualified by another job ('Graeme Wynn,
+cartographic editor', 'picture', 'associate', 'assistant', 'consulting', 'executive' ... editor; 'co-', 'joint',
+'volume', 'guest', 'book' and 'coordinating' keep the editor role) or that edited a part of the book ('maps edited by',
+'bibliography edited by'), and splits 'X, editor, Y, consulting editor' into one clause per role word. The export applies
+the series-editor rule (series_editor_flags) to Crossref rows: those rows get state 'series-editor' (printed only; the
+build loads a linked person as CONTRIBUTED, never EDITED); hand judgments in
+data/identifiers/volume-editors-2026-11-12/series-editor-audit.csv; the same rule over the other editor credits of the
+last build is counted in the report (series_editor_rule.keylog_and_edition_roles_check).
+
 Linking: one position per printed editor; scripts/link_work_people.py's WPPeople, features, rule_wp and guard, role
 'editor', book=True (a book credit's date window). Positive facts are the linker's own: an LC heading resolving to an
 LC authority that is a key's lcnaf anchor (exact; the heading rule of link_cited_work_authors.load_sources), a
@@ -62,6 +71,7 @@ LC_HEAD = '/mnt/e/lc-bib-2016/index/headings-*.parquet'
 LC_NAMES = '/mnt/e/lc-authorities/personal-names.parquet'
 OUT = ROOT / 'data/graph/volume-editors.csv.gz'
 REPORT = ROOT / 'data/graph/volume-editors-report.json'
+AUDIT = ROOT / 'data/identifiers/volume-editors-2026-11-12/series-editor-audit.csv'   # hand judgments of the rule
 UA = 'historiography-kg/0.1 (https://github.com/jburnford/historiography; mailto:jic823@usask.ca)'
 
 
@@ -301,9 +311,19 @@ def split_names(seg):
     return out
 
 
+# 2026-11-12: a role word before 'editor' that names another job ('Graeme Wynn, cartographic editor', 'picture editor',
+# 'assistant editor') or a part of the book that is not the volume ('maps edited by', 'series edited by'): the name is
+# not the volume's editor. Words that keep the plain editor role:
+EDITOR_QUALIFIER_OK = {'co', 'joint', 'volume', 'guest', 'book', 'coordinating', 'director', 'y', 'and', 'the', 'others', 'al'}
+NOT_VOLUME_PART = re.compile(r'(?i)\b(series|maps?|cartograph\w*|illustrations?|photographs?|pictures?|plates|music|index|'
+                             r'indexes|appendix|appendices|bibliograph\w*|glossary|gazetteer|atlas|charts?|figures)\b')
+
+
 def edit_clause_names(resp):
     """names the 245 $c gives as editors or compilers: 'edited by X and Y', 'X and Y, editors', 'X (ed.)'; never a
-    series or general editor, never a name only in a foreword / introduction / translation clause"""
+    series or general editor, never a name only in a foreword / introduction / translation clause, never an editor
+    whose role word is qualified by another job ('X, cartographic editor', 'Y, picture editor', 'Z, assistant editor')
+    or who edited a part of the book ('maps edited by X', 'series edited by Y')"""
     names = []
     for clause in re.split(r'\s*;\s*|\s+/\s+|\.\s+(?=[A-Z][\w ]{0,30}:)', resp or ''):
         if SERIES_PHRASE.search(clause) or not EDIT_WORD.search(clause):
@@ -311,10 +331,22 @@ def edit_clause_names(resp):
         m = re.search(r'(?i)\b(?:edited|compiled|coordinated|edit[eé] par|herausgegeben|hrsg\.?|a cura di|editado|coordonn[ée]e?s? par|sous la direction de)'
                       r'(?:\s*,?\s*(?:and\s+)?(?:with\s+)?(?:an?\s+)?(?:new\s+)?(?:introduction|introductions|preface|foreword|notes|commentary|annotations?)[a-z ,]*?)?\s*(?:by|von|par|da|por|de)?\s+(.+)$', clause)
         if m and not re.search(r'(?i)translat', clause[:m.start(1)]):
+            # the part of the book the verb governs: 'Maps edited by X' / 'series edited by Y' (the words before the verb)
+            if NOT_VOLUME_PART.search(clause[:m.start()]):
+                continue
             names += split_names(re.split(r'(?i)\s+with\s+|\s+in collaboration\s+|\s+assisted\s+', m.group(1))[0])
             continue
-        m = re.match(r'(?i)^\s*(.+?)[,(]?\s*\(?(?:editors?|eds?\.?|compilers?|comps?\.?|editores|[ée]diteurs?|hrsg\.?|dir\.?|coords?\.?)\)?\s*\.?\s*$', clause)
-        if m:
+        # 'Frederick F. Wherry, editor, Juliet Schor, consulting editor': one sub-clause per role word
+        parts = re.split(r'(?i)(?<=\beditor)\s*,\s*(?=[A-ZÀ-Ý])|(?<=\beditors)\s*,\s*(?=[A-ZÀ-Ý])', clause)
+        for sub in parts:
+            m = re.match(r'(?i)^\s*(.+?)[,(]?\s*\(?(?:editors?|eds?\.?|compilers?|comps?\.?|editores|[ée]diteurs?|hrsg\.?|dir\.?|coords?\.?)\)?\s*\.?\s*$', sub)
+            if not m:
+                continue
+            # lower-case words just before the role word qualify it ('cartographic editor'): another job unless 'co-',
+            # 'joint', 'volume', 'guest', 'book', 'coordinating'
+            tail = re.search(r'((?:\b[a-z][a-z-]*\s*)+)$', m.group(1).rstrip(' ,('))
+            if tail and any(w.strip('-') not in EDITOR_QUALIFIER_OK for w in tail.group(1).split()):
+                continue
             names += split_names(m.group(1))
     return names
 
@@ -788,9 +820,145 @@ def link(args):
           collections.Counter((g['mode'], g['state'], g['cls']) for g in gold), len(ns), sum(x['false_link'] for x in ns), flush=True)
 
 
+# ---------------------------------------------------------------- series editors in Crossref editor lists (2026-11-12)
+
+SERIES_TYPES = ('book', 'monograph', 'edited-book')
+SERIES_MIN_BOOKS = 2        # books of one publisher on which the person is printed as editor beside a printed author
+SERIES_COMPANION_MIN = 3    # books needed before the person's other listings at that publisher (after another editor) follow
+
+
+def series_editor_flags(rows):
+    """The series-editor rule (ARCHITECTURE.md section 8, class 19). A monograph has no volume editor: a Crossref book
+    record that prints one or two authors (none of them also among its editors) and names someone else as `editor`
+    names a series editor or an edition editor. The editor is taken as a series editor when the same person (person key
+    when linked, else the printed name) is printed that way on SERIES_MIN_BOOKS or more books of one publisher whose
+    printed authors differ (Cronon on the Weyerhaeuser Environmental Books). Where the pattern holds on
+    SERIES_COMPANION_MIN or more books making up at least half of that person's books at the publisher, the person's
+    other listings there after another editor are series listings too ('Conservation in the Progressive Era', edited by
+    Stradling, Cronon listed second).
+    Not used, because they misfire alone: a repeated editor name (serial annuals and yearbooks keep one editor: Polin,
+    History of Universities), the Crossref type (edited volumes typed 'monograph'), records printing three or more
+    'authors' (edited-book records list chapter authors there), LC records matched by title only (another book of the
+    same title), and the graph's AUTHORED credits on the volume (chapter authors and co-editors filed as authors).
+    rows: dicts with idx, volume, position, who, publisher, rec_type, authors, editors (the record's lists; empty when the
+    row's record is not a book-level Crossref record). Returns {idx: (flag, detail)}; flag 'printed-author' or
+    'listed-after'."""
+    from link_work_people import agree_level, apos
+    ag = lambda a, b: agree_level(apos(a), apos(b)) in ('full', 'variant', 'initial')
+    nn = lambda s: re.sub(r'[^a-z]+', ' ', apos(s or '').lower()).strip()
+    facts = {}
+    for r in rows:
+        if r.get('rec_type') not in SERIES_TYPES:
+            continue
+        au = [a for a in r['authors'] if a and not any(ag(a, e) for e in r['editors'])]
+        printed = au if 1 <= len(au) <= 2 and len(r['authors']) <= 2 else []
+        first_other = bool(r['editors']) and not ag(r['editors'][0], r['name'])
+        facts[r['idx']] = (printed, first_other)
+    groups = collections.defaultdict(list)
+    for r in rows:
+        if r['idx'] in facts:
+            groups[r['who'], nn(r['publisher'])].append(r)
+    out = {}
+    for (who, pub), rs in groups.items():
+        if not pub:
+            continue
+        pv = {r['volume']: nn(facts[r['idx']][0][0]) for r in rs if facts[r['idx']][0]}
+        if len(pv) < SERIES_MIN_BOOKS or len(set(pv.values())) < SERIES_MIN_BOOKS:
+            continue
+        vols = {r['volume'] for r in rs}
+        companion = len(pv) >= SERIES_COMPANION_MIN and 2 * len(pv) >= len(vols)
+        detail = f"printed as editor on {len(pv)} books of {rs[0]['publisher']} by {len(set(pv.values()))} different printed authors"
+        for r in rs:
+            printed, first_other = facts[r['idx']]
+            if printed:
+                out[r['idx']] = ('printed-author', f"record prints author {'; '.join(printed)}; {detail}")
+            elif companion and first_other and r['position'] > 0:
+                out[r['idx']] = ('listed-after', f"listed after {r['editors'][0]}; {detail}")
+    return out
+
+
+def crossref_book_records():
+    """book-level Crossref records held (build/crossref-volume-editors-2026-11-11): doi -> type, publisher, printed
+    author and editor names"""
+    recs = {}
+    for p in sorted(CR_BOOKS.glob('part-*.jsonl')):
+        for it in jl(p):
+            if it.get('_missing'):
+                continue
+            nm = lambda e: ' '.join(x for x in (e.get('given'), e.get('family')) if x) or e.get('name') or ''
+            recs[it['_doi']] = dict(type=it.get('type'), publisher=it.get('publisher') or '',
+                                    authors=[nm(a) for a in it.get('author') or []], editors=[nm(e) for e in it.get('editor') or []])
+    return recs
+
+
+def series_rule_rows(out, recs):
+    """the rule's input rows from the export rows (Crossref rows whose record is a book-level record)"""
+    from link_work_people import apos
+    rows = []
+    for i, r in enumerate(out):
+        if r['source'] != 'crossref':
+            continue
+        m = re.match(r'crossref-book:[a-z0-9]+:(10\.\S+?)(?:;|$)', r['basis'])
+        rec = recs.get(m.group(1)) if m else None
+        if not rec:
+            continue
+        who = r['person_key'] if r['state'] in ('exact', 'linked', 'credited') and r['person_key'] else \
+            'name:' + re.sub(r'[^a-z]+', ' ', apos(r['printed_name']).lower()).strip()
+        rows.append(dict(idx=i, volume=r['volume'], position=int(r['position']), name=r['printed_name'], who=who,
+                         publisher=rec['publisher'], rec_type=rec['type'], authors=rec['authors'], editors=rec['editors']))
+    return rows
+
+
+def series_check_credits(rule_rows, flags, recs):
+    """the same rule over the other editor credits of the last graph build (build/graph: key-log and edition-roles
+    EDITED credits, and AUTHORED credits with role volume-editor; not the volume-editors rows): volumes with a held
+    book-level Crossref record (the fetch lists of `targets`), the person printed as editor on it. Counted only."""
+    from link_work_people import agree_level, apos
+    bg = ROOT / 'build/graph'
+    db = duck()
+    vol_doi = {}
+    for fn in ('fetch-books.tsv', 'fetch-gold-books.tsv', 'fetch-books2.tsv'):
+        if (SCR / fn).exists():
+            for line in open(SCR / fn):
+                v, d, _ = line.rstrip('\n').split('\t')
+                if d in recs:
+                    vol_doi.setdefault(v, d)
+    label = dict(db.execute(f"SELECT key, label FROM '{bg}/person.parquet'").fetchall())
+    cred = db.execute(f"""SELECT "from", "to", 'edited', evidence, role FROM '{bg}/edited.parquet'
+                          WHERE coalesce(source, '') NOT LIKE 'volume-editors%'
+                          UNION ALL SELECT "from", "to", 'authored', evidence, role FROM '{bg}/authored.parquet'
+                          WHERE role = 'volume-editor'""").fetchall()
+    plain = lambda l: (lambda s: (s.split(',', 1)[1].strip() + ' ' + s.split(',', 1)[0].strip()) if ',' in s else s)(
+        re.sub(r',?\s*(\(|\d{3,4}\??-|b\. |d\. ).*$', '', l or '').strip(' .,'))
+    rows, meta = list(rule_rows), {}
+    n0 = max([r['idx'] for r in rows], default=0) + 1
+    for i, (k, w, c, ev, role) in enumerate(cred):
+        d = vol_doi.get(w)
+        if not d:
+            continue
+        rec = recs[d]
+        nm = plain(label.get(k, ''))
+        if not any(agree_level(apos(e), apos(nm)) in ('full', 'variant', 'initial') for e in rec['editors']):
+            continue            # the record does not print the person as editor: the rule says nothing
+        pos = next(j for j, e in enumerate(rec['editors']) if agree_level(apos(e), apos(nm)) in ('full', 'variant', 'initial'))
+        rows.append(dict(idx=n0 + i, volume=w, position=pos, name=nm, who=k, publisher=rec['publisher'], rec_type=rec['type'],
+                         authors=rec['authors'], editors=rec['editors']))
+        meta[n0 + i] = (k, w, c, ev, role)
+    fl = series_editor_flags(rows)
+    hit = collections.Counter(f'{c}|{ev}|{role}' for i, (k, w, c, ev, role) in meta.items() if i in fl)
+    return dict(note=('the rule applied to the other editor credits of the last build (key-log and edition-roles EDITED, '
+                      'AUTHORED role volume-editor) on volumes with a held book-level Crossref record printing the person as '
+                      'editor; counted, nothing changed'),
+                credits_on_volumes_with_a_record=sum(1 for k, w, *_ in cred if w in vol_doi),
+                credits_printed_as_editor_on_the_record=len(meta), flagged=dict(hit),
+                flagged_pairs=[dict(person=meta[i][0], work=meta[i][1], credit=meta[i][2], evidence=meta[i][3], role=meta[i][4],
+                                    detail=fl[i][1]) for i in sorted(fl) if i in meta][:50])
+
+
 # ---------------------------------------------------------------- export
 
-PROBES = ['w-2333986', 'w-916866', 'doi:10.1093/oxfordhb/9780197502679.001.0001', 'volume:56de888d833b']
+PROBES = ['w-2333986', 'w-916866', 'doi:10.1093/oxfordhb/9780197502679.001.0001', 'volume:56de888d833b',
+          'w-1115644', 'w-88030', 'doi:10.1515/9780295803807']
 
 
 def export(args):
@@ -813,6 +981,19 @@ def export(args):
         out.append(dict(volume=r['volume'], position=r['position'], printed_name=r['printed_name'], source=r['source'],
                         state=r['state'], person_key=r['key'] or '', candidates=(r['candidates'] or '').replace('|', ';'),
                         basis=basis))
+    # series editors (class 19): state 'series-editor'; the person key stays only where the linker credited it
+    # (exact / linked / credited), so the build can load the pair as CONTRIBUTED; never an EDITED row
+    recs = crossref_book_records()
+    rule_rows = series_rule_rows(out, recs)
+    flags = series_editor_flags(rule_rows)
+    series_before = collections.Counter()
+    for i, (flag, detail) in flags.items():
+        r = out[i]
+        series_before[f"{flag}|{r['state']}"] += 1
+        if r['state'] not in ('exact', 'linked', 'credited'):
+            r['person_key'] = ''
+        r['basis'] += f"; series-editor rule ({flag}): {detail}; was {r['state']}"
+        r['state'] = 'series-editor'
     with gzip.open(OUT, 'wt', newline='', encoding='utf-8') as f:
         w = csv.DictWriter(f, fieldnames=['volume', 'position', 'printed_name', 'source', 'state', 'person_key', 'candidates', 'basis'])
         w.writeheader()
@@ -824,6 +1005,24 @@ def export(args):
     rep['volumes_by_source'] = dict(q("SELECT source, count(DISTINCT volume) FROM r GROUP BY 1"))
     rep['credited_how'] = dict(q("SELECT credited_how, count(*) FROM r WHERE state = 'credited' GROUP BY 1 ORDER BY 2 DESC"))
     rep['branches'] = {f'{a}|{b}': n for a, b, n in q("SELECT state, branch, count(*) FROM r WHERE state <> 'credited' GROUP BY ALL ORDER BY 3 DESC LIMIT 40")}
+    rep['rows_by_source_state_after_series_rule'] = dict(sorted(collections.Counter(f"{r['source']}|{r['state']}" for r in out).items()))
+    rep['series_editor_rule'] = dict(
+        note=('class 19: Crossref book records printing one or two authors and naming the person as editor, on 2+ books of '
+              'one publisher by different printed authors (series_editor_flags); rows set to state series-editor (printed '
+              'only, not editors_printed, no EDITED row; loaded as CONTRIBUTED where the linker had credited a person)'),
+        rows=len(flags), by_flag_and_former_state=dict(sorted(series_before.items())),
+        people_or_names=len({x['who'] for x in rule_rows if x['idx'] in flags}),
+        crossref_rows_with_a_book_record=len(rule_rows))
+    if AUDIT.exists():
+        a = list(csv.DictReader(open(AUDIT, encoding='utf-8')))
+        by = collections.defaultdict(collections.Counter)
+        for x in a:
+            by[x['stratum']][x['judgment']] += 1
+        rep['series_editor_rule']['audit'] = dict(file=str(AUDIT.relative_to(ROOT)), judgments={k: dict(v) for k, v in by.items()})
+    try:
+        rep['series_editor_rule']['keylog_and_edition_roles_check'] = series_check_credits(rule_rows, flags, recs)
+    except Exception as e:          # needs a graph build with roles
+        rep['series_editor_rule']['keylog_and_edition_roles_check'] = f'not run: {e}'
     rep['possible_one_candidate'] = q("SELECT count(*) FROM r WHERE state = 'possible' AND n_candidates = 1")[0][0]
     rep['chapter_author_signal'] = dict(note='possible/ambiguous rows whose candidate is also a credited author of a chapter of the volume '
                                              '(diagnostic only: not a rule of the linker, so it decides nothing)',
@@ -873,8 +1072,8 @@ def export(args):
                                                          'offered in its place: a link to it is false', rows=n, false_links=fl)
     rep['probes'] = {}
     for k in PROBES:
-        rep['probes'][k] = [dict(zip(('printed_name', 'source', 'state', 'person_key', 'candidates', 'branch'), x)) for x in
-                            q(f"SELECT printed_name, source, state, key, candidates, branch FROM r WHERE volume = '{k}' ORDER BY \"position\"")]
+        rep['probes'][k] = [{c: r[c] for c in ('printed_name', 'source', 'state', 'person_key', 'candidates')}
+                            for r in out if r['volume'] == k]
     if (SCR / 'crossref-stats.json').exists():
         rep['crossref_records'] = json.loads((SCR / 'crossref-stats.json').read_text())
     if (SCR / 'lc-stats.json').exists():

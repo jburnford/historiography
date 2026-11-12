@@ -7,7 +7,8 @@ is untracked) and writes to build/graph/ (git-ignored):
 - relations from the log's claims: `AUTHORED`, `EDITED`, `SUPERVISED` (Person -> Work), `PUBLISHED_AS` and
   `REVIEWS` (Work -> Work: a review and the book it reviews), with the claim key and its resolution; claims
   whose endpoints do not resolve to one key each are left out and counted;
-- `COEDITED` (Person -> Person, once per pair), derived as COAUTHORED from shared EDITED volumes;
+- `COEDITED` (Person -> Person, once per pair), derived as COAUTHORED from shared EDITED volumes (and AUTHORED
+  credits with role volume-editor, 2026-11-12);
 - `PART_OF` (Work -> Work): a chapter and the volume it is in; `EDITOR_OF` (Person -> Person), derived: a
   volume's editor -> each author of a chapter in it (with the chapter and volume keys; user, 2026-11-05);
 - `REVIEWED` (Person -> Person), derived: the author of a review -> each author of the book it reviews, with
@@ -92,6 +93,13 @@ is untracked) and writes to build/graph/ (git-ignored):
   counted); works get `first_year`, `first_year_catalogue`, `first_year_basis` (data/graph/work-years.csv.gz; `year`
   unchanged); data/graph/edition-canonical-fixes.csv.gz moves the thesis and JSTOR citations of a canonical key that is
   a translation to the original and adds the EDITION_OF edge between them; report `class_17_reprint_years`.
+- 2026-11-12 (follow-up): volume-editors.csv.gz rows with state `series-editor` (scripts/volume_editors.py's
+  series-editor rule, class 19) are printed only: no EDITED row, not in editors_printed; a linked person is CONTRIBUTED
+  (basis series-editor-pattern). The derived edges read the role: only AUTHORED credits with role author make
+  COAUTHORED pairs and REVIEWED edges (volume-editor, edition-editor, translator, introducer and series-editor credits
+  do not); AUTHORED credits with role volume-editor join COEDITED, which now has `evidence` (keylog: key-log EDITED
+  and key-log AUTHORED volume-editor credits; linked: linked EDITED credits with an editor role and linked AUTHORED
+  volume-editor credits, lists over 25 skipped) and `linked_works` / `linked_work_keys` as COAUTHORED.
 The key-log state comes from the SQLite cache (build/keylog-state.sqlite, scripts/keylog_snapshot.py; 2026-11-10),
 caught up to the log's last event first and then read in bulk, so the build no longer replays the whole log (10 GB);
 --replay replays it instead (the old path, for checking one against the other).
@@ -807,8 +815,11 @@ def volume_editors(state, types, resolve, wi, report):
     """data/graph/volume-editors.csv.gz (2026-11-12): editors_printed on the volume node for every row that is not
     `held` (when the node has none); exact, linked and credited rows as candidate EDITED rows (evidence linked, source
     'volume-editors:<source>'; filtered later against AUTHORED, series editors and contributors); possible and
-    ambiguous rows as author_candidates (role 'editor'). Returns (rows, candidate rows, raw volume id per row)."""
-    names, linked, cands, seen = defaultdict(list), [], {}, set()
+    ambiguous rows as author_candidates (role 'editor'). Rows with state 'series-editor' (the series-editor rule of
+    scripts/volume_editors.py, class 19) are printed only: not editors_printed, no EDITED row; where the person key is
+    kept (the linker had credited it) they are CONTRIBUTED rows (basis 'series-editor-pattern').
+    Returns (rows, candidate rows, series-editor CONTRIBUTED rows)."""
+    names, linked, cands, seen, series = defaultdict(list), [], {}, set(), {}
 
     def one(name):
         ks = [k for k in state.lookup(name) if types.get(k) == 'person'] if name else []
@@ -819,6 +830,18 @@ def volume_editors(state, types, resolve, wi, report):
             report['volume_editors_volume_unresolved'] += 1
             continue
         st = r['state']
+        if st == 'series-editor':
+            report['volume_editors_series_editor_rows'] += 1
+            ks = {k for x in r['person_key'].split(';') if (k := one(x))}
+            if len(ks) == 1:
+                k = ks.pop()
+                series.setdefault((k, w), {'from': k, 'to': w, 'claim': f"volume-editors:series-editor:{r['position']}",
+                                           'resolution': 'linked', 'evidence': 'linked',
+                                           'source': f"volume-editors:{r['source']}", 'state': 'linked',
+                                           'basis': 'series-editor-pattern'})
+            elif r['person_key']:
+                report['volume_editors_series_editor_person_unresolved'] += 1
+            continue
         if st != 'held':                # held: a list of more than six names (a board or the contributors)
             names[w].append(r['printed_name'])
         if st in ('exact', 'linked', 'credited'):
@@ -848,7 +871,8 @@ def volume_editors(state, types, resolve, wi, report):
             report['volume_editors_printed_set'] += 1
     report['volume_editors_rows_exact_linked_credited'] = len(linked)
     report['volume_editors_candidate_rows'] = len(cands)
-    return linked, list(cands.values())
+    report['volume_editors_series_editor_contributed'] = len(series)
+    return linked, list(cands.values()), list(series.values())
 
 
 def edition_roles():
@@ -962,7 +986,9 @@ def series_editor_measure(ve_rows, publisher_of, er, contributed, report):
     report['volume_editors_series_risk'] = dict(
         note=('Crossref volume-editor credits (EDITED evidence linked, source volume-editors:crossref) of one person on 3+ '
               'volumes of one publisher (publisher from author-works/volumes.csv.gz and work-containers.csv.gz); '
-              'flagged = also a series editor in edition-roles or CONTRIBUTED. Not audited'),
+              'flagged = also a series editor in edition-roles or CONTRIBUTED. After the series-editor rule (rows it flags '
+              'are CONTRIBUTED, not counted here; audit in data/graph/volume-editors-report.json series_editor_rule): '
+              'mostly serial annuals, yearbooks, reference works and prolific co-editors, which are real editors'),
         crossref_rows=sum(1 for r in ve_rows if r['source'] == 'volume-editors:crossref'),
         crossref_rows_no_publisher=nopub,
         person_publisher_pairs_3plus=len(many), people_3plus=len(people),
@@ -1154,7 +1180,7 @@ def main():
     if pass4[WORK_YEARS]:           # first publication year beside `year` (2026-11-12)
         work_years(wi, resolve, report)
     # volume editors (2026-11-12): editors_printed on the node now; the EDITED rows are merged with the other credits
-    ve_rows, ve_cands = volume_editors(state, types, resolve, wi, report) if pass4[VOLUME_EDITORS] else ([], [])
+    ve_rows, ve_cands, ve_series = volume_editors(state, types, resolve, wi, report) if pass4[VOLUME_EDITORS] else ([], [], [])
     del wi
     s, L = pa.string(), pa.list_(pa.string())
     report['Person'] = write('person', people, pa.schema([('key', s), ('label', s), ('resolution', s), ('anchors', L)] +
@@ -1273,6 +1299,12 @@ def main():
                   'author_candidates; key-log credits left as they are (an open measure)'),
             linked_in_table=len(conf), linked_demoted=len(dem), keylog_open=open_keylog)
         del keep, dem, pa_have, conf
+    if ve_series:                   # series editors named in Crossref editor lists (class 19): contributors, not editors
+        have_c = {(r['from'], r['to']) for r in contributed}
+        add = [r for r in ve_series if (r['from'], r['to']) not in have_c]
+        report['volume_editors_series_editor_contributed_added'] = len(add)
+        contributed = list(contributed) + add
+        del have_c, add
     ve_auth_role, ve_loaded = {}, []
     if ve_rows or ve_cands:         # volume editors: EDITED rows, unless the pair is a series editorship, a contributor,
         # or an AUTHORED credit (then the AUTHORED row gets role volume-editor: ORCID 'edited-book' records)
@@ -1356,6 +1388,11 @@ def main():
         if r.get('role'):
             return r['role'], r.get('role_basis')
         return 'author', (f'{x[0]}:{x[1]}' if x and x[0] != 'author' else (x[1] if x else None))
+    # 2026-11-12 (class 22 follow-up): the derived edges read the role. AUTHORED credits under a role other than author
+    # make no COAUTHORED pair and no REVIEWED edge; volume-editor credits (keylog or linked) join COEDITED instead;
+    # linked EDITED credits as volume editor join COEDITED with evidence linked.
+    not_author = {}                 # (person, work) -> role, AUTHORED rows whose role is not author
+    linked_coeditor = set()         # (person, work) linked EDITED rows with an editor role (not an edition role)
     for name in ('AUTHORED', 'EDITED'):
         keyed = {(r['from'], r['to']) for r in rels[name]}
         lrows = [r for r in linked.get(name, []) if (r['from'], r['to']) not in keyed]
@@ -1364,6 +1401,10 @@ def main():
         for ev, src in (('keylog', rels[name]), ('linked', lrows)):
             for r in src:
                 role, basis = role_of(name, r)
+                if name == 'AUTHORED' and role not in ('author', 'author-editor'):
+                    not_author[r['from'], r['to']] = role
+                elif name == 'EDITED' and ev == 'linked' and role in ('volume-editor', 'author-editor', 'unknown'):
+                    linked_coeditor.add((r['from'], r['to']))
                 role_count[f'{name}|{ev}|{role}'] += 1
                 rows_.append({'from': r['from'], 'to': r['to'], 'claim': r['claim'], 'resolution': r['resolution'],
                               'evidence': ev, 'source': r.get('source') if ev == 'linked' else None,
@@ -1382,14 +1423,29 @@ def main():
     cand_rows = write('author_candidates', possible_authors, pa.schema([
         ('from', s), ('to', s), ('n_candidates', pa.int32()), ('signals', s), ('source', s), ('role', s), ('reason', s)]))
     report['candidate_lists'] = dict(author_candidates=cand_rows)
+    # authors of a work for the derived edges: AUTHORED credits with role author (2026-11-12); a volume editor,
+    # edition editor, translator, introducer or series editor filed as AUTHORED is not a co-author of the work's
+    # authors, and a review of the book does not make its reviewer a REVIEWED partner of theirs
     authors = defaultdict(set)
+    auth_editors = defaultdict(set)           # key-log AUTHORED credits with role volume-editor: COEDITED
+    lauth_editors = defaultdict(set)          # linked ones
+    report['derived_not_author_credits'] = dict(Counter(not_author.values()))
     for r in rels['AUTHORED']:
-        authors[r['to']].add(r['from'])
+        role = not_author.get((r['from'], r['to']))
+        if role is None:
+            authors[r['to']].add(r['from'])
+        elif role == 'volume-editor':
+            auth_editors[r['to']].add(r['from'])
     reviewed = sorted({(a, b, r['from'], r['to']) for r in rels['REVIEWS'] for a in authors[r['from']]
                        for b in authors[r['to']] if a != b})
     lauth_all = defaultdict(set)              # linked credits (cited works, work-people), for the merged derived edges
     for r in linked.get('AUTHORED', []):
-        lauth_all[r['to']].add(r['from'])
+        role = not_author.get((r['from'], r['to']))
+        if role is None:
+            lauth_all[r['to']].add(r['from'])
+        elif role == 'volume-editor':
+            lauth_editors[r['to']].add(r['from'])
+    del not_author
     both_all = {w: authors.get(w, set()) | lauth_all.get(w, set()) for w in set(authors) | set(lauth_all)}
     rl = sorted({(a, b, r['from'], r['to']) for r in rels['REVIEWS'] for a in both_all.get(r['from'], ())
                  for b in both_all.get(r['to'], ()) if a != b} - set(reviewed))
@@ -1432,22 +1488,57 @@ def main():
                      'first_year': ys[0] if ys else None,
                      'last_year': ys[-1] if ys else None, 'work_keys': sorted(ws)})
     # co-editors: people who edited the same volume, built as COAUTHORED is (user, 2026-11-05: editors in the network)
+    # 2026-11-12: the key log's AUTHORED credits with role volume-editor are editors here too (evidence keylog); linked
+    # EDITED credits with an editor role and linked AUTHORED credits with role volume-editor make linked pairs, as
+    # COAUTHORED does (editor lists over 25 make none)
     eds_of = defaultdict(set)
     for r in rels['EDITED']:
         eds_of[r['to']].add(r['from'])
+    for w, ks in auth_editors.items():
+        eds_of[w] |= ks
     co_ed = defaultdict(set)
     for w, people_of in eds_of.items():
         for a in people_of:
             for b in people_of:
                 if a < b:
                     co_ed[a, b].add(w)
+    led_of = defaultdict(set)
+    for p, w in linked_coeditor:
+        led_of[w].add(p)
+    for w, ks in lauth_editors.items():
+        led_of[w] |= ks
+    lco_ed = defaultdict(set)
+    for w, lks in led_of.items():
+        allk = eds_of.get(w, set()) | lks
+        if len(allk) > 25:
+            report['COEDITED_linked_skipped_long_lists'] += 1
+            continue
+        for a in allk:
+            for b in allk:
+                if a < b and not (a in eds_of.get(w, ()) and b in eds_of.get(w, ())):
+                    lco_ed[a, b].add(w)
     erows = []
     for (a, b), ws in sorted(co_ed.items()):
         ys = sorted(y for w in ws if (y := year.get(w)))
+        lw = lco_ed.pop((a, b), set())
         erows.append({'from': a, 'to': b, 'works': len(ws), 'titles': len({title.get(w, w) for w in ws}),
-                      'first_year': ys[0] if ys else None, 'last_year': ys[-1] if ys else None, 'work_keys': sorted(ws)})
+                      'first_year': ys[0] if ys else None, 'last_year': ys[-1] if ys else None, 'work_keys': sorted(ws),
+                      'evidence': 'keylog', 'linked_works': len(lw), 'linked_work_keys': sorted(lw)})
+    nled = 0
+    for (a, b), ws in sorted(lco_ed.items()):
+        ys = sorted(y for w in ws if (y := year.get(w)))
+        erows.append({'from': a, 'to': b, 'works': len(ws), 'titles': len({title.get(w, w) for w in ws}),
+                      'first_year': ys[0] if ys else None, 'last_year': ys[-1] if ys else None, 'work_keys': sorted(ws),
+                      'evidence': 'linked', 'linked_works': len(ws), 'linked_work_keys': sorted(ws)})
+        nled += 1
     report['COEDITED'] = write('coedited', erows, pa.schema([('from', s), ('to', s), ('works', pa.int32()), ('titles', pa.int32()),
-                                                           ('first_year', pa.int32()), ('last_year', pa.int32()), ('work_keys', L)]))
+                                                           ('first_year', pa.int32()), ('last_year', pa.int32()), ('work_keys', L),
+                                                           ('evidence', s), ('linked_works', pa.int32()), ('linked_work_keys', L)]))
+    report['COEDITED_by_evidence'] = dict(keylog=len(erows) - nled, linked=nled,
+                                          keylog_pairs_from_authored_volume_editor_credits=sum(
+                                              1 for (a, b), ws in co_ed.items()
+                                              if any(a in auth_editors.get(w, ()) or b in auth_editors.get(w, ()) for w in ws)))
+    del eds_of, co_ed, led_of, lco_ed, auth_editors, lauth_editors, linked_coeditor
     # COAUTHORED: one row per pair. evidence 'keylog' when the pair shares a key-log work (works, titles, years and
     # work_keys are the key log's alone, as before; linked_works / linked_work_keys add the works that rest on a
     # linked credit); 'linked' when only linked credits join them. Author lists over 25 are no co-authorship (a review

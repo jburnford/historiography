@@ -32,7 +32,9 @@ ADDED = {'part_of': [('evidence', "'keylog'"), ('source', 'NULL'), ('volume_basi
          'author_candidates': [('reason', 'NULL')],
          # the part a person had in the work (2026-11-12, data/graph/edition-roles.csv.gz, volume-editors.csv.gz)
          'authored': [('role', "'author'"), ('role_basis', 'NULL')],
-         'edited': [('role', "'unknown'"), ('role_basis', 'NULL')]}
+         'edited': [('role', "'unknown'"), ('role_basis', 'NULL')],
+         # co-editor pairs resting on linked editor credits (2026-11-12)
+         'coedited': [('evidence', "'keylog'"), ('linked_works', '0')]}
 WORK_ADDED = ('issn', 'journal_source', 'kind_proposed', 'isbn', 'editors_printed', 'first_year_basis')
 WORK_ADDED_INT = ('first_year', 'first_year_catalogue')
 # credits under which a person prepared someone else's work (an edition, a translation, an introduction, a series):
@@ -70,7 +72,8 @@ PART_D = ("CASE WHEN bool_or(e.evidence = 'keylog') THEN NULL ELSE 'linked: ' ||
           "WHEN 'new-unkeyed-volume' THEN 'volume made from the record' WHEN 'main-title' THEN 'main title only' "
           "ELSE e.volume_basis END || ')', '; ') || '; not a key-log claim' END")
 CONTRIB_D = ("'contributor (' || string_agg(DISTINCT CASE e.basis WHEN 'lc-foreword' THEN 'foreword, by the LC record' "
-             "WHEN 'series-foreword-pattern' THEN 'series foreword' ELSE e.basis END, '; ') || '); linked, not an author'")
+             "WHEN 'series-foreword-pattern' THEN 'series foreword' "
+             "WHEN 'series-editor-pattern' THEN 'series editor (Crossref editor list; publisher pattern)' ELSE e.basis END, '; ') || '); linked, not an author'")
 
 # Relations shown for each node type: (id, label, edge table, self side, other side, detail SQL over e and o)
 # `e` is the edge row, `o` the other node. Rows are grouped by the other node (n = number of edges to it).
@@ -290,11 +293,14 @@ class Graph:
                        (evidence = 'linked')::INT lk""")
             return (f"""SELECT "to" k, {cols} FROM e_coauthored_f WHERE "from" = $k
                         UNION SELECT "from", {cols} FROM e_coauthored_t WHERE "to" = $k""")
-        if rid == 'coeditors':
-            return (f"""SELECT "to" k, works n, CASE WHEN first_year IS NULL THEN works || ' works'
-                        ELSE works || ' works, ' || first_year || '–' || last_year END d FROM e_{table}_f WHERE "from" = $k
-                        UNION SELECT "from", works, CASE WHEN first_year IS NULL THEN works || ' works'
-                        ELSE works || ' works, ' || first_year || '–' || last_year END FROM e_{table}_t WHERE "to" = $k""")
+        if rid == 'coeditors':            # one row per pair, as co-authors (linked pairs since 2026-11-12)
+            cols = ("""works + CASE WHEN evidence = 'keylog' THEN linked_works ELSE 0 END n,
+                       (works + CASE WHEN evidence = 'keylog' THEN linked_works ELSE 0 END) || ' works'
+                       || CASE WHEN linked_works > 0 THEN ' (' || linked_works || ' through a linked credit)' ELSE '' END
+                       || CASE WHEN first_year IS NULL THEN '' ELSE ', ' || first_year || '–' || last_year END d,
+                       (evidence = 'linked')::INT lk""")
+            return (f"""SELECT "to" k, {cols} FROM e_{table}_f WHERE "from" = $k
+                        UNION SELECT "from", {cols} FROM e_{table}_t WHERE "to" = $k""")
         if rid == 'possibly_same':        # same name, timelines fit, not confirmed (scripts/key_possible_same.py)
             return ('''SELECT "to" k, 1 n, 'same name, timelines fit; not confirmed' d FROM e_possibly_same_f WHERE "from" = $k
                        UNION SELECT "from", 1, 'same name, timelines fit; not confirmed' FROM e_possibly_same_t WHERE "to" = $k''')

@@ -1,7 +1,7 @@
 {
  "made_by": "scripts/volume_editors.py export",
  "date": "2026-11-11",
- "rows": 69409,
+ "rows": 69365,
  "class_before": {
   "volumes_with_chapters": 144834,
   "no_editor": {
@@ -36,20 +36,20 @@
   "crossref|linked": 6757,
   "crossref|none": 17591,
   "crossref|possible": 3853,
-  "lc|ambiguous": 531,
-  "lc|credited": 14579,
+  "lc|ambiguous": 532,
+  "lc|credited": 14573,
   "lc|exact": 1292,
-  "lc|held": 209,
-  "lc|linked": 1287,
-  "lc|none": 13379,
-  "lc|possible": 863
+  "lc|held": 203,
+  "lc|linked": 1278,
+  "lc|none": 13360,
+  "lc|possible": 858
  },
  "volumes_by_source": {
-  "crossref": 16768,
-  "lc": 17446
+  "lc": 17437,
+  "crossref": 16768
  },
  "credited_how": {
-  "edited:keylog:full": 13458,
+  "edited:keylog:full": 13452,
   "authored:keylog:full": 2869,
   "authored:linked:full": 1193,
   "edited:keylog:initial": 689,
@@ -65,21 +65,21 @@
   "authored:linked:variant": 4
  },
  "branches": {
-  "none|no-compatible-name": 29494,
-  "linked|unique-rare": 5328,
+  "none|no-compatible-name": 29476,
+  "linked|unique-rare": 5320,
   "possible|one-candidate-common-name": 3379,
-  "held|editor-list-over-6": 2935,
-  "ambiguous|several-several-dated": 2544,
+  "held|editor-list-over-6": 2929,
+  "ambiguous|several-several-dated": 2545,
   "exact|identifier": 1364,
   "linked|unique-rare-span": 1133,
   "none|only-date-excluded": 941,
   "linked|unique-rare-fullname": 634,
-  "none|only-proven-namesakes": 535,
-  "possible|one-candidate-initial-name": 451,
+  "none|only-proven-namesakes": 534,
+  "possible|one-candidate-initial-name": 447,
   "possible|one-candidate-variant-name": 394,
-  "linked|dupgroup:unique-rare": 380,
+  "linked|dupgroup:unique-rare": 379,
   "linked|unique-second-fact": 298,
-  "possible|one-candidate-surname-variant-name": 197,
+  "possible|one-candidate-surname-variant-name": 196,
   "possible|one-candidate-none-dated": 160,
   "ambiguous|several-one-dated-no-fact": 137,
   "linked|dupgroup:unique-rare-span": 135,
@@ -88,14 +88,77 @@
   "linked|unique-rare-sup-aff": 33,
   "linked|dupgroup:unique-rare-fullform": 15,
   "linked|dupgroup:unique-rare-fullname": 11,
-  "linked|unique-rare-variant": 6,
   "ambiguous|several-none-dated": 6,
+  "linked|unique-rare-variant": 6,
   "linked|several-one-survives": 5,
   "linked|unique-rare-corpus-span": 4,
   "linked|dupgroup:unique-second-fact": 1,
   "linked|dupgroup:unique-rare-sup-aff": 1
  },
- "possible_one_candidate": 4715,
+ "rows_by_source_state_after_series_rule": {
+  "crossref|ambiguous": 2149,
+  "crossref|credited": 4114,
+  "crossref|exact": 72,
+  "crossref|held": 2726,
+  "crossref|linked": 6728,
+  "crossref|none": 17589,
+  "crossref|possible": 3851,
+  "crossref|series-editor": 40,
+  "lc|ambiguous": 532,
+  "lc|credited": 14573,
+  "lc|exact": 1292,
+  "lc|held": 203,
+  "lc|linked": 1278,
+  "lc|none": 13360,
+  "lc|possible": 858
+ },
+ "series_editor_rule": {
+  "note": "class 19: Crossref book records printing one or two authors and naming the person as editor, on 2+ books of one publisher by different printed authors (series_editor_flags); rows set to state series-editor (printed only, not editors_printed, no EDITED row; loaded as CONTRIBUTED where the linker had credited a person)",
+  "rows": 40,
+  "by_flag_and_former_state": {
+   "listed-after|linked": 1,
+   "printed-author|ambiguous": 7,
+   "printed-author|linked": 28,
+   "printed-author|none": 2,
+   "printed-author|possible": 2
+  },
+  "people_or_names": 13,
+  "crossref_rows_with_a_book_record": 36031,
+  "audit": {
+   "file": "data/identifiers/volume-editors-2026-11-12/series-editor-audit.csv",
+   "judgments": {
+    "flagged": {
+     "series-editor": 33,
+     "volume-editor": 3,
+     "edition-editor": 3,
+     "author": 1
+    },
+    "unflagged:other": {
+     "volume-editor": 13,
+     "author": 1
+    },
+    "unflagged:printed-author-no-recurrence": {
+     "volume-editor": 5,
+     "edition-editor": 4,
+     "series-editor": 2,
+     "unclear": 1
+    },
+    "unflagged:same-publisher-3plus": {
+     "volume-editor": 14,
+     "series-editor": 2,
+     "author": 1
+    }
+   }
+  },
+  "keylog_and_edition_roles_check": {
+   "note": "the rule applied to the other editor credits of the last build (key-log and edition-roles EDITED, AUTHORED role volume-editor) on volumes with a held book-level Crossref record printing the person as editor; counted, nothing changed",
+   "credits_on_volumes_with_a_record": 8955,
+   "credits_printed_as_editor_on_the_record": 7797,
+   "flagged": {},
+   "flagged_pairs": []
+  }
+ },
+ "possible_one_candidate": 4710,
  "chapter_author_signal": {
   "note": "possible/ambiguous rows whose candidate is also a credited author of a chapter of the volume (diagnostic only: not a rule of the linker, so it decides nothing)",
   "rows": 1278
@@ -104,29 +167,29 @@
   "no_printed_editor_and_no_edited": {
    "volumes_with_chapters": 144834,
    "no_editor": {
-    "keyed": 21591,
-    "unkeyed": 86966
+    "keyed": 21593,
+    "unkeyed": 86970
    },
    "no_editor_by_keyed_chapter_authors": {
     "keyed|0": 54,
-    "keyed|1": 18137,
+    "keyed|1": 18139,
     "keyed|2-3": 2479,
     "keyed|4+": 921,
     "unkeyed|0": 807,
-    "unkeyed|1": 73414,
-    "unkeyed|2-3": 9582,
-    "unkeyed|4+": 3163
+    "unkeyed|1": 73415,
+    "unkeyed|2-3": 9584,
+    "unkeyed|4+": 3164
    },
    "no_editor_volume_has_authored_credit": {
-    "keyed": 20613,
-    "unkeyed": 1362
+    "keyed": 20615,
+    "unkeyed": 1363
    }
   },
   "no_edited_credit": {
    "volumes_with_chapters": 144834,
    "no_editor": {
     "keyed": 22474,
-    "unkeyed": 99904
+    "unkeyed": 99906
    },
    "no_editor_by_keyed_chapter_authors": {
     "keyed|0": 60,
@@ -134,7 +197,7 @@
     "keyed|2-3": 2712,
     "keyed|4+": 1038,
     "unkeyed|0": 1438,
-    "unkeyed|1": 82738,
+    "unkeyed|1": 82740,
     "unkeyed|2-3": 11970,
     "unkeyed|4+": 3758
    },
@@ -144,7 +207,7 @@
    }
   },
   "remaining_record_names_no_editor": {
-   "lc_record": 13826,
+   "lc_record": 13832,
    "crossref_book_monograph": 4090,
    "crossref_book_edited_book_no_list": 3184,
    "crossref_book_book_or_reference": 5235,
@@ -155,106 +218,104 @@
  "gold": {
   "note": "printed editors whose name agrees with a key-log EDITED or AUTHORED credit on the volume; decided with that credit hidden (the key's ORCID if it was the match, the volume's facts) as link_work_people.link does",
   "strict_no_authority": {
-   "rows": 6000,
-   "linked_or_exact": 4203,
-   "right": 4191,
-   "duplicate_key_of_true": 12,
+   "rows": 4000,
+   "linked_or_exact": 2861,
+   "right": 2854,
+   "duplicate_key_of_true": 7,
    "wrong": 0,
-   "precision_same_key": 0.9971,
+   "precision_same_key": 0.9976,
    "precision_same_person": 1.0,
-   "recall": 0.6985,
-   "possible_with_true_listed": 1162
+   "recall": 0.7135,
+   "possible_with_true_listed": 716
   },
   "lc_authority_known": {
-   "rows": 4090,
-   "linked_or_exact": 2941,
-   "right": 2933,
-   "duplicate_key_of_true": 8,
+   "rows": 2762,
+   "linked_or_exact": 2009,
+   "right": 2003,
+   "duplicate_key_of_true": 6,
    "wrong": 0,
-   "precision_same_key": 0.9973,
+   "precision_same_key": 0.997,
    "precision_same_person": 1.0,
-   "recall": 0.7171,
-   "possible_with_true_listed": 763
+   "recall": 0.7252,
+   "possible_with_true_listed": 485
   },
   "by_credit": {
    "edited:keylog": {
-    "rows": 4916,
-    "linked_or_exact": 3477,
-    "right": 3466,
-    "duplicate_key_of_true": 11,
+    "rows": 3288,
+    "linked_or_exact": 2367,
+    "right": 2360,
+    "duplicate_key_of_true": 7,
     "wrong": 0,
-    "precision_same_key": 0.9968,
+    "precision_same_key": 0.997,
     "precision_same_person": 1.0,
-    "recall": 0.705,
-    "possible_with_true_listed": 884
+    "recall": 0.7178,
+    "possible_with_true_listed": 553
    },
    "authored:keylog": {
-    "rows": 1084,
-    "linked_or_exact": 726,
-    "right": 725,
-    "duplicate_key_of_true": 1,
+    "rows": 712,
+    "linked_or_exact": 494,
+    "right": 494,
+    "duplicate_key_of_true": 0,
     "wrong": 0,
-    "precision_same_key": 0.9986,
+    "precision_same_key": 1.0,
     "precision_same_person": 1.0,
-    "recall": 0.6688,
-    "possible_with_true_listed": 278
+    "recall": 0.6938,
+    "possible_with_true_listed": 163
    }
   },
   "by_source": {
    "lc": {
-    "rows": 4929,
-    "linked_or_exact": 3515,
-    "right": 3504,
-    "duplicate_key_of_true": 11,
+    "rows": 3309,
+    "linked_or_exact": 2400,
+    "right": 2393,
+    "duplicate_key_of_true": 7,
     "wrong": 0,
-    "precision_same_key": 0.9969,
+    "precision_same_key": 0.9971,
     "precision_same_person": 1.0,
-    "recall": 0.7109,
-    "possible_with_true_listed": 860
+    "recall": 0.7232,
+    "possible_with_true_listed": 537
    },
    "crossref": {
-    "rows": 1071,
-    "linked_or_exact": 688,
-    "right": 687,
-    "duplicate_key_of_true": 1,
+    "rows": 691,
+    "linked_or_exact": 461,
+    "right": 461,
+    "duplicate_key_of_true": 0,
     "wrong": 0,
-    "precision_same_key": 0.9985,
+    "precision_same_key": 1.0,
     "precision_same_person": 1.0,
-    "recall": 0.6415,
-    "possible_with_true_listed": 302
+    "recall": 0.6671,
+    "possible_with_true_listed": 179
    }
   },
   "states": {
-   "linked": 4203,
-   "possible": 1182,
-   "ambiguous": 549,
-   "none": 66
+   "linked": 2861,
+   "possible": 729,
+   "ambiguous": 355,
+   "none": 55
   },
   "linked_branches": {
-   "unique-rare|right": 2794,
-   "unique-rare-span|right": 546,
-   "unique-rare-fullname|right": 341,
-   "dupgroup:unique-rare|right": 248,
-   "unique-second-fact|right": 184,
-   "unique-rare-fullform|right": 27,
-   "dupgroup:unique-rare-span|right": 17,
-   "unique-rare-corpus-span|right": 8,
-   "several-one-survives|right": 7,
-   "dupgroup:unique-rare|dup": 6,
+   "unique-rare|right": 1888,
+   "unique-rare-span|right": 355,
+   "unique-rare-fullname|right": 245,
+   "dupgroup:unique-rare|right": 175,
+   "unique-second-fact|right": 135,
+   "unique-rare-fullform|right": 20,
+   "dupgroup:unique-rare-span|right": 14,
+   "several-one-survives|right": 6,
+   "unique-rare-corpus-span|right": 6,
    "unique-rare-cites|right": 5,
-   "dupgroup:unique-rare-fullname|right": 5,
-   "dupgroup:unique-rare-span|dup": 5,
-   "dupgroup:unique-rare-fullform|right": 3,
-   "unique-rare-variant|right": 2,
-   "unique-rare-sup-aff|right": 2,
-   "dupgroup:unique-second-fact|right": 2,
-   "unique-second-fact|dup": 1
+   "dupgroup:unique-rare|dup": 4,
+   "dupgroup:unique-rare-span|dup": 3,
+   "dupgroup:unique-rare-fullform|right": 2,
+   "dupgroup:unique-second-fact|right": 1,
+   "unique-rare-sup-aff|right": 1,
+   "dupgroup:unique-rare-fullname|right": 1
   },
   "wrong_examples": [],
   "masked_author_namesake": {
    "note": "true key dropped, a name-compatible key proven a different person offered in its place: a link to it is false",
-   "rows": 923,
-   "false_links": 4
+   "rows": 539,
+   "false_links": 1
   }
  },
  "probes": {
@@ -264,24 +325,21 @@
     "source": "crossref",
     "state": "credited",
     "person_key": "p-145261",
-    "candidates": "",
-    "branch": "credited:authored:linked:full"
+    "candidates": ""
    },
    {
     "printed_name": "Jay Young",
     "source": "crossref",
     "state": "possible",
     "person_key": "",
-    "candidates": "p-80219",
-    "branch": "one-candidate-common-name"
+    "candidates": "p-80219"
    },
    {
     "printed_name": "Colin M. Coates",
     "source": "crossref",
     "state": "credited",
     "person_key": "p-237",
-    "candidates": "",
-    "branch": "credited:authored:keylog:full"
+    "candidates": ""
    }
   ],
   "w-916866": [
@@ -290,16 +348,14 @@
     "source": "crossref",
     "state": "credited",
     "person_key": "p-16604",
-    "candidates": "",
-    "branch": "credited:authored:keylog:full"
+    "candidates": ""
    },
    {
     "printed_name": "Marcel Fortin",
     "source": "crossref",
     "state": "none",
     "person_key": "",
-    "candidates": "",
-    "branch": "no-compatible-name"
+    "candidates": ""
    }
   ],
   "doi:10.1093/oxfordhb/9780197502679.001.0001": [
@@ -308,35 +364,72 @@
     "source": "crossref",
     "state": "linked",
     "person_key": "p-199455",
-    "candidates": "p-199455",
-    "branch": "unique-rare"
+    "candidates": "p-199455"
    },
    {
     "printed_name": "Jean Stubbs",
     "source": "crossref",
     "state": "possible",
     "person_key": "",
-    "candidates": "p-224994",
-    "branch": "one-candidate-common-name"
+    "candidates": "p-224994"
    },
    {
     "printed_name": "William Gervase Clarence-Smith",
     "source": "crossref",
     "state": "ambiguous",
     "person_key": "",
-    "candidates": "p-105707|p-182733",
-    "branch": "several-one-dated-no-fact"
+    "candidates": "p-105707;p-182733"
    },
    {
     "printed_name": "Jelmer Vos",
     "source": "crossref",
     "state": "linked",
     "person_key": "p-215899",
-    "candidates": "p-215899",
-    "branch": "unique-rare"
+    "candidates": "p-215899"
    }
   ],
-  "volume:56de888d833b": []
+  "volume:56de888d833b": [],
+  "w-1115644": [
+   {
+    "printed_name": "Buckner, Phillip A. (Phillip Alfred), 1942-",
+    "source": "lc",
+    "state": "credited",
+    "person_key": "p-1126",
+    "candidates": ""
+   },
+   {
+    "printed_name": "Reid, John G., 1948-",
+    "source": "lc",
+    "state": "credited",
+    "person_key": "p-731",
+    "candidates": ""
+   }
+  ],
+  "w-88030": [
+   {
+    "printed_name": "William Cronon",
+    "source": "crossref",
+    "state": "series-editor",
+    "person_key": "p-1415",
+    "candidates": "p-1415"
+   }
+  ],
+  "doi:10.1515/9780295803807": [
+   {
+    "printed_name": "David Stradling",
+    "source": "crossref",
+    "state": "linked",
+    "person_key": "p-27777",
+    "candidates": "p-27777"
+   },
+   {
+    "printed_name": "William Cronon",
+    "source": "crossref",
+    "state": "series-editor",
+    "person_key": "p-1415",
+    "candidates": "p-1415"
+   }
+  ]
  },
  "crossref_records": {
   "book-editors": 19602,
@@ -363,8 +456,8 @@
  "lc_records": {
   "isbn_title_mismatch_dropped": 307,
   "volumes_matched": 32369,
-  "volumes_with_editors": 17446,
-  "names": 32140
+  "volumes_with_editors": 17437,
+  "names": 32096
  },
  "series_editor_chapter_claims": {
   "claims": 35,
