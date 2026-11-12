@@ -111,6 +111,33 @@ class Decision(unittest.TestCase):
         self.assertEqual(self.run_rule(score=None), 'none')
 
 
+class RoundTwo(unittest.TestCase):
+    def test_runner_cap(self):
+        th = dict(single={'2-5': 5.0}, multi=10.0, margin=2, runner_max=2.0, review=0.0)
+        rows = [dict(score=15.0, runner=1.0, n=2, neg='none', freq='2-5', review_record=False, ctx_w=0.0),
+                dict(score=15.0, runner=4.0, n=2, neg='none', freq='2-5', review_record=False, ctx_w=0.0)]
+        self.assertEqual(list(SL.decision(pd.DataFrame(rows), th)), ['link', 'review'])
+
+    def test_collective_not_from_same_work(self):
+        # a link of p-1 on work w1 where p-2 is credited: p-1 and p-2 are co-credited through w1
+        pos_w = {1: ('w1', ('p-2',)), 2: ('w1', ('p-2',)), 3: ('w2', ('p-2',))}
+        cd = pd.DataFrame(dict(pid=[2, 3], key=['p-1', 'p-1']))
+        out = SL.collective_facts(cd, pos_w, [('w1', 'p-1')])
+        self.assertEqual(list(out), ['none', 'yes'])   # never on w1 itself; yes on another work with p-2 credited
+
+    def test_undated_clamped(self):
+        rows = []
+        for i in range(50):
+            rows.append(dict(BASE, label=1, mode='present', date='undated'))
+            rows.append(dict(BASE, label=0, mode='present', date='life'))
+        wm, _ = SL.fit_weights(frame(rows))
+        self.assertLessEqual(wm['w']['date']['undated'], 0.0)
+
+    def test_role_group(self):
+        self.assertEqual(SL.role_group('editor'), 'author')
+        self.assertEqual(SL.role_group('reviewer'), 'reviewer')
+
+
 class Mixture(unittest.TestCase):
     def test_recovers_share(self):
         rng = np.random.default_rng(3)

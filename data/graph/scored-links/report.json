@@ -1,23 +1,26 @@
 {
- "model": "naive",
+ "built": "2026-11-12 11:37",
+ "graph_snapshot": "Thu Nov 12 09:22:01 2026",
+ "model": "naive (C2: audit pi, margin rule)",
  "thresholds": {
   "author": {
    "single": {
-    "unique": 1000000000.0,
-    "2-5": 1000000000.0,
+    "unique": 6.5,
+    "2-5": 5.0,
     "6-25": 1000000000.0,
     "26+": 1000000000.0,
     "initials": 1000000000.0,
-    "unmeasured": 10.0
+    "unmeasured": 7.0
    },
    "multi": 1000000000.0,
    "margin": 0,
-   "review": 2.5
+   "review": 0.0,
+   "runner_max": 1000000000.0
   },
   "jstor-author": {
    "single": {
     "unique": 6.0,
-    "2-5": 4.5,
+    "2-5": 4.0,
     "6-25": 1000000000.0,
     "26+": 1000000000.0,
     "initials": 1000000000.0,
@@ -25,98 +28,99 @@
    },
    "multi": 1000000000.0,
    "margin": 0,
-   "review": 4.5
+   "review": 4.0,
+   "runner_max": 1000000000.0
   },
   "reviewer": {
    "single": {
     "unique": 5.0,
-    "2-5": 4.5,
-    "6-25": 9.5,
+    "2-5": 4.0,
+    "6-25": 11.0,
     "26+": 1000000000.0,
     "initials": 1000000000.0,
     "unmeasured": 1000000000.0
    },
    "multi": 1000000000.0,
    "margin": 0,
-   "review": 4.5
+   "review": 4.0,
+   "runner_max": 1000000000.0
   }
  },
- "target_false_link_share": 0.005,
- "absent_share_by_stratum": {
+ "absent_share_used": {
   "author": {
    "single-unique": {
-    "pi": 0.6025,
-    "n_prod": 55196,
+    "pi": 0.1191,
+    "n_prod": 81492,
     "n_present": 1987,
-    "n_absent": 2892
+    "n_absent": 2914
    },
    "single-2-5": {
-    "pi": 0.5548,
-    "n_prod": 83101,
-    "n_present": 3927,
-    "n_absent": 4481
+    "pi": 0.1212,
+    "n_prod": 125581,
+    "n_present": 3931,
+    "n_absent": 4398
    },
    "single-6-25": {
-    "pi": 0.6154,
-    "n_prod": 22590,
-    "n_present": 525,
-    "n_absent": 1071
+    "pi": 0.4196,
+    "n_prod": 32835,
+    "n_present": 522,
+    "n_absent": 1067
    },
    "single-26+": {
-    "pi": 0.8906,
-    "n_prod": 5718,
+    "pi": 0.7784,
+    "n_prod": 9328,
     "n_present": 59,
-    "n_absent": 296
+    "n_absent": 291
    },
    "single-initials": {
-    "pi": 0.6417,
-    "n_prod": 15047,
+    "pi": 0.3706,
+    "n_prod": 17449,
     "n_present": 207,
-    "n_absent": 450
+    "n_absent": 449
    },
    "single-unmeasured": {
-    "pi": 0.676,
-    "n_prod": 57469,
-    "n_present": 19614,
-    "n_absent": 25816
+    "pi": 0.3324,
+    "n_prod": 59207,
+    "n_present": 19607,
+    "n_absent": 25734
    },
    "multi": {
-    "pi": 0.5548,
-    "n_prod": 77938,
-    "n_present": 5272,
-    "n_absent": 2786
+    "pi": 0.5536,
+    "n_prod": 98833,
+    "n_present": 5262,
+    "n_absent": 2718
    }
   },
   "jstor-author": {
    "single-unique": {
-    "pi": 0.0411,
-    "n_prod": 18978,
-    "n_present": 1319,
-    "n_absent": 1281
+    "pi": 0.0408,
+    "n_prod": 19467,
+    "n_present": 1320,
+    "n_absent": 1277
    },
    "single-2-5": {
-    "pi": 0.0411,
-    "n_prod": 26939,
-    "n_present": 1932,
-    "n_absent": 2339
+    "pi": 0.0408,
+    "n_prod": 27270,
+    "n_present": 1934,
+    "n_absent": 2350
    },
    "single-6-25": {
-    "pi": 0.4205,
-    "n_prod": 5442,
+    "pi": 0.4415,
+    "n_prod": 5505,
     "n_present": 414,
-    "n_absent": 695
+    "n_absent": 711
    },
    "single-26+": {
-    "pi": 0.7475,
-    "n_prod": 1224,
+    "pi": 0.7511,
+    "n_prod": 1268,
     "n_present": 44,
-    "n_absent": 217
+    "n_absent": 215
    },
    "single-initials": {
-    "pi": 0.5261,
-    "n_prod": 3532,
+    "pi": 0.5192,
+    "n_prod": 3656,
     "n_present": 217,
-    "n_absent": 335
+    "n_absent": 330
    },
    "single-unmeasured": {
     "pi": 1.0,
@@ -125,42 +129,42 @@
     "n_absent": 0
    },
    "multi": {
-    "pi": 0.4568,
-    "n_prod": 11191,
-    "n_present": 721,
-    "n_absent": 329
+    "pi": 0.4482,
+    "n_prod": 11254,
+    "n_present": 719,
+    "n_absent": 339
    }
   },
   "reviewer": {
    "single-unique": {
-    "pi": 0.0459,
-    "n_prod": 48055,
-    "n_present": 6189,
-    "n_absent": 6461
+    "pi": 0.046,
+    "n_prod": 48796,
+    "n_present": 6209,
+    "n_absent": 6453
    },
    "single-2-5": {
-    "pi": 0.0459,
-    "n_prod": 65274,
-    "n_present": 9930,
-    "n_absent": 12308
+    "pi": 0.046,
+    "n_prod": 65758,
+    "n_present": 9923,
+    "n_absent": 12231
    },
    "single-6-25": {
-    "pi": 0.7143,
-    "n_prod": 17687,
-    "n_present": 2067,
-    "n_absent": 3975
+    "pi": 0.7129,
+    "n_prod": 17796,
+    "n_present": 2058,
+    "n_absent": 3974
    },
    "single-26+": {
-    "pi": 0.8334,
-    "n_prod": 3597,
-    "n_present": 257,
-    "n_absent": 1602
+    "pi": 0.8407,
+    "n_prod": 3617,
+    "n_present": 256,
+    "n_absent": 1603
    },
    "single-initials": {
-    "pi": 0.718,
-    "n_prod": 5264,
-    "n_present": 29,
-    "n_absent": 61
+    "pi": 0.7039,
+    "n_prod": 5321,
+    "n_present": 28,
+    "n_absent": 64
    },
    "single-unmeasured": {
     "pi": 1.0,
@@ -169,33 +173,258 @@
     "n_absent": 0
    },
    "multi": {
-    "pi": 0.816,
-    "n_prod": 34873,
-    "n_present": 4128,
-    "n_absent": 1816
+    "pi": 0.7908,
+    "n_prod": 35032,
+    "n_present": 4084,
+    "n_absent": 1804
    }
   }
  },
- "models_compared": {
-  "naive": {
+ "audit": {
+  "items": 420,
+  "double_judged": 60,
+  "double_agreement": 0.9833,
+  "final_counts": {
+   "A": 361,
+   "not-keyed": 48,
+   "cannot-tell": 5,
+   "B": 5,
+   "C": 1
+  },
+  "by_stratum": {
+   "single-unique": {
+    "pi": 0.0638,
+    "lo95": 0.0,
+    "hi95": 0.1297,
+    "upper_used": 0.1191,
+    "production_positions": 55196,
+    "cells": {
+     "low": {
+      "n": 19,
+      "not_keyed": 2,
+      "other_key": 0,
+      "best_right": 17,
+      "production_weight": 0.3955
+     },
+     "mid": {
+      "n": 20,
+      "not_keyed": 0,
+      "other_key": 0,
+      "best_right": 20,
+      "production_weight": 0.3829
+     },
+     "high": {
+      "n": 20,
+      "not_keyed": 0,
+      "other_key": 0,
+      "best_right": 20,
+      "production_weight": 0.2216
+     }
+    }
+   },
+   "single-2-5": {
+    "pi": 0.0649,
+    "lo95": 0.0,
+    "hi95": 0.132,
+    "upper_used": 0.1212,
+    "production_positions": 83101,
+    "cells": {
+     "low": {
+      "n": 20,
+      "not_keyed": 2,
+      "other_key": 0,
+      "best_right": 18,
+      "production_weight": 0.4311
+     },
+     "mid": {
+      "n": 20,
+      "not_keyed": 0,
+      "other_key": 0,
+      "best_right": 20,
+      "production_weight": 0.3464
+     },
+     "high": {
+      "n": 20,
+      "not_keyed": 0,
+      "other_key": 0,
+      "best_right": 20,
+      "production_weight": 0.2224
+     }
+    }
+   },
+   "single-6-25": {
+    "pi": 0.2865,
+    "lo95": 0.1278,
+    "hi95": 0.4451,
+    "upper_used": 0.4196,
+    "production_positions": 22590,
+    "cells": {
+     "low": {
+      "n": 19,
+      "not_keyed": 7,
+      "other_key": 0,
+      "best_right": 12,
+      "production_weight": 0.7213
+     },
+     "mid": {
+      "n": 20,
+      "not_keyed": 1,
+      "other_key": 0,
+      "best_right": 19,
+      "production_weight": 0.1957
+     },
+     "high": {
+      "n": 20,
+      "not_keyed": 0,
+      "other_key": 0,
+      "best_right": 20,
+      "production_weight": 0.083
+     }
+    }
+   },
+   "single-26+": {
+    "pi": 0.6093,
+    "lo95": 0.4078,
+    "hi95": 0.8107,
+    "upper_used": 0.7784,
+    "production_positions": 5718,
+    "cells": {
+     "low": {
+      "n": 18,
+      "not_keyed": 12,
+      "other_key": 0,
+      "best_right": 6,
+      "production_weight": 0.9187
+     },
+     "mid": {
+      "n": 20,
+      "not_keyed": 1,
+      "other_key": 0,
+      "best_right": 19,
+      "production_weight": 0.0617
+     },
+     "high": {
+      "n": 20,
+      "not_keyed": 0,
+      "other_key": 0,
+      "best_right": 20,
+      "production_weight": 0.0196
+     }
+    }
+   },
+   "single-initials": {
+    "pi": 0.2302,
+    "lo95": 0.063,
+    "hi95": 0.3975,
+    "upper_used": 0.3706,
+    "production_positions": 15047,
+    "cells": {
+     "low": {
+      "n": 20,
+      "not_keyed": 5,
+      "other_key": 0,
+      "best_right": 15,
+      "production_weight": 0.867
+     },
+     "mid": {
+      "n": 20,
+      "not_keyed": 0,
+      "other_key": 0,
+      "best_right": 20,
+      "production_weight": 0.1138
+     },
+     "high": {
+      "n": 20,
+      "not_keyed": 0,
+      "other_key": 0,
+      "best_right": 20,
+      "production_weight": 0.0192
+     }
+    }
+   },
+   "single-unmeasured": {
+    "pi": 0.2167,
+    "lo95": 0.0788,
+    "hi95": 0.3546,
+    "upper_used": 0.3324,
+    "production_positions": 57469,
+    "cells": {
+     "low": {
+      "n": 20,
+      "not_keyed": 6,
+      "other_key": 0,
+      "best_right": 14,
+      "production_weight": 0.6751
+     },
+     "mid": {
+      "n": 20,
+      "not_keyed": 0,
+      "other_key": 0,
+      "best_right": 20,
+      "production_weight": 0.25
+     },
+     "high": {
+      "n": 20,
+      "not_keyed": 0,
+      "other_key": 0,
+      "best_right": 20,
+      "production_weight": 0.0748
+     }
+    }
+   },
+   "multi": {
+    "pi": 0.4209,
+    "lo95": 0.2629,
+    "hi95": 0.579,
+    "upper_used": 0.5536,
+    "production_positions": 77938,
+    "cells": {
+     "low": {
+      "n": 19,
+      "not_keyed": 11,
+      "other_key": 2,
+      "best_right": 6,
+      "production_weight": 0.7036
+     },
+     "mid": {
+      "n": 20,
+      "not_keyed": 1,
+      "other_key": 4,
+      "best_right": 15,
+      "production_weight": 0.1962
+     },
+     "high": {
+      "n": 20,
+      "not_keyed": 0,
+      "other_key": 0,
+      "best_right": 20,
+      "production_weight": 0.1003
+     }
+    }
+   }
+  }
+ },
+ "configurations": {
+  "C0-round-one": {
    "thresholds": {
     "author": {
      "single": {
       "unique": 1000000000.0,
-      "2-5": 1000000000.0,
+      "2-5": 11.0,
       "6-25": 1000000000.0,
       "26+": 1000000000.0,
       "initials": 1000000000.0,
-      "unmeasured": 10.0
+      "unmeasured": 9.5
      },
      "multi": 1000000000.0,
      "margin": 0,
-     "review": 2.5
+     "review": 1.5,
+     "runner_max": 1000000000.0
     },
     "jstor-author": {
      "single": {
       "unique": 6.0,
-      "2-5": 4.5,
+      "2-5": 4.0,
       "6-25": 1000000000.0,
       "26+": 1000000000.0,
       "initials": 1000000000.0,
@@ -203,162 +432,973 @@
      },
      "multi": 1000000000.0,
      "margin": 0,
-     "review": 4.5
+     "review": 4.0,
+     "runner_max": 1000000000.0
     },
     "reviewer": {
      "single": {
       "unique": 5.0,
-      "2-5": 4.5,
-      "6-25": 9.5,
+      "2-5": 4.0,
+      "6-25": 11.0,
       "26+": 1000000000.0,
       "initials": 1000000000.0,
       "unmeasured": 1000000000.0
      },
      "multi": 1000000000.0,
      "margin": 0,
-     "review": 4.5
+     "review": 4.0,
+     "runner_max": 1000000000.0
     }
    },
-   "audit_pi": {
+   "pi": {
     "author": {
-     "audit_correct": 26,
-     "audit_wrong": 2,
-     "precision_lower_5pct": 0.816,
-     "rule_recall": 0.6843,
-     "rule_absent_link_rate": 0.1238,
-     "pi": 0.5548
+     "single-unique": 0.5667,
+     "single-2-5": 0.5667,
+     "single-6-25": 0.572,
+     "single-26+": 0.9394,
+     "single-initials": 0.633,
+     "single-unmeasured": 0.6731,
+     "multi": 0.5667
     },
     "jstor-author": {
-     "audit_correct": 60,
-     "audit_wrong": 0,
-     "precision_lower_5pct": 0.9686,
-     "rule_recall": 0.7666,
-     "rule_absent_link_rate": 0.5796,
-     "pi": 0.0411
+     "single-unique": 0.0408,
+     "single-2-5": 0.0408,
+     "single-6-25": 0.4415,
+     "single-26+": 0.7511,
+     "single-initials": 0.5192,
+     "single-unmeasured": 1.0,
+     "multi": 0.4482
     },
     "reviewer": {
-     "audit_correct": 57,
-     "audit_wrong": 0,
-     "precision_lower_5pct": 0.967,
-     "rule_recall": 0.7886,
-     "rule_absent_link_rate": 0.5588,
-     "pi": 0.0459
+     "single-unique": 0.046,
+     "single-2-5": 0.046,
+     "single-6-25": 0.7129,
+     "single-26+": 0.8407,
+     "single-initials": 0.7039,
+     "single-unmeasured": 1.0,
+     "multi": 0.7908
     }
    },
-   "calib_est_fdr": 0.00328,
-   "calib_expected_true_links_per_1000_scored_positions": 257.41,
-   "calib_recall_present": 0.3547,
-   "pi_sensitivity": {
-    "author_pi_x0.5": {
-     "thresholds": {
-      "author": {
-       "single": {
-        "unique": 1000000000.0,
-        "2-5": 10.5,
-        "6-25": 1000000000.0,
-        "26+": 1000000000.0,
-        "initials": 1000000000.0,
-        "unmeasured": 7.5
-       },
-       "multi": 1000000000.0,
-       "margin": 0,
-       "review": 0.0
-      },
-      "jstor-author": {
-       "single": {
-        "unique": 6.0,
-        "2-5": 4.5,
-        "6-25": 1000000000.0,
-        "26+": 1000000000.0,
-        "initials": 1000000000.0,
-        "unmeasured": 1000000000.0
-       },
-       "multi": 1000000000.0,
-       "margin": 0,
-       "review": 4.5
-      },
-      "reviewer": {
-       "single": {
-        "unique": 5.0,
-        "2-5": 4.5,
-        "6-25": 9.5,
-        "26+": 1000000000.0,
-        "initials": 1000000000.0,
-        "unmeasured": 1000000000.0
-       },
-       "multi": 1000000000.0,
-       "margin": 0,
-       "review": 4.5
-      }
-     },
-     "calib_expected_true_links_per_1000_scored_positions": 304.47,
-     "calib_recall_present": 0.4148
+   "calib_est_fdr": 0.00298,
+   "test": {
+    "overall": {
+     "positions": 30261,
+     "link": 11641,
+     "review": 12032,
+     "right": 11638,
+     "wrong": 0,
+     "dup_key": 3,
+     "precision": 1.0,
+     "precision_dup_as_wrong": 0.9997,
+     "recall": 0.3846,
+     "est_false_share": 0.00314,
+     "absent_positions": 35509,
+     "absent_false": 824,
+     "rule": {
+      "positions": 30261,
+      "link": 23522,
+      "right": 23354,
+      "wrong": 8,
+      "dup_key": 160,
+      "precision": 0.9997,
+      "recall": 0.7718
+     }
     },
-    "all_groups_mixture_pi": {
-     "thresholds": {
-      "author": {
-       "single": {
-        "unique": 1000000000.0,
-        "2-5": 1000000000.0,
-        "6-25": 1000000000.0,
-        "26+": 1000000000.0,
-        "initials": 1000000000.0,
-        "unmeasured": 10.0
-       },
-       "multi": 1000000000.0,
-       "margin": 0,
-       "review": 1.5
-      },
-      "jstor-author": {
-       "single": {
-        "unique": 1000000000.0,
-        "2-5": 10.5,
-        "6-25": 1000000000.0,
-        "26+": 1000000000.0,
-        "initials": 1000000000.0,
-        "unmeasured": 1000000000.0
-       },
-       "multi": 1000000000.0,
-       "margin": 0,
-       "review": 1.5
-      },
-      "reviewer": {
-       "single": {
-        "unique": 14.0,
-        "2-5": 13.0,
-        "6-25": 9.5,
-        "26+": 1000000000.0,
-        "initials": 1000000000.0,
-        "unmeasured": 1000000000.0
-       },
-       "multi": 1000000000.0,
-       "margin": 0,
-       "review": 5.0
-      }
+    "rg": {
+     "author": {
+      "n": 16319,
+      "recall": 0.118,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0005,
+      "absent_false": 2,
+      "rule_recall": 0.7584,
+      "rule_precision": 0.9998
      },
-     "calib_expected_true_links_per_1000_scored_positions": 67.54,
-     "calib_recall_present": 0.2313
+     "jstor-author": {
+      "n": 2565,
+      "recall": 0.6125,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00238,
+      "absent_false": 111,
+      "rule_recall": 0.7727,
+      "rule_precision": 0.9995
+     },
+     "reviewer": {
+      "n": 11377,
+      "recall": 0.7157,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00374,
+      "absent_false": 711,
+      "rule_recall": 0.7906,
+      "rule_precision": 0.9994
+     }
+    },
+    "band": {
+     "2-5": {
+      "n": 9673,
+      "recall": 0.6387,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00323,
+      "absent_false": 569,
+      "rule_recall": 0.7999,
+      "rule_precision": 0.9994
+     },
+     "26+": {
+      "n": 861,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.2636,
+      "rule_precision": 0.9956
+     },
+     "6-25": {
+      "n": 2118,
+      "recall": 0.2734,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.5817,
+      "rule_precision": 0.9984
+     },
+     "initials": {
+      "n": 296,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.4088,
+      "rule_precision": 1.0
+     },
+     "no live candidate": {
+      "n": 357,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.0,
+      "rule_precision": null
+     },
+     "unique": {
+      "n": 5049,
+      "recall": 0.6599,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00321,
+      "absent_false": 253,
+      "rule_recall": 0.9022,
+      "rule_precision": 1.0
+     },
+     "unmeasured": {
+      "n": 11907,
+      "recall": 0.1301,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00206,
+      "absent_false": 2,
+      "rule_recall": 0.7963,
+      "rule_precision": 1.0
+     }
+    },
+    "orcid": {
+     "key has ORCID": {
+      "n": 19103,
+      "recall": 0.2127,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00281,
+      "absent_false": 183,
+      "rule_recall": 0.7583,
+      "rule_precision": 0.9998
+     },
+     "no ORCID": {
+      "n": 11158,
+      "recall": 0.6788,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00333,
+      "absent_false": 641,
+      "rule_recall": 0.7949,
+      "rule_precision": 0.9994
+     }
+    },
+    "country": {
+     "BE": {
+      "n": 30,
+      "recall": 0.1667,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 1.0,
+      "rule_precision": 1.0
+     },
+     "CA": {
+      "n": 96,
+      "recall": 0.4375,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00066,
+      "absent_false": 1,
+      "rule_recall": 0.7917,
+      "rule_precision": 1.0
+     },
+     "FR": {
+      "n": 93,
+      "recall": 0.0538,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.3978,
+      "rule_precision": 1.0
+     },
+     "GB": {
+      "n": 238,
+      "recall": 0.2647,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00153,
+      "absent_false": 3,
+      "rule_recall": 0.7269,
+      "rule_precision": 1.0
+     },
+     "IT": {
+      "n": 80,
+      "recall": 0.1125,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.6375,
+      "rule_precision": 1.0
+     },
+     "SE": {
+      "n": 125,
+      "recall": 0.032,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.936,
+      "rule_precision": 1.0
+     },
+     "US": {
+      "n": 204,
+      "recall": 0.5049,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00158,
+      "absent_false": 5,
+      "rule_recall": 0.7794,
+      "rule_precision": 1.0
+     },
+     "US/CA (AHA)": {
+      "n": 9397,
+      "recall": 0.6666,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00315,
+      "absent_false": 534,
+      "rule_recall": 0.8104,
+      "rule_precision": 0.9993
+     },
+     "unknown": {
+      "n": 19966,
+      "recall": 0.257,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00294,
+      "absent_false": 281,
+      "rule_recall": 0.7548,
+      "rule_precision": 0.9998
+     }
     }
+   },
+   "production": {
+    "none": 1498507,
+    "review": 247850,
+    "exact": 129558,
+    "link": 94031
    }
   },
-  "grouped": {
+  "C1-audit-pi": {
    "thresholds": {
     "author": {
      "single": {
-      "unique": 1000000000.0,
-      "2-5": 1000000000.0,
+      "unique": 6.5,
+      "2-5": 5.0,
       "6-25": 1000000000.0,
       "26+": 1000000000.0,
       "initials": 1000000000.0,
-      "unmeasured": 9.0
+      "unmeasured": 7.0
      },
      "multi": 1000000000.0,
      "margin": 0,
-     "review": 2.5
+     "review": 0.0,
+     "runner_max": 1000000000.0
     },
     "jstor-author": {
      "single": {
       "unique": 6.0,
+      "2-5": 4.0,
+      "6-25": 1000000000.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 1000000000.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 4.0,
+     "runner_max": 1000000000.0
+    },
+    "reviewer": {
+     "single": {
+      "unique": 5.0,
+      "2-5": 4.0,
+      "6-25": 11.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 1000000000.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 4.0,
+     "runner_max": 1000000000.0
+    }
+   },
+   "pi": {
+    "author": {
+     "single-unique": 0.1191,
+     "single-2-5": 0.1212,
+     "single-6-25": 0.4196,
+     "single-26+": 0.7784,
+     "single-initials": 0.3706,
+     "single-unmeasured": 0.3324,
+     "multi": 0.5536
+    },
+    "jstor-author": {
+     "single-unique": 0.0408,
+     "single-2-5": 0.0408,
+     "single-6-25": 0.4415,
+     "single-26+": 0.7511,
+     "single-initials": 0.5192,
+     "single-unmeasured": 1.0,
+     "multi": 0.4482
+    },
+    "reviewer": {
+     "single-unique": 0.046,
+     "single-2-5": 0.046,
+     "single-6-25": 0.7129,
+     "single-26+": 0.8407,
+     "single-initials": 0.7039,
+     "single-unmeasured": 1.0,
+     "multi": 0.7908
+    }
+   },
+   "calib_est_fdr": 0.00306,
+   "test": {
+    "overall": {
+     "positions": 30261,
+     "link": 14415,
+     "review": 12811,
+     "right": 14357,
+     "wrong": 0,
+     "dup_key": 58,
+     "precision": 1.0,
+     "precision_dup_as_wrong": 0.996,
+     "recall": 0.4744,
+     "est_false_share": 0.00319,
+     "absent_positions": 35509,
+     "absent_false": 901,
+     "rule": {
+      "positions": 30261,
+      "link": 23522,
+      "right": 23354,
+      "wrong": 8,
+      "dup_key": 160,
+      "precision": 0.9997,
+      "recall": 0.7718
+     }
+    },
+    "rg": {
+     "author": {
+      "n": 16319,
+      "recall": 0.2846,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00299,
+      "absent_false": 79,
+      "rule_recall": 0.7584,
+      "rule_precision": 0.9998
+     },
+     "jstor-author": {
+      "n": 2565,
+      "recall": 0.6125,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00238,
+      "absent_false": 111,
+      "rule_recall": 0.7727,
+      "rule_precision": 0.9995
+     },
+     "reviewer": {
+      "n": 11377,
+      "recall": 0.7157,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00374,
+      "absent_false": 711,
+      "rule_recall": 0.7906,
+      "rule_precision": 0.9994
+     }
+    },
+    "band": {
+     "2-5": {
+      "n": 9673,
+      "recall": 0.7352,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00318,
+      "absent_false": 599,
+      "rule_recall": 0.7999,
+      "rule_precision": 0.9994
+     },
+     "26+": {
+      "n": 861,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.2636,
+      "rule_precision": 0.9956
+     },
+     "6-25": {
+      "n": 2118,
+      "recall": 0.2734,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.5817,
+      "rule_precision": 0.9984
+     },
+     "initials": {
+      "n": 296,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.4088,
+      "rule_precision": 1.0
+     },
+     "no live candidate": {
+      "n": 357,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.0,
+      "rule_precision": null
+     },
+     "unique": {
+      "n": 5049,
+      "recall": 0.7758,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00322,
+      "absent_false": 273,
+      "rule_recall": 0.9022,
+      "rule_precision": 1.0
+     },
+     "unmeasured": {
+      "n": 11907,
+      "recall": 0.2309,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00406,
+      "absent_false": 29,
+      "rule_recall": 0.7963,
+      "rule_precision": 1.0
+     }
+    },
+    "orcid": {
+     "key has ORCID": {
+      "n": 19103,
+      "recall": 0.3452,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00304,
+      "absent_false": 256,
+      "rule_recall": 0.7583,
+      "rule_precision": 0.9998
+     },
+     "no ORCID": {
+      "n": 11158,
+      "recall": 0.6956,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00364,
+      "absent_false": 645,
+      "rule_recall": 0.7949,
+      "rule_precision": 0.9994
+     }
+    },
+    "country": {
+     "BE": {
+      "n": 30,
+      "recall": 0.4,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 1.0,
+      "rule_precision": 1.0
+     },
+     "CA": {
+      "n": 96,
+      "recall": 0.5208,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00039,
+      "absent_false": 1,
+      "rule_recall": 0.7917,
+      "rule_precision": 1.0
+     },
+     "FR": {
+      "n": 93,
+      "recall": 0.0968,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.02007,
+      "absent_false": 1,
+      "rule_recall": 0.3978,
+      "rule_precision": 1.0
+     },
+     "GB": {
+      "n": 238,
+      "recall": 0.3193,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00113,
+      "absent_false": 3,
+      "rule_recall": 0.7269,
+      "rule_precision": 1.0
+     },
+     "IT": {
+      "n": 80,
+      "recall": 0.1375,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.6375,
+      "rule_precision": 1.0
+     },
+     "SE": {
+      "n": 125,
+      "recall": 0.152,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.936,
+      "rule_precision": 1.0
+     },
+     "US": {
+      "n": 204,
+      "recall": 0.549,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00083,
+      "absent_false": 5,
+      "rule_recall": 0.7794,
+      "rule_precision": 1.0
+     },
+     "US/CA (AHA)": {
+      "n": 9397,
+      "recall": 0.6845,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00425,
+      "absent_false": 541,
+      "rule_recall": 0.8104,
+      "rule_precision": 0.9993
+     },
+     "unknown": {
+      "n": 19966,
+      "recall": 0.3816,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00301,
+      "absent_false": 350,
+      "rule_recall": 0.7548,
+      "rule_precision": 0.9998
+     }
+    }
+   },
+   "production": {
+    "none": 1415524,
+    "review": 265699,
+    "link": 159165,
+    "exact": 129558
+   }
+  },
+  "C2-margin-rule": {
+   "thresholds": {
+    "author": {
+     "single": {
+      "unique": 6.5,
+      "2-5": 5.0,
+      "6-25": 1000000000.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 7.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 0.0,
+     "runner_max": 1000000000.0
+    },
+    "jstor-author": {
+     "single": {
+      "unique": 6.0,
+      "2-5": 4.0,
+      "6-25": 1000000000.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 1000000000.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 4.0,
+     "runner_max": 1000000000.0
+    },
+    "reviewer": {
+     "single": {
+      "unique": 5.0,
+      "2-5": 4.0,
+      "6-25": 11.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 1000000000.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 4.0,
+     "runner_max": 1000000000.0
+    }
+   },
+   "pi": {
+    "author": {
+     "single-unique": 0.1191,
+     "single-2-5": 0.1212,
+     "single-6-25": 0.4196,
+     "single-26+": 0.7784,
+     "single-initials": 0.3706,
+     "single-unmeasured": 0.3324,
+     "multi": 0.5536
+    },
+    "jstor-author": {
+     "single-unique": 0.0408,
+     "single-2-5": 0.0408,
+     "single-6-25": 0.4415,
+     "single-26+": 0.7511,
+     "single-initials": 0.5192,
+     "single-unmeasured": 1.0,
+     "multi": 0.4482
+    },
+    "reviewer": {
+     "single-unique": 0.046,
+     "single-2-5": 0.046,
+     "single-6-25": 0.7129,
+     "single-26+": 0.8407,
+     "single-initials": 0.7039,
+     "single-unmeasured": 1.0,
+     "multi": 0.7908
+    }
+   },
+   "calib_est_fdr": 0.00304,
+   "test": {
+    "overall": {
+     "positions": 30261,
+     "link": 14415,
+     "review": 12811,
+     "right": 14357,
+     "wrong": 0,
+     "dup_key": 58,
+     "precision": 1.0,
+     "precision_dup_as_wrong": 0.996,
+     "recall": 0.4744,
+     "est_false_share": 0.00316,
+     "absent_positions": 35509,
+     "absent_false": 896,
+     "rule": {
+      "positions": 30261,
+      "link": 23522,
+      "right": 23354,
+      "wrong": 7,
+      "dup_key": 161,
+      "precision": 0.9997,
+      "recall": 0.7718
+     }
+    },
+    "rg": {
+     "author": {
+      "n": 16319,
+      "recall": 0.2846,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00293,
+      "absent_false": 74,
+      "rule_recall": 0.7584,
+      "rule_precision": 0.9998
+     },
+     "jstor-author": {
+      "n": 2565,
+      "recall": 0.6125,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00238,
+      "absent_false": 111,
+      "rule_recall": 0.7727,
+      "rule_precision": 1.0
+     },
+     "reviewer": {
+      "n": 11377,
+      "recall": 0.7157,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00374,
+      "absent_false": 711,
+      "rule_recall": 0.7906,
+      "rule_precision": 0.9994
+     }
+    },
+    "band": {
+     "2-5": {
+      "n": 9673,
+      "recall": 0.7352,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00318,
+      "absent_false": 599,
+      "rule_recall": 0.7999,
+      "rule_precision": 0.9994
+     },
+     "26+": {
+      "n": 861,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.2636,
+      "rule_precision": 0.9956
+     },
+     "6-25": {
+      "n": 2118,
+      "recall": 0.2734,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.5817,
+      "rule_precision": 0.9992
+     },
+     "initials": {
+      "n": 296,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.4088,
+      "rule_precision": 1.0
+     },
+     "no live candidate": {
+      "n": 357,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.0,
+      "rule_precision": null
+     },
+     "unique": {
+      "n": 5049,
+      "recall": 0.7758,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00322,
+      "absent_false": 273,
+      "rule_recall": 0.9022,
+      "rule_precision": 1.0
+     },
+     "unmeasured": {
+      "n": 11907,
+      "recall": 0.2309,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00336,
+      "absent_false": 24,
+      "rule_recall": 0.7963,
+      "rule_precision": 1.0
+     }
+    },
+    "orcid": {
+     "key has ORCID": {
+      "n": 19103,
+      "recall": 0.3452,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00301,
+      "absent_false": 251,
+      "rule_recall": 0.7583,
+      "rule_precision": 0.9999
+     },
+     "no ORCID": {
+      "n": 11158,
+      "recall": 0.6956,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00364,
+      "absent_false": 645,
+      "rule_recall": 0.7949,
+      "rule_precision": 0.9994
+     }
+    },
+    "country": {
+     "BE": {
+      "n": 30,
+      "recall": 0.4,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 1.0,
+      "rule_precision": 1.0
+     },
+     "CA": {
+      "n": 96,
+      "recall": 0.5208,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00039,
+      "absent_false": 1,
+      "rule_recall": 0.7917,
+      "rule_precision": 1.0
+     },
+     "FR": {
+      "n": 93,
+      "recall": 0.0968,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.02007,
+      "absent_false": 1,
+      "rule_recall": 0.3978,
+      "rule_precision": 1.0
+     },
+     "GB": {
+      "n": 238,
+      "recall": 0.3193,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00113,
+      "absent_false": 3,
+      "rule_recall": 0.7269,
+      "rule_precision": 1.0
+     },
+     "IT": {
+      "n": 80,
+      "recall": 0.1375,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.6375,
+      "rule_precision": 1.0
+     },
+     "SE": {
+      "n": 125,
+      "recall": 0.152,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.936,
+      "rule_precision": 1.0
+     },
+     "US": {
+      "n": 204,
+      "recall": 0.549,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00083,
+      "absent_false": 5,
+      "rule_recall": 0.7794,
+      "rule_precision": 1.0
+     },
+     "US/CA (AHA)": {
+      "n": 9397,
+      "recall": 0.6845,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00425,
+      "absent_false": 541,
+      "rule_recall": 0.8104,
+      "rule_precision": 0.9993
+     },
+     "unknown": {
+      "n": 19966,
+      "recall": 0.3816,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00297,
+      "absent_false": 345,
+      "rule_recall": 0.7548,
+      "rule_precision": 0.9999
+     }
+    }
+   },
+   "production": {
+    "none": 1415524,
+    "review": 265699,
+    "link": 159165,
+    "exact": 129558
+   }
+  },
+  "C3-relational": {
+   "thresholds": {
+    "author": {
+     "single": {
+      "unique": 11.0,
+      "2-5": 8.5,
+      "6-25": 1000000000.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 10.5
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 0.0,
+     "runner_max": 1000000000.0
+    },
+    "jstor-author": {
+     "single": {
+      "unique": 8.0,
       "2-5": 5.0,
       "6-25": 1000000000.0,
       "26+": 1000000000.0,
@@ -367,1566 +1407,1451 @@
      },
      "multi": 1000000000.0,
      "margin": 0,
-     "review": 0.0
+     "review": 1.0,
+     "runner_max": 1000000000.0
     },
     "reviewer": {
      "single": {
-      "unique": 5.0,
+      "unique": 7.5,
       "2-5": 4.5,
-      "6-25": 8.5,
+      "6-25": 11.5,
       "26+": 1000000000.0,
       "initials": 1000000000.0,
       "unmeasured": 1000000000.0
      },
      "multi": 1000000000.0,
      "margin": 0,
-     "review": 4.5
+     "review": 4.5,
+     "runner_max": 1000000000.0
     }
    },
-   "audit_pi": {
+   "pi": {
     "author": {
-     "audit_correct": 26,
-     "audit_wrong": 2,
-     "precision_lower_5pct": 0.816,
-     "rule_recall": 0.6843,
-     "rule_absent_link_rate": 0.1238,
-     "pi": 0.5548
+     "single-unique": 0.1191,
+     "single-2-5": 0.1212,
+     "single-6-25": 0.4196,
+     "single-26+": 0.7784,
+     "single-initials": 0.3706,
+     "single-unmeasured": 0.3324,
+     "multi": 0.5536
     },
     "jstor-author": {
-     "audit_correct": 60,
-     "audit_wrong": 0,
-     "precision_lower_5pct": 0.9686,
-     "rule_recall": 0.7666,
-     "rule_absent_link_rate": 0.5796,
-     "pi": 0.0411
+     "single-unique": 0.0408,
+     "single-2-5": 0.0408,
+     "single-6-25": 0.4358,
+     "single-26+": 0.7566,
+     "single-initials": 0.5397,
+     "single-unmeasured": 1.0,
+     "multi": 0.4311
     },
     "reviewer": {
-     "audit_correct": 57,
-     "audit_wrong": 0,
-     "precision_lower_5pct": 0.967,
-     "rule_recall": 0.7886,
-     "rule_absent_link_rate": 0.5588,
-     "pi": 0.0459
+     "single-unique": 0.046,
+     "single-2-5": 0.046,
+     "single-6-25": 0.7206,
+     "single-26+": 0.8333,
+     "single-initials": 0.6993,
+     "single-unmeasured": 1.0,
+     "multi": 0.7946
     }
    },
-   "calib_est_fdr": 0.00295,
-   "calib_expected_true_links_per_1000_scored_positions": 248.02,
-   "calib_recall_present": 0.3364
-  },
-  "grouped+oa": {
-   "thresholds": {
-    "author": {
-     "single": {
-      "unique": 13.0,
-      "2-5": 15.5,
-      "6-25": 1000000000.0,
-      "26+": 1000000000.0,
-      "initials": 1000000000.0,
-      "unmeasured": 7.5
-     },
-     "multi": 1000000000.0,
-     "margin": 0,
-     "review": 6.0
-    },
-    "jstor-author": {
-     "single": {
-      "unique": 6.0,
-      "2-5": 4.5,
-      "6-25": 1000000000.0,
-      "26+": 1000000000.0,
-      "initials": 1000000000.0,
-      "unmeasured": 1000000000.0
-     },
-     "multi": 1000000000.0,
-     "margin": 0,
-     "review": 1.5
-    },
-    "reviewer": {
-     "single": {
-      "unique": 5.0,
-      "2-5": 4.5,
-      "6-25": 8.0,
-      "26+": 1000000000.0,
-      "initials": 1000000000.0,
-      "unmeasured": 1000000000.0
-     },
-     "multi": 1000000000.0,
-     "margin": 0,
-     "review": 4.5
-    }
-   },
-   "audit_pi": {
-    "author": {
-     "audit_correct": 26,
-     "audit_wrong": 2,
-     "precision_lower_5pct": 0.816,
-     "rule_recall": 0.6843,
-     "rule_absent_link_rate": 0.1238,
-     "pi": 0.5548
-    },
-    "jstor-author": {
-     "audit_correct": 60,
-     "audit_wrong": 0,
-     "precision_lower_5pct": 0.9686,
-     "rule_recall": 0.7666,
-     "rule_absent_link_rate": 0.5796,
-     "pi": 0.0411
-    },
-    "reviewer": {
-     "audit_correct": 57,
-     "audit_wrong": 0,
-     "precision_lower_5pct": 0.967,
-     "rule_recall": 0.7886,
-     "rule_absent_link_rate": 0.5588,
-     "pi": 0.0459
-    }
-   },
-   "calib_est_fdr": 0.00269,
-   "calib_expected_true_links_per_1000_scored_positions": 330.31,
-   "calib_recall_present": 0.6205
-  },
-  "logistic": {
-   "thresholds": {
-    "author": {
-     "single": {
-      "unique": 1000000000.0,
-      "2-5": 1000000000.0,
-      "6-25": 1000000000.0,
-      "26+": 1000000000.0,
-      "initials": 1000000000.0,
-      "unmeasured": 1000000000.0
-     },
-     "multi": 1000000000.0,
-     "margin": 0,
-     "review": 1000000000.0
-    },
-    "jstor-author": {
-     "single": {
-      "unique": 18.5,
-      "2-5": 17.5,
-      "6-25": 1000000000.0,
-      "26+": 1000000000.0,
-      "initials": 1000000000.0,
-      "unmeasured": 1000000000.0
-     },
-     "multi": 1000000000.0,
-     "margin": 0,
-     "review": 0.0
-    },
-    "reviewer": {
-     "single": {
-      "unique": 18.0,
-      "2-5": 17.5,
-      "6-25": 1000000000.0,
-      "26+": 1000000000.0,
-      "initials": 1000000000.0,
-      "unmeasured": 1000000000.0
-     },
-     "multi": 1000000000.0,
-     "margin": 0,
-     "review": 17.5
-    }
-   },
-   "audit_pi": {
-    "author": {
-     "audit_correct": 26,
-     "audit_wrong": 2,
-     "precision_lower_5pct": 0.816,
-     "rule_recall": 0.6843,
-     "rule_absent_link_rate": 0.1238,
-     "pi": 0.5548
-    },
-    "jstor-author": {
-     "audit_correct": 60,
-     "audit_wrong": 0,
-     "precision_lower_5pct": 0.9686,
-     "rule_recall": 0.7666,
-     "rule_absent_link_rate": 0.5796,
-     "pi": 0.0411
-    },
-    "reviewer": {
-     "audit_correct": 57,
-     "audit_wrong": 0,
-     "precision_lower_5pct": 0.967,
-     "rule_recall": 0.7886,
-     "rule_absent_link_rate": 0.5588,
-     "pi": 0.0459
-    }
-   },
-   "calib_est_fdr": 0.00268,
-   "calib_expected_true_links_per_1000_scored_positions": 207.97,
-   "calib_recall_present": 0.2412
-  }
- },
- "oa_tie_test": {
-  "with_oa_tie": 330.31,
-  "without": 248.02
- },
- "calibration": {
-  "present": {
-   "positions": 62503,
-   "link": 22178,
-   "review": 23167,
-   "right": 22172,
-   "wrong": 2,
-   "dup_key": 4,
-   "precision": 0.9999,
-   "precision_dup_as_wrong": 0.9997,
-   "recall": 0.3547
-  },
-  "absent_dropped_key": {
-   "positions": 10580,
-   "link": 193,
-   "review": 1223,
-   "right": 0,
-   "wrong": 51,
-   "dup_key": 142,
-   "precision": 0.0,
-   "precision_dup_as_wrong": 0.0,
-   "recall": 0.0
-  },
-  "absent_impersonated": {
-   "positions": 60437,
-   "link": 1444,
-   "review": 9459,
-   "right": 0,
-   "wrong": 1444,
-   "dup_key": 0,
-   "precision": 0.0,
-   "precision_dup_as_wrong": 0.0,
-   "recall": 0.0
-  },
-  "est_false_link_share_production_weighted": 0.00328,
-  "hidden_key_status": {
-   "live": 58838,
-   "not-in-block": 2415,
-   "date-excluded": 1216,
-   "hard": 34
-  },
-  "rule_linker_same_rows": {
-   "present": {
-    "positions": 62503,
-    "link": 45847,
-    "right": 45526,
-    "wrong": 112,
-    "dup_key": 209,
-    "precision": 0.9975,
-    "recall": 0.7284
-   },
-   "absent_dropped_key": {
-    "positions": 10580,
-    "link": 734,
-    "right": 0,
-    "wrong": 293,
-    "dup_key": 441,
-    "precision": 0.0,
-    "recall": 0.0
-   },
-   "absent_impersonated": {
-    "positions": 60437,
-    "link": 19499,
-    "right": 0,
-    "wrong": 19499,
-    "dup_key": 0,
-    "precision": 0.0,
-    "recall": 0.0
-   }
-  }
- },
- "test": {
-  "present": {
-   "positions": 31288,
-   "link": 11474,
-   "review": 11876,
-   "right": 11470,
-   "wrong": 1,
-   "dup_key": 3,
-   "precision": 0.9999,
-   "precision_dup_as_wrong": 0.9997,
-   "recall": 0.3666
-  },
-  "absent_dropped_key": {
-   "positions": 5543,
-   "link": 128,
-   "review": 899,
-   "right": 0,
-   "wrong": 51,
-   "dup_key": 77,
-   "precision": 0.0,
-   "precision_dup_as_wrong": 0.0,
-   "recall": 0.0
-  },
-  "absent_impersonated": {
-   "positions": 30453,
-   "link": 815,
-   "review": 5202,
-   "right": 0,
-   "wrong": 815,
-   "dup_key": 0,
-   "precision": 0.0,
-   "precision_dup_as_wrong": 0.0,
-   "recall": 0.0
-  },
-  "est_false_link_share_production_weighted": 0.00362,
-  "hidden_key_status": {
-   "live": 29652,
-   "not-in-block": 936,
-   "date-excluded": 679,
-   "hard": 21
-  },
-  "rule_linker_same_rows": {
-   "present": {
-    "positions": 31288,
-    "link": 23598,
-    "right": 23372,
-    "wrong": 164,
-    "dup_key": 62,
-    "precision": 0.993,
-    "recall": 0.747
-   },
-   "absent_dropped_key": {
-    "positions": 5543,
-    "link": 466,
-    "right": 0,
-    "wrong": 325,
-    "dup_key": 141,
-    "precision": 0.0,
-    "recall": 0.0
-   },
-   "absent_impersonated": {
-    "positions": 30453,
-    "link": 10028,
-    "right": 0,
-    "wrong": 10028,
-    "dup_key": 0,
-    "precision": 0.0,
-    "recall": 0.0
-   }
-  },
-  "subgroups": {
-   "orcid": {
-    "key has ORCID": {
-     "present": {
-      "positions": 20127,
-      "link": 3881,
-      "review": 9512,
-      "right": 3878,
-      "wrong": 1,
-      "dup_key": 2,
+   "calib_est_fdr": 0.00275,
+   "test": {
+    "overall": {
+     "positions": 30261,
+     "link": 12992,
+     "review": 14551,
+     "right": 12944,
+     "wrong": 0,
+     "dup_key": 48,
+     "precision": 1.0,
+     "precision_dup_as_wrong": 0.9963,
+     "recall": 0.4277,
+     "est_false_share": 0.0032,
+     "absent_positions": 35509,
+     "absent_false": 1011,
+     "rule": {
+      "positions": 30261,
+      "link": 23522,
+      "right": 23354,
+      "wrong": 7,
+      "dup_key": 161,
       "precision": 0.9997,
-      "precision_dup_as_wrong": 0.9992,
-      "recall": 0.1927
-     },
-     "absent_positions": 23028,
-     "absent_false_links": 183,
-     "est_false_link_share": 0.00285,
-     "rule_present": {
-      "positions": 20127,
-      "link": 14688,
-      "right": 14495,
-      "wrong": 159,
-      "dup_key": 34,
-      "precision": 0.9891,
-      "recall": 0.7202
+      "recall": 0.7718
      }
     },
-    "no ORCID": {
-     "present": {
-      "positions": 11161,
-      "link": 7593,
-      "review": 2364,
-      "right": 7592,
-      "wrong": 0,
-      "dup_key": 1,
+    "rg": {
+     "author": {
+      "n": 16319,
+      "recall": 0.2132,
       "precision": 1.0,
-      "precision_dup_as_wrong": 0.9999,
-      "recall": 0.6802
+      "wrong": 0,
+      "est_false_share": 0.00172,
+      "absent_false": 35,
+      "rule_recall": 0.7584,
+      "rule_precision": 0.9998
      },
-     "absent_positions": 12968,
-     "absent_false_links": 683,
-     "est_false_link_share": 0.00371,
-     "rule_present": {
-      "positions": 11161,
-      "link": 8910,
-      "right": 8877,
-      "wrong": 5,
-      "dup_key": 28,
-      "precision": 0.9994,
-      "recall": 0.7954
+     "jstor-author": {
+      "n": 2565,
+      "recall": 0.5926,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00257,
+      "absent_false": 115,
+      "rule_recall": 0.7727,
+      "rule_precision": 1.0
+     },
+     "reviewer": {
+      "n": 11377,
+      "recall": 0.6983,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00473,
+      "absent_false": 861,
+      "rule_recall": 0.7906,
+      "rule_precision": 0.9994
+     }
+    },
+    "band": {
+     "2-5": {
+      "n": 9673,
+      "recall": 0.6862,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00321,
+      "absent_false": 654,
+      "rule_recall": 0.8,
+      "rule_precision": 0.9994
+     },
+     "26+": {
+      "n": 858,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.2634,
+      "rule_precision": 0.9956
+     },
+     "6-25": {
+      "n": 2118,
+      "recall": 0.2705,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.5817,
+      "rule_precision": 0.9992
+     },
+     "initials": {
+      "n": 296,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.4088,
+      "rule_precision": 1.0
+     },
+     "no live candidate": {
+      "n": 357,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.0,
+      "rule_precision": null
+     },
+     "unique": {
+      "n": 5052,
+      "recall": 0.7086,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00333,
+      "absent_false": 342,
+      "rule_recall": 0.9016,
+      "rule_precision": 1.0
+     },
+     "unmeasured": {
+      "n": 11907,
+      "recall": 0.1808,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00268,
+      "absent_false": 15,
+      "rule_recall": 0.7963,
+      "rule_precision": 1.0
+     }
+    },
+    "orcid": {
+     "key has ORCID": {
+      "n": 19103,
+      "recall": 0.2846,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00294,
+      "absent_false": 263,
+      "rule_recall": 0.7583,
+      "rule_precision": 0.9999
+     },
+     "no ORCID": {
+      "n": 11158,
+      "recall": 0.6729,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0043,
+      "absent_false": 748,
+      "rule_recall": 0.7949,
+      "rule_precision": 0.9994
+     }
+    },
+    "country": {
+     "BE": {
+      "n": 30,
+      "recall": 0.3333,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 1.0,
+      "rule_precision": 1.0
+     },
+     "CA": {
+      "n": 96,
+      "recall": 0.4688,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.7917,
+      "rule_precision": 1.0
+     },
+     "FR": {
+      "n": 93,
+      "recall": 0.0538,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.02919,
+      "absent_false": 2,
+      "rule_recall": 0.3978,
+      "rule_precision": 1.0
+     },
+     "GB": {
+      "n": 238,
+      "recall": 0.2647,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00096,
+      "absent_false": 2,
+      "rule_recall": 0.7269,
+      "rule_precision": 1.0
+     },
+     "IT": {
+      "n": 80,
+      "recall": 0.125,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.6375,
+      "rule_precision": 1.0
+     },
+     "SE": {
+      "n": 125,
+      "recall": 0.096,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.936,
+      "rule_precision": 1.0
+     },
+     "US": {
+      "n": 204,
+      "recall": 0.5245,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00081,
+      "absent_false": 4,
+      "rule_recall": 0.7794,
+      "rule_precision": 1.0
+     },
+     "US/CA (AHA)": {
+      "n": 9397,
+      "recall": 0.6643,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00325,
+      "absent_false": 563,
+      "rule_recall": 0.8104,
+      "rule_precision": 0.9993
+     },
+     "unknown": {
+      "n": 19966,
+      "recall": 0.3223,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00355,
+      "absent_false": 440,
+      "rule_recall": 0.7548,
+      "rule_precision": 0.9999
      }
     }
    },
-   "band": {
-    "2-5": {
-     "present": {
-      "positions": 9703,
-      "link": 5777,
-      "review": 2787,
-      "right": 5776,
-      "wrong": 0,
-      "dup_key": 1,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 0.9998,
-      "recall": 0.5953
-     },
-     "absent_positions": 10904,
-     "absent_false_links": 596,
-     "est_false_link_share": 0.00381,
-     "rule_present": {
-      "positions": 9703,
-      "link": 7879,
-      "right": 7742,
-      "wrong": 115,
-      "dup_key": 22,
-      "precision": 0.9854,
-      "recall": 0.7979
-     }
-    },
-    "26+": {
-     "present": {
-      "positions": 874,
-      "link": 0,
-      "review": 526,
-      "right": 0,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": null,
-      "precision_dup_as_wrong": null,
-      "recall": 0.0
-     },
-     "absent_positions": 1626,
-     "absent_false_links": 0,
-     "est_false_link_share": 0.0,
-     "rule_present": {
-      "positions": 874,
-      "link": 236,
-      "right": 230,
-      "wrong": 2,
-      "dup_key": 4,
-      "precision": 0.9914,
-      "recall": 0.2632
-     }
-    },
-    "6-25": {
-     "present": {
-      "positions": 2151,
-      "link": 641,
-      "review": 1057,
-      "right": 641,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.298
-     },
-     "absent_positions": 2908,
-     "absent_false_links": 1,
-     "est_false_link_share": 0.00211,
-     "rule_present": {
-      "positions": 2151,
-      "link": 1249,
-      "right": 1232,
-      "wrong": 12,
-      "dup_key": 5,
-      "precision": 0.9904,
-      "recall": 0.5728
-     }
-    },
-    "initials": {
-     "present": {
-      "positions": 296,
-      "link": 0,
-      "review": 129,
-      "right": 0,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": null,
-      "precision_dup_as_wrong": null,
-      "recall": 0.0
-     },
-     "absent_positions": 366,
-     "absent_false_links": 0,
-     "est_false_link_share": 0.0,
-     "rule_present": {
-      "positions": 296,
-      "link": 121,
-      "right": 121,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "recall": 0.4088
-     }
-    },
-    "no live candidate": {
-     "present": {
-      "positions": 1100,
-      "link": 0,
-      "review": 0,
-      "right": 0,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": null,
-      "precision_dup_as_wrong": null,
-      "recall": 0.0
-     },
-     "absent_positions": 853,
-     "absent_false_links": 0,
-     "est_false_link_share": 0.0,
-     "rule_present": {
-      "positions": 1100,
-      "link": 2,
-      "right": 2,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "recall": 0.0018
-     }
-    },
-    "unique": {
-     "present": {
-      "positions": 5058,
-      "link": 3321,
-      "review": 1303,
-      "right": 3320,
-      "wrong": 0,
-      "dup_key": 1,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 0.9997,
-      "recall": 0.6564
-     },
-     "absent_positions": 5234,
-     "absent_false_links": 264,
-     "est_false_link_share": 0.00335,
-     "rule_present": {
-      "positions": 5058,
-      "link": 4591,
-      "right": 4552,
-      "wrong": 14,
-      "dup_key": 25,
-      "precision": 0.9969,
-      "recall": 0.9
-     }
-    },
-    "unmeasured": {
-     "present": {
-      "positions": 12106,
-      "link": 1735,
-      "review": 6074,
-      "right": 1733,
-      "wrong": 1,
-      "dup_key": 1,
-      "precision": 0.9994,
-      "precision_dup_as_wrong": 0.9988,
-      "recall": 0.1432
-     },
-     "absent_positions": 14105,
-     "absent_false_links": 5,
-     "est_false_link_share": 0.00518,
-     "rule_present": {
-      "positions": 12106,
-      "link": 9520,
-      "right": 9493,
-      "wrong": 21,
-      "dup_key": 6,
-      "precision": 0.9978,
-      "recall": 0.7842
-     }
-    }
-   },
-   "role": {
+   "production": {
+    "none": 1398644,
+    "review": 308690,
+    "link": 133054,
+    "exact": 129558
+   }
+  },
+  "C4-collective-pass1": {
+   "thresholds": {
     "author": {
-     "present": {
-      "positions": 17331,
-      "link": 1735,
-      "review": 9183,
-      "right": 1733,
-      "wrong": 1,
-      "dup_key": 1,
-      "precision": 0.9994,
-      "precision_dup_as_wrong": 0.9988,
-      "recall": 0.1
+     "single": {
+      "unique": 11.0,
+      "2-5": 8.5,
+      "6-25": 1000000000.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 10.5
      },
-     "absent_positions": 19567,
-     "absent_false_links": 5,
-     "est_false_link_share": 0.00518,
-     "rule_present": {
-      "positions": 17331,
-      "link": 12559,
-      "right": 12384,
-      "wrong": 156,
-      "dup_key": 19,
-      "precision": 0.9876,
-      "recall": 0.7146
-     }
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 0.0,
+     "runner_max": 1000000000.0
     },
     "jstor-author": {
-     "present": {
-      "positions": 2570,
-      "link": 1560,
-      "review": 632,
-      "right": 1559,
-      "wrong": 0,
-      "dup_key": 1,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 0.9994,
-      "recall": 0.6066
+     "single": {
+      "unique": 8.0,
+      "2-5": 5.0,
+      "6-25": 1000000000.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 1000000000.0
      },
-     "absent_positions": 2986,
-     "absent_false_links": 115,
-     "est_false_link_share": 0.00254,
-     "rule_present": {
-      "positions": 2570,
-      "link": 1985,
-      "right": 1982,
-      "wrong": 1,
-      "dup_key": 2,
-      "precision": 0.9995,
-      "recall": 0.7712
-     }
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 1.5,
+     "runner_max": 1000000000.0
     },
     "reviewer": {
-     "present": {
-      "positions": 11387,
-      "link": 8179,
-      "review": 2061,
-      "right": 8178,
-      "wrong": 0,
-      "dup_key": 1,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 0.9999,
-      "recall": 0.7182
+     "single": {
+      "unique": 7.5,
+      "2-5": 4.5,
+      "6-25": 11.5,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 1000000000.0
      },
-     "absent_positions": 13443,
-     "absent_false_links": 746,
-     "est_false_link_share": 0.00397,
-     "rule_present": {
-      "positions": 11387,
-      "link": 9054,
-      "right": 9006,
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 4.5,
+     "runner_max": 1000000000.0
+    }
+   },
+   "pi": {
+    "author": {
+     "single-unique": 0.1191,
+     "single-2-5": 0.1212,
+     "single-6-25": 0.4196,
+     "single-26+": 0.7784,
+     "single-initials": 0.3706,
+     "single-unmeasured": 0.3324,
+     "multi": 0.5536
+    },
+    "jstor-author": {
+     "single-unique": 0.0408,
+     "single-2-5": 0.0408,
+     "single-6-25": 0.4354,
+     "single-26+": 0.7579,
+     "single-initials": 0.5373,
+     "single-unmeasured": 1.0,
+     "multi": 0.4337
+    },
+    "reviewer": {
+     "single-unique": 0.046,
+     "single-2-5": 0.046,
+     "single-6-25": 0.7206,
+     "single-26+": 0.8333,
+     "single-initials": 0.6993,
+     "single-unmeasured": 1.0,
+     "multi": 0.7946
+    }
+   },
+   "calib_est_fdr": 0.00273,
+   "test": {
+    "overall": {
+     "positions": 30261,
+     "link": 13163,
+     "review": 14345,
+     "right": 13115,
+     "wrong": 0,
+     "dup_key": 48,
+     "precision": 1.0,
+     "precision_dup_as_wrong": 0.9964,
+     "recall": 0.4334,
+     "est_false_share": 0.00318,
+     "absent_positions": 35509,
+     "absent_false": 1011,
+     "rule": {
+      "positions": 30261,
+      "link": 23522,
+      "right": 23354,
       "wrong": 7,
-      "dup_key": 41,
-      "precision": 0.9992,
-      "recall": 0.7909
-     }
-    }
-   },
-   "kind": {
-    "article": {
-     "present": {
-      "positions": 25966,
-      "link": 11298,
-      "review": 9017,
-      "right": 11295,
-      "wrong": 1,
-      "dup_key": 2,
-      "precision": 0.9999,
-      "precision_dup_as_wrong": 0.9997,
-      "recall": 0.435
-     },
-     "absent_positions": 29874,
-     "absent_false_links": 864,
-     "est_false_link_share": 0.00359,
-     "rule_present": {
-      "positions": 25966,
-      "link": 19843,
-      "right": 19653,
-      "wrong": 137,
-      "dup_key": 53,
-      "precision": 0.9931,
-      "recall": 0.7569
+      "dup_key": 161,
+      "precision": 0.9997,
+      "recall": 0.7718
      }
     },
-    "book": {
-     "present": {
-      "positions": 1201,
-      "link": 14,
-      "review": 593,
-      "right": 14,
-      "wrong": 0,
-      "dup_key": 0,
+    "rg": {
+     "author": {
+      "n": 16319,
+      "recall": 0.2236,
       "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.0117
+      "wrong": 0,
+      "est_false_share": 0.00169,
+      "absent_false": 35,
+      "rule_recall": 0.7584,
+      "rule_precision": 0.9998
      },
-     "absent_positions": 1406,
-     "absent_false_links": 0,
-     "est_false_link_share": 0.0,
-     "rule_present": {
-      "positions": 1201,
-      "link": 772,
-      "right": 755,
-      "wrong": 13,
-      "dup_key": 4,
-      "precision": 0.9831,
-      "recall": 0.6286
+     "jstor-author": {
+      "n": 2565,
+      "recall": 0.5934,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00257,
+      "absent_false": 115,
+      "rule_recall": 0.7727,
+      "rule_precision": 1.0
+     },
+     "reviewer": {
+      "n": 11377,
+      "recall": 0.6983,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00473,
+      "absent_false": 861,
+      "rule_recall": 0.7906,
+      "rule_precision": 0.9994
      }
     },
-    "chapter": {
-     "present": {
-      "positions": 847,
-      "link": 30,
-      "review": 375,
-      "right": 30,
-      "wrong": 0,
-      "dup_key": 0,
+    "band": {
+     "2-5": {
+      "n": 9673,
+      "recall": 0.6871,
       "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.0354
+      "wrong": 0,
+      "est_false_share": 0.0032,
+      "absent_false": 654,
+      "rule_recall": 0.8,
+      "rule_precision": 0.9994
      },
-     "absent_positions": 982,
-     "absent_false_links": 1,
-     "est_false_link_share": 0.05184,
-     "rule_present": {
-      "positions": 847,
-      "link": 658,
-      "right": 656,
-      "wrong": 2,
-      "dup_key": 0,
-      "precision": 0.997,
-      "recall": 0.7745
-     }
-    },
-    "dataset": {
-     "present": {
-      "positions": 130,
-      "link": 32,
-      "review": 60,
-      "right": 32,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.2462
-     },
-     "absent_positions": 137,
-     "absent_false_links": 0,
-     "est_false_link_share": 0.0,
-     "rule_present": {
-      "positions": 130,
-      "link": 107,
-      "right": 107,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "recall": 0.8231
-     }
-    },
-    "other": {
-     "present": {
-      "positions": 1469,
-      "link": 36,
-      "review": 857,
-      "right": 36,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.0245
-     },
-     "absent_positions": 1730,
-     "absent_false_links": 0,
-     "est_false_link_share": 0.0,
-     "rule_present": {
-      "positions": 1469,
-      "link": 1105,
-      "right": 1103,
-      "wrong": 2,
-      "dup_key": 0,
-      "precision": 0.9982,
-      "recall": 0.7509
-     }
-    },
-    "preprint": {
-     "present": {
-      "positions": 416,
-      "link": 37,
-      "review": 230,
-      "right": 37,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.0889
-     },
-     "absent_positions": 498,
-     "absent_false_links": 0,
-     "est_false_link_share": 0.0,
-     "rule_present": {
-      "positions": 416,
-      "link": 305,
-      "right": 304,
-      "wrong": 1,
-      "dup_key": 0,
-      "precision": 0.9967,
-      "recall": 0.7308
-     }
-    },
-    "review": {
-     "present": {
-      "positions": 1037,
-      "link": 21,
-      "review": 643,
-      "right": 21,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.0203
-     },
-     "absent_positions": 1106,
-     "absent_false_links": 1,
-     "est_false_link_share": 0.07794,
-     "rule_present": {
-      "positions": 1037,
-      "link": 691,
-      "right": 680,
-      "wrong": 8,
-      "dup_key": 3,
-      "precision": 0.9884,
-      "recall": 0.6557
-     }
-    },
-    "thesis": {
-     "present": {
-      "positions": 222,
-      "link": 6,
-      "review": 101,
-      "right": 5,
-      "wrong": 0,
-      "dup_key": 1,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 0.8333,
-      "recall": 0.0225
-     },
-     "absent_positions": 263,
-     "absent_false_links": 0,
-     "est_false_link_share": 0.0,
-     "rule_present": {
-      "positions": 222,
-      "link": 117,
-      "right": 114,
-      "wrong": 1,
-      "dup_key": 2,
-      "precision": 0.9913,
-      "recall": 0.5135
-     }
-    }
-   },
-   "country": {
-    "BE": {
-     "present": {
-      "positions": 30,
-      "link": 5,
-      "review": 19,
-      "right": 5,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.1667
-     },
-     "absent_positions": 30,
-     "absent_false_links": 0,
-     "est_false_link_share": 0.0,
-     "rule_present": {
-      "positions": 30,
-      "link": 30,
-      "right": 30,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "recall": 1.0
-     }
-    },
-    "CA": {
-     "present": {
-      "positions": 96,
-      "link": 41,
-      "review": 30,
-      "right": 41,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.4271
-     },
-     "absent_positions": 108,
-     "absent_false_links": 2,
-     "est_false_link_share": 0.00146,
-     "rule_present": {
-      "positions": 96,
-      "link": 76,
-      "right": 76,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "recall": 0.7917
-     }
-    },
-    "FR": {
-     "present": {
-      "positions": 103,
-      "link": 4,
-      "review": 33,
-      "right": 4,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.0388
-     },
-     "absent_positions": 146,
-     "absent_false_links": 0,
-     "est_false_link_share": 0.0,
-     "rule_present": {
-      "positions": 103,
-      "link": 39,
-      "right": 37,
-      "wrong": 0,
-      "dup_key": 2,
-      "precision": 1.0,
-      "recall": 0.3592
-     }
-    },
-    "GB": {
-     "present": {
-      "positions": 251,
-      "link": 60,
-      "review": 84,
-      "right": 60,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.239
-     },
-     "absent_positions": 257,
-     "absent_false_links": 1,
-     "est_false_link_share": 0.00055,
-     "rule_present": {
-      "positions": 251,
-      "link": 173,
-      "right": 173,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "recall": 0.6892
-     }
-    },
-    "IT": {
-     "present": {
-      "positions": 80,
-      "link": 9,
-      "review": 27,
-      "right": 9,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.1125
-     },
-     "absent_positions": 80,
-     "absent_false_links": 0,
-     "est_false_link_share": 0.0,
-     "rule_present": {
-      "positions": 80,
-      "link": 51,
-      "right": 51,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "recall": 0.6375
-     }
-    },
-    "SE": {
-     "present": {
-      "positions": 125,
-      "link": 4,
-      "review": 77,
-      "right": 4,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.032
-     },
-     "absent_positions": 125,
-     "absent_false_links": 0,
-     "est_false_link_share": 0.0,
-     "rule_present": {
-      "positions": 125,
-      "link": 117,
-      "right": 117,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "recall": 0.936
-     }
-    },
-    "US": {
-     "present": {
-      "positions": 204,
-      "link": 102,
-      "review": 66,
-      "right": 102,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.5
-     },
-     "absent_positions": 225,
-     "absent_false_links": 4,
-     "est_false_link_share": 0.00175,
-     "rule_present": {
-      "positions": 204,
-      "link": 160,
-      "right": 159,
-      "wrong": 0,
-      "dup_key": 1,
-      "precision": 1.0,
-      "recall": 0.7794
-     }
-    },
-    "US/CA (AHA)": {
-     "present": {
-      "positions": 9457,
-      "link": 6277,
-      "review": 2142,
-      "right": 6277,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.6637
-     },
-     "absent_positions": 10855,
-     "absent_false_links": 573,
-     "est_false_link_share": 0.00371,
-     "rule_present": {
-      "positions": 9457,
-      "link": 7630,
-      "right": 7621,
-      "wrong": 6,
-      "dup_key": 3,
-      "precision": 0.9992,
-      "recall": 0.8059
-     }
-    },
-    "unknown": {
-     "present": {
-      "positions": 20910,
-      "link": 4963,
-      "review": 9382,
-      "right": 4959,
-      "wrong": 1,
-      "dup_key": 3,
-      "precision": 0.9998,
-      "precision_dup_as_wrong": 0.9992,
-      "recall": 0.2372
-     },
-     "absent_positions": 24135,
-     "absent_false_links": 286,
-     "est_false_link_share": 0.00342,
-     "rule_present": {
-      "positions": 20910,
-      "link": 15297,
-      "right": 15083,
-      "wrong": 158,
-      "dup_key": 56,
-      "precision": 0.9896,
-      "recall": 0.7213
-     }
-    }
-   },
-   "decade": {
-    "1920": {
-     "present": {
-      "positions": 38,
-      "link": 20,
-      "review": 10,
-      "right": 20,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.5263
-     },
-     "absent_positions": 38,
-     "absent_false_links": 1,
-     "est_false_link_share": 0.00074,
-     "rule_present": {
-      "positions": 38,
-      "link": 33,
-      "right": 33,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "recall": 0.8684
-     }
-    },
-    "1930": {
-     "present": {
-      "positions": 56,
-      "link": 38,
-      "review": 8,
-      "right": 38,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.6786
-     },
-     "absent_positions": 58,
-     "absent_false_links": 5,
-     "est_false_link_share": 0.00457,
-     "rule_present": {
-      "positions": 56,
-      "link": 47,
-      "right": 47,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "recall": 0.8393
-     }
-    },
-    "1940": {
-     "present": {
-      "positions": 127,
-      "link": 80,
-      "review": 18,
-      "right": 80,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.6299
-     },
-     "absent_positions": 133,
-     "absent_false_links": 6,
-     "est_false_link_share": 0.00235,
-     "rule_present": {
-      "positions": 127,
-      "link": 97,
-      "right": 97,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "recall": 0.7638
-     }
-    },
-    "1950": {
-     "present": {
-      "positions": 209,
-      "link": 131,
-      "review": 40,
-      "right": 131,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.6268
-     },
-     "absent_positions": 227,
-     "absent_false_links": 7,
-     "est_false_link_share": 0.0032,
-     "rule_present": {
-      "positions": 209,
-      "link": 160,
-      "right": 160,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "recall": 0.7656
-     }
-    },
-    "1960": {
-     "present": {
-      "positions": 543,
-      "link": 371,
-      "review": 93,
-      "right": 371,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.6832
-     },
-     "absent_positions": 583,
-     "absent_false_links": 31,
-     "est_false_link_share": 0.00372,
-     "rule_present": {
-      "positions": 543,
-      "link": 440,
-      "right": 440,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "recall": 0.8103
-     }
-    },
-    "1970": {
-     "present": {
-      "positions": 1195,
-      "link": 692,
-      "review": 275,
-      "right": 692,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.5791
-     },
-     "absent_positions": 1354,
-     "absent_false_links": 56,
-     "est_false_link_share": 0.00364,
-     "rule_present": {
-      "positions": 1195,
-      "link": 889,
-      "right": 881,
-      "wrong": 7,
-      "dup_key": 1,
-      "precision": 0.9921,
-      "recall": 0.7372
-     }
-    },
-    "1980": {
-     "present": {
-      "positions": 2379,
-      "link": 1345,
-      "review": 591,
-      "right": 1344,
-      "wrong": 0,
-      "dup_key": 1,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 0.9993,
-      "recall": 0.5649
-     },
-     "absent_positions": 2797,
-     "absent_false_links": 103,
-     "est_false_link_share": 0.00338,
-     "rule_present": {
-      "positions": 2379,
-      "link": 1749,
-      "right": 1733,
-      "wrong": 14,
-      "dup_key": 2,
-      "precision": 0.992,
-      "recall": 0.7285
-     }
-    },
-    "1990": {
-     "present": {
-      "positions": 4647,
-      "link": 2370,
-      "review": 1337,
-      "right": 2369,
-      "wrong": 0,
-      "dup_key": 1,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 0.9996,
-      "recall": 0.5098
-     },
-     "absent_positions": 5413,
-     "absent_false_links": 205,
-     "est_false_link_share": 0.00375,
-     "rule_present": {
-      "positions": 4647,
-      "link": 3468,
-      "right": 3402,
-      "wrong": 47,
-      "dup_key": 19,
-      "precision": 0.9864,
-      "recall": 0.7321
-     }
-    },
-    "2000": {
-     "present": {
-      "positions": 7733,
-      "link": 2695,
-      "review": 2953,
-      "right": 2694,
-      "wrong": 0,
-      "dup_key": 1,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 0.9996,
-      "recall": 0.3484
-     },
-     "absent_positions": 9185,
-     "absent_false_links": 224,
-     "est_false_link_share": 0.0036,
-     "rule_present": {
-      "positions": 7733,
-      "link": 5626,
-      "right": 5552,
-      "wrong": 59,
-      "dup_key": 15,
-      "precision": 0.9895,
-      "recall": 0.718
-     }
-    },
-    "2010": {
-     "present": {
-      "positions": 10856,
-      "link": 2772,
-      "review": 4717,
-      "right": 2772,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.2553
-     },
-     "absent_positions": 12483,
-     "absent_false_links": 215,
-     "est_false_link_share": 0.00338,
-     "rule_present": {
-      "positions": 10856,
-      "link": 8228,
-      "right": 8174,
-      "wrong": 33,
-      "dup_key": 21,
-      "precision": 0.996,
-      "recall": 0.7529
-     }
-    },
-    "2020": {
-     "present": {
-      "positions": 3434,
-      "link": 948,
-      "review": 1794,
-      "right": 947,
-      "wrong": 1,
-      "dup_key": 0,
-      "precision": 0.9989,
-      "precision_dup_as_wrong": 0.9989,
-      "recall": 0.2758
-     },
-     "absent_positions": 3680,
-     "absent_false_links": 13,
-     "est_false_link_share": 0.00296,
-     "rule_present": {
-      "positions": 3434,
-      "link": 2841,
-      "right": 2833,
-      "wrong": 4,
-      "dup_key": 4,
-      "precision": 0.9986,
-      "recall": 0.825
-     }
-    },
-    "undated": {
-     "present": {
-      "positions": 35,
-      "link": 9,
-      "review": 24,
-      "right": 9,
-      "wrong": 0,
-      "dup_key": 0,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 1.0,
-      "recall": 0.2571
-     },
-     "absent_positions": 7,
-     "absent_false_links": 0,
-     "est_false_link_share": 0.0,
-     "rule_present": {
-      "positions": 35,
-      "link": 0,
-      "right": 0,
-      "wrong": 0,
-      "dup_key": 0,
+     "26+": {
+      "n": 858,
+      "recall": 0.0,
       "precision": null,
-      "recall": 0.0
-     }
-    }
-   },
-   "tbl": {
-    "no": {
-     "present": {
-      "positions": 12552,
-      "link": 625,
-      "review": 6227,
-      "right": 624,
       "wrong": 0,
-      "dup_key": 1,
-      "precision": 1.0,
-      "precision_dup_as_wrong": 0.9984,
-      "recall": 0.0497
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.2634,
+      "rule_precision": 0.9956
      },
-     "absent_positions": 14520,
-     "absent_false_links": 3,
-     "est_false_link_share": 0.00738,
-     "rule_present": {
-      "positions": 12552,
-      "link": 8625,
-      "right": 8454,
-      "wrong": 154,
-      "dup_key": 17,
-      "precision": 0.9821,
-      "recall": 0.6735
+     "6-25": {
+      "n": 2118,
+      "recall": 0.2705,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.5817,
+      "rule_precision": 0.9992
+     },
+     "initials": {
+      "n": 296,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.4088,
+      "rule_precision": 1.0
+     },
+     "no live candidate": {
+      "n": 357,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.0,
+      "rule_precision": null
+     },
+     "unique": {
+      "n": 5052,
+      "recall": 0.7098,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00332,
+      "absent_false": 342,
+      "rule_recall": 0.9016,
+      "rule_precision": 1.0
+     },
+     "unmeasured": {
+      "n": 11907,
+      "recall": 0.194,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0025,
+      "absent_false": 15,
+      "rule_recall": 0.7963,
+      "rule_precision": 1.0
      }
     },
-    "wp": {
-     "present": {
-      "positions": 18736,
-      "link": 10849,
-      "review": 5649,
-      "right": 10846,
-      "wrong": 1,
-      "dup_key": 2,
-      "precision": 0.9999,
-      "precision_dup_as_wrong": 0.9997,
-      "recall": 0.5789
+    "orcid": {
+     "key has ORCID": {
+      "n": 19103,
+      "recall": 0.2934,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00292,
+      "absent_false": 263,
+      "rule_recall": 0.7583,
+      "rule_precision": 0.9999
      },
-     "absent_positions": 21476,
-     "absent_false_links": 863,
-     "est_false_link_share": 0.00362,
-     "rule_present": {
-      "positions": 18736,
-      "link": 14973,
-      "right": 14918,
-      "wrong": 10,
-      "dup_key": 45,
-      "precision": 0.9993,
-      "recall": 0.7962
+     "no ORCID": {
+      "n": 11158,
+      "recall": 0.6731,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00428,
+      "absent_false": 748,
+      "rule_recall": 0.7949,
+      "rule_precision": 0.9994
+     }
+    },
+    "country": {
+     "BE": {
+      "n": 30,
+      "recall": 0.3333,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 1.0,
+      "rule_precision": 1.0
+     },
+     "CA": {
+      "n": 96,
+      "recall": 0.4688,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.7917,
+      "rule_precision": 1.0
+     },
+     "FR": {
+      "n": 93,
+      "recall": 0.0538,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.02919,
+      "absent_false": 2,
+      "rule_recall": 0.3978,
+      "rule_precision": 1.0
+     },
+     "GB": {
+      "n": 238,
+      "recall": 0.2773,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00095,
+      "absent_false": 2,
+      "rule_recall": 0.7269,
+      "rule_precision": 1.0
+     },
+     "IT": {
+      "n": 80,
+      "recall": 0.15,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.6375,
+      "rule_precision": 1.0
+     },
+     "SE": {
+      "n": 125,
+      "recall": 0.096,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.936,
+      "rule_precision": 1.0
+     },
+     "US": {
+      "n": 204,
+      "recall": 0.5294,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00081,
+      "absent_false": 4,
+      "rule_recall": 0.7794,
+      "rule_precision": 1.0
+     },
+     "US/CA (AHA)": {
+      "n": 9397,
+      "recall": 0.665,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00324,
+      "absent_false": 563,
+      "rule_recall": 0.8104,
+      "rule_precision": 0.9993
+     },
+     "unknown": {
+      "n": 19966,
+      "recall": 0.3302,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00353,
+      "absent_false": 440,
+      "rule_recall": 0.7548,
+      "rule_precision": 0.9999
      }
     }
    },
-   "route_a": {
-    "False": {
-     "present": {
-      "positions": 31288,
-      "link": 11474,
-      "review": 11876,
-      "right": 11470,
-      "wrong": 1,
-      "dup_key": 3,
-      "precision": 0.9999,
-      "precision_dup_as_wrong": 0.9997,
-      "recall": 0.3666
-     },
-     "absent_positions": 35996,
-     "absent_false_links": 866,
-     "est_false_link_share": 0.00362,
-     "rule_present": {
-      "positions": 31288,
-      "link": 23598,
-      "right": 23372,
-      "wrong": 164,
-      "dup_key": 62,
-      "precision": 0.993,
-      "recall": 0.747
-     }
-    }
+   "production": {
+    "none": 1401752,
+    "review": 302217,
+    "link": 136419,
+    "exact": 129558
    }
   },
-  "head_to_head_present": {
-   "both_right": 10696,
-   "scorer_only_right": 774,
-   "rule_only_right": 12676,
-   "scorer_wrong": 1,
-   "rule_wrong": 164
+  "C4-collective-pass2": {
+   "thresholds": {
+    "author": {
+     "single": {
+      "unique": 11.0,
+      "2-5": 8.5,
+      "6-25": 1000000000.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 10.5
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 0.0,
+     "runner_max": 1000000000.0
+    },
+    "jstor-author": {
+     "single": {
+      "unique": 8.0,
+      "2-5": 5.0,
+      "6-25": 1000000000.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 1000000000.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 1.5,
+     "runner_max": 1000000000.0
+    },
+    "reviewer": {
+     "single": {
+      "unique": 7.5,
+      "2-5": 4.5,
+      "6-25": 11.5,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 1000000000.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 4.5,
+     "runner_max": 1000000000.0
+    }
+   },
+   "pi": {
+    "author": {
+     "single-unique": 0.1191,
+     "single-2-5": 0.1212,
+     "single-6-25": 0.4196,
+     "single-26+": 0.7784,
+     "single-initials": 0.3706,
+     "single-unmeasured": 0.3324,
+     "multi": 0.5536
+    },
+    "jstor-author": {
+     "single-unique": 0.0408,
+     "single-2-5": 0.0408,
+     "single-6-25": 0.4352,
+     "single-26+": 0.7579,
+     "single-initials": 0.5373,
+     "single-unmeasured": 1.0,
+     "multi": 0.4334
+    },
+    "reviewer": {
+     "single-unique": 0.046,
+     "single-2-5": 0.046,
+     "single-6-25": 0.7206,
+     "single-26+": 0.8333,
+     "single-initials": 0.6993,
+     "single-unmeasured": 1.0,
+     "multi": 0.7946
+    }
+   },
+   "calib_est_fdr": 0.00273,
+   "test": {
+    "overall": {
+     "positions": 30261,
+     "link": 13176,
+     "review": 14335,
+     "right": 13128,
+     "wrong": 0,
+     "dup_key": 48,
+     "precision": 1.0,
+     "precision_dup_as_wrong": 0.9964,
+     "recall": 0.4338,
+     "est_false_share": 0.00318,
+     "absent_positions": 35509,
+     "absent_false": 1011,
+     "rule": {
+      "positions": 30261,
+      "link": 23522,
+      "right": 23354,
+      "wrong": 7,
+      "dup_key": 161,
+      "precision": 0.9997,
+      "recall": 0.7718
+     }
+    },
+    "rg": {
+     "author": {
+      "n": 16319,
+      "recall": 0.2244,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00169,
+      "absent_false": 35,
+      "rule_recall": 0.7584,
+      "rule_precision": 0.9998
+     },
+     "jstor-author": {
+      "n": 2565,
+      "recall": 0.5934,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00257,
+      "absent_false": 115,
+      "rule_recall": 0.7727,
+      "rule_precision": 1.0
+     },
+     "reviewer": {
+      "n": 11377,
+      "recall": 0.6983,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00473,
+      "absent_false": 861,
+      "rule_recall": 0.7906,
+      "rule_precision": 0.9994
+     }
+    },
+    "band": {
+     "2-5": {
+      "n": 9673,
+      "recall": 0.6872,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0032,
+      "absent_false": 654,
+      "rule_recall": 0.8,
+      "rule_precision": 0.9994
+     },
+     "26+": {
+      "n": 858,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.2634,
+      "rule_precision": 0.9956
+     },
+     "6-25": {
+      "n": 2118,
+      "recall": 0.2705,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.5817,
+      "rule_precision": 0.9992
+     },
+     "initials": {
+      "n": 296,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.4088,
+      "rule_precision": 1.0
+     },
+     "no live candidate": {
+      "n": 357,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.0,
+      "rule_precision": null
+     },
+     "unique": {
+      "n": 5052,
+      "recall": 0.7098,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00332,
+      "absent_false": 342,
+      "rule_recall": 0.9016,
+      "rule_precision": 1.0
+     },
+     "unmeasured": {
+      "n": 11907,
+      "recall": 0.195,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00249,
+      "absent_false": 15,
+      "rule_recall": 0.7963,
+      "rule_precision": 1.0
+     }
+    },
+    "orcid": {
+     "key has ORCID": {
+      "n": 19103,
+      "recall": 0.294,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00292,
+      "absent_false": 263,
+      "rule_recall": 0.7583,
+      "rule_precision": 0.9999
+     },
+     "no ORCID": {
+      "n": 11158,
+      "recall": 0.6731,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00428,
+      "absent_false": 748,
+      "rule_recall": 0.7949,
+      "rule_precision": 0.9994
+     }
+    },
+    "country": {
+     "BE": {
+      "n": 30,
+      "recall": 0.3333,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 1.0,
+      "rule_precision": 1.0
+     },
+     "CA": {
+      "n": 96,
+      "recall": 0.4688,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.7917,
+      "rule_precision": 1.0
+     },
+     "FR": {
+      "n": 93,
+      "recall": 0.0538,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.02919,
+      "absent_false": 2,
+      "rule_recall": 0.3978,
+      "rule_precision": 1.0
+     },
+     "GB": {
+      "n": 238,
+      "recall": 0.2773,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00095,
+      "absent_false": 2,
+      "rule_recall": 0.7269,
+      "rule_precision": 1.0
+     },
+     "IT": {
+      "n": 80,
+      "recall": 0.15,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.6375,
+      "rule_precision": 1.0
+     },
+     "SE": {
+      "n": 125,
+      "recall": 0.096,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.936,
+      "rule_precision": 1.0
+     },
+     "US": {
+      "n": 204,
+      "recall": 0.5294,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00081,
+      "absent_false": 4,
+      "rule_recall": 0.7794,
+      "rule_precision": 1.0
+     },
+     "US/CA (AHA)": {
+      "n": 9397,
+      "recall": 0.6651,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00324,
+      "absent_false": 563,
+      "rule_recall": 0.8104,
+      "rule_precision": 0.9993
+     },
+     "unknown": {
+      "n": 19966,
+      "recall": 0.3308,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00352,
+      "absent_false": 440,
+      "rule_recall": 0.7548,
+      "rule_precision": 0.9999
+     }
+    }
+   },
+   "production": {
+    "none": 1401739,
+    "review": 302104,
+    "link": 136545,
+    "exact": 129558
+   }
   },
-  "head_to_head_absent": {
-   "positions": 35996,
-   "scorer_false": 866,
-   "rule_false": 10353,
-   "both": 693
+  "C4-collective-pass3": {
+   "thresholds": {
+    "author": {
+     "single": {
+      "unique": 11.0,
+      "2-5": 8.5,
+      "6-25": 1000000000.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 10.5
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 0.0,
+     "runner_max": 1000000000.0
+    },
+    "jstor-author": {
+     "single": {
+      "unique": 8.0,
+      "2-5": 5.0,
+      "6-25": 1000000000.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 1000000000.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 1.5,
+     "runner_max": 1000000000.0
+    },
+    "reviewer": {
+     "single": {
+      "unique": 7.5,
+      "2-5": 4.5,
+      "6-25": 11.5,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 1000000000.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 4.5,
+     "runner_max": 1000000000.0
+    }
+   },
+   "pi": {
+    "author": {
+     "single-unique": 0.1191,
+     "single-2-5": 0.1212,
+     "single-6-25": 0.4196,
+     "single-26+": 0.7784,
+     "single-initials": 0.3706,
+     "single-unmeasured": 0.3324,
+     "multi": 0.5536
+    },
+    "jstor-author": {
+     "single-unique": 0.0408,
+     "single-2-5": 0.0408,
+     "single-6-25": 0.4352,
+     "single-26+": 0.7579,
+     "single-initials": 0.5373,
+     "single-unmeasured": 1.0,
+     "multi": 0.4334
+    },
+    "reviewer": {
+     "single-unique": 0.046,
+     "single-2-5": 0.046,
+     "single-6-25": 0.7206,
+     "single-26+": 0.8333,
+     "single-initials": 0.6993,
+     "single-unmeasured": 1.0,
+     "multi": 0.7946
+    }
+   },
+   "calib_est_fdr": 0.00273,
+   "test": {
+    "overall": {
+     "positions": 30261,
+     "link": 13176,
+     "review": 14335,
+     "right": 13128,
+     "wrong": 0,
+     "dup_key": 48,
+     "precision": 1.0,
+     "precision_dup_as_wrong": 0.9964,
+     "recall": 0.4338,
+     "est_false_share": 0.00318,
+     "absent_positions": 35509,
+     "absent_false": 1011,
+     "rule": {
+      "positions": 30261,
+      "link": 23522,
+      "right": 23354,
+      "wrong": 7,
+      "dup_key": 161,
+      "precision": 0.9997,
+      "recall": 0.7718
+     }
+    },
+    "rg": {
+     "author": {
+      "n": 16319,
+      "recall": 0.2244,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00169,
+      "absent_false": 35,
+      "rule_recall": 0.7584,
+      "rule_precision": 0.9998
+     },
+     "jstor-author": {
+      "n": 2565,
+      "recall": 0.5934,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00257,
+      "absent_false": 115,
+      "rule_recall": 0.7727,
+      "rule_precision": 1.0
+     },
+     "reviewer": {
+      "n": 11377,
+      "recall": 0.6983,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00473,
+      "absent_false": 861,
+      "rule_recall": 0.7906,
+      "rule_precision": 0.9994
+     }
+    },
+    "band": {
+     "2-5": {
+      "n": 9673,
+      "recall": 0.6872,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0032,
+      "absent_false": 654,
+      "rule_recall": 0.8,
+      "rule_precision": 0.9994
+     },
+     "26+": {
+      "n": 858,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.2634,
+      "rule_precision": 0.9956
+     },
+     "6-25": {
+      "n": 2118,
+      "recall": 0.2705,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.5817,
+      "rule_precision": 0.9992
+     },
+     "initials": {
+      "n": 296,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.4088,
+      "rule_precision": 1.0
+     },
+     "no live candidate": {
+      "n": 357,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.0,
+      "rule_precision": null
+     },
+     "unique": {
+      "n": 5052,
+      "recall": 0.7098,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00332,
+      "absent_false": 342,
+      "rule_recall": 0.9016,
+      "rule_precision": 1.0
+     },
+     "unmeasured": {
+      "n": 11907,
+      "recall": 0.195,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00249,
+      "absent_false": 15,
+      "rule_recall": 0.7963,
+      "rule_precision": 1.0
+     }
+    },
+    "orcid": {
+     "key has ORCID": {
+      "n": 19103,
+      "recall": 0.294,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00292,
+      "absent_false": 263,
+      "rule_recall": 0.7583,
+      "rule_precision": 0.9999
+     },
+     "no ORCID": {
+      "n": 11158,
+      "recall": 0.6731,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00428,
+      "absent_false": 748,
+      "rule_recall": 0.7949,
+      "rule_precision": 0.9994
+     }
+    },
+    "country": {
+     "BE": {
+      "n": 30,
+      "recall": 0.3333,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 1.0,
+      "rule_precision": 1.0
+     },
+     "CA": {
+      "n": 96,
+      "recall": 0.4688,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.7917,
+      "rule_precision": 1.0
+     },
+     "FR": {
+      "n": 93,
+      "recall": 0.0538,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.02919,
+      "absent_false": 2,
+      "rule_recall": 0.3978,
+      "rule_precision": 1.0
+     },
+     "GB": {
+      "n": 238,
+      "recall": 0.2773,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00095,
+      "absent_false": 2,
+      "rule_recall": 0.7269,
+      "rule_precision": 1.0
+     },
+     "IT": {
+      "n": 80,
+      "recall": 0.15,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.6375,
+      "rule_precision": 1.0
+     },
+     "SE": {
+      "n": 125,
+      "recall": 0.096,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.936,
+      "rule_precision": 1.0
+     },
+     "US": {
+      "n": 204,
+      "recall": 0.5294,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00081,
+      "absent_false": 4,
+      "rule_recall": 0.7794,
+      "rule_precision": 1.0
+     },
+     "US/CA (AHA)": {
+      "n": 9397,
+      "recall": 0.6651,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00324,
+      "absent_false": 563,
+      "rule_recall": 0.8104,
+      "rule_precision": 0.9993
+     },
+     "unknown": {
+      "n": 19966,
+      "recall": 0.3308,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00352,
+      "absent_false": 440,
+      "rule_recall": 0.7548,
+      "rule_precision": 0.9999
+     }
+    }
+   },
+   "production": {
+    "none": 1401738,
+    "review": 302096,
+    "link": 136554,
+    "exact": 129558
+   }
   }
  },
- "route_a_gold_test": {
-  "note": "held-out credits resting only on an OpenAlex-profile key-log claim; not used for estimation or thresholds",
-  "scorer": {
-   "positions": 7585,
-   "link": 9,
-   "review": 6128,
-   "right": 9,
-   "wrong": 0,
-   "dup_key": 0,
-   "precision": 1.0,
-   "precision_dup_as_wrong": 1.0,
-   "recall": 0.0012
+ "collective_passes": [
+  {
+   "links_in": 260500,
+   "links_out": 263769,
+   "coll_facts": 27372
   },
-  "rule": {
-   "positions": 7585,
-   "link": 6835,
-   "right": 6832,
-   "wrong": 2,
-   "dup_key": 1,
-   "precision": 0.9997,
-   "recall": 0.9007
+  {
+   "links_in": 263769,
+   "links_out": 263874,
+   "coll_facts": 29898
+  },
+  {
+   "links_in": 263874,
+   "links_out": 263882,
+   "coll_facts": 29938
   }
- },
+ ],
  "production": {
-  "positions": 1577337,
+  "positions": 1969946,
   "by_decision": {
-   "none": 1300442,
-   "review": 158927,
-   "link": 77121,
-   "exact": 40847
+   "none": 1415524,
+   "review": 265699,
+   "link": 159165,
+   "exact": 129558
   },
-  "by_table_decision": {
-   "jm|author": {
-    "none": 832,
-    "review": 248
+  "vs_rule": {
+   "by_table_role": {
+    "cr|author": {
+     "positions": 9322,
+     "scorer_link": 3208,
+     "scorer_exact": 675,
+     "scorer_review": 3104,
+     "rule_linked": 3197,
+     "same_key": 1934,
+     "other_key": 0,
+     "scorer_only": 1274,
+     "rule_only": 1263
+    },
+    "cw|added": {
+     "positions": 16706,
+     "scorer_link": 111,
+     "scorer_exact": 7675,
+     "scorer_review": 299,
+     "rule_linked": 128,
+     "same_key": 35,
+     "other_key": 0,
+     "scorer_only": 76,
+     "rule_only": 93
+    },
+    "cw|author": {
+     "positions": 75417,
+     "scorer_link": 13879,
+     "scorer_exact": 8126,
+     "scorer_review": 19650,
+     "rule_linked": 25305,
+     "same_key": 13183,
+     "other_key": 0,
+     "scorer_only": 696,
+     "rule_only": 12122
+    },
+    "cw|editor": {
+     "positions": 27786,
+     "scorer_link": 218,
+     "scorer_exact": 8992,
+     "scorer_review": 900,
+     "rule_linked": 279,
+     "same_key": 59,
+     "other_key": 0,
+     "scorer_only": 159,
+     "rule_only": 220
+    },
+    "cw|main": {
+     "positions": 193838,
+     "scorer_link": 1713,
+     "scorer_exact": 61897,
+     "scorer_review": 4514,
+     "rule_linked": 1862,
+     "same_key": 565,
+     "other_key": 0,
+     "scorer_only": 1148,
+     "rule_only": 1297
+    },
+    "cw|resp": {
+     "positions": 3144,
+     "scorer_link": 7,
+     "scorer_exact": 1332,
+     "scorer_review": 36,
+     "rule_linked": 12,
+     "same_key": 5,
+     "other_key": 0,
+     "scorer_only": 2,
+     "rule_only": 7
+    },
+    "jm|author": {
+     "positions": 1080,
+     "scorer_link": 124,
+     "scorer_exact": 0,
+     "scorer_review": 318,
+     "rule_linked": 280,
+     "same_key": 92,
+     "other_key": 0,
+     "scorer_only": 32,
+     "rule_only": 188
+    },
+    "no|author": {
+     "positions": 659387,
+     "scorer_link": 33415,
+     "scorer_exact": 21849,
+     "scorer_review": 116569,
+     "rule_linked": 62321,
+     "same_key": 19927,
+     "other_key": 0,
+     "scorer_only": 13488,
+     "rule_only": 42394
+    },
+    "ve|editor": {
+     "positions": 66396,
+     "scorer_link": 10021,
+     "scorer_exact": 0,
+     "scorer_review": 21510,
+     "rule_linked": 21405,
+     "same_key": 7951,
+     "other_key": 0,
+     "scorer_only": 2070,
+     "rule_only": 13454
+    },
+    "wp|author": {
+     "positions": 536114,
+     "scorer_link": 18884,
+     "scorer_exact": 16579,
+     "scorer_review": 64717,
+     "rule_linked": 43134,
+     "same_key": 13460,
+     "other_key": 0,
+     "scorer_only": 5424,
+     "rule_only": 29674
+    },
+    "wp|jstor-author": {
+     "positions": 114696,
+     "scorer_link": 27330,
+     "scorer_exact": 778,
+     "scorer_review": 11331,
+     "rule_linked": 41419,
+     "same_key": 23394,
+     "other_key": 0,
+     "scorer_only": 3936,
+     "rule_only": 18025
+    },
+    "wp|reviewer": {
+     "positions": 266060,
+     "scorer_link": 50255,
+     "scorer_exact": 1655,
+     "scorer_review": 22751,
+     "rule_linked": 100734,
+     "same_key": 43840,
+     "other_key": 0,
+     "scorer_only": 6415,
+     "rule_only": 56894
+    }
    },
-   "no|author": {
-    "none": 553778,
-    "review": 82225,
-    "exact": 21848,
-    "link": 1536
-   },
-   "wp|author": {
-    "none": 472380,
-    "review": 46028,
-    "exact": 16570,
-    "link": 1136
-   },
-   "wp|jstor-author": {
-    "none": 76665,
-    "link": 26630,
-    "review": 10623,
-    "exact": 778
-   },
-   "wp|reviewer": {
-    "none": 196787,
-    "link": 47819,
-    "review": 19803,
-    "exact": 1651
-   }
-  },
-  "capped_blocks": 205,
-  "no_live_candidate": 1018017
- },
- "production_vs_rule": {
-  "rule_recomputed_agrees_with_exported": 0.9968,
-  "exported_rows_matched": 1576257,
-  "scorer_link_rule_linked_same_key": 66884,
-  "scorer_link_rule_linked_other_key": 0,
-  "scorer_link_rule_not_linked": 10237,
-  "scorer_link_rule_states": {
-   "possible": 10235,
-   "ambiguous": 1,
-   "none": 1
-  },
-  "rule_linked_scorer_not": 175282,
-  "rule_linked_scorer_decision": {
-   "none": 93870,
-   "review": 81412
-  },
-  "scorer_review_by_rule_state": {
-   "linked": 81412,
-   "possible": 61546,
-   "ambiguous": 15602,
-   "none": 367
+   "rule_recomputed_agrees_with_exported": 0.9879,
+   "capped_blocks": 245,
+   "no_live_candidate": 1300236
   }
  },
  "links_csv_rows": {
-  "exact": 40847,
-  "link": 77121,
-  "review": 167293
+  "link": 159165,
+  "exact": 129558,
+  "review": 302560
  },
+ "duplicate_candidates": 39,
  "prep": {
   "stats": [
    [
@@ -1951,7 +2876,7 @@
     1365999,
     829885,
     50000,
-    29838
+    29806
    ],
    [
     "wp",
@@ -1972,8 +2897,8 @@
   ],
   "residue": {
    "works_by_source": {
-    "crossref-meta": 5222,
     "crossref": 3260,
+    "crossref-meta": 5222,
     "journal-meta": 2792,
     "lc-translations": 1764
    },
@@ -1983,9 +2908,56 @@
    "note": "journal-metadata harvest only (build/journal-meta-2026-11-11); the Crossref metadata harvest on E: was read by link_work_people nameonly-extract, so its residue has no record there; lc-translations have no printed-name source here"
   },
   "outside": 609637,
-  "pop_rows": 2301316,
+  "pop_rows": 2329372,
   "graph": "/tmp/claude-1000/-home-jic823-historiography/d3abee1e-2938-4bf9-afec-f3685cadff31/scratchpad/scored/graph",
-  "graph_built": "Thu Nov 12 04:59:06 2026"
- },
- "built": "2026-11-12 09:11"
+  "graph_built": "Thu Nov 12 09:22:01 2026",
+  "extra": {
+   "tables": [
+    [
+     "cr",
+     "crossref-meta-residue",
+     9322,
+     7810
+    ],
+    [
+     "cw",
+     "cw-lc",
+     241474,
+     237395
+    ],
+    [
+     "cw",
+     "cw-openalex",
+     75417,
+     67373
+    ],
+    [
+     "ve",
+     "ve-crossref",
+     34503,
+     16557
+    ],
+    [
+     "ve",
+     "ve-lc",
+     31893,
+     17421
+    ]
+   ],
+   "crossref_meta_residue": {
+    "works_wanted": 8401,
+    "with_authors": 7810,
+    "positions": 9322
+   },
+   "family_name_only_positions": {
+    "no": 6434,
+    "wp": 9688,
+    "jm": 9,
+    "cw": 1321,
+    "ve": 52,
+    "cr": 73
+   },
+   "journal_meta_family_name_only_works": 1621
+  }
+ }
 }

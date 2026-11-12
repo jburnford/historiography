@@ -1,71 +1,5 @@
 {
- "model": "naive",
- "fields": {
-  "name": [
-   "full",
-   "full+init",
-   "full+mid",
-   "initial",
-   "initials2",
-   "surname-variant",
-   "variant"
-  ],
-  "freq": [
-   "2-5",
-   "26+",
-   "6-25",
-   "initials",
-   "unique",
-   "unmeasured"
-  ],
-  "date": [
-   "death",
-   "life",
-   "phd0-10",
-   "phd10-25",
-   "phd25+",
-   "pre-phd",
-   "span",
-   "undated",
-   "weak"
-  ],
-  "aff": [
-   "absent",
-   "different",
-   "same-any",
-   "same-window"
-  ],
-  "network": [
-   "coauthor1",
-   "multi",
-   "network1",
-   "none"
-  ],
-  "venue": [
-   "j1-2",
-   "j3+",
-   "na",
-   "none"
-  ],
-  "topic": [
-   "high",
-   "low",
-   "mid",
-   "none",
-   "vhigh"
-  ],
-  "cites": [
-   "cites",
-   "none"
-  ],
-  "neg": [
-   "inconsistent",
-   "none",
-   "orcid-differs",
-   "own-title",
-   "pooled"
-  ]
- },
+ "model": "naive (C2: audit pi, margin rule)",
  "weights": {
   "kind": "fs",
   "fields": [
@@ -81,431 +15,432 @@
   ],
   "w": {
    "name": {
-    "full": 0.263,
-    "full+init": 2.913,
-    "full+mid": 3.145,
-    "initial": -3.952,
-    "initials2": 0.759,
-    "surname-variant": -1.65,
-    "variant": -5.864
+    "full": 0.19,
+    "full+init": 2.88,
+    "full+mid": 2.818,
+    "initial": -3.828,
+    "initials2": 0.924,
+    "surname-variant": -1.58,
+    "variant": -5.704
    },
    "freq": {
-    "2-5": 1.668,
-    "26+": -3.709,
-    "6-25": -1.158,
-    "initials": -2.283,
-    "unique": 2.319,
-    "unmeasured": 0.404
+    "2-5": 1.359,
+    "26+": -3.551,
+    "6-25": -1.023,
+    "initials": -2.174,
+    "unique": 2.354,
+    "unmeasured": 0.267
    },
    "date": {
-    "death": -3.414,
-    "life": -0.16,
-    "phd0-10": 0.624,
-    "phd10-25": 0.922,
-    "phd25+": 0.05,
-    "pre-phd": -0.568,
-    "span": -0.472,
-    "undated": 0.867,
-    "weak": -0.092
+    "death": -3.617,
+    "life": -0.088,
+    "phd0-10": 0.673,
+    "phd10-25": 0.984,
+    "phd25+": 0.077,
+    "pre-phd": -0.578,
+    "span": -0.613,
+    "undated": 0.0,
+    "weak": -0.073
    },
    "aff": {
-    "absent": -0.336,
-    "different": -1.593,
-    "same-any": 6.859,
-    "same-window": 8.105
+    "absent": -0.34,
+    "different": -1.49,
+    "same-any": 6.782,
+    "same-window": 7.943
    },
    "network": {
-    "coauthor1": 8.305,
-    "multi": 7.718,
-    "network1": 4.785,
+    "coauthor1": 8.317,
+    "multi": 7.737,
+    "network1": 5.805,
     "none": 0.0
    },
    "venue": {
-    "j1-2": 5.028,
-    "j3+": 6.846,
+    "j1-2": 4.736,
+    "j3+": 6.74,
     "na": 0.0,
     "none": 0.0
    },
    "topic": {
-    "high": 6.429,
-    "low": 2.789,
-    "mid": 4.619,
+    "high": 5.617,
+    "low": 2.941,
+    "mid": 4.587,
     "none": 0.0,
-    "vhigh": 7.94
+    "vhigh": 7.008
    },
    "cites": {
-    "cites": 7.247,
+    "cites": 6.977,
     "none": 0.0
    },
    "neg": {
     "inconsistent": 0.0,
     "none": 0.0,
-    "orcid-differs": -0.504,
+    "orcid-differs": -0.348,
     "own-title": 0.0,
-    "pooled": -0.999
+    "pooled": -1.015
    }
   }
  },
  "m_u_tables": {
   "name": {
    "full": {
-    "m": 0.68505,
-    "u": 0.57084,
-    "n_match": 20204,
-    "n_nonmatch": 2203,
-    "weight": 0.263
+    "m": 0.68507,
+    "u": 0.60046,
+    "n_match": 20186,
+    "n_nonmatch": 2596,
+    "weight": 0.19
    },
    "full+init": {
-    "m": 0.16,
-    "u": 0.02124,
-    "n_match": 4718,
-    "n_nonmatch": 81,
-    "weight": 2.913
+    "m": 0.15998,
+    "u": 0.02173,
+    "n_match": 4713,
+    "n_nonmatch": 93,
+    "weight": 2.88
    },
    "full+mid": {
-    "m": 0.10765,
-    "u": 0.01217,
-    "n_match": 3174,
-    "n_nonmatch": 46,
-    "weight": 3.145
+    "m": 0.10761,
+    "u": 0.01526,
+    "n_match": 3170,
+    "n_nonmatch": 65,
+    "weight": 2.818
    },
    "initial": {
     "m": 0.00648,
-    "u": 0.10023,
+    "u": 0.09202,
     "n_match": 190,
-    "n_nonmatch": 386,
-    "weight": -3.952
+    "n_nonmatch": 397,
+    "weight": -3.828
    },
    "initials2": {
     "m": 0.00614,
-    "u": 0.00363,
+    "u": 0.00324,
     "n_match": 180,
     "n_nonmatch": 13,
-    "weight": 0.759
+    "weight": 0.924
    },
    "surname-variant": {
-    "m": 0.03136,
-    "u": 0.09842,
+    "m": 0.03139,
+    "u": 0.09387,
     "n_match": 924,
-    "n_nonmatch": 379,
-    "weight": -1.65
+    "n_nonmatch": 405,
+    "weight": -1.58
    },
    "variant": {
-    "m": 0.00332,
-    "u": 0.19347,
+    "m": 0.00333,
+    "u": 0.17341,
     "n_match": 97,
-    "n_nonmatch": 746,
-    "weight": -5.864
+    "n_nonmatch": 749,
+    "weight": -5.704
    }
   },
   "freq": {
    "2-5": {
-    "m": 0.30794,
-    "u": 0.09689,
-    "n_match": 9081,
-    "n_nonmatch": 373,
-    "weight": 1.668
+    "m": 0.30798,
+    "u": 0.12003,
+    "n_match": 9074,
+    "n_nonmatch": 518,
+    "weight": 1.359
    },
    "26+": {
-    "m": 0.02655,
-    "u": 0.34715,
+    "m": 0.02657,
+    "u": 0.31152,
     "n_match": 782,
-    "n_nonmatch": 1339,
-    "weight": -3.709
+    "n_nonmatch": 1346,
+    "weight": -3.551
    },
    "6-25": {
     "m": 0.07602,
-    "u": 0.16969,
-    "n_match": 2241,
-    "n_nonmatch": 654,
-    "weight": -1.158
+    "u": 0.15449,
+    "n_match": 2239,
+    "n_nonmatch": 667,
+    "weight": -1.023
    },
    "initials": {
-    "m": 0.00793,
-    "u": 0.0386,
+    "m": 0.00794,
+    "u": 0.03585,
     "n_match": 233,
-    "n_nonmatch": 148,
-    "weight": -2.283
+    "n_nonmatch": 154,
+    "weight": -2.174
    },
    "unique": {
-    "m": 0.16546,
-    "u": 0.03316,
-    "n_match": 4879,
-    "n_nonmatch": 127,
-    "weight": 2.319
+    "m": 0.16548,
+    "u": 0.03238,
+    "n_match": 4875,
+    "n_nonmatch": 139,
+    "weight": 2.354
    },
    "unmeasured": {
-    "m": 0.4161,
-    "u": 0.31451,
-    "n_match": 12271,
-    "n_nonmatch": 1213,
-    "weight": 0.404
+    "m": 0.416,
+    "u": 0.34574,
+    "n_match": 12257,
+    "n_nonmatch": 1494,
+    "weight": 0.267
    }
   },
   "date": {
    "death": {
     "m": 3e-05,
-    "u": 0.00036,
+    "u": 0.00042,
     "n_match": 0,
-    "n_nonmatch": 11,
-    "weight": -3.414
+    "n_nonmatch": 13,
+    "weight": -3.617
    },
    "life": {
-    "m": 0.37964,
-    "u": 0.4242,
-    "n_match": 11197,
-    "n_nonmatch": 14082,
-    "weight": -0.16
+    "m": 0.38016,
+    "u": 0.40416,
+    "n_match": 11202,
+    "n_nonmatch": 13586,
+    "weight": -0.088
    },
    "phd0-10": {
-    "m": 0.1525,
-    "u": 0.09898,
-    "n_match": 4497,
-    "n_nonmatch": 3285,
-    "weight": 0.624
+    "m": 0.1528,
+    "u": 0.09587,
+    "n_match": 4502,
+    "n_nonmatch": 3222,
+    "weight": 0.673
    },
    "phd10-25": {
-    "m": 0.16012,
-    "u": 0.08449,
-    "n_match": 4722,
-    "n_nonmatch": 2804,
-    "weight": 0.922
+    "m": 0.1602,
+    "u": 0.081,
+    "n_match": 4720,
+    "n_nonmatch": 2722,
+    "weight": 0.984
    },
    "phd25+": {
-    "m": 0.08015,
-    "u": 0.07744,
-    "n_match": 2363,
-    "n_nonmatch": 2570,
-    "weight": 0.05
+    "m": 0.08019,
+    "u": 0.07603,
+    "n_match": 2362,
+    "n_nonmatch": 2555,
+    "weight": 0.077
    },
    "pre-phd": {
-    "m": 0.01946,
-    "u": 0.02886,
-    "n_match": 573,
-    "n_nonmatch": 957,
-    "weight": -0.568
+    "m": 0.01951,
+    "u": 0.02912,
+    "n_match": 574,
+    "n_nonmatch": 978,
+    "weight": -0.578
    },
    "span": {
-    "m": 0.20423,
-    "u": 0.2832,
-    "n_match": 6023,
-    "n_nonmatch": 9401,
-    "weight": -0.472
+    "m": 0.20326,
+    "u": 0.31096,
+    "n_match": 5989,
+    "n_nonmatch": 10453,
+    "weight": -0.613
    },
    "undated": {
-    "m": 0.00319,
-    "u": 0.00175,
-    "n_match": 93,
+    "m": 0.00316,
+    "u": 0.00173,
+    "n_match": 92,
     "n_nonmatch": 57,
-    "weight": 0.867
+    "weight": 0.0
    },
    "weak": {
     "m": 0.00068,
-    "u": 0.00072,
+    "u": 0.00071,
     "n_match": 19,
     "n_nonmatch": 23,
-    "weight": -0.092
+    "weight": -0.073
    }
   },
   "aff": {
    "absent": {
-    "m": 0.76193,
-    "u": 0.96165,
-    "n_match": 22469,
-    "n_nonmatch": 31920,
-    "weight": -0.336
+    "m": 0.76171,
+    "u": 0.96406,
+    "n_match": 22442,
+    "n_nonmatch": 32404,
+    "weight": -0.34
    },
    "different": {
-    "m": 0.01227,
-    "u": 0.03702,
+    "m": 0.01229,
+    "u": 0.03451,
     "n_match": 361,
-    "n_nonmatch": 1228,
-    "weight": -1.593
+    "n_nonmatch": 1159,
+    "weight": -1.49
    },
    "same-any": {
-    "m": 0.10142,
-    "u": 0.00087,
+    "m": 0.10151,
+    "u": 0.00092,
     "n_match": 2990,
-    "n_nonmatch": 28,
-    "weight": 6.859
+    "n_nonmatch": 30,
+    "weight": 6.782
    },
    "same-window": {
-    "m": 0.12438,
-    "u": 0.00045,
+    "m": 0.12449,
+    "u": 0.00051,
     "n_match": 3667,
-    "n_nonmatch": 14,
-    "weight": 8.105
+    "n_nonmatch": 16,
+    "weight": 7.943
    }
   },
   "network": {
    "coauthor1": {
-    "m": 0.01906,
+    "m": 0.01897,
     "u": 6e-05,
-    "n_match": 561,
+    "n_match": 558,
     "n_nonmatch": 1,
-    "weight": 8.305
+    "weight": 8.317
    },
    "multi": {
-    "m": 0.00634,
+    "m": 0.00635,
     "u": 3e-05,
     "n_match": 186,
     "n_nonmatch": 0,
-    "weight": 7.718
+    "weight": 7.737
    },
    "network1": {
     "m": 0.00166,
-    "u": 6e-05,
+    "u": 3e-05,
     "n_match": 48,
-    "n_nonmatch": 1,
-    "weight": 4.785
+    "n_nonmatch": 0,
+    "weight": 5.805
    },
    "none": {
-    "m": 0.97294,
-    "u": 0.99985,
-    "n_match": 28692,
-    "n_nonmatch": 33188,
+    "m": 0.97302,
+    "u": 0.99988,
+    "n_match": 28668,
+    "n_nonmatch": 33608,
     "weight": 0.0
    }
   },
   "venue": {
    "j1-2": {
-    "m": 0.16317,
-    "u": 0.005,
-    "n_match": 4811,
-    "n_nonmatch": 165,
-    "weight": 5.028
+    "m": 0.16335,
+    "u": 0.00613,
+    "n_match": 4812,
+    "n_nonmatch": 205,
+    "weight": 4.736
    },
    "j3+": {
-    "m": 0.22878,
-    "u": 0.00199,
-    "n_match": 6746,
-    "n_nonmatch": 65,
-    "weight": 6.846
+    "m": 0.22892,
+    "u": 0.00214,
+    "n_match": 6744,
+    "n_nonmatch": 71,
+    "weight": 6.74
    },
    "na": {
-    "m": 0.35482,
-    "u": 0.35651,
-    "n_match": 10463,
-    "n_nonmatch": 11833,
+    "m": 0.35481,
+    "u": 0.36144,
+    "n_match": 10453,
+    "n_nonmatch": 12148,
     "weight": 0.0
    },
    "none": {
-    "m": 0.25323,
-    "u": 0.6365,
-    "n_match": 7467,
-    "n_nonmatch": 21127,
+    "m": 0.25292,
+    "u": 0.63029,
+    "n_match": 7451,
+    "n_nonmatch": 21185,
     "weight": 0.0
    }
   },
   "topic": {
    "high": {
-    "m": 0.12976,
-    "u": 0.00151,
-    "n_match": 3826,
-    "n_nonmatch": 49,
-    "weight": 6.429
+    "m": 0.12998,
+    "u": 0.00265,
+    "n_match": 3829,
+    "n_nonmatch": 88,
+    "weight": 5.617
    },
    "low": {
-    "m": 0.15408,
-    "u": 0.02229,
-    "n_match": 4543,
-    "n_nonmatch": 739,
-    "weight": 2.789
+    "m": 0.15418,
+    "u": 0.02008,
+    "n_match": 4542,
+    "n_nonmatch": 674,
+    "weight": 2.941
    },
    "mid": {
-    "m": 0.12654,
-    "u": 0.00515,
-    "n_match": 3731,
-    "n_nonmatch": 170,
-    "weight": 4.619
+    "m": 0.12656,
+    "u": 0.00527,
+    "n_match": 3728,
+    "n_nonmatch": 176,
+    "weight": 4.587
    },
    "none": {
-    "m": 0.47867,
-    "u": 0.9706,
-    "n_match": 14116,
-    "n_nonmatch": 32218,
+    "m": 0.47823,
+    "u": 0.97114,
+    "n_match": 14090,
+    "n_nonmatch": 32643,
     "weight": 0.0
    },
    "vhigh": {
-    "m": 0.11095,
-    "u": 0.00045,
+    "m": 0.11105,
+    "u": 0.00086,
     "n_match": 3271,
-    "n_nonmatch": 14,
-    "weight": 7.94
+    "n_nonmatch": 28,
+    "weight": 7.008
    }
   },
   "cites": {
    "cites": {
-    "m": 0.0412,
-    "u": 0.00027,
+    "m": 0.04124,
+    "u": 0.00033,
     "n_match": 1214,
-    "n_nonmatch": 8,
-    "weight": 7.247
+    "n_nonmatch": 10,
+    "weight": 6.977
    },
    "none": {
-    "m": 0.9588,
-    "u": 0.99973,
-    "n_match": 28273,
-    "n_nonmatch": 33182,
+    "m": 0.95876,
+    "u": 0.99967,
+    "n_match": 28246,
+    "n_nonmatch": 33599,
     "weight": 0.0
    }
   },
   "neg": {
    "inconsistent": {
-    "m": 0.00159,
-    "u": 0.00093,
+    "m": 0.0016,
+    "u": 0.00122,
     "n_match": 46,
-    "n_nonmatch": 30,
+    "n_nonmatch": 40,
     "weight": 0.0
    },
    "none": {
-    "m": 0.99139,
-    "u": 0.99141,
-    "n_match": 29237,
-    "n_nonmatch": 32909,
+    "m": 0.99135,
+    "u": 0.99128,
+    "n_match": 29209,
+    "n_nonmatch": 33320,
     "weight": 0.0
    },
    "orcid-differs": {
     "m": 0.00353,
-    "u": 0.005,
+    "u": 0.00449,
     "n_match": 103,
-    "n_nonmatch": 165,
-    "weight": -0.504
+    "n_nonmatch": 150,
+    "weight": -0.348
    },
    "own-title": {
-    "m": 0.00227,
-    "u": 0.00021,
-    "n_match": 66,
-    "n_nonmatch": 6,
+    "m": 0.00231,
+    "u": 0.00054,
+    "n_match": 67,
+    "n_nonmatch": 17,
     "weight": 0.0
    },
    "pooled": {
     "m": 0.00122,
-    "u": 0.00244,
+    "u": 0.00247,
     "n_match": 35,
-    "n_nonmatch": 80,
-    "weight": -0.999
+    "n_nonmatch": 82,
+    "weight": -1.015
    }
   }
  },
  "thresholds": {
   "author": {
    "single": {
-    "unique": 1000000000.0,
-    "2-5": 1000000000.0,
+    "unique": 6.5,
+    "2-5": 5.0,
     "6-25": 1000000000.0,
     "26+": 1000000000.0,
     "initials": 1000000000.0,
-    "unmeasured": 10.0
+    "unmeasured": 7.0
    },
    "multi": 1000000000.0,
    "margin": 0,
-   "review": 2.5
+   "review": 0.0,
+   "runner_max": 1000000000.0
   },
   "jstor-author": {
    "single": {
     "unique": 6.0,
-    "2-5": 4.5,
+    "2-5": 4.0,
     "6-25": 1000000000.0,
     "26+": 1000000000.0,
     "initials": 1000000000.0,
@@ -513,97 +448,99 @@
    },
    "multi": 1000000000.0,
    "margin": 0,
-   "review": 4.5
+   "review": 4.0,
+   "runner_max": 1000000000.0
   },
   "reviewer": {
    "single": {
     "unique": 5.0,
-    "2-5": 4.5,
-    "6-25": 9.5,
+    "2-5": 4.0,
+    "6-25": 11.0,
     "26+": 1000000000.0,
     "initials": 1000000000.0,
     "unmeasured": 1000000000.0
    },
    "multi": 1000000000.0,
    "margin": 0,
-   "review": 4.5
+   "review": 4.0,
+   "runner_max": 1000000000.0
   }
  },
  "absent_share_by_stratum": {
   "author": {
    "single-unique": {
-    "pi": 0.6025,
-    "n_prod": 55196,
+    "pi": 0.1191,
+    "n_prod": 81492,
     "n_present": 1987,
-    "n_absent": 2892
+    "n_absent": 2914
    },
    "single-2-5": {
-    "pi": 0.5548,
-    "n_prod": 83101,
-    "n_present": 3927,
-    "n_absent": 4481
+    "pi": 0.1212,
+    "n_prod": 125581,
+    "n_present": 3931,
+    "n_absent": 4398
    },
    "single-6-25": {
-    "pi": 0.6154,
-    "n_prod": 22590,
-    "n_present": 525,
-    "n_absent": 1071
+    "pi": 0.4196,
+    "n_prod": 32835,
+    "n_present": 522,
+    "n_absent": 1067
    },
    "single-26+": {
-    "pi": 0.8906,
-    "n_prod": 5718,
+    "pi": 0.7784,
+    "n_prod": 9328,
     "n_present": 59,
-    "n_absent": 296
+    "n_absent": 291
    },
    "single-initials": {
-    "pi": 0.6417,
-    "n_prod": 15047,
+    "pi": 0.3706,
+    "n_prod": 17449,
     "n_present": 207,
-    "n_absent": 450
+    "n_absent": 449
    },
    "single-unmeasured": {
-    "pi": 0.676,
-    "n_prod": 57469,
-    "n_present": 19614,
-    "n_absent": 25816
+    "pi": 0.3324,
+    "n_prod": 59207,
+    "n_present": 19607,
+    "n_absent": 25734
    },
    "multi": {
-    "pi": 0.5548,
-    "n_prod": 77938,
-    "n_present": 5272,
-    "n_absent": 2786
+    "pi": 0.5536,
+    "n_prod": 98833,
+    "n_present": 5262,
+    "n_absent": 2718
    }
   },
   "jstor-author": {
    "single-unique": {
-    "pi": 0.0411,
-    "n_prod": 18978,
-    "n_present": 1319,
-    "n_absent": 1281
+    "pi": 0.0408,
+    "n_prod": 19467,
+    "n_present": 1320,
+    "n_absent": 1277
    },
    "single-2-5": {
-    "pi": 0.0411,
-    "n_prod": 26939,
-    "n_present": 1932,
-    "n_absent": 2339
+    "pi": 0.0408,
+    "n_prod": 27270,
+    "n_present": 1934,
+    "n_absent": 2350
    },
    "single-6-25": {
-    "pi": 0.4205,
-    "n_prod": 5442,
+    "pi": 0.4415,
+    "n_prod": 5505,
     "n_present": 414,
-    "n_absent": 695
+    "n_absent": 711
    },
    "single-26+": {
-    "pi": 0.7475,
-    "n_prod": 1224,
+    "pi": 0.7511,
+    "n_prod": 1268,
     "n_present": 44,
-    "n_absent": 217
+    "n_absent": 215
    },
    "single-initials": {
-    "pi": 0.5261,
-    "n_prod": 3532,
+    "pi": 0.5192,
+    "n_prod": 3656,
     "n_present": 217,
-    "n_absent": 335
+    "n_absent": 330
    },
    "single-unmeasured": {
     "pi": 1.0,
@@ -612,42 +549,42 @@
     "n_absent": 0
    },
    "multi": {
-    "pi": 0.4568,
-    "n_prod": 11191,
-    "n_present": 721,
-    "n_absent": 329
+    "pi": 0.4482,
+    "n_prod": 11254,
+    "n_present": 719,
+    "n_absent": 339
    }
   },
   "reviewer": {
    "single-unique": {
-    "pi": 0.0459,
-    "n_prod": 48055,
-    "n_present": 6189,
-    "n_absent": 6461
+    "pi": 0.046,
+    "n_prod": 48796,
+    "n_present": 6209,
+    "n_absent": 6453
    },
    "single-2-5": {
-    "pi": 0.0459,
-    "n_prod": 65274,
-    "n_present": 9930,
-    "n_absent": 12308
+    "pi": 0.046,
+    "n_prod": 65758,
+    "n_present": 9923,
+    "n_absent": 12231
    },
    "single-6-25": {
-    "pi": 0.7143,
-    "n_prod": 17687,
-    "n_present": 2067,
-    "n_absent": 3975
+    "pi": 0.7129,
+    "n_prod": 17796,
+    "n_present": 2058,
+    "n_absent": 3974
    },
    "single-26+": {
-    "pi": 0.8334,
-    "n_prod": 3597,
-    "n_present": 257,
-    "n_absent": 1602
+    "pi": 0.8407,
+    "n_prod": 3617,
+    "n_present": 256,
+    "n_absent": 1603
    },
    "single-initials": {
-    "pi": 0.718,
-    "n_prod": 5264,
-    "n_present": 29,
-    "n_absent": 61
+    "pi": 0.7039,
+    "n_prod": 5321,
+    "n_present": 28,
+    "n_absent": 64
    },
    "single-unmeasured": {
     "pi": 1.0,
@@ -656,39 +593,53 @@
     "n_absent": 0
    },
    "multi": {
-    "pi": 0.816,
-    "n_prod": 34873,
-    "n_present": 4128,
-    "n_absent": 1816
+    "pi": 0.7908,
+    "n_prod": 35032,
+    "n_present": 4084,
+    "n_absent": 1804
    }
   }
  },
  "positive_only_fields": [
   "cites",
+  "net_adv",
+  "net_ced",
+  "net_col",
+  "net_coll",
+  "net_edof",
+  "net_kl",
+  "net_ln",
+  "net_vol",
   "network",
   "oa_tie",
+  "prize",
   "topic",
   "venue"
  ],
+ "negative_only_fields": [
+  "neg"
+ ],
  "name_fields_u_from": "same-block non-matches only",
+ "undated": "clamped <= 0",
+ "margin_rule": "multi: best >= multi, runner-up <= runner_max, best - runner-up >= margin",
  "dependence_check": {
   "match:network&venue": {
    "observed": 0.006,
-   "independent": 0.0106,
+   "independent": 0.0105,
    "ratio": 0.57
   },
   "match:network&topic": {
-   "observed": 0.0193,
-   "independent": 0.0141,
+   "observed": 0.0192,
+   "independent": 0.014,
    "ratio": 1.37
   },
   "match:venue&topic": {
-   "observed": 0.2152,
-   "independent": 0.2043,
+   "observed": 0.2153,
+   "independent": 0.2047,
    "ratio": 1.05
   },
   "match:topic&cites": {
-   "observed": 0.0287,
+   "observed": 0.0288,
    "independent": 0.0215,
    "ratio": 1.34
   },
@@ -708,14 +659,14 @@
    "ratio": 0.0
   },
   "nonmatch:venue&topic": {
-   "observed": 0.0008,
+   "observed": 0.0015,
    "independent": 0.0002,
-   "ratio": 4.01
+   "ratio": 6.3
   },
   "nonmatch:topic&cites": {
    "observed": 0.0001,
    "independent": 0.0,
-   "ratio": 17.07
+   "ratio": 17.4
   },
   "nonmatch:aff&network": {
    "observed": 0.0,
@@ -723,14 +674,7 @@
    "ratio": 0.0
   }
  },
- "n_fit": {
-  "pairs": 62677,
-  "matches": 29487,
-  "nonmatches_block": 3854,
-  "nonmatches_impersonated": 29336,
-  "route_a_gold_excluded": 16347
- },
  "target_false_link_share": 0.005,
- "built": "2026-11-12 09:11",
- "graph_snapshot": "Thu Nov 12 04:59:06 2026"
+ "built": "2026-11-12 11:37",
+ "graph_snapshot": "Thu Nov 12 09:22:01 2026"
 }
