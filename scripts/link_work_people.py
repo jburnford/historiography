@@ -761,13 +761,23 @@ def single_extras(people, p, fe, pop, P, k):
     review_like = p.get('kind') == 'review' or bool(REVIEWISH.search(p['title'] or '')) or p.get('role') == 'reviewer'
     x = dict(others=others, others_dp=others_dp, n_oa=n_oa, name=name, scholar=k in people.scholar,
              venue=fe.get('venue') or 'none', topicv=c.get('topicv', 0.0), win=how,
-             author_review=p.get('role') == 'author' and review_like)
+             author_review=p.get('role') == 'author' and review_like, review_like=review_like)
     x['bearers'] = max(others + 1, n_oa)
     x['bearers_dp'] = max(others_dp + 1, n_oa)
     x['sig'] = [f"x:lco={others}", f"x:lcdp={others_dp}", f"x:oa={n_oa}", f"x:name={name}",
                 'x:scholar' if x['scholar'] else 'x:noscholar', f"x:venue={x['venue']}", f"x:topicv={x['topicv']:.1f}",
                 f"x:win={how}"] + (['x:author-review'] if x['author_review'] else [])
-    x['fires'] = {
+    x['fires'] = {}
+    if P9[0] is not None:
+        # pass nine (2026-11-12): review ties, co-citation, citations between the people's works (A), phrases and venue
+        # (B), activity windows of undated LC namesakes (C), and their combination with a full printed given name (D)
+        y = P9[0].facts(people, p, fe, k, own_ids, P)
+        ysig = y.pop('sig')
+        x.update(y)
+        x['others_act'] = max(0, others_dp - y['lc_inactive'])
+        x['sig'] = x['sig'] + ysig + [f"x:lcact={x['others_act']}"]
+        x['fires'].update(p9_fires(x, P))
+    x['fires'].update({
         # (i) namesakes the dates rule out no longer count against rarity
         'unique-rare-dated-namesakes': name == 'full' and others > P['RARE_LC'] and others_dp <= P['RARE_LC'] and n_oa <= P['RARE_OA'],
         # (ii) topic against the volume's title and its sibling chapters' titles as well as the work's own
@@ -775,7 +785,7 @@ def single_extras(people, p, fe, pop, P, k):
         # (iii) a printed full given name, a scholar, a history venue, the career window: no positive fact
         'single-scholar-history-venue': (name == 'full' and x['scholar'] and x['venue'] != 'none' and how in ('life', 'phd')
                                          and not x['author_review'] and x['bearers_dp'] <= P.get('SCHOLAR_MAX_BEARERS', 0)),
-    }
+    })
     return x
 
 
@@ -930,6 +940,14 @@ def rule_wp_core(people, p, fe, pop, P, use_dup=True):
             if good and not (set(c['why']) - {'orcid-differs'}):
                 facts = sorted(f for f in c['facts'] if f.split(':')[0] in NETWORK_FACTS)
                 return 'linked', x, 'several-dated-one-fact', cands, sig + [f'date:{how}'] + facts + [f'others={len(cands) - 1}']
+    if st in ('possible', 'ambiguous') and len(cands) > 1 and P9[0] is not None and br == 'several-several-dated':
+        # pass nine: each candidate's profile score; links only when adopted ('several-profile-margin')
+        s9, bk, best, second = p9_multi(people, p, fe, cands, P)
+        sig = sig + s9
+        if 'several-profile-margin' in P.get('ADOPT', ()) and best >= P.get('M_BEST', 1e9) and second <= P.get('M_SECOND', -1):
+            c = fe['cands'][bk]
+            if not c['why']:
+                return 'linked', bk, 'several-profile-margin', cands, sig
     if st == 'possible' and len(cands) > 1:
         # owner 2026-11-11: a candidate is listed only when it is the only one left or has a positive fact for this
         # position; otherwise the position is an ambiguous name, with no rows on anybody's page
@@ -1113,6 +1131,450 @@ class Topics:
         return sum(self.idf[t] for t in shared), shared
 
 
+# ---------------------------------------------------------------- pass nine (2026-11-12, class 38 continued)
+# Owner on the probe (Jim Clifford's chapter in *A Mighty Capital under Threat*): "London + Environmental history +
+# Luckin should be enough". Three ordinary kinds of evidence, each short of a link alone, measured separately and
+# combined (rule D) for the single-candidate class:
+#   kind 1 subject   a likelihood ratio of the work's vocabulary (its title, its volume's title, sibling chapter titles,
+#                    its journal) under the candidate's profile (titles, venues and volume titles of the key's key-log
+#                    works, thesis included) against all graph titles: common words are allowed, their weight comes from
+#                    the ratio; a term absent from the profile adds 0 (topic never excludes); capped per term.
+#   kind 2 subfield  the same ratio over subfield words (SUBFIELD: environmental, economic, labour ...), or the candidate
+#                    has another key-log work in the same journal.
+#   kind 3 tie       the candidate and a person credited on the work or its volume (editor, other chapter's author,
+#                    co-author) are tied: REVIEWED either way (key log, or linked as a weaker level), their works cite
+#                    one another (cites.parquet), or theses cite both (co-citation, measured threshold).
+#   C (rarity only)  an LC namesake with no life dates whose last dated activity (670 sources, LC 2016 bib records under
+#                    its exact heading) is more than ACT_N years before the work and whose titles share no word with the
+#                    work's context and carry no history word is not counted as a possible namesake.
+# Each kind is written to the signals (x:...) of single-candidate positions; the several-candidate positions get the
+# profile scores of every candidate (x2:...). A rule links only when adopted (link --adopt), as in pass eight.
+P9 = [None]
+P9DIR = Path(os.environ.get('WP_P9', '/tmp/claude-1000/-home-jic823-historiography/'
+                            'd3abee1e-2938-4bf9-afec-f3685cadff31/scratchpad/p9data'))
+LC_BIB = '/mnt/e/lc-bib-2016/index'
+FUNC_WORDS = set("""the and for les des der die das und von del los las une aux sur par per con dei della una uno ein eine
+its his her our who how why not are was has had all any can may from with into upon onto their there these those that this
+which what when where whose about between within without among against during after before since under over through
+toward towards vers dans pour avec entre leurs dont sous sans plus mais pero para como sobre desde hasta nach durch unter
+zwischen gegen ohne uber also only same each both very more most some such than then them they other others review
+reviews reviewed introduction part vol volume book books essay essays edited editor editors eds new""".split())
+SUBFIELD = {w[:7] for w in """environmental environment ecology ecological economic economy economics social society
+cultural culture political politics labour labor workers working women gender sexuality urban city cities rural
+agricultural agriculture agrarian intellectual ideas military war wars religious religion church medical medicine health
+disease science scientific technology legal law colonial colonialism imperial imperialism empire indigenous native
+diplomatic foreign maritime naval digital public oral family childhood material migration immigration immigrants race
+racial slavery business finance financial demographic population transnational global art music literary literature
+education sport food energy climate landscape forest forests animal animals water industrial industry commodity trade
+capitalism""".split()}
+HIST_WORD = re.compile(r'\b(histor|geschicht|storia|siecle|jahrhundert|century|centuries|colonial|empire|imperial|medieval|'
+                       r'ancient|revolution|biograph|memoir|archiv|antiqu|war\b|wars\b)')
+POSS = re.compile("[\u2019'\u02bc`]s\\b", re.I)
+WORD3 = re.compile(r'[a-z]{3,}')
+
+
+def p9_tokens(title):
+    """stems (first seven letters) of a title's words: accents folded, possessive dropped, three letters or more, no
+    function word; 'history' is kept (its weight comes from the ratio, not from a stop list)"""
+    t = (title or '').split(' / ')[0]
+    t = nfold(POSS.sub('', t))
+    return tuple(sys.intern(w[:7]) for w in WORD3.findall(t) if w not in FUNC_WORDS)[:24]
+
+
+def p9_terms(toks):
+    """unigrams and adjacent pairs (unordered) of a token sequence"""
+    s = set(toks)
+    for a, b in zip(toks, toks[1:]):
+        if a != b:
+            s.add(a + ' ' + b if a < b else b + ' ' + a)
+    return s
+
+
+def thash(t):
+    import zlib
+    b = t.encode()
+    return (zlib.crc32(b) << 32) | zlib.adler32(b)
+
+
+def p9_prep(args):
+    """Inputs of pass nine, in P9DIR: term-df.npz (document frequency of every unigram and adjacent pair over all graph
+    work titles), lc-activity.parquet (every LC personal-name authority: dated or not, years of activity and titles from
+    its 670 sources and the LC 2016 bib records under its exact heading), act-gaps.json (how often one authority's
+    works resume after a silence of more than N years, and how often the resumed work's subject is new)."""
+    import array
+    import math
+    import numpy as np
+    import pyarrow as pa
+    import pyarrow.parquet as pq
+    P9DIR.mkdir(parents=True, exist_ok=True)
+    db = duck()
+    if not (P9DIR / 'term-df.npz').exists() or args.force:
+        arr = array.array('Q')
+        n = 0
+        cur = db.execute(f"SELECT label FROM '{GRAPH}/work.parquet' WHERE label IS NOT NULL")
+        while True:
+            rows = cur.fetchmany(200000)
+            if not rows:
+                break
+            for (lab,) in rows:
+                n += 1
+                arr.extend(thash(t) for t in p9_terms(p9_tokens(lab)))
+        keys, df = np.unique(np.frombuffer(arr, dtype=np.uint64), return_counts=True)
+        del arr
+        keep = df >= 2
+        np.savez(P9DIR / 'term-df.npz', keys=keys[keep], df=df[keep].astype(np.int32), n=np.int64(n))
+        print('term df:', n, 'titles,', int(keep.sum()), 'terms with df >= 2', flush=True)
+    N_ = L.LC_NAMES
+    db.execute(f"""CREATE TEMP TABLE auth AS SELECT lcid, label, coalesce(birth, '') <> '' OR coalesce(death, '') <> ''
+            OR regexp_matches(label, '\\d{{4}}') AS dated, sources FROM '{N_}' WHERE NOT deprecated AND NOT coalesce(undifferentiated, false)""")
+    db.execute("CREATE TEMP TABLE ulab AS SELECT label, min(lcid) lcid FROM auth GROUP BY label HAVING count(*) = 1")
+    db.execute(f"""CREATE TEMP TABLE bib AS SELECT u.lcid, try_cast(r.date1 AS INTEGER) y, r.title FROM
+            (SELECT DISTINCT control, rtrim(heading, ' .,') heading FROM '{LC_BIB}/headings-*.parquet') h
+            JOIN ulab u ON u.label = h.heading JOIN '{LC_BIB}/records-*.parquet' r ON r.control = h.control""")
+    print('bib rows', db.execute('SELECT count(*) FROM bib').fetchone()[0], flush=True)
+    bib = defaultdict(list)
+    for lcid, y, t in db.execute('SELECT lcid, y, title FROM bib').fetchall():
+        bib[lcid].append((y if y and 1400 <= y <= 2026 else None, t or ''))
+    # how often an authority's dated bib works resume after a silence of more than N years, and with a new subject
+    gaps = {n_: [0, 0, 0] for n_ in (5, 10, 15, 20, 25, 30, 40)}
+    n_auth = 0
+    for lcid, rs in bib.items():
+        rs = sorted((y, t) for y, t in rs if y)
+        if len({y for y, _ in rs}) < 2:
+            continue
+        n_auth += 1
+        for n_, g in gaps.items():
+            g[0] += 0
+        last, toks, hist = rs[0][0], set(p9_tokens(rs[0][1])), bool(HIST_WORD.search(nfold(rs[0][1])))
+        for y, t in rs[1:]:
+            tt = set(p9_tokens(t))
+            for n_, g in gaps.items():
+                g[0] += 1
+                if y > last + n_:
+                    g[1] += 1
+                    if not hist and not (tt & toks):
+                        g[2] += 1
+            last = max(last, y)
+            toks |= tt
+            hist = hist or bool(HIST_WORD.search(nfold(t)))
+    (P9DIR / 'act-gaps.json').write_text(json.dumps(dict(
+        note='LC 2016 bib records under an undifferentiated-free unique authority heading with 2+ distinct years: for each '
+             'later record, whether it came more than N years after the latest earlier one (resumed) and whether, in '
+             'addition, the earlier records carry no history word and share no title word with it (new subject: the '
+             'case rule C would wrongly set aside)', authorities=n_auth,
+        by_n={n_: dict(later_records=g[0], resumed=g[1], resumed_share=round(g[1] / g[0], 5) if g[0] else None,
+                       resumed_new_subject=g[2], resumed_new_subject_share=round(g[2] / g[0], 5) if g[0] else None)
+              for n_, g in gaps.items()}), indent=1))
+    rows = []
+    Y4 = re.compile(r'\b(1[5-9]\d\d|20[0-2]\d)\b')
+    Y2 = re.compile(r'\b\d{1,2}/\d{1,2}/(\d{2})\b')
+    cur = db.execute('SELECT lcid, label, dated, sources FROM auth')
+    while True:
+        rs = cur.fetchmany(200000)
+        if not rs:
+            break
+        for lcid, label, dated, srcs in rs:
+            ys, titles = [], []
+            for s in srcs or ():
+                ys += [int(m) for m in Y4.findall(s)]
+                ys += [(1900 if int(m) > 30 else 2000) + int(m) for m in Y2.findall(s)]
+                head = re.split(r',\s*(?:c|cop\.\s*)?\d{4}|:|\(|\[', s.split('::')[0])[0].strip()
+                if head:
+                    titles.append(head[:200])
+            for y, t in bib.get(lcid, ()):
+                if y:
+                    ys.append(y)
+                if t:
+                    titles.append(t[:200])
+            ys = [y for y in ys if 1400 <= y <= 2026]
+            rows.append(dict(lcid=lcid, label=label, dated=bool(dated), first_year=min(ys) if ys else None,
+                             last_year=max(ys) if ys else None, n_bib=len(bib.get(lcid, ())), titles=titles[:12]))
+    pq.write_table(pa.Table.from_pylist(rows), P9DIR / 'lc-activity.parquet', compression='zstd')
+    print('lc activity', len(rows), 'authorities;', sum(1 for r in rows if r['last_year']), 'with a year', flush=True)
+
+
+class Pass9:
+    """pass-nine facts of a position's candidate (see the block comment above)"""
+    def __init__(self, db, people, works, others_all, vctx, needed, mu=2.0, cap=3.0):
+        import numpy as np
+        self.np = np
+        G = GRAPH
+        z = np.load(P9DIR / 'term-df.npz')
+        self.hk, self.hdf, self.N = z['keys'], z['df'], int(z['n'])
+        self.dfc = {}
+        self.mu, self.cap = mu, cap
+        self.vctx = vctx            # (volume -> [token tuples of the volume title and its chapters], chapter -> volume)
+        from key_review_reviewers import journal_key
+        self.jkey = journal_key
+        # profile documents: the key's key-log works (author roles, volume editing), each = its title + journal + the
+        # title of the volume it is a chapter of
+        self.kworks = defaultdict(list)
+        ws = set()
+        for k, w in db.execute(f"""SELECT DISTINCT "from", "to" FROM {keylog(G, 'authored')}
+                WHERE coalesce(role, 'author') IN ('author', 'unknown', 'volume-editor', 'author-editor')
+                UNION SELECT DISTINCT "from", "to" FROM {keylog(G, 'edited')}
+                WHERE coalesce(role, 'volume-editor') IN ('volume-editor', 'author-editor', 'unknown', 'author')""").fetchall():
+            self.kworks[k].append(w)
+            ws.add(w)
+        db.register('p9w', db.execute('SELECT unnest(?) AS key', [sorted(ws)]).df())
+        self.wdoc, self.wjk, self.thesis = {}, {}, set()
+        for w, lab, j, kind, vlab in db.execute(f"""SELECT w.key, w.label, w.journal, w.kind, v.label FROM '{G}/work.parquet' w
+                JOIN p9w USING (key) LEFT JOIN (SELECT "from", min("to") vol FROM '{G}/part_of.parquet' GROUP BY 1) p
+                ON p."from" = w.key LEFT JOIN '{G}/work.parquet' v ON v.key = p.vol""").fetchall():
+            self.wdoc[w] = (p9_tokens(lab), p9_tokens(j) + p9_tokens(vlab))
+            if j:
+                self.wjk[w] = journal_key(j)
+            if kind == 'thesis':
+                self.thesis.add(w)
+        print('pass nine: profiles of', len(self.kworks), 'keys over', len(self.wdoc), 'works', flush=True)
+        self.pcache = {}
+        # LC namesake authorities by name key: (lcid, dated, last year, title token tuples)
+        self.lca = defaultdict(list)
+        if (P9DIR / 'lc-activity.parquet').exists():
+            cur = db.execute(f"SELECT lcid, label, dated, last_year, titles FROM '{P9DIR}/lc-activity.parquet'")
+            while True:
+                rows = cur.fetchmany(200000)
+                if not rows:
+                    break
+                for lcid, label, dated, last, titles in rows:
+                    if not label or ',' not in label:
+                        continue
+                    f = L.fam_norm(label.partition(',')[0])
+                    g = L.gwords(label)
+                    if g and (f, g[0]) in needed:
+                        self.lca[f, g[0]].append((lcid, dated, last, [p9_tokens(t) for t in titles or ()],
+                                                  any(HIST_WORD.search(nfold(t)) for t in titles or ())))
+        # people credited on the position works and their volumes: only their pairs are kept
+        oa = sorted(others_all)
+        db.register('p9o', db.execute('SELECT unnest(?) AS k', [oa]).df())
+        # tie (a): REVIEWED either way, with the review and the book (hidden with the masked work)
+        self.rev = defaultdict(list)
+        for a, b, rv, bk, ev in db.execute(f"""SELECT "from", "to", review, book, evidence FROM '{G}/reviewed.parquet'
+                WHERE "from" IN (SELECT k FROM p9o) OR "to" IN (SELECT k FROM p9o)""").fetchall():
+            self.rev[a, b].append((rv, bk, ev))
+            self.rev[b, a].append((rv, bk, ev))
+        # person works by evidence (author roles and volume editing) for citations and co-citation
+        db.execute(f"""CREATE OR REPLACE TEMP TABLE p9pw AS SELECT DISTINCT "from" p, "to" w, evidence = 'keylog' AS kl
+                FROM '{G}/authored.parquet' WHERE coalesce(role, 'author') IN ('author', 'unknown', 'volume-editor', 'author-editor')
+                UNION SELECT DISTINCT "from", "to", evidence = 'keylog' FROM '{G}/edited.parquet'
+                WHERE coalesce(role, 'volume-editor') IN ('volume-editor', 'author-editor', 'unknown', 'author')""")
+        # tie (b): a work of one cites a work of the other (any cites row); kept: the candidate-side works
+        self.cp = defaultdict(dict)
+        for k, o, kw, kl in db.execute(f"""SELECT a1.p, a2.p, a1.w, bool_and(a1.kl AND a2.kl) FROM '{G}/cites.parquet' c
+                JOIN p9pw a1 ON a1.w = c."from" JOIN p9pw a2 ON a2.w = c."to" WHERE a1.p <> a2.p AND a2.p IN (SELECT k FROM p9o)
+                GROUP BY ALL UNION ALL
+                SELECT a2.p, a1.p, a2.w, bool_and(a1.kl AND a2.kl) FROM '{G}/cites.parquet' c
+                JOIN p9pw a1 ON a1.w = c."from" JOIN p9pw a2 ON a2.w = c."to" WHERE a1.p <> a2.p AND a1.p IN (SELECT k FROM p9o)
+                GROUP BY ALL""").fetchall():
+            d = self.cp[k, o]
+            d[kw] = d.get(kw, False) or kl
+        # tie (c): co-citation by theses (thesis work keys as ints): key -> {thesis: number of the key's works it cites}
+        tid = {}
+        self.thk, self.tha = defaultdict(dict), defaultdict(dict)
+        for p, t, n, nk in db.execute(f"""SELECT a.p, c."from", count(DISTINCT a.w), count(DISTINCT a.w) FILTER (WHERE a.kl)
+                FROM '{G}/cites.parquet' c JOIN p9pw a ON a.w = c."to" WHERE c.source LIKE '%thesis%' GROUP BY ALL""").fetchall():
+            i = tid.setdefault(t, len(tid))
+            self.tha[p][i] = n
+            if nk:
+                self.thk[p][i] = nk
+        self.cth = defaultdict(set)
+        db.register('p9pos', db.execute('SELECT unnest(?) AS w', [sorted(works)]).df())
+        for w, t in db.execute(f"""SELECT c."to", c."from" FROM '{G}/cites.parquet' c JOIN p9pos ON p9pos.w = c."to"
+                WHERE c.source LIKE '%thesis%'""").fetchall():
+            if t in tid:
+                self.cth[w].add(tid[t])
+        print('pass nine ties:', len(self.rev) // 2, 'review pairs,', len(self.cp), 'citation pairs,', len(self.tha),
+              'cited keys,', len(tid), 'theses', flush=True)
+
+    # ---- profiles and the likelihood ratio
+    def pbg(self, t):
+        v = self.dfc.get(t)
+        if v is None:
+            h = thash(t)
+            i = int(self.np.searchsorted(self.hk, self.np.uint64(h)))
+            df = int(self.hdf[i]) if i < len(self.hk) and int(self.hk[i]) == h else 1
+            v = self.dfc[t] = (df + 0.5) / self.N
+            if len(self.dfc) > 2_000_000:
+                self.dfc.clear()
+        return v
+
+    def profile(self, k, hid=None, own=None):
+        """-> (term -> number of the key's documents with it, documents, thesis held); the masked work and works with
+        the position's own title (another version of the same item) are left out"""
+        ck = (k, hid, own)
+        r = self.pcache.get(ck)
+        if r is not None:
+            return r
+        prof = Counter()
+        n = 0
+        th = False
+        for w in self.kworks.get(k, ()):
+            if w == hid:
+                continue
+            d = self.wdoc.get(w)
+            if not d or not (d[0] or d[1]):
+                continue
+            if own and d[0] == own:
+                continue
+            n += 1
+            th = th or w in self.thesis
+            prof.update(p9_terms(d[0]) | set(d[1]))
+        r = (prof, n, th)
+        if len(self.pcache) > 60000:
+            self.pcache.clear()
+        self.pcache[ck] = r
+        return r
+
+    def lr(self, ctx, prof, n):
+        """(subject score, subfield score, top terms): sum over the context's terms of min(cap, max(0, log(P(t | profile)
+        / P(t | all titles)))), P(t | profile) Dirichlet-smoothed toward the background (mu)"""
+        import math
+        if not n:
+            return 0.0, 0.0, []
+        s1 = s2 = 0.0
+        top = []
+        for t in ctx:
+            c = prof.get(t)
+            if not c:
+                continue
+            pb = self.pbg(t)
+            v = math.log((c + self.mu * pb) / (n + self.mu) / pb)
+            if v <= 0:
+                continue
+            v = min(self.cap, v)
+            parts = t.split(' ')
+            if any(x in SUBFIELD for x in parts) and all(x in SUBFIELD or x.startswith('histor') for x in parts):
+                s2 += v
+            else:
+                s1 += v
+            top.append((round(v, 2), t))
+        top.sort(reverse=True)
+        return s1, s2, top[:6]
+
+    def context(self, p, fe):
+        ctx_w = (fe.get('p9') or {}).get('w') or p['work_id']
+        vol = self.vctx[1].get(ctx_w)
+        own = p9_tokens(p['title'])
+        terms = p9_terms(own) | set(p9_tokens(p.get('journal') or ''))
+        for ts in self.vctx[0].get(vol, ())[:40]:
+            terms |= p9_terms(ts)
+        return ctx_w, own, terms
+
+    def score(self, k, p, fe, ctx=None):
+        ctx_w, own, terms = ctx or self.context(p, fe)
+        h = HIDE[0]
+        hid = h[0] if (h and h[1] == k) else None
+        prof, n, th = self.profile(k, hid, own or None)
+        s1, s2, top = self.lr(terms, prof, n)
+        return dict(s1=s1, s2=s2, n=n, th=th, top=top)
+
+    def cocite(self, th, k, o, hid):
+        a, b = th.get(k), th.get(o)
+        if not a or not b:
+            return 0
+        hidth = self.cth.get(hid) if hid else None
+        n = 0
+        for t in (a if len(a) <= len(b) else b):
+            if t in a and t in b and not (hidth and t in hidth and a[t] <= 1):
+                n += 1
+        return n
+
+    def facts(self, people, p, fe, k, own_ids, P):
+        ctx = fe.get('p9') or {}
+        h = HIDE[0]
+        hid = h[0] if (h and h[1] == k) else None
+        others = {o: t for o, t in (ctx.get('others') or {}).items() if o != k}
+        rv, rvby, ct, cck, cca = 0, '', 0, 0, 0
+        for o, typ in others.items():
+            for r_, bk, ev in self.rev.get((k, o), ()):
+                if hid and (r_ == hid or bk == hid):
+                    continue
+                lv = 2 if ev == 'keylog' else 1
+                if lv > rv:
+                    rv, rvby = lv, typ
+            d = self.cp.get((k, o))
+            if d:
+                for kw, kl in d.items():
+                    if kw != hid:
+                        ct = max(ct, 2 if kl else 1)
+            cck = max(cck, self.cocite(self.thk, k, o, hid))
+            cca = max(cca, self.cocite(self.tha, k, o, hid))
+        cx = self.context(p, fe)
+        sc = self.score(k, p, fe, cx)
+        # kind 2, venue: another key-log work of the candidate in the same journal
+        jk = self.jkey(p.get('journal') or '') if p.get('journal') else ''
+        vrep = sum(1 for w in self.kworks.get(k, ()) if w != hid and w != cx[0] and jk and self.wjk.get(w) == jk) if jk else 0
+        # LC namesakes: their profile scores (the margin) and (C) activity windows of the undated ones
+        lro, inactive = 0.0, 0
+        uni = {t for t in cx[2] if ' ' not in t}
+        for lcid, dated, last, tts, hist in self.lca.get(fe['name_key'], ()):
+            if lcid in own_ids:
+                continue
+            if tts:
+                prof = Counter()
+                for ts in tts:
+                    prof.update(p9_terms(ts))
+                s1, s2, _ = self.lr(cx[2], prof, len(tts))
+                lro = max(lro, s1 + s2)
+            if not dated and last and p.get('year') and p['year'] > last + P.get('ACT_N', 25) and not hist and \
+                    not any(set(ts) & uni for ts in tts):
+                inactive += 1
+        y = dict(rv=rv, rvby=rvby, ct=ct, cck=cck, cca=cca, lrs=sc['s1'], lrf=sc['s2'], psz=sc['n'], pth=sc['th'],
+                 lro=lro, vrep=vrep, nothers=len(others), lc_inactive=inactive, lrtop=sc['top'])
+        y['sig'] = [f'x:rv={rv}', f'x:rvby={rvby or "-"}', f'x:ct={ct}', f'x:cck={cck}', f'x:cca={cca}',
+                    f"x:lrs={sc['s1']:.2f}", f"x:lrf={sc['s2']:.2f}", f"x:psz={sc['n']}", f"x:pth={int(sc['th'])}",
+                    f'x:lro={lro:.2f}', f'x:vrep={vrep}', f'x:nothers={len(others)}', f'x:lcin={inactive}']
+        return y
+
+
+def p9_kinds(x, P):
+    """levels (0 none, 1 weak, 2 strong) of the three kinds for a single-candidate position, thresholds from P (the
+    measured choice; defaults never fire)"""
+    big = 1e9
+    ok_prof = x['psz'] >= 3 or x['pth']
+    rl = x.get('review_like')
+    k1 = 0 if (rl or not ok_prof) else (2 if x['lrs'] >= P.get('K1_STRONG', big) else 1 if x['lrs'] >= P.get('K1_WEAK', big) else 0)
+    f2 = 0 if (rl or not ok_prof) else (2 if x['lrf'] >= P.get('K2_STRONG', big) else 1 if x['lrf'] >= P.get('K2_WEAK', big) else 0)
+    v2 = 0 if rl else (1 if x['vrep'] >= P.get('K2_VREP', big) else 0)
+    k2 = max(f2, v2)
+    t = x['rv'] >= P.get('K3_RV', big) or x['ct'] >= P.get('K3_CT', big) or x['cca'] >= P.get('K3_CC', big)
+    k3 = 2 if (x['rv'] >= P.get('K3_RV_STRONG', big) or x['cca'] >= P.get('K3_CC_STRONG', big)) else (1 if t else 0)
+    return k1, k2, k3
+
+
+def p9_fires(x, P):
+    k1, k2, k3 = p9_kinds(x, P)
+    full = x['name'] == 'full'
+    present = sum(1 for v in (k1, k2, k3) if v)
+    strong = any(v == 2 for v in (k1, k2, k3))
+    return {
+        # D: a full printed given name, the only surviving candidate, and two kinds (or one strong kind plus another)
+        'single-two-kinds': full and present >= 2,
+        'single-strong-kind': full and present >= 1 and strong and P.get('D_STRONG_ALONE', False),
+        # C: undated LC namesakes long inactive in another subject no longer count against rarity
+        'unique-rare-active-namesakes': full and x['others'] > P['RARE_LC'] and x['others_act'] <= P['RARE_LC'] and x['n_oa'] <= P['RARE_OA'],
+    }
+
+
+def p9_multi(people, p, fe, cands, P):
+    """several dated candidates: each one's profile score (full or variant name agreement, profile of 3+ works or a
+    thesis); -> (signals, best key, best, second)"""
+    S = P9[0]
+    cx = S.context(p, fe)
+    sc = []
+    for k in cands:
+        c = fe['cands'][k]
+        if c.get('lev') not in ('full', 'variant') or not L.date_test(c, p['year'], p['book'], P)[0]:
+            sc.append((0.0, k))
+            continue
+        s = S.score(k, p, fe, cx)
+        sc.append(((s['s1'] + s['s2']) if (s['n'] >= 3 or s['th']) else 0.0, k))
+    sc.sort(reverse=True)
+    best, bk = sc[0]
+    second = sc[1][0] if len(sc) > 1 else 0.0
+    return [f'x2:best={best:.2f}', f'x2:second={second:.2f}', f'x2:bestkey={bk}', f'x2:n={len(cands)}'], bk, best, second
+
+
 def nameonly_features(db, people, topic_min=0.0):
     """L.features plus the facts of the name-only class (FACTS_NAMEONLY): pairs from the key log only (COEDITED key-log
     rows, ADVISED from the key log's supervision claims and Wikidata), the volume's people from S/volume-people.parquet.
@@ -1168,6 +1630,8 @@ def nameonly_features(db, people, topic_min=0.0):
                 if lab and lab not in vol_titles[k][:1]:
                     vol_titles[k].insert(0, lab)
     vol_terms = {}
+    # pass nine: each volume's title and chapter titles as token tuples (the subject context of its chapters)
+    vol_toks = {vol: [p9_tokens(t) for t in ts] for vol, ts in vol_titles.items()}
     for vol, ts in vol_titles.items():
         tt = set()
         for t in ts:
@@ -1223,7 +1687,14 @@ def nameonly_features(db, people, topic_min=0.0):
                 c['topicv'] = topics.score_terms(k, ctx, hid)
         jk = journal_key(p.get('journal') or '') if p.get('journal') else ''
         fe['venue'] = 'journal' if jk and jk in hist_j else ('volume' if vp.get(w) else 'none')
+        # pass nine: the people credited on the work or its volume (editor / other chapter / co-author), for the ties
+        oth = {k2: ('ed' if k2 in ved.get(w, ()) else 'sib') for k2 in vp.get(w, ())
+               if not (h and h[0] == w and h[1] == k2)}
+        for k2 in exacts or ():
+            oth.setdefault(k2, 'co')
+        fe['p9'] = dict(w=w, others=oth)
         return fe
+    features.vp, features.vctx = vp, (vol_toks, vol_of)
     return features
 
 
@@ -1333,6 +1804,21 @@ def link(args):
             fe = features(people, make_pos(r))
             if fe.get('exact'):
                 exact_of[r['work']].update(fe['exact'])
+    # pass nine: the facts' tables, for the people credited on the position works and their volumes
+    P9[0] = None
+    if hasattr(features, 'vctx') and not getattr(args, 'no_p9', False) and (P9DIR / 'term-df.npz').exists():
+        others_all = set()
+        for ks in features.vp.values():
+            others_all |= ks
+        for w in works:
+            others_all |= authors.get(w, set()) | exact_of.get(w, set())
+        P9[0] = Pass9(db, people, works, others_all, features.vctx, needed)
+        P['ACT_N'] = getattr(args, 'act_n', 25)
+        for kv in (getattr(args, 'p9_params', '') or '').split(','):
+            if '=' in kv:
+                a_, b_ = kv.split('=')
+                P[a_] = float(b_)
+        print('pass nine ready', round(time.time() - t0), flush=True)
     # pass 2: every uncredited position
     out = []
     for n, r in enumerate(iter_rows(T, pc.equal(T.column('credited'), ''))):
@@ -3836,7 +4322,13 @@ def main():
     a.add_argument('--topicv-min', type=float, default=1e9, help='rule unique-topic-volume: volume-context topic score')
     a.add_argument('--scholar-max-bearers', type=int, default=0, help='rule single-scholar-history-venue: at most this '
                    'many bearers of the name (date-possible LC namesakes + 1, or OpenAlex History ids)')
+    a.add_argument('--no-p9', action='store_true', help='without the pass-nine facts (signals x:rv ... and x2:)')
+    a.add_argument('--act-n', type=int, default=25, help='rule C: years of silence after an undated LC namesake\'s last activity')
+    a.add_argument('--p9-params', default='', help='pass-nine thresholds, NAME=value comma list (K1_WEAK, K1_STRONG, K2_WEAK, '
+                   'K2_STRONG, K2_VREP, K3_RV, K3_RV_STRONG, K3_CT, K3_CC, K3_CC_STRONG, M_BEST, M_SECOND)')
     a.add_argument('--out-tag', default='', help='suffix of the results / gold / namesake files (a variant run)')
+    a = sub.add_parser('p9-prep')
+    a.add_argument('--force', action='store_true')
     sub.add_parser('mints')
     sub.add_parser('panel')
     sub.add_parser('audit')
@@ -3879,7 +4371,7 @@ def main():
      'recheck-cited': recheck_cited, 'contributors': contributors,
      'title-filter': title_filter, 'nameonly-extract': nameonly_extract, 'nameonly-siblings': nameonly_siblings,
      'nameonly-positions': nameonly_positions, 'nameonly-report': nameonly_report,
-     'nameonly-export': nameonly_export, 'volume-people': volume_people_cmd, 'nameonly-extra': nameonly_extra, 'nameonly-fuller': nameonly_fuller}[args.cmd](args)
+     'nameonly-export': nameonly_export, 'volume-people': volume_people_cmd, 'nameonly-extra': nameonly_extra, 'nameonly-fuller': nameonly_fuller, 'p9-prep': p9_prep}[args.cmd](args)
 
 
 if __name__ == '__main__':

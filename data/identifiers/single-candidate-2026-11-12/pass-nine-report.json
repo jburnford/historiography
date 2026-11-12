@@ -1,0 +1,10267 @@
+{
+ "note": "Pass nine (2026-11-12), ARCHITECTURE.md section 8 class 38: candidate-profile likelihood ratio (kind 1 subject, kind 2 subfield/venue), ties (kind 3: REVIEWED either way, citations between works, thesis co-citation), rule C (undated LC namesake activity windows) and two-of-three combinations, on the NAME-ONLY class only (work-people not measured). link_work_people.py link --nameonly --gold-no-oa --topic-min 20 --gold 100000 --out-tag=-p9; analysis scratch p9/analyse9.py (pass-eight x: signals merged from the -big run of the same positions and gold sample, because the -p9 run overwrote them: a bug, fixed and tested since). gold = masked gold rows left with one candidate (wrong = that candidate is not the credited key; duplicate keys are counted wrong); masked_author = proven-namesake test; est_wrong = absent share x namesake fire rate / production fire rate by name band (absent shares 6/6/29/40%). Bound: 0.5% with its upper 95%. Nothing adopted.",
+ "sizes": {
+  "gold_single": 21703,
+  "masked_single": 3137,
+  "production_single": 73259,
+  "profile_ok_production": 53342,
+  "profile_ok_gold": 21381,
+  "profile_ok_masked": 2691
+ },
+ "kinds": {
+  "K1:lrs>=2": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 10599,
+    "fire_rate": 0.4884,
+    "wrong": 135,
+    "upper95": 0.0147
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 301,
+    "fire_rate": 0.09595,
+    "examples": [
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-66572",
+      "p-6479"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-66572",
+      "p-6479"
+     ],
+     [
+      "p-66572",
+      "p-6479"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 159
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 7630,
+     "gold_fire_rate": 0.5489,
+     "masked_eligible": 702,
+     "masked_fires": 93,
+     "masked_fire_rate": 0.13248,
+     "est": 0.0402,
+     "upper95": 0.0471
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 3599,
+     "gold_fire_rate": 0.3806,
+     "masked_eligible": 1742,
+     "masked_fires": 148,
+     "masked_fire_rate": 0.08496,
+     "est": 0.1304,
+     "upper95": 0.1487
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 767,
+     "gold_fire_rate": 0.396,
+     "masked_eligible": 691,
+     "masked_fires": 60,
+     "masked_fire_rate": 0.08683,
+     "est": 0.2465,
+     "upper95": 0.3024
+    }
+   },
+   "production_fires": 11996,
+   "est_wrong": 0.0804,
+   "est_wrong_upper95": 0.0939,
+   "clerical-dev": {
+    "fires": 10,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.278
+    ]
+   },
+   "clerical-test": {
+    "fires": 8,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.324
+    ]
+   }
+  },
+  "K1:lrs>=3": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 9899,
+    "fire_rate": 0.4561,
+    "wrong": 127,
+    "upper95": 0.0149
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 255,
+    "fire_rate": 0.08129,
+    "examples": [
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-66572",
+      "p-6479"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-66572",
+      "p-6479"
+     ],
+     [
+      "p-66572",
+      "p-6479"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 141
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 7181,
+     "gold_fire_rate": 0.5194,
+     "masked_eligible": 702,
+     "masked_fires": 83,
+     "masked_fire_rate": 0.11823,
+     "est": 0.0381,
+     "upper95": 0.0452
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 3340,
+     "gold_fire_rate": 0.3403,
+     "masked_eligible": 1742,
+     "masked_fires": 123,
+     "masked_fire_rate": 0.07061,
+     "est": 0.1168,
+     "upper95": 0.1351
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 719,
+     "gold_fire_rate": 0.3404,
+     "masked_eligible": 691,
+     "masked_fires": 49,
+     "masked_fire_rate": 0.07091,
+     "est": 0.2148,
+     "upper95": 0.2699
+    }
+   },
+   "production_fires": 11240,
+   "est_wrong": 0.0728,
+   "est_wrong_upper95": 0.0863,
+   "clerical-dev": {
+    "fires": 10,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.278
+    ]
+   },
+   "clerical-test": {
+    "fires": 8,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.324
+    ]
+   }
+  },
+  "K1:lrs>=4": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 7488,
+    "fire_rate": 0.345,
+    "wrong": 70,
+    "upper95": 0.0114
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 129,
+    "fire_rate": 0.04112,
+    "examples": [
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 97
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 4877,
+     "gold_fire_rate": 0.3946,
+     "masked_eligible": 702,
+     "masked_fires": 45,
+     "masked_fire_rate": 0.0641,
+     "est": 0.0304,
+     "upper95": 0.0386
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 2457,
+     "gold_fire_rate": 0.2555,
+     "masked_eligible": 1742,
+     "masked_fires": 55,
+     "masked_fire_rate": 0.03157,
+     "est": 0.071,
+     "upper95": 0.0889
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 504,
+     "gold_fire_rate": 0.2392,
+     "masked_eligible": 691,
+     "masked_fires": 29,
+     "masked_fire_rate": 0.04197,
+     "est": 0.1813,
+     "upper95": 0.2453
+    }
+   },
+   "production_fires": 7838,
+   "est_wrong": 0.0528,
+   "est_wrong_upper95": 0.0677,
+   "clerical-dev": {
+    "fires": 8,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.324
+    ]
+   },
+   "clerical-test": {
+    "fires": 7,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.354
+    ]
+   }
+  },
+  "K1:lrs>=5": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 6985,
+    "fire_rate": 0.3218,
+    "wrong": 64,
+    "upper95": 0.0113
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 117,
+    "fire_rate": 0.0373,
+    "examples": [
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 82
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 4571,
+     "gold_fire_rate": 0.3699,
+     "masked_eligible": 702,
+     "masked_fires": 43,
+     "masked_fire_rate": 0.06125,
+     "est": 0.031,
+     "upper95": 0.0396
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 2233,
+     "gold_fire_rate": 0.2336,
+     "masked_eligible": 1742,
+     "masked_fires": 48,
+     "masked_fire_rate": 0.02755,
+     "est": 0.0682,
+     "upper95": 0.0868
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 474,
+     "gold_fire_rate": 0.2191,
+     "masked_eligible": 691,
+     "masked_fires": 26,
+     "masked_fire_rate": 0.03763,
+     "est": 0.1729,
+     "upper95": 0.2381
+    }
+   },
+   "production_fires": 7278,
+   "est_wrong": 0.0517,
+   "est_wrong_upper95": 0.067,
+   "clerical-dev": {
+    "fires": 8,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.324
+    ]
+   },
+   "clerical-test": {
+    "fires": 7,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.354
+    ]
+   }
+  },
+  "K1:lrs>=6": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 6373,
+    "fire_rate": 0.2936,
+    "wrong": 62,
+    "upper95": 0.0121
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 96,
+    "fire_rate": 0.0306,
+    "examples": [
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 69
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 4169,
+     "gold_fire_rate": 0.3403,
+     "masked_eligible": 702,
+     "masked_fires": 39,
+     "masked_fire_rate": 0.05556,
+     "est": 0.0308,
+     "upper95": 0.0399
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1973,
+     "gold_fire_rate": 0.2065,
+     "masked_eligible": 1742,
+     "masked_fires": 34,
+     "masked_fire_rate": 0.01952,
+     "est": 0.0546,
+     "upper95": 0.073
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 422,
+     "gold_fire_rate": 0.188,
+     "masked_eligible": 691,
+     "masked_fires": 23,
+     "masked_fire_rate": 0.03329,
+     "est": 0.1718,
+     "upper95": 0.2416
+    }
+   },
+   "production_fires": 6564,
+   "est_wrong": 0.0471,
+   "est_wrong_upper95": 0.0629,
+   "clerical-dev": {
+    "fires": 8,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.324
+    ]
+   },
+   "clerical-test": {
+    "fires": 7,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.354
+    ]
+   }
+  },
+  "K1:lrs>=8": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 4661,
+    "fire_rate": 0.2148,
+    "wrong": 35,
+    "upper95": 0.01
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 54,
+    "fire_rate": 0.01721,
+    "examples": [
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-224222",
+      "p-18653"
+     ],
+     [
+      "p-2440",
+      "p-18653"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 41
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 2818,
+     "gold_fire_rate": 0.2497,
+     "masked_eligible": 702,
+     "masked_fires": 19,
+     "masked_fire_rate": 0.02707,
+     "est": 0.0222,
+     "upper95": 0.0324
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1445,
+     "gold_fire_rate": 0.1484,
+     "masked_eligible": 1742,
+     "masked_fires": 20,
+     "masked_fire_rate": 0.01148,
+     "est": 0.0439,
+     "upper95": 0.0644
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 299,
+     "gold_fire_rate": 0.1379,
+     "masked_eligible": 691,
+     "masked_fires": 15,
+     "masked_fire_rate": 0.02171,
+     "est": 0.1581,
+     "upper95": 0.242
+    }
+   },
+   "production_fires": 4562,
+   "est_wrong": 0.038,
+   "est_wrong_upper95": 0.0563,
+   "clerical-dev": {
+    "fires": 7,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.354
+    ]
+   },
+   "clerical-test": {
+    "fires": 5,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.434
+    ]
+   }
+  },
+  "K1:lrs>=10": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 3457,
+    "fire_rate": 0.1593,
+    "wrong": 19,
+    "upper95": 0.0082
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 32,
+    "fire_rate": 0.0102,
+    "examples": [
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-224222",
+      "p-18653"
+     ],
+     [
+      "p-2440",
+      "p-18653"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-12089",
+      "p-10648"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 31
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1913,
+     "gold_fire_rate": 0.1858,
+     "masked_eligible": 702,
+     "masked_fires": 10,
+     "masked_fire_rate": 0.01425,
+     "est": 0.0172,
+     "upper95": 0.0291
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1006,
+     "gold_fire_rate": 0.1075,
+     "masked_eligible": 1742,
+     "masked_fires": 12,
+     "masked_fire_rate": 0.00689,
+     "est": 0.0378,
+     "upper95": 0.0623
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 218,
+     "gold_fire_rate": 0.1057,
+     "masked_eligible": 691,
+     "masked_fires": 10,
+     "masked_fire_rate": 0.01447,
+     "est": 0.1446,
+     "upper95": 0.244
+    }
+   },
+   "production_fires": 3137,
+   "est_wrong": 0.0327,
+   "est_wrong_upper95": 0.0547,
+   "clerical-dev": {
+    "fires": 3,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.562
+    ]
+   },
+   "clerical-test": {
+    "fires": 3,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.562
+    ]
+   }
+  },
+  "K1:lrs>=12": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2871,
+    "fire_rate": 0.1323,
+    "wrong": 18,
+    "upper95": 0.0094
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 21,
+    "fire_rate": 0.00669,
+    "examples": [
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-12089",
+      "p-10648"
+     ],
+     [
+      "p-12089",
+      "p-10648"
+     ],
+     [
+      "p-10648",
+      "p-12089"
+     ],
+     [
+      "p-11829",
+      "p-16019"
+     ],
+     [
+      "p-735",
+      "p-15903"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 26
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1585,
+     "gold_fire_rate": 0.1551,
+     "masked_eligible": 702,
+     "masked_fires": 6,
+     "masked_fire_rate": 0.00855,
+     "est": 0.0125,
+     "upper95": 0.0245
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 777,
+     "gold_fire_rate": 0.0861,
+     "masked_eligible": 1742,
+     "masked_fires": 6,
+     "masked_fire_rate": 0.00344,
+     "est": 0.0245,
+     "upper95": 0.0499
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 180,
+     "gold_fire_rate": 0.0923,
+     "masked_eligible": 691,
+     "masked_fires": 9,
+     "masked_fire_rate": 0.01302,
+     "est": 0.1576,
+     "upper95": 0.2736
+    }
+   },
+   "production_fires": 2542,
+   "est_wrong": 0.0264,
+   "est_wrong_upper95": 0.0499,
+   "clerical-dev": {
+    "fires": 2,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.658
+    ]
+   },
+   "clerical-test": {
+    "fires": 3,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.562
+    ]
+   }
+  },
+  "K2:lrf>=1": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2811,
+    "fire_rate": 0.1295,
+    "wrong": 39,
+    "upper95": 0.0182
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 126,
+    "fire_rate": 0.04017,
+    "examples": [
+     [
+      "p-88701",
+      "p-6482"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-100207",
+      "p-6607"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 43
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 3269,
+     "gold_fire_rate": 0.1429,
+     "masked_eligible": 702,
+     "masked_fires": 11,
+     "masked_fire_rate": 0.01567,
+     "est": 0.0111,
+     "upper95": 0.0183
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1556,
+     "gold_fire_rate": 0.1111,
+     "masked_eligible": 1742,
+     "masked_fires": 98,
+     "masked_fire_rate": 0.05626,
+     "est": 0.1997,
+     "upper95": 0.2356
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 322,
+     "gold_fire_rate": 0.0945,
+     "masked_eligible": 691,
+     "masked_fires": 17,
+     "masked_fire_rate": 0.0246,
+     "est": 0.1664,
+     "upper95": 0.248
+    }
+   },
+   "production_fires": 5147,
+   "est_wrong": 0.0778,
+   "est_wrong_upper95": 0.0983,
+   "clerical-dev": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   },
+   "clerical-test": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   }
+  },
+  "K2:lrf>=2": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2159,
+    "fire_rate": 0.0995,
+    "wrong": 22,
+    "upper95": 0.0147
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 97,
+    "fire_rate": 0.03092,
+    "examples": [
+     [
+      "p-88701",
+      "p-6482"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-69784",
+      "p-9478"
+     ],
+     [
+      "p-49302",
+      "p-7313"
+     ],
+     [
+      "p-49303",
+      "p-7313"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 29
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 2923,
+     "gold_fire_rate": 0.111,
+     "masked_eligible": 702,
+     "masked_fires": 8,
+     "masked_fire_rate": 0.0114,
+     "est": 0.009,
+     "upper95": 0.0162
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1289,
+     "gold_fire_rate": 0.0835,
+     "masked_eligible": 1742,
+     "masked_fires": 79,
+     "masked_fire_rate": 0.04535,
+     "est": 0.1943,
+     "upper95": 0.2339
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 283,
+     "gold_fire_rate": 0.0612,
+     "masked_eligible": 691,
+     "masked_fires": 10,
+     "masked_fire_rate": 0.01447,
+     "est": 0.1114,
+     "upper95": 0.1879
+    }
+   },
+   "production_fires": 4495,
+   "est_wrong": 0.0686,
+   "est_wrong_upper95": 0.0895,
+   "clerical-dev": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   },
+   "clerical-test": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   }
+  },
+  "K2:lrf>=3": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 1429,
+    "fire_rate": 0.0658,
+    "wrong": 18,
+    "upper95": 0.0189
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 75,
+    "fire_rate": 0.02391,
+    "examples": [
+     [
+      "p-88701",
+      "p-6482"
+     ],
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-69784",
+      "p-9478"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 15
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 2130,
+     "gold_fire_rate": 0.0718,
+     "masked_eligible": 702,
+     "masked_fires": 5,
+     "masked_fire_rate": 0.00712,
+     "est": 0.0077,
+     "upper95": 0.0162
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 905,
+     "gold_fire_rate": 0.0599,
+     "masked_eligible": 1742,
+     "masked_fires": 65,
+     "masked_fire_rate": 0.03731,
+     "est": 0.2278,
+     "upper95": 0.2798
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 189,
+     "gold_fire_rate": 0.0434,
+     "masked_eligible": 691,
+     "masked_fires": 5,
+     "masked_fire_rate": 0.00724,
+     "est": 0.0834,
+     "upper95": 0.1746
+    }
+   },
+   "production_fires": 3224,
+   "est_wrong": 0.0739,
+   "est_wrong_upper95": 0.0995,
+   "clerical-dev": {
+    "fires": 5,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.434
+    ]
+   },
+   "clerical-test": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   }
+  },
+  "K2:lrf>=4": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 499,
+    "fire_rate": 0.023,
+    "wrong": 4,
+    "upper95": 0.0182
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 11,
+    "fire_rate": 0.00351,
+    "examples": [
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-50547",
+      "p-16531"
+     ],
+     [
+      "p-3333",
+      "p-16673"
+     ],
+     [
+      "p-122631",
+      "p-21639"
+     ],
+     [
+      "p-138135",
+      "p-21639"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 6
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 878,
+     "gold_fire_rate": 0.0242,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0112
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 308,
+     "gold_fire_rate": 0.024,
+     "masked_eligible": 1742,
+     "masked_fires": 9,
+     "masked_fire_rate": 0.00517,
+     "est": 0.0927,
+     "upper95": 0.1654
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 118,
+     "gold_fire_rate": 0.0133,
+     "masked_eligible": 691,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00289,
+     "est": 0.0534,
+     "upper95": 0.1676
+    }
+   },
+   "production_fires": 1304,
+   "est_wrong": 0.0267,
+   "est_wrong_upper95": 0.0618,
+   "clerical-dev": {
+    "fires": 3,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.562
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K2:lrf>=6": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 265,
+    "fire_rate": 0.0122,
+    "wrong": 2,
+    "upper95": 0.0236
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 5,
+    "fire_rate": 0.00159,
+    "examples": [
+     [
+      "p-50547",
+      "p-16531"
+     ],
+     [
+      "p-3333",
+      "p-16673"
+     ],
+     [
+      "p-644",
+      "p-8481"
+     ],
+     [
+      "p-735",
+      "p-15903"
+     ],
+     [
+      "p-13546",
+      "p-3790"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 5
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 456,
+     "gold_fire_rate": 0.0125,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0216
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 148,
+     "gold_fire_rate": 0.0131,
+     "masked_eligible": 1742,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.0023,
+     "est": 0.0857,
+     "upper95": 0.2052
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 20,
+     "gold_fire_rate": 0.0111,
+     "masked_eligible": 691,
+     "masked_fires": 1,
+     "masked_fire_rate": 0.00145,
+     "est": 0.1576,
+     "upper95": 0.7455
+    }
+   },
+   "production_fires": 624,
+   "est_wrong": 0.0254,
+   "est_wrong_upper95": 0.0883,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K2:vrep>=1": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 831,
+    "fire_rate": 0.0383,
+    "wrong": 1,
+    "upper95": 0.0057
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 4,
+    "fire_rate": 0.00128,
+    "examples": [
+     [
+      "p-28338",
+      "p-15230"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-38392",
+      "p-100827"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 8
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 455,
+     "gold_fire_rate": 0.0478,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.0145,
+     "upper95": 0.0455
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 345,
+     "gold_fire_rate": 0.0186,
+     "masked_eligible": 1742,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00115,
+     "est": 0.0184,
+     "upper95": 0.0622
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 38,
+     "gold_fire_rate": 0.0133,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.2479
+    }
+   },
+   "production_fires": 838,
+   "est_wrong": 0.0154,
+   "est_wrong_upper95": 0.0616,
+   "clerical-dev": {
+    "fires": 2,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.658
+    ]
+   },
+   "clerical-test": {
+    "fires": 3,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.562
+    ]
+   }
+  },
+  "K2:vrep>=2": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 518,
+    "fire_rate": 0.0239,
+    "wrong": 1,
+    "upper95": 0.0091
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 1,
+    "fire_rate": 0.00032,
+    "examples": [
+     [
+      "p-28338",
+      "p-15230"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 3
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 186,
+     "gold_fire_rate": 0.0294,
+     "masked_eligible": 702,
+     "masked_fires": 1,
+     "masked_fire_rate": 0.00142,
+     "est": 0.0177,
+     "upper95": 0.0839
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 166,
+     "gold_fire_rate": 0.0123,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0694
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 21,
+     "gold_fire_rate": 0.01,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.4486
+    }
+   },
+   "production_fires": 373,
+   "est_wrong": 0.0088,
+   "est_wrong_upper95": 0.0979,
+   "clerical-dev": {
+    "fires": 1,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.793
+    ]
+   },
+   "clerical-test": {
+    "fires": 2,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.658
+    ]
+   }
+  },
+  "K2:lrf>=1|vrep": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 3470,
+    "fire_rate": 0.1599,
+    "wrong": 39,
+    "upper95": 0.0147
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 128,
+    "fire_rate": 0.0408,
+    "examples": [
+     [
+      "p-88701",
+      "p-6482"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-100207",
+      "p-6607"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 49
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 3601,
+     "gold_fire_rate": 0.1812,
+     "masked_eligible": 702,
+     "masked_fires": 11,
+     "masked_fire_rate": 0.01567,
+     "est": 0.0101,
+     "upper95": 0.0166
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1754,
+     "gold_fire_rate": 0.1246,
+     "masked_eligible": 1742,
+     "masked_fires": 100,
+     "masked_fire_rate": 0.05741,
+     "est": 0.1808,
+     "upper95": 0.2128
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 345,
+     "gold_fire_rate": 0.1046,
+     "masked_eligible": 691,
+     "masked_fires": 17,
+     "masked_fire_rate": 0.0246,
+     "est": 0.1553,
+     "upper95": 0.2315
+    }
+   },
+   "production_fires": 5700,
+   "est_wrong": 0.0714,
+   "est_wrong_upper95": 0.09,
+   "clerical-dev": {
+    "fires": 7,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.354
+    ]
+   },
+   "clerical-test": {
+    "fires": 7,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.354
+    ]
+   }
+  },
+  "K2:lrf>=2|vrep": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2852,
+    "fire_rate": 0.1314,
+    "wrong": 22,
+    "upper95": 0.0111
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 100,
+    "fire_rate": 0.03188,
+    "examples": [
+     [
+      "p-88701",
+      "p-6482"
+     ],
+     [
+      "p-22173",
+      "p-6480"
+     ],
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-69784",
+      "p-9478"
+     ],
+     [
+      "p-49302",
+      "p-7313"
+     ],
+     [
+      "p-49303",
+      "p-7313"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 35
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 3258,
+     "gold_fire_rate": 0.1509,
+     "masked_eligible": 702,
+     "masked_fires": 9,
+     "masked_fire_rate": 0.01282,
+     "est": 0.0091,
+     "upper95": 0.0158
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1507,
+     "gold_fire_rate": 0.0988,
+     "masked_eligible": 1742,
+     "masked_fires": 81,
+     "masked_fire_rate": 0.0465,
+     "est": 0.1704,
+     "upper95": 0.2047
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 308,
+     "gold_fire_rate": 0.0723,
+     "masked_eligible": 691,
+     "masked_fires": 10,
+     "masked_fire_rate": 0.01447,
+     "est": 0.1023,
+     "upper95": 0.1727
+    }
+   },
+   "production_fires": 5073,
+   "est_wrong": 0.0627,
+   "est_wrong_upper95": 0.0814,
+   "clerical-dev": {
+    "fires": 7,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.354
+    ]
+   },
+   "clerical-test": {
+    "fires": 7,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.354
+    ]
+   }
+  },
+  "K2:lrf>=3|vrep": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2174,
+    "fire_rate": 0.1002,
+    "wrong": 18,
+    "upper95": 0.0124
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 78,
+    "fire_rate": 0.02486,
+    "examples": [
+     [
+      "p-88701",
+      "p-6482"
+     ],
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-69784",
+      "p-9478"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 21
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 2490,
+     "gold_fire_rate": 0.1148,
+     "masked_eligible": 702,
+     "masked_fires": 6,
+     "masked_fire_rate": 0.00855,
+     "est": 0.0079,
+     "upper95": 0.0156
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1160,
+     "gold_fire_rate": 0.0758,
+     "masked_eligible": 1742,
+     "masked_fires": 67,
+     "masked_fire_rate": 0.03846,
+     "est": 0.1832,
+     "upper95": 0.2243
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 216,
+     "gold_fire_rate": 0.0556,
+     "masked_eligible": 691,
+     "masked_fires": 5,
+     "masked_fire_rate": 0.00724,
+     "est": 0.0729,
+     "upper95": 0.1528
+    }
+   },
+   "production_fires": 3866,
+   "est_wrong": 0.0641,
+   "est_wrong_upper95": 0.0859,
+   "clerical-dev": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   },
+   "clerical-test": {
+    "fires": 7,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.354
+    ]
+   }
+  },
+  "K3:review-linked+": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 10,
+    "fire_rate": 0.0005,
+    "wrong": 0,
+    "upper95": 0.2589
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 71,
+     "gold_fire_rate": 0.0005,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1388
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 45,
+     "gold_fire_rate": 0.0004,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.2559
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 1,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    }
+   },
+   "production_fires": 117,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.1912,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K3:review-keylog": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 8,
+    "fire_rate": 0.0004,
+    "wrong": 0,
+    "upper95": 0.3123
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 37,
+     "gold_fire_rate": 0.0004,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.2664
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 21,
+     "gold_fire_rate": 0.0004,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.5483
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    }
+   },
+   "production_fires": 58,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.3684,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K3:review-editor": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "wrong": 0,
+    "upper95": null
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 10,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.9855
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 4,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    }
+   },
+   "production_fires": 14,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.9897,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K3:cites-any": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 35,
+    "fire_rate": 0.0016,
+    "wrong": 0,
+    "upper95": 0.082
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 2,
+    "fire_rate": 0.00064,
+    "examples": [
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 1
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 151,
+     "gold_fire_rate": 0.002,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0653
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 46,
+     "gold_fire_rate": 0.0008,
+     "masked_eligible": 1742,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00115,
+     "est": 0.1379,
+     "upper95": 0.4668
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 3,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    }
+   },
+   "production_fires": 200,
+   "est_wrong": 0.0317,
+   "est_wrong_upper95": 0.1716,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K3:cites-keylog": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 4,
+    "fire_rate": 0.0002,
+    "wrong": 0,
+    "upper95": 0.5271
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 73,
+     "gold_fire_rate": 0.0001,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.135
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 21,
+     "gold_fire_rate": 0.0006,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.5483
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 1,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    }
+   },
+   "production_fires": 95,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.2355,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K3:cocite>=1": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 96,
+    "fire_rate": 0.0044,
+    "wrong": 0,
+    "upper95": 0.0307
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 1,
+    "fire_rate": 0.00032,
+    "examples": [
+     [
+      "p-11829",
+      "p-16019"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 3
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 527,
+     "gold_fire_rate": 0.0053,
+     "masked_eligible": 702,
+     "masked_fires": 1,
+     "masked_fire_rate": 0.00142,
+     "est": 0.0063,
+     "upper95": 0.0296
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 282,
+     "gold_fire_rate": 0.0026,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0408
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 96,
+     "gold_fire_rate": 0.0022,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0981
+    }
+   },
+   "production_fires": 905,
+   "est_wrong": 0.0036,
+   "est_wrong_upper95": 0.0404,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 1,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.793
+    ]
+   }
+  },
+  "K3:cocite>=2": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 35,
+    "fire_rate": 0.0016,
+    "wrong": 0,
+    "upper95": 0.082
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 1
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 243,
+     "gold_fire_rate": 0.0019,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0406
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 153,
+     "gold_fire_rate": 0.001,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0753
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 80,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1178
+    }
+   },
+   "production_fires": 476,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.0647,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K3:cocite>=3": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 18,
+    "fire_rate": 0.0008,
+    "wrong": 0,
+    "upper95": 0.1533
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 151,
+     "gold_fire_rate": 0.0009,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0653
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 83,
+     "gold_fire_rate": 0.0008,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1387
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 13,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.7246
+    }
+   },
+   "production_fires": 247,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.1247,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K3:cocite>=5": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 12,
+    "fire_rate": 0.0006,
+    "wrong": 0,
+    "upper95": 0.2209
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 71,
+     "gold_fire_rate": 0.0005,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1388
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 55,
+     "gold_fire_rate": 0.0006,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.2093
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 6,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    }
+   },
+   "production_fires": 132,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.2073,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K3:cocite>=10": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 4,
+    "fire_rate": 0.0002,
+    "wrong": 0,
+    "upper95": 0.5271
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 32,
+     "gold_fire_rate": 0.0002,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.308
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 23,
+     "gold_fire_rate": 0.0002,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.5006
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 2,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    }
+   },
+   "production_fires": 57,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.41,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K3:review|cites": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 45,
+    "fire_rate": 0.0021,
+    "wrong": 0,
+    "upper95": 0.0644
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 2,
+    "fire_rate": 0.00064,
+    "examples": [
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 1
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 201,
+     "gold_fire_rate": 0.0025,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.049
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 84,
+     "gold_fire_rate": 0.0012,
+     "masked_eligible": 1742,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00115,
+     "est": 0.0755,
+     "upper95": 0.2556
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 4,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    }
+   },
+   "production_fires": 289,
+   "est_wrong": 0.0219,
+   "est_wrong_upper95": 0.1222,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K3:review|cites|cocite>=2": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 70,
+    "fire_rate": 0.0032,
+    "wrong": 0,
+    "upper95": 0.0419
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 2,
+    "fire_rate": 0.00064,
+    "examples": [
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 1
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 370,
+     "gold_fire_rate": 0.0039,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0266
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 195,
+     "gold_fire_rate": 0.002,
+     "masked_eligible": 1742,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00115,
+     "est": 0.0325,
+     "upper95": 0.1101
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 81,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1163
+    }
+   },
+   "production_fires": 646,
+   "est_wrong": 0.0098,
+   "est_wrong_upper95": 0.0631,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K3:review|cites|cocite>=3": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 61,
+    "fire_rate": 0.0028,
+    "wrong": 0,
+    "upper95": 0.0479
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 2,
+    "fire_rate": 0.00064,
+    "examples": [
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 1
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 294,
+     "gold_fire_rate": 0.0033,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0335
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 131,
+     "gold_fire_rate": 0.002,
+     "masked_eligible": 1742,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00115,
+     "est": 0.0484,
+     "upper95": 0.1639
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 14,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.6729
+    }
+   },
+   "production_fires": 439,
+   "est_wrong": 0.0144,
+   "est_wrong_upper95": 0.0928,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K3:review|cites|cocite>=5": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 55,
+    "fire_rate": 0.0025,
+    "wrong": 0,
+    "upper95": 0.053
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 2,
+    "fire_rate": 0.00064,
+    "examples": [
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 1
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 242,
+     "gold_fire_rate": 0.003,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0407
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 110,
+     "gold_fire_rate": 0.0018,
+     "masked_eligible": 1742,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00115,
+     "est": 0.0577,
+     "upper95": 0.1952
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 7,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    }
+   },
+   "production_fires": 359,
+   "est_wrong": 0.0177,
+   "est_wrong_upper95": 0.1068,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "C:active-rare": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 322,
+    "fire_rate": 0.0148,
+    "wrong": 2,
+    "upper95": 0.0194
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 6
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1351,
+     "gold_fire_rate": 0.0194,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0073
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 87,
+     "gold_fire_rate": 0.0054,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1323
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    }
+   },
+   "production_fires": 1438,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.0149,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 2,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.658
+    ]
+   }
+  }
+ },
+ "combos": {
+  "K1:lrs>=3 & K2:lrf>=1|vrep": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2854,
+    "fire_rate": 0.1315,
+    "wrong": 24,
+    "upper95": 0.0119
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 59,
+    "fire_rate": 0.01881,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-224222",
+      "p-18653"
+     ],
+     [
+      "p-2440",
+      "p-18653"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 38
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 2533,
+     "gold_fire_rate": 0.1527,
+     "masked_eligible": 702,
+     "masked_fires": 5,
+     "masked_fire_rate": 0.00712,
+     "est": 0.0065,
+     "upper95": 0.0136
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1359,
+     "gold_fire_rate": 0.093,
+     "masked_eligible": 1742,
+     "masked_fires": 44,
+     "masked_fire_rate": 0.02526,
+     "est": 0.1027,
+     "upper95": 0.1323
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 255,
+     "gold_fire_rate": 0.0756,
+     "masked_eligible": 691,
+     "masked_fires": 10,
+     "masked_fire_rate": 0.01447,
+     "est": 0.1236,
+     "upper95": 0.2086
+    }
+   },
+   "production_fires": 4147,
+   "est_wrong": 0.0452,
+   "est_wrong_upper95": 0.0645,
+   "clerical-dev": {
+    "fires": 5,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.434
+    ]
+   },
+   "clerical-test": {
+    "fires": 7,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.354
+    ]
+   }
+  },
+  "K1:lrs>=3 & K2:lrf>=2|vrep": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2407,
+    "fire_rate": 0.1109,
+    "wrong": 11,
+    "upper95": 0.0077
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 42,
+    "fire_rate": 0.01339,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 29
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 2288,
+     "gold_fire_rate": 0.1295,
+     "masked_eligible": 702,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.0057,
+     "est": 0.0058,
+     "upper95": 0.0131
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1169,
+     "gold_fire_rate": 0.0775,
+     "masked_eligible": 1742,
+     "masked_fires": 33,
+     "masked_fire_rate": 0.01894,
+     "est": 0.0895,
+     "upper95": 0.1202
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 226,
+     "gold_fire_rate": 0.0567,
+     "masked_eligible": 691,
+     "masked_fires": 5,
+     "masked_fire_rate": 0.00724,
+     "est": 0.0697,
+     "upper95": 0.146
+    }
+   },
+   "production_fires": 3683,
+   "est_wrong": 0.0363,
+   "est_wrong_upper95": 0.0553,
+   "clerical-dev": {
+    "fires": 5,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.434
+    ]
+   },
+   "clerical-test": {
+    "fires": 7,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.354
+    ]
+   }
+  },
+  "K1:lrs>=3 & K2:lrf>=3": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 1152,
+    "fire_rate": 0.0531,
+    "wrong": 11,
+    "upper95": 0.0161
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 35,
+    "fire_rate": 0.01116,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 13
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1577,
+     "gold_fire_rate": 0.0585,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.0042,
+     "upper95": 0.0131
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 681,
+     "gold_fire_rate": 0.047,
+     "masked_eligible": 1742,
+     "masked_fires": 29,
+     "masked_fire_rate": 0.01665,
+     "est": 0.135,
+     "upper95": 0.1851
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 159,
+     "gold_fire_rate": 0.0311,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0793,
+     "upper95": 0.1807
+    }
+   },
+   "production_fires": 2417,
+   "est_wrong": 0.046,
+   "est_wrong_upper95": 0.0726,
+   "clerical-dev": {
+    "fires": 3,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.562
+    ]
+   },
+   "clerical-test": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   }
+  },
+  "K1:lrs>=3 & K3:review|cites": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 30,
+    "fire_rate": 0.0014,
+    "wrong": 0,
+    "upper95": 0.095
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 2,
+    "fire_rate": 0.00064,
+    "examples": [
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 113,
+     "gold_fire_rate": 0.0016,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0872
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 63,
+     "gold_fire_rate": 0.001,
+     "masked_eligible": 1742,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00115,
+     "est": 0.1007,
+     "upper95": 0.3409
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 3,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    }
+   },
+   "production_fires": 179,
+   "est_wrong": 0.0354,
+   "est_wrong_upper95": 0.1918,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K1:lrs>=3 & K3:review|cites|cocite>=2": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 49,
+    "fire_rate": 0.0023,
+    "wrong": 0,
+    "upper95": 0.0593
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 2,
+    "fire_rate": 0.00064,
+    "examples": [
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 233,
+     "gold_fire_rate": 0.0026,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0423
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 147,
+     "gold_fire_rate": 0.0018,
+     "masked_eligible": 1742,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00115,
+     "est": 0.0431,
+     "upper95": 0.1461
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 73,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.129
+    }
+   },
+   "production_fires": 453,
+   "est_wrong": 0.014,
+   "est_wrong_upper95": 0.09,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K1:lrs>=3 & K3:review|cites|cocite>=3": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 42,
+    "fire_rate": 0.0019,
+    "wrong": 0,
+    "upper95": 0.0688
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 2,
+    "fire_rate": 0.00064,
+    "examples": [
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 182,
+     "gold_fire_rate": 0.0021,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0542
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 102,
+     "gold_fire_rate": 0.0018,
+     "masked_eligible": 1742,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00115,
+     "est": 0.0622,
+     "upper95": 0.2105
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 10,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.942
+    }
+   },
+   "production_fires": 294,
+   "est_wrong": 0.0216,
+   "est_wrong_upper95": 0.1386,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K1:lrs>=3 & K3:review-keylog": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 3,
+    "fire_rate": 0.0001,
+    "wrong": 0,
+    "upper95": 0.6316
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 22,
+     "gold_fire_rate": 0.0001,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.448
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 19,
+     "gold_fire_rate": 0.0002,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.606
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    }
+   },
+   "production_fires": 41,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.5212,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K1:lrs>=4 & K2:lrf>=1|vrep": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2496,
+    "fire_rate": 0.115,
+    "wrong": 17,
+    "upper95": 0.0103
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 39,
+    "fire_rate": 0.01243,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-224222",
+      "p-18653"
+     ],
+     [
+      "p-2440",
+      "p-18653"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 38
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 2025,
+     "gold_fire_rate": 0.1342,
+     "masked_eligible": 702,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.0057,
+     "est": 0.0065,
+     "upper95": 0.0148
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1123,
+     "gold_fire_rate": 0.0801,
+     "masked_eligible": 1742,
+     "masked_fires": 27,
+     "masked_fire_rate": 0.0155,
+     "est": 0.0762,
+     "upper95": 0.1058
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 222,
+     "gold_fire_rate": 0.0623,
+     "masked_eligible": 691,
+     "masked_fires": 8,
+     "masked_fire_rate": 0.01158,
+     "est": 0.1136,
+     "upper95": 0.204
+    }
+   },
+   "production_fires": 3370,
+   "est_wrong": 0.0368,
+   "est_wrong_upper95": 0.0576,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "K1:lrs>=4 & K2:lrf>=2|vrep": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2126,
+    "fire_rate": 0.098,
+    "wrong": 8,
+    "upper95": 0.007
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 29,
+    "fire_rate": 0.00924,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-16983",
+      "p-19170"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 29
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1836,
+     "gold_fire_rate": 0.1146,
+     "masked_eligible": 702,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.0057,
+     "est": 0.0072,
+     "upper95": 0.0164
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 964,
+     "gold_fire_rate": 0.0678,
+     "masked_eligible": 1742,
+     "masked_fires": 21,
+     "masked_fire_rate": 0.01206,
+     "est": 0.0691,
+     "upper95": 0.1003
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 198,
+     "gold_fire_rate": 0.0501,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0637,
+     "upper95": 0.1451
+    }
+   },
+   "production_fires": 2998,
+   "est_wrong": 0.0308,
+   "est_wrong_upper95": 0.0519,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "K1:lrs>=4 & K2:lrf>=3": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 1004,
+    "fire_rate": 0.0463,
+    "wrong": 8,
+    "upper95": 0.0147
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 25,
+    "fire_rate": 0.00797,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-16983",
+      "p-19170"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 13
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1309,
+     "gold_fire_rate": 0.0507,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.005,
+     "upper95": 0.0158
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 570,
+     "gold_fire_rate": 0.042,
+     "masked_eligible": 1742,
+     "masked_fires": 19,
+     "masked_fire_rate": 0.01091,
+     "est": 0.1057,
+     "upper95": 0.1566
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 145,
+     "gold_fire_rate": 0.0267,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0869,
+     "upper95": 0.1982
+    }
+   },
+   "production_fires": 2024,
+   "est_wrong": 0.0393,
+   "est_wrong_upper95": 0.0685,
+   "clerical-dev": {
+    "fires": 2,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.658
+    ]
+   },
+   "clerical-test": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   }
+  },
+  "K1:lrs>=4 & K3:review|cites": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 29,
+    "fire_rate": 0.0013,
+    "wrong": 0,
+    "upper95": 0.0981
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 90,
+     "gold_fire_rate": 0.0015,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1095
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 57,
+     "gold_fire_rate": 0.001,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.202
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 3,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    }
+   },
+   "production_fires": 150,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.1625,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K1:lrs>=4 & K3:review|cites|cocite>=2": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 43,
+    "fire_rate": 0.002,
+    "wrong": 0,
+    "upper95": 0.0673
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 188,
+     "gold_fire_rate": 0.0023,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0524
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 113,
+     "gold_fire_rate": 0.0014,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1019
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 72,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1308
+    }
+   },
+   "production_fires": 373,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.0825,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K1:lrs>=4 & K3:review|cites|cocite>=3": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 36,
+    "fire_rate": 0.0017,
+    "wrong": 0,
+    "upper95": 0.0798
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 151,
+     "gold_fire_rate": 0.0018,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0653
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 93,
+     "gold_fire_rate": 0.0014,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1238
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 10,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.942
+    }
+   },
+   "production_fires": 254,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.1212,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K1:lrs>=4 & K3:review-keylog": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2,
+    "fire_rate": 0.0001,
+    "wrong": 0,
+    "upper95": 0.7764
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 21,
+     "gold_fire_rate": 0.0001,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.4693
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 16,
+     "gold_fire_rate": 0.0002,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.7196
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    }
+   },
+   "production_fires": 37,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.5776,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K1:lrs>=6 & K2:lrf>=1|vrep": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2182,
+    "fire_rate": 0.1005,
+    "wrong": 15,
+    "upper95": 0.0107
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 29,
+    "fire_rate": 0.00924,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-224222",
+      "p-18653"
+     ],
+     [
+      "p-2440",
+      "p-18653"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-3333",
+      "p-16673"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 33
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1786,
+     "gold_fire_rate": 0.1179,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.0037,
+     "upper95": 0.0116
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 948,
+     "gold_fire_rate": 0.0686,
+     "masked_eligible": 1742,
+     "masked_fires": 19,
+     "masked_fire_rate": 0.01091,
+     "est": 0.0636,
+     "upper95": 0.0942
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 198,
+     "gold_fire_rate": 0.0534,
+     "masked_eligible": 691,
+     "masked_fires": 8,
+     "masked_fire_rate": 0.01158,
+     "est": 0.1273,
+     "upper95": 0.2287
+    }
+   },
+   "production_fires": 2932,
+   "est_wrong": 0.0314,
+   "est_wrong_upper95": 0.053,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "K1:lrs>=6 & K2:lrf>=2|vrep": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 1866,
+    "fire_rate": 0.086,
+    "wrong": 7,
+    "upper95": 0.0072
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 21,
+    "fire_rate": 0.00669,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-3333",
+      "p-16673"
+     ],
+     [
+      "p-735",
+      "p-15903"
+     ],
+     [
+      "p-60255",
+      "p-19940"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 25
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1630,
+     "gold_fire_rate": 0.1008,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.004,
+     "upper95": 0.0127
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 812,
+     "gold_fire_rate": 0.0589,
+     "masked_eligible": 1742,
+     "masked_fires": 15,
+     "masked_fire_rate": 0.00861,
+     "est": 0.0586,
+     "upper95": 0.0914
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 178,
+     "gold_fire_rate": 0.0434,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0708,
+     "upper95": 0.1615
+    }
+   },
+   "production_fires": 2620,
+   "est_wrong": 0.0255,
+   "est_wrong_upper95": 0.0472,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "K1:lrs>=6 & K2:lrf>=3": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 868,
+    "fire_rate": 0.04,
+    "wrong": 7,
+    "upper95": 0.0151
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 19,
+    "fire_rate": 0.00606,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-3333",
+      "p-16673"
+     ],
+     [
+      "p-735",
+      "p-15903"
+     ],
+     [
+      "p-60255",
+      "p-19940"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 13
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1168,
+     "gold_fire_rate": 0.0444,
+     "masked_eligible": 702,
+     "masked_fires": 1,
+     "masked_fire_rate": 0.00142,
+     "est": 0.0028,
+     "upper95": 0.0134
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 492,
+     "gold_fire_rate": 0.0349,
+     "masked_eligible": 1742,
+     "masked_fires": 14,
+     "masked_fire_rate": 0.00804,
+     "est": 0.0902,
+     "upper95": 0.1431
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 131,
+     "gold_fire_rate": 0.0211,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0962,
+     "upper95": 0.2194
+    }
+   },
+   "production_fires": 1791,
+   "est_wrong": 0.0337,
+   "est_wrong_upper95": 0.0641,
+   "clerical-dev": {
+    "fires": 2,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.658
+    ]
+   },
+   "clerical-test": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   }
+  },
+  "K1:lrs>=6 & K3:review|cites": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 26,
+    "fire_rate": 0.0012,
+    "wrong": 0,
+    "upper95": 0.1088
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 85,
+     "gold_fire_rate": 0.0014,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1159
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 56,
+     "gold_fire_rate": 0.001,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.2056
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 3,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    }
+   },
+   "production_fires": 144,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.1692,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K1:lrs>=6 & K3:review|cites|cocite>=2": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 40,
+    "fire_rate": 0.0018,
+    "wrong": 0,
+    "upper95": 0.0722
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 179,
+     "gold_fire_rate": 0.0022,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0551
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 108,
+     "gold_fire_rate": 0.0014,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1066
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 72,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1308
+    }
+   },
+   "production_fires": 359,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.0858,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K1:lrs>=6 & K3:review|cites|cocite>=3": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 33,
+    "fire_rate": 0.0015,
+    "wrong": 0,
+    "upper95": 0.0868
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 143,
+     "gold_fire_rate": 0.0017,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0689
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 90,
+     "gold_fire_rate": 0.0014,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1279
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 10,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.942
+    }
+   },
+   "production_fires": 243,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.1267,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K1:lrs>=6 & K3:review-keylog": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2,
+    "fire_rate": 0.0001,
+    "wrong": 0,
+    "upper95": 0.7764
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 19,
+     "gold_fire_rate": 0.0001,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.5187
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 15,
+     "gold_fire_rate": 0.0002,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.7676
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    }
+   },
+   "production_fires": 34,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.6285,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K2:lrf>=1|vrep & K3:review|cites": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 18,
+    "fire_rate": 0.0008,
+    "wrong": 0,
+    "upper95": 0.1533
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 2,
+    "fire_rate": 0.00064,
+    "examples": [
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 1
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 57,
+     "gold_fire_rate": 0.0009,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1729
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 36,
+     "gold_fire_rate": 0.0006,
+     "masked_eligible": 1742,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00115,
+     "est": 0.1762,
+     "upper95": 0.5965
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 3,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    }
+   },
+   "production_fires": 96,
+   "est_wrong": 0.0661,
+   "est_wrong_upper95": 0.3576,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K2:lrf>=1|vrep & K3:review|cites|cocite>=2": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 29,
+    "fire_rate": 0.0013,
+    "wrong": 0,
+    "upper95": 0.0981
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 2,
+    "fire_rate": 0.00064,
+    "examples": [
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 1
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 134,
+     "gold_fire_rate": 0.0016,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0735
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 92,
+     "gold_fire_rate": 0.0008,
+     "masked_eligible": 1742,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00115,
+     "est": 0.0689,
+     "upper95": 0.2334
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 67,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1406
+    }
+   },
+   "production_fires": 293,
+   "est_wrong": 0.0216,
+   "est_wrong_upper95": 0.1391,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K2:lrf>=1|vrep & K3:review|cites|cocite>=3": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 24,
+    "fire_rate": 0.0011,
+    "wrong": 0,
+    "upper95": 0.1173
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 2,
+    "fire_rate": 0.00064,
+    "examples": [
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 1
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 104,
+     "gold_fire_rate": 0.0012,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0948
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 58,
+     "gold_fire_rate": 0.0008,
+     "masked_eligible": 1742,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00115,
+     "est": 0.1093,
+     "upper95": 0.3703
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 7,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    }
+   },
+   "production_fires": 169,
+   "est_wrong": 0.0375,
+   "est_wrong_upper95": 0.2268,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K2:lrf>=1|vrep & K3:review-keylog": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 1,
+    "fire_rate": 0.0,
+    "wrong": 0,
+    "upper95": 0.95
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 10,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.9855
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 12,
+     "gold_fire_rate": 0.0002,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.9595
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    }
+   },
+   "production_fires": 22,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.9713,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K2:lrf>=2|vrep & K3:review|cites": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 18,
+    "fire_rate": 0.0008,
+    "wrong": 0,
+    "upper95": 0.1533
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 1
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 50,
+     "gold_fire_rate": 0.0009,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1971
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 31,
+     "gold_fire_rate": 0.0006,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.3714
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 2,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    }
+   },
+   "production_fires": 83,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.2816,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K2:lrf>=2|vrep & K3:review|cites|cocite>=2": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 25,
+    "fire_rate": 0.0012,
+    "wrong": 0,
+    "upper95": 0.1129
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 1
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 118,
+     "gold_fire_rate": 0.0013,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0835
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 83,
+     "gold_fire_rate": 0.0008,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1387
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 66,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1427
+    }
+   },
+   "production_fires": 267,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.1153,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K2:lrf>=2|vrep & K3:review|cites|cocite>=3": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 23,
+    "fire_rate": 0.0011,
+    "wrong": 0,
+    "upper95": 0.1221
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 1
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 92,
+     "gold_fire_rate": 0.0012,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1071
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 51,
+     "gold_fire_rate": 0.0008,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.2258
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 6,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    }
+   },
+   "production_fires": 149,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.1837,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K2:lrf>=2|vrep & K3:review-keylog": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 1,
+    "fire_rate": 0.0,
+    "wrong": 0,
+    "upper95": 0.95
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 7,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 11,
+     "gold_fire_rate": 0.0002,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    }
+   },
+   "production_fires": 18,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 1.0,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K2:lrf>=3 & K3:review|cites": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 15,
+    "fire_rate": 0.0007,
+    "wrong": 0,
+    "upper95": 0.181
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 1
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 40,
+     "gold_fire_rate": 0.0007,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.2464
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 20,
+     "gold_fire_rate": 0.0006,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.5757
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 1,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    }
+   },
+   "production_fires": 61,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.3667,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K2:lrf>=3 & K3:review|cites|cocite>=2": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 21,
+    "fire_rate": 0.001,
+    "wrong": 0,
+    "upper95": 0.1329
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 1
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 93,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.106
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 42,
+     "gold_fire_rate": 0.0008,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.2741
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 63,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1495
+    }
+   },
+   "production_fires": 198,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.1555,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K2:lrf>=3 & K3:review|cites|cocite>=3": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 19,
+    "fire_rate": 0.0009,
+    "wrong": 0,
+    "upper95": 0.1459
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 1
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 74,
+     "gold_fire_rate": 0.0009,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1332
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 31,
+     "gold_fire_rate": 0.0008,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.3714
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 4,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    }
+   },
+   "production_fires": 109,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.2327,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "K2:lrf>=3 & K3:review-keylog": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 1,
+    "fire_rate": 0.0,
+    "wrong": 0,
+    "upper95": 0.95
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 5,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 6,
+     "gold_fire_rate": 0.0002,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 1.0
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    }
+   },
+   "production_fires": 11,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 1.0,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "2of3(K1:lrs>=3,K2:lrf>=1|vrep,K3:review|cites)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2878,
+    "fire_rate": 0.1326,
+    "wrong": 24,
+    "upper95": 0.0118
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 59,
+    "fire_rate": 0.01881,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-224222",
+      "p-18653"
+     ],
+     [
+      "p-2440",
+      "p-18653"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 39
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 2597,
+     "gold_fire_rate": 0.1541,
+     "masked_eligible": 702,
+     "masked_fires": 5,
+     "masked_fire_rate": 0.00712,
+     "est": 0.0063,
+     "upper95": 0.0133
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1388,
+     "gold_fire_rate": 0.0938,
+     "masked_eligible": 1742,
+     "masked_fires": 44,
+     "masked_fire_rate": 0.02526,
+     "est": 0.1005,
+     "upper95": 0.1295
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 257,
+     "gold_fire_rate": 0.0756,
+     "masked_eligible": 691,
+     "masked_fires": 10,
+     "masked_fire_rate": 0.01447,
+     "est": 0.1226,
+     "upper95": 0.2069
+    }
+   },
+   "production_fires": 4242,
+   "est_wrong": 0.0442,
+   "est_wrong_upper95": 0.063,
+   "clerical-dev": {
+    "fires": 5,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.434
+    ]
+   },
+   "clerical-test": {
+    "fires": 7,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.354
+    ]
+   }
+  },
+  "2of3(K1:lrs>=3,K2:lrf>=1|vrep,K3:review|cites|cocite>=2)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2888,
+    "fire_rate": 0.1331,
+    "wrong": 24,
+    "upper95": 0.0118
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 59,
+    "fire_rate": 0.01881,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-224222",
+      "p-18653"
+     ],
+     [
+      "p-2440",
+      "p-18653"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 39
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 2654,
+     "gold_fire_rate": 0.1545,
+     "masked_eligible": 702,
+     "masked_fires": 5,
+     "masked_fire_rate": 0.00712,
+     "est": 0.0062,
+     "upper95": 0.013
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1418,
+     "gold_fire_rate": 0.0944,
+     "masked_eligible": 1742,
+     "masked_fires": 44,
+     "masked_fire_rate": 0.02526,
+     "est": 0.0984,
+     "upper95": 0.1268
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 263,
+     "gold_fire_rate": 0.0756,
+     "masked_eligible": 691,
+     "masked_fires": 10,
+     "masked_fire_rate": 0.01447,
+     "est": 0.1198,
+     "upper95": 0.2022
+    }
+   },
+   "production_fires": 4335,
+   "est_wrong": 0.0433,
+   "est_wrong_upper95": 0.0617,
+   "clerical-dev": {
+    "fires": 5,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.434
+    ]
+   },
+   "clerical-test": {
+    "fires": 7,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.354
+    ]
+   }
+  },
+  "2of3(K1:lrs>=3,K2:lrf>=1|vrep,K3:review|cites|cocite>=3)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2886,
+    "fire_rate": 0.133,
+    "wrong": 24,
+    "upper95": 0.0118
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 59,
+    "fire_rate": 0.01881,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-224222",
+      "p-18653"
+     ],
+     [
+      "p-2440",
+      "p-18653"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 39
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 2629,
+     "gold_fire_rate": 0.1544,
+     "masked_eligible": 702,
+     "masked_fires": 5,
+     "masked_fire_rate": 0.00712,
+     "est": 0.0063,
+     "upper95": 0.0131
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1407,
+     "gold_fire_rate": 0.0944,
+     "masked_eligible": 1742,
+     "masked_fires": 44,
+     "masked_fire_rate": 0.02526,
+     "est": 0.0992,
+     "upper95": 0.1277
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 260,
+     "gold_fire_rate": 0.0756,
+     "masked_eligible": 691,
+     "masked_fires": 10,
+     "masked_fire_rate": 0.01447,
+     "est": 0.1212,
+     "upper95": 0.2046
+    }
+   },
+   "production_fires": 4296,
+   "est_wrong": 0.0437,
+   "est_wrong_upper95": 0.0623,
+   "clerical-dev": {
+    "fires": 5,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.434
+    ]
+   },
+   "clerical-test": {
+    "fires": 7,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.354
+    ]
+   }
+  },
+  "2of3(K1:lrs>=3,K2:lrf>=1|vrep,K3:review-keylog)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2858,
+    "fire_rate": 0.1317,
+    "wrong": 24,
+    "upper95": 0.0119
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 59,
+    "fire_rate": 0.01881,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-224222",
+      "p-18653"
+     ],
+     [
+      "p-2440",
+      "p-18653"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 38
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 2547,
+     "gold_fire_rate": 0.1529,
+     "masked_eligible": 702,
+     "masked_fires": 5,
+     "masked_fire_rate": 0.00712,
+     "est": 0.0065,
+     "upper95": 0.0136
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1366,
+     "gold_fire_rate": 0.0934,
+     "masked_eligible": 1742,
+     "masked_fires": 44,
+     "masked_fire_rate": 0.02526,
+     "est": 0.1021,
+     "upper95": 0.1316
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 255,
+     "gold_fire_rate": 0.0756,
+     "masked_eligible": 691,
+     "masked_fires": 10,
+     "masked_fire_rate": 0.01447,
+     "est": 0.1236,
+     "upper95": 0.2086
+    }
+   },
+   "production_fires": 4168,
+   "est_wrong": 0.045,
+   "est_wrong_upper95": 0.0642,
+   "clerical-dev": {
+    "fires": 5,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.434
+    ]
+   },
+   "clerical-test": {
+    "fires": 7,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.354
+    ]
+   }
+  },
+  "2of3(K1:lrs>=3,K2:lrf>=2|vrep,K3:review|cites)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2431,
+    "fire_rate": 0.112,
+    "wrong": 11,
+    "upper95": 0.0076
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 44,
+    "fire_rate": 0.01403,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 30
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 2357,
+     "gold_fire_rate": 0.1309,
+     "masked_eligible": 702,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.0057,
+     "est": 0.0056,
+     "upper95": 0.0128
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1203,
+     "gold_fire_rate": 0.0783,
+     "masked_eligible": 1742,
+     "masked_fires": 35,
+     "masked_fire_rate": 0.02009,
+     "est": 0.0923,
+     "upper95": 0.1228
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 227,
+     "gold_fire_rate": 0.0567,
+     "masked_eligible": 691,
+     "masked_fires": 5,
+     "masked_fire_rate": 0.00724,
+     "est": 0.0694,
+     "upper95": 0.1454
+    }
+   },
+   "production_fires": 3787,
+   "est_wrong": 0.037,
+   "est_wrong_upper95": 0.0557,
+   "clerical-dev": {
+    "fires": 5,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.434
+    ]
+   },
+   "clerical-test": {
+    "fires": 7,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.354
+    ]
+   }
+  },
+  "2of3(K1:lrs>=3,K2:lrf>=2|vrep,K3:review|cites|cocite>=2)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2445,
+    "fire_rate": 0.1127,
+    "wrong": 11,
+    "upper95": 0.0076
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 44,
+    "fire_rate": 0.01403,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 30
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 2419,
+     "gold_fire_rate": 0.1316,
+     "masked_eligible": 702,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.0057,
+     "est": 0.0055,
+     "upper95": 0.0124
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1237,
+     "gold_fire_rate": 0.0789,
+     "masked_eligible": 1742,
+     "masked_fires": 35,
+     "masked_fire_rate": 0.02009,
+     "est": 0.0897,
+     "upper95": 0.1194
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 233,
+     "gold_fire_rate": 0.0567,
+     "masked_eligible": 691,
+     "masked_fires": 5,
+     "masked_fire_rate": 0.00724,
+     "est": 0.0676,
+     "upper95": 0.1416
+    }
+   },
+   "production_fires": 3889,
+   "est_wrong": 0.036,
+   "est_wrong_upper95": 0.0542,
+   "clerical-dev": {
+    "fires": 5,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.434
+    ]
+   },
+   "clerical-test": {
+    "fires": 7,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.354
+    ]
+   }
+  },
+  "2of3(K1:lrs>=3,K2:lrf>=2|vrep,K3:review|cites|cocite>=3)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2440,
+    "fire_rate": 0.1124,
+    "wrong": 11,
+    "upper95": 0.0076
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 44,
+    "fire_rate": 0.01403,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 30
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 2392,
+     "gold_fire_rate": 0.1313,
+     "masked_eligible": 702,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.0057,
+     "est": 0.0055,
+     "upper95": 0.0126
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1224,
+     "gold_fire_rate": 0.0789,
+     "masked_eligible": 1742,
+     "masked_fires": 35,
+     "masked_fire_rate": 0.02009,
+     "est": 0.0907,
+     "upper95": 0.1207
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 230,
+     "gold_fire_rate": 0.0567,
+     "masked_eligible": 691,
+     "masked_fires": 5,
+     "masked_fire_rate": 0.00724,
+     "est": 0.0685,
+     "upper95": 0.1435
+    }
+   },
+   "production_fires": 3846,
+   "est_wrong": 0.0364,
+   "est_wrong_upper95": 0.0548,
+   "clerical-dev": {
+    "fires": 5,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.434
+    ]
+   },
+   "clerical-test": {
+    "fires": 7,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.354
+    ]
+   }
+  },
+  "2of3(K1:lrs>=3,K2:lrf>=2|vrep,K3:review-keylog)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2411,
+    "fire_rate": 0.1111,
+    "wrong": 11,
+    "upper95": 0.0077
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 42,
+    "fire_rate": 0.01339,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 29
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 2305,
+     "gold_fire_rate": 0.1297,
+     "masked_eligible": 702,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.0057,
+     "est": 0.0057,
+     "upper95": 0.013
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1177,
+     "gold_fire_rate": 0.0779,
+     "masked_eligible": 1742,
+     "masked_fires": 33,
+     "masked_fire_rate": 0.01894,
+     "est": 0.0889,
+     "upper95": 0.1194
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 226,
+     "gold_fire_rate": 0.0567,
+     "masked_eligible": 691,
+     "masked_fires": 5,
+     "masked_fire_rate": 0.00724,
+     "est": 0.0697,
+     "upper95": 0.146
+    }
+   },
+   "production_fires": 3708,
+   "est_wrong": 0.036,
+   "est_wrong_upper95": 0.0549,
+   "clerical-dev": {
+    "fires": 5,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.434
+    ]
+   },
+   "clerical-test": {
+    "fires": 7,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.354
+    ]
+   }
+  },
+  "2of3(K1:lrs>=3,K2:lrf>=3,K3:review|cites)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 1179,
+    "fire_rate": 0.0543,
+    "wrong": 11,
+    "upper95": 0.0157
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 37,
+    "fire_rate": 0.01179,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 14
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1654,
+     "gold_fire_rate": 0.06,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.004,
+     "upper95": 0.0125
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 726,
+     "gold_fire_rate": 0.0478,
+     "masked_eligible": 1742,
+     "masked_fires": 31,
+     "masked_fire_rate": 0.0178,
+     "est": 0.1354,
+     "upper95": 0.1836
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 161,
+     "gold_fire_rate": 0.0311,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0783,
+     "upper95": 0.1785
+    }
+   },
+   "production_fires": 2541,
+   "est_wrong": 0.0462,
+   "est_wrong_upper95": 0.0719,
+   "clerical-dev": {
+    "fires": 3,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.562
+    ]
+   },
+   "clerical-test": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   }
+  },
+  "2of3(K1:lrs>=3,K2:lrf>=3,K3:review|cites|cocite>=2)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 1192,
+    "fire_rate": 0.0549,
+    "wrong": 11,
+    "upper95": 0.0155
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 37,
+    "fire_rate": 0.01179,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 14
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1723,
+     "gold_fire_rate": 0.0607,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.0038,
+     "upper95": 0.012
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 790,
+     "gold_fire_rate": 0.0484,
+     "masked_eligible": 1742,
+     "masked_fires": 31,
+     "masked_fire_rate": 0.0178,
+     "est": 0.1244,
+     "upper95": 0.1687
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 169,
+     "gold_fire_rate": 0.0311,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0746,
+     "upper95": 0.1701
+    }
+   },
+   "production_fires": 2682,
+   "est_wrong": 0.0438,
+   "est_wrong_upper95": 0.0681,
+   "clerical-dev": {
+    "fires": 3,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.562
+    ]
+   },
+   "clerical-test": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   }
+  },
+  "2of3(K1:lrs>=3,K2:lrf>=3,K3:review|cites|cocite>=3)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 1187,
+    "fire_rate": 0.0547,
+    "wrong": 11,
+    "upper95": 0.0156
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 37,
+    "fire_rate": 0.01179,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 14
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1691,
+     "gold_fire_rate": 0.0604,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.0039,
+     "upper95": 0.0122
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 756,
+     "gold_fire_rate": 0.0484,
+     "masked_eligible": 1742,
+     "masked_fires": 31,
+     "masked_fire_rate": 0.0178,
+     "est": 0.13,
+     "upper95": 0.1763
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 165,
+     "gold_fire_rate": 0.0311,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0764,
+     "upper95": 0.1742
+    }
+   },
+   "production_fires": 2612,
+   "est_wrong": 0.045,
+   "est_wrong_upper95": 0.07,
+   "clerical-dev": {
+    "fires": 3,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.562
+    ]
+   },
+   "clerical-test": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   }
+  },
+  "2of3(K1:lrs>=3,K2:lrf>=3,K3:review-keylog)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 1156,
+    "fire_rate": 0.0533,
+    "wrong": 11,
+    "upper95": 0.016
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 35,
+    "fire_rate": 0.01116,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 13
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1596,
+     "gold_fire_rate": 0.0587,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.0041,
+     "upper95": 0.013
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 694,
+     "gold_fire_rate": 0.0474,
+     "masked_eligible": 1742,
+     "masked_fires": 29,
+     "masked_fire_rate": 0.01665,
+     "est": 0.1325,
+     "upper95": 0.1816
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 159,
+     "gold_fire_rate": 0.0311,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0793,
+     "upper95": 0.1807
+    }
+   },
+   "production_fires": 2449,
+   "est_wrong": 0.0454,
+   "est_wrong_upper95": 0.0717,
+   "clerical-dev": {
+    "fires": 3,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.562
+    ]
+   },
+   "clerical-test": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   }
+  },
+  "all3(K1:lrs>=3,K2:lrf>=1|vrep,K3:review|cites|cocite>=2)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 22,
+    "fire_rate": 0.001,
+    "wrong": 0,
+    "upper95": 0.1273
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 2,
+    "fire_rate": 0.00064,
+    "examples": [
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 123,
+     "gold_fire_rate": 0.0012,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0801
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 90,
+     "gold_fire_rate": 0.0006,
+     "masked_eligible": 1742,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00115,
+     "est": 0.0705,
+     "upper95": 0.2386
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 66,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1427
+    }
+   },
+   "production_fires": 279,
+   "est_wrong": 0.0227,
+   "est_wrong_upper95": 0.1461,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "2of3(K1:lrs>=4,K2:lrf>=1|vrep,K3:review|cites)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2519,
+    "fire_rate": 0.1161,
+    "wrong": 17,
+    "upper95": 0.0102
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 41,
+    "fire_rate": 0.01307,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-224222",
+      "p-18653"
+     ],
+     [
+      "p-2440",
+      "p-18653"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 39
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 2078,
+     "gold_fire_rate": 0.1355,
+     "masked_eligible": 702,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.0057,
+     "est": 0.0063,
+     "upper95": 0.0145
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1152,
+     "gold_fire_rate": 0.0809,
+     "masked_eligible": 1742,
+     "masked_fires": 29,
+     "masked_fire_rate": 0.01665,
+     "est": 0.0798,
+     "upper95": 0.1094
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 224,
+     "gold_fire_rate": 0.0623,
+     "masked_eligible": 691,
+     "masked_fires": 8,
+     "masked_fire_rate": 0.01158,
+     "est": 0.1125,
+     "upper95": 0.2021
+    }
+   },
+   "production_fires": 3454,
+   "est_wrong": 0.0377,
+   "est_wrong_upper95": 0.0583,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "2of3(K1:lrs>=4,K2:lrf>=1|vrep,K3:review|cites|cocite>=2)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2530,
+    "fire_rate": 0.1166,
+    "wrong": 17,
+    "upper95": 0.0102
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 41,
+    "fire_rate": 0.01307,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-224222",
+      "p-18653"
+     ],
+     [
+      "p-2440",
+      "p-18653"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 39
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 2121,
+     "gold_fire_rate": 0.136,
+     "masked_eligible": 702,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.0057,
+     "est": 0.0062,
+     "upper95": 0.0142
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1196,
+     "gold_fire_rate": 0.0815,
+     "masked_eligible": 1742,
+     "masked_fires": 29,
+     "masked_fire_rate": 0.01665,
+     "est": 0.0769,
+     "upper95": 0.1054
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 229,
+     "gold_fire_rate": 0.0623,
+     "masked_eligible": 691,
+     "masked_fires": 8,
+     "masked_fire_rate": 0.01158,
+     "est": 0.1101,
+     "upper95": 0.1977
+    }
+   },
+   "production_fires": 3546,
+   "est_wrong": 0.0368,
+   "est_wrong_upper95": 0.0568,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "2of3(K1:lrs>=4,K2:lrf>=1|vrep,K3:review|cites|cocite>=3)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2528,
+    "fire_rate": 0.1165,
+    "wrong": 17,
+    "upper95": 0.0102
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 41,
+    "fire_rate": 0.01307,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-224222",
+      "p-18653"
+     ],
+     [
+      "p-2440",
+      "p-18653"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 39
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 2102,
+     "gold_fire_rate": 0.1359,
+     "masked_eligible": 702,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.0057,
+     "est": 0.0063,
+     "upper95": 0.0143
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1170,
+     "gold_fire_rate": 0.0815,
+     "masked_eligible": 1742,
+     "masked_fires": 29,
+     "masked_fire_rate": 0.01665,
+     "est": 0.0786,
+     "upper95": 0.1077
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 227,
+     "gold_fire_rate": 0.0623,
+     "masked_eligible": 691,
+     "masked_fires": 8,
+     "masked_fire_rate": 0.01158,
+     "est": 0.1111,
+     "upper95": 0.1995
+    }
+   },
+   "production_fires": 3499,
+   "est_wrong": 0.0373,
+   "est_wrong_upper95": 0.0576,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "2of3(K1:lrs>=4,K2:lrf>=1|vrep,K3:review-keylog)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2499,
+    "fire_rate": 0.1151,
+    "wrong": 17,
+    "upper95": 0.0103
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 39,
+    "fire_rate": 0.01243,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-224222",
+      "p-18653"
+     ],
+     [
+      "p-2440",
+      "p-18653"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 38
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 2038,
+     "gold_fire_rate": 0.1343,
+     "masked_eligible": 702,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.0057,
+     "est": 0.0065,
+     "upper95": 0.0148
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1133,
+     "gold_fire_rate": 0.0805,
+     "masked_eligible": 1742,
+     "masked_fires": 27,
+     "masked_fire_rate": 0.0155,
+     "est": 0.0756,
+     "upper95": 0.1048
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 222,
+     "gold_fire_rate": 0.0623,
+     "masked_eligible": 691,
+     "masked_fires": 8,
+     "masked_fire_rate": 0.01158,
+     "est": 0.1136,
+     "upper95": 0.204
+    }
+   },
+   "production_fires": 3393,
+   "est_wrong": 0.0366,
+   "est_wrong_upper95": 0.0572,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "2of3(K1:lrs>=4,K2:lrf>=2|vrep,K3:review|cites)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2149,
+    "fire_rate": 0.099,
+    "wrong": 8,
+    "upper95": 0.0069
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 29,
+    "fire_rate": 0.00924,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-16983",
+      "p-19170"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 30
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1890,
+     "gold_fire_rate": 0.1159,
+     "masked_eligible": 702,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.0057,
+     "est": 0.007,
+     "upper95": 0.0159
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 998,
+     "gold_fire_rate": 0.0686,
+     "masked_eligible": 1742,
+     "masked_fires": 21,
+     "masked_fire_rate": 0.01206,
+     "est": 0.0667,
+     "upper95": 0.0969
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 199,
+     "gold_fire_rate": 0.0501,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0633,
+     "upper95": 0.1444
+    }
+   },
+   "production_fires": 3087,
+   "est_wrong": 0.0299,
+   "est_wrong_upper95": 0.0504,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "2of3(K1:lrs>=4,K2:lrf>=2|vrep,K3:review|cites|cocite>=2)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2164,
+    "fire_rate": 0.0997,
+    "wrong": 8,
+    "upper95": 0.0068
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 29,
+    "fire_rate": 0.00924,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-16983",
+      "p-19170"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 30
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1936,
+     "gold_fire_rate": 0.1167,
+     "masked_eligible": 702,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.0057,
+     "est": 0.0068,
+     "upper95": 0.0155
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1046,
+     "gold_fire_rate": 0.0692,
+     "masked_eligible": 1742,
+     "masked_fires": 21,
+     "masked_fire_rate": 0.01206,
+     "est": 0.0637,
+     "upper95": 0.0925
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 204,
+     "gold_fire_rate": 0.0501,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0618,
+     "upper95": 0.1409
+    }
+   },
+   "production_fires": 3186,
+   "est_wrong": 0.029,
+   "est_wrong_upper95": 0.0488,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "2of3(K1:lrs>=4,K2:lrf>=2|vrep,K3:review|cites|cocite>=3)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2159,
+    "fire_rate": 0.0995,
+    "wrong": 8,
+    "upper95": 0.0069
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 29,
+    "fire_rate": 0.00924,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-16983",
+      "p-19170"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 30
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1917,
+     "gold_fire_rate": 0.1163,
+     "masked_eligible": 702,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.0057,
+     "est": 0.0069,
+     "upper95": 0.0157
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1018,
+     "gold_fire_rate": 0.0692,
+     "masked_eligible": 1742,
+     "masked_fires": 21,
+     "masked_fire_rate": 0.01206,
+     "est": 0.0654,
+     "upper95": 0.095
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 202,
+     "gold_fire_rate": 0.0501,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0624,
+     "upper95": 0.1423
+    }
+   },
+   "production_fires": 3137,
+   "est_wrong": 0.0294,
+   "est_wrong_upper95": 0.0496,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "2of3(K1:lrs>=4,K2:lrf>=2|vrep,K3:review-keylog)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2129,
+    "fire_rate": 0.0981,
+    "wrong": 8,
+    "upper95": 0.007
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 29,
+    "fire_rate": 0.00924,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-16983",
+      "p-19170"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 29
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1852,
+     "gold_fire_rate": 0.1147,
+     "masked_eligible": 702,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.0057,
+     "est": 0.0071,
+     "upper95": 0.0162
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 975,
+     "gold_fire_rate": 0.0682,
+     "masked_eligible": 1742,
+     "masked_fires": 21,
+     "masked_fire_rate": 0.01206,
+     "est": 0.0683,
+     "upper95": 0.0992
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 198,
+     "gold_fire_rate": 0.0501,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0637,
+     "upper95": 0.1451
+    }
+   },
+   "production_fires": 3025,
+   "est_wrong": 0.0305,
+   "est_wrong_upper95": 0.0514,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "2of3(K1:lrs>=4,K2:lrf>=3,K3:review|cites)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 1030,
+    "fire_rate": 0.0475,
+    "wrong": 8,
+    "upper95": 0.0143
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 25,
+    "fire_rate": 0.00797,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-16983",
+      "p-19170"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 14
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1369,
+     "gold_fire_rate": 0.0522,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.0048,
+     "upper95": 0.0151
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 611,
+     "gold_fire_rate": 0.0428,
+     "masked_eligible": 1742,
+     "masked_fires": 19,
+     "masked_fire_rate": 0.01091,
+     "est": 0.0986,
+     "upper95": 0.1461
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 147,
+     "gold_fire_rate": 0.0267,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0858,
+     "upper95": 0.1955
+    }
+   },
+   "production_fires": 2127,
+   "est_wrong": 0.0374,
+   "est_wrong_upper95": 0.0652,
+   "clerical-dev": {
+    "fires": 2,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.658
+    ]
+   },
+   "clerical-test": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   }
+  },
+  "2of3(K1:lrs>=4,K2:lrf>=3,K3:review|cites|cocite>=2)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 1044,
+    "fire_rate": 0.0481,
+    "wrong": 8,
+    "upper95": 0.0142
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 25,
+    "fire_rate": 0.00797,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-16983",
+      "p-19170"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 14
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1420,
+     "gold_fire_rate": 0.0529,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.0046,
+     "upper95": 0.0146
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 649,
+     "gold_fire_rate": 0.0434,
+     "masked_eligible": 1742,
+     "masked_fires": 19,
+     "masked_fire_rate": 0.01091,
+     "est": 0.0928,
+     "upper95": 0.1376
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 154,
+     "gold_fire_rate": 0.0267,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0819,
+     "upper95": 0.1866
+    }
+   },
+   "production_fires": 2223,
+   "est_wrong": 0.0357,
+   "est_wrong_upper95": 0.0624,
+   "clerical-dev": {
+    "fires": 2,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.658
+    ]
+   },
+   "clerical-test": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   }
+  },
+  "2of3(K1:lrs>=4,K2:lrf>=3,K3:review|cites|cocite>=3)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 1039,
+    "fire_rate": 0.0479,
+    "wrong": 8,
+    "upper95": 0.0142
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 25,
+    "fire_rate": 0.00797,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-16983",
+      "p-19170"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 14
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1398,
+     "gold_fire_rate": 0.0526,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.0047,
+     "upper95": 0.0148
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 638,
+     "gold_fire_rate": 0.0434,
+     "masked_eligible": 1742,
+     "masked_fires": 19,
+     "masked_fire_rate": 0.01091,
+     "est": 0.0944,
+     "upper95": 0.1399
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 151,
+     "gold_fire_rate": 0.0267,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0835,
+     "upper95": 0.1903
+    }
+   },
+   "production_fires": 2187,
+   "est_wrong": 0.0363,
+   "est_wrong_upper95": 0.0634,
+   "clerical-dev": {
+    "fires": 2,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.658
+    ]
+   },
+   "clerical-test": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   }
+  },
+  "2of3(K1:lrs>=4,K2:lrf>=3,K3:review-keylog)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 1007,
+    "fire_rate": 0.0464,
+    "wrong": 8,
+    "upper95": 0.0147
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 25,
+    "fire_rate": 0.00797,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-16983",
+      "p-19170"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 13
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1327,
+     "gold_fire_rate": 0.0508,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.005,
+     "upper95": 0.0156
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 582,
+     "gold_fire_rate": 0.0424,
+     "masked_eligible": 1742,
+     "masked_fires": 19,
+     "masked_fire_rate": 0.01091,
+     "est": 0.1035,
+     "upper95": 0.1534
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 145,
+     "gold_fire_rate": 0.0267,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0869,
+     "upper95": 0.1982
+    }
+   },
+   "production_fires": 2054,
+   "est_wrong": 0.0387,
+   "est_wrong_upper95": 0.0675,
+   "clerical-dev": {
+    "fires": 2,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.658
+    ]
+   },
+   "clerical-test": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   }
+  },
+  "all3(K1:lrs>=4,K2:lrf>=1|vrep,K3:review|cites|cocite>=2)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 19,
+    "fire_rate": 0.0009,
+    "wrong": 0,
+    "upper95": 0.1459
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 113,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0872
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 66,
+     "gold_fire_rate": 0.0004,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1745
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 66,
+     "gold_fire_rate": 0.0011,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1427
+    }
+   },
+   "production_fires": 245,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.1257,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "2of3(K1:lrs>=6,K2:lrf>=1|vrep,K3:review|cites)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2208,
+    "fire_rate": 0.1017,
+    "wrong": 15,
+    "upper95": 0.0106
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 31,
+    "fire_rate": 0.00988,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-224222",
+      "p-18653"
+     ],
+     [
+      "p-2440",
+      "p-18653"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 34
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1838,
+     "gold_fire_rate": 0.1192,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.0036,
+     "upper95": 0.0113
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 978,
+     "gold_fire_rate": 0.0694,
+     "masked_eligible": 1742,
+     "masked_fires": 21,
+     "masked_fire_rate": 0.01206,
+     "est": 0.0681,
+     "upper95": 0.0989
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 200,
+     "gold_fire_rate": 0.0545,
+     "masked_eligible": 691,
+     "masked_fires": 8,
+     "masked_fire_rate": 0.01158,
+     "est": 0.1261,
+     "upper95": 0.2264
+    }
+   },
+   "production_fires": 3016,
+   "est_wrong": 0.0326,
+   "est_wrong_upper95": 0.0539,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "2of3(K1:lrs>=6,K2:lrf>=1|vrep,K3:review|cites|cocite>=2)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2219,
+    "fire_rate": 0.1022,
+    "wrong": 15,
+    "upper95": 0.0106
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 31,
+    "fire_rate": 0.00988,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-224222",
+      "p-18653"
+     ],
+     [
+      "p-2440",
+      "p-18653"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 34
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1877,
+     "gold_fire_rate": 0.1198,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.0035,
+     "upper95": 0.011
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 1022,
+     "gold_fire_rate": 0.07,
+     "masked_eligible": 1742,
+     "masked_fires": 21,
+     "masked_fire_rate": 0.01206,
+     "est": 0.0652,
+     "upper95": 0.0946
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 205,
+     "gold_fire_rate": 0.0545,
+     "masked_eligible": 691,
+     "masked_fires": 8,
+     "masked_fire_rate": 0.01158,
+     "est": 0.123,
+     "upper95": 0.2209
+    }
+   },
+   "production_fires": 3104,
+   "est_wrong": 0.0317,
+   "est_wrong_upper95": 0.0524,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "2of3(K1:lrs>=6,K2:lrf>=1|vrep,K3:review|cites|cocite>=3)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2217,
+    "fire_rate": 0.1022,
+    "wrong": 15,
+    "upper95": 0.0106
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 31,
+    "fire_rate": 0.00988,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-224222",
+      "p-18653"
+     ],
+     [
+      "p-2440",
+      "p-18653"
+     ],
+     [
+      "p-18653",
+      "p-2440"
+     ],
+     [
+      "p-224222",
+      "p-2440"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 34
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1859,
+     "gold_fire_rate": 0.1196,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.0035,
+     "upper95": 0.0111
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 996,
+     "gold_fire_rate": 0.07,
+     "masked_eligible": 1742,
+     "masked_fires": 21,
+     "masked_fire_rate": 0.01206,
+     "est": 0.0669,
+     "upper95": 0.0971
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 203,
+     "gold_fire_rate": 0.0545,
+     "masked_eligible": 691,
+     "masked_fires": 8,
+     "masked_fire_rate": 0.01158,
+     "est": 0.1242,
+     "upper95": 0.223
+    }
+   },
+   "production_fires": 3058,
+   "est_wrong": 0.0322,
+   "est_wrong_upper95": 0.0532,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "2of3(K1:lrs>=6,K2:lrf>=1|vrep,K3:review-keylog)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 2185,
+    "fire_rate": 0.1007,
+    "wrong": 15,
+    "upper95": 0.0107
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 29,
+    "fire_rate": 0.00924,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-224222",
+      "p-18653"
+     ],
+     [
+      "p-2440",
+      "p-18653"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-3333",
+      "p-16673"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 33
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1797,
+     "gold_fire_rate": 0.1179,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.0037,
+     "upper95": 0.0115
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 959,
+     "gold_fire_rate": 0.069,
+     "masked_eligible": 1742,
+     "masked_fires": 19,
+     "masked_fire_rate": 0.01091,
+     "est": 0.0628,
+     "upper95": 0.0931
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 198,
+     "gold_fire_rate": 0.0534,
+     "masked_eligible": 691,
+     "masked_fires": 8,
+     "masked_fire_rate": 0.01158,
+     "est": 0.1273,
+     "upper95": 0.2287
+    }
+   },
+   "production_fires": 2954,
+   "est_wrong": 0.0312,
+   "est_wrong_upper95": 0.0526,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "2of3(K1:lrs>=6,K2:lrf>=2|vrep,K3:review|cites)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 1892,
+    "fire_rate": 0.0872,
+    "wrong": 7,
+    "upper95": 0.0072
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 21,
+    "fire_rate": 0.00669,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-3333",
+      "p-16673"
+     ],
+     [
+      "p-735",
+      "p-15903"
+     ],
+     [
+      "p-60255",
+      "p-19940"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 26
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1683,
+     "gold_fire_rate": 0.1022,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.0039,
+     "upper95": 0.0123
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 847,
+     "gold_fire_rate": 0.0597,
+     "masked_eligible": 1742,
+     "masked_fires": 15,
+     "masked_fire_rate": 0.00861,
+     "est": 0.0562,
+     "upper95": 0.0876
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 179,
+     "gold_fire_rate": 0.0445,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0704,
+     "upper95": 0.1606
+    }
+   },
+   "production_fires": 2709,
+   "est_wrong": 0.0246,
+   "est_wrong_upper95": 0.0456,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "2of3(K1:lrs>=6,K2:lrf>=2|vrep,K3:review|cites|cocite>=2)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 1907,
+    "fire_rate": 0.0879,
+    "wrong": 7,
+    "upper95": 0.0071
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 21,
+    "fire_rate": 0.00669,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-3333",
+      "p-16673"
+     ],
+     [
+      "p-735",
+      "p-15903"
+     ],
+     [
+      "p-60255",
+      "p-19940"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 26
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1725,
+     "gold_fire_rate": 0.103,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.0038,
+     "upper95": 0.012
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 895,
+     "gold_fire_rate": 0.0603,
+     "masked_eligible": 1742,
+     "masked_fires": 15,
+     "masked_fire_rate": 0.00861,
+     "est": 0.0531,
+     "upper95": 0.0829
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 184,
+     "gold_fire_rate": 0.0445,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0685,
+     "upper95": 0.1562
+    }
+   },
+   "production_fires": 2804,
+   "est_wrong": 0.0238,
+   "est_wrong_upper95": 0.0441,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "2of3(K1:lrs>=6,K2:lrf>=2|vrep,K3:review|cites|cocite>=3)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 1902,
+    "fire_rate": 0.0876,
+    "wrong": 7,
+    "upper95": 0.0071
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 21,
+    "fire_rate": 0.00669,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-3333",
+      "p-16673"
+     ],
+     [
+      "p-735",
+      "p-15903"
+     ],
+     [
+      "p-60255",
+      "p-19940"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 26
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1707,
+     "gold_fire_rate": 0.1027,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.0039,
+     "upper95": 0.0121
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 867,
+     "gold_fire_rate": 0.0603,
+     "masked_eligible": 1742,
+     "masked_fires": 15,
+     "masked_fire_rate": 0.00861,
+     "est": 0.0549,
+     "upper95": 0.0856
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 182,
+     "gold_fire_rate": 0.0445,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0693,
+     "upper95": 0.1579
+    }
+   },
+   "production_fires": 2756,
+   "est_wrong": 0.0242,
+   "est_wrong_upper95": 0.0449,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "2of3(K1:lrs>=6,K2:lrf>=2|vrep,K3:review-keylog)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 1869,
+    "fire_rate": 0.0861,
+    "wrong": 7,
+    "upper95": 0.0072
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 21,
+    "fire_rate": 0.00669,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-3333",
+      "p-16673"
+     ],
+     [
+      "p-735",
+      "p-15903"
+     ],
+     [
+      "p-60255",
+      "p-19940"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 25
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1644,
+     "gold_fire_rate": 0.1009,
+     "masked_eligible": 702,
+     "masked_fires": 2,
+     "masked_fire_rate": 0.00285,
+     "est": 0.004,
+     "upper95": 0.0126
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 824,
+     "gold_fire_rate": 0.0593,
+     "masked_eligible": 1742,
+     "masked_fires": 15,
+     "masked_fire_rate": 0.00861,
+     "est": 0.0577,
+     "upper95": 0.0901
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 178,
+     "gold_fire_rate": 0.0434,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0708,
+     "upper95": 0.1615
+    }
+   },
+   "production_fires": 2646,
+   "est_wrong": 0.0252,
+   "est_wrong_upper95": 0.0467,
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.39
+    ]
+   }
+  },
+  "2of3(K1:lrs>=6,K2:lrf>=3,K3:review|cites)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 895,
+    "fire_rate": 0.0412,
+    "wrong": 7,
+    "upper95": 0.0146
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 19,
+    "fire_rate": 0.00606,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-3333",
+      "p-16673"
+     ],
+     [
+      "p-735",
+      "p-15903"
+     ],
+     [
+      "p-60255",
+      "p-19940"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 14
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1227,
+     "gold_fire_rate": 0.0459,
+     "masked_eligible": 702,
+     "masked_fires": 1,
+     "masked_fire_rate": 0.00142,
+     "est": 0.0027,
+     "upper95": 0.0127
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 534,
+     "gold_fire_rate": 0.0357,
+     "masked_eligible": 1742,
+     "masked_fires": 14,
+     "masked_fire_rate": 0.00804,
+     "est": 0.0831,
+     "upper95": 0.1318
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 133,
+     "gold_fire_rate": 0.0222,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0948,
+     "upper95": 0.2161
+    }
+   },
+   "production_fires": 1894,
+   "est_wrong": 0.0318,
+   "est_wrong_upper95": 0.0606,
+   "clerical-dev": {
+    "fires": 2,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.658
+    ]
+   },
+   "clerical-test": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   }
+  },
+  "2of3(K1:lrs>=6,K2:lrf>=3,K3:review|cites|cocite>=2)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 909,
+    "fire_rate": 0.0419,
+    "wrong": 7,
+    "upper95": 0.0144
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 19,
+    "fire_rate": 0.00606,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-3333",
+      "p-16673"
+     ],
+     [
+      "p-735",
+      "p-15903"
+     ],
+     [
+      "p-60255",
+      "p-19940"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 14
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1274,
+     "gold_fire_rate": 0.0466,
+     "masked_eligible": 702,
+     "masked_fires": 1,
+     "masked_fire_rate": 0.00142,
+     "est": 0.0026,
+     "upper95": 0.0122
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 570,
+     "gold_fire_rate": 0.0363,
+     "masked_eligible": 1742,
+     "masked_fires": 14,
+     "masked_fire_rate": 0.00804,
+     "est": 0.0779,
+     "upper95": 0.1235
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 140,
+     "gold_fire_rate": 0.0222,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.09,
+     "upper95": 0.2053
+    }
+   },
+   "production_fires": 1984,
+   "est_wrong": 0.0304,
+   "est_wrong_upper95": 0.0578,
+   "clerical-dev": {
+    "fires": 2,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.658
+    ]
+   },
+   "clerical-test": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   }
+  },
+  "2of3(K1:lrs>=6,K2:lrf>=3,K3:review|cites|cocite>=3)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 904,
+    "fire_rate": 0.0417,
+    "wrong": 7,
+    "upper95": 0.0145
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 19,
+    "fire_rate": 0.00606,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-3333",
+      "p-16673"
+     ],
+     [
+      "p-735",
+      "p-15903"
+     ],
+     [
+      "p-60255",
+      "p-19940"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 14
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1253,
+     "gold_fire_rate": 0.0462,
+     "masked_eligible": 702,
+     "masked_fires": 1,
+     "masked_fire_rate": 0.00142,
+     "est": 0.0026,
+     "upper95": 0.0124
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 559,
+     "gold_fire_rate": 0.0363,
+     "masked_eligible": 1742,
+     "masked_fires": 14,
+     "masked_fire_rate": 0.00804,
+     "est": 0.0794,
+     "upper95": 0.1259
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 137,
+     "gold_fire_rate": 0.0222,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.092,
+     "upper95": 0.2098
+    }
+   },
+   "production_fires": 1949,
+   "est_wrong": 0.0309,
+   "est_wrong_upper95": 0.0589,
+   "clerical-dev": {
+    "fires": 2,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.658
+    ]
+   },
+   "clerical-test": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   }
+  },
+  "2of3(K1:lrs>=6,K2:lrf>=3,K3:review-keylog)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 871,
+    "fire_rate": 0.0401,
+    "wrong": 7,
+    "upper95": 0.015
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 19,
+    "fire_rate": 0.00606,
+    "examples": [
+     [
+      "p-100207",
+      "p-6607"
+     ],
+     [
+      "p-123235",
+      "p-8465"
+     ],
+     [
+      "p-133204",
+      "p-9650"
+     ],
+     [
+      "p-3333",
+      "p-16673"
+     ],
+     [
+      "p-735",
+      "p-15903"
+     ],
+     [
+      "p-60255",
+      "p-19940"
+     ]
+    ]
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 13
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 1184,
+     "gold_fire_rate": 0.0445,
+     "masked_eligible": 702,
+     "masked_fires": 1,
+     "masked_fire_rate": 0.00142,
+     "est": 0.0028,
+     "upper95": 0.0132
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 505,
+     "gold_fire_rate": 0.0353,
+     "masked_eligible": 1742,
+     "masked_fires": 14,
+     "masked_fire_rate": 0.00804,
+     "est": 0.0879,
+     "upper95": 0.1394
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 131,
+     "gold_fire_rate": 0.0211,
+     "masked_eligible": 691,
+     "masked_fires": 4,
+     "masked_fire_rate": 0.00579,
+     "est": 0.0962,
+     "upper95": 0.2194
+    }
+   },
+   "production_fires": 1820,
+   "est_wrong": 0.0331,
+   "est_wrong_upper95": 0.063,
+   "clerical-dev": {
+    "fires": 2,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.658
+    ]
+   },
+   "clerical-test": {
+    "fires": 4,
+    "wrong": 0,
+    "ci95": [
+     0,
+     0.49
+    ]
+   }
+  },
+  "all3(K1:lrs>=6,K2:lrf>=1|vrep,K3:review|cites|cocite>=2)": {
+   "gold": {
+    "eligible": 21703,
+    "fires": 16,
+    "fire_rate": 0.0007,
+    "wrong": 0,
+    "upper95": 0.1707
+   },
+   "masked_author": {
+    "eligible": 3137,
+    "fires": 0,
+    "fire_rate": 0.0,
+    "examples": []
+   },
+   "orcid_namesake": {
+    "eligible": 1016,
+    "fires": 0
+   },
+   "by_band": {
+    "unique": {
+     "prod_eligible": 10194,
+     "prod_fires": 0,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 2,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": null,
+     "upper95": null
+    },
+    "2-5": {
+     "prod_eligible": 38573,
+     "prod_fires": 111,
+     "gold_fire_rate": 0.0009,
+     "masked_eligible": 702,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.0888
+    },
+    "6-25": {
+     "prod_eligible": 19048,
+     "prod_fires": 63,
+     "gold_fire_rate": 0.0004,
+     "masked_eligible": 1742,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1828
+    },
+    "26+": {
+     "prod_eligible": 5444,
+     "prod_fires": 66,
+     "gold_fire_rate": 0.0,
+     "masked_eligible": 691,
+     "masked_fires": 0,
+     "masked_fire_rate": 0.0,
+     "est": 0.0,
+     "upper95": 0.1427
+    }
+   },
+   "production_fires": 240,
+   "est_wrong": 0.0,
+   "est_wrong_upper95": 0.1283,
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "ci95": [
+     0.0,
+     1.0
+    ]
+   }
+  }
+ },
+ "multi_candidate_margin": {
+  "gold_rows": 9627,
+  "masked_rows": 7861,
+  "production_rows": 41038,
+  "best>=4,second<=0.0": {
+   "gold_fires": 2540,
+   "gold_wrong": 76,
+   "gold_upper95": 0.0362,
+   "masked_fires": 249,
+   "masked_rate": 0.03168,
+   "production_fires": 7052
+  },
+  "best>=4,second<=1.0": {
+   "gold_fires": 2567,
+   "gold_wrong": 82,
+   "gold_upper95": 0.0384,
+   "masked_fires": 261,
+   "masked_rate": 0.0332,
+   "production_fires": 7204
+  },
+  "best>=4,second<=2.0": {
+   "gold_fires": 2665,
+   "gold_wrong": 96,
+   "gold_upper95": 0.0426,
+   "masked_fires": 317,
+   "masked_rate": 0.04033,
+   "production_fires": 7812
+  },
+  "best>=6,second<=0.0": {
+   "gold_fires": 2042,
+   "gold_wrong": 57,
+   "gold_upper95": 0.0348,
+   "masked_fires": 152,
+   "masked_rate": 0.01934,
+   "production_fires": 5760
+  },
+  "best>=6,second<=1.0": {
+   "gold_fires": 2061,
+   "gold_wrong": 60,
+   "gold_upper95": 0.0361,
+   "masked_fires": 155,
+   "masked_rate": 0.01972,
+   "production_fires": 5876
+  },
+  "best>=6,second<=2.0": {
+   "gold_fires": 2136,
+   "gold_wrong": 69,
+   "gold_upper95": 0.0395,
+   "masked_fires": 173,
+   "masked_rate": 0.02201,
+   "production_fires": 6327
+  },
+  "best>=8,second<=0.0": {
+   "gold_fires": 1587,
+   "gold_wrong": 35,
+   "gold_upper95": 0.0293,
+   "masked_fires": 111,
+   "masked_rate": 0.01412,
+   "production_fires": 4452
+  },
+  "best>=8,second<=1.0": {
+   "gold_fires": 1601,
+   "gold_wrong": 38,
+   "gold_upper95": 0.0312,
+   "masked_fires": 114,
+   "masked_rate": 0.0145,
+   "production_fires": 4544
+  },
+  "best>=8,second<=2.0": {
+   "gold_fires": 1658,
+   "gold_wrong": 45,
+   "gold_upper95": 0.0349,
+   "masked_fires": 123,
+   "masked_rate": 0.01565,
+   "production_fires": 4910
+  },
+  "best>=10,second<=0.0": {
+   "gold_fires": 1207,
+   "gold_wrong": 18,
+   "gold_upper95": 0.0223,
+   "masked_fires": 66,
+   "masked_rate": 0.0084,
+   "production_fires": 3279
+  },
+  "best>=10,second<=1.0": {
+   "gold_fires": 1219,
+   "gold_wrong": 20,
+   "gold_upper95": 0.024,
+   "masked_fires": 69,
+   "masked_rate": 0.00878,
+   "production_fires": 3354
+  },
+  "best>=10,second<=2.0": {
+   "gold_fires": 1270,
+   "gold_wrong": 26,
+   "gold_upper95": 0.0286,
+   "masked_fires": 78,
+   "masked_rate": 0.00992,
+   "production_fires": 3639
+  },
+  "best>=12,second<=0.0": {
+   "gold_fires": 976,
+   "gold_wrong": 14,
+   "gold_upper95": 0.0223,
+   "masked_fires": 41,
+   "masked_rate": 0.00522,
+   "production_fires": 2588
+  },
+  "best>=12,second<=1.0": {
+   "gold_fires": 987,
+   "gold_wrong": 16,
+   "gold_upper95": 0.0245,
+   "masked_fires": 44,
+   "masked_rate": 0.0056,
+   "production_fires": 2645
+  },
+  "best>=12,second<=2.0": {
+   "gold_fires": 1024,
+   "gold_wrong": 18,
+   "gold_upper95": 0.0263,
+   "masked_fires": 53,
+   "masked_rate": 0.00674,
+   "production_fires": 2876
+  }
+ },
+ "activity_gaps": {
+  "note": "LC 2016 bib records under an undifferentiated-free unique authority heading with 2+ distinct years: for each later record, whether it came more than N years after the latest earlier one (resumed) and whether, in addition, the earlier records carry no history word and share no title word with it (new subject: the case rule C would wrongly set aside)",
+  "authorities": 1302029,
+  "by_n": {
+   "5": {
+    "later_records": 5971775,
+    "resumed": 1231747,
+    "resumed_share": 0.20626,
+    "resumed_new_subject": 584537,
+    "resumed_new_subject_share": 0.09788
+   },
+   "10": {
+    "later_records": 5971775,
+    "resumed": 555692,
+    "resumed_share": 0.09305,
+    "resumed_new_subject": 283494,
+    "resumed_new_subject_share": 0.04747
+   },
+   "15": {
+    "later_records": 5971775,
+    "resumed": 304406,
+    "resumed_share": 0.05097,
+    "resumed_new_subject": 157311,
+    "resumed_new_subject_share": 0.02634
+   },
+   "20": {
+    "later_records": 5971775,
+    "resumed": 187008,
+    "resumed_share": 0.03132,
+    "resumed_new_subject": 94480,
+    "resumed_new_subject_share": 0.01582
+   },
+   "25": {
+    "later_records": 5971775,
+    "resumed": 126706,
+    "resumed_share": 0.02122,
+    "resumed_new_subject": 61005,
+    "resumed_new_subject_share": 0.01022
+   },
+   "30": {
+    "later_records": 5971775,
+    "resumed": 92766,
+    "resumed_share": 0.01553,
+    "resumed_new_subject": 42247,
+    "resumed_new_subject_share": 0.00707
+   },
+   "40": {
+    "later_records": 5971775,
+    "resumed": 60631,
+    "resumed_share": 0.01015,
+    "resumed_new_subject": 25709,
+    "resumed_new_subject_share": 0.00431
+   }
+  }
+ },
+ "probe_clifford_chapter": {
+  "position": "name-only pid 10732080, doi:10.2307/j.ctvxkn5q7.4, printed JIM CLIFFORD, only candidate p-24137",
+  "lrs": 21.49,
+  "lrf": 10.4,
+  "profile_docs": 25,
+  "thesis": true,
+  "review_tie": "linked REVIEWED p-24137 -> p-110119 (Luckin, volume editor; review w-491642)",
+  "cites": 0,
+  "cocite": 0,
+  "lc_namesake_profile_score": 0.0,
+  "lc_namesakes_inactive": 1,
+  "lc_others_after_C": 0,
+  "lc_namesake": "no94020323 Clifford, Jim: undated, last activity 1994 (670 OCLC 6/15/94), titles economy / decision making, no history word",
+  "kinds": "all three present (K1 21.5, K2 10.4, K3 review tie linked level); C also makes the name rare",
+  "state": "possible (no rule adopted)"
+ }
+}

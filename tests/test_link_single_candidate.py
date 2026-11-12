@@ -66,5 +66,49 @@ class SingleCandidate(unittest.TestCase):
         self.assertIsNone(setup(win=(2021, None, 'life')))           # out of the window
 
 
+class PassNine(unittest.TestCase):
+    def test_tokens(self):
+        self.assertEqual(W.p9_tokens('GREATER LONDON’S RAPID GROWTH'), ('greater', 'london', 'rapid', 'growth'))
+        self.assertIn('environ history', W.p9_terms(W.p9_tokens('The Environmental History of London')))
+
+    def test_ratio_positive_only(self):
+        class S9(W.Pass9):
+            def __init__(self):
+                self.mu, self.cap, self.dfc, self.N = 2.0, 3.0, {}, 1000
+
+            def pbg(self, t):
+                return {'london': 0.01, 'environ': 0.01, 'economy': 0.01}.get(t, 0.001)
+        s = S9()
+        s1, s2, _ = s.lr({'london', 'environ', 'greater'}, W.Counter({'london': 8, 'environ': 6}), 20)
+        self.assertGreater(s1, 2.5)              # London: subject
+        self.assertGreater(s2, 2.5)              # environmental: subfield
+        self.assertEqual(s.lr({'london'}, W.Counter({'economy': 1}), 1)[:2], (0.0, 0.0))   # no overlap: 0, never negative
+
+    def test_kinds_and_rule_d(self):
+        P_ = dict(P, K1_WEAK=3, K2_WEAK=2, K3_RV=1, K3_CT=1, K3_CC=3)
+        x = dict(psz=20, pth=True, review_like=False, lrs=4.0, lrf=0.0, vrep=0, rv=1, ct=0, cca=0, name='full',
+                 others=1, others_act=0, n_oa=3)
+        self.assertEqual(W.p9_kinds(x, P_), (1, 0, 1))
+        self.assertTrue(W.p9_fires(x, P_)['single-two-kinds'])
+        self.assertFalse(W.p9_fires(dict(x, rv=0), P_)['single-two-kinds'])
+        self.assertFalse(W.p9_fires(dict(x, name='init'), P_)['single-two-kinds'])
+        self.assertEqual(W.p9_kinds(dict(x, review_like=True), P_)[:2], (0, 0))    # topic never on review records
+        self.assertFalse(W.p9_fires(x, P)['single-two-kinds'])                     # defaults never fire
+
+    def test_signals_keep_pass_eight(self):
+        class Stub:
+            def facts(self, *a):
+                return dict(rv=1, rvby='ed', ct=0, cck=0, cca=0, lrs=21.5, lrf=10.4, psz=25, pth=True, lro=0.0, vrep=0,
+                            nothers=3, lc_inactive=1, lrtop=[], sig=['x:rv=1', 'x:lcin=1'])
+        W.P9[0] = Stub()
+        try:
+            x = setup(n_lc=2)
+        finally:
+            W.P9[0] = None
+        self.assertIn('x:lco=2', x['sig'])          # pass-eight signals stay (a pass-nine run lost them once)
+        self.assertEqual(x['sig'].count('x:rv=1'), 1)
+        self.assertEqual(x['others_act'], 1)        # one undated namesake set aside of two others
+
+
 if __name__ == '__main__':
     unittest.main()
