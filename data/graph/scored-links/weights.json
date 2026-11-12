@@ -1,0 +1,736 @@
+{
+ "model": "naive",
+ "fields": {
+  "name": [
+   "full",
+   "full+init",
+   "full+mid",
+   "initial",
+   "initials2",
+   "surname-variant",
+   "variant"
+  ],
+  "freq": [
+   "2-5",
+   "26+",
+   "6-25",
+   "initials",
+   "unique",
+   "unmeasured"
+  ],
+  "date": [
+   "death",
+   "life",
+   "phd0-10",
+   "phd10-25",
+   "phd25+",
+   "pre-phd",
+   "span",
+   "undated",
+   "weak"
+  ],
+  "aff": [
+   "absent",
+   "different",
+   "same-any",
+   "same-window"
+  ],
+  "network": [
+   "coauthor1",
+   "multi",
+   "network1",
+   "none"
+  ],
+  "venue": [
+   "j1-2",
+   "j3+",
+   "na",
+   "none"
+  ],
+  "topic": [
+   "high",
+   "low",
+   "mid",
+   "none",
+   "vhigh"
+  ],
+  "cites": [
+   "cites",
+   "none"
+  ],
+  "neg": [
+   "inconsistent",
+   "none",
+   "orcid-differs",
+   "own-title",
+   "pooled"
+  ]
+ },
+ "weights": {
+  "kind": "fs",
+  "fields": [
+   "name",
+   "freq",
+   "date",
+   "aff",
+   "network",
+   "venue",
+   "topic",
+   "cites",
+   "neg"
+  ],
+  "w": {
+   "name": {
+    "full": 0.263,
+    "full+init": 2.913,
+    "full+mid": 3.145,
+    "initial": -3.952,
+    "initials2": 0.759,
+    "surname-variant": -1.65,
+    "variant": -5.864
+   },
+   "freq": {
+    "2-5": 1.668,
+    "26+": -3.709,
+    "6-25": -1.158,
+    "initials": -2.283,
+    "unique": 2.319,
+    "unmeasured": 0.404
+   },
+   "date": {
+    "death": -3.414,
+    "life": -0.16,
+    "phd0-10": 0.624,
+    "phd10-25": 0.922,
+    "phd25+": 0.05,
+    "pre-phd": -0.568,
+    "span": -0.472,
+    "undated": 0.867,
+    "weak": -0.092
+   },
+   "aff": {
+    "absent": -0.336,
+    "different": -1.593,
+    "same-any": 6.859,
+    "same-window": 8.105
+   },
+   "network": {
+    "coauthor1": 8.305,
+    "multi": 7.718,
+    "network1": 4.785,
+    "none": 0.0
+   },
+   "venue": {
+    "j1-2": 5.028,
+    "j3+": 6.846,
+    "na": 0.0,
+    "none": 0.0
+   },
+   "topic": {
+    "high": 6.429,
+    "low": 2.789,
+    "mid": 4.619,
+    "none": 0.0,
+    "vhigh": 7.94
+   },
+   "cites": {
+    "cites": 7.247,
+    "none": 0.0
+   },
+   "neg": {
+    "inconsistent": 0.0,
+    "none": 0.0,
+    "orcid-differs": -0.504,
+    "own-title": 0.0,
+    "pooled": -0.999
+   }
+  }
+ },
+ "m_u_tables": {
+  "name": {
+   "full": {
+    "m": 0.68505,
+    "u": 0.57084,
+    "n_match": 20204,
+    "n_nonmatch": 2203,
+    "weight": 0.263
+   },
+   "full+init": {
+    "m": 0.16,
+    "u": 0.02124,
+    "n_match": 4718,
+    "n_nonmatch": 81,
+    "weight": 2.913
+   },
+   "full+mid": {
+    "m": 0.10765,
+    "u": 0.01217,
+    "n_match": 3174,
+    "n_nonmatch": 46,
+    "weight": 3.145
+   },
+   "initial": {
+    "m": 0.00648,
+    "u": 0.10023,
+    "n_match": 190,
+    "n_nonmatch": 386,
+    "weight": -3.952
+   },
+   "initials2": {
+    "m": 0.00614,
+    "u": 0.00363,
+    "n_match": 180,
+    "n_nonmatch": 13,
+    "weight": 0.759
+   },
+   "surname-variant": {
+    "m": 0.03136,
+    "u": 0.09842,
+    "n_match": 924,
+    "n_nonmatch": 379,
+    "weight": -1.65
+   },
+   "variant": {
+    "m": 0.00332,
+    "u": 0.19347,
+    "n_match": 97,
+    "n_nonmatch": 746,
+    "weight": -5.864
+   }
+  },
+  "freq": {
+   "2-5": {
+    "m": 0.30794,
+    "u": 0.09689,
+    "n_match": 9081,
+    "n_nonmatch": 373,
+    "weight": 1.668
+   },
+   "26+": {
+    "m": 0.02655,
+    "u": 0.34715,
+    "n_match": 782,
+    "n_nonmatch": 1339,
+    "weight": -3.709
+   },
+   "6-25": {
+    "m": 0.07602,
+    "u": 0.16969,
+    "n_match": 2241,
+    "n_nonmatch": 654,
+    "weight": -1.158
+   },
+   "initials": {
+    "m": 0.00793,
+    "u": 0.0386,
+    "n_match": 233,
+    "n_nonmatch": 148,
+    "weight": -2.283
+   },
+   "unique": {
+    "m": 0.16546,
+    "u": 0.03316,
+    "n_match": 4879,
+    "n_nonmatch": 127,
+    "weight": 2.319
+   },
+   "unmeasured": {
+    "m": 0.4161,
+    "u": 0.31451,
+    "n_match": 12271,
+    "n_nonmatch": 1213,
+    "weight": 0.404
+   }
+  },
+  "date": {
+   "death": {
+    "m": 3e-05,
+    "u": 0.00036,
+    "n_match": 0,
+    "n_nonmatch": 11,
+    "weight": -3.414
+   },
+   "life": {
+    "m": 0.37964,
+    "u": 0.4242,
+    "n_match": 11197,
+    "n_nonmatch": 14082,
+    "weight": -0.16
+   },
+   "phd0-10": {
+    "m": 0.1525,
+    "u": 0.09898,
+    "n_match": 4497,
+    "n_nonmatch": 3285,
+    "weight": 0.624
+   },
+   "phd10-25": {
+    "m": 0.16012,
+    "u": 0.08449,
+    "n_match": 4722,
+    "n_nonmatch": 2804,
+    "weight": 0.922
+   },
+   "phd25+": {
+    "m": 0.08015,
+    "u": 0.07744,
+    "n_match": 2363,
+    "n_nonmatch": 2570,
+    "weight": 0.05
+   },
+   "pre-phd": {
+    "m": 0.01946,
+    "u": 0.02886,
+    "n_match": 573,
+    "n_nonmatch": 957,
+    "weight": -0.568
+   },
+   "span": {
+    "m": 0.20423,
+    "u": 0.2832,
+    "n_match": 6023,
+    "n_nonmatch": 9401,
+    "weight": -0.472
+   },
+   "undated": {
+    "m": 0.00319,
+    "u": 0.00175,
+    "n_match": 93,
+    "n_nonmatch": 57,
+    "weight": 0.867
+   },
+   "weak": {
+    "m": 0.00068,
+    "u": 0.00072,
+    "n_match": 19,
+    "n_nonmatch": 23,
+    "weight": -0.092
+   }
+  },
+  "aff": {
+   "absent": {
+    "m": 0.76193,
+    "u": 0.96165,
+    "n_match": 22469,
+    "n_nonmatch": 31920,
+    "weight": -0.336
+   },
+   "different": {
+    "m": 0.01227,
+    "u": 0.03702,
+    "n_match": 361,
+    "n_nonmatch": 1228,
+    "weight": -1.593
+   },
+   "same-any": {
+    "m": 0.10142,
+    "u": 0.00087,
+    "n_match": 2990,
+    "n_nonmatch": 28,
+    "weight": 6.859
+   },
+   "same-window": {
+    "m": 0.12438,
+    "u": 0.00045,
+    "n_match": 3667,
+    "n_nonmatch": 14,
+    "weight": 8.105
+   }
+  },
+  "network": {
+   "coauthor1": {
+    "m": 0.01906,
+    "u": 6e-05,
+    "n_match": 561,
+    "n_nonmatch": 1,
+    "weight": 8.305
+   },
+   "multi": {
+    "m": 0.00634,
+    "u": 3e-05,
+    "n_match": 186,
+    "n_nonmatch": 0,
+    "weight": 7.718
+   },
+   "network1": {
+    "m": 0.00166,
+    "u": 6e-05,
+    "n_match": 48,
+    "n_nonmatch": 1,
+    "weight": 4.785
+   },
+   "none": {
+    "m": 0.97294,
+    "u": 0.99985,
+    "n_match": 28692,
+    "n_nonmatch": 33188,
+    "weight": 0.0
+   }
+  },
+  "venue": {
+   "j1-2": {
+    "m": 0.16317,
+    "u": 0.005,
+    "n_match": 4811,
+    "n_nonmatch": 165,
+    "weight": 5.028
+   },
+   "j3+": {
+    "m": 0.22878,
+    "u": 0.00199,
+    "n_match": 6746,
+    "n_nonmatch": 65,
+    "weight": 6.846
+   },
+   "na": {
+    "m": 0.35482,
+    "u": 0.35651,
+    "n_match": 10463,
+    "n_nonmatch": 11833,
+    "weight": 0.0
+   },
+   "none": {
+    "m": 0.25323,
+    "u": 0.6365,
+    "n_match": 7467,
+    "n_nonmatch": 21127,
+    "weight": 0.0
+   }
+  },
+  "topic": {
+   "high": {
+    "m": 0.12976,
+    "u": 0.00151,
+    "n_match": 3826,
+    "n_nonmatch": 49,
+    "weight": 6.429
+   },
+   "low": {
+    "m": 0.15408,
+    "u": 0.02229,
+    "n_match": 4543,
+    "n_nonmatch": 739,
+    "weight": 2.789
+   },
+   "mid": {
+    "m": 0.12654,
+    "u": 0.00515,
+    "n_match": 3731,
+    "n_nonmatch": 170,
+    "weight": 4.619
+   },
+   "none": {
+    "m": 0.47867,
+    "u": 0.9706,
+    "n_match": 14116,
+    "n_nonmatch": 32218,
+    "weight": 0.0
+   },
+   "vhigh": {
+    "m": 0.11095,
+    "u": 0.00045,
+    "n_match": 3271,
+    "n_nonmatch": 14,
+    "weight": 7.94
+   }
+  },
+  "cites": {
+   "cites": {
+    "m": 0.0412,
+    "u": 0.00027,
+    "n_match": 1214,
+    "n_nonmatch": 8,
+    "weight": 7.247
+   },
+   "none": {
+    "m": 0.9588,
+    "u": 0.99973,
+    "n_match": 28273,
+    "n_nonmatch": 33182,
+    "weight": 0.0
+   }
+  },
+  "neg": {
+   "inconsistent": {
+    "m": 0.00159,
+    "u": 0.00093,
+    "n_match": 46,
+    "n_nonmatch": 30,
+    "weight": 0.0
+   },
+   "none": {
+    "m": 0.99139,
+    "u": 0.99141,
+    "n_match": 29237,
+    "n_nonmatch": 32909,
+    "weight": 0.0
+   },
+   "orcid-differs": {
+    "m": 0.00353,
+    "u": 0.005,
+    "n_match": 103,
+    "n_nonmatch": 165,
+    "weight": -0.504
+   },
+   "own-title": {
+    "m": 0.00227,
+    "u": 0.00021,
+    "n_match": 66,
+    "n_nonmatch": 6,
+    "weight": 0.0
+   },
+   "pooled": {
+    "m": 0.00122,
+    "u": 0.00244,
+    "n_match": 35,
+    "n_nonmatch": 80,
+    "weight": -0.999
+   }
+  }
+ },
+ "thresholds": {
+  "author": {
+   "single": {
+    "unique": 1000000000.0,
+    "2-5": 1000000000.0,
+    "6-25": 1000000000.0,
+    "26+": 1000000000.0,
+    "initials": 1000000000.0,
+    "unmeasured": 10.0
+   },
+   "multi": 1000000000.0,
+   "margin": 0,
+   "review": 2.5
+  },
+  "jstor-author": {
+   "single": {
+    "unique": 6.0,
+    "2-5": 4.5,
+    "6-25": 1000000000.0,
+    "26+": 1000000000.0,
+    "initials": 1000000000.0,
+    "unmeasured": 1000000000.0
+   },
+   "multi": 1000000000.0,
+   "margin": 0,
+   "review": 4.5
+  },
+  "reviewer": {
+   "single": {
+    "unique": 5.0,
+    "2-5": 4.5,
+    "6-25": 9.5,
+    "26+": 1000000000.0,
+    "initials": 1000000000.0,
+    "unmeasured": 1000000000.0
+   },
+   "multi": 1000000000.0,
+   "margin": 0,
+   "review": 4.5
+  }
+ },
+ "absent_share_by_stratum": {
+  "author": {
+   "single-unique": {
+    "pi": 0.6025,
+    "n_prod": 55196,
+    "n_present": 1987,
+    "n_absent": 2892
+   },
+   "single-2-5": {
+    "pi": 0.5548,
+    "n_prod": 83101,
+    "n_present": 3927,
+    "n_absent": 4481
+   },
+   "single-6-25": {
+    "pi": 0.6154,
+    "n_prod": 22590,
+    "n_present": 525,
+    "n_absent": 1071
+   },
+   "single-26+": {
+    "pi": 0.8906,
+    "n_prod": 5718,
+    "n_present": 59,
+    "n_absent": 296
+   },
+   "single-initials": {
+    "pi": 0.6417,
+    "n_prod": 15047,
+    "n_present": 207,
+    "n_absent": 450
+   },
+   "single-unmeasured": {
+    "pi": 0.676,
+    "n_prod": 57469,
+    "n_present": 19614,
+    "n_absent": 25816
+   },
+   "multi": {
+    "pi": 0.5548,
+    "n_prod": 77938,
+    "n_present": 5272,
+    "n_absent": 2786
+   }
+  },
+  "jstor-author": {
+   "single-unique": {
+    "pi": 0.0411,
+    "n_prod": 18978,
+    "n_present": 1319,
+    "n_absent": 1281
+   },
+   "single-2-5": {
+    "pi": 0.0411,
+    "n_prod": 26939,
+    "n_present": 1932,
+    "n_absent": 2339
+   },
+   "single-6-25": {
+    "pi": 0.4205,
+    "n_prod": 5442,
+    "n_present": 414,
+    "n_absent": 695
+   },
+   "single-26+": {
+    "pi": 0.7475,
+    "n_prod": 1224,
+    "n_present": 44,
+    "n_absent": 217
+   },
+   "single-initials": {
+    "pi": 0.5261,
+    "n_prod": 3532,
+    "n_present": 217,
+    "n_absent": 335
+   },
+   "single-unmeasured": {
+    "pi": 1.0,
+    "n_prod": 0,
+    "n_present": 0,
+    "n_absent": 0
+   },
+   "multi": {
+    "pi": 0.4568,
+    "n_prod": 11191,
+    "n_present": 721,
+    "n_absent": 329
+   }
+  },
+  "reviewer": {
+   "single-unique": {
+    "pi": 0.0459,
+    "n_prod": 48055,
+    "n_present": 6189,
+    "n_absent": 6461
+   },
+   "single-2-5": {
+    "pi": 0.0459,
+    "n_prod": 65274,
+    "n_present": 9930,
+    "n_absent": 12308
+   },
+   "single-6-25": {
+    "pi": 0.7143,
+    "n_prod": 17687,
+    "n_present": 2067,
+    "n_absent": 3975
+   },
+   "single-26+": {
+    "pi": 0.8334,
+    "n_prod": 3597,
+    "n_present": 257,
+    "n_absent": 1602
+   },
+   "single-initials": {
+    "pi": 0.718,
+    "n_prod": 5264,
+    "n_present": 29,
+    "n_absent": 61
+   },
+   "single-unmeasured": {
+    "pi": 1.0,
+    "n_prod": 0,
+    "n_present": 0,
+    "n_absent": 0
+   },
+   "multi": {
+    "pi": 0.816,
+    "n_prod": 34873,
+    "n_present": 4128,
+    "n_absent": 1816
+   }
+  }
+ },
+ "positive_only_fields": [
+  "cites",
+  "network",
+  "oa_tie",
+  "topic",
+  "venue"
+ ],
+ "name_fields_u_from": "same-block non-matches only",
+ "dependence_check": {
+  "match:network&venue": {
+   "observed": 0.006,
+   "independent": 0.0106,
+   "ratio": 0.57
+  },
+  "match:network&topic": {
+   "observed": 0.0193,
+   "independent": 0.0141,
+   "ratio": 1.37
+  },
+  "match:venue&topic": {
+   "observed": 0.2152,
+   "independent": 0.2043,
+   "ratio": 1.05
+  },
+  "match:topic&cites": {
+   "observed": 0.0287,
+   "independent": 0.0215,
+   "ratio": 1.34
+  },
+  "match:aff&network": {
+   "observed": 0.0013,
+   "independent": 0.0064,
+   "ratio": 0.2
+  },
+  "nonmatch:network&venue": {
+   "observed": 0.0,
+   "independent": 0.0,
+   "ratio": 0.0
+  },
+  "nonmatch:network&topic": {
+   "observed": 0.0,
+   "independent": 0.0,
+   "ratio": 0.0
+  },
+  "nonmatch:venue&topic": {
+   "observed": 0.0008,
+   "independent": 0.0002,
+   "ratio": 4.01
+  },
+  "nonmatch:topic&cites": {
+   "observed": 0.0001,
+   "independent": 0.0,
+   "ratio": 17.07
+  },
+  "nonmatch:aff&network": {
+   "observed": 0.0,
+   "independent": 0.0,
+   "ratio": 0.0
+  }
+ },
+ "n_fit": {
+  "pairs": 62677,
+  "matches": 29487,
+  "nonmatches_block": 3854,
+  "nonmatches_impersonated": 29336,
+  "route_a_gold_excluded": 16347
+ },
+ "target_false_link_share": 0.005,
+ "built": "2026-11-12 09:11",
+ "graph_snapshot": "Thu Nov 12 04:59:06 2026"
+}

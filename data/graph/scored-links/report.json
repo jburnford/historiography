@@ -1,0 +1,1991 @@
+{
+ "model": "naive",
+ "thresholds": {
+  "author": {
+   "single": {
+    "unique": 1000000000.0,
+    "2-5": 1000000000.0,
+    "6-25": 1000000000.0,
+    "26+": 1000000000.0,
+    "initials": 1000000000.0,
+    "unmeasured": 10.0
+   },
+   "multi": 1000000000.0,
+   "margin": 0,
+   "review": 2.5
+  },
+  "jstor-author": {
+   "single": {
+    "unique": 6.0,
+    "2-5": 4.5,
+    "6-25": 1000000000.0,
+    "26+": 1000000000.0,
+    "initials": 1000000000.0,
+    "unmeasured": 1000000000.0
+   },
+   "multi": 1000000000.0,
+   "margin": 0,
+   "review": 4.5
+  },
+  "reviewer": {
+   "single": {
+    "unique": 5.0,
+    "2-5": 4.5,
+    "6-25": 9.5,
+    "26+": 1000000000.0,
+    "initials": 1000000000.0,
+    "unmeasured": 1000000000.0
+   },
+   "multi": 1000000000.0,
+   "margin": 0,
+   "review": 4.5
+  }
+ },
+ "target_false_link_share": 0.005,
+ "absent_share_by_stratum": {
+  "author": {
+   "single-unique": {
+    "pi": 0.6025,
+    "n_prod": 55196,
+    "n_present": 1987,
+    "n_absent": 2892
+   },
+   "single-2-5": {
+    "pi": 0.5548,
+    "n_prod": 83101,
+    "n_present": 3927,
+    "n_absent": 4481
+   },
+   "single-6-25": {
+    "pi": 0.6154,
+    "n_prod": 22590,
+    "n_present": 525,
+    "n_absent": 1071
+   },
+   "single-26+": {
+    "pi": 0.8906,
+    "n_prod": 5718,
+    "n_present": 59,
+    "n_absent": 296
+   },
+   "single-initials": {
+    "pi": 0.6417,
+    "n_prod": 15047,
+    "n_present": 207,
+    "n_absent": 450
+   },
+   "single-unmeasured": {
+    "pi": 0.676,
+    "n_prod": 57469,
+    "n_present": 19614,
+    "n_absent": 25816
+   },
+   "multi": {
+    "pi": 0.5548,
+    "n_prod": 77938,
+    "n_present": 5272,
+    "n_absent": 2786
+   }
+  },
+  "jstor-author": {
+   "single-unique": {
+    "pi": 0.0411,
+    "n_prod": 18978,
+    "n_present": 1319,
+    "n_absent": 1281
+   },
+   "single-2-5": {
+    "pi": 0.0411,
+    "n_prod": 26939,
+    "n_present": 1932,
+    "n_absent": 2339
+   },
+   "single-6-25": {
+    "pi": 0.4205,
+    "n_prod": 5442,
+    "n_present": 414,
+    "n_absent": 695
+   },
+   "single-26+": {
+    "pi": 0.7475,
+    "n_prod": 1224,
+    "n_present": 44,
+    "n_absent": 217
+   },
+   "single-initials": {
+    "pi": 0.5261,
+    "n_prod": 3532,
+    "n_present": 217,
+    "n_absent": 335
+   },
+   "single-unmeasured": {
+    "pi": 1.0,
+    "n_prod": 0,
+    "n_present": 0,
+    "n_absent": 0
+   },
+   "multi": {
+    "pi": 0.4568,
+    "n_prod": 11191,
+    "n_present": 721,
+    "n_absent": 329
+   }
+  },
+  "reviewer": {
+   "single-unique": {
+    "pi": 0.0459,
+    "n_prod": 48055,
+    "n_present": 6189,
+    "n_absent": 6461
+   },
+   "single-2-5": {
+    "pi": 0.0459,
+    "n_prod": 65274,
+    "n_present": 9930,
+    "n_absent": 12308
+   },
+   "single-6-25": {
+    "pi": 0.7143,
+    "n_prod": 17687,
+    "n_present": 2067,
+    "n_absent": 3975
+   },
+   "single-26+": {
+    "pi": 0.8334,
+    "n_prod": 3597,
+    "n_present": 257,
+    "n_absent": 1602
+   },
+   "single-initials": {
+    "pi": 0.718,
+    "n_prod": 5264,
+    "n_present": 29,
+    "n_absent": 61
+   },
+   "single-unmeasured": {
+    "pi": 1.0,
+    "n_prod": 0,
+    "n_present": 0,
+    "n_absent": 0
+   },
+   "multi": {
+    "pi": 0.816,
+    "n_prod": 34873,
+    "n_present": 4128,
+    "n_absent": 1816
+   }
+  }
+ },
+ "models_compared": {
+  "naive": {
+   "thresholds": {
+    "author": {
+     "single": {
+      "unique": 1000000000.0,
+      "2-5": 1000000000.0,
+      "6-25": 1000000000.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 10.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 2.5
+    },
+    "jstor-author": {
+     "single": {
+      "unique": 6.0,
+      "2-5": 4.5,
+      "6-25": 1000000000.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 1000000000.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 4.5
+    },
+    "reviewer": {
+     "single": {
+      "unique": 5.0,
+      "2-5": 4.5,
+      "6-25": 9.5,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 1000000000.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 4.5
+    }
+   },
+   "audit_pi": {
+    "author": {
+     "audit_correct": 26,
+     "audit_wrong": 2,
+     "precision_lower_5pct": 0.816,
+     "rule_recall": 0.6843,
+     "rule_absent_link_rate": 0.1238,
+     "pi": 0.5548
+    },
+    "jstor-author": {
+     "audit_correct": 60,
+     "audit_wrong": 0,
+     "precision_lower_5pct": 0.9686,
+     "rule_recall": 0.7666,
+     "rule_absent_link_rate": 0.5796,
+     "pi": 0.0411
+    },
+    "reviewer": {
+     "audit_correct": 57,
+     "audit_wrong": 0,
+     "precision_lower_5pct": 0.967,
+     "rule_recall": 0.7886,
+     "rule_absent_link_rate": 0.5588,
+     "pi": 0.0459
+    }
+   },
+   "calib_est_fdr": 0.00328,
+   "calib_expected_true_links_per_1000_scored_positions": 257.41,
+   "calib_recall_present": 0.3547,
+   "pi_sensitivity": {
+    "author_pi_x0.5": {
+     "thresholds": {
+      "author": {
+       "single": {
+        "unique": 1000000000.0,
+        "2-5": 10.5,
+        "6-25": 1000000000.0,
+        "26+": 1000000000.0,
+        "initials": 1000000000.0,
+        "unmeasured": 7.5
+       },
+       "multi": 1000000000.0,
+       "margin": 0,
+       "review": 0.0
+      },
+      "jstor-author": {
+       "single": {
+        "unique": 6.0,
+        "2-5": 4.5,
+        "6-25": 1000000000.0,
+        "26+": 1000000000.0,
+        "initials": 1000000000.0,
+        "unmeasured": 1000000000.0
+       },
+       "multi": 1000000000.0,
+       "margin": 0,
+       "review": 4.5
+      },
+      "reviewer": {
+       "single": {
+        "unique": 5.0,
+        "2-5": 4.5,
+        "6-25": 9.5,
+        "26+": 1000000000.0,
+        "initials": 1000000000.0,
+        "unmeasured": 1000000000.0
+       },
+       "multi": 1000000000.0,
+       "margin": 0,
+       "review": 4.5
+      }
+     },
+     "calib_expected_true_links_per_1000_scored_positions": 304.47,
+     "calib_recall_present": 0.4148
+    },
+    "all_groups_mixture_pi": {
+     "thresholds": {
+      "author": {
+       "single": {
+        "unique": 1000000000.0,
+        "2-5": 1000000000.0,
+        "6-25": 1000000000.0,
+        "26+": 1000000000.0,
+        "initials": 1000000000.0,
+        "unmeasured": 10.0
+       },
+       "multi": 1000000000.0,
+       "margin": 0,
+       "review": 1.5
+      },
+      "jstor-author": {
+       "single": {
+        "unique": 1000000000.0,
+        "2-5": 10.5,
+        "6-25": 1000000000.0,
+        "26+": 1000000000.0,
+        "initials": 1000000000.0,
+        "unmeasured": 1000000000.0
+       },
+       "multi": 1000000000.0,
+       "margin": 0,
+       "review": 1.5
+      },
+      "reviewer": {
+       "single": {
+        "unique": 14.0,
+        "2-5": 13.0,
+        "6-25": 9.5,
+        "26+": 1000000000.0,
+        "initials": 1000000000.0,
+        "unmeasured": 1000000000.0
+       },
+       "multi": 1000000000.0,
+       "margin": 0,
+       "review": 5.0
+      }
+     },
+     "calib_expected_true_links_per_1000_scored_positions": 67.54,
+     "calib_recall_present": 0.2313
+    }
+   }
+  },
+  "grouped": {
+   "thresholds": {
+    "author": {
+     "single": {
+      "unique": 1000000000.0,
+      "2-5": 1000000000.0,
+      "6-25": 1000000000.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 9.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 2.5
+    },
+    "jstor-author": {
+     "single": {
+      "unique": 6.0,
+      "2-5": 5.0,
+      "6-25": 1000000000.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 1000000000.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 0.0
+    },
+    "reviewer": {
+     "single": {
+      "unique": 5.0,
+      "2-5": 4.5,
+      "6-25": 8.5,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 1000000000.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 4.5
+    }
+   },
+   "audit_pi": {
+    "author": {
+     "audit_correct": 26,
+     "audit_wrong": 2,
+     "precision_lower_5pct": 0.816,
+     "rule_recall": 0.6843,
+     "rule_absent_link_rate": 0.1238,
+     "pi": 0.5548
+    },
+    "jstor-author": {
+     "audit_correct": 60,
+     "audit_wrong": 0,
+     "precision_lower_5pct": 0.9686,
+     "rule_recall": 0.7666,
+     "rule_absent_link_rate": 0.5796,
+     "pi": 0.0411
+    },
+    "reviewer": {
+     "audit_correct": 57,
+     "audit_wrong": 0,
+     "precision_lower_5pct": 0.967,
+     "rule_recall": 0.7886,
+     "rule_absent_link_rate": 0.5588,
+     "pi": 0.0459
+    }
+   },
+   "calib_est_fdr": 0.00295,
+   "calib_expected_true_links_per_1000_scored_positions": 248.02,
+   "calib_recall_present": 0.3364
+  },
+  "grouped+oa": {
+   "thresholds": {
+    "author": {
+     "single": {
+      "unique": 13.0,
+      "2-5": 15.5,
+      "6-25": 1000000000.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 7.5
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 6.0
+    },
+    "jstor-author": {
+     "single": {
+      "unique": 6.0,
+      "2-5": 4.5,
+      "6-25": 1000000000.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 1000000000.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 1.5
+    },
+    "reviewer": {
+     "single": {
+      "unique": 5.0,
+      "2-5": 4.5,
+      "6-25": 8.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 1000000000.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 4.5
+    }
+   },
+   "audit_pi": {
+    "author": {
+     "audit_correct": 26,
+     "audit_wrong": 2,
+     "precision_lower_5pct": 0.816,
+     "rule_recall": 0.6843,
+     "rule_absent_link_rate": 0.1238,
+     "pi": 0.5548
+    },
+    "jstor-author": {
+     "audit_correct": 60,
+     "audit_wrong": 0,
+     "precision_lower_5pct": 0.9686,
+     "rule_recall": 0.7666,
+     "rule_absent_link_rate": 0.5796,
+     "pi": 0.0411
+    },
+    "reviewer": {
+     "audit_correct": 57,
+     "audit_wrong": 0,
+     "precision_lower_5pct": 0.967,
+     "rule_recall": 0.7886,
+     "rule_absent_link_rate": 0.5588,
+     "pi": 0.0459
+    }
+   },
+   "calib_est_fdr": 0.00269,
+   "calib_expected_true_links_per_1000_scored_positions": 330.31,
+   "calib_recall_present": 0.6205
+  },
+  "logistic": {
+   "thresholds": {
+    "author": {
+     "single": {
+      "unique": 1000000000.0,
+      "2-5": 1000000000.0,
+      "6-25": 1000000000.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 1000000000.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 1000000000.0
+    },
+    "jstor-author": {
+     "single": {
+      "unique": 18.5,
+      "2-5": 17.5,
+      "6-25": 1000000000.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 1000000000.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 0.0
+    },
+    "reviewer": {
+     "single": {
+      "unique": 18.0,
+      "2-5": 17.5,
+      "6-25": 1000000000.0,
+      "26+": 1000000000.0,
+      "initials": 1000000000.0,
+      "unmeasured": 1000000000.0
+     },
+     "multi": 1000000000.0,
+     "margin": 0,
+     "review": 17.5
+    }
+   },
+   "audit_pi": {
+    "author": {
+     "audit_correct": 26,
+     "audit_wrong": 2,
+     "precision_lower_5pct": 0.816,
+     "rule_recall": 0.6843,
+     "rule_absent_link_rate": 0.1238,
+     "pi": 0.5548
+    },
+    "jstor-author": {
+     "audit_correct": 60,
+     "audit_wrong": 0,
+     "precision_lower_5pct": 0.9686,
+     "rule_recall": 0.7666,
+     "rule_absent_link_rate": 0.5796,
+     "pi": 0.0411
+    },
+    "reviewer": {
+     "audit_correct": 57,
+     "audit_wrong": 0,
+     "precision_lower_5pct": 0.967,
+     "rule_recall": 0.7886,
+     "rule_absent_link_rate": 0.5588,
+     "pi": 0.0459
+    }
+   },
+   "calib_est_fdr": 0.00268,
+   "calib_expected_true_links_per_1000_scored_positions": 207.97,
+   "calib_recall_present": 0.2412
+  }
+ },
+ "oa_tie_test": {
+  "with_oa_tie": 330.31,
+  "without": 248.02
+ },
+ "calibration": {
+  "present": {
+   "positions": 62503,
+   "link": 22178,
+   "review": 23167,
+   "right": 22172,
+   "wrong": 2,
+   "dup_key": 4,
+   "precision": 0.9999,
+   "precision_dup_as_wrong": 0.9997,
+   "recall": 0.3547
+  },
+  "absent_dropped_key": {
+   "positions": 10580,
+   "link": 193,
+   "review": 1223,
+   "right": 0,
+   "wrong": 51,
+   "dup_key": 142,
+   "precision": 0.0,
+   "precision_dup_as_wrong": 0.0,
+   "recall": 0.0
+  },
+  "absent_impersonated": {
+   "positions": 60437,
+   "link": 1444,
+   "review": 9459,
+   "right": 0,
+   "wrong": 1444,
+   "dup_key": 0,
+   "precision": 0.0,
+   "precision_dup_as_wrong": 0.0,
+   "recall": 0.0
+  },
+  "est_false_link_share_production_weighted": 0.00328,
+  "hidden_key_status": {
+   "live": 58838,
+   "not-in-block": 2415,
+   "date-excluded": 1216,
+   "hard": 34
+  },
+  "rule_linker_same_rows": {
+   "present": {
+    "positions": 62503,
+    "link": 45847,
+    "right": 45526,
+    "wrong": 112,
+    "dup_key": 209,
+    "precision": 0.9975,
+    "recall": 0.7284
+   },
+   "absent_dropped_key": {
+    "positions": 10580,
+    "link": 734,
+    "right": 0,
+    "wrong": 293,
+    "dup_key": 441,
+    "precision": 0.0,
+    "recall": 0.0
+   },
+   "absent_impersonated": {
+    "positions": 60437,
+    "link": 19499,
+    "right": 0,
+    "wrong": 19499,
+    "dup_key": 0,
+    "precision": 0.0,
+    "recall": 0.0
+   }
+  }
+ },
+ "test": {
+  "present": {
+   "positions": 31288,
+   "link": 11474,
+   "review": 11876,
+   "right": 11470,
+   "wrong": 1,
+   "dup_key": 3,
+   "precision": 0.9999,
+   "precision_dup_as_wrong": 0.9997,
+   "recall": 0.3666
+  },
+  "absent_dropped_key": {
+   "positions": 5543,
+   "link": 128,
+   "review": 899,
+   "right": 0,
+   "wrong": 51,
+   "dup_key": 77,
+   "precision": 0.0,
+   "precision_dup_as_wrong": 0.0,
+   "recall": 0.0
+  },
+  "absent_impersonated": {
+   "positions": 30453,
+   "link": 815,
+   "review": 5202,
+   "right": 0,
+   "wrong": 815,
+   "dup_key": 0,
+   "precision": 0.0,
+   "precision_dup_as_wrong": 0.0,
+   "recall": 0.0
+  },
+  "est_false_link_share_production_weighted": 0.00362,
+  "hidden_key_status": {
+   "live": 29652,
+   "not-in-block": 936,
+   "date-excluded": 679,
+   "hard": 21
+  },
+  "rule_linker_same_rows": {
+   "present": {
+    "positions": 31288,
+    "link": 23598,
+    "right": 23372,
+    "wrong": 164,
+    "dup_key": 62,
+    "precision": 0.993,
+    "recall": 0.747
+   },
+   "absent_dropped_key": {
+    "positions": 5543,
+    "link": 466,
+    "right": 0,
+    "wrong": 325,
+    "dup_key": 141,
+    "precision": 0.0,
+    "recall": 0.0
+   },
+   "absent_impersonated": {
+    "positions": 30453,
+    "link": 10028,
+    "right": 0,
+    "wrong": 10028,
+    "dup_key": 0,
+    "precision": 0.0,
+    "recall": 0.0
+   }
+  },
+  "subgroups": {
+   "orcid": {
+    "key has ORCID": {
+     "present": {
+      "positions": 20127,
+      "link": 3881,
+      "review": 9512,
+      "right": 3878,
+      "wrong": 1,
+      "dup_key": 2,
+      "precision": 0.9997,
+      "precision_dup_as_wrong": 0.9992,
+      "recall": 0.1927
+     },
+     "absent_positions": 23028,
+     "absent_false_links": 183,
+     "est_false_link_share": 0.00285,
+     "rule_present": {
+      "positions": 20127,
+      "link": 14688,
+      "right": 14495,
+      "wrong": 159,
+      "dup_key": 34,
+      "precision": 0.9891,
+      "recall": 0.7202
+     }
+    },
+    "no ORCID": {
+     "present": {
+      "positions": 11161,
+      "link": 7593,
+      "review": 2364,
+      "right": 7592,
+      "wrong": 0,
+      "dup_key": 1,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 0.9999,
+      "recall": 0.6802
+     },
+     "absent_positions": 12968,
+     "absent_false_links": 683,
+     "est_false_link_share": 0.00371,
+     "rule_present": {
+      "positions": 11161,
+      "link": 8910,
+      "right": 8877,
+      "wrong": 5,
+      "dup_key": 28,
+      "precision": 0.9994,
+      "recall": 0.7954
+     }
+    }
+   },
+   "band": {
+    "2-5": {
+     "present": {
+      "positions": 9703,
+      "link": 5777,
+      "review": 2787,
+      "right": 5776,
+      "wrong": 0,
+      "dup_key": 1,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 0.9998,
+      "recall": 0.5953
+     },
+     "absent_positions": 10904,
+     "absent_false_links": 596,
+     "est_false_link_share": 0.00381,
+     "rule_present": {
+      "positions": 9703,
+      "link": 7879,
+      "right": 7742,
+      "wrong": 115,
+      "dup_key": 22,
+      "precision": 0.9854,
+      "recall": 0.7979
+     }
+    },
+    "26+": {
+     "present": {
+      "positions": 874,
+      "link": 0,
+      "review": 526,
+      "right": 0,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": null,
+      "precision_dup_as_wrong": null,
+      "recall": 0.0
+     },
+     "absent_positions": 1626,
+     "absent_false_links": 0,
+     "est_false_link_share": 0.0,
+     "rule_present": {
+      "positions": 874,
+      "link": 236,
+      "right": 230,
+      "wrong": 2,
+      "dup_key": 4,
+      "precision": 0.9914,
+      "recall": 0.2632
+     }
+    },
+    "6-25": {
+     "present": {
+      "positions": 2151,
+      "link": 641,
+      "review": 1057,
+      "right": 641,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.298
+     },
+     "absent_positions": 2908,
+     "absent_false_links": 1,
+     "est_false_link_share": 0.00211,
+     "rule_present": {
+      "positions": 2151,
+      "link": 1249,
+      "right": 1232,
+      "wrong": 12,
+      "dup_key": 5,
+      "precision": 0.9904,
+      "recall": 0.5728
+     }
+    },
+    "initials": {
+     "present": {
+      "positions": 296,
+      "link": 0,
+      "review": 129,
+      "right": 0,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": null,
+      "precision_dup_as_wrong": null,
+      "recall": 0.0
+     },
+     "absent_positions": 366,
+     "absent_false_links": 0,
+     "est_false_link_share": 0.0,
+     "rule_present": {
+      "positions": 296,
+      "link": 121,
+      "right": 121,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "recall": 0.4088
+     }
+    },
+    "no live candidate": {
+     "present": {
+      "positions": 1100,
+      "link": 0,
+      "review": 0,
+      "right": 0,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": null,
+      "precision_dup_as_wrong": null,
+      "recall": 0.0
+     },
+     "absent_positions": 853,
+     "absent_false_links": 0,
+     "est_false_link_share": 0.0,
+     "rule_present": {
+      "positions": 1100,
+      "link": 2,
+      "right": 2,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "recall": 0.0018
+     }
+    },
+    "unique": {
+     "present": {
+      "positions": 5058,
+      "link": 3321,
+      "review": 1303,
+      "right": 3320,
+      "wrong": 0,
+      "dup_key": 1,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 0.9997,
+      "recall": 0.6564
+     },
+     "absent_positions": 5234,
+     "absent_false_links": 264,
+     "est_false_link_share": 0.00335,
+     "rule_present": {
+      "positions": 5058,
+      "link": 4591,
+      "right": 4552,
+      "wrong": 14,
+      "dup_key": 25,
+      "precision": 0.9969,
+      "recall": 0.9
+     }
+    },
+    "unmeasured": {
+     "present": {
+      "positions": 12106,
+      "link": 1735,
+      "review": 6074,
+      "right": 1733,
+      "wrong": 1,
+      "dup_key": 1,
+      "precision": 0.9994,
+      "precision_dup_as_wrong": 0.9988,
+      "recall": 0.1432
+     },
+     "absent_positions": 14105,
+     "absent_false_links": 5,
+     "est_false_link_share": 0.00518,
+     "rule_present": {
+      "positions": 12106,
+      "link": 9520,
+      "right": 9493,
+      "wrong": 21,
+      "dup_key": 6,
+      "precision": 0.9978,
+      "recall": 0.7842
+     }
+    }
+   },
+   "role": {
+    "author": {
+     "present": {
+      "positions": 17331,
+      "link": 1735,
+      "review": 9183,
+      "right": 1733,
+      "wrong": 1,
+      "dup_key": 1,
+      "precision": 0.9994,
+      "precision_dup_as_wrong": 0.9988,
+      "recall": 0.1
+     },
+     "absent_positions": 19567,
+     "absent_false_links": 5,
+     "est_false_link_share": 0.00518,
+     "rule_present": {
+      "positions": 17331,
+      "link": 12559,
+      "right": 12384,
+      "wrong": 156,
+      "dup_key": 19,
+      "precision": 0.9876,
+      "recall": 0.7146
+     }
+    },
+    "jstor-author": {
+     "present": {
+      "positions": 2570,
+      "link": 1560,
+      "review": 632,
+      "right": 1559,
+      "wrong": 0,
+      "dup_key": 1,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 0.9994,
+      "recall": 0.6066
+     },
+     "absent_positions": 2986,
+     "absent_false_links": 115,
+     "est_false_link_share": 0.00254,
+     "rule_present": {
+      "positions": 2570,
+      "link": 1985,
+      "right": 1982,
+      "wrong": 1,
+      "dup_key": 2,
+      "precision": 0.9995,
+      "recall": 0.7712
+     }
+    },
+    "reviewer": {
+     "present": {
+      "positions": 11387,
+      "link": 8179,
+      "review": 2061,
+      "right": 8178,
+      "wrong": 0,
+      "dup_key": 1,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 0.9999,
+      "recall": 0.7182
+     },
+     "absent_positions": 13443,
+     "absent_false_links": 746,
+     "est_false_link_share": 0.00397,
+     "rule_present": {
+      "positions": 11387,
+      "link": 9054,
+      "right": 9006,
+      "wrong": 7,
+      "dup_key": 41,
+      "precision": 0.9992,
+      "recall": 0.7909
+     }
+    }
+   },
+   "kind": {
+    "article": {
+     "present": {
+      "positions": 25966,
+      "link": 11298,
+      "review": 9017,
+      "right": 11295,
+      "wrong": 1,
+      "dup_key": 2,
+      "precision": 0.9999,
+      "precision_dup_as_wrong": 0.9997,
+      "recall": 0.435
+     },
+     "absent_positions": 29874,
+     "absent_false_links": 864,
+     "est_false_link_share": 0.00359,
+     "rule_present": {
+      "positions": 25966,
+      "link": 19843,
+      "right": 19653,
+      "wrong": 137,
+      "dup_key": 53,
+      "precision": 0.9931,
+      "recall": 0.7569
+     }
+    },
+    "book": {
+     "present": {
+      "positions": 1201,
+      "link": 14,
+      "review": 593,
+      "right": 14,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.0117
+     },
+     "absent_positions": 1406,
+     "absent_false_links": 0,
+     "est_false_link_share": 0.0,
+     "rule_present": {
+      "positions": 1201,
+      "link": 772,
+      "right": 755,
+      "wrong": 13,
+      "dup_key": 4,
+      "precision": 0.9831,
+      "recall": 0.6286
+     }
+    },
+    "chapter": {
+     "present": {
+      "positions": 847,
+      "link": 30,
+      "review": 375,
+      "right": 30,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.0354
+     },
+     "absent_positions": 982,
+     "absent_false_links": 1,
+     "est_false_link_share": 0.05184,
+     "rule_present": {
+      "positions": 847,
+      "link": 658,
+      "right": 656,
+      "wrong": 2,
+      "dup_key": 0,
+      "precision": 0.997,
+      "recall": 0.7745
+     }
+    },
+    "dataset": {
+     "present": {
+      "positions": 130,
+      "link": 32,
+      "review": 60,
+      "right": 32,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.2462
+     },
+     "absent_positions": 137,
+     "absent_false_links": 0,
+     "est_false_link_share": 0.0,
+     "rule_present": {
+      "positions": 130,
+      "link": 107,
+      "right": 107,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "recall": 0.8231
+     }
+    },
+    "other": {
+     "present": {
+      "positions": 1469,
+      "link": 36,
+      "review": 857,
+      "right": 36,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.0245
+     },
+     "absent_positions": 1730,
+     "absent_false_links": 0,
+     "est_false_link_share": 0.0,
+     "rule_present": {
+      "positions": 1469,
+      "link": 1105,
+      "right": 1103,
+      "wrong": 2,
+      "dup_key": 0,
+      "precision": 0.9982,
+      "recall": 0.7509
+     }
+    },
+    "preprint": {
+     "present": {
+      "positions": 416,
+      "link": 37,
+      "review": 230,
+      "right": 37,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.0889
+     },
+     "absent_positions": 498,
+     "absent_false_links": 0,
+     "est_false_link_share": 0.0,
+     "rule_present": {
+      "positions": 416,
+      "link": 305,
+      "right": 304,
+      "wrong": 1,
+      "dup_key": 0,
+      "precision": 0.9967,
+      "recall": 0.7308
+     }
+    },
+    "review": {
+     "present": {
+      "positions": 1037,
+      "link": 21,
+      "review": 643,
+      "right": 21,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.0203
+     },
+     "absent_positions": 1106,
+     "absent_false_links": 1,
+     "est_false_link_share": 0.07794,
+     "rule_present": {
+      "positions": 1037,
+      "link": 691,
+      "right": 680,
+      "wrong": 8,
+      "dup_key": 3,
+      "precision": 0.9884,
+      "recall": 0.6557
+     }
+    },
+    "thesis": {
+     "present": {
+      "positions": 222,
+      "link": 6,
+      "review": 101,
+      "right": 5,
+      "wrong": 0,
+      "dup_key": 1,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 0.8333,
+      "recall": 0.0225
+     },
+     "absent_positions": 263,
+     "absent_false_links": 0,
+     "est_false_link_share": 0.0,
+     "rule_present": {
+      "positions": 222,
+      "link": 117,
+      "right": 114,
+      "wrong": 1,
+      "dup_key": 2,
+      "precision": 0.9913,
+      "recall": 0.5135
+     }
+    }
+   },
+   "country": {
+    "BE": {
+     "present": {
+      "positions": 30,
+      "link": 5,
+      "review": 19,
+      "right": 5,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.1667
+     },
+     "absent_positions": 30,
+     "absent_false_links": 0,
+     "est_false_link_share": 0.0,
+     "rule_present": {
+      "positions": 30,
+      "link": 30,
+      "right": 30,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "recall": 1.0
+     }
+    },
+    "CA": {
+     "present": {
+      "positions": 96,
+      "link": 41,
+      "review": 30,
+      "right": 41,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.4271
+     },
+     "absent_positions": 108,
+     "absent_false_links": 2,
+     "est_false_link_share": 0.00146,
+     "rule_present": {
+      "positions": 96,
+      "link": 76,
+      "right": 76,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "recall": 0.7917
+     }
+    },
+    "FR": {
+     "present": {
+      "positions": 103,
+      "link": 4,
+      "review": 33,
+      "right": 4,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.0388
+     },
+     "absent_positions": 146,
+     "absent_false_links": 0,
+     "est_false_link_share": 0.0,
+     "rule_present": {
+      "positions": 103,
+      "link": 39,
+      "right": 37,
+      "wrong": 0,
+      "dup_key": 2,
+      "precision": 1.0,
+      "recall": 0.3592
+     }
+    },
+    "GB": {
+     "present": {
+      "positions": 251,
+      "link": 60,
+      "review": 84,
+      "right": 60,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.239
+     },
+     "absent_positions": 257,
+     "absent_false_links": 1,
+     "est_false_link_share": 0.00055,
+     "rule_present": {
+      "positions": 251,
+      "link": 173,
+      "right": 173,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "recall": 0.6892
+     }
+    },
+    "IT": {
+     "present": {
+      "positions": 80,
+      "link": 9,
+      "review": 27,
+      "right": 9,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.1125
+     },
+     "absent_positions": 80,
+     "absent_false_links": 0,
+     "est_false_link_share": 0.0,
+     "rule_present": {
+      "positions": 80,
+      "link": 51,
+      "right": 51,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "recall": 0.6375
+     }
+    },
+    "SE": {
+     "present": {
+      "positions": 125,
+      "link": 4,
+      "review": 77,
+      "right": 4,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.032
+     },
+     "absent_positions": 125,
+     "absent_false_links": 0,
+     "est_false_link_share": 0.0,
+     "rule_present": {
+      "positions": 125,
+      "link": 117,
+      "right": 117,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "recall": 0.936
+     }
+    },
+    "US": {
+     "present": {
+      "positions": 204,
+      "link": 102,
+      "review": 66,
+      "right": 102,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.5
+     },
+     "absent_positions": 225,
+     "absent_false_links": 4,
+     "est_false_link_share": 0.00175,
+     "rule_present": {
+      "positions": 204,
+      "link": 160,
+      "right": 159,
+      "wrong": 0,
+      "dup_key": 1,
+      "precision": 1.0,
+      "recall": 0.7794
+     }
+    },
+    "US/CA (AHA)": {
+     "present": {
+      "positions": 9457,
+      "link": 6277,
+      "review": 2142,
+      "right": 6277,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.6637
+     },
+     "absent_positions": 10855,
+     "absent_false_links": 573,
+     "est_false_link_share": 0.00371,
+     "rule_present": {
+      "positions": 9457,
+      "link": 7630,
+      "right": 7621,
+      "wrong": 6,
+      "dup_key": 3,
+      "precision": 0.9992,
+      "recall": 0.8059
+     }
+    },
+    "unknown": {
+     "present": {
+      "positions": 20910,
+      "link": 4963,
+      "review": 9382,
+      "right": 4959,
+      "wrong": 1,
+      "dup_key": 3,
+      "precision": 0.9998,
+      "precision_dup_as_wrong": 0.9992,
+      "recall": 0.2372
+     },
+     "absent_positions": 24135,
+     "absent_false_links": 286,
+     "est_false_link_share": 0.00342,
+     "rule_present": {
+      "positions": 20910,
+      "link": 15297,
+      "right": 15083,
+      "wrong": 158,
+      "dup_key": 56,
+      "precision": 0.9896,
+      "recall": 0.7213
+     }
+    }
+   },
+   "decade": {
+    "1920": {
+     "present": {
+      "positions": 38,
+      "link": 20,
+      "review": 10,
+      "right": 20,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.5263
+     },
+     "absent_positions": 38,
+     "absent_false_links": 1,
+     "est_false_link_share": 0.00074,
+     "rule_present": {
+      "positions": 38,
+      "link": 33,
+      "right": 33,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "recall": 0.8684
+     }
+    },
+    "1930": {
+     "present": {
+      "positions": 56,
+      "link": 38,
+      "review": 8,
+      "right": 38,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.6786
+     },
+     "absent_positions": 58,
+     "absent_false_links": 5,
+     "est_false_link_share": 0.00457,
+     "rule_present": {
+      "positions": 56,
+      "link": 47,
+      "right": 47,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "recall": 0.8393
+     }
+    },
+    "1940": {
+     "present": {
+      "positions": 127,
+      "link": 80,
+      "review": 18,
+      "right": 80,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.6299
+     },
+     "absent_positions": 133,
+     "absent_false_links": 6,
+     "est_false_link_share": 0.00235,
+     "rule_present": {
+      "positions": 127,
+      "link": 97,
+      "right": 97,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "recall": 0.7638
+     }
+    },
+    "1950": {
+     "present": {
+      "positions": 209,
+      "link": 131,
+      "review": 40,
+      "right": 131,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.6268
+     },
+     "absent_positions": 227,
+     "absent_false_links": 7,
+     "est_false_link_share": 0.0032,
+     "rule_present": {
+      "positions": 209,
+      "link": 160,
+      "right": 160,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "recall": 0.7656
+     }
+    },
+    "1960": {
+     "present": {
+      "positions": 543,
+      "link": 371,
+      "review": 93,
+      "right": 371,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.6832
+     },
+     "absent_positions": 583,
+     "absent_false_links": 31,
+     "est_false_link_share": 0.00372,
+     "rule_present": {
+      "positions": 543,
+      "link": 440,
+      "right": 440,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "recall": 0.8103
+     }
+    },
+    "1970": {
+     "present": {
+      "positions": 1195,
+      "link": 692,
+      "review": 275,
+      "right": 692,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.5791
+     },
+     "absent_positions": 1354,
+     "absent_false_links": 56,
+     "est_false_link_share": 0.00364,
+     "rule_present": {
+      "positions": 1195,
+      "link": 889,
+      "right": 881,
+      "wrong": 7,
+      "dup_key": 1,
+      "precision": 0.9921,
+      "recall": 0.7372
+     }
+    },
+    "1980": {
+     "present": {
+      "positions": 2379,
+      "link": 1345,
+      "review": 591,
+      "right": 1344,
+      "wrong": 0,
+      "dup_key": 1,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 0.9993,
+      "recall": 0.5649
+     },
+     "absent_positions": 2797,
+     "absent_false_links": 103,
+     "est_false_link_share": 0.00338,
+     "rule_present": {
+      "positions": 2379,
+      "link": 1749,
+      "right": 1733,
+      "wrong": 14,
+      "dup_key": 2,
+      "precision": 0.992,
+      "recall": 0.7285
+     }
+    },
+    "1990": {
+     "present": {
+      "positions": 4647,
+      "link": 2370,
+      "review": 1337,
+      "right": 2369,
+      "wrong": 0,
+      "dup_key": 1,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 0.9996,
+      "recall": 0.5098
+     },
+     "absent_positions": 5413,
+     "absent_false_links": 205,
+     "est_false_link_share": 0.00375,
+     "rule_present": {
+      "positions": 4647,
+      "link": 3468,
+      "right": 3402,
+      "wrong": 47,
+      "dup_key": 19,
+      "precision": 0.9864,
+      "recall": 0.7321
+     }
+    },
+    "2000": {
+     "present": {
+      "positions": 7733,
+      "link": 2695,
+      "review": 2953,
+      "right": 2694,
+      "wrong": 0,
+      "dup_key": 1,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 0.9996,
+      "recall": 0.3484
+     },
+     "absent_positions": 9185,
+     "absent_false_links": 224,
+     "est_false_link_share": 0.0036,
+     "rule_present": {
+      "positions": 7733,
+      "link": 5626,
+      "right": 5552,
+      "wrong": 59,
+      "dup_key": 15,
+      "precision": 0.9895,
+      "recall": 0.718
+     }
+    },
+    "2010": {
+     "present": {
+      "positions": 10856,
+      "link": 2772,
+      "review": 4717,
+      "right": 2772,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.2553
+     },
+     "absent_positions": 12483,
+     "absent_false_links": 215,
+     "est_false_link_share": 0.00338,
+     "rule_present": {
+      "positions": 10856,
+      "link": 8228,
+      "right": 8174,
+      "wrong": 33,
+      "dup_key": 21,
+      "precision": 0.996,
+      "recall": 0.7529
+     }
+    },
+    "2020": {
+     "present": {
+      "positions": 3434,
+      "link": 948,
+      "review": 1794,
+      "right": 947,
+      "wrong": 1,
+      "dup_key": 0,
+      "precision": 0.9989,
+      "precision_dup_as_wrong": 0.9989,
+      "recall": 0.2758
+     },
+     "absent_positions": 3680,
+     "absent_false_links": 13,
+     "est_false_link_share": 0.00296,
+     "rule_present": {
+      "positions": 3434,
+      "link": 2841,
+      "right": 2833,
+      "wrong": 4,
+      "dup_key": 4,
+      "precision": 0.9986,
+      "recall": 0.825
+     }
+    },
+    "undated": {
+     "present": {
+      "positions": 35,
+      "link": 9,
+      "review": 24,
+      "right": 9,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 1.0,
+      "recall": 0.2571
+     },
+     "absent_positions": 7,
+     "absent_false_links": 0,
+     "est_false_link_share": 0.0,
+     "rule_present": {
+      "positions": 35,
+      "link": 0,
+      "right": 0,
+      "wrong": 0,
+      "dup_key": 0,
+      "precision": null,
+      "recall": 0.0
+     }
+    }
+   },
+   "tbl": {
+    "no": {
+     "present": {
+      "positions": 12552,
+      "link": 625,
+      "review": 6227,
+      "right": 624,
+      "wrong": 0,
+      "dup_key": 1,
+      "precision": 1.0,
+      "precision_dup_as_wrong": 0.9984,
+      "recall": 0.0497
+     },
+     "absent_positions": 14520,
+     "absent_false_links": 3,
+     "est_false_link_share": 0.00738,
+     "rule_present": {
+      "positions": 12552,
+      "link": 8625,
+      "right": 8454,
+      "wrong": 154,
+      "dup_key": 17,
+      "precision": 0.9821,
+      "recall": 0.6735
+     }
+    },
+    "wp": {
+     "present": {
+      "positions": 18736,
+      "link": 10849,
+      "review": 5649,
+      "right": 10846,
+      "wrong": 1,
+      "dup_key": 2,
+      "precision": 0.9999,
+      "precision_dup_as_wrong": 0.9997,
+      "recall": 0.5789
+     },
+     "absent_positions": 21476,
+     "absent_false_links": 863,
+     "est_false_link_share": 0.00362,
+     "rule_present": {
+      "positions": 18736,
+      "link": 14973,
+      "right": 14918,
+      "wrong": 10,
+      "dup_key": 45,
+      "precision": 0.9993,
+      "recall": 0.7962
+     }
+    }
+   },
+   "route_a": {
+    "False": {
+     "present": {
+      "positions": 31288,
+      "link": 11474,
+      "review": 11876,
+      "right": 11470,
+      "wrong": 1,
+      "dup_key": 3,
+      "precision": 0.9999,
+      "precision_dup_as_wrong": 0.9997,
+      "recall": 0.3666
+     },
+     "absent_positions": 35996,
+     "absent_false_links": 866,
+     "est_false_link_share": 0.00362,
+     "rule_present": {
+      "positions": 31288,
+      "link": 23598,
+      "right": 23372,
+      "wrong": 164,
+      "dup_key": 62,
+      "precision": 0.993,
+      "recall": 0.747
+     }
+    }
+   }
+  },
+  "head_to_head_present": {
+   "both_right": 10696,
+   "scorer_only_right": 774,
+   "rule_only_right": 12676,
+   "scorer_wrong": 1,
+   "rule_wrong": 164
+  },
+  "head_to_head_absent": {
+   "positions": 35996,
+   "scorer_false": 866,
+   "rule_false": 10353,
+   "both": 693
+  }
+ },
+ "route_a_gold_test": {
+  "note": "held-out credits resting only on an OpenAlex-profile key-log claim; not used for estimation or thresholds",
+  "scorer": {
+   "positions": 7585,
+   "link": 9,
+   "review": 6128,
+   "right": 9,
+   "wrong": 0,
+   "dup_key": 0,
+   "precision": 1.0,
+   "precision_dup_as_wrong": 1.0,
+   "recall": 0.0012
+  },
+  "rule": {
+   "positions": 7585,
+   "link": 6835,
+   "right": 6832,
+   "wrong": 2,
+   "dup_key": 1,
+   "precision": 0.9997,
+   "recall": 0.9007
+  }
+ },
+ "production": {
+  "positions": 1577337,
+  "by_decision": {
+   "none": 1300442,
+   "review": 158927,
+   "link": 77121,
+   "exact": 40847
+  },
+  "by_table_decision": {
+   "jm|author": {
+    "none": 832,
+    "review": 248
+   },
+   "no|author": {
+    "none": 553778,
+    "review": 82225,
+    "exact": 21848,
+    "link": 1536
+   },
+   "wp|author": {
+    "none": 472380,
+    "review": 46028,
+    "exact": 16570,
+    "link": 1136
+   },
+   "wp|jstor-author": {
+    "none": 76665,
+    "link": 26630,
+    "review": 10623,
+    "exact": 778
+   },
+   "wp|reviewer": {
+    "none": 196787,
+    "link": 47819,
+    "review": 19803,
+    "exact": 1651
+   }
+  },
+  "capped_blocks": 205,
+  "no_live_candidate": 1018017
+ },
+ "production_vs_rule": {
+  "rule_recomputed_agrees_with_exported": 0.9968,
+  "exported_rows_matched": 1576257,
+  "scorer_link_rule_linked_same_key": 66884,
+  "scorer_link_rule_linked_other_key": 0,
+  "scorer_link_rule_not_linked": 10237,
+  "scorer_link_rule_states": {
+   "possible": 10235,
+   "ambiguous": 1,
+   "none": 1
+  },
+  "rule_linked_scorer_not": 175282,
+  "rule_linked_scorer_decision": {
+   "none": 93870,
+   "review": 81412
+  },
+  "scorer_review_by_rule_state": {
+   "linked": 81412,
+   "possible": 61546,
+   "ambiguous": 15602,
+   "none": 367
+  }
+ },
+ "links_csv_rows": {
+  "exact": 40847,
+  "link": 77121,
+  "review": 167293
+ },
+ "prep": {
+  "stats": [
+   [
+    "jm",
+    "author",
+    1080,
+    0,
+    0,
+    0
+   ],
+   [
+    "no",
+    "author",
+    734803,
+    75416,
+    50000,
+    0
+   ],
+   [
+    "wp",
+    "author",
+    1365999,
+    829885,
+    50000,
+    29838
+   ],
+   [
+    "wp",
+    "jstor-author",
+    124364,
+    9668,
+    9668,
+    1
+   ],
+   [
+    "wp",
+    "reviewer",
+    311205,
+    45145,
+    45000,
+    0
+   ]
+  ],
+  "residue": {
+   "works_by_source": {
+    "crossref-meta": 5222,
+    "crossref": 3260,
+    "journal-meta": 2792,
+    "lc-translations": 1764
+   },
+   "works_with_a_record": 909,
+   "positions": 1080,
+   "works_family_names_only": 1621,
+   "note": "journal-metadata harvest only (build/journal-meta-2026-11-11); the Crossref metadata harvest on E: was read by link_work_people nameonly-extract, so its residue has no record there; lc-translations have no printed-name source here"
+  },
+  "outside": 609637,
+  "pop_rows": 2301316,
+  "graph": "/tmp/claude-1000/-home-jic823-historiography/d3abee1e-2938-4bf9-afec-f3685cadff31/scratchpad/scored/graph",
+  "graph_built": "Thu Nov 12 04:59:06 2026"
+ },
+ "built": "2026-11-12 09:11"
+}
