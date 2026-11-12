@@ -33,6 +33,7 @@ from career_window import career_windows, in_window
 from key_review_credit_merges import agree, dated, is_system, jstor_signatures, key_institutions
 from key_review_reviewers import family
 from namesake_check_groups import given_words, names_agree_strict
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 GRAPH = ROOT / 'build/graph'
 
@@ -61,7 +62,7 @@ def main():
                   and any(a.startswith('signature-reviewer:') for a in v['anchors'])}
     works = db.execute(f"""SELECT w.key, w.an, w.year, list(a."from") FILTER (WHERE a."from" IS NOT NULL{" AND NOT list_contains($1, a.claim)" if args.audit else ""})
             FROM (SELECT key, year, unnest(anchors) AS an FROM '{GRAPH}/work.parquet' WHERE len(reviewer_names) > 0) w
-            LEFT JOIN '{GRAPH}/authored.parquet' a ON a."to" = w.key WHERE w.an LIKE 'doi:%' GROUP BY 1, 2, 3""",
+            LEFT JOIN {keylog(GRAPH, 'authored')} a ON a."to" = w.key WHERE w.an LIKE 'doi:%' GROUP BY 1, 2, 3""",
             [sorted(sig_claims)] if args.audit else []).fetchall()
     decided = {}
     doi_of = {wk: an[4:].lower() for wk, an, _, _ in works}

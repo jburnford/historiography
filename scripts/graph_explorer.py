@@ -9,64 +9,100 @@ API (JSON): /api/search?q=   /api/node?key=   /api/group?key=&rel=&offset=&limit
 Weights: a work's weight is the number of works citing it plus reviews of it; a person's is the sum over the works
 they authored. Life years are not shown (site rule for living people); the explorer is local for now.
 """
-import argparse, json, re, sys, threading, time, urllib.parse
+import argparse, json, os, re, sys, threading, time, urllib.parse
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 
 import duckdb
 
 ROOT = Path(__file__).resolve().parents[1]
-G = ROOT / 'build/graph'
+G = Path(os.environ.get('EXPLORER_GRAPH', ROOT / 'build/graph'))   # another build (a check build) for testing
 DB = G / 'explorer.duckdb'
 STATIC = ROOT / 'explorer'
 EDGES = ['authored', 'cites', 'reviews', 'reviewed', 'supervised', 'advised', 'awarded_by', 'coauthored', 'coedited',
-         'edited', 'editor_of', 'part_of', 'published_as', 'possibly_same', 'affiliated_with',
-         'linked_authored', 'linked_edited', 'possible_author']
-# cited works' authors outside the key log (build_graph, 2026-11-10): marked on every row
-LINKED_D = ("string_agg(DISTINCT CASE e.state WHEN 'exact' THEN 'linked by identifier' ELSE 'linked by rule' END || ' ('"
-            " || CASE e.source WHEN 'lc' THEN 'LC' WHEN 'openalex' THEN 'OpenAlex' ELSE e.source END || '); not a key-log claim', '; ')")
-POSSIBLE_D = ("'possible author (' || any_value(e.n_candidates) || ' candidate' || CASE WHEN any_value(e.n_candidates) > 1 "
-              "THEN 's' ELSE '' END || '); not credited'")
+         'edited', 'editor_of', 'part_of', 'published_as', 'possibly_same', 'affiliated_with']
+# one edge table per relation (2026-11-11): authored, edited, coauthored and reviewed carry `evidence` ('keylog' or
+# 'linked': a rule or identifier credit outside the key log, marked on its row). author_candidates is not an edge: the
+# unconfirmed name-compatible people for a work, shown as one collapsed section.
+OPTIONAL = ['edition_of',                               # translation/edition node -> canonical work (2026-11-11)
+            'author_candidates',
+            'contributed']                              # foreword writers, series editors -> work (2026-11-11)
+# columns a newer build adds; an older build gets them as NULL so the explorer still builds against it
+ADDED = {'part_of': [('evidence', "'keylog'"), ('source', 'NULL'), ('volume_basis', 'NULL')],
+         'author_candidates': [('reason', 'NULL')]}
+WORK_ADDED = ('issn', 'journal_source', 'kind_proposed', 'isbn', 'editors_printed')
+# a thesis citing a translation or later edition is a CITES edge to the canonical work (edition = true unless it also
+# cites the work directly; cited_as = the node it was cited as); the canonical work counts the citation
+EDITION_D = ("CASE WHEN bool_or(e.edition) OR any_value(e.cited_as) IS NOT NULL THEN 'cited in translation or another edition'"
+             " || coalesce(' (as: ' || (SELECT label FROM nodes WHERE key = split_part(any_value(e.cited_as), ';', 1)) || ')', '')"
+             " END")
+EDITION_OF_D = "any_value(e.relation) || ', ' || any_value(e.theses) || ' citing theses moved to the original'"
+# rows resting only on a credit outside the key log are marked; key-log rows carry no note
+LINKED_D = ("CASE WHEN bool_or(e.evidence = 'keylog') THEN NULL ELSE "
+            "'linked: ' || string_agg(DISTINCT CASE e.state WHEN 'exact' THEN 'by identifier' ELSE 'by rule' END || ' ('"
+            " || CASE e.source WHEN 'lc' THEN 'LC' WHEN 'openalex' THEN 'OpenAlex' WHEN 'work-people:reviewer' THEN 'printed reviewer'"
+            " WHEN 'work-people:jstor-author' THEN 'JSTOR author' WHEN 'work-people:author' THEN 'OpenAlex/Crossref author list'"
+            " ELSE e.source END || ')', '; ') || '; not a key-log claim' END")
+BOOK_D = "(SELECT label FROM nodes WHERE key = any_value(e.book)) || CASE WHEN bool_and(e.evidence = 'linked') THEN ' (linked)' ELSE '' END"
+POSSIBLE_D = ("'unconfirmed: ' || CASE WHEN any_value(e.reason) IS NOT NULL THEN any_value(e.reason) || ' -- not credited' "
+              "WHEN any_value(e.n_candidates) = 1 THEN 'name match only (the sole candidate left after the "
+              "name and date tests; no confirming fact)' ELSE 'one of ' || any_value(e.n_candidates) || ' candidates for this "
+              "name' END || CASE WHEN any_value(e.reason) IS NOT NULL THEN '' ELSE ' -- ' || any_value(e.role) || ' of the work; not credited' END")
+# a chapter's volume, as a note on a work row ('in <volume>, edited by <editors>'), from the vol_note table
+VOL_D = "(SELECT note FROM vol_note WHERE key = any_value(e.\"to\"))"
+WORK_ROW_D = f"concat_ws(' · ', {LINKED_D}, {VOL_D})"
+PART_D = ("CASE WHEN bool_or(e.evidence = 'keylog') THEN NULL ELSE 'linked: ' || string_agg(DISTINCT CASE e.source "
+          "WHEN 'orcid-container' THEN 'the ORCID record names the volume' WHEN 'doi-container' THEN 'the DOI record names the volume' "
+          "WHEN 'author-works-container' THEN 'the OpenAlex/Crossref record names the volume' ELSE e.source END || ' (' || "
+          "CASE e.volume_basis WHEN 'title' THEN 'one volume with that title' WHEN 'book-doi' THEN 'book DOI' "
+          "WHEN 'new-unkeyed-volume' THEN 'volume made from the record' WHEN 'main-title' THEN 'main title only' "
+          "ELSE e.volume_basis END || ')', '; ') || '; not a key-log claim' END")
+CONTRIB_D = ("'contributor (' || string_agg(DISTINCT CASE e.basis WHEN 'lc-foreword' THEN 'foreword, by the LC record' "
+             "WHEN 'series-foreword-pattern' THEN 'series foreword' ELSE e.basis END, '; ') || '); linked, not an author'")
 
 # Relations shown for each node type: (id, label, edge table, self side, other side, detail SQL over e and o)
 # `e` is the edge row, `o` the other node. Rows are grouped by the other node (n = number of edges to it).
 REL = {
     'person': [
-        ('authored', 'Wrote', 'authored', 'from', 'to', None),
-        ('edited', 'Edited', 'edited', 'from', 'to', None),
-        ('linked_authored', 'Wrote (linked, outside the key log)', 'linked_authored', 'from', 'to', LINKED_D),
-        ('linked_edited', 'Edited (linked, outside the key log)', 'linked_edited', 'from', 'to', LINKED_D),
-        ('possible_author', 'Possibly wrote (not credited)', 'possible_author', 'from', 'to', POSSIBLE_D),
+        ('authored', 'Works authored', 'authored', 'from', 'to', WORK_ROW_D),
+        ('edited', 'Works edited', 'edited', 'from', 'to', LINKED_D),
+        ('contributed', 'Forewords and series contributions', 'contributed', 'from', 'to', CONTRIB_D),
         ('supervised', 'Supervised theses', 'supervised', 'from', 'to', None),
         ('students', 'Students', 'advised', 'from', 'to', "(SELECT label FROM nodes WHERE key = any_value(e.thesis))"),
         ('advisors', 'Advisors', 'advised', 'to', 'from', "(SELECT label FROM nodes WHERE key = any_value(e.thesis))"),
-        ('reviewed', 'Reviewed books by', 'reviewed', 'from', 'to', "(SELECT label FROM nodes WHERE key = any_value(e.book))"),
-        ('reviewed_by', 'Reviewed by', 'reviewed', 'to', 'from', "(SELECT label FROM nodes WHERE key = any_value(e.book))"),
+        ('reviewed', 'Reviews written (authors of the books reviewed)', 'reviewed', 'from', 'to', BOOK_D),
+        ('reviewed_by', 'Reviewed by', 'reviewed', 'to', 'from', BOOK_D),
         ('coauthors', 'Co-authors', 'coauthored', None, None, None),
         ('coeditors', 'Co-editors', 'coedited', None, None, None),
         ('editor_of', 'Edited chapters by', 'editor_of', 'from', 'to', None),
         ('in_volumes_of', 'Chapters in volumes edited by', 'editor_of', 'to', 'from', None),
         ('cited_by_people', 'Cited by (people)', None, None, None, None),
+        ('cited_by_works', 'Cited by (works)', None, None, None, None),
         ('cites_people', 'Cites (people)', None, None, None, None),
         ('possibly_same', 'Possibly the same person', 'possibly_same', None, None, None),
         ('affiliations', 'Affiliations', None, None, None, None),
+        ('candidates', 'Unconfirmed candidates (not credited)', 'author_candidates', 'from', 'to', POSSIBLE_D),
     ],
     'work': [
-        ('authors', 'Authors', 'authored', 'to', 'from', None),
-        ('editors', 'Editors', 'edited', 'to', 'from', None),
-        ('linked_authors', 'Authors (linked, outside the key log)', 'linked_authored', 'to', 'from', LINKED_D),
-        ('linked_editors', 'Editors (linked, outside the key log)', 'linked_edited', 'to', 'from', LINKED_D),
-        ('possible_authors', 'Possible authors (not credited)', 'possible_author', 'to', 'from', POSSIBLE_D),
+        ('authors', 'Authors', 'authored', 'to', 'from', LINKED_D),
+        ('editors', 'Editors', 'edited', 'to', 'from', LINKED_D),
+        ('contributors', 'Contributors (foreword, series editor)', 'contributed', 'to', 'from', CONTRIB_D),
+        ('chapter_authors', 'Contributors (authors of its chapters)', None, None, None, None),
         ('supervisors', 'Supervisors', 'supervised', 'to', 'from', None),
         ('awarded_by', 'Degree from', 'awarded_by', 'from', 'to', None),
         ('cites', 'Cites', 'cites', 'from', 'to', None),
-        ('cited_by', 'Cited by', 'cites', 'to', 'from', None),
+        ('cited_by', 'Cited by', 'cites', 'to', 'from', EDITION_D),
+        ('editions', 'Editions and translations (EDITION_OF, seen from the original; their citations count here)',
+         'edition_of', 'to', 'from', EDITION_OF_D),
+        ('edition_of', 'Edition or translation of (EDITION_OF, seen from the edition)',
+         'edition_of', 'from', 'to', EDITION_OF_D),
         ('reviews', 'Review of', 'reviews', 'from', 'to', None),
         ('reviewed_in', 'Reviewed in', 'reviews', 'to', 'from', None),
-        ('part_of', 'Part of', 'part_of', 'from', 'to', None),
-        ('contains', 'Contains', 'part_of', 'to', 'from', None),
+        ('part_of', 'Part of', 'part_of', 'from', 'to', PART_D),
+        ('contains', 'Contains (chapters)', 'part_of', 'to', 'from', PART_D),
         ('published_as', 'Published as', 'published_as', 'from', 'to', None),
         ('published_from', 'Published from', 'published_as', 'to', 'from', None),
+        ('candidates', 'Unconfirmed candidates (not credited)', 'author_candidates', 'to', 'from', POSSIBLE_D),
     ],
     'institution': [
         ('faculty', 'Faculty and affiliated people', None, None, None, None),
@@ -74,6 +110,7 @@ REL = {
         ('theses', 'Theses awarded', 'awarded_by', 'to', 'from', None),
     ],
 }
+EVIDENCE_TABLES = ('authored', 'edited', 'reviewed', 'coauthored', 'part_of', 'contributed')
 LINKS = {'wd': 'https://www.wikidata.org/wiki/{}', 'orcid': 'https://orcid.org/{}',
          'lcnaf': 'https://id.loc.gov/authorities/names/{}', 'viaf': 'https://viaf.org/viaf/{}',
          'gnd': 'https://d-nb.info/gnd/{}', 'isni': 'https://isni.org/isni/{}', 'idref': 'https://www.idref.fr/{}',
@@ -87,31 +124,46 @@ def build():
     tmp.unlink(missing_ok=True)
     db = duckdb.connect(str(tmp))
     db.execute("SET preserve_insertion_order = true")
-    for e in EDGES:
+    for e in EDGES + [x for x in OPTIONAL if (G / f'{x}.parquet').exists()]:
         src = f"'{G}/{e}.parquet'"
         db.execute(f'CREATE TABLE e_{e}_f AS SELECT * FROM {src} ORDER BY "from"')
         db.execute(f'CREATE TABLE e_{e}_t AS SELECT * FROM {src} ORDER BY "to"')
+        for col, default in ADDED.get(e, []):
+            for side in 'ft':
+                db.execute(f'ALTER TABLE e_{e}_{side} ADD COLUMN IF NOT EXISTS {col} VARCHAR DEFAULT {default}')
     db.execute(f"""CREATE TABLE work_w AS SELECT w.key,
         coalesce(c.n, 0) AS cited, coalesce(r.n, 0) AS reviewed
         FROM '{G}/work.parquet' w
         LEFT JOIN (SELECT "to" k, count(*) n FROM e_cites_t GROUP BY 1) c ON c.k = w.key
         LEFT JOIN (SELECT "to" k, count(*) n FROM e_reviews_t GROUP BY 1) r ON r.k = w.key""")
+    # one row per (person, work) even when the key log holds two authored claims for it
     db.execute("""CREATE TABLE person_w AS SELECT a."from" AS key, count(*) works, sum(w.cited) cited, sum(w.reviewed) reviewed
-        FROM e_authored_f a JOIN work_w w ON w.key = a."to" GROUP BY 1""")
+        FROM (SELECT DISTINCT "from", "to" FROM e_authored_f) a JOIN work_w w ON w.key = a."to" GROUP BY 1""")
+    wcols = {r[0] for r in db.execute(f"DESCRIBE SELECT * FROM '{G}/work.parquet'").fetchall()}
+    wx = ', '.join(f'w.{c}' if c in wcols else f'NULL::VARCHAR AS {c}' for c in WORK_ADDED)
+    nx = ', '.join(f'NULL::VARCHAR AS {c}' for c in WORK_ADDED)
     db.execute(f"""CREATE TABLE nodes AS
         SELECT p.key, 'person' AS type, p.label, NULL::VARCHAR AS kind, NULL::INTEGER AS year, NULL::VARCHAR AS journal,
                p.resolution, p.anchors, coalesce(s.cited, 0) + coalesce(s.reviewed, 0) AS weight,
-               coalesce(s.works, 0) AS works, coalesce(s.cited, 0) AS cited, coalesce(s.reviewed, 0) AS reviewed
+               coalesce(s.works, 0) AS works, coalesce(s.cited, 0) AS cited, coalesce(s.reviewed, 0) AS reviewed, {nx}
           FROM '{G}/person.parquet' p LEFT JOIN person_w s ON s.key = p.key
         UNION ALL
         SELECT w.key, 'work', w.label, w.kind, w.year, w.journal, w.resolution, w.anchors, s.cited + s.reviewed,
-               NULL, s.cited, s.reviewed
+               NULL, s.cited, s.reviewed, {wx}
           FROM '{G}/work.parquet' w JOIN work_w s ON s.key = w.key
         UNION ALL
         SELECT i.key, 'institution', i.label, NULL, NULL, NULL, i.resolution, i.anchors,
-               (SELECT count(*) FROM e_awarded_by_t a WHERE a."to" = i.key), NULL, NULL, NULL
+               (SELECT count(*) FROM e_awarded_by_t a WHERE a."to" = i.key), NULL, NULL, NULL, {nx}
           FROM '{G}/institution.parquet' i
         ORDER BY key""")
+    # a chapter's volume as one line: 'in <volume> (<year>), edited by <keyed editors, else editors as printed>'
+    db.execute("""CREATE TABLE vol_note AS
+        WITH eds AS (SELECT e."to" AS v, string_agg(DISTINCT p.label, ', ') AS names FROM e_edited_t e
+                     JOIN nodes p ON p.key = e."from" GROUP BY 1)
+        SELECT po."from" AS key, string_agg(DISTINCT 'in ' || v.label || coalesce(' (' || v.year || ')', '')
+               || coalesce(', edited by ' || coalesce(eds.names, v.editors_printed || ' (as printed)'), ''), '; ') AS note
+        FROM e_part_of_f po JOIN nodes v ON v.key = po."to" LEFT JOIN eds ON eds.v = po."to"
+        GROUP BY 1 ORDER BY 1""")
     db.execute("""CREATE TABLE search AS SELECT key, type, weight, strip_accents(lower(label)) AS s FROM nodes
                   WHERE type <> 'work' OR weight > 0 OR kind = 'thesis' ORDER BY weight DESC""")
     db.execute("CREATE TABLE anchors AS SELECT lower(unnest(anchors)) AS anchor, key FROM nodes ORDER BY anchor")
@@ -127,9 +179,15 @@ def stale():
     return not DB.exists() or any(p.stat().st_mtime > DB.stat().st_mtime for p in G.glob('*.parquet'))
 
 
+UNKEYED = ('doi:', 'lccn:', 'openalex:', 'corpus:', 'ojs:', 'bepress:', 'volume:')
+
+
 def node_type(key):
-    if key.startswith(('doi:', 'lccn:', 'openalex:')):   # unkeyed works: Crossref citing articles, and cited works
-        return 'work'                                       # matched to LC/OpenAlex/Crossref (build_graph, 2026-11-10)
+    # unkeyed works: Crossref citing articles, cited works matched to LC/OpenAlex/Crossref (build_graph, 2026-11-10),
+    # journal-metadata matches (ojs:, bepress:), author-works and their volumes (volume:; 2026-11-11). Person and
+    # institution keys never hold a colon, so any other prefixed key is an unkeyed work too.
+    if key.startswith(UNKEYED) or ':' in key:
+        return 'work'
     return {'p': 'person', 'w': 'work', 'i': 'institution'}.get(key[:1])
 
 
@@ -141,18 +199,23 @@ def ids(anchors):
     return out
 
 
-ITEM_COLS = 'o.key, o.type, o.kind, o.label, o.year, o.weight, o.resolution'
+ITEM_COLS = 'o.key, o.type, o.kind, o.label, o.year, o.weight, o.resolution, o.kind_proposed'
 
 
 def item(r):
     return dict(key=r[0], type=r[1], kind=r[2], label=r[3], year=r[4], weight=r[5], resolution=r[6],
-                n=r[7], detail=r[8] if len(r) > 8 else None)
+                kind_proposed=r[7], n=r[8], detail=r[9] if len(r) > 9 else None)
 
 
 class Graph:
     def __init__(self):
         self.db = duckdb.connect(str(DB), read_only=True)
         self.local = threading.local()
+
+    def has(self, table):
+        if not hasattr(self, '_tables'):
+            self._tables = {r[0] for r in self.cur().execute('SELECT table_name FROM information_schema.tables').fetchall()}
+        return f'e_{table}_f' in self._tables
 
     def cur(self):
         if not hasattr(self.local, 'c'):
@@ -162,7 +225,17 @@ class Graph:
     def group_sql(self, rel, key):
         """SQL yielding (other_key, n, detail) rows for one relation of one node."""
         rid, _, table, me, other, detail = rel
-        if rid in ('coauthors', 'coeditors'):
+        if rid in ('editions', 'edition_of', 'candidates', 'contributed', 'contributors') and not self.has(table):
+            return 'SELECT NULL k, 0 n, NULL d, 0 lk WHERE false'
+        if rid == 'coauthors':            # one row per pair; key-log works plus works resting on a linked credit
+            cols = ("""works + CASE WHEN evidence = 'keylog' THEN linked_works ELSE 0 END n,
+                       (works + CASE WHEN evidence = 'keylog' THEN linked_works ELSE 0 END) || ' works'
+                       || CASE WHEN linked_works > 0 THEN ' (' || linked_works || ' through a linked credit)' ELSE '' END
+                       || CASE WHEN first_year IS NULL THEN '' ELSE ', ' || first_year || '–' || last_year END d,
+                       (evidence = 'linked')::INT lk""")
+            return (f"""SELECT "to" k, {cols} FROM e_coauthored_f WHERE "from" = $k
+                        UNION SELECT "from", {cols} FROM e_coauthored_t WHERE "to" = $k""")
+        if rid == 'coeditors':
             return (f"""SELECT "to" k, works n, CASE WHEN first_year IS NULL THEN works || ' works'
                         ELSE works || ' works, ' || first_year || '–' || last_year END d FROM e_{table}_f WHERE "from" = $k
                         UNION SELECT "from", works, CASE WHEN first_year IS NULL THEN works || ' works'
@@ -186,40 +259,66 @@ class Graph:
             return ('''SELECT s."from" k, count(*) n, count(*) || ' theses, ' || min(w.year) || '–' || max(w.year) d
                        FROM e_awarded_by_t a JOIN e_supervised_t s ON s."to" = a."from" JOIN nodes w ON w.key = a."from"
                        WHERE a."to" = $k GROUP BY 1''')
-        if rid == 'cited_by_people':      # people whose works cite this person's works
-            return ("""SELECT a2."from" k, count(DISTINCT c."from") n, count(DISTINCT c."from") || ' citing works' d
+        if rid == 'chapter_authors':      # a volume's contributors: the authors of the chapters PART_OF it
+            return ("""SELECT a."from" k, count(DISTINCT a."to") n, count(DISTINCT a."to") || ' chapters'
+                       || CASE WHEN bool_and(a.evidence = 'linked') THEN ' (linked author credit)' ELSE '' END d,
+                       bool_and(a.evidence = 'linked')::INT lk
+                       FROM e_part_of_t p JOIN e_authored_t a ON a."to" = p."from" WHERE p."to" = $k GROUP BY 1""")
+        if rid == 'cited_by_people':      # people whose works cite this person's works (key-log and linked authors)
+            return ("""SELECT a2."from" k, count(DISTINCT c."from") n, count(DISTINCT c."from") || ' citing works'
+                       || CASE WHEN bool_and(a2.evidence = 'linked') THEN ' (linked author credit)' ELSE '' END d,
+                       bool_and(a2.evidence = 'linked')::INT lk
                        FROM e_authored_f a JOIN e_cites_t c ON c."to" = a."to" JOIN e_authored_t a2 ON a2."to" = c."from"
                        WHERE a."from" = $k AND a2."from" <> $k GROUP BY 1""")
+        if rid == 'cited_by_works':       # distinct citing documents (theses, articles), not people
+            return ("""SELECT c."from" k, count(DISTINCT a."to") n, count(DISTINCT a."to") || ' of this person''s works cited' d
+                       FROM (SELECT DISTINCT "to" FROM e_authored_f WHERE "from" = $k) a JOIN e_cites_t c ON c."to" = a."to"
+                       GROUP BY 1""")
         if rid == 'cites_people':         # people whose works this person's works cite
             return ("""SELECT a2."from" k, count(DISTINCT c."to") n, count(DISTINCT c."to") || ' works cited' d
                        FROM e_authored_f a JOIN e_cites_f c ON c."from" = a."to" JOIN e_authored_t a2 ON a2."to" = c."to"
                        WHERE a."from" = $k AND a2."from" <> $k GROUP BY 1""")
         side = 'f' if me == 'from' else 't'
         d = detail or 'NULL'
-        return f'SELECT e."{other}" k, count(*) n, {d} d FROM e_{table}_{side} e WHERE e."{me}" = $k GROUP BY 1'
+        # a person and a work once, even when the key log holds two claims for them (2026-11-11)
+        n = '1' if table in ('authored', 'edited') else 'count(*)'
+        lk = "bool_and(e.evidence = 'linked')::INT" if table in EVIDENCE_TABLES else '0'
+        return f'SELECT e."{other}" k, {n} n, {d} d, {lk} lk FROM e_{table}_{side} e WHERE e."{me}" = $k GROUP BY 1'
 
     def group(self, key, rel, offset=0, limit=12, sort='weight'):
         order = 'o.year DESC NULLS LAST, o.weight DESC' if sort == 'year' else 'g.n DESC, o.weight DESC, o.year DESC NULLS LAST'
-        q = f"""WITH g AS ({self.group_sql(rel, key)})
-                SELECT {ITEM_COLS}, g.n, g.d, count(*) OVER () AS total
+        sql = self.group_sql(rel, key)
+        if ' lk' not in sql:
+            sql = f'SELECT k, n, d, 0 lk FROM ({sql})'
+        q = f"""WITH g AS ({sql})
+                SELECT {ITEM_COLS}, g.n, g.d, count(*) OVER () AS total, sum(g.lk) OVER () AS linked
                 FROM g JOIN nodes o ON o.key = g.k ORDER BY {order}, o.key LIMIT {int(limit)} OFFSET {int(offset)}"""
         rows = self.cur().execute(q, dict(k=key)).fetchall()
-        total = rows[0][-1] if rows else (0 if offset == 0 else None)
-        return [item(r[:-1]) for r in rows], total
+        total = rows[0][-2] if rows else (0 if offset == 0 else None)
+        self.local.last_linked = int(rows[0][-1] or 0) if rows else 0
+        return [item(r[:-2]) for r in rows], total
 
     def node(self, key, limit=12, sort='weight'):
-        r = self.cur().execute("""SELECT key, type, label, kind, year, journal, resolution, anchors, weight, works, cited, reviewed
+        r = self.cur().execute("""SELECT key, type, label, kind, year, journal, resolution, anchors, weight, works, cited, reviewed,
+                                  kind_proposed, issn, journal_source, isbn, editors_printed,
+                                  (SELECT note FROM vol_note WHERE vol_note.key = nodes.key)
                                   FROM nodes WHERE key = ?""", [key]).fetchone()
         if not r:
             return None
         n = dict(zip(['key', 'type', 'label', 'kind', 'year', 'journal', 'resolution', 'anchors', 'weight', 'works',
-                      'cited', 'reviewed'], r))
+                      'cited', 'reviewed', 'kind_proposed', 'issn', 'journal_source', 'isbn', 'editors_printed',
+                      'in_volume'], r))
         n['ids'] = ids(n.pop('anchors'))
+        if n['type'] == 'work':          # citations that reached this work through a translation or another edition
+            n['cited_edition'] = self.cur().execute(
+                'SELECT count(*) FROM e_cites_t WHERE "to" = ? AND (edition OR cited_as IS NOT NULL)', [key]).fetchone()[0]
         groups = []
         for rel in REL[n['type']]:
             items, total = self.group(key, rel, 0, limit, sort)
             if total:
-                groups.append(dict(id=rel[0], label=rel[1], total=total, items=items))
+                nl = self.local.last_linked
+                lab = rel[1] + (f' ({nl} linked)' if nl else '')
+                groups.append(dict(id=rel[0], label=lab, total=total, linked=nl, items=items))
         return dict(node=n, groups=groups)
 
     def search(self, q, limit=24):
@@ -250,7 +349,7 @@ class Graph:
                                             args + args).fetchall()]
         if not hits:
             return []
-        rows = c.execute(f"""SELECT key, type, kind, label, year, weight, resolution, NULL, NULL FROM nodes
+        rows = c.execute(f"""SELECT key, type, kind, label, year, weight, resolution, kind_proposed, NULL, NULL FROM nodes
                              WHERE key IN (SELECT unnest(?)) ORDER BY type = 'person' DESC, weight DESC""", [hits]).fetchall()
         return [item(r) for r in rows]
 

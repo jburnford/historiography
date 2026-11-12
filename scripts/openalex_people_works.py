@@ -29,6 +29,7 @@ propose  From the screened candidates with status 'add' (not reviews: a review n
 """
 import argparse, collections, glob, gzip, importlib.util, json, multiprocessing as mp, os, re, sys, time
 from pathlib import Path
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = '/mnt/e/openalex-history-2026-11-08'
@@ -52,8 +53,8 @@ def setup():
     IDX, DOI_WORK = M.work_index()
     db = duckdb.connect(); db.execute("SET memory_limit = '4GB'")
     WORK_PEOPLE = collections.defaultdict(list)
-    for w, p in db.execute(f"""select "to", "from" from '{GRAPH}/authored.parquet'
-                               union select "to", "from" from '{GRAPH}/edited.parquet'""").fetchall():
+    for w, p in db.execute(f"""select "to", "from" from {keylog(GRAPH, 'authored')}
+                               union select "to", "from" from {keylog(GRAPH, 'edited')}""").fetchall():
         WORK_PEOPLE[w].append(p)
     PERSON_FAM = {k: M.family(l) for k, l in db.execute(f"select key, label from '{GRAPH}/person.parquet'").fetchall()}
     ORCID_PERSON = dict(db.execute(f"""select orcid, min(key) from '{GRAPH}/person.parquet' where orcid is not null
@@ -222,7 +223,7 @@ def screen(db):
                                          where a like 'doi:%'""").fetchall()}
     own = collections.defaultdict(list)
     for person, key, label in db.execute(f"""select x.person, w.key, w.label from
-            (select "from" AS person, "to" AS wk from '{GRAPH}/authored.parquet' union select "from", "to" from '{GRAPH}/edited.parquet') x
+            (select "from" AS person, "to" AS wk from {keylog(GRAPH, 'authored')} union select "from", "to" from {keylog(GRAPH, 'edited')}) x
             join '{GRAPH}/work.parquet' w on w.key = x.wk
             where x.person in (select distinct person from cand)""").fetchall():
         own[person].append((key, words(label)))

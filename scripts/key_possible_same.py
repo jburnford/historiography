@@ -23,6 +23,7 @@ from identifiers import State, DEFAULT_DIR, materialise
 from merge_guard import pooled_keys
 from career_window import career_windows
 from key_split_dissertation_works import parse, PID
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 ROOT = Path(__file__).resolve().parents[1]
 G = ROOT / 'build/graph'
@@ -38,7 +39,7 @@ def main():
     live = {k: v for k, v in state.keys.items() if v['type'] == 'person' and v['status'] in ('active', 'provisional')}
     win = career_windows(state)
     years = collections.defaultdict(list)
-    for k, y in duckdb.connect().execute(f"""SELECT a."from", w.year FROM '{G}/authored.parquet' a
+    for k, y in duckdb.connect().execute(f"""SELECT a."from", w.year FROM {keylog(G, 'authored')} a
             JOIN '{G}/work.parquet' w ON w.key = a."to" WHERE w.year IS NOT NULL""").fetchall():
         for c in state.lookup(k):
             years[c].append(y)

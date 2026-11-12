@@ -39,6 +39,7 @@ from key_lc_works import former_heading, title_key
 from key_registry import names_compatible
 from lc_resolve_authorities import load_names, resolve
 from namesake_check_groups import given_names_agree
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 CORPUS = ROOT / 'data/field-research/dissertation-citations-2026-10-11'
 LC_INDEX = Path('/mnt/e/lc-bib-2016/index')
@@ -162,7 +163,7 @@ def main():
                 anc AS (SELECT a, key AS wk FROM (SELECT key, unnest(anchors) AS a FROM '{graph}/work.parquet')),
                 xk AS (SELECT x.work_id, coalesce(w.key, anc.wk) AS wk FROM x LEFT JOIN '{graph}/work.parquet' w ON w.key = x.key
                        LEFT JOIN anc ON anc.a = x.key),
-                au AS (SELECT "from" AS pk, "to" AS wk FROM '{graph}/authored.parquet' UNION SELECT "from", "to" FROM '{graph}/edited.parquet')
+                au AS (SELECT "from" AS pk, "to" AS wk FROM {keylog(graph, 'authored')} UNION SELECT "from", "to" FROM {keylog(graph, 'edited')})
                 SELECT DISTINCT a.person_key, au.pk, pp.label FROM read_csv('{CORPUS}/authored.csv.gz') a JOIN xk USING (work_id)
                 JOIN au ON au.wk = xk.wk JOIN '{graph}/person.parquet' pp ON pp.key = au.pk""").fetchall():
             if fold(p.split('|')[0]) == fold(label.split(',')[0] if ',' in label else (label.split() or [''])[-1]):

@@ -46,6 +46,38 @@ is untracked) and writes to build/graph/ (git-ignored):
   evidence (coordinator 2026-11-10: no self-feeding); the derived tables stay key-log only; `possible` rows are
   `POSSIBLE_AUTHOR` (Person -> Work, one row per candidate, with the number of candidates and the linker's signals),
   never credited. report.json's `linkage` counts the works and citing theses by author state, per source.
+- printed people of keyed works linked on 2026-11-11 (data/graph/work-people/, scripts/link_work_people.py): the
+  reviewer printed on a review, the authors of a JSTOR article, the co-authors in a work's OpenAlex record. `exact`
+  and `linked` rows join LINKED_AUTHORED (source `work-people:<role>`; a reviewer is the author of the review, as in
+  the key log), `possible` rows join POSSIBLE_AUTHOR (role column), never AUTHORED. For display, REVIEWED_LINKED and
+  COAUTHORED_LINKED are built beside REVIEWED and COAUTHORED (which stay key-log only) from AUTHORED plus these
+  credits: only the pairs that need a linked credit, with the number of works resting on one. report.json's
+  `linkage.work_people` counts rows by role and state, and `linkage.defects` the gaps each rebuild should shrink.
+- 2026-11-11, from data/graph/cited-works (scripts/export_cited_works.py): Crossref metadata matches (source
+  `crossref-meta`, two layers like the rest); translations and later editions: a thesis citing one cites the canonical
+  (original) work, CITES source `thesis-edition`, `edition` true unless the thesis also cites the work directly,
+  `cited_as` = the node it was cited as; the older crosswalks' thesis edge named in `replaces` is dropped, so a moved
+  citation counts once; `EDITION_OF` (Work -> Work, edition_of.parquet) from the translation or edition node to the
+  original (keys are not merged); compilations as unkeyed `corpus:` works with a LINKED_AUTHORED row (source
+  `compilation`);
+- 2026-11-11, JSTOR note citations matched to LC/OpenAlex/Crossref/JSTOR-index works (data/graph/jstor-cited-works,
+  scripts/export_jstor_cited_works.py): CITES source `jstor-matched`; cited works the log does not hold are unkeyed
+  Work nodes (or the cited-works node holding one of their identifiers); an LC main entry whose name authority is on
+  one person key is a LINKED_AUTHORED row (source `jstor-matched:lc`, state `exact`). Rows with `cited_as` (a note
+  citing a translation or later edition) cite the canonical work: CITES source `jstor-edition`, edition true unless
+  the article also cites the work directly, `cited_as` = the node it was cited as;
+- 2026-11-11, data/graph/work-people rows with role `contributor` (foreword writers, series editors; exact/linked) are
+  `CONTRIBUTED` (Person -> Work, contributed.parquet), never AUTHORED, COAUTHORED or REVIEWED; possible contributors are
+  not candidates;
+- 2026-11-11, data/graph/author-works (scripts/author_works.py): works by keyed people the graph lacked are unkeyed Work
+  nodes (`doi:` / `openalex:`; twins of another version, dataset series and repository or submitted copies of a work
+  the table holds in another version are skipped), their ORCID credits AUTHORED rows with evidence linked (source
+  `author-works:<basis>`, state exact; held ones author_candidates with a reason); volumes.csv.gz gives unkeyed volume
+  nodes (`volume:` / `doi:`, kind book, ISBN, editors as printed); PART_OF has an `evidence` column: the key log's
+  claims (`keylog`) and chapter -> volume links from data/graph/work-containers.csv.gz and author-works/works.csv.gz
+  (`linked`, source orcid-container / doi-container / author-works-container, `volume_basis`); keyed works get journal and
+  issn from data/graph/work-journals.csv.gz where they had none (`journal_source` says from where) and `kind_proposed`
+  where a matched record names another kind (`kind` is not changed).
 The key-log state comes from the SQLite cache (build/keylog-state.sqlite, scripts/keylog_snapshot.py; 2026-11-10),
 caught up to the log's last event first and then read in bulk, so the build no longer replays the whole log (10 GB);
 --replay replays it instead (the old path, for checking one against the other).
@@ -58,6 +90,7 @@ Cypher:
     python3 scripts/build_graph.py --db       # and the LadybugDB database
     python3 scripts/build_graph.py --replay --out /tmp/graph-replay   # full log replay (check against the cache build)
     python3 scripts/build_graph.py --out build/graph-check --untracked-ok   # a check build before new tables are in git
+    python3 scripts/build_graph.py --out build/graph --untracked-ok         # the live build, same, until they are tracked
 """
 import argparse
 import csv
@@ -75,6 +108,8 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 
 import identifiers as I
+
+csv.field_size_limit(1 << 30)   # author-works rows carry the printed authorships as JSON
 from identifiers import DEFAULT_DIR, PREDICATES, RETIRED, ROOT, State
 
 OUT = ROOT / 'build/graph'
@@ -86,8 +121,25 @@ CROSSREF_ARTICLES = CROSSREF_PARTS / 'articles'                # unkeyed citing 
 AFFILIATIONS = ROOT / 'data/graph/affiliations.csv.gz'  # scripts/export_affiliations.py (dated person -> institution)
 CITED = ROOT / 'data/graph/cited-works'   # scripts/export_cited_works.py (2026-11-10): works.csv.gz, cites*.csv.gz,
                                           # authors.csv.gz, report.json (the corpus's citation count)
-# CITES sources, as bits (one int per edge in the build: edition-only flag in bit 0, sources above it)
-SRC = (('thesis', 1), ('jstor', 2), ('crossref', 4), ('thesis-matched', 8))
+WORK_PEOPLE = ROOT / 'data/graph/work-people'   # scripts/link_work_people.py (2026-11-11): printed reviewers, JSTOR
+                                                # authors and co-authors of keyed works -> person keys (part-NN.csv.gz)
+JSTOR_CITED = ROOT / 'data/graph/jstor-cited-works'   # scripts/export_jstor_cited_works.py (2026-11-11): JSTOR notes
+                                                    # matched to LC/OpenAlex/Crossref/JSTOR-index works (two layers)
+AUTHOR_WORKS = ROOT / 'data/graph/author-works'     # scripts/author_works.py (2026-11-11): works by keyed people absent
+                                                    # from the graph, their ORCID credits, and (export_work_containers.py)
+                                                    # the unkeyed volumes chapters are in
+WORK_CONTAINERS = ROOT / 'data/graph/work-containers.csv.gz'   # export_work_containers.py: chapter -> volume, proposed kind
+WORK_JOURNALS = ROOT / 'data/graph/work-journals.csv.gz'       # export_work_containers.py: journal, ISSN, proposed kind
+# volume links (PART_OF, evidence linked) loaded by basis: exact title (one candidate), the book DOI, one of several
+# title candidates chosen by its EDITED credits or LCCN, the main title (loaded with its basis, to be audited), and a
+# new unkeyed volume made from the chapter's own container record. Never ':held' (two or more candidates left).
+VOLUME_BASES = ('title', 'book-doi', 'title:edited-or-lccn', 'main-title:edited-or-lccn', 'main-title', 'new-unkeyed-volume')
+# CITES sources, as bits (one int per edge in the build: edition-only flag in bit 0, sources above it).
+# thesis-edition (2026-11-11): a thesis citing a translation or later edition, carried to the canonical work
+# jstor-edition (2026-11-11): a JSTOR note citing a translation or later edition, carried to the canonical work
+SRC = (('thesis', 1), ('jstor', 2), ('crossref', 4), ('thesis-matched', 8), ('thesis-edition', 16), ('jstor-matched', 32),
+       ('jstor-edition', 64))
+THESIS_BITS = 1 | 8 | 16
 SCHEMES = ('lcnaf', 'wd', 'orcid', 'gnd', 'viaf', 'isni', 'idref', 'ror')
 PERSON_RELATIONS = ('authored', 'edited', 'supervised')
 
@@ -245,7 +297,7 @@ class CacheView:
         return out
 
 
-def crossref_cites(cites, parts, state, types, unkeyed, report, schema):
+def crossref_cites(cites, parts, state, types, unkeyed, report, schema, cited_as=None):
     """CITES with the Crossref parts (tens of millions of rows) joined in DuckDB, not a Python dict: each distinct name
     is resolved once (State.lookup; an unkeyed citing article is its own node), then the edges are joined, folded with
     the dissertation and JSTOR edges (edition only when every source says edition) and written straight to Parquet."""
@@ -253,6 +305,7 @@ def crossref_cites(cites, parts, state, types, unkeyed, report, schema):
     db = duckdb.connect()
     db.execute(f"SET memory_limit = '4GB'; SET temp_directory = '{OUT}/duckdb-tmp'; SET preserve_insertion_order = false")
     files = [str(p) for p in parts]
+    cited_as = cited_as or {}
     db.execute(f"""CREATE TABLE xr AS SELECT citing_work, cited_work, basis = 'edition' AS ed, 4::TINYINT AS src FROM read_csv({files}, header = true,
                    columns = {{'citing_work': 'VARCHAR', 'cited_work': 'VARCHAR', 'citations': 'INTEGER', 'basis': 'VARCHAR'}})""")
     names, keys = [], []
@@ -262,7 +315,7 @@ def crossref_cites(cites, parts, state, types, unkeyed, report, schema):
             names.append(n); keys.append(k[0])
     db.register('name_map', pa.table({'name': names, 'key': keys}))
     del names, keys
-    db.execute("""CREATE TABLE xr2 AS SELECT m1.key AS a, m2.key AS b, ed, src FROM xr
+    db.execute("""CREATE TABLE xr2 AS SELECT m1.key AS a, m2.key AS b, ed, src, NULL::VARCHAR AS ca FROM xr
                   JOIN name_map m1 ON m1.name = xr.citing_work JOIN name_map m2 ON m2.name = xr.cited_work WHERE m1.key <> m2.key""")
     n_xr, n_xr2 = db.execute('SELECT count(*) FROM xr').fetchone()[0], db.execute('SELECT count(*) FROM xr2').fetchone()[0]
     report['crossref_cites_unresolved'] = n_xr - n_xr2
@@ -270,13 +323,16 @@ def crossref_cites(cites, parts, state, types, unkeyed, report, schema):
     db.execute('DROP TABLE xr')
     db.register('base', pa.table({'a': [a for a, _ in cites], 'b': [b for _, b in cites],
                                   'ed': [bool(v & 1) for v in cites.values()],
-                                  'src': pa.array([v >> 1 for v in cites.values()], pa.int8())}))
+                                  'src': pa.array([v >> 1 for v in cites.values()], pa.int8()),
+                                  'ca': pa.array([';'.join(sorted(cited_as[k])) if k in cited_as else None for k in cites],
+                                                 pa.string())}))
     report['cites_from_crossref'] = db.execute("""SELECT count(*) FROM (SELECT DISTINCT a, b FROM xr2) x
                                                   ANTI JOIN base USING (a, b)""").fetchone()[0]
     names = ' '.join(f"CASE WHEN m & {b} > 0 THEN '{n}' END," for n, b in SRC).rstrip(',')
-    db.execute(f"""COPY (SELECT "from", "to", edition, concat_ws(',', {names}) AS source FROM (
-                   SELECT a AS "from", b AS "to", bool_and(ed) AS edition, bit_or(src::TINYINT) AS m
-                   FROM (SELECT a, b, ed, src FROM base UNION ALL SELECT a, b, ed, src FROM xr2) GROUP BY 1, 2) ORDER BY 1, 2)
+    db.execute(f"""COPY (SELECT "from", "to", edition, concat_ws(',', {names}) AS source, cited_as FROM (
+                   SELECT a AS "from", b AS "to", bool_and(ed) AS edition, bit_or(src::TINYINT) AS m,
+                          string_agg(DISTINCT ca, ';') AS cited_as
+                   FROM (SELECT a, b, ed, src, ca FROM base UNION ALL SELECT a, b, ed, src, ca FROM xr2) GROUP BY 1, 2) ORDER BY 1, 2)
                    TO '{OUT}/cites.parquet' (FORMAT parquet)""")
     report['CITES'], report['CITES_edition_only'] = db.execute(
         f"SELECT count(*), count(*) FILTER (WHERE edition) FROM '{OUT}/cites.parquet'").fetchone()
@@ -306,10 +362,12 @@ def cited_parts(name):
     return [one] if one.exists() else sorted((CITED / name).glob('part-*.csv.gz'))
 
 
-def cited_work_nodes(state, types, works, unkeyed, report):
+def cited_work_nodes(state, types, works, unkeyed, report, index=None):
     """Work nodes for the cited works of data/graph/cited-works (two layers): the key the log gives one of the work's
-    identifiers (its id, all its LCCNs, alias DOIs), else the id itself as an unkeyed node. Returns id -> graph key."""
+    identifiers (its id, all its LCCNs, alias DOIs), else the id itself as an unkeyed node. Returns id -> graph key;
+    `index` gets every identifier of an unkeyed cited work -> its node (for the JSTOR-matched works)."""
     out = {}
+    index = {} if index is None else index
     for path in cited_parts('works'):
         for r in read_rows(path):
             wid = r['id']
@@ -337,8 +395,47 @@ def cited_work_nodes(state, types, works, unkeyed, report):
                               year=int(r['year']) if r['year'] else None, reviewer_names=[],
                               journal=r['container'] or None))
             out[wid] = wid
+            for x in ids:
+                index.setdefault(x, wid)
             report['Work_unkeyed_cited_works'] += 1
     return out
+
+
+def jstor_cited_nodes(state, types, works, unkeyed, index, report):
+    """Work nodes for the JSTOR-matched cited works (data/graph/jstor-cited-works/works.csv.gz): the key the log gives
+    one of their identifiers, else the cited-works node holding one, else the id as an unkeyed node. Returns id -> graph
+    key and graph key -> LC name authority of the main entry (an identifier link, LINKED_AUTHORED source jstor-matched:lc)."""
+    out, lc = {}, {}
+    for r in read_rows(JSTOR_CITED / 'works.csv.gz'):
+        wid = r['id']
+        ids = list(dict.fromkeys([wid] + [x for x in r['identifiers'].split(';') if x]))
+        hits = {k for x in ids for k in state.lookup(x) if types.get(k) == 'work'}
+        if len(hits) > 1:
+            hits = {k for k in state.lookup(wid) if types.get(k) == 'work'}
+            if len(hits) != 1:
+                report['jstor_cited_works_on_several_keys'] += 1
+                continue
+        if hits:
+            out[wid] = hits.pop()
+            report['jstor_cited_works_keyed'] += 1
+            continue
+        node = next((index[x] for x in ids if x in index), None) or next((x for x in ids if x in unkeyed), None)
+        if node:
+            out[wid] = node
+            report['jstor_cited_works_on_cited_works_nodes'] += 1
+        else:
+            unkeyed.add(wid)
+            types[wid] = 'work'
+            lccns = [x[5:] for x in ids if x.startswith('lccn:')]
+            works.append(dict(key=wid, label=r['title'] or None, resolution='unkeyed', anchors=sorted(ids),
+                              kind=r['kind'] or 'other', lccn=lccns[0] if lccns else None,
+                              year=int(r['year'][:4]) if r['year'][:4].isdigit() else None, reviewer_names=[],
+                              journal=r['container'] or None))
+            out[wid] = wid
+            report['Work_unkeyed_jstor_cited_works'] += 1
+        if r['lc_author'] and '/editor/' not in r['basis']:
+            lc.setdefault(out[wid], r['lc_author'])
+    return out, lc
 
 
 STATE_ORDER = ('exact', 'linked', 'possible-one', 'possible-several', 'none')
@@ -395,6 +492,319 @@ def cited_authors(state, types, cited_key, rels, report):
     return linked, list(possible.values()), best
 
 
+def work_people(state, types, rels, report):
+    """AUTHORED rows with evidence linked (exact/linked) and author_candidates rows (possible) from data/graph/work-people;
+    works and person keys resolved through merges. A credit the key log already holds is skipped (counted).
+    Contributors (role 'contributor': foreword writers, series editors; 2026-11-11) are CONTRIBUTED rows, never authors:
+    exact/linked go to the third list, possible and 'contributor-candidate' rows are dropped (counted), so they never
+    reach AUTHORED, COAUTHORED, the REVIEWED derivation or author_candidates."""
+    have = {(r['from'], r['to']) for r in rels['AUTHORED']}
+    linked, possible, seen = [], {}, set()
+    contributed, cseen = [], set()
+    counts = Counter()
+
+    def one(name, typ):
+        ks = [k for k in state.lookup(name) if types.get(k) == typ] if name else []
+        return ks[0] if len(ks) == 1 else None
+    for path in sorted(WORK_PEOPLE.glob('part-*.csv.gz')):
+        for r in read_rows(path):
+            w = one(r['work'], 'work')
+            role, st = r['role'], r['state']
+            if not w:
+                counts[f'{role}|work_unresolved'] += 1
+                continue
+            if role == 'contributor' or st == 'contributor-candidate':
+                if st not in ('exact', 'linked') or role != 'contributor':
+                    counts[f'{role}|{st}|not_loaded'] += 1
+                    continue
+                ks = [k for x in r['person_key'].split(';') if (k := one(x, 'person'))]
+                if len(set(ks)) != 1:
+                    counts[f'{role}|{st}|person_unresolved'] += 1
+                    continue
+                if (ks[0], w) in have:
+                    counts[f'{role}|{st}|also_keylog_author'] += 1
+                if (ks[0], w) not in cseen:
+                    cseen.add((ks[0], w))
+                    counts[f'{role}|{st}'] += 1
+                    contributed.append({'from': ks[0], 'to': w, 'claim': f"work-people:contributor:{r['position']}",
+                                        'resolution': 'linked', 'evidence': 'linked', 'source': f"work-people:{r['source']}",
+                                        'state': st, 'basis': r['branch'] or None})
+                continue
+            if st in ('exact', 'linked'):
+                ks = [k for x in r['person_key'].split(';') if (k := one(x, 'person'))]
+                if len(set(ks)) != 1:
+                    counts[f'{role}|{st}|person_unresolved'] += 1
+                    continue
+                k = ks[0]
+                if (k, w) in have:
+                    counts[f'{role}|{st}|already_in_log'] += 1
+                elif (k, w) not in seen:
+                    seen.add((k, w))
+                    counts[f'{role}|{st}'] += 1
+                    linked.append({'from': k, 'to': w, 'claim': f"work-people:{role}:{r['position']}", 'resolution': 'linked',
+                                   'source': f'work-people:{role}', 'state': st})
+            elif st == 'possible':
+                cands = sorted({k for c in r['candidates'].split('|') if (k := one(c, 'person'))})
+                counts[f'{role}|possible'] += 1
+                for k in cands:
+                    if (k, w) not in have:
+                        possible.setdefault((k, w), {'from': k, 'to': w, 'n_candidates': len(cands), 'signals': r['signals'] or None,
+                                                     'source': f'work-people:{r["source"]}', 'role': role})
+    return linked, list(possible.values()), counts, contributed
+
+
+def work_resolver(state, types, unkeyed, index):
+    """name -> graph work node: the key the log gives it (one only), else the cited-works node holding it, else itself
+    when it is already an unkeyed node."""
+    def resolve(name):
+        if not name:
+            return None
+        ks = [k for k in state.lookup(name) if types.get(k) == 'work']
+        if ks:
+            return ks[0] if len(ks) == 1 else None
+        return index.get(name) or (name if name in unkeyed else None)
+    return resolve
+
+
+def author_work_nodes(state, types, works, wi, unkeyed, resolve, report):
+    """Work nodes from data/graph/author-works (2026-11-11): the unkeyed volumes chapters are in (volumes.csv.gz) and
+    the works of keyed people the graph lacked (works.csv.gz). An id the graph already holds (keyed or unkeyed) is not
+    duplicated: credits and links attach to that node. Skipped works: a twin of another version (twin_of, any basis), a
+    dataset series, and a repository copy or submitted version when another version of the same title by the same
+    credited person is in the table. Returns id -> node for volumes and works, the volume links (node, volume id, basis),
+    and the nodes whose printed author list is longer than 25 (no co-authorship from them)."""
+    from author_works import tkey
+    vol_key = {}
+    for r in read_rows(AUTHOR_WORKS / 'volumes.csv.gz'):
+        vid = r['id']
+        doi = f"doi:{r['doi'].lower()}" if r['doi'] else None
+        ids = list(dict.fromkeys([vid] + ([doi] if doi else [])))
+        node = next((n for x in ids if (n := resolve(x))), None)
+        if node:
+            vol_key[vid] = node
+            report['aw_volumes_on_existing_nodes'] += 1
+            w = wi.get(node)
+            if w is not None:
+                if not w.get('isbn') and r['isbn']:
+                    w['isbn'] = r['isbn']
+                if not w.get('editors_printed') and r['editors']:
+                    w['editors_printed'] = r['editors']
+            continue
+        unkeyed.add(vid)
+        types[vid] = 'work'
+        w = dict(key=vid, label=r['title'] or None, resolution='unkeyed', anchors=sorted(ids), kind='book', lccn=None,
+                 year=int(r['year'][:4]) if r['year'][:4].isdigit() else None, reviewer_names=[], journal=None,
+                 isbn=r['isbn'] or None, editors_printed=r['editors'] or None)
+        works.append(w)
+        wi[vid] = w
+        vol_key[vid] = vid
+        report['Work_unkeyed_volumes'] += 1
+    # credited people per work, for the 'another version' test
+    credited = defaultdict(set)
+    for r in read_rows(AUTHOR_WORKS / 'authors.csv.gz'):
+        if r['state'] == 'credited':
+            credited[r['work']].add(r['person_key'])
+    REPO = ('repository', 'submitted-version')
+
+    def flags(r):
+        return set(filter(None, (r['flags'] or '').split(';')))
+    good = set()                                    # (title key, person) of versions that are not repository copies
+    for r in read_rows(AUTHOR_WORKS / 'works.csv.gz'):
+        f = flags(r)
+        if r['twin_of'] or 'dataset-series' in f or f & set(REPO):
+            continue
+        t = tkey(r['title'])
+        good.update((t, p) for p in credited.get(r['id'], ()))
+    aw_key, aw_part, long_lists = {}, [], set()
+    for r in read_rows(AUTHOR_WORKS / 'works.csv.gz'):
+        f = flags(r)
+        if r['twin_of']:
+            report[f"aw_works_skipped_twin|{r['twin_basis']}"] += 1
+            continue
+        if 'dataset-series' in f:
+            report['aw_works_skipped_dataset_series'] += 1
+            continue
+        if f & set(REPO):
+            t = tkey(r['title'])
+            if any((t, p) in good for p in credited.get(r['id'], ())):
+                report['aw_works_skipped_repository_or_submitted_with_other_version'] += 1
+                continue
+        wid = r['id']
+        ids = list(dict.fromkeys([wid] + ([f"doi:{r['doi'].lower()}"] if r['doi'] else [])
+                                 + ([f"openalex:{r['openalex']}"] if r['openalex'] else [])))
+        hits = {n for x in ids if (n := resolve(x))}
+        if len(hits) > 1:
+            hits = {n for n in [resolve(wid)] if n}
+            if len(hits) != 1:
+                report['aw_works_on_several_nodes'] += 1
+                continue
+        if hits:
+            node = hits.pop()
+            report['aw_works_on_existing_nodes'] += 1
+        else:
+            node = wid
+            unkeyed.add(wid)
+            types[wid] = 'work'
+            w = dict(key=wid, label=r['title'] or None, resolution='unkeyed', anchors=sorted(ids), kind=r['kind'] or 'other',
+                     lccn=None, year=int(r['year'][:4]) if r['year'][:4].isdigit() else None, reviewer_names=[],
+                     journal=r['journal'] or None, issn=r['issn_l'] or None,
+                     journal_source='author-works' if r['journal'] else None)
+            works.append(w)
+            wi[wid] = w
+            report['Work_unkeyed_author_works'] += 1
+            report[f"aw_works_added|{r['kind'] or 'other'}"] += 1
+        aw_key[wid] = node
+        if (int(r['n_authors']) if r['n_authors'].isdigit() else 0) > 25:
+            long_lists.add(node)
+        if r['volume_work']:
+            aw_part.append((node, r['volume_work'], r['volume_basis'] or ''))
+    return vol_key, aw_key, aw_part, long_lists
+
+
+def author_work_credits(state, types, have, aw_key, resolve, report):
+    """AUTHORED rows (evidence linked, source author-works:<basis>, state exact) from author-works/authors.csv.gz and
+    existing.csv.gz ('credited': an ORCID on exactly that key), and author_candidates rows for 'held' ones (the ORCID
+    credit failed a guard: name_check says which)."""
+    linked, cands, seen = [], {}, set()
+
+    def person(name):
+        ks = [k for k in state.lookup(name) if types.get(k) == 'person'] if name else []
+        return ks[0] if len(ks) == 1 else None
+    for fname in ('authors.csv.gz', 'existing.csv.gz'):
+        for r in read_rows(AUTHOR_WORKS / fname):
+            tag = fname.split('.')[0]
+            w = aw_key.get(r['work']) if tag == 'authors' else resolve(r['work'])
+            if not w:
+                report[f'aw_credits_{tag}_work_not_loaded'] += 1
+                continue
+            k = person(r['person_key'])
+            if not k:
+                report[f'aw_credits_{tag}_person_unresolved'] += 1
+                continue
+            src = f"author-works:{r['basis']}"
+            if r['state'] == 'credited':
+                if (k, w) in have:
+                    report[f'aw_credits_{tag}_already_in_log'] += 1
+                elif (k, w) not in seen:
+                    seen.add((k, w))
+                    report[f'aw_credits_{tag}_credited'] += 1
+                    linked.append({'from': k, 'to': w, 'claim': f"author-works:{r['basis']}:{r['position']}",
+                                   'resolution': 'linked', 'source': src, 'state': 'exact'})
+            elif r['state'] == 'held' and (k, w) not in have:
+                report[f'aw_credits_{tag}_held'] += 1
+                cands.setdefault((k, w), {'from': k, 'to': w, 'n_candidates': 1, 'signals': r['name_check'] or None,
+                                          'source': src, 'role': 'author',
+                                          'reason': f"held ORCID credit ({'printed ORCID' if r['basis'] == 'raw-orcid' else 'ORCID of the OpenAlex author'}"
+                                                    f"; guard: {(r['name_check'] or '').replace(';', ', ')}; printed name: {r['name']})"})
+    return linked, list(cands.values())
+
+
+def volume_links(state, types, rels, vol_key, aw_part, resolve, report):
+    """PART_OF rows with evidence linked: a chapter -> its volume, from data/graph/work-containers.csv.gz (keyed chapters;
+    source orcid-container or doi-container) and author-works/works.csv.gz (author-works-container); only the bases in
+    VOLUME_BASES, the basis kept on the edge. A chapter the key log already places in a volume keeps only that."""
+    keyed_from = defaultdict(set)
+    for r in rels['PART_OF']:
+        keyed_from[r['from']].add(r['to'])
+    rows, seen = [], set()
+
+    def add(w, vw, basis, src):
+        if basis not in VOLUME_BASES or not vw:
+            report[f'part_of_linked_skipped|{basis or "no-basis"}'] += 1
+            return
+        v = vol_key.get(vw) or resolve(vw)
+        if not v:
+            report['part_of_linked_volume_unresolved'] += 1
+            return
+        if v == w:
+            report['part_of_linked_self'] += 1
+            return
+        if w in keyed_from:
+            report['part_of_linked_already_in_log' if v in keyed_from[w] else 'part_of_linked_chapter_has_keylog_volume'] += 1
+            return
+        if (w, v) in seen:
+            report['part_of_linked_duplicate'] += 1
+            return
+        seen.add((w, v))
+        report[f'part_of_linked|{src}|{basis}'] += 1
+        rows.append({'from': w, 'to': v, 'claim': f'{src}:{basis}', 'resolution': 'linked', 'evidence': 'linked',
+                     'source': src, 'volume_basis': basis})
+    for r in read_rows(WORK_CONTAINERS):
+        ks = [k for k in state.lookup(r['work']) if types.get(k) == 'work']
+        if len(ks) != 1:
+            report['work_containers_work_unresolved'] += 1
+            continue
+        add(ks[0], r['volume_work'], r['volume_basis'], 'orcid-container' if r['source'] == 'orcid' else 'doi-container')
+    for w, vw, basis in aw_part:
+        add(w, vw, basis, 'author-works-container')
+    return rows
+
+
+def work_facts(state, types, wi, report):
+    """Journal, ISSN and proposed kind of keyed works from records matched by an exact id (export_work_containers.py):
+    journal and issn fill a work with no journal (journal_source = the record's source); kind_proposed is set where the
+    source names another kind than the graph's (containers first: a chapter; then journals). `kind` is never changed."""
+    def one(name):
+        ks = [k for k in state.lookup(name) if types.get(k) == 'work']
+        return ks[0] if len(ks) == 1 else None
+    for r in read_rows(WORK_CONTAINERS):
+        k = one(r['work'])
+        w = wi.get(k) if k else None
+        if w is not None and r['proposed_kind'] and r['proposed_kind'] != w['kind']:
+            w['kind_proposed'] = r['proposed_kind']
+            report[f"kind_proposed|containers|{w['kind']}->{r['proposed_kind']}"] += 1
+    for r in read_rows(WORK_JOURNALS):
+        k = one(r['work'])
+        w = wi.get(k) if k else None
+        if w is None:
+            report['work_journals_work_unresolved'] += 1
+            continue
+        if not w['journal'] and r['journal']:
+            w['journal'], w['issn'], w['journal_source'] = r['journal'], r['issn'] or None, r['source']
+            report[f"journal_filled|{r['source']}"] += 1
+        elif r['journal']:
+            report['journal_already_set'] += 1
+        if r['proposed_kind'] and r['proposed_kind'] != w['kind']:
+            if w.get('kind_proposed') and w['kind_proposed'] != r['proposed_kind']:
+                report['kind_proposed_conflict_kept_container'] += 1
+            elif not w.get('kind_proposed'):
+                w['kind_proposed'] = r['proposed_kind']
+                report[f"kind_proposed|journals|{w['kind']}->{r['proposed_kind']}"] += 1
+
+
+def defect_counts(works, rels, wp_linked, cites):
+    """Gap measures each rebuild should shrink (owner 2026-11-11: keep issues visible; defect classes in
+    data/identifiers/work-people-2026-11-11/defect-classes.json)."""
+    auth = defaultdict(set)
+    claims = Counter()
+    for r in rels['AUTHORED']:
+        auth[r['to']].add(r['from'])
+        claims[r['from'], r['to']] += 1
+    lauth = defaultdict(set)
+    for r in wp_linked:
+        lauth[r['to']].add(r['from'])
+    kind = {w['key']: w['kind'] for w in works}
+    jstor_citing = {a for (a, b), v in cites.items() if (v >> 1) & (2 | 32)}
+    reviews_of = {r['from'] for r in rels['REVIEWS']}
+    printed = {w['key'] for w in works if w['reviewer_names']}
+    keyed = [w for w in works if w['resolution'] != 'unkeyed']
+    return {
+        '1_jstor_citing_article_no_author': dict(key_log=sum(1 for w in jstor_citing if not auth.get(w)),
+                                                 with_linked=sum(1 for w in jstor_citing if not auth.get(w) and not lauth.get(w)),
+                                                 articles=len(jstor_citing)),
+        '1b_keyed_article_no_author': dict(key_log=sum(1 for w in keyed if w['kind'] == 'article' and not auth.get(w['key'])),
+                                           with_linked=sum(1 for w in keyed if w['kind'] == 'article' and not auth.get(w['key']) and not lauth.get(w['key']))),
+        '2_review_printed_reviewer_no_key': dict(key_log=sum(1 for w in printed if not auth.get(w)),
+                                                 with_linked=sum(1 for w in printed if not auth.get(w) and not lauth.get(w)),
+                                                 reviews=len(reviews_of)),
+        '7_person_work_claimed_twice': sum(1 for n in claims.values() if n > 1),
+        '8_article_or_other_without_journal': dict(
+            key_log=sum(1 for w in keyed if w['kind'] in ('article', 'other') and not (w['journal'] and w.get('journal_source') == 'keylog')),
+            with_filled=sum(1 for w in keyed if w['kind'] in ('article', 'other') and not w['journal'])),
+        '8b_orcid_record_only_works': sum(1 for w in keyed if w['anchors'] and all(a.startswith('orcid-work:') for a in w['anchors'])),
+    }
+
+
 def write(name, rows, schema):
     table = pa.Table.from_pylist(rows, schema=schema)
     pq.write_table(table, OUT / f'{name}.parquet')
@@ -422,8 +832,15 @@ def main():
     crossref_parts = ([CROSSREF_CITES] if CROSSREF_CITES.exists() else []) + sorted(CROSSREF_PARTS.glob('part-*.csv.gz'))
     cited_files = cited_parts('works') + cited_parts('cites') + cited_parts('authors')
     cited_files += [CITED / 'report.json'] if cited_files else []
+    edition_files = [CITED / 'editions.csv.gz'] if (CITED / 'editions.csv.gz').exists() else []
+    jc_files = [JSTOR_CITED / n for n in ('works.csv.gz', 'cites.csv.gz') if (JSTOR_CITED / n).exists()]
+    wp_files = sorted(WORK_PEOPLE.glob('part-*.csv.gz'))
+    aw_files = [AUTHOR_WORKS / f'{n}.csv.gz' for n in ('works', 'authors', 'existing', 'volumes')]
+    aw_files = aw_files if all(p.exists() for p in aw_files) else []
+    fact_files = [p for p in (WORK_CONTAINERS, WORK_JOURNALS) if p.exists()]
+    fact_files = fact_files if len(fact_files) == 2 else []
     require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS) if p.exists()] + crossref_parts + article_parts
-                    + ([] if args.untracked_ok else cited_files))
+                    + ([] if args.untracked_ok else cited_files + edition_files + jc_files + wp_files + aw_files + fact_files))
     state = ReplayView(args.state) if args.replay else CacheView(args.state)
     OUT.mkdir(parents=True, exist_ok=True)
     report = Counter()
@@ -461,13 +878,29 @@ def main():
                                   journal=r['journal'] or None))
     report['Work_unkeyed_articles'] = len(unkeyed)
     # cited works matched 2026-11-10 (data/graph/cited-works): unkeyed Work nodes unless the log holds an identifier
-    cited_key = cited_work_nodes(state, types, works, unkeyed, report) if cited_files else {}
+    cited_index = {}
+    cited_key = cited_work_nodes(state, types, works, unkeyed, report, cited_index) if cited_files else {}
+    # JSTOR notes matched 2026-11-11 (data/graph/jstor-cited-works): unkeyed Work nodes unless held already
+    jstor_key, jstor_lc = jstor_cited_nodes(state, types, works, unkeyed, cited_index, report) if jc_files else ({}, {})
+    for w in works:                 # where a work's journal comes from (the key log, or the table that made the node)
+        if w['journal']:
+            w['journal_source'] = w.get('journal_source') or ('keylog' if w['resolution'] != 'unkeyed' else 'node-source')
+    wi = {w['key']: w for w in works}
+    resolve = work_resolver(state, types, unkeyed, cited_index)
+    # works by keyed people absent from the graph and the volumes chapters are in (data/graph/author-works, 2026-11-11)
+    vol_key, aw_key, aw_part, aw_long = (author_work_nodes(state, types, works, wi, unkeyed, resolve, report) if aw_files
+                                         else ({}, {}, [], set()))
+    if fact_files:                  # journal, ISSN, proposed kind of keyed works (export_work_containers.py)
+        work_facts(state, types, wi, report)
+    del wi
     s, L = pa.string(), pa.list_(pa.string())
     report['Person'] = write('person', people, pa.schema([('key', s), ('label', s), ('resolution', s), ('anchors', L)] +
                                                         [(x, s) for x in SCHEMES if x != 'ror']))
     report['Work'] = write('work', works, pa.schema([('key', s), ('label', s), ('resolution', s), ('anchors', L),
                                                     ('kind', s), ('lccn', s), ('year', pa.int32()),
-                                                    ('reviewer_names', L), ('journal', s)]))
+                                                    ('reviewer_names', L), ('journal', s), ('issn', s),
+                                                    ('journal_source', s), ('kind_proposed', s), ('isbn', s),
+                                                    ('editors_printed', s)]))
     report['Institution'] = write('institution', insts, pa.schema([('key', s), ('label', s), ('resolution', s),
                                                                   ('anchors', L), ('ror', s)]))
 
@@ -486,20 +919,91 @@ def main():
     # the cited works' authors (exact/linked credited, possible kept apart); the derived tables below read the
     # key log's claims only
     linked, possible_authors, best_state = cited_authors(state, types, cited_key, rels, report) if cited_key else ({}, [], {})
-    for name in ('AUTHORED', 'EDITED', 'SUPERVISED', 'PUBLISHED_AS', 'REVIEWS', 'PART_OF'):
+    wp_linked, wp_possible, wp_counts, contributed = work_people(state, types, rels, report) if wp_files else ([], [], Counter(), [])
+    if aw_files:
+        aw_linked, aw_cands = author_work_credits(state, types, {(r['from'], r['to']) for r in rels['AUTHORED']},
+                                                  aw_key, resolve, report)
+    else:
+        aw_linked, aw_cands = [], []
+    if jstor_lc:                    # the LC main entry of a JSTOR-matched unkeyed work, by its name authority id
+        linked = dict(linked)
+        have = {(x['from'], x['to']) for x in linked.get('AUTHORED', [])}
+        add = []
+        for w, lcn in jstor_lc.items():
+            if ':' not in w:        # a keyed work: authors come from the key log
+                continue
+            ks = [k for k in state.lookup(f'lcnaf:{lcn}') if types.get(k) == 'person']
+            if len(ks) != 1:
+                report['jstor_cited_lc_author_unresolved'] += 1
+            elif (ks[0], w) not in have:
+                have.add((ks[0], w))
+                add.append({'from': ks[0], 'to': w, 'claim': 'jstor-matched:lc:exact', 'resolution': 'linked',
+                            'source': 'jstor-matched:lc', 'state': 'exact'})
+        report['jstor_cited_lc_author_linked'] = len(add)
+        linked['AUTHORED'] = list(linked.get('AUTHORED', [])) + add
+    if wp_files:
+        linked = dict(linked)
+        cw_have = {(x['from'], x['to']) for x in linked.get('AUTHORED', [])}
+        linked['AUTHORED'] = list(linked.get('AUTHORED', [])) + [r for r in wp_linked if (r['from'], r['to']) not in cw_have]
+        pa_have = {(r['from'], r['to']) for r in possible_authors}
+        possible_authors = possible_authors + [r for r in wp_possible if (r['from'], r['to']) not in pa_have]
+    if aw_files:                    # ORCID credits of the author-works table (2026-11-11)
+        linked = dict(linked)
+        cw_have = {(x['from'], x['to']) for x in linked.get('AUTHORED', [])}
+        linked['AUTHORED'] = list(linked.get('AUTHORED', [])) + [r for r in aw_linked if (r['from'], r['to']) not in cw_have]
+        report['aw_credits_already_linked'] = sum(1 for r in aw_linked if (r['from'], r['to']) in cw_have)
+        skip = {(r['from'], r['to']) for r in possible_authors} | {(r['from'], r['to']) for r in linked['AUTHORED']}
+        possible_authors = possible_authors + [r for r in aw_cands if (r['from'], r['to']) not in skip]
+        del cw_have, skip
+    for name in ('SUPERVISED', 'PUBLISHED_AS', 'REVIEWS'):
         report[name] = write(name.lower(), rels[name], rel_schema)
-    linked_schema = pa.schema([('from', s), ('to', s), ('claim', s), ('resolution', s), ('source', s), ('state', s)])
+    # PART_OF: the key log's chapter -> volume claims (evidence keylog) and the volume links of 2026-11-11 (evidence
+    # linked, source and volume_basis; identity scripts read the keylog rows only, scripts/graph_tables.py)
+    part_linked = volume_links(state, types, rels, vol_key, aw_part, resolve, report) if (aw_files and fact_files) else []
+    report['PART_OF'] = write('part_of', [dict(r, evidence='keylog', source=None, volume_basis=None) for r in rels['PART_OF']]
+                              + part_linked, pa.schema([('from', s), ('to', s), ('claim', s), ('resolution', s), ('evidence', s),
+                                                        ('source', s), ('volume_basis', s)]))
+    report['PART_OF_by_evidence'] = dict(keylog=len(rels['PART_OF']), linked=len(part_linked))
+    del part_linked
+    # CONTRIBUTED (Person -> Work): foreword writers and series editors printed on a work (work-people role contributor,
+    # exact/linked); never authors (2026-11-11)
+    report['CONTRIBUTED'] = write('contributed', contributed, pa.schema([
+        ('from', s), ('to', s), ('claim', s), ('resolution', s), ('evidence', s), ('source', s), ('state', s), ('basis', s)]))
+    # one edge type per relation (owner, 2026-11-11): AUTHORED and EDITED carry `evidence` -- 'keylog' for the key
+    # log's claims, 'linked' for rule/identifier credits outside it (source and state say which). Identity scripts read
+    # evidence = 'keylog' only; the linked rows never feed identity work.
+    ev_schema = pa.schema([('from', s), ('to', s), ('claim', s), ('resolution', s), ('evidence', s), ('source', s), ('state', s)])
     for name in ('AUTHORED', 'EDITED'):
-        report[f'LINKED_{name}'] = write(f'linked_{name.lower()}', linked.get(name, []), linked_schema)
-    report['POSSIBLE_AUTHOR'] = write('possible_author', possible_authors, pa.schema([
-        ('from', s), ('to', s), ('n_candidates', pa.int32()), ('signals', s), ('source', s), ('role', s)]))
+        keyed = {(r['from'], r['to']) for r in rels[name]}
+        lrows = [r for r in linked.get(name, []) if (r['from'], r['to']) not in keyed]
+        report[f'{name}_linked_dropped_as_in_keylog'] = len(linked.get(name, [])) - len(lrows)
+        rows_ = [dict(r, evidence='keylog', source=None, state=None) for r in rels[name]] + [dict(r, evidence='linked') for r in lrows]
+        report[name] = write(name.lower(), rows_, ev_schema)
+        report[f'{name}_by_evidence'] = dict(keylog=len(rels[name]), linked=len(lrows))
+        del rows_
+    keyed_pairs = {name: {(x['from'], x['to']) for x in rels[name]} for name in ('AUTHORED', 'EDITED')}
+    linked = {name: [r for r in linked.get(name, []) if (r['from'], r['to']) not in keyed_pairs[name]] for name in ('AUTHORED', 'EDITED')}
+    del keyed_pairs
+    # candidate lists are not edges: unconfirmed name-compatible people for a work (never credited)
+    cand_rows = write('author_candidates', possible_authors, pa.schema([
+        ('from', s), ('to', s), ('n_candidates', pa.int32()), ('signals', s), ('source', s), ('role', s), ('reason', s)]))
+    report['candidate_lists'] = dict(author_candidates=cand_rows)
     authors = defaultdict(set)
     for r in rels['AUTHORED']:
         authors[r['to']].add(r['from'])
     reviewed = sorted({(a, b, r['from'], r['to']) for r in rels['REVIEWS'] for a in authors[r['from']]
                        for b in authors[r['to']] if a != b})
-    report['REVIEWED'] = write('reviewed', [{'from': a, 'to': b, 'review': rv, 'book': bk} for a, b, rv, bk in reviewed],
-                               pa.schema([('from', s), ('to', s), ('review', s), ('book', s)]))
+    lauth_all = defaultdict(set)              # linked credits (cited works, work-people), for the merged derived edges
+    for r in linked.get('AUTHORED', []):
+        lauth_all[r['to']].add(r['from'])
+    both_all = {w: authors.get(w, set()) | lauth_all.get(w, set()) for w in set(authors) | set(lauth_all)}
+    rl = sorted({(a, b, r['from'], r['to']) for r in rels['REVIEWS'] for a in both_all.get(r['from'], ())
+                 for b in both_all.get(r['to'], ()) if a != b} - set(reviewed))
+    report['REVIEWED'] = write('reviewed', [{'from': a, 'to': b, 'review': rv, 'book': bk, 'evidence': 'keylog'} for a, b, rv, bk in reviewed]
+                               + [{'from': a, 'to': b, 'review': rv, 'book': bk, 'evidence': 'linked'} for a, b, rv, bk in rl],
+                               pa.schema([('from', s), ('to', s), ('review', s), ('book', s), ('evidence', s)]))
+    report['REVIEWED_by_evidence'] = dict(keylog=len(reviewed), linked=len(rl))
+    del rl
     # editor -> contributor: a volume's editors -> the authors of a chapter in it (user, 2026-11-05: editors of
     # books I've published in)
     editors = defaultdict(set)
@@ -550,9 +1054,39 @@ def main():
                       'first_year': ys[0] if ys else None, 'last_year': ys[-1] if ys else None, 'work_keys': sorted(ws)})
     report['COEDITED'] = write('coedited', erows, pa.schema([('from', s), ('to', s), ('works', pa.int32()), ('titles', pa.int32()),
                                                            ('first_year', pa.int32()), ('last_year', pa.int32()), ('work_keys', L)]))
+    # COAUTHORED: one row per pair. evidence 'keylog' when the pair shares a key-log work (works, titles, years and
+    # work_keys are the key log's alone, as before; linked_works / linked_work_keys add the works that rest on a
+    # linked credit); 'linked' when only linked credits join them. Author lists over 25 are no co-authorship (a review
+    # section filed as one record).
+    lshared = defaultdict(set)
+    for w in lauth_all:
+        if len(both_all[w]) > 25:
+            report['COAUTHORED_linked_skipped_long_lists'] += 1
+            continue
+        if w in aw_long:            # an author-works record printing more than 25 authors
+            report['COAUTHORED_linked_skipped_long_printed_lists'] += 1
+            continue
+        for a in both_all[w]:
+            for b in both_all[w]:
+                if a < b and not (a in authors.get(w, ()) and b in authors.get(w, ())):
+                    lshared[a, b].add(w)
+    for r in rows:
+        lw = lshared.pop((r['from'], r['to']), set())
+        r.update(evidence='keylog', linked_works=len(lw), linked_work_keys=sorted(lw))
+    nlink = 0
+    for (a, b), lws in sorted(lshared.items()):
+        ys = sorted(y for w in lws if (y := year.get(w)))
+        rows.append({'from': a, 'to': b, 'works': len(lws), 'titles': len({title.get(w, w) for w in lws}),
+                     'first_year': ys[0] if ys else None, 'last_year': ys[-1] if ys else None, 'work_keys': sorted(lws),
+                     'evidence': 'linked', 'linked_works': len(lws), 'linked_work_keys': sorted(lws)})
+        nlink += 1
     report['COAUTHORED'] = write('coauthored', rows, pa.schema([('from', s), ('to', s), ('works', pa.int32()), ('titles', pa.int32()),
                                                                 ('first_year', pa.int32()), ('last_year', pa.int32()),
-                                                                ('work_keys', L)]))
+                                                                ('work_keys', L), ('evidence', s), ('linked_works', pa.int32()),
+                                                                ('linked_work_keys', L)]))
+    report['COAUTHORED_by_evidence'] = dict(keylog=len(rows) - nlink, linked=nlink,
+                                            keylog_pairs_with_linked_works=sum(1 for r in rows if r['evidence'] == 'keylog' and r['linked_works']))
+    del lauth_all, both_all, lshared
 
     awarded = []
     for w in works:
@@ -603,6 +1137,7 @@ def main():
     report['POSSIBLY_SAME_very_likely'] = sum(1 for l in possible.values() if l == 'very_likely')
 
     cites = {}                      # (citing, cited) -> edition only (True) or a direct match (False)
+    cited_as = {}                   # (thesis, canonical work) -> the translation/edition nodes it was cited as
     with gzip.open(CITES, 'rt', newline='', encoding='utf-8') as f:
         for r in csv.DictReader(f):
             a, b = state.lookup(f'diss-thesis:{r["dissertation_id"]}'), state.lookup(r['work_key'])
@@ -618,22 +1153,58 @@ def main():
                 if r['id'] in cited_key:
                     i = best_state.get(r['id'])
                     cat_of[r['id']] = (r['source'], STATE_ORDER[i] if i is not None else
-                                       'not-run' if r['source'] == 'crossref' else 'no-author-named')
+                                       'not-run' if r['source'].startswith('crossref') or r['source'] == 'journal-meta'
+                                       else 'no-author-named')
         works_by, theses_by = Counter(cat_of.values()), defaultdict(set)
+
+        def work_of(name):          # a cited-works id, else a key-log work (the canonical of a translation)
+            if name in cited_key:
+                return cited_key[name]
+            ks = [k for k in state.lookup(name) if types.get(k) == 'work']
+            return ks[0] if len(ks) == 1 else None
+        later = []                  # translation/edition rows: after every plain row, so 'replaces' sees them all
         for path in cited_parts('cites'):
             for r in read_rows(path):
-                a, b = state.lookup(f'diss-thesis:{r["dissertation_id"]}'), cited_key.get(r['work'])
+                a, b = state.lookup(f'diss-thesis:{r["dissertation_id"]}'), work_of(r['work'])
                 if len(a) == 1 and b and types.get(a[0]) == 'work' and a[0] != b:
+                    if r.get('cited_as'):
+                        later.append((a[0], b, r))
+                        continue
                     old = cites.get((a[0], b))
                     report['cites_from_cited_works' if old is None else 'cited_works_cites_already'] += 1
                     cites[(a[0], b)] = cites_code(False, 8, old)
-                    theses_by[cat_of[r['work']]].add(a[0])
+                    if r['work'] in cat_of:
+                        theses_by[cat_of[r['work']]].add(a[0])
                 else:
                     report['cited_works_cites_unresolved'] += 1
-        thesis_pairs = sum(1 for v in cites.values() if (v >> 1) & 9)
+        # a thesis citing a translation or later edition cites the canonical work: edition = true (unless the thesis
+        # also cites it directly), cited_as = the node it was cited as; the older crosswalks' edge to that node is
+        # dropped when no other corpus work of the thesis maps to it (export_cited_works `replaces`), so a moved
+        # citation counts once
+        for a, b, r in later:
+            raw = [x for x in r['cited_as'].split(';') if x]
+            prevs = [x for x in (work_of(y) or y for y in raw) if x != b] or raw   # all one key with b: keep the ids
+            for x in r['replaces'].split(';'):
+                k = work_of(x) if x else None
+                if not k:
+                    continue
+                if cites.get((a, k)) == cites_code(False, 1):      # only the older crosswalks' thesis edge
+                    del cites[(a, k)]
+                    cited_as.pop((a, k), None)
+                    report['edition_older_edge_dropped' if k != b else 'edition_older_edge_to_canonical_replaced'] += 1
+                elif k != b:
+                    report['edition_older_edge_kept'] += 1
+            old = cites.get((a, b))
+            report['cites_from_editions' if old is None else 'edition_cites_already'] += 1
+            cites[(a, b)] = cites_code(True, 16, old)
+            cited_as.setdefault((a, b), set()).update(prevs)
+            if r['work'] in cat_of:
+                theses_by[cat_of[r['work']]].add(a)
+        del later
+        thesis_pairs = sum(1 for v in cites.values() if (v >> 1) & THESIS_BITS)
         report['linkage'] = dict(
             note=('cited works matched 2026-11-10 (data/graph/cited-works) by source and by the best state of their '
-                  'authors (exact/linked: credited in LINKED_AUTHORED/LINKED_EDITED, not in AUTHORED/EDITED; possible-one/-several: candidates, not credited; none: no keyed '
+                  'authors (exact/linked: credited in AUTHORED/EDITED with evidence linked; possible-one/-several: candidates, not credited; none: no keyed '
                   'person fits; no-author-named: no author row; not-run: Crossref works, not yet linked); citing_theses '
                   '= distinct dissertations. thesis_cites_pairs = (dissertation, work) CITES edges from the corpus '
                   '(older crosswalks and this table) over the corpus\'s citations; corpus_rate counts corpus rows '
@@ -644,7 +1215,11 @@ def main():
             corpus_citations=corpus['citations'], thesis_cites_pairs=thesis_pairs,
             thesis_cites_rate=round(thesis_pairs / corpus['citations'], 4),
             corpus_rows_matched=corpus['matched_after'], corpus_rate=corpus['rate_after'],
-            corpus_rate_before=corpus['rate_before'])
+            corpus_rate_before=corpus['rate_before'],
+            corpus_rate_with_compilations=corpus.get('rate_with_compilations'),
+            corpus_moved_to_canonical=corpus.get('moved_citations'),
+            corpus_by_kind={k: v['rate_after'] for k, v in corpus.get('by_kind', {}).items()},
+            corpus_rate_brazil=corpus.get('by_country', {}).get('BR', {}).get('rate_after'))
         del theses_by
     name = 'jstor'                  # JSTOR articles citing keyed works
     if JSTOR_CITES.exists():
@@ -658,14 +1233,71 @@ def main():
                     report[f'{name}_cites_edition'] += ed
                 else:
                     report[f'{name}_cites_unresolved'] += 1
-    cites_schema = pa.schema([('from', s), ('to', s), ('edition', pa.bool_()), ('source', s)])
+    if jc_files:                    # JSTOR notes matched 2026-11-11 (data/graph/jstor-cited-works)
+        def jwork(name):
+            if name in jstor_key:
+                return jstor_key[name]
+            if name in cited_index:
+                return cited_index[name]
+            ks = [k for k in state.lookup(name) if types.get(k) == 'work']
+            return ks[0] if len(ks) == 1 else (name if name in unkeyed else None)
+        for r in read_rows(JSTOR_CITED / 'cites.csv.gz'):
+            a, b = jwork(r['citing_work']), jwork(r['cited_work'])
+            if a and b and a != b:
+                old = cites.get((a, b))
+                if r.get('cited_as'):   # a note citing a translation or later edition: the canonical work (2026-11-11)
+                    raw = [y for y in r['cited_as'].split(';') if y]
+                    prevs = [x for x in (jwork(y) or y for y in raw) if x != b] or raw
+                    report['cites_from_jstor_edition' if old is None else 'jstor_edition_cites_already'] += 1
+                    cites[(a, b)] = cites_code(True, 64, old)
+                    cited_as.setdefault((a, b), set()).update(prevs)
+                    # the older JSTOR edge (jstor-cites.csv.gz) from this article to the translation/edition node is
+                    # the same citation: dropped, as the thesis side's `replaces`, so a moved citation counts once
+                    for x in prevs:
+                        v = cites.get((a, x))
+                        if v is not None and x != b and (v >> 1) == 2:
+                            del cites[(a, x)]
+                            cited_as.pop((a, x), None)
+                            report['jstor_edition_replaced'] += 1
+                    continue
+                report['cites_from_jstor_matched' if old is None else 'jstor_matched_cites_already'] += 1
+                cites[(a, b)] = cites_code(False, 32, old)
+            else:
+                report['jstor_matched_cites_unresolved'] += 1
+    cites_schema = pa.schema([('from', s), ('to', s), ('edition', pa.bool_()), ('source', s), ('cited_as', s)])
+    if edition_files:               # translation/edition node -> canonical work (EDITION_OF; keys are not merged)
+        eo = {}
+        for r in read_rows(CITED / 'editions.csv.gz'):
+            b = cited_key.get(r['canonical']) if r['canonical'] in cited_key else (
+                (lambda ks: ks[0] if len(ks) == 1 else None)([k for k in state.lookup(r['canonical']) if types.get(k) == 'work']))
+            if not b or r['cited_as'].startswith('corpus:'):
+                report['edition_of_skipped' if not b else 'edition_of_unmatched_before'] += 1
+                continue
+            a = cited_key.get(r['cited_as']) or next(iter([k for k in state.lookup(r['cited_as']) if types.get(k) == 'work'][:1]), None)
+            if not a or a == b:
+                report['edition_of_same_or_unresolved'] += 1
+                continue
+            e = eo.setdefault((a, b), {'from': a, 'to': b, 'relation': r['relation'], 'route': r['route'], 'theses': 0})
+            e['theses'] += int(r['theses'] or 0)
+        report['EDITION_OF'] = write('edition_of', list(eo.values()), pa.schema([
+            ('from', s), ('to', s), ('relation', s), ('route', s), ('theses', pa.int32())]))
     if not crossref_parts:
-        report['CITES'] = write('cites', [{'from': a, 'to': b, 'edition': bool(v & 1), 'source': source_names(v >> 1)}
+        report['CITES'] = write('cites', [{'from': a, 'to': b, 'edition': bool(v & 1), 'source': source_names(v >> 1),
+                                           'cited_as': ';'.join(sorted(cited_as[(a, b)])) if (a, b) in cited_as else None}
                                           for (a, b), v in sorted(cites.items())], cites_schema)
         report['CITES_edition_only'] = sum(v & 1 for v in cites.values())
     else:
-        crossref_cites(cites, crossref_parts, state, types, unkeyed, report, cites_schema)
+        crossref_cites(cites, crossref_parts, state, types, unkeyed, report, cites_schema, cited_as)
 
+    if wp_files:
+        lk = report.get('linkage') or {}
+        lk['work_people'] = dict(
+            note=('printed people of keyed works (data/graph/work-people, scripts/link_work_people.py 2026-11-11): rows by role '
+                  'and state as loaded; exact/linked join AUTHORED with evidence linked, possible author_candidates; none rows are not in '
+                  'the table (counted in data/identifiers/work-people-2026-11-11/report.json)'),
+            loaded={k: v for k, v in sorted(wp_counts.items())})
+        lk['defects'] = defect_counts(works, rels, wp_linked, cites)
+        report['linkage'] = lk
     if args.db:
         load_db(report)
     (OUT / 'report.json').write_text(json.dumps(dict(sorted(report.items())), indent=1) + '\n')
@@ -684,38 +1316,43 @@ def load_db(report):
     ids = 'anchors STRING[], lcnaf STRING, wd STRING, orcid STRING, gnd STRING, viaf STRING, isni STRING, idref STRING'
     conn.execute(f'CREATE NODE TABLE Person(key STRING, label STRING, resolution STRING, {ids}, PRIMARY KEY (key))')
     conn.execute('CREATE NODE TABLE Work(key STRING, label STRING, resolution STRING, anchors STRING[], kind STRING, '
-                 'lccn STRING, year INT32, reviewer_names STRING[], journal STRING, PRIMARY KEY (key))')
+                 'lccn STRING, year INT32, reviewer_names STRING[], journal STRING, issn STRING, journal_source STRING, '
+                 'kind_proposed STRING, isbn STRING, editors_printed STRING, PRIMARY KEY (key))')
     conn.execute('CREATE NODE TABLE Institution(key STRING, label STRING, resolution STRING, anchors STRING[], '
                  'ror STRING, PRIMARY KEY (key))')
-    for name in ('AUTHORED', 'EDITED', 'SUPERVISED'):
-        conn.execute(f'CREATE REL TABLE {name}(FROM Person TO Work, claim STRING, resolution STRING)')
+    for name in ('AUTHORED', 'EDITED'):
+        conn.execute(f'CREATE REL TABLE {name}(FROM Person TO Work, claim STRING, resolution STRING, evidence STRING, '
+                     'source STRING, state STRING)')
+    conn.execute('CREATE REL TABLE SUPERVISED(FROM Person TO Work, claim STRING, resolution STRING)')
     conn.execute('CREATE REL TABLE PUBLISHED_AS(FROM Work TO Work, claim STRING, resolution STRING)')
     conn.execute('CREATE REL TABLE REVIEWS(FROM Work TO Work, claim STRING, resolution STRING)')
-    conn.execute('CREATE REL TABLE PART_OF(FROM Work TO Work, claim STRING, resolution STRING)')
+    conn.execute('CREATE REL TABLE PART_OF(FROM Work TO Work, claim STRING, resolution STRING, evidence STRING, '
+                 'source STRING, volume_basis STRING)')
+    conn.execute('CREATE REL TABLE CONTRIBUTED(FROM Person TO Work, claim STRING, resolution STRING, evidence STRING, '
+                 'source STRING, state STRING, basis STRING)')
     conn.execute('CREATE REL TABLE EDITOR_OF(FROM Person TO Person, chapter STRING, volume STRING)')
-    conn.execute('CREATE REL TABLE REVIEWED(FROM Person TO Person, review STRING, book STRING)')
+    conn.execute('CREATE REL TABLE REVIEWED(FROM Person TO Person, review STRING, book STRING, evidence STRING)')
     conn.execute('CREATE REL TABLE ADVISED(FROM Person TO Person, claim STRING, thesis STRING)')
     conn.execute('CREATE REL TABLE COEDITED(FROM Person TO Person, works INT32, titles INT32, first_year INT32, last_year INT32, '
                  'work_keys STRING[])')
     conn.execute('CREATE REL TABLE COAUTHORED(FROM Person TO Person, works INT32, titles INT32, first_year INT32, last_year INT32, '
-                 'work_keys STRING[])')
+                 'work_keys STRING[], evidence STRING, linked_works INT32, linked_work_keys STRING[])')
     conn.execute('CREATE REL TABLE AWARDED_BY(FROM Work TO Institution)')
     conn.execute('CREATE REL TABLE POSSIBLY_SAME(FROM Person TO Person, likelihood STRING)')
     conn.execute('CREATE REL TABLE AFFILIATED_WITH(FROM Person TO Institution, source STRING, first_year INT32, '
                  'last_year INT32, n INT32, rank STRING, department STRING)')
-    conn.execute('CREATE REL TABLE CITES(FROM Work TO Work, edition BOOL, source STRING)')
-    for name in ('LINKED_AUTHORED', 'LINKED_EDITED'):
-        conn.execute(f'CREATE REL TABLE {name}(FROM Person TO Work, claim STRING, resolution STRING, source STRING, state STRING)')
-    conn.execute('CREATE REL TABLE POSSIBLE_AUTHOR(FROM Person TO Work, n_candidates INT32, signals STRING, source STRING, '
-                 'role STRING)')
+    conn.execute('CREATE REL TABLE CITES(FROM Work TO Work, edition BOOL, source STRING, cited_as STRING)')
+    if (OUT / 'edition_of.parquet').exists():
+        conn.execute('CREATE REL TABLE EDITION_OF(FROM Work TO Work, relation STRING, route STRING, theses INT32)')
     for table, file in (('Person', 'person'), ('Work', 'work'), ('Institution', 'institution'),
                         ('AUTHORED', 'authored'), ('EDITED', 'edited'), ('SUPERVISED', 'supervised'),
                         ('PUBLISHED_AS', 'published_as'), ('REVIEWS', 'reviews'), ('PART_OF', 'part_of'), ('EDITOR_OF', 'editor_of'), ('REVIEWED', 'reviewed'), ('ADVISED', 'advised'),
                         ('COAUTHORED', 'coauthored'), ('COEDITED', 'coedited'),
                         ('AWARDED_BY', 'awarded_by'), ('POSSIBLY_SAME', 'possibly_same'), ('AFFILIATED_WITH', 'affiliated_with'),
-                        ('CITES', 'cites'), ('POSSIBLE_AUTHOR', 'possible_author'),
-                        ('LINKED_AUTHORED', 'linked_authored'), ('LINKED_EDITED', 'linked_edited')):
+                        ('CITES', 'cites'), ('CONTRIBUTED', 'contributed')):
         conn.execute(f"COPY {table} FROM '{OUT / (file + '.parquet')}'")
+    if (OUT / 'edition_of.parquet').exists():
+        conn.execute(f"COPY EDITION_OF FROM '{OUT / 'edition_of.parquet'}'")
     report['db'] = str(path.relative_to(ROOT))
 
 

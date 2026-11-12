@@ -30,6 +30,7 @@ import duckdb
 
 from identifiers import DEFAULT_DIR, ROOT, State, materialise
 from namesake_check_groups import given_names_agree, given_words
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 GRAPH = ROOT / 'build/graph'
 CROSSREF_ORCID = Path('/mnt/e/crossref-orcid')
@@ -80,7 +81,7 @@ def journal_profiles(db, people):
             if (y or '').isdigit():
                 add(k, ((s.get('journal-title') or {}) or {}).get('value'), y, 'orcid-record')
     for k, container, year in db.execute(f"""
-            SELECT a."from", j.container, j.year FROM '{GRAPH}/authored.parquet' a
+            SELECT a."from", j.container, j.year FROM {keylog(GRAPH, 'authored')} a
             JOIN (SELECT key, unnest(anchors) AS an FROM '{GRAPH}/work.parquet') w ON w.key = a."to"
             JOIN '{JSTOR}' j ON 'doi:' || j.doi = w.an
             WHERE w.an LIKE 'doi:10.2307/%' AND j.kind = 'article'""").fetchall():
@@ -98,7 +99,7 @@ def journal_profiles(db, people):
             for j, y in venues.get(o, ()):
                 add(k, j, y, 'openalex')
     # reviews already credited to the key (by ORCID, or by this rule on an earlier run) show it publishes there too
-    for k, j, y in db.execute(f"""SELECT a."from", w.journal, w.year FROM '{GRAPH}/authored.parquet' a
+    for k, j, y in db.execute(f"""SELECT a."from", w.journal, w.year FROM {keylog(GRAPH, 'authored')} a
             JOIN '{GRAPH}/work.parquet' w ON w.key = a."to" WHERE w.journal IS NOT NULL AND w.year IS NOT NULL""").fetchall():
         add(k, j, y, 'credited-review')
     return journals

@@ -34,6 +34,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 import duckdb
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 ROOT = Path(__file__).resolve().parents[1]
 G = ROOT / 'build/graph'
@@ -52,12 +53,12 @@ def main():
     people = db.execute(f"SELECT key, label, anchors, wd, orcid FROM '{G}/person.parquet'").fetchall()
     supervisors = {k for (k,) in db.execute(f"""SELECT "from" FROM '{G}/supervised.parquet'
                                                UNION SELECT "from" FROM '{G}/advised.parquet'""").fetchall()}
-    reviewers = {k for (k,) in db.execute(f"""SELECT DISTINCT a."from" FROM '{G}/authored.parquet' a
+    reviewers = {k for (k,) in db.execute(f"""SELECT DISTINCT a."from" FROM {keylog(G, 'authored')} a
             JOIN '{G}/work.parquet' w ON w.key = a."to"
             WHERE len(w.reviewer_names) > 0 OR w.kind = 'review' OR w.key IN (SELECT "from" FROM '{G}/reviews.parquet')""").fetchall()}
-    articles = {k for (k,) in db.execute(f"""SELECT DISTINCT a."from" FROM '{G}/authored.parquet' a
+    articles = {k for (k,) in db.execute(f"""SELECT DISTINCT a."from" FROM {keylog(G, 'authored')} a
             JOIN '{G}/work.parquet' w ON w.key = a."to" WHERE w.kind = 'article'""").fetchall()}
-    first_work = dict(db.execute(f"""SELECT a."from", min(w.year) FROM '{G}/authored.parquet' a
+    first_work = dict(db.execute(f"""SELECT a."from", min(w.year) FROM {keylog(G, 'authored')} a
             JOIN '{G}/work.parquet' w ON w.key = a."to" WHERE w.kind = 'book' AND w.year >= 1450 GROUP BY 1""").fetchall())
     with WD_HISTORIANS.open(newline='', encoding='utf-8') as f:
         wd_historians = {r['qid'] for r in csv.DictReader(f)}
@@ -72,11 +73,11 @@ def main():
     # evidence weight: distinct theses citing the key's works, works authored, distinct network partners
     # citing works: doctoral theses (the corpus) and, from 2026-11-06, JSTOR articles (their notes); both count
     citing_by_kind = db.execute(f"""SELECT a."from", count(DISTINCT c."from") FILTER (WHERE cw.kind = 'thesis'),
-            count(DISTINCT c."from") FILTER (WHERE cw.kind <> 'thesis') FROM '{G}/authored.parquet' a
+            count(DISTINCT c."from") FILTER (WHERE cw.kind <> 'thesis') FROM {keylog(G, 'authored')} a
             JOIN '{G}/cites.parquet' c ON c."to" = a."to" JOIN '{G}/work.parquet' cw ON cw.key = c."from" GROUP BY 1""").fetchall()
     citing = {k: t + o for k, t, o in citing_by_kind}
     citing_split = {k: (t, o) for k, t, o in citing_by_kind}
-    works = dict(db.execute(f"""SELECT "from", count(DISTINCT "to") FROM '{G}/authored.parquet' GROUP BY 1""").fetchall())
+    works = dict(db.execute(f"""SELECT "from", count(DISTINCT "to") FROM {keylog(G, 'authored')} GROUP BY 1""").fetchall())
     partners = defaultdict(set)
     for t in ('reviewed', 'advised', 'coauthored', 'coedited', 'editor_of'):
         for a, b in db.execute(f"""SELECT "from", "to" FROM '{G}/{t}.parquet'""").fetchall():
@@ -84,7 +85,7 @@ def main():
                 partners[a].add(b)
                 partners[b].add(a)
     for a, b in db.execute(f"""SELECT s."from", a."from" FROM '{G}/supervised.parquet' s
-            JOIN '{G}/authored.parquet' a ON a."to" = s."to\"""").fetchall():
+            JOIN {keylog(G, 'authored')} a ON a."to" = s."to\"""").fetchall():
         if a != b:
             partners[a].add(b)
             partners[b].add(a)

@@ -1,0 +1,2226 @@
+{
+ "date": "2026-11-11",
+ "graph": "/home/jic823/historiography/build/graph",
+ "rule": {
+  "base": "link_cited_work_authors.py chosen parameters (report.json tuning.chosen of cited-work-authors-2026-11-10)",
+  "added": [
+   "duplicate-group (see docstring)",
+   "placing facts: dated, independent affiliation sources only",
+   "gold rows hide the credited work from the key's span, co-author pairs and OpenAlex ties"
+  ]
+ },
+ "roles": {
+  "author": {
+   "positions": 1365999,
+   "positions_by_state": {
+    "credited": 829885,
+    "none": 405230,
+    "possible": 56863,
+    "linked": 38794,
+    "ambiguous": 18964,
+    "exact": 16263
+   },
+   "positions_already_credited_under_another_name": 1138,
+   "branches": {
+    "no-compatible-name": 382199,
+    "unique-rare": 19252,
+    "one-candidate-common-name": 19049,
+    "only-date-excluded": 14475,
+    "review-record-rarity-only": 9246,
+    "author-of-reviewed-book": 8531,
+    "unique-second-fact": 8182,
+    "unique-rare-span": 5858,
+    "outside-history-rarity-only": 5517,
+    "one-candidate-initial-name": 4914,
+    "one-candidate-variant-name": 4223,
+    "one-candidate-none-dated": 4033,
+    "several-several-dated": 4019,
+    "one-candidate-surname-variant-name": 3659,
+    "unique-rare-fullname": 3313,
+    "same-title-as-own-book": 1931,
+    "dupgroup:unique-rare": 1151,
+    "several-one-survives": 258,
+    "dupgroup:unique-rare-span": 223,
+    "unique-rare-fullform": 208,
+    "unique-rare-sup-aff": 153,
+    "orcid-differs-tie-only": 132,
+    "several-none-dated": 109,
+    "dupgroup:unique-rare-fullname": 80,
+    "unique-rare-variant": 50,
+    "several-one-dated-no-fact": 31,
+    "only-proven-namesakes": 25,
+    "dupgroup:unique-second-fact": 23,
+    "dupgroup:unique-rare-sup-aff": 17,
+    "unique-rare-corpus-span": 11,
+    "dupgroup:unique-rare-fullform": 8,
+    "dupgroup:unique-rare-corpus-span": 6,
+    "dupgroup:unique-rare-variant": 1
+   },
+   "possible_one_candidate": 56277,
+   "works": {
+    "works": 839433,
+    "with_a_credited_person_before": 796608,
+    "after": 806817,
+    "every_name_credited_before": 614467,
+    "every_name_credited_after": 637432
+   },
+   "people_linked": 23774
+  },
+  "jstor-author": {
+   "positions": 124364,
+   "positions_by_state": {
+    "none": 46601,
+    "linked": 40530,
+    "possible": 20016,
+    "credited": 9668,
+    "ambiguous": 6773,
+    "exact": 776
+   },
+   "positions_already_credited_under_another_name": 5,
+   "branches": {
+    "no-compatible-name": 41738,
+    "unique-rare": 24026,
+    "one-candidate-common-name": 10765,
+    "unique-rare-span": 5747,
+    "only-date-excluded": 4863,
+    "unique-second-fact": 4599,
+    "unique-rare-fullname": 3904,
+    "one-candidate-initial-name": 3703,
+    "several-several-dated": 2297,
+    "one-candidate-surname-variant-name": 1608,
+    "dupgroup:unique-rare": 1152,
+    "one-candidate-none-dated": 765,
+    "one-candidate-variant-name": 569,
+    "unique-rare-fullform": 525,
+    "same-title-as-own-book": 278,
+    "several-one-survives": 221,
+    "dupgroup:unique-rare-span": 136,
+    "unique-rare-sup-aff": 74,
+    "dupgroup:unique-rare-fullform": 42,
+    "unique-rare-variant": 38,
+    "dupgroup:unique-rare-fullname": 33,
+    "dupgroup:unique-second-fact": 21,
+    "several-one-dated-no-fact": 15,
+    "orcid-differs-tie-only": 10,
+    "dupgroup:unique-rare-sup-aff": 7,
+    "several-none-dated": 6,
+    "unique-rare-corpus-span": 5
+   },
+   "possible_one_candidate": 19979,
+   "works": {
+    "works": 104801,
+    "with_a_credited_person_before": 9357,
+    "after": 47576,
+    "every_name_credited_before": 8576,
+    "every_name_credited_after": 41978
+   },
+   "people_linked": 18697
+  },
+  "reviewer": {
+   "positions": 311205,
+   "positions_by_state": {
+    "linked": 98425,
+    "none": 89359,
+    "possible": 50825,
+    "credited": 45145,
+    "ambiguous": 25802,
+    "exact": 1649
+   },
+   "positions_already_credited_under_another_name": 0,
+   "branches": {
+    "no-compatible-name": 81706,
+    "one-candidate-common-name": 33749,
+    "unique-rare": 33017,
+    "unique-rare-phd-start": 26074,
+    "unique-rare-fullname": 12495,
+    "unique-rare-span": 11183,
+    "unique-second-fact": 9988,
+    "only-date-excluded": 6617,
+    "several-several-dated": 5235,
+    "one-candidate-initial-name": 5175,
+    "one-candidate-surname-variant-name": 3649,
+    "unique-rare-fullform": 1993,
+    "one-candidate-variant-name": 1848,
+    "dupgroup:unique-rare": 1283,
+    "dupgroup:unique-rare-phd-start": 1191,
+    "one-candidate-none-dated": 1068,
+    "author-of-reviewed-book": 1033,
+    "several-one-survives": 408,
+    "dupgroup:unique-rare-fullform": 274,
+    "dupgroup:unique-rare-span": 221,
+    "dupgroup:unique-second-fact": 111,
+    "unique-rare-variant": 82,
+    "orcid-differs-tie-only": 69,
+    "unique-rare-sup-aff": 54,
+    "dupgroup:unique-rare-fullname": 32,
+    "several-one-dated-no-fact": 30,
+    "unique-rare-corpus-span": 13,
+    "dupgroup:unique-rare-variant": 5,
+    "only-proven-namesakes": 3,
+    "several-none-dated": 2,
+    "dupgroup:unique-rare-sup-aff": 1
+   },
+   "possible_one_candidate": 50748,
+   "works": {
+    "works": 302316,
+    "with_a_credited_person_before": 45102,
+    "after": 144315,
+    "every_name_credited_before": 44145,
+    "every_name_credited_after": 140925
+   },
+   "people_linked": 31576
+  }
+ },
+ "excluded_by_date": {
+  "reviewer": {
+   "positions": 23812,
+   "candidates_excluded": 41775,
+   "now_none": 6617
+  },
+  "jstor-author": {
+   "positions": 11968,
+   "candidates_excluded": 28078,
+   "now_none": 4863
+  },
+  "author": {
+   "positions": 29004,
+   "candidates_excluded": 50342,
+   "now_none": 14475
+  }
+ },
+ "date_elimination_changes": {
+  "author|possible(1)->none": 14172,
+  "reviewer|possible(2)->ambiguous": 10849,
+  "author|possible(2)->ambiguous": 7112,
+  "reviewer|possible(2)->possible(fewer)": 6539,
+  "reviewer|possible(1)->none": 6504,
+  "author|possible(2)->possible(fewer)": 5984,
+  "reviewer|possible(3)->ambiguous": 4817,
+  "jstor-author|possible(1)->none": 4049,
+  "author|possible(3)->ambiguous": 3598,
+  "jstor-author|possible(2)->ambiguous": 2857,
+  "jstor-author|possible(2)->possible(fewer)": 2812,
+  "reviewer|possible(4)->ambiguous": 2717,
+  "author|possible(4)->ambiguous": 2287,
+  "reviewer|possible(3)->possible(fewer)": 2009,
+  "reviewer|linked->linked": 1829,
+  "reviewer|possible(5)->ambiguous": 1790,
+  "author|possible(2)->none": 1677,
+  "reviewer|possible(2)->linked": 1668,
+  "author|possible(3)->possible(fewer)": 1644,
+  "author|possible(5)->ambiguous": 1604,
+  "author|linked->linked": 1493,
+  "reviewer|possible(6)->ambiguous": 1292,
+  "reviewer|possible(1)->linked": 1206,
+  "jstor-author|linked->linked": 1180,
+  "jstor-author|possible(3)->ambiguous": 1152,
+  "author|possible(6)->ambiguous": 973,
+  "reviewer|possible(7)->ambiguous": 894,
+  "jstor-author|possible(3)->possible(fewer)": 855,
+  "reviewer|possible(4)->possible(fewer)": 850,
+  "author|possible(4)->possible(fewer)": 843,
+  "reviewer|possible(2)->none": 783,
+  "reviewer|possible(8)->ambiguous": 709,
+  "author|possible(7)->ambiguous": 697,
+  "jstor-author|possible(4)->ambiguous": 650,
+  "jstor-author|possible(2)->none": 631,
+  "author|possible(8)->ambiguous": 607,
+  "jstor-author|possible(1)->linked": 521,
+  "author|possible(5)->possible(fewer)": 516,
+  "jstor-author|possible(2)->linked": 511,
+  "author|possible(3)->none": 473,
+  "reviewer|possible(5)->possible(fewer)": 467,
+  "jstor-author|possible(5)->ambiguous": 447,
+  "jstor-author|possible(4)->possible(fewer)": 420,
+  "author|possible(9)->ambiguous": 352,
+  "reviewer|possible(9)->ambiguous": 349,
+  "jstor-author|possible(6)->ambiguous": 342,
+  "reviewer|possible(3)->none": 331,
+  "author|none->none": 323,
+  "reviewer|possible(10)->ambiguous": 322,
+  "reviewer|possible(6)->possible(fewer)": 318,
+  "author|possible(2)->linked": 309,
+  "reviewer|possible(12)->ambiguous": 303,
+  "reviewer|possible(3)->linked": 290,
+  "author|possible(10)->ambiguous": 282,
+  "jstor-author|possible(5)->possible(fewer)": 268,
+  "reviewer|possible(11)->ambiguous": 257,
+  "author|possible(6)->possible(fewer)": 244,
+  "author|possible(4)->none": 243,
+  "jstor-author|possible(3)->none": 241,
+  "jstor-author|possible(7)->ambiguous": 216
+ },
+ "date_elimination_summary": {
+  "reviewer|possible->ambiguous": 25796,
+  "author|possible->ambiguous": 18958,
+  "author|possible->none": 17128,
+  "reviewer|possible->possible-fewer": 11008,
+  "author|possible->possible-fewer": 10067,
+  "reviewer|possible->none": 8140,
+  "jstor-author|possible->ambiguous": 6770,
+  "jstor-author|possible->none": 5424,
+  "jstor-author|possible->possible-fewer": 5074,
+  "reviewer|possible->linked": 3793,
+  "reviewer|linked->linked": 1829,
+  "author|linked->linked": 1493,
+  "jstor-author|possible->linked": 1292,
+  "jstor-author|linked->linked": 1180,
+  "author|possible->linked": 610,
+  "author|none->none": 323,
+  "reviewer|linked->none": 132,
+  "author|linked->possible": 77,
+  "reviewer|linked->possible": 53,
+  "reviewer|none->none": 44,
+  "author|linked->none": 39,
+  "jstor-author|linked->possible": 10,
+  "jstor-author|none->none": 9,
+  "author|linked->ambiguous": 6,
+  "jstor-author|linked->none": 6,
+  "reviewer|linked->ambiguous": 6,
+  "reviewer|exact->none": 5,
+  "jstor-author|linked->ambiguous": 3,
+  "author|exact->none": 3
+ },
+ "jstor_citing_articles": {
+  "articles": 81777,
+  "with_credited_author_before": 9194,
+  "after": 40189,
+  "share_before": 0.1124,
+  "share_after": 0.4914
+ },
+ "reviews": {
+  "review_works": 420804,
+  "with_credited_reviewer_before": 95939,
+  "after": 195120,
+  "with_printed_reviewer": 302316,
+  "printed_reviewer_credited_before": 45102,
+  "printed_reviewer_credited_after": 144315
+ },
+ "coauthor_credits_added": {
+  "credits": 41740,
+  "works": 32386,
+  "people": 18612,
+  "note": "exact/linked authors on works where another author is already credited in the key log"
+ },
+ "gold": {
+  "note": "held-out half (stable hash of the credited key = 1); the other half was used only to decide whether the duplicate-group branch is admitted",
+  "rows": {
+   "author": 20000,
+   "jstor-author": 9668,
+   "reviewer": 20000
+  },
+  "by_role": {
+   "author": {
+    "gold": 10113,
+    "linked": 8651,
+    "right_or_duplicate_key": 8648,
+    "wrong": 3,
+    "precision": 0.9997,
+    "recall": 0.8551
+   },
+   "jstor-author": {
+    "gold": 4826,
+    "linked": 3679,
+    "right_or_duplicate_key": 3679,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.7623
+   },
+   "reviewer": {
+    "gold": 9790,
+    "linked": 7331,
+    "right_or_duplicate_key": 7331,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.7488
+   }
+  },
+  "by_role_without_dupgroup": {
+   "reviewer": {
+    "gold": 9790,
+    "linked": 7104,
+    "right_or_duplicate_key": 7104,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.7256
+   },
+   "author": {
+    "gold": 10113,
+    "linked": 8514,
+    "right_or_duplicate_key": 8511,
+    "wrong": 3,
+    "precision": 0.9996,
+    "recall": 0.8416
+   },
+   "jstor-author": {
+    "gold": 4826,
+    "linked": 3592,
+    "right_or_duplicate_key": 3592,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.7443
+   }
+  },
+  "tuning_half_dupgroup": {
+   "jstor-author|true": {
+    "gold": 4842,
+    "linked": 3636,
+    "right_or_duplicate_key": 3635,
+    "wrong": 1,
+    "precision": 0.9997,
+    "recall": 0.7507
+   },
+   "reviewer|false": {
+    "gold": 10210,
+    "linked": 7374,
+    "right_or_duplicate_key": 7373,
+    "wrong": 1,
+    "precision": 0.9999,
+    "recall": 0.7221
+   },
+   "author|true": {
+    "gold": 9887,
+    "linked": 8423,
+    "right_or_duplicate_key": 8417,
+    "wrong": 6,
+    "precision": 0.9993,
+    "recall": 0.8513
+   },
+   "jstor-author|false": {
+    "gold": 4842,
+    "linked": 3541,
+    "right_or_duplicate_key": 3540,
+    "wrong": 1,
+    "precision": 0.9997,
+    "recall": 0.7311
+   },
+   "reviewer|true": {
+    "gold": 10210,
+    "linked": 7671,
+    "right_or_duplicate_key": 7669,
+    "wrong": 2,
+    "precision": 0.9997,
+    "recall": 0.7511
+   },
+   "author|false": {
+    "gold": 9887,
+    "linked": 8267,
+    "right_or_duplicate_key": 8261,
+    "wrong": 6,
+    "precision": 0.9993,
+    "recall": 0.8355
+   }
+  },
+  "by_branch": {
+   "author|dupgroup:unique-rare": {
+    "gold": 102,
+    "linked": 102,
+    "right_or_duplicate_key": 102,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "author|dupgroup:unique-rare-fullname": {
+    "gold": 8,
+    "linked": 8,
+    "right_or_duplicate_key": 8,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "author|dupgroup:unique-rare-span": {
+    "gold": 3,
+    "linked": 3,
+    "right_or_duplicate_key": 3,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "author|dupgroup:unique-second-fact": {
+    "gold": 24,
+    "linked": 24,
+    "right_or_duplicate_key": 24,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "author|several-one-survives": {
+    "gold": 67,
+    "linked": 67,
+    "right_or_duplicate_key": 67,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "author|unique-rare": {
+    "gold": 3573,
+    "linked": 3573,
+    "right_or_duplicate_key": 3571,
+    "wrong": 2,
+    "precision": 0.9994,
+    "recall": 0.9994
+   },
+   "author|unique-rare-corpus-span": {
+    "gold": 1,
+    "linked": 1,
+    "right_or_duplicate_key": 1,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "author|unique-rare-fullform": {
+    "gold": 5,
+    "linked": 5,
+    "right_or_duplicate_key": 5,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "author|unique-rare-fullname": {
+    "gold": 731,
+    "linked": 731,
+    "right_or_duplicate_key": 731,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "author|unique-rare-span": {
+    "gold": 970,
+    "linked": 970,
+    "right_or_duplicate_key": 970,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "author|unique-rare-variant": {
+    "gold": 3,
+    "linked": 3,
+    "right_or_duplicate_key": 3,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "author|unique-second-fact": {
+    "gold": 3164,
+    "linked": 3164,
+    "right_or_duplicate_key": 3163,
+    "wrong": 1,
+    "precision": 0.9997,
+    "recall": 0.9997
+   },
+   "jstor-author|dupgroup:unique-rare": {
+    "gold": 77,
+    "linked": 77,
+    "right_or_duplicate_key": 77,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "jstor-author|dupgroup:unique-rare-fullform": {
+    "gold": 2,
+    "linked": 2,
+    "right_or_duplicate_key": 2,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "jstor-author|dupgroup:unique-rare-fullname": {
+    "gold": 1,
+    "linked": 1,
+    "right_or_duplicate_key": 1,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "jstor-author|dupgroup:unique-rare-span": {
+    "gold": 4,
+    "linked": 4,
+    "right_or_duplicate_key": 4,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "jstor-author|dupgroup:unique-second-fact": {
+    "gold": 3,
+    "linked": 3,
+    "right_or_duplicate_key": 3,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "jstor-author|several-one-survives": {
+    "gold": 48,
+    "linked": 48,
+    "right_or_duplicate_key": 48,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "jstor-author|unique-rare": {
+    "gold": 2327,
+    "linked": 2327,
+    "right_or_duplicate_key": 2327,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "jstor-author|unique-rare-fullform": {
+    "gold": 11,
+    "linked": 11,
+    "right_or_duplicate_key": 11,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "jstor-author|unique-rare-fullname": {
+    "gold": 380,
+    "linked": 380,
+    "right_or_duplicate_key": 380,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "jstor-author|unique-rare-span": {
+    "gold": 174,
+    "linked": 174,
+    "right_or_duplicate_key": 174,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "jstor-author|unique-rare-variant": {
+    "gold": 4,
+    "linked": 4,
+    "right_or_duplicate_key": 4,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "jstor-author|unique-second-fact": {
+    "gold": 648,
+    "linked": 648,
+    "right_or_duplicate_key": 648,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "reviewer|dupgroup:unique-rare": {
+    "gold": 82,
+    "linked": 82,
+    "right_or_duplicate_key": 82,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "reviewer|dupgroup:unique-rare-fullname": {
+    "gold": 2,
+    "linked": 2,
+    "right_or_duplicate_key": 2,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "reviewer|dupgroup:unique-rare-phd-start": {
+    "gold": 131,
+    "linked": 131,
+    "right_or_duplicate_key": 131,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "reviewer|dupgroup:unique-rare-span": {
+    "gold": 9,
+    "linked": 9,
+    "right_or_duplicate_key": 9,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "reviewer|dupgroup:unique-rare-variant": {
+    "gold": 2,
+    "linked": 2,
+    "right_or_duplicate_key": 2,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "reviewer|dupgroup:unique-second-fact": {
+    "gold": 1,
+    "linked": 1,
+    "right_or_duplicate_key": 1,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "reviewer|several-one-survives": {
+    "gold": 53,
+    "linked": 53,
+    "right_or_duplicate_key": 53,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "reviewer|unique-rare": {
+    "gold": 2129,
+    "linked": 2129,
+    "right_or_duplicate_key": 2129,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "reviewer|unique-rare-fullname": {
+    "gold": 915,
+    "linked": 915,
+    "right_or_duplicate_key": 915,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "reviewer|unique-rare-phd-start": {
+    "gold": 2084,
+    "linked": 2084,
+    "right_or_duplicate_key": 2084,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "reviewer|unique-rare-span": {
+    "gold": 297,
+    "linked": 297,
+    "right_or_duplicate_key": 297,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "reviewer|unique-rare-sup-aff": {
+    "gold": 1,
+    "linked": 1,
+    "right_or_duplicate_key": 1,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "reviewer|unique-rare-variant": {
+    "gold": 3,
+    "linked": 3,
+    "right_or_duplicate_key": 3,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "reviewer|unique-second-fact": {
+    "gold": 1622,
+    "linked": 1622,
+    "right_or_duplicate_key": 1622,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   }
+  },
+  "by_how_credited": {
+   "author|name:full": {
+    "gold": 4932,
+    "linked": 4291,
+    "right_or_duplicate_key": 4291,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.87
+   },
+   "author|name:initial": {
+    "gold": 238,
+    "linked": 159,
+    "right_or_duplicate_key": 159,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.6681
+   },
+   "author|name:variant": {
+    "gold": 32,
+    "linked": 29,
+    "right_or_duplicate_key": 29,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.9062
+   },
+   "author|orcid": {
+    "gold": 4911,
+    "linked": 4172,
+    "right_or_duplicate_key": 4169,
+    "wrong": 3,
+    "precision": 0.9993,
+    "recall": 0.8489
+   },
+   "jstor-author|name:full": {
+    "gold": 3977,
+    "linked": 3202,
+    "right_or_duplicate_key": 3202,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.8051
+   },
+   "jstor-author|name:initial": {
+    "gold": 390,
+    "linked": 95,
+    "right_or_duplicate_key": 95,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.2436
+   },
+   "jstor-author|name:variant": {
+    "gold": 17,
+    "linked": 5,
+    "right_or_duplicate_key": 5,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.2941
+   },
+   "jstor-author|orcid": {
+    "gold": 442,
+    "linked": 377,
+    "right_or_duplicate_key": 377,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.8529
+   },
+   "reviewer|name:full": {
+    "gold": 8529,
+    "linked": 6282,
+    "right_or_duplicate_key": 6282,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.7365
+   },
+   "reviewer|name:initial": {
+    "gold": 28,
+    "linked": 13,
+    "right_or_duplicate_key": 13,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.4643
+   },
+   "reviewer|name:variant": {
+    "gold": 37,
+    "linked": 24,
+    "right_or_duplicate_key": 24,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.6486
+   },
+   "reviewer|orcid": {
+    "gold": 1196,
+    "linked": 1012,
+    "right_or_duplicate_key": 1012,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.8462
+   }
+  },
+  "by_lc_rarity": {
+   "author|lc 0": {
+    "gold": 1209,
+    "linked": 983,
+    "right_or_duplicate_key": 981,
+    "wrong": 2,
+    "precision": 0.998,
+    "recall": 0.8114
+   },
+   "author|lc 1": {
+    "gold": 5795,
+    "linked": 5426,
+    "right_or_duplicate_key": 5426,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.9363
+   },
+   "author|lc 2-5": {
+    "gold": 1858,
+    "linked": 1522,
+    "right_or_duplicate_key": 1521,
+    "wrong": 1,
+    "precision": 0.9993,
+    "recall": 0.8186
+   },
+   "author|lc 6+": {
+    "gold": 1251,
+    "linked": 720,
+    "right_or_duplicate_key": 720,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.5755
+   },
+   "jstor-author|lc 0": {
+    "gold": 208,
+    "linked": 75,
+    "right_or_duplicate_key": 75,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.3606
+   },
+   "jstor-author|lc 1": {
+    "gold": 2845,
+    "linked": 2630,
+    "right_or_duplicate_key": 2630,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.9244
+   },
+   "jstor-author|lc 2-5": {
+    "gold": 1027,
+    "linked": 682,
+    "right_or_duplicate_key": 682,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.6641
+   },
+   "jstor-author|lc 6+": {
+    "gold": 746,
+    "linked": 292,
+    "right_or_duplicate_key": 292,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.3914
+   },
+   "reviewer|lc 0": {
+    "gold": 236,
+    "linked": 197,
+    "right_or_duplicate_key": 197,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.8347
+   },
+   "reviewer|lc 1": {
+    "gold": 5225,
+    "linked": 4832,
+    "right_or_duplicate_key": 4832,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.9248
+   },
+   "reviewer|lc 2-5": {
+    "gold": 2509,
+    "linked": 1652,
+    "right_or_duplicate_key": 1652,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.6584
+   },
+   "reviewer|lc 6+": {
+    "gold": 1820,
+    "linked": 650,
+    "right_or_duplicate_key": 650,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.3571
+   }
+  },
+  "by_oa_rarity": {
+   "author|oa 0-1": {
+    "gold": 4148,
+    "linked": 3702,
+    "right_or_duplicate_key": 3700,
+    "wrong": 2,
+    "precision": 0.9995,
+    "recall": 0.892
+   },
+   "author|oa 2-5": {
+    "gold": 4703,
+    "linked": 4169,
+    "right_or_duplicate_key": 4168,
+    "wrong": 1,
+    "precision": 0.9998,
+    "recall": 0.8862
+   },
+   "author|oa 21+": {
+    "gold": 242,
+    "linked": 115,
+    "right_or_duplicate_key": 115,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.4752
+   },
+   "author|oa 6-20": {
+    "gold": 1020,
+    "linked": 665,
+    "right_or_duplicate_key": 665,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.652
+   },
+   "jstor-author|oa 0-1": {
+    "gold": 1727,
+    "linked": 1480,
+    "right_or_duplicate_key": 1480,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.857
+   },
+   "jstor-author|oa 2-5": {
+    "gold": 2424,
+    "linked": 1958,
+    "right_or_duplicate_key": 1958,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.8078
+   },
+   "jstor-author|oa 21+": {
+    "gold": 94,
+    "linked": 8,
+    "right_or_duplicate_key": 8,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.0851
+   },
+   "jstor-author|oa 6-20": {
+    "gold": 581,
+    "linked": 233,
+    "right_or_duplicate_key": 233,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.401
+   },
+   "reviewer|oa 0-1": {
+    "gold": 3660,
+    "linked": 3153,
+    "right_or_duplicate_key": 3153,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.8615
+   },
+   "reviewer|oa 2-5": {
+    "gold": 5029,
+    "linked": 3899,
+    "right_or_duplicate_key": 3899,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.7753
+   },
+   "reviewer|oa 21+": {
+    "gold": 160,
+    "linked": 4,
+    "right_or_duplicate_key": 4,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.025
+   },
+   "reviewer|oa 6-20": {
+    "gold": 941,
+    "linked": 275,
+    "right_or_duplicate_key": 275,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.2922
+   }
+  },
+  "by_decade": {
+   "author|1680": {
+    "gold": 2,
+    "linked": 2,
+    "right_or_duplicate_key": 2,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "author|1700": {
+    "gold": 1,
+    "linked": 1,
+    "right_or_duplicate_key": 1,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "author|1760": {
+    "gold": 1,
+    "linked": 0,
+    "right_or_duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "recall": 0.0
+   },
+   "author|1770": {
+    "gold": 1,
+    "linked": 1,
+    "right_or_duplicate_key": 1,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "author|1780": {
+    "gold": 2,
+    "linked": 1,
+    "right_or_duplicate_key": 1,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.5
+   },
+   "author|1790": {
+    "gold": 4,
+    "linked": 4,
+    "right_or_duplicate_key": 4,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "author|1800": {
+    "gold": 2,
+    "linked": 1,
+    "right_or_duplicate_key": 1,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.5
+   },
+   "author|1810": {
+    "gold": 2,
+    "linked": 1,
+    "right_or_duplicate_key": 1,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.5
+   },
+   "author|1820": {
+    "gold": 5,
+    "linked": 4,
+    "right_or_duplicate_key": 4,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.8
+   },
+   "author|1830": {
+    "gold": 1,
+    "linked": 1,
+    "right_or_duplicate_key": 1,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "author|1840": {
+    "gold": 3,
+    "linked": 3,
+    "right_or_duplicate_key": 3,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "author|1850": {
+    "gold": 6,
+    "linked": 6,
+    "right_or_duplicate_key": 6,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "author|1860": {
+    "gold": 7,
+    "linked": 7,
+    "right_or_duplicate_key": 7,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "author|1870": {
+    "gold": 9,
+    "linked": 8,
+    "right_or_duplicate_key": 8,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.8889
+   },
+   "author|1880": {
+    "gold": 14,
+    "linked": 14,
+    "right_or_duplicate_key": 14,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "author|1890": {
+    "gold": 18,
+    "linked": 14,
+    "right_or_duplicate_key": 14,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.7778
+   },
+   "author|1900": {
+    "gold": 31,
+    "linked": 28,
+    "right_or_duplicate_key": 28,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.9032
+   },
+   "author|1910": {
+    "gold": 43,
+    "linked": 40,
+    "right_or_duplicate_key": 40,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.9302
+   },
+   "author|1920": {
+    "gold": 34,
+    "linked": 33,
+    "right_or_duplicate_key": 33,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.9706
+   },
+   "author|1930": {
+    "gold": 87,
+    "linked": 80,
+    "right_or_duplicate_key": 80,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.9195
+   },
+   "author|1940": {
+    "gold": 75,
+    "linked": 70,
+    "right_or_duplicate_key": 70,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.9333
+   },
+   "author|1950": {
+    "gold": 119,
+    "linked": 111,
+    "right_or_duplicate_key": 111,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.9328
+   },
+   "author|1960": {
+    "gold": 238,
+    "linked": 204,
+    "right_or_duplicate_key": 204,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.8571
+   },
+   "author|1970": {
+    "gold": 324,
+    "linked": 270,
+    "right_or_duplicate_key": 270,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.8333
+   },
+   "author|1980": {
+    "gold": 516,
+    "linked": 443,
+    "right_or_duplicate_key": 443,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.8585
+   },
+   "author|1990": {
+    "gold": 912,
+    "linked": 781,
+    "right_or_duplicate_key": 781,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.8564
+   },
+   "author|2000": {
+    "gold": 1741,
+    "linked": 1483,
+    "right_or_duplicate_key": 1483,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.8518
+   },
+   "author|2010": {
+    "gold": 3075,
+    "linked": 2662,
+    "right_or_duplicate_key": 2662,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.8657
+   },
+   "author|2020": {
+    "gold": 2815,
+    "linked": 2378,
+    "right_or_duplicate_key": 2375,
+    "wrong": 3,
+    "precision": 0.9987,
+    "recall": 0.8437
+   },
+   "author|no year": {
+    "gold": 25,
+    "linked": 0,
+    "right_or_duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "recall": 0.0
+   },
+   "jstor-author|1900": {
+    "gold": 3,
+    "linked": 2,
+    "right_or_duplicate_key": 2,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.6667
+   },
+   "jstor-author|1910": {
+    "gold": 15,
+    "linked": 12,
+    "right_or_duplicate_key": 12,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.8
+   },
+   "jstor-author|1920": {
+    "gold": 29,
+    "linked": 14,
+    "right_or_duplicate_key": 14,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.4828
+   },
+   "jstor-author|1930": {
+    "gold": 53,
+    "linked": 29,
+    "right_or_duplicate_key": 29,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.5472
+   },
+   "jstor-author|1940": {
+    "gold": 67,
+    "linked": 47,
+    "right_or_duplicate_key": 47,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.7015
+   },
+   "jstor-author|1950": {
+    "gold": 156,
+    "linked": 106,
+    "right_or_duplicate_key": 106,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.6795
+   },
+   "jstor-author|1960": {
+    "gold": 331,
+    "linked": 220,
+    "right_or_duplicate_key": 220,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.6647
+   },
+   "jstor-author|1970": {
+    "gold": 560,
+    "linked": 408,
+    "right_or_duplicate_key": 408,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.7286
+   },
+   "jstor-author|1980": {
+    "gold": 760,
+    "linked": 563,
+    "right_or_duplicate_key": 563,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.7408
+   },
+   "jstor-author|1990": {
+    "gold": 997,
+    "linked": 763,
+    "right_or_duplicate_key": 763,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.7653
+   },
+   "jstor-author|2000": {
+    "gold": 1122,
+    "linked": 911,
+    "right_or_duplicate_key": 911,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.8119
+   },
+   "jstor-author|2010": {
+    "gold": 696,
+    "linked": 576,
+    "right_or_duplicate_key": 576,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.8276
+   },
+   "jstor-author|2020": {
+    "gold": 36,
+    "linked": 28,
+    "right_or_duplicate_key": 28,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.7778
+   },
+   "jstor-author|no year": {
+    "gold": 1,
+    "linked": 0,
+    "right_or_duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "recall": 0.0
+   },
+   "reviewer|1910": {
+    "gold": 5,
+    "linked": 3,
+    "right_or_duplicate_key": 3,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.6
+   },
+   "reviewer|1920": {
+    "gold": 5,
+    "linked": 5,
+    "right_or_duplicate_key": 5,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "reviewer|1930": {
+    "gold": 47,
+    "linked": 39,
+    "right_or_duplicate_key": 39,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.8298
+   },
+   "reviewer|1940": {
+    "gold": 56,
+    "linked": 49,
+    "right_or_duplicate_key": 49,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.875
+   },
+   "reviewer|1950": {
+    "gold": 104,
+    "linked": 94,
+    "right_or_duplicate_key": 94,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.9038
+   },
+   "reviewer|1960": {
+    "gold": 211,
+    "linked": 188,
+    "right_or_duplicate_key": 188,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.891
+   },
+   "reviewer|1970": {
+    "gold": 537,
+    "linked": 429,
+    "right_or_duplicate_key": 429,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.7989
+   },
+   "reviewer|1980": {
+    "gold": 1177,
+    "linked": 940,
+    "right_or_duplicate_key": 940,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.7986
+   },
+   "reviewer|1990": {
+    "gold": 2180,
+    "linked": 1656,
+    "right_or_duplicate_key": 1656,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.7596
+   },
+   "reviewer|2000": {
+    "gold": 2675,
+    "linked": 1963,
+    "right_or_duplicate_key": 1963,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.7338
+   },
+   "reviewer|2010": {
+    "gold": 2635,
+    "linked": 1847,
+    "right_or_duplicate_key": 1847,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.7009
+   },
+   "reviewer|2020": {
+    "gold": 158,
+    "linked": 118,
+    "right_or_duplicate_key": 118,
+    "wrong": 0,
+    "precision": 1.0,
+    "recall": 0.7468
+   }
+  },
+  "not_linked_reasons": {
+   "reviewer|possible|one-candidate-common-name": 818,
+   "reviewer|possible|several-several-dated": 788,
+   "author|possible|several-several-dated": 680,
+   "reviewer|ambiguous|several-several-dated": 664,
+   "jstor-author|possible|several-several-dated": 321,
+   "jstor-author|possible|one-candidate-common-name": 269,
+   "jstor-author|ambiguous|several-several-dated": 206,
+   "author|none|no-compatible-name": 196,
+   "jstor-author|possible|one-candidate-initial-name": 186,
+   "author|possible|one-candidate-common-name": 117,
+   "author|possible|review-record-rarity-only": 102,
+   "author|ambiguous|several-several-dated": 88,
+   "author|possible|one-candidate-none-dated": 73,
+   "reviewer|possible|one-candidate-surname-variant-name": 68,
+   "author|none|only-date-excluded": 57,
+   "author|possible|same-title-as-own-book": 52,
+   "jstor-author|possible|one-candidate-surname-variant-name": 43,
+   "jstor-author|possible|same-title-as-own-book": 33,
+   "author|possible|outside-history-rarity-only": 33,
+   "reviewer|ambiguous|several-one-dated-no-fact": 32,
+   "reviewer|none|only-date-excluded": 24,
+   "reviewer|possible|one-candidate-none-dated": 24,
+   "jstor-author|ambiguous|several-one-dated-no-fact": 23,
+   "author|possible|orcid-differs-tie-only": 19,
+   "jstor-author|possible|one-candidate-none-dated": 19,
+   "reviewer|none|author-of-reviewed-book": 17,
+   "jstor-author|none|only-date-excluded": 17,
+   "author|possible|one-candidate-initial-name": 12,
+   "reviewer|possible|orcid-differs-tie-only": 12,
+   "author|possible|one-candidate-surname-variant-name": 12,
+   "jstor-author|possible|one-candidate-variant-name": 11,
+   "reviewer|possible|one-candidate-variant-name": 9,
+   "jstor-author|ambiguous|several-none-dated": 9,
+   "author|ambiguous|several-one-dated-no-fact": 6,
+   "author|possible|several-one-dated-no-fact": 4,
+   "jstor-author|none|no-compatible-name": 3,
+   "jstor-author|possible|several-one-dated-no-fact": 3,
+   "author|possible|several-none-dated": 3,
+   "author|ambiguous|several-none-dated": 3,
+   "author|possible|one-candidate-variant-name": 3
+  }
+ },
+ "namesake": {
+  "rows": {
+   "masked-author|reviewer": 4118,
+   "orcid-namesake|reviewer": 150,
+   "masked-author|author": 1934,
+   "masked-author|jstor-author": 1788,
+   "orcid-namesake|jstor-author": 29,
+   "orcid-namesake|author": 1767
+  },
+  "false_links": {
+   "masked-author|author": 4,
+   "masked-author|reviewer": 11,
+   "orcid-namesake|reviewer": 80,
+   "masked-author|jstor-author": 9,
+   "orcid-namesake|jstor-author": 18,
+   "orcid-namesake|author": 279
+  },
+  "false_links_by_branch": {
+   "orcid-namesake|unique-second-fact": 218,
+   "orcid-namesake|unique-rare-phd-start": 15,
+   "orcid-namesake|unique-rare-fullname": 67,
+   "orcid-namesake|unique-rare-span": 33,
+   "masked-author|unique-second-fact": 20,
+   "masked-author|several-one-survives": 1,
+   "masked-author|unique-rare-span": 3,
+   "orcid-namesake|unique-rare": 43,
+   "orcid-namesake|unique-rare-variant": 1
+  }
+ },
+ "unkeyed": {
+  "jstor-author": {
+   "positions": 46601,
+   "works": 40279,
+   "with_printed_institution": 2365,
+   "with_orcid": 894,
+   "distinct_names": 30440,
+   "distinct_name_institution": 30440,
+   "names_with_2plus_works": 6514,
+   "names_with_5plus_works": 990
+  },
+  "author": {
+   "positions": 405230,
+   "works": 171522,
+   "with_printed_institution": 215619,
+   "with_orcid": 226076,
+   "distinct_names": 219564,
+   "distinct_name_institution": 219584,
+   "names_with_2plus_works": 59887,
+   "names_with_5plus_works": 11972
+  },
+  "reviewer": {
+   "positions": 89359,
+   "works": 86808,
+   "with_printed_institution": 32441,
+   "with_orcid": 8228,
+   "distinct_names": 63479,
+   "distinct_name_institution": 65949,
+   "names_with_2plus_works": 12982,
+   "names_with_5plus_works": 1397
+  }
+ },
+ "unkeyed_top": {
+  "jstor-author": [
+   {
+    "name": "G. Monod",
+    "works": 134,
+    "institutions": []
+   },
+   {
+    "name": "Ch. Bémont",
+    "works": 78,
+    "institutions": []
+   },
+   {
+    "name": "Gabriel Vauthier",
+    "works": 71,
+    "institutions": []
+   },
+   {
+    "name": "Paul Leuilliot",
+    "works": 67,
+    "institutions": []
+   },
+   {
+    "name": "C. V.",
+    "works": 67,
+    "institutions": []
+   },
+   {
+    "name": "A. Mz.",
+    "works": 62,
+    "institutions": []
+   },
+   {
+    "name": "O. K.",
+    "works": 56,
+    "institutions": []
+   },
+   {
+    "name": "Alfredo Reumont",
+    "works": 50,
+    "institutions": []
+   },
+   {
+    "name": "Gustave Laurent",
+    "works": 49,
+    "institutions": []
+   },
+   {
+    "name": "François Vermale",
+    "works": 48,
+    "institutions": []
+   },
+   {
+    "name": "Benedetta Borello",
+    "works": 47,
+    "institutions": []
+   },
+   {
+    "name": "M. B.",
+    "works": 46,
+    "institutions": []
+   },
+   {
+    "name": "Ph. Sagnac",
+    "works": 45,
+    "institutions": []
+   },
+   {
+    "name": "Gilles Morin",
+    "works": 43,
+    "institutions": []
+   },
+   {
+    "name": "A. Molinier",
+    "works": 42,
+    "institutions": []
+   },
+   {
+    "name": "Claude Diebolt",
+    "works": 39,
+    "institutions": []
+   },
+   {
+    "name": "Rod. Reuss",
+    "works": 39,
+    "institutions": []
+   },
+   {
+    "name": "A. W. Cornelius Hallen",
+    "works": 37,
+    "institutions": []
+   },
+   {
+    "name": "P. L.",
+    "works": 36,
+    "institutions": []
+   },
+   {
+    "name": "Frank L. Pigot",
+    "works": 36,
+    "institutions": []
+   },
+   {
+    "name": "H. Monin",
+    "works": 35,
+    "institutions": []
+   },
+   {
+    "name": "Siân Reynolds",
+    "works": 34,
+    "institutions": []
+   },
+   {
+    "name": "P. Leuilliot",
+    "works": 34,
+    "institutions": []
+   },
+   {
+    "name": "L. F.",
+    "works": 33,
+    "institutions": []
+   },
+   {
+    "name": "Gabriel Monod",
+    "works": 33,
+    "institutions": []
+   }
+  ],
+  "author": [
+   {
+    "name": "Гринин Антон Леонидович",
+    "works": 2086,
+    "institutions": []
+   },
+   {
+    "name": "Kamran Ali Abbasi",
+    "works": 294,
+    "institutions": []
+   },
+   {
+    "name": "Nancy R. Hearst",
+    "works": 289,
+    "institutions": []
+   },
+   {
+    "name": "James Kashugyera Tumwine",
+    "works": 276,
+    "institutions": []
+   },
+   {
+    "name": "Laurie Laybourn‐Langton",
+    "works": 241,
+    "institutions": []
+   },
+   {
+    "name": "Pedro de Cieza de León",
+    "works": 211,
+    "institutions": []
+   },
+   {
+    "name": "А. М. Ковалева",
+    "works": 211,
+    "institutions": []
+   },
+   {
+    "name": "Eva Telkes-Klein",
+    "works": 206,
+    "institutions": []
+   },
+   {
+    "name": "Wadeia Mohammad Sharief",
+    "works": 164,
+    "institutions": []
+   },
+   {
+    "name": "Lukoye Atwoli",
+    "works": 160,
+    "institutions": [
+     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
+    ]
+   },
+   {
+    "name": "Abraham Haileamlak",
+    "works": 159,
+    "institutions": [
+     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
+    ]
+   },
+   {
+    "name": "Joy Muhia",
+    "works": 151,
+    "institutions": [
+     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
+    ]
+   },
+   {
+    "name": "Arash Rashidian",
+    "works": 148,
+    "institutions": [
+     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
+    ]
+   },
+   {
+    "name": "Siaka Sidibé",
+    "works": 147,
+    "institutions": [
+     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
+    ]
+   },
+   {
+    "name": "Abdelmadjid Snouber",
+    "works": 147,
+    "institutions": [
+     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
+    ]
+   },
+   {
+    "name": "Lilia Zakhama",
+    "works": 147,
+    "institutions": [
+     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
+    ]
+   },
+   {
+    "name": "Jean‐Marie Kayembe Ntumba",
+    "works": 146,
+    "institutions": [
+     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
+    ]
+   },
+   {
+    "name": "Carlos Augusto Monteiro",
+    "works": 146,
+    "institutions": []
+   },
+   {
+    "name": "Aiah Albert Gbakima",
+    "works": 146,
+    "institutions": []
+   },
+   {
+    "name": "Fhumulani Mavis Mulaudzi",
+    "works": 145,
+    "institutions": [
+     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
+    ]
+   },
+   {
+    "name": "Friday Ebhodaghe Okonofua",
+    "works": 145,
+    "institutions": []
+   },
+   {
+    "name": "James W. M. Kigera",
+    "works": 144,
+    "institutions": []
+   },
+   {
+    "name": "David Ofori‐Adjei",
+    "works": 144,
+    "institutions": []
+   },
+   {
+    "name": "Maha El‐Adawy",
+    "works": 141,
+    "institutions": []
+   },
+   {
+    "name": "Mohammad Sahar Yassien",
+    "works": 139,
+    "institutions": [
+     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
+    ]
+   }
+  ],
+  "reviewer": [
+   {
+    "name": "",
+    "works": 418,
+    "institutions": []
+   },
+   {
+    "name": "Joshua Sinai",
+    "works": 124,
+    "institutions": []
+   },
+   {
+    "name": "Richard P. Smyers",
+    "works": 59,
+    "institutions": []
+   },
+   {
+    "name": "Philip Chrimes",
+    "works": 49,
+    "institutions": []
+   },
+   {
+    "name": "Richard Feinberg",
+    "works": 44,
+    "institutions": [
+     "Graduate School of International Relations and Pacific Studies, University"
+    ]
+   },
+   {
+    "name": "Martin H. Levinson",
+    "works": 40,
+    "institutions": []
+   },
+   {
+    "name": "Carol Anne Douglas",
+    "works": 37,
+    "institutions": []
+   },
+   {
+    "name": "Jerome Stern",
+    "works": 37,
+    "institutions": []
+   },
+   {
+    "name": "Edward Ousselin",
+    "works": 36,
+    "institutions": []
+   },
+   {
+    "name": "M. F. Ashley-Montagu",
+    "works": 36,
+    "institutions": [
+     "New York University",
+     "Hahnemann Medical College",
+     "New York University A"
+    ]
+   },
+   {
+    "name": "William Diebold <suffix>jr.</suffix>",
+    "works": 34,
+    "institutions": []
+   },
+   {
+    "name": "Robert Hastings Nichols",
+    "works": 34,
+    "institutions": [
+     "Auburn Theological Seminary",
+     "Union Theological Seminary",
+     "AUBURN THEOLOGICAL SEMINARY"
+    ]
+   },
+   {
+    "name": "Arthur Goldhammer",
+    "works": 33,
+    "institutions": []
+   },
+   {
+    "name": "Don Higginbotham",
+    "works": 33,
+    "institutions": [
+     "University of North Carolina at Chapel Hill",
+     "UNIVERSITY OF NORTH CAROLINA",
+     "Louisiana State University"
+    ]
+   },
+   {
+    "name": "Benjamin E. Wallacker",
+    "works": 33,
+    "institutions": [
+     "University of California, Davis"
+    ]
+   },
+   {
+    "name": "Hélène Bourguignon",
+    "works": 30,
+    "institutions": []
+   },
+   {
+    "name": "Thomas D. Isern",
+    "works": 29,
+    "institutions": [
+     "Emporia State University",
+     "North Dakota State University"
+    ]
+   },
+   {
+    "name": "Jude P. Dougherty",
+    "works": 29,
+    "institutions": []
+   },
+   {
+    "name": "Patrick Madigan",
+    "works": 29,
+    "institutions": []
+   },
+   {
+    "name": "Daniel F. McCall",
+    "works": 28,
+    "institutions": [
+     "Boston University"
+    ]
+   },
+   {
+    "name": "Bryan F. Le Beau",
+    "works": 28,
+    "institutions": [
+     "Creighton University",
+     "University of Missouri–Kansas City",
+     "University ofMissouri Kansas City, Missouri"
+    ]
+   },
+   {
+    "name": "Albert Rabil Jr.",
+    "works": 27,
+    "institutions": [
+     "State University of New York",
+     "State University of New York, College",
+     "STATE UNIVERSITY OF NEW YORK"
+    ]
+   },
+   {
+    "name": "Geoffrey Mcnicoll",
+    "works": 26,
+    "institutions": [
+     "Population Council, New York Erika Dyck"
+    ]
+   },
+   {
+    "name": "R. Barry Levis",
+    "works": 24,
+    "institutions": [
+     "Rollins College",
+     "Rollins College Birth"
+    ]
+   },
+   {
+    "name": "James H. Smylie",
+    "works": 24,
+    "institutions": [
+     "Union Theological Seminary",
+     "Union Theological Seminary Richmond",
+     "Union Seminary, Richmond"
+    ]
+   }
+  ]
+ },
+ "contributors": {
+  "books": 678856,
+  "books_with_lc_record": 560852,
+  "detector_test_on_lc_labels": {
+   "4": {
+    "flagged_labelled": 7,
+    "contributor": 7,
+    "author": 0,
+    "precision": 1.0,
+    "recall": 0.0583,
+    "people": 96
+   },
+   "5": {
+    "flagged_labelled": 7,
+    "contributor": 7,
+    "author": 0,
+    "precision": 1.0,
+    "recall": 0.0583,
+    "people": 42
+   },
+   "6": {
+    "flagged_labelled": 7,
+    "contributor": 7,
+    "author": 0,
+    "precision": 1.0,
+    "recall": 0.0583,
+    "people": 27
+   }
+  },
+  "chosen_n": 5,
+  "work_people_overrides": {
+   "author|possible|contributor-candidate": 777,
+   "contributor|linked|series-foreword-pattern": 9,
+   "contributor|linked|lc-foreword": 100,
+   "contributor|possible|lc-foreword": 29,
+   "contributor|none|lc-foreword": 76,
+   "contributor|ambiguous|lc-foreword": 6
+  },
+  "keylog_claims_flagged": {
+   "series-foreword-pattern": 306,
+   "lc-foreword": 25,
+   "parent-book-contributor": 7
+  },
+  "keylog_claims_people": 63,
+  "top_people": [
+   {
+    "key": "p-125756",
+    "label": "Gray, Asa",
+    "claims": 19
+   },
+   {
+    "key": "p-135534",
+    "label": "Lavisse, Ernest",
+    "claims": 17
+   },
+   {
+    "key": "p-3848",
+    "label": "Tulard, Jean",
+    "claims": 17
+   },
+   {
+    "key": "p-628",
+    "label": "Jacques Le Goff",
+    "claims": 13
+   },
+   {
+    "key": "p-519",
+    "label": "Graeme Wynn",
+    "claims": 12
+   },
+   {
+    "key": "p-112917",
+    "label": "Rheinberger, Hans-Jörg",
+    "claims": 10
+   },
+   {
+    "key": "p-3681",
+    "label": "Soboul, Albert",
+    "claims": 9
+   },
+   {
+    "key": "p-130183",
+    "label": "Amalvi, Christian",
+    "claims": 9
+   },
+   {
+    "key": "p-3424",
+    "label": "Rémond, René",
+    "claims": 8
+   },
+   {
+    "key": "p-111860",
+    "label": "Habermas, Rebekka",
+    "claims": 8
+   },
+   {
+    "key": "p-15055",
+    "label": "Jürgen Renn",
+    "claims": 8
+   },
+   {
+    "key": "p-106955",
+    "label": "Paravicini, Werner",
+    "claims": 8
+   },
+   {
+    "key": "p-128030",
+    "label": "Furnivall, Frederick James",
+    "claims": 8
+   },
+   {
+    "key": "p-191529",
+    "label": "Garin, Eugenio, 1909-2004",
+    "claims": 8
+   },
+   {
+    "key": "p-3632",
+    "label": "Sirinelli, Jean-François",
+    "claims": 7
+   },
+   {
+    "key": "p-13688",
+    "label": "Krzysztof Ślusarek",
+    "claims": 7
+   },
+   {
+    "key": "p-106232",
+    "label": "Cardini, Franco",
+    "claims": 7
+   },
+   {
+    "key": "p-136367",
+    "label": "Balard, Michel",
+    "claims": 7
+   },
+   {
+    "key": "p-143331",
+    "label": "Rousseaux, Xavier",
+    "claims": 7
+   },
+   {
+    "key": "p-1839",
+    "label": "Chaunu, Pierre",
+    "claims": 6
+   },
+   {
+    "key": "p-3175",
+    "label": "Nash, Gary B.",
+    "claims": 6
+   },
+   {
+    "key": "p-125224",
+    "label": "Sarkar, Jadunath, Sir",
+    "claims": 6
+   },
+   {
+    "key": "p-30084",
+    "label": "Billias, George",
+    "claims": 6
+   },
+   {
+    "key": "p-202352",
+    "label": "Gil Novales, Alberto",
+    "claims": 6
+   },
+   {
+    "key": "p-3875",
+    "label": "Vauchez, André",
+    "claims": 6
+   },
+   {
+    "key": "p-1669",
+    "label": "Bloom, Harold",
+    "claims": 6
+   },
+   {
+    "key": "p-128468",
+    "label": "Quennell, Peter",
+    "claims": 6
+   },
+   {
+    "key": "p-2839",
+    "label": "Le Roy Ladurie, Emmanuel",
+    "claims": 6
+   },
+   {
+    "key": "p-221342",
+    "label": "Vasoli, Cesare, 1924-",
+    "claims": 5
+   },
+   {
+    "key": "p-143595",
+    "label": "Matz, Jean-Michel",
+    "claims": 5
+   }
+  ],
+  "coauthored_pairs_lost": {
+   "work_people_retype": 96,
+   "plus_keylog_proposal": 189
+  },
+  "reviewed_rows_lost": {
+   "work_people_retype": 66,
+   "plus_keylog_proposal": 90
+  },
+  "note": "contributor rows stay in data/graph/work-people with role contributor (state linked); the loader must write them as CONTRIBUTED, not AUTHORED, and leave them out of COAUTHORED and REVIEWED"
+ },
+ "candidate_duplicates": {
+  "groups": 4893,
+  "keys": 13732,
+  "works_at_stake": 14161,
+  "groups_of_3plus": 1970,
+  "by_test": {
+   "strict (credited meanwhile)": 2510,
+   "loose (name rare test failed; nothing credited)": 2383
+  },
+  "note": "duplicate-group test (link_work_people.dup_group); not merged; credits meanwhile go to the group representative (identifier-bearing key, else most works)"
+ }
+}

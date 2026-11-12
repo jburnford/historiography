@@ -11,6 +11,7 @@ from pathlib import Path
 import duckdb
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from identifiers import State, DEFAULT_DIR
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 ROOT = Path(__file__).resolve().parents[1]
 HELD = ['data/identifiers/review-books-lc-2026-11-07d/held-people.json',
@@ -39,7 +40,7 @@ for line in open(ROOT / 'data/field-research/aha-dissertations-2026-10-13/record
     r = json.loads(line); aha['aha-phd:' + r['id']] = dict(title=r['title'], year=r['year'], department=r['department'])
 G = ROOT / 'build/graph'
 works = {}
-for k, l, y, kind in db.execute(f"""SELECT a."from", w.label, w.year, w.kind FROM '{G}/authored.parquet' a
+for k, l, y, kind in db.execute(f"""SELECT a."from", w.label, w.year, w.kind FROM {keylog(G, 'authored')} a
         JOIN '{G}/work.parquet' w ON w.key = a."to" WHERE NOT starts_with(w.label, 'Review')""").fetchall():
     works.setdefault(k, []).append([l[:140], y, kind])
 n = 0

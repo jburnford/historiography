@@ -18,6 +18,7 @@ from pathlib import Path
 import duckdb
 
 from identifiers import ROOT
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 GRAPH = ROOT / 'build/graph'
 CORPUS = ROOT / 'data/field-research/dissertation-citations-2026-10-11'
@@ -56,8 +57,8 @@ def main():
     db.executemany('INSERT INTO pk VALUES (?)', [(k,) for k in keys])
     works = {}
     for person, work, kind, year, title in db.execute(f"""
-            SELECT e."from", w.key, w.kind, w.year, w.label FROM (SELECT "from", "to" FROM '{GRAPH}/authored.parquet'
-                   UNION SELECT "from", "to" FROM '{GRAPH}/edited.parquet') e JOIN '{GRAPH}/work.parquet' w ON w.key = e."to"
+            SELECT e."from", w.key, w.kind, w.year, w.label FROM (SELECT "from", "to" FROM {keylog(GRAPH, 'authored')}
+                   UNION SELECT "from", "to" FROM {keylog(GRAPH, 'edited')}) e JOIN '{GRAPH}/work.parquet' w ON w.key = e."to"
             WHERE e."from" IN (SELECT k FROM pk) ORDER BY w.year NULLS LAST, w.label""").fetchall():
         works.setdefault(person, []).append(dict(work=work, kind=kind, year=year, title=title))
     items = [dict(id=w, cited_title=t, cited_year=y, cited_authors=a, cited_by_theses=n,

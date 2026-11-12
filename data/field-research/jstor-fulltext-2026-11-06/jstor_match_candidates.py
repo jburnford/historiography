@@ -30,6 +30,8 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from build_dissertation_citation_graph import fold, title_key  # noqa: E402
+import sys
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 E = '/mnt/e/jstor-fulltext-2026-11-06'
 GRAPH = ROOT / 'build/graph'
@@ -87,8 +89,8 @@ def work_index():
     db = duckdb.connect(); db.execute("SET memory_limit = '4GB'")
     # authors and editors (an edited volume's people are in edited.parquet: 'The Invention of Tradition')
     rows = db.execute(f"""
-        with people as (select "to" as work, "from" as person from '{GRAPH}/authored.parquet'
-                        union all select "to", "from" from '{GRAPH}/edited.parquet')
+        with people as (select "to" as work, "from" as person from {keylog(GRAPH, 'authored')}
+                        union all select "to", "from" from {keylog(GRAPH, 'edited')})
         select w.key, w.label, w.kind, w.year, list(p.label) filter (where p.label is not null) as names, any_value(w.lccn) as lccn
         from '{GRAPH}/work.parquet' w
         left join people x on x.work = w.key

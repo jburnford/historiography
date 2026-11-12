@@ -1,0 +1,88 @@
+{
+ "date": "2026-11-11",
+ "rule": "exact ORCID only (raw_orcid printed by the publisher, or the OpenAlex author entity ORCID); held: entity-ORCID rows whose printed name lacks the key family name, works before age 15 or before 1940 without a birth year",
+ "sources": {
+  "disk": [
+   "/mnt/e/openalex-history-2026-11-08/history",
+   "/mnt/e/openalex-history-2026-11-08/dissertations",
+   "/mnt/e/openalex-people-2026-11-09/doi-lookup"
+  ],
+  "api": "/home/jic823/historiography/build/openalex-author-works-2026-11-11"
+ },
+ "historian_keys_strong_supported": 47544,
+ "historian_keys_with_orcid": 9058,
+ "keyed_orcids": 24646,
+ "stats": {
+  "records": 835752,
+  "in_graph_keyed_id": 376065,
+  "in_graph_title_year_author": 68958,
+  "in_graph_keyed_id_person_not_credited": 3572,
+  "skip_type:paratext": 15266,
+  "skip_type:erratum": 614,
+  "skip_type:retraction": 14,
+  "skip_type:supplementary-materials": 226,
+  "skip_type:peer-review": 194,
+  "skip_no_title": 1071,
+  "in_graph_unkeyed_already_credited": 1683,
+  "existing_unkeyed_records": 3388,
+  "dup_doi_records": 118
+ },
+ "works": 368155,
+ "works_via_api_only": 301591,
+ "works_by_type": {
+  "article": 132204,
+  "book-chapter": 103637,
+  "book-review": 64058,
+  "book": 19971,
+  "other": 11302,
+  "conference-paper": 8676,
+  "reference-entry": 6831,
+  "dataset": 4980,
+  "preprint": 4365,
+  "editorial": 3186,
+  "dissertation": 3014,
+  "report": 2474,
+  "review": 1954,
+  "conference-abstract": 1114,
+  "letter": 303,
+  "software": 42,
+  "study-registration": 36,
+  "data-paper": 6,
+  "standard": 2
+ },
+ "works_by_kind": {
+  "article": 137647,
+  "chapter": 110468,
+  "review": 64058,
+  "other": 23652,
+  "book": 19971,
+  "dataset": 4980,
+  "preprint": 4365,
+  "thesis": 3014
+ },
+ "twins": {
+  "graph-main-title:preprint": 3307,
+  "graph-main-title:version": 13925,
+  "graph-title:version": 5589,
+  "graph-title:preprint": 1002,
+  "table-title:preprint": 1179,
+  "table-title:version": 8222,
+  "graph-title:dataset": 54,
+  "graph-main-title:dataset": 15,
+  "table-title:dataset": 105
+ },
+ "works_without_twin": 334757,
+ "author_rows": 384322,
+ "author_rows_by_state": {
+  "credited": 349214,
+  "held": 35108
+ },
+ "author_rows_by_basis": {
+  "raw-orcid": 84754,
+  "openalex-author-orcid": 299568
+ },
+ "people_credited": 14742,
+ "historians_credited": 8568,
+ "existing_unkeyed_credit_rows": 3446,
+ "calls": 3366
+}

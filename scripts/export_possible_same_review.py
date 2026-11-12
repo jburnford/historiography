@@ -11,6 +11,7 @@ import argparse, csv, gzip, json
 from collections import defaultdict
 from pathlib import Path
 import duckdb
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 ROOT = Path(__file__).resolve().parents[1]
 G = ROOT / 'build/graph'
@@ -30,12 +31,12 @@ def main():
     works = defaultdict(list)
     for p, key, label, kind, year, journal in db.execute(f"""
             select x."from", w.key, w.label, w.kind, w.year, w.journal
-            from (select "from", "to" from '{G}/authored.parquet' union select "from", "to" from '{G}/edited.parquet') x
+            from (select "from", "to" from {keylog(G, 'authored')} union select "from", "to" from {keylog(G, 'edited')}) x
             join '{G}/work.parquet' w on w.key = x."to" where x."from" in (select k from ks)
             order by w.year nulls last""").fetchall():
         works[p].append(dict(title=(label or '')[:250], year=year, kind=kind, journal=journal))
     cited = dict(db.execute(f"""
-            select x."from", count(distinct c."from") from '{G}/authored.parquet' x
+            select x."from", count(distinct c."from") from {keylog(G, 'authored')} x
             join '{G}/cites.parquet' c on c."to" = x."to" where x."from" in (select k from ks) group by 1""").fetchall())
     supervised = defaultdict(list)
     try:

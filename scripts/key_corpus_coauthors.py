@@ -38,6 +38,7 @@ from key_lc_works import editor_by_statement, former_heading
 from key_cited_book_authors import weak_corpus_id
 from lc_resolve_authorities import load_names, norm, resolve
 from namesake_check_groups import given_names_agree
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 CORPUS = ROOT / 'data/field-research/dissertation-citations-2026-10-11'
 GRAPH = ROOT / 'build/graph'
@@ -93,8 +94,8 @@ def main():
                    LEFT JOIN '{GRAPH}/work.parquet' w ON w.key = x.key LEFT JOIN anc ON anc.a = x.key""")
     db.execute(f"""CREATE TABLE pk AS SELECT substr(a, 13) AS p, key, label, lcnaf FROM
                    (SELECT key, label, lcnaf, unnest(anchors) AS a FROM '{GRAPH}/person.parquet') WHERE a LIKE 'diss-person:%'""")
-    db.execute(f"""CREATE TABLE au AS SELECT "from" AS pk, "to" AS wk FROM '{GRAPH}/authored.parquet'
-                   UNION SELECT "from", "to" FROM '{GRAPH}/edited.parquet'""")
+    db.execute(f"""CREATE TABLE au AS SELECT "from" AS pk, "to" AS wk FROM {keylog(GRAPH, 'authored')}
+                   UNION SELECT "from", "to" FROM {keylog(GRAPH, 'edited')}""")
     # (person key, its LC authority, graph work) where a citation of the work lists the person and the graph does not
     rows = db.execute(f"""
         SELECT DISTINCT pk.key, pk.label, pk.lcnaf, xk.wk, a.person_key

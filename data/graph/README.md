@@ -31,32 +31,100 @@ every node and edge type. In brief:
 | `affiliations.csv.gz` | 63k | `scripts/export_affiliations.py` | Dated person → institution, by source (AHA, IHR staff lists, ORCID, Wikidata, review signatures, LC 373) |
 | `crossref-cites/part-NN.csv.gz` | (2026-11-10 export) | `scripts/crossref_citations.py export` | Crossref reference lists: citing work key or `doi:<doi>` → cited work key, citations, basis; 3M rows per part |
 | `crossref-cites/articles/part-NN.csv.gz` | | the same | The unkeyed citing articles: doi, title, year, journal |
-| `cited-works/cites.csv.gz` | 436,322 (2026-11-10) | `scripts/export_cited_works.py` | Dissertation id → cited work id (`lccn:` / `doi:` / `openalex:`), source (`lc-full`, `openalex`, `crossref`), basis. Works the key log did not hold, matched on 2026-11-10 to LC 2016 books, OpenAlex or Crossref (two layers: not minted) |
-| `cited-works/works.csv.gz` | 332,183 | the same | The cited works: id, title, year, kind, container, all LCCNs, alias ids, source, basis (LC comma title forms, audited ~97%, are marked in `basis`), corpus works, citing theses |
-| `cited-works/authors.csv.gz` | 316,891 | the same (from `data/identifiers/cited-work-authors-2026-11-10`) | Who wrote them: raw name, source person id (`lcnaf:` / `orcid:` / `openalex:`), state `exact` / `linked` (credited) / `possible` (candidates, not credited) / `none`, the person key or candidates (as of the linker's graph; resolved through merges at build time), signals |
+| `cited-works/cites.csv.gz` | 530,013 (2026-11-11) | `scripts/export_cited_works.py` | Dissertation id → cited work id (`lccn:` / `doi:` / `openalex:`), source (`lc-full`, `openalex`, `crossref`), basis. Works the key log did not hold, matched on 2026-11-10 to LC 2016 books, OpenAlex or Crossref (two layers: not minted) |
+| `cited-works/works.csv.gz` | 396,843 (2026-11-11) | the same | The cited works: id, title, year, kind, container, all LCCNs, alias ids, source, basis (LC comma title forms, audited ~97%, are marked in `basis`), corpus works, citing theses |
+| `cited-works/authors.csv.gz` | 317,007 | the same (from `data/identifiers/cited-work-authors-2026-11-10`), then `scripts/link_work_people.py recheck-cited` (rerun after every export: it removes listed candidates whose dates or name forms rule them out) | Who wrote them: raw name, source person id (`lcnaf:` / `orcid:` / `openalex:`), state `exact` / `linked` (credited) / `possible` (candidates, not credited) / `none`, the person key or candidates (as of the linker's graph; resolved through merges at build time), signals |
 | `cited-works/chapter-volumes.csv.gz` | 11,642 | the same | A cited chapter's containing volume (OpenAlex); kept out of CITES |
-| `cited-works/openalex-guarded.csv.gz`, `report.json` | 258 | the same | OpenAlex rows removed by the Crossref matcher's guards; counts, precedence and the corpus match rate (the build reads `corpus.citations`) |
+| `cited-works/openalex-guarded.csv.gz`, `report.json` | 258 | the same | OpenAlex rows removed by the Crossref matcher's guards; counts, precedence and the corpus match rate, also by cited kind and by thesis country (the build reads `corpus`) |
+| `cited-works/editions.csv.gz` | 10,668 (2026-11-11) | the same (from `data/identifiers/cited-works-translations-2026-11-11`) | One row per corpus work cited in a translation or a later edition: the node it was cited as (`cited_as`: a key, a cited-works id, or `corpus:<work_id>` when it was unmatched), the canonical (original) work, relation (translation / edition), route, basis, confidence, cited language, cited title and year, citing theses. The build makes EDITION_OF from it |
+| `work-people/part-00.csv.gz` | 433,035 (2026-11-11) | `scripts/link_work_people.py` (`data/identifiers/work-people-2026-11-11`) | Printed people of keyed works (the reviewer printed on a review, the authors of a JSTOR article, the co-authors in a work's OpenAlex record) → person keys, by state (exact / linked / possible). The build adds exact and linked rows to AUTHORED with `evidence = 'linked'` (source `work-people:<role>`) and possible rows to the candidate list `author_candidates`. Rows with role `contributor` (109 exact or linked: foreword writers and series editors named in the LC record) go to CONTRIBUTED instead, never to AUTHORED; possible contributors are not loaded |
+| `jstor-cited-works/cites.csv.gz` | 562,563 (2026-11-11, evening) | `scripts/export_jstor_cited_works.py` (from `data/identifiers/jstor-cited-works-2026-11-11`, `scripts/key_jstor_cited_works_full.py`) | JSTOR citing article (key or `doi:`) → cited work (key, `lccn:`, `doi:`, `openalex:`), source (lc-full / openalex / crossref / jstor-index / crossref-meta, the last from the Crossref metadata harvest with the thesis-side rules), basis, citations (note rows), `cited_as`. Rows with `cited_as` are citations of a translation or later edition in `cited-works/editions.csv.gz` moved to the canonical work, as the thesis side (source = translation / edition, basis = route; 5,520 rows); the build loads them as CITES source `jstor-edition` with `cited_as`. Only ids and edges, no note text |
+| `jstor-cited-works/works.csv.gz`, `report.json` | 256,413 | the same | The cited works the key log does not hold: id, catalogue title, year, kind, container, identifiers, source, basis, `lc_author` (the LC name authority id of the main entry), citing articles |
+| `author-works/works.csv.gz` | 368,155 (2026-11-11) | `scripts/author_works.py export` | Works by keyed people that the graph lacked, found through an ORCID on their OpenAlex record: id (`doi:` or `openalex:`), title, year, kind, journal, ISSN-L, container and its volume link (`volume_work`, `volume_basis`), the printed authorships, `twin_of` / `twin_basis` (another version of a work already held), flags |
+| `author-works/authors.csv.gz`, `existing.csv.gz` | 384,322; 3,446 | the same | ORCID credits: work, position, person key, basis (`raw-orcid` / `openalex-author-orcid`), state `credited` or `held` (the credit failed a guard, named in `name_check`); `existing` holds the same for works the graph already had as unkeyed nodes |
+| `author-works/volumes.csv.gz` | 105,602 | `scripts/export_work_containers.py export` | Volumes the chapters are in that the graph did not hold: id (`volume:<hash>` or `doi:`), title, year, ISBN, DOI, editors as printed, publisher, source, chapters, keyed contributors |
+| `work-containers.csv.gz` | 307,724 | the same | Keyed chapters (and works the source calls chapters) without a volume: container title, ISBN, DOI, editors, year, publisher, source, `proposed_kind`, `volume_work` (a graph work, or a volume in `author-works/volumes.csv.gz`), `volume_basis`, candidates |
+| `work-journals.csv.gz` | 343,942 | the same | Keyed article and other works without a journal: journal, ISSN, source (OpenAlex, ORCID, JSTOR, Crossref), `proposed_kind` |
 
 The cited works become Work nodes keyed by their identifier with resolution `unkeyed`, unless the key log holds one of
 their identifiers (then the key). The build adds the thesis CITES edges (`source` `thesis-matched`) and three tables
-of their authors, kept apart from the key log's claims:
-- `linked_authored.parquet` / `linked_edited.parquet` (LINKED_AUTHORED / LINKED_EDITED, Person → Work; LC editors go to
-  the second): `exact` (the source's LC authority or ORCID is on the key: linked by identifier) and `linked` (the
-  linker's rule) rows, with `source`, `state`, claim `cited-works:<source>:<state>` and resolution `linked`;
-- `possible_author.parquet` (POSSIBLE_AUTHOR, Person → Work): one row per candidate, `n_candidates`, `signals`; never
-  credited.
-`authored.parquet` and `edited.parquet` hold key-log claims only: identity scripts read them as evidence, and linked
-credits must not feed back into identity (the review-signature cascade). COAUTHORED and the other derived tables read
-the log only. `report.json` has `LINKED_AUTHORED`, `LINKED_EDITED`, `POSSIBLE_AUTHOR` and a `linkage` section (works and
-citing theses by author state, per source; the thesis-citation match rate). `cites.parquet` has a `source` column
-(`thesis`, `thesis-matched`, `jstor`, `crossref`, comma-joined). The explorer shows linked works on a person's page
-marked "linked by identifier" or "linked by rule", and possible authors as not credited. Before these files are in
+of their authors, kept apart from the key log's claims by an `evidence` column (one table per relation since
+2026-11-11, see below):
+- AUTHORED / EDITED rows with `evidence = 'linked'` (LC editors go to EDITED): `exact` (the source's LC authority or
+  ORCID is on the key: linked by identifier) and `linked` (the linker's rule) rows, with `source`, `state`, claim
+  `cited-works:<source>:<state>` and resolution `linked`;
+- `author_candidates.parquet`: one row per unconfirmed candidate, `n_candidates`, `signals`, `role`; never credited and
+  not an edge.
+Since 2026-11-11 the same table also holds:
+- Crossref metadata matches (source `crossref-meta`, from `data/identifiers/cited-works-crossref-meta-2026-11-11`). They
+  come after LC, Crossref and OpenAlex and only fill works no earlier crosswalk holds; held rows are never used and
+  matches flagged `review_like` (a title that reads as a book review) are dropped.
+- Journal-metadata matches (source `journal-meta`, from `data/identifiers/cited-works-journal-meta-2026-11-11`: ids
+  `doi:`, `ojs:` for an OJS journal record, or `openalex:`), last in precedence with the same guards (4,360 works,
+  5,564 citations; the thesis-citation match rate goes from 41.96% to 42.14%).
+- Translations and later editions. A thesis citing *Discipline and Punish* cites the canonical work (*Surveiller et
+  punir*): the cites row has source `translation` or `edition`, `cited_as` (the node it was cited as) and `replaces`
+  (the older crosswalks' key, when no other corpus work of that thesis still maps to it). In the build the edge gets
+  CITES source `thesis-edition`, `edition = true` (false when the thesis also cites the work directly) and `cited_as`;
+  the older thesis edge named in `replaces` is dropped, so a moved citation is counted once. Canonical works LC holds
+  but no cited work did become `lccn:` works (source `lc-translations`). Keys are not merged: EDITION_OF
+  (`edition_of.parquet`, Work → Work, relation, route, theses) links the translation or edition node to the original.
+- Compilations with no single original (*Microfísica do poder*, *O poder simbólico*): works keyed `corpus:<work_id>`
+  (source `compilation`, resolution `unkeyed`) with CITES from the citing theses and a linked AUTHORED row (source
+  `compilation`, state `linked`) to the author's person key; never an edition link.
+
+The JSTOR-matched cited works (`jstor-cited-works/`) load the same way: a work the key log holds by one of its
+identifiers cites under its key; a work already in `cited-works/` uses that node; any other is an unkeyed Work node.
+Their CITES carry source `jstor-matched`. Where the LC main entry's name authority is on one person key, a
+linked AUTHORED row (source `jstor-matched:lc`, state `exact`) credits it (unkeyed works only, not editor matches).
+
+**One edge type per relation (2026-11-11).** The graph has a single table for each relation, and the kind of evidence
+is a property of the row, not a separate edge type. `authored.parquet` and `edited.parquet` hold the key log's claims
+(`evidence = 'keylog'`) and the credits made by a rule or an identifier outside the key log (`evidence = 'linked'`, with
+`source` and `state`; a pair the key log already credits is not repeated). `coauthored.parquet` has one row per pair:
+`evidence = 'keylog'` when the two share a key-log work (then `works`, `titles`, years and `work_keys` are the key
+log's alone, and `linked_works` / `linked_work_keys` add the works that rest on a linked credit), `'linked'` when only
+linked credits join them; author lists longer than 25 make no co-authorship. `reviewed.parquet` (reviewer → author of
+the reviewed book) is `keylog` when both credits are the key log's, else `linked`. Identity scripts (linkers, career
+windows, person roles, merge and split builders) read `evidence = 'keylog'` only, through `scripts/graph_tables.py`
+(`keylog(G, 'authored')`), so a credit made by a rule never becomes evidence for another identity decision (the
+review-signature cascade); the tracked source tables (the key log, `cited-works/`, `work-people/`) stay separate.
+`author_candidates.parquet` is a candidate list, not an edge, and is counted under `candidate_lists` in `report.json`.
+`report.json` gives each merged table's rows by evidence (`AUTHORED_by_evidence`, …) and a `linkage` section (works
+and citing theses by author state, per source; the thesis-citation match rate). `cites.parquet` has a `source` column
+(`thesis`, `thesis-matched`, `thesis-edition`, `jstor`, `jstor-matched`, `crossref`, comma-joined) and a `cited_as`
+column (set on thesis-edition edges). The explorer shows one group per relation, marks rows whose evidence is linked
+("linked: by identifier" / "by rule"), gives the number of linked rows in the group header, and lists candidates in
+one collapsed "Unconfirmed candidates" section with the reason each is unconfirmed. Before these files are in
 git, a check build needs `build_graph.py --out <dir> --untracked-ok`.
+
+**Works of keyed people, volumes and journals (2026-11-11).** The rows of `author-works/works.csv.gz` become unkeyed
+Work nodes keyed by their id, unless the graph already holds that id (then the credits attach to the existing node).
+Skipped: rows with `twin_of` (another version is already held: 33,398), dataset series (2,629) and repository copies or
+submitted versions when a non-repository version of the same title by the same credited person is in the table (247);
+329,832 works are added. `credited` rows are AUTHORED with `evidence = 'linked'` (source `author-works:<basis>`, state
+`exact`); `held` rows go to `author_candidates` with a `reason`. A work whose printed author list is longer than 25 makes
+no linked co-authorship. The volumes become unkeyed Work nodes (kind book; `isbn` and `editors_printed` properties).
+`part_of.parquet` now has `evidence`, `source` and `volume_basis` columns: the key log's claims are `keylog`; the
+chapter-to-volume links from `work-containers.csv.gz` (source `orcid-container` or `doi-container`) and
+`author-works/works.csv.gz` (source `author-works-container`) are `linked`, for the bases `title`, `book-doi`,
+`title:edited-or-lccn`, `main-title:edited-or-lccn`, `main-title` (kept on the edge so it can be audited) and
+`new-unkeyed-volume`; held links are never loaded, and a chapter the key log already places in a volume keeps only
+that one. EDITOR_OF is still derived from the key log's PART_OF only. Keyed works with no journal get `journal` and
+`issn` from `work-journals.csv.gz` (`journal_source` names the record; `keylog` when the key log gave it), and
+`kind_proposed` where a matched record names another kind; `kind` itself is not changed. Identity scripts read PART_OF
+through `scripts/graph_tables.py` like the other merged tables.
+
+**Contributors.** `contributed.parquet` (CONTRIBUTED, Person → Work: claim `work-people:contributor:<position>`, source,
+state, basis) holds the foreword writers and series editors of the work-people table. They are not authors: they do
+not enter AUTHORED, COAUTHORED, the REVIEWED derivation or `author_candidates`.
 
 To refresh after the sources change:
 - **Dissertation citations:** key the corpus's new dissertations in the log, rerun `scripts/key_cited_works.py`, then `scripts/export_citations.py`.
 - **JSTOR:** rerun `scripts/export_jstor_citations.py`.
-- **Cited works (LC/OpenAlex/Crossref matches):** rerun the matchers and `scripts/link_cited_work_authors.py`, then `scripts/export_cited_works.py`.
+- **Cited works (LC/OpenAlex/Crossref matches, Crossref metadata, journal metadata, translations):** rerun the matchers and `scripts/link_cited_work_authors.py`, then `scripts/export_cited_works.py`, then `scripts/link_work_people.py recheck-cited` (the export rewrites `authors.csv.gz` without the recheck).
+- **Works of keyed people, volumes, journals:** `scripts/author_works.py export`, then `scripts/export_work_containers.py export`.
+- **JSTOR-matched cited works:** rerun `scripts/key_jstor_cited_works_full.py`, then `scripts/export_jstor_cited_works.py`.
 - **Crossref:** run `crossref_citations.py bridge`, apply its proposal, rebuild the graph, run `crossref_citations.py export`, then `git add` the parts.
 
 Example query (Benjamin Hoy's students, LadybugDB):

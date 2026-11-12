@@ -1,0 +1,171 @@
+{
+ "historian_keys": 47573,
+ "works_with_a_historian": 467485,
+ "author_count_distribution_on_historians_works": {
+  "1": 370617,
+  "2": 59666,
+  "3": 18903,
+  "4-5": 10593,
+  "6-10": 4827,
+  "11-25": 2412,
+  "26-50": 298,
+  "51-100": 169,
+  "101+": 0
+ },
+ "cap": 25,
+ "capped": {
+  "works": 458,
+  "mentions_without_orcid": 7652,
+  "work_keys_first_50": [
+   "w-1136738",
+   "w-1138237",
+   "w-1467329",
+   "w-1467691",
+   "w-1467692",
+   "w-1468233",
+   "w-1468583",
+   "w-1469595",
+   "w-1469603",
+   "w-1469703",
+   "w-1470913",
+   "w-1470916",
+   "w-1470917",
+   "w-1470918",
+   "w-1471945",
+   "w-1472315",
+   "w-1472316",
+   "w-1473331",
+   "w-1473332",
+   "w-1473758",
+   "w-1475735",
+   "w-1475736",
+   "w-1475737",
+   "w-1475738",
+   "w-1477607",
+   "w-1477610",
+   "w-1478611",
+   "w-1478868",
+   "w-1478870",
+   "w-1478874",
+   "w-1478984",
+   "w-1479445",
+   "w-1479530",
+   "w-1480764",
+   "w-1482070",
+   "w-1482071",
+   "w-1482072",
+   "w-1482073",
+   "w-1482074",
+   "w-1482075",
+   "w-1482173",
+   "w-1482174",
+   "w-1484185",
+   "w-1484186",
+   "w-1484187",
+   "w-1484188",
+   "w-1484189",
+   "w-1485132",
+   "w-1487137",
+   "w-1487138"
+  ]
+ },
+ "counts": {
+  "mentions": 171011,
+  "held_twin": 29535,
+  "capped_no_orcid": 7652,
+  "held_initial_only": 2269,
+  "held_unparsed": 2859,
+  "held_unmatched_credited_author": 9409,
+  "held_organisation_name": 1364,
+  "skipped_contributor": 21,
+  "conflict_two_orcids_in_group": 11
+ },
+ "people_to_mint": 70480,
+ "people_by_basis": {
+  "orcid": 31264,
+  "single-work-or-name-only": 32521,
+  "historian-coauthor+institution+openalex-author": 1124,
+  "historian-coauthor+openalex-author": 3555,
+  "historian-coauthor": 438,
+  "institution": 9,
+  "openalex-author": 1379,
+  "institution+openalex-author": 92,
+  "historian-coauthor+institution": 98
+ },
+ "claims": 117718,
+ "possible_same_marks": 2124,
+ "historians_gaining_a_coauthor": 12385,
+ "historian_coauthor_pairs": {
+  "total": 96229,
+  "with_2plus_works": 15582,
+  "with_3plus_works": 6505
+ },
+ "bridges": {
+  "minted_people_by_number_of_historians": {
+   "1": 57263,
+   "2": 8025,
+   "3": 2619,
+   "4": 1122,
+   "5": 507,
+   "6": 332,
+   "7": 208,
+   "8": 112,
+   "9": 82,
+   "10": 59,
+   "11": 29,
+   "12": 29,
+   "13": 13,
+   "14": 13,
+   "15": 10,
+   "16": 6,
+   "17": 2,
+   "19": 18,
+   "20": 10,
+   "21": 5,
+   "22": 5,
+   "23": 2,
+   "24": 1,
+   "25": 1,
+   "26": 1,
+   "27": 1,
+   "29": 2,
+   "30": 1,
+   "31": 1,
+   "42": 1
+  },
+  "connecting_2plus": 13217
+ },
+ "guard_cost": {
+  "name_groups_kept_apart": 960,
+  "pairs": 7124,
+  "names_with_3plus_historians": 459,
+  "extra_facts_present_on_kept_apart_pairs": {
+   "inst-name": 86,
+   "journal-years": 606,
+   "keyed-coauthor": 8
+  },
+  "orcid_tests": {
+   "base (openalex-author, historian, institution ROR)": {
+    "pairs_joined": 235278,
+    "same_orcid": 234396,
+    "different_orcid": 882
+   },
+   "+keyed-coauthor (pairs joined by it alone)": {
+    "pairs_joined": 40436,
+    "same_orcid": 40054,
+    "different_orcid": 382
+   },
+   "+inst-name (pairs joined by it alone)": {
+    "pairs_joined": 107823,
+    "same_orcid": 107656,
+    "different_orcid": 167
+   },
+   "+journal-years (pairs joined by it alone)": {
+    "pairs_joined": 645,
+    "same_orcid": 641,
+    "different_orcid": 4
+   }
+  }
+ },
+ "resolution": "recorded unless an ORCID is printed (then established); person-roles will read them as other scholar (an article on record, no historian signal) unless other evidence exists"
+}

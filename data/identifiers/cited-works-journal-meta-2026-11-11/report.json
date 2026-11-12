@@ -1,0 +1,1094 @@
+{
+ "note": "citations = rows of strict-citations.csv.gz; before = matched by every crosswalk behind data/graph/cited-works and data/graph/cites.csv.gz as export_cited_works.py combines them; after = before or this crosswalk (review-like matches excluded, as for crossref-meta)",
+ "overall": {
+  "works": 2199188,
+  "citations": 3050449,
+  "before": 1280027,
+  "after": 1285599,
+  "before_rate": 0.4196,
+  "after_rate": 0.4214,
+  "new_works": 4360,
+  "new_citations": 5572
+ },
+ "by_kind": {
+  "article": {
+   "works": 496535,
+   "citations": 584042,
+   "before": 210288,
+   "after": 215275,
+   "before_rate": 0.3601,
+   "after_rate": 0.3686,
+   "new_works": 3895,
+   "new_citations": 4987
+  },
+  "book": {
+   "works": 670362,
+   "citations": 1263431,
+   "before": 822427,
+   "after": 822427,
+   "before_rate": 0.6509,
+   "after_rate": 0.6509,
+   "new_works": 0,
+   "new_citations": 0
+  },
+  "book_or_serial": {
+   "works": 500490,
+   "citations": 609757,
+   "before": 181792,
+   "after": 181792,
+   "before_rate": 0.2981,
+   "after_rate": 0.2981,
+   "new_works": 0,
+   "new_citations": 0
+  },
+  "chapter": {
+   "works": 264596,
+   "citations": 306982,
+   "before": 43715,
+   "after": 44300,
+   "before_rate": 0.1424,
+   "after_rate": 0.1443,
+   "new_works": 465,
+   "new_citations": 585
+  },
+  "thesis": {
+   "works": 40933,
+   "citations": 46869,
+   "before": 1200,
+   "after": 1200,
+   "before_rate": 0.0256,
+   "after_rate": 0.0256,
+   "new_works": 0,
+   "new_citations": 0
+  },
+  "unstyled": {
+   "works": 226272,
+   "citations": 239368,
+   "before": 20605,
+   "after": 20605,
+   "before_rate": 0.0861,
+   "after_rate": 0.0861,
+   "new_works": 0,
+   "new_citations": 0
+  }
+ },
+ "matches_by_basis": {
+  "whole_title": {
+   "works": 3387,
+   "citations": 4258
+  },
+  "whole_title_container_no_record_author": {
+   "works": 359,
+   "citations": 405
+  },
+  "whole_title_container_online_date": {
+   "works": 142,
+   "citations": 323
+  },
+  "short_title_container": {
+   "works": 167,
+   "citations": 225
+  },
+  "main_title": {
+   "works": 173,
+   "citations": 215
+  },
+  "no_year_long_title_container": {
+   "works": 115,
+   "citations": 116
+  },
+  "whole_title+container_tiebreak": {
+   "works": 17,
+   "citations": 30
+  }
+ },
+ "matches_by_source": {
+  "crossref": {
+   "works": 1778,
+   "citations": 2405
+  },
+  "crossref-meta": {
+   "works": 1389,
+   "citations": 1508
+  },
+  "oai": {
+   "works": 770,
+   "citations": 1130
+  },
+  "openalex": {
+   "works": 423,
+   "citations": 529
+  }
+ },
+ "matches_by_source_and_basis": {
+  "crossref / whole_title": {
+   "works": 1496,
+   "citations": 1904
+  },
+  "oai / whole_title": {
+   "works": 704,
+   "citations": 1029
+  },
+  "crossref-meta / whole_title": {
+   "works": 797,
+   "citations": 830
+  },
+  "openalex / whole_title": {
+   "works": 390,
+   "citations": 495
+  },
+  "crossref-meta / whole_title_container_no_record_author": {
+   "works": 355,
+   "citations": 401
+  },
+  "crossref / whole_title_container_online_date": {
+   "works": 139,
+   "citations": 320
+  },
+  "crossref-meta / short_title_container": {
+   "works": 101,
+   "citations": 134
+  },
+  "crossref / main_title": {
+   "works": 64,
+   "citations": 86
+  },
+  "crossref-meta / no_year_long_title_container": {
+   "works": 74,
+   "citations": 75
+  },
+  "oai / main_title": {
+   "works": 38,
+   "citations": 57
+  },
+  "crossref-meta / main_title": {
+   "works": 55,
+   "citations": 56
+  },
+  "crossref / short_title_container": {
+   "works": 41,
+   "citations": 54
+  },
+  "oai / short_title_container": {
+   "works": 16,
+   "citations": 27
+  },
+  "crossref / no_year_long_title_container": {
+   "works": 22,
+   "citations": 22
+  },
+  "openalex / main_title": {
+   "works": 16,
+   "citations": 16
+  },
+  "crossref / whole_title+container_tiebreak": {
+   "works": 12,
+   "citations": 15
+  },
+  "oai / no_year_long_title_container": {
+   "works": 11,
+   "citations": 11
+  },
+  "openalex / short_title_container": {
+   "works": 9,
+   "citations": 10
+  },
+  "crossref-meta / whole_title+container_tiebreak": {
+   "works": 4,
+   "citations": 9
+  },
+  "openalex / no_year_long_title_container": {
+   "works": 8,
+   "citations": 8
+  },
+  "oai / whole_title+container_tiebreak": {
+   "works": 1,
+   "citations": 6
+  },
+  "crossref / whole_title_container_no_record_author": {
+   "works": 4,
+   "citations": 4
+  },
+  "crossref-meta / whole_title_container_online_date": {
+   "works": 3,
+   "citations": 3
+  }
+ },
+ "container_alias_matches": {
+  "0": {
+   "works": 3784,
+   "citations": 4789
+  },
+  "1": {
+   "works": 576,
+   "citations": 783
+  }
+ },
+ "review_like_matches_not_used": 348,
+ "stats": {
+  "review_like_dropped_candidates": 410,
+  "works_left_without_candidates_by_review_guard": 164,
+  "online_date_matches": 142,
+  "container_alias_works": 2687,
+  "paren_name_family_works": 12063,
+  "no_author_matches": 359,
+  "no_author_matches_previously_held": 2,
+  "part_only_on_cited_side_held": 1
+ },
+ "top_journals_by_citations_gained": [
+  {
+   "journal": "Revue d'histoire de l'Amérique française",
+   "works": 236,
+   "citations": 511
+  },
+  {
+   "journal": "BC Studies",
+   "works": 201,
+   "citations": 321
+  },
+  {
+   "journal": "Greek, Roman and Byzantine Studies",
+   "works": 230,
+   "citations": 301
+  },
+  {
+   "journal": "Hesperia",
+   "works": 217,
+   "citations": 272
+  },
+  {
+   "journal": "Chiron",
+   "works": 189,
+   "citations": 272
+  },
+  {
+   "journal": "Comptes-rendus des séances de l année - Académie des inscriptions et belles-lettres",
+   "works": 152,
+   "citations": 164
+  },
+  {
+   "journal": "Mélanges de l'École française de Rome. Antiquité",
+   "works": 134,
+   "citations": 156
+  },
+  {
+   "journal": "Historia",
+   "works": 89,
+   "citations": 131
+  },
+  {
+   "journal": "Acadiensis",
+   "works": 70,
+   "citations": 125
+  },
+  {
+   "journal": "Histoire de l'éducation",
+   "works": 78,
+   "citations": 115
+  },
+  {
+   "journal": "Cahiers d'études africaines",
+   "works": 96,
+   "citations": 113
+  },
+  {
+   "journal": "Ktèma : civilisations de l'Orient, de la Grèce et de Rome antiques",
+   "works": 97,
+   "citations": 107
+  },
+  {
+   "journal": "Archivaria",
+   "works": 75,
+   "citations": 104
+  },
+  {
+   "journal": "L'antiquité classique",
+   "works": 86,
+   "citations": 99
+  },
+  {
+   "journal": "Zeitschrift für Papyrologie und Epigraphik",
+   "works": 81,
+   "citations": 94
+  },
+  {
+   "journal": "Canadian Bulletin of Medical History",
+   "works": 53,
+   "citations": 84
+  },
+  {
+   "journal": "Revue d'histoire de l'Église de France",
+   "works": 62,
+   "citations": 74
+  },
+  {
+   "journal": "L'Homme",
+   "works": 59,
+   "citations": 72
+  },
+  {
+   "journal": "PMLA/Publications of the Modern Language Association of America",
+   "works": 67,
+   "citations": 71
+  },
+  {
+   "journal": "Revue française d'histoire d'outre-mer",
+   "works": 54,
+   "citations": 69
+  },
+  {
+   "journal": "Historia Mexicana",
+   "works": 45,
+   "citations": 69
+  },
+  {
+   "journal": "Phylon (1960-)",
+   "works": 48,
+   "citations": 59
+  },
+  {
+   "journal": "Bibliothèque de l'école des chartes",
+   "works": 44,
+   "citations": 56
+  },
+  {
+   "journal": "Annales. Histoire, Sciences Sociales",
+   "works": 47,
+   "citations": 56
+  },
+  {
+   "journal": "Estudos Históricos",
+   "works": 35,
+   "citations": 50
+  },
+  {
+   "journal": "Man",
+   "works": 39,
+   "citations": 47
+  },
+  {
+   "journal": "Revue d’histoire de l’Amérique française",
+   "works": 28,
+   "citations": 46
+  },
+  {
+   "journal": "Bulletin de correspondance hellénique",
+   "works": 36,
+   "citations": 45
+  },
+  {
+   "journal": "Latomus",
+   "works": 42,
+   "citations": 44
+  },
+  {
+   "journal": "Annales de démographie historique",
+   "works": 32,
+   "citations": 35
+  },
+  {
+   "journal": "The Americas",
+   "works": 25,
+   "citations": 33
+  },
+  {
+   "journal": "Numismatic Chronicle",
+   "works": 24,
+   "citations": 31
+  },
+  {
+   "journal": "The Classical Quarterly",
+   "works": 17,
+   "citations": 30
+  },
+  {
+   "journal": "Hermes",
+   "works": 19,
+   "citations": 30
+  },
+  {
+   "journal": "American Journal of Psychiatry",
+   "works": 24,
+   "citations": 29
+  },
+  {
+   "journal": "Hesperia: The Journal of the American School of Classical Studies at Athens",
+   "works": 25,
+   "citations": 29
+  },
+  {
+   "journal": "Actes de la recherche en sciences sociales",
+   "works": 23,
+   "citations": 29
+  },
+  {
+   "journal": "Social Research",
+   "works": 26,
+   "citations": 29
+  },
+  {
+   "journal": "The Journal of Hellenic Studies",
+   "works": 21,
+   "citations": 28
+  },
+  {
+   "journal": "Journal of Roman Studies",
+   "works": 23,
+   "citations": 26
+  },
+  {
+   "journal": "Byzantion",
+   "works": 21,
+   "citations": 25
+  },
+  {
+   "journal": "Annales de Bretagne et des pays de l'Ouest",
+   "works": 23,
+   "citations": 24
+  },
+  {
+   "journal": "The Western Historical Quarterly",
+   "works": 15,
+   "citations": 23
+  },
+  {
+   "journal": "Canadian Ethnic Studies",
+   "works": 12,
+   "citations": 22
+  },
+  {
+   "journal": "The Burlington Magazine",
+   "works": 21,
+   "citations": 21
+  },
+  {
+   "journal": "The American Historical Review",
+   "works": 14,
+   "citations": 20
+  },
+  {
+   "journal": "Annales du Midi : revue archéologique, historique et philologique de la France méridionale",
+   "works": 19,
+   "citations": 19
+  },
+  {
+   "journal": "Revue d'histoire littéraire de la France",
+   "works": 18,
+   "citations": 19
+  },
+  {
+   "journal": "Revue des Études Grecques",
+   "works": 19,
+   "citations": 19
+  },
+  {
+   "journal": "Proceedings of the American Philosophical Society",
+   "works": 15,
+   "citations": 19
+  },
+  {
+   "journal": "Oregon Historical Quarterly",
+   "works": 13,
+   "citations": 18
+  },
+  {
+   "journal": "Revue d’histoire moderne et contemporaine",
+   "works": 17,
+   "citations": 18
+  },
+  {
+   "journal": "Histoire urbaine",
+   "works": 17,
+   "citations": 17
+  },
+  {
+   "journal": "Isis",
+   "works": 15,
+   "citations": 17
+  },
+  {
+   "journal": "Genèses",
+   "works": 15,
+   "citations": 17
+  },
+  {
+   "journal": "Histoire, économie et société",
+   "works": 17,
+   "citations": 17
+  },
+  {
+   "journal": "Gerión. Revista de Historia Antigua",
+   "works": 15,
+   "citations": 16
+  },
+  {
+   "journal": "Quaderni storici",
+   "works": 15,
+   "citations": 16
+  },
+  {
+   "journal": "Revue d’histoire moderne & contemporaine",
+   "works": 13,
+   "citations": 16
+  },
+  {
+   "journal": "Revue du Nord",
+   "works": 16,
+   "citations": 16
+  },
+  {
+   "journal": "La Gazette des archives",
+   "works": 15,
+   "citations": 15
+  },
+  {
+   "journal": "Historical Research",
+   "works": 11,
+   "citations": 15
+  },
+  {
+   "journal": "Phylon (1940-1956)",
+   "works": 13,
+   "citations": 14
+  },
+  {
+   "journal": "Population",
+   "works": 11,
+   "citations": 14
+  },
+  {
+   "journal": "Revue des Études Anciennes",
+   "works": 9,
+   "citations": 13
+  },
+  {
+   "journal": "Romantisme",
+   "works": 13,
+   "citations": 13
+  },
+  {
+   "journal": "International Affairs",
+   "works": 12,
+   "citations": 13
+  },
+  {
+   "journal": "Agricultural History",
+   "works": 11,
+   "citations": 13
+  },
+  {
+   "journal": "Provence historique",
+   "works": 13,
+   "citations": 13
+  },
+  {
+   "journal": "Revue Historique des Armées",
+   "works": 12,
+   "citations": 12
+  },
+  {
+   "journal": "Syria",
+   "works": 11,
+   "citations": 11
+  },
+  {
+   "journal": "Dix-huitième Siècle",
+   "works": 10,
+   "citations": 11
+  },
+  {
+   "journal": "South Carolina Historical Magazine",
+   "works": 11,
+   "citations": 11
+  },
+  {
+   "journal": "The Journal of Egyptian Archaeology",
+   "works": 10,
+   "citations": 10
+  },
+  {
+   "journal": "Médiévales",
+   "works": 10,
+   "citations": 10
+  },
+  {
+   "journal": "Vingtième Siècle. Revue d'histoire",
+   "works": 10,
+   "citations": 10
+  },
+  {
+   "journal": "Huntington Library Quarterly",
+   "works": 8,
+   "citations": 10
+  },
+  {
+   "journal": "Revue belge de philologie et d'histoire",
+   "works": 10,
+   "citations": 10
+  },
+  {
+   "journal": "Revue Française de Sociologie",
+   "works": 10,
+   "citations": 10
+  },
+  {
+   "journal": "Annales de Bretagne",
+   "works": 10,
+   "citations": 10
+  }
+ ],
+ "held": {
+  "chapter / short_title_no_container": {
+   "works": 242,
+   "citations": 651
+  },
+  "chapter / no_year": {
+   "works": 238,
+   "citations": 239
+  },
+  "article / no_year": {
+   "works": 611,
+   "citations": 618
+  },
+  "article / other_venue_other_year": {
+   "works": 247,
+   "citations": 284
+  },
+  "chapter / other_venue_other_year": {
+   "works": 294,
+   "citations": 353
+  },
+  "article / main_title_subtitles_differ": {
+   "works": 135,
+   "citations": 182
+  },
+  "article / short_title_no_container": {
+   "works": 271,
+   "citations": 310
+  },
+  "article / main_title_other_container": {
+   "works": 144,
+   "citations": 193
+  },
+  "article / no_container_agreement_short_or_unpaged": {
+   "works": 535,
+   "citations": 604
+  },
+  "article / several_candidates": {
+   "works": 193,
+   "citations": 234
+  },
+  "chapter / no_container_agreement_short_or_unpaged": {
+   "works": 135,
+   "citations": 167
+  },
+  "article / no_year_subtitles_differ": {
+   "works": 16,
+   "citations": 16
+  },
+  "chapter / no_year_subtitles_differ": {
+   "works": 8,
+   "citations": 8
+  },
+  "chapter / main_title_other_container": {
+   "works": 54,
+   "citations": 77
+  },
+  "chapter / several_candidates": {
+   "works": 27,
+   "citations": 30
+  },
+  "chapter / part_unspecified": {
+   "works": 7,
+   "citations": 14
+  },
+  "chapter / main_title_subtitles_differ": {
+   "works": 19,
+   "citations": 23
+  },
+  "article / part_unspecified": {
+   "works": 19,
+   "citations": 29
+  },
+  "article / online_date_several": {
+   "works": 3,
+   "citations": 4
+  },
+  "chapter / no_record_author_several": {
+   "works": 1,
+   "citations": 1
+  },
+  "article / no_record_author_several": {
+   "works": 11,
+   "citations": 11
+  },
+  "article / part_only_on_cited_side": {
+   "works": 1,
+   "citations": 1
+  }
+ },
+ "gain_by_cause": {
+  "french_name_family": {
+   "works": 928,
+   "citations": 963
+  },
+  "newly_fetched_crossref_journals": {
+   "works": 1774,
+   "citations": 2401
+  },
+  "name_alias_on_harvested_journals": {
+   "works": 99,
+   "citations": 132
+  },
+  "oai_journals": {
+   "works": 770,
+   "citations": 1130
+  },
+  "openalex_sources": {
+   "works": 423,
+   "citations": 529
+  },
+  "no_record_author": {
+   "works": 359,
+   "citations": 405
+  },
+  "crossref_meta_other": {
+   "works": 7,
+   "citations": 12
+  }
+ },
+ "audit": {
+  "precision": {
+   "short_title_container": "20/20",
+   "stratum:alias": "15/15",
+   "no_year_long_title_container": "10/10",
+   "main_title": "10/10",
+   "whole_title": "75/76",
+   "stratum:crmeta_other": "2/3",
+   "stratum:crossref/main_title": "3/3",
+   "stratum:crossref/no_year_long_title_container": "3/3",
+   "stratum:crossref/short_title_container": "3/3",
+   "stratum:crossref/whole_title": "20/20",
+   "whole_title+container_tiebreak": "4/4",
+   "stratum:crossref/whole_title+container_tiebreak": "3/3",
+   "whole_title_container_online_date": "3/3",
+   "stratum:crossref/whole_title_container_online_date": "3/3",
+   "stratum:french_name": "20/20",
+   "whole_title_container_no_record_author": "30/30",
+   "stratum:no_record_author": "30/30",
+   "stratum:oai/main_title": "3/3",
+   "stratum:oai/no_year_long_title_container": "3/3",
+   "stratum:oai/short_title_container": "3/3",
+   "stratum:oai/whole_title": "20/20",
+   "stratum:oai/whole_title+container_tiebreak": "1/1",
+   "stratum:openalex/whole_title": "18/18",
+   "stratum:openalex/main_title": "1/1",
+   "stratum:openalex/short_title_container": "1/1"
+  },
+  "note": "133 stratified + 20 OpenAlex rows in audit-sample.csv; 22 further unpaged no-record-author matches and the 5 no-record-author matches whose title is also a cited book title were checked by hand (all correct: the reviews are cited by their reviewer)"
+ },
+ "top20_journals_by_gain": [
+  {
+   "journal_key": "histoire amerique francaise",
+   "article_citations": 1407,
+   "before": 0.402,
+   "after": 0.776,
+   "gained": 527
+  },
+  {
+   "journal_key": "hesperia",
+   "article_citations": 391,
+   "before": 0.079,
+   "after": 0.777,
+   "gained": 273
+  },
+  {
+   "journal_key": "greek roman byzantine studies",
+   "article_citations": 334,
+   "before": 0.012,
+   "after": 0.799,
+   "gained": 263
+  },
+  {
+   "journal_key": "chiron",
+   "article_citations": 349,
+   "before": 0.0,
+   "after": 0.734,
+   "gained": 256
+  },
+  {
+   "journal_key": "bc studies",
+   "article_citations": 308,
+   "before": 0.127,
+   "after": 0.711,
+   "gained": 180
+  },
+  {
+   "journal_key": "comptes rendus seances academie inscriptions",
+   "article_citations": 273,
+   "before": 0.253,
+   "after": 0.67,
+   "gained": 114
+  },
+  {
+   "journal_key": "melanges ecole francaise rome antiquite",
+   "article_citations": 221,
+   "before": 0.122,
+   "after": 0.633,
+   "gained": 113
+  },
+  {
+   "journal_key": "acadiensis",
+   "article_citations": 720,
+   "before": 0.714,
+   "after": 0.868,
+   "gained": 111
+  },
+  {
+   "journal_key": "histoire education",
+   "article_citations": 203,
+   "before": 0.266,
+   "after": 0.783,
+   "gained": 105
+  },
+  {
+   "journal_key": "archivaria",
+   "article_citations": 123,
+   "before": 0.057,
+   "after": 0.813,
+   "gained": 93
+  },
+  {
+   "journal_key": "ktema",
+   "article_citations": 140,
+   "before": 0.021,
+   "after": 0.671,
+   "gained": 91
+  },
+  {
+   "journal_key": "zeitschrift fur papyrologie und epigraphik",
+   "article_citations": 691,
+   "before": 0.137,
+   "after": 0.262,
+   "gained": 86
+  },
+  {
+   "journal_key": "cahiers etudes africaines",
+   "article_citations": 267,
+   "before": 0.476,
+   "after": 0.794,
+   "gained": 85
+  },
+  {
+   "journal_key": "historia",
+   "article_citations": 998,
+   "before": 0.261,
+   "after": 0.338,
+   "gained": 77
+  },
+  {
+   "journal_key": "canadian bulletin medical history",
+   "article_citations": 207,
+   "before": 0.565,
+   "after": 0.889,
+   "gained": 67
+  },
+  {
+   "journal_key": "historia mexicana",
+   "article_citations": 1237,
+   "before": 0.54,
+   "after": 0.592,
+   "gained": 64
+  },
+  {
+   "journal_key": "phylon",
+   "article_citations": 126,
+   "before": 0.381,
+   "after": 0.849,
+   "gained": 59
+  },
+  {
+   "journal_key": "homme",
+   "article_citations": 184,
+   "before": 0.391,
+   "after": 0.707,
+   "gained": 58
+  },
+  {
+   "journal_key": "antiquite classique",
+   "article_citations": 96,
+   "before": 0.104,
+   "after": 0.688,
+   "gained": 56
+  },
+  {
+   "journal_key": "pmla",
+   "article_citations": 199,
+   "before": 0.533,
+   "after": 0.779,
+   "gained": 49
+  }
+ ],
+ "remaining_unmatched_article_containers_top40": [
+  {
+   "journal_key": "",
+   "citations": 4810
+  },
+  {
+   "journal_key": "new york times",
+   "citations": 1504
+  },
+  {
+   "journal_key": "oxford dictionary national biography",
+   "citations": 1394
+  },
+  {
+   "journal_key": "odnb",
+   "citations": 670
+  },
+  {
+   "journal_key": "historia",
+   "citations": 661
+  },
+  {
+   "journal_key": "angeles times",
+   "citations": 537
+  },
+  {
+   "journal_key": "guardian",
+   "citations": 528
+  },
+  {
+   "journal_key": "zeitschrift fur papyrologie und epigraphik",
+   "citations": 510
+  },
+  {
+   "journal_key": "dictionary canadian biography",
+   "citations": 509
+  },
+  {
+   "journal_key": "rgm",
+   "citations": 508
+  },
+  {
+   "journal_key": "historia mexicana",
+   "citations": 505
+  },
+  {
+   "journal_key": "washington post",
+   "citations": 477
+  },
+  {
+   "journal_key": "agricultural history",
+   "citations": 441
+  },
+  {
+   "journal_key": "nature",
+   "citations": 437
+  },
+  {
+   "journal_key": "science",
+   "citations": 433
+  },
+  {
+   "journal_key": "american historical",
+   "citations": 427
+  },
+  {
+   "journal_key": "economic history",
+   "citations": 354
+  },
+  {
+   "journal_key": "canadian historical",
+   "citations": 352
+  },
+  {
+   "journal_key": "annales economies societes civilisations",
+   "citations": 346
+  },
+  {
+   "journal_key": "past present",
+   "citations": 339
+  },
+  {
+   "journal_key": "ontario history",
+   "citations": 338
+  },
+  {
+   "journal_key": "historical",
+   "citations": 334
+  },
+  {
+   "journal_key": "op cit",
+   "citations": 333
+  },
+  {
+   "journal_key": "historique",
+   "citations": 332
+  },
+  {
+   "journal_key": "globe mail",
+   "citations": 329
+  },
+  {
+   "journal_key": "british medical",
+   "citations": 325
+  },
+  {
+   "journal_key": "monde",
+   "citations": 318
+  },
+  {
+   "journal_key": "histoire amerique francaise",
+   "citations": 315
+  },
+  {
+   "journal_key": "vol",
+   "citations": 315
+  },
+  {
+   "journal_key": "american economic",
+   "citations": 310
+  },
+  {
+   "journal_key": "english historical",
+   "citations": 301
+  },
+  {
+   "journal_key": "lancet",
+   "citations": 299
+  },
+  {
+   "journal_key": "history",
+   "citations": 289
+  },
+  {
+   "journal_key": "hermes",
+   "citations": 285
+  },
+  {
+   "journal_key": "times",
+   "citations": 282
+  },
+  {
+   "journal_key": "economic political weekly",
+   "citations": 268
+  },
+  {
+   "journal_key": "history today",
+   "citations": 263
+  },
+  {
+   "journal_key": "pp",
+   "citations": 260
+  },
+  {
+   "journal_key": "social history",
+   "citations": 256
+  },
+  {
+   "journal_key": "international",
+   "citations": 255
+  }
+ ]
+}

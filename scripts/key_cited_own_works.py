@@ -27,6 +27,7 @@ import duckdb
 from identifiers import ROOT
 from key_cited_articles import titles_agree
 from key_lc_works import title_key
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 CORPUS = ROOT / 'data/field-research/dissertation-citations-2026-10-11'
 GRAPH = ROOT / 'build/graph'
@@ -53,8 +54,8 @@ def main():
                      AND coalesce(w.title, '') <> ''""")
     own = defaultdict(list)                          # person key -> (work key, label, year, kind)
     for key, wk, label, year, kind in db.execute(f"""
-            SELECT r."from", w.key, w.label, w.year, w.kind FROM (SELECT "from", "to" FROM '{GRAPH}/authored.parquet'
-              UNION SELECT "from", "to" FROM '{GRAPH}/edited.parquet') r JOIN '{GRAPH}/work.parquet' w ON w.key = r."to"
+            SELECT r."from", w.key, w.label, w.year, w.kind FROM (SELECT "from", "to" FROM {keylog(GRAPH, 'authored')}
+              UNION SELECT "from", "to" FROM {keylog(GRAPH, 'edited')}) r JOIN '{GRAPH}/work.parquet' w ON w.key = r."to"
             WHERE r."from" IN (SELECT key FROM pk) AND w.kind <> 'review'""").fetchall():
         own[key].append((wk, label, year, kind))
     keys = defaultdict(set)

@@ -31,6 +31,7 @@ import duckdb
 
 from identifiers import DEFAULT_DIR, ROOT, State, materialise
 from key_lc_works import title_key
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 GRAPH = ROOT / 'build/graph'
 REVIEWS = Path('/mnt/e/jstor-book-reviews.parquet')
@@ -62,7 +63,7 @@ def main():
     books = defaultdict(list)                          # main title key -> [(work key, year, author families, label, lccns)]
     for k, label, year, authors, anchors in db.execute(f"""
             SELECT w.key, w.label, w.year, list(DISTINCT p.label), any_value(w.anchors)
-            FROM '{GRAPH}/work.parquet' w JOIN '{GRAPH}/authored.parquet' a ON a."to" = w.key
+            FROM '{GRAPH}/work.parquet' w JOIN {keylog(GRAPH, 'authored')} a ON a."to" = w.key
             JOIN '{GRAPH}/person.parquet' p ON p.key = a."from" WHERE w.kind = 'book' GROUP BY 1, 2, 3""").fetchall():
         t = main_title(label)
         if len(t.split()) >= 2 and t not in GENERIC:

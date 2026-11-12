@@ -24,6 +24,9 @@ import csv, re, sys
 from pathlib import Path
 
 import duckdb
+import sys
+sys.path.insert(0, '/home/jic823/historiography/scripts')
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 G = '/home/jic823/historiography/build/graph'
 OUT = Path(__file__).resolve().parent / 'canon-compare-2010-2020.csv'
@@ -83,7 +86,7 @@ def main():
     db.execute(f"""create table hits as
         select distinct it.key item, it.kind, it.lang, au."from" person
         from items it join cites c on c."from" = it.key
-        join '{G}/authored.parquet' au on au."to" = c."to" """)
+        join {keylog(G, 'authored')} au on au."to" = c."to" """)
     db.execute("create table tot as select kind, lang, count(*) n from items group by all")
     db.execute(f"""create table shares as
         select h.kind, h.lang, h.person, p.label, count(*) items, count(*) * 1.0 / any_value(t.n) sh

@@ -19,6 +19,7 @@ import json
 from pathlib import Path
 
 import duckdb
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 ROOT = Path(__file__).resolve().parents[1]
 LIFE = ROOT / 'data/person-facts/life-years.csv.gz'
@@ -40,7 +41,7 @@ def career_windows(state):
             ys = [aha[a] for a in v['anchors'] if a in aha]
             if ys:
                 phd[k] = min(ys)
-    for k, y in duckdb.connect().execute(f"""SELECT a."from", min(w.year) FROM '{GRAPH}/authored.parquet' a
+    for k, y in duckdb.connect().execute(f"""SELECT a."from", min(w.year) FROM {keylog(GRAPH, 'authored')} a
             JOIN '{GRAPH}/work.parquet' w ON w.key = a."to" WHERE w.kind = 'thesis' AND w.year IS NOT NULL GROUP BY 1""").fetchall():
         for c in state.lookup(k):
             phd[c] = min(phd.get(c, y), y)

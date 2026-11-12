@@ -20,6 +20,7 @@ from pathlib import Path
 import duckdb
 
 from identifiers import ROOT
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 GRAPH = ROOT / 'build/graph'
 
@@ -55,8 +56,8 @@ def main():
     people = db.execute(f"SELECT key, label, lcnaf, anchors FROM '{GRAPH}/person.parquet'").fetchall()
     works = defaultdict(list)
     for p, title, year, kind in db.execute(f"""
-            SELECT a."from", w.label, w.year, w.kind FROM (SELECT "from", "to" FROM '{GRAPH}/authored.parquet'
-                   UNION SELECT "from", "to" FROM '{GRAPH}/edited.parquet') a JOIN '{GRAPH}/work.parquet' w ON w.key = a."to"
+            SELECT a."from", w.label, w.year, w.kind FROM (SELECT "from", "to" FROM {keylog(GRAPH, 'authored')}
+                   UNION SELECT "from", "to" FROM {keylog(GRAPH, 'edited')}) a JOIN '{GRAPH}/work.parquet' w ON w.key = a."to"
             ORDER BY w.year NULLS LAST""").fetchall():
         works[p].append(dict(title=(title or '')[:160], year=year, kind=kind))
     # a thesis author's key often has no AUTHORED edge to the thesis: show it from the thesis work's anchor

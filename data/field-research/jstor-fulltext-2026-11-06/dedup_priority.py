@@ -29,6 +29,9 @@ import os, re, sys, unicodedata
 from collections import defaultdict
 
 import duckdb
+import sys
+sys.path.insert(0, '/home/jic823/historiography/scripts')
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 G = '/home/jic823/historiography/build/graph'
 OUT = '/mnt/e/kg-review/dedup-priority-2026-11-08.parquet'
@@ -79,7 +82,7 @@ def main():
     cnt = {k: (t, a) for k, t, a in db.execute(f"""
         select au."from", count(distinct c."from") filter (where w.kind = 'thesis'),
                count(distinct c."from") filter (where w.kind = 'article')
-        from '{G}/authored.parquet' au join '{G}/cites.parquet' c on c."to" = au."to"
+        from {keylog(G, 'authored')} au join '{G}/cites.parquet' c on c."to" = au."to"
         join '{G}/work.parquet' w on w.key = c."from" group by 1""").fetchall()}
     people = db.execute(f"select key, label, wd, lcnaf, orcid, viaf, gnd from '{G}/person.parquet'").fetchall()
     print('person keys', len(people), 'cited keys', len(cnt), flush=True)

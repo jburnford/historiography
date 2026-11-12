@@ -24,6 +24,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import duckdb
 from identifiers import State, DEFAULT_DIR
 from key_review_credit_merges import jstor_signatures, LC_NOTES
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 ROOT = Path(__file__).resolve().parents[1]
 POS = ROOT / 'data/field-research/historian-positions-2026-10-29/positions.csv'
@@ -121,7 +122,7 @@ def main():
     for w, an in db.execute(f"""SELECT key, an FROM (SELECT key, unnest(anchors) an FROM '{G}/work.parquet') WHERE an LIKE 'doi:%'""").fetchall():
         if an[4:].lower() in sig:
             review_doi[w] = an[4:].lower()
-    for p, w in db.execute(f"""SELECT "from", "to" FROM '{G}/authored.parquet' WHERE "to" IN (SELECT unnest(?))""", [list(review_doi)]).fetchall():
+    for p, w in db.execute(f"""SELECT "from", "to" FROM {keylog(G, 'authored')} WHERE "to" IN (SELECT unnest(?))""", [list(review_doi)]).fetchall():
         creator, institution, y = sig[review_doi[w]]
         add(key_of(p) or p, institution, 'jstor_signature', yr(y), yr(y))
 

@@ -1,0 +1,30 @@
+{
+ "files": {
+  "cites.csv.gz": {
+   "rows": 562563,
+   "bytes": 5026862
+  },
+  "works.csv.gz": {
+   "rows": 256413,
+   "bytes": 12172218
+  }
+ },
+ "counts": {
+  "cites|crossref": 17913,
+  "cites|crossref-meta": 38908,
+  "cites|jstor-index": 64683,
+  "cites|lc-full": 373360,
+  "cites|openalex": 62179,
+  "edition_moved|crossref": 1,
+  "edition_moved|jstor-index": 7,
+  "edition_moved|lc-full": 5510,
+  "edition_moved|openalex": 4,
+  "edition_pairs": 5520,
+  "edition_pairs_also_cited_directly": 47,
+  "edition_several_canonicals_not_moved": 15,
+  "works|key": 74658,
+  "works|new": 18467,
+  "works|unkeyed_layer": 237946
+ },
+ "note": "from data/identifiers/jstor-cited-works-2026-11-11 (scripts/key_jstor_cited_works_full.py); the build loads cites as CITES source jstor-matched and works as unkeyed Work nodes unless the key log or data/graph/cited-works holds one of their identifiers; rows with cited_as are citations of a translation or later edition moved to the canonical work (data/graph/cited-works/editions.csv.gz), as the thesis side"
+}

@@ -26,6 +26,7 @@ from collections import Counter
 from pathlib import Path
 
 import duckdb
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'data/person-facts/life-years.csv.gz'
@@ -61,7 +62,7 @@ def main():
     lc = {i: (year(b), year(d)) for i, b, d in db.execute(
         f"SELECT lcid, birth, death FROM '{LC_NAMES}' WHERE coalesce(birth, '') <> '' OR coalesce(death, '') <> ''").fetchall()}
     wd = json.loads(args.wd.read_text())
-    first = dict(db.execute(f"""SELECT a."from", min(w.year) FROM '{ROOT}/build/graph/authored.parquet' a
+    first = dict(db.execute(f"""SELECT a."from", min(w.year) FROM {keylog(ROOT / 'build/graph', 'authored')} a
                                 JOIN '{ROOT}/build/graph/work.parquet' w ON w.key = a."to"
                                 WHERE w.year BETWEEN 1500 AND 2100 GROUP BY 1""").fetchall())
     reviewed = {}

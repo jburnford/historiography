@@ -39,6 +39,9 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import jstor_match_candidates as M  # noqa: E402
 from dedup_priority import parse, compatible  # noqa: E402
+import sys
+sys.path.insert(0, '/home/jic823/historiography/scripts')
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 G = '/home/jic823/historiography/build/graph'
 OUT = '/mnt/e/kg-review/dedup-by-works-2026-11-08.parquet'
@@ -47,10 +50,10 @@ REVIEW_TITLE = re.compile(r'^\s*\[?(review of|reviewed work|compte rendu|rese(ñ
 
 def main():
     db = duckdb.connect(); db.execute("SET memory_limit = '4GB'")
-    cnt = dict(db.execute(f"""select au."from", count(distinct c."from") from '{G}/authored.parquet' au
+    cnt = dict(db.execute(f"""select au."from", count(distinct c."from") from {keylog(G, 'authored')} au
         join '{G}/cites.parquet' c on c."to" = au."to" group by 1""").fetchall())
     people = {k: (l, wd, lc, oc) for k, l, wd, lc, oc in db.execute(f"select key, label, wd, lcnaf, orcid from '{G}/person.parquet'").fetchall()}
-    rows = db.execute(f"""select au."from", au."to", w.label, w.year from '{G}/authored.parquet' au
+    rows = db.execute(f"""select au."from", au."to", w.label, w.year from {keylog(G, 'authored')} au
         join '{G}/work.parquet' w on w.key = au."to" where w.kind <> 'review'""").fetchall()
     print('authored rows', len(rows), flush=True)
     by_title = defaultdict(list)      # title key -> [(person, work, year)]

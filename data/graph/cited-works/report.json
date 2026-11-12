@@ -5,16 +5,20 @@
    "bytes": 28796
   },
   "cites.csv.gz": {
-   "rows": 436322,
-   "bytes": 3813484
+   "rows": 530013,
+   "bytes": 5312772
+  },
+  "editions.csv.gz": {
+   "rows": 10668,
+   "bytes": 689326
   },
   "works.csv.gz": {
-   "rows": 332183,
-   "bytes": 14733286
+   "rows": 396843,
+   "bytes": 17300105
   },
   "authors.csv.gz": {
-   "rows": 316891,
-   "bytes": 8805515
+   "rows": 317007,
+   "bytes": 8808393
   },
   "chapter-volumes.csv.gz": {
    "rows": 11642,
@@ -28,37 +32,364 @@
   "notice": 1,
   "total": 258
  },
+ "translations": {
+  "canonical_lccn_in_cited_work": 889,
+  "canonical_lccn_new_work": 1764,
+  "in_held": 1,
+  "moved_works": 10668,
+  "compilations": 116,
+  "rule": "translation/edition rows of the 2026-11-11 crosswalk minus held rows and rows whose cited and canonical titles carry different part/volume markers"
+ },
  "corpus": {
   "citations": 3050449,
-  "matched_before": 690825,
-  "matched_new": 438989,
-  "matched_after": 1129814,
-  "rate_before": 0.2265,
-  "rate_after": 0.3704,
+  "matched_before": 802713,
+  "matched_new": 480972,
+  "matched_before_translations": 1283685,
+  "recovered_by_translations": 1914,
+  "matched_after": 1285599,
+  "rate_before": 0.2631,
+  "rate_before_translations": 0.4208,
+  "matched_as_counted_2026_11_10": 1207164,
+  "rate_as_counted_2026_11_10": 0.3957,
+  "rate_after": 0.4214,
+  "compilation_citations": 3264,
+  "rate_with_compilations": 0.4225,
+  "moved_citations": 52963,
   "new_citations_by_source": {
-   "lc-full": 319537,
-   "openalex": 91553,
-   "crossref": 27899
+   "lc-full": 283430,
+   "journal-meta": 5572,
+   "openalex": 88623,
+   "crossref": 27509,
+   "crossref-meta": 69522
   },
-  "note": "citations = rows of strict-citations.csv.gz (dissertation, cited corpus work); before = the three older crosswalks behind data/graph/cites.csv.gz; after = those or this table"
+  "by_kind": {
+   "article": {
+    "citations": 584042,
+    "before": 215265,
+    "after": 215275,
+    "with_compilations": 215286,
+    "rate_before": 0.3686,
+    "rate_after": 0.3686,
+    "rate_with_compilations": 0.3686
+   },
+   "book": {
+    "citations": 1263431,
+    "before": 820687,
+    "after": 822427,
+    "with_compilations": 822821,
+    "rate_before": 0.6496,
+    "rate_after": 0.6509,
+    "rate_with_compilations": 0.6513
+   },
+   "book_or_serial": {
+    "citations": 609757,
+    "before": 181643,
+    "after": 181792,
+    "with_compilations": 181817,
+    "rate_before": 0.2979,
+    "rate_after": 0.2981,
+    "rate_with_compilations": 0.2982
+   },
+   "chapter": {
+    "citations": 306982,
+    "before": 44300,
+    "after": 44300,
+    "with_compilations": 44307,
+    "rate_before": 0.1443,
+    "rate_after": 0.1443,
+    "rate_with_compilations": 0.1443
+   },
+   "thesis": {
+    "citations": 46869,
+    "before": 1200,
+    "after": 1200,
+    "with_compilations": 1200,
+    "rate_before": 0.0256,
+    "rate_after": 0.0256,
+    "rate_with_compilations": 0.0256
+   },
+   "unstyled": {
+    "citations": 239368,
+    "before": 20590,
+    "after": 20605,
+    "with_compilations": 20605,
+    "rate_before": 0.086,
+    "rate_after": 0.0861,
+    "rate_with_compilations": 0.0861
+   }
+  },
+  "by_country": {
+   "US": {
+    "citations": 704837,
+    "before": 399697,
+    "after": 399716,
+    "with_compilations": 399720,
+    "rate_before": 0.5671,
+    "rate_after": 0.5671,
+    "rate_with_compilations": 0.5671
+   },
+   "GB": {
+    "citations": 610018,
+    "before": 260484,
+    "after": 260488,
+    "with_compilations": 260491,
+    "rate_before": 0.427,
+    "rate_after": 0.427,
+    "rate_with_compilations": 0.427
+   },
+   "CA": {
+    "citations": 527757,
+    "before": 250496,
+    "after": 250539,
+    "with_compilations": 250544,
+    "rate_before": 0.4746,
+    "rate_after": 0.4747,
+    "rate_with_compilations": 0.4747
+   },
+   "BR": {
+    "citations": 453488,
+    "before": 160184,
+    "after": 160898,
+    "with_compilations": 161191,
+    "rate_before": 0.3532,
+    "rate_after": 0.3548,
+    "rate_with_compilations": 0.3554
+   },
+   "FR": {
+    "citations": 392633,
+    "before": 110160,
+    "after": 110258,
+    "with_compilations": 110271,
+    "rate_before": 0.2806,
+    "rate_after": 0.2808,
+    "rate_with_compilations": 0.2809
+   },
+   "MX": {
+    "citations": 84771,
+    "before": 25535,
+    "after": 26477,
+    "with_compilations": 26553,
+    "rate_before": 0.3012,
+    "rate_after": 0.3123,
+    "rate_with_compilations": 0.3132
+   },
+   "SE": {
+    "citations": 53695,
+    "before": 14986,
+    "after": 14993,
+    "with_compilations": 14993,
+    "rate_before": 0.2791,
+    "rate_after": 0.2792,
+    "rate_with_compilations": 0.2792
+   },
+   "IT": {
+    "citations": 46802,
+    "before": 17255,
+    "after": 17264,
+    "with_compilations": 17265,
+    "rate_before": 0.3687,
+    "rate_after": 0.3689,
+    "rate_with_compilations": 0.3689
+   },
+   "DE": {
+    "citations": 34810,
+    "before": 5852,
+    "after": 5852,
+    "with_compilations": 5852,
+    "rate_before": 0.1681,
+    "rate_after": 0.1681,
+    "rate_with_compilations": 0.1681
+   },
+   "ES": {
+    "citations": 34530,
+    "before": 7651,
+    "after": 7690,
+    "with_compilations": 7717,
+    "rate_before": 0.2216,
+    "rate_after": 0.2227,
+    "rate_with_compilations": 0.2235
+   },
+   "AU": {
+    "citations": 26845,
+    "before": 10108,
+    "after": 10108,
+    "with_compilations": 10108,
+    "rate_before": 0.3765,
+    "rate_after": 0.3765,
+    "rate_with_compilations": 0.3765
+   },
+   "BE": {
+    "citations": 26809,
+    "before": 7685,
+    "after": 7685,
+    "with_compilations": 7685,
+    "rate_before": 0.2867,
+    "rate_after": 0.2867,
+    "rate_with_compilations": 0.2867
+   },
+   "ZZ": {
+    "citations": 19394,
+    "before": 4668,
+    "after": 4674,
+    "with_compilations": 4679,
+    "rate_before": 0.2407,
+    "rate_after": 0.241,
+    "rate_with_compilations": 0.2413
+   },
+   "PT": {
+    "citations": 10172,
+    "before": 2904,
+    "after": 2913,
+    "with_compilations": 2914,
+    "rate_before": 0.2855,
+    "rate_after": 0.2864,
+    "rate_with_compilations": 0.2865
+   },
+   "CO": {
+    "citations": 5869,
+    "before": 1749,
+    "after": 1764,
+    "with_compilations": 1769,
+    "rate_before": 0.298,
+    "rate_after": 0.3006,
+    "rate_with_compilations": 0.3014
+   },
+   "PL": {
+    "citations": 3418,
+    "before": 477,
+    "after": 477,
+    "with_compilations": 477,
+    "rate_before": 0.1396,
+    "rate_after": 0.1396,
+    "rate_with_compilations": 0.1396
+   },
+   "ZA": {
+    "citations": 2916,
+    "before": 774,
+    "after": 774,
+    "with_compilations": 774,
+    "rate_before": 0.2654,
+    "rate_after": 0.2654,
+    "rate_with_compilations": 0.2654
+   },
+   "LV": {
+    "citations": 2758,
+    "before": 201,
+    "after": 201,
+    "with_compilations": 201,
+    "rate_before": 0.0729,
+    "rate_after": 0.0729,
+    "rate_with_compilations": 0.0729
+   },
+   "FI": {
+    "citations": 2439,
+    "before": 990,
+    "after": 990,
+    "with_compilations": 990,
+    "rate_before": 0.4059,
+    "rate_after": 0.4059,
+    "rate_with_compilations": 0.4059
+   },
+   "AR": {
+    "citations": 2355,
+    "before": 598,
+    "after": 607,
+    "with_compilations": 611,
+    "rate_before": 0.2539,
+    "rate_after": 0.2577,
+    "rate_with_compilations": 0.2594
+   },
+   "GR": {
+    "citations": 1119,
+    "before": 286,
+    "after": 286,
+    "with_compilations": 286,
+    "rate_before": 0.2556,
+    "rate_after": 0.2556,
+    "rate_with_compilations": 0.2556
+   },
+   "IE": {
+    "citations": 843,
+    "before": 372,
+    "after": 372,
+    "with_compilations": 372,
+    "rate_before": 0.4413,
+    "rate_after": 0.4413,
+    "rate_with_compilations": 0.4413
+   },
+   "CH": {
+    "citations": 799,
+    "before": 225,
+    "after": 225,
+    "with_compilations": 225,
+    "rate_before": 0.2816,
+    "rate_after": 0.2816,
+    "rate_with_compilations": 0.2816
+   },
+   "MT": {
+    "citations": 612,
+    "before": 251,
+    "after": 251,
+    "with_compilations": 251,
+    "rate_before": 0.4101,
+    "rate_after": 0.4101,
+    "rate_with_compilations": 0.4101
+   },
+   "HU": {
+    "citations": 482,
+    "before": 25,
+    "after": 25,
+    "with_compilations": 25,
+    "rate_before": 0.0519,
+    "rate_after": 0.0519,
+    "rate_with_compilations": 0.0519
+   },
+   "TR": {
+    "citations": 171,
+    "before": 15,
+    "after": 15,
+    "with_compilations": 15,
+    "rate_before": 0.0877,
+    "rate_after": 0.0877,
+    "rate_with_compilations": 0.0877
+   },
+   "KZ": {
+    "citations": 107,
+    "before": 57,
+    "after": 57,
+    "with_compilations": 57,
+    "rate_before": 0.5327,
+    "rate_after": 0.5327,
+    "rate_with_compilations": 0.5327
+   }
+  },
+  "note": "citations = rows of strict-citations.csv.gz (dissertation, cited corpus work); before = the three older crosswalks behind data/graph/cites.csv.gz; after = those, this table and the translations recovered to an original; moved = already matched rows now cited as the canonical work (not counted twice); with_compilations adds the corpus: compilation works"
  },
  "authors": {
+  "compilation|linked": 111,
+  "compilation|none": 5,
   "lc|exact": 57632,
   "lc|linked": 4812,
   "lc|none": 164271,
   "lc|possible": 14759,
   "links_duplicate_folded": 17607,
   "links_openalex_dropped_work_taken_by_crossref": 222,
+  "links_openalex_dropped_work_taken_by_journal-meta": 9,
   "links_openalex_dropped_work_taken_by_lc-full": 21,
-  "links_work_not_exported": 327,
+  "links_work_not_exported": 318,
   "openalex|exact": 8093,
   "openalex|linked": 23594,
   "openalex|none": 27107,
   "openalex|possible": 16623
  },
  "works_by_source_kind": {
+  "compilation|book": 116,
   "crossref|article": 25775,
+  "crossref-meta|article": 58759,
+  "crossref-meta|chapter": 3,
+  "journal-meta|article": 4018,
   "lc-full|book": 239045,
+  "lc-translations|book": 1764,
   "openalex|article": 53223,
   "openalex|book": 2536,
   "openalex|chapter": 11604
@@ -72,17 +403,27 @@
   "agreement_reviewed": 30,
   "agreement_unclear": 2,
   "agreement_unreviewed": 185,
-  "cited_works": 332183,
-  "cites_pairs": 436322,
+  "cited_works": 394963,
+  "cites_pairs": 472084,
+  "compilation_pairs": 3264,
   "components_joining_different_ids": 464,
-  "corpus_works_mapped": 354183,
+  "corpus_works_mapped": 418346,
+  "crossref_meta_held": 1,
+  "crossref_meta_review_like_dropped": 350,
+  "crossref_meta_rows": 60154,
+  "crossref_meta_used": 59803,
   "crossref_rows": 25884,
+  "edition_pairs": 54665,
+  "edition_pairs_replacing_an_older_edge": 46310,
+  "journal_meta_review_like_dropped": 348,
+  "journal_meta_rows": 4708,
+  "journal_meta_used": 4360,
   "lc_rows": 259481,
-  "new_works_also_in_old_crosswalks": 0,
-  "old_crosswalk_works": 215150,
+  "new_works_also_in_old_crosswalks": 5313,
+  "old_crosswalk_works": 232726,
   "openalex_also_lc": 20,
   "openalex_rows": 69096
  },
  "openalex_rows_removed_by_guards": 258,
- "precedence": "LC > Crossref > OpenAlex; OpenAlex DOI replaced by the Crossref DOI where the agreement check differs (unless reviewed `openalex`; `both` keeps the OpenAlex DOI as an alias); OpenAlex rows after the Crossref guards (part markers, notices, other venue + other year)"
+ "precedence": "LC > Crossref > OpenAlex > Crossref metadata (2026-11-11; fills only works no other crosswalk holds, review-like matches dropped) > journal metadata (2026-11-11, same guards); OpenAlex DOI replaced by the Crossref DOI where the agreement check differs (unless reviewed `openalex`; `both` keeps the OpenAlex DOI as an alias); OpenAlex rows after the Crossref guards (part markers, notices, other venue + other year); translations and editions (2026-11-11) are applied after the match: the citation goes to the canonical work whichever crosswalk matched the cited edition"
 }

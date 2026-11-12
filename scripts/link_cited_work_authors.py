@@ -135,6 +135,7 @@ import unicodedata
 from collections import Counter, defaultdict
 
 from namesake_check_groups import LETTERS, PARTICLES
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 SUFFIX = re.compile(r',?\s+(jr|sr|ii|iii|iv)\.?$', re.I)
 
@@ -335,15 +336,15 @@ class People:
             ys = [aha_year[a] for a in an if a in aha_year]
             if ys:
                 self.phd[k] = min(ys)
-        for k, y in db.execute(f"""SELECT a."from", min(w.year) FROM '{G}/authored.parquet' a JOIN '{G}/work.parquet' w
+        for k, y in db.execute(f"""SELECT a."from", min(w.year) FROM {keylog(G, 'authored')} a JOIN '{G}/work.parquet' w
                 ON w.key = a."to" WHERE w.kind = 'thesis' AND w.year IS NOT NULL GROUP BY 1""").fetchall():
             self.phd[k] = min(self.phd.get(k, y), y)
         # the span of the key's own dated works (authored or edited), all kinds and non-book kinds
         self.span, self.span_short = {}, {}
         for k, lo, hi, n, slo, shi in db.execute(f"""SELECT p, min(y), max(y), count(*), min(y) FILTER (WHERE kind IN ('article', 'review', 'thesis', 'chapter')),
                     max(y) FILTER (WHERE kind IN ('article', 'review', 'thesis', 'chapter'))
-                FROM (SELECT a."from" p, w.year y, w.kind kind FROM (SELECT "from", "to" FROM '{G}/authored.parquet'
-                      UNION ALL SELECT "from", "to" FROM '{G}/edited.parquet') a JOIN '{G}/work.parquet' w ON w.key = a."to"
+                FROM (SELECT a."from" p, w.year y, w.kind kind FROM (SELECT "from", "to" FROM {keylog(G, 'authored')}
+                      UNION ALL SELECT "from", "to" FROM {keylog(G, 'edited')}) a JOIN '{G}/work.parquet' w ON w.key = a."to"
                       WHERE w.year BETWEEN 1000 AND 2027) GROUP BY p""").fetchall():
             self.span[k] = (lo, hi, n)
             if slo is not None:
@@ -383,15 +384,15 @@ class People:
                 self.ties[a][p] = (n or 0, y0, y1)
         self.ties = {a: v for a, v in self.ties.items() if len(v) == 1}
         self.coauth = set()
-        for a, b in db.execute(f"SELECT \"from\", \"to\" FROM '{G}/coauthored.parquet'").fetchall():
+        for a, b in db.execute(f"SELECT \"from\", \"to\" FROM {keylog(G, 'coauthored')}").fetchall():
             self.coauth.add((a, b))
             self.coauth.add((b, a))
         # ---- round 2 (2026-11-10): more facts and more dating
         from key_review_reviewers import journal_key
         # journals the key has published in or reviewed in (its own authored or edited works with a journal)
         self.journals = defaultdict(set)
-        for k, j in db.execute(f"""SELECT DISTINCT a."from", w.journal FROM (SELECT "from", "to" FROM '{G}/authored.parquet'
-                UNION ALL SELECT "from", "to" FROM '{G}/edited.parquet') a JOIN '{G}/work.parquet' w ON w.key = a."to"
+        for k, j in db.execute(f"""SELECT DISTINCT a."from", w.journal FROM (SELECT "from", "to" FROM {keylog(G, 'authored')}
+                UNION ALL SELECT "from", "to" FROM {keylog(G, 'edited')}) a JOIN '{G}/work.parquet' w ON w.key = a."to"
                 WHERE w.journal IS NOT NULL""").fetchall():
             jk = journal_key(j)
             if jk:
@@ -401,7 +402,7 @@ class People:
         sup_years = defaultdict(list)
         for rel, k, d, y in db.execute(f"""WITH t AS (SELECT key, year, replace(a, 'diss-thesis:', '') d FROM
                     (SELECT key, year, unnest(anchors) a FROM '{G}/work.parquet' WHERE kind = 'thesis') WHERE a LIKE 'diss-thesis:%')
-                SELECT 'a', s."from", t.d, t.year FROM '{G}/authored.parquet' s JOIN t ON t.key = s."to"
+                SELECT 'a', s."from", t.d, t.year FROM {keylog(G, 'authored')} s JOIN t ON t.key = s."to"
                 UNION ALL SELECT 's', s."from", t.d, t.year FROM '{G}/supervised.parquet' s JOIN t ON t.key = s."to" """).fetchall():
             (self.thesis_auth if rel == 'a' else self.thesis_sup)[d].add(k)
         for k, y in db.execute(f"""SELECT s."from", w.year FROM '{G}/supervised.parquet' s JOIN '{G}/work.parquet' w
@@ -444,7 +445,7 @@ class People:
                             JOIN read_csv('{CORPUS / 'strict-citations.csv.gz'}', all_varchar=true) s ON s.work_id = a.work_id
                             JOIN dy ON dy.d = s.dissertation_id),
                      c2 AS (SELECT a."from" pkey, dy.y FROM read_csv('{ROOT / 'data/graph/cites.csv.gz'}', all_varchar=true) c
-                            JOIN '{G}/authored.parquet' a ON a."to" = c.work_key JOIN dy ON dy.d = c.dissertation_id)
+                            JOIN {keylog(G, 'authored')} a ON a."to" = c.work_key JOIN dy ON dy.d = c.dissertation_id)
                 SELECT pkey, min(y) FROM (SELECT * FROM c1 UNION ALL SELECT * FROM c2) WHERE y BETWEEN 1900 AND 2027 GROUP BY 1""").fetchall():
             self.cite_lo[k] = y
 
@@ -954,7 +955,7 @@ def run(args):
     refkeys = defaultdict(set)
     for w, k in db.execute(f"""SELECT DISTINCT refs.work, a."from" FROM refs
             JOIN (SELECT DISTINCT work, graph_work FROM read_parquet('{OA_ROWS}') WHERE graph_work <> '') g ON g.work = refs.ref
-            JOIN '{GRAPH}/authored.parquet' a ON a."to" = g.graph_work""").fetchall():
+            JOIN {keylog(GRAPH, 'authored')} a ON a."to" = g.graph_work""").fetchall():
         refkeys[w].add(k)
     # the theses citing each work (for the own-thesis and student-thesis facts)
     citers_of = defaultdict(set)
@@ -1051,7 +1052,7 @@ def run(args):
         WITH sw AS (SELECT DISTINCT dissertation_id d, work_id FROM read_csv('{CORPUS / 'strict-citations.csv.gz'}', all_varchar=true)
                     WHERE work_id IN (SELECT DISTINCT work_id FROM cp)),
              kw AS (SELECT DISTINCT c.dissertation_id d, a."from" pk FROM read_csv('{ROOT / 'data/graph/cites.csv.gz'}', all_varchar=true) c
-                    JOIN (SELECT "from", "to" FROM '{GRAPH}/authored.parquet' UNION ALL SELECT "from", "to" FROM '{GRAPH}/edited.parquet') a
+                    JOIN (SELECT "from", "to" FROM {keylog(GRAPH, 'authored')} UNION ALL SELECT "from", "to" FROM {keylog(GRAPH, 'edited')}) a
                     ON a."to" = c.work_key WHERE a."from" IN (SELECT DISTINCT pk FROM cp))
         SELECT cp.work_id, cp.pk, count(DISTINCT sw.d) FROM cp JOIN sw USING (work_id) JOIN kw ON kw.d = sw.d AND kw.pk = cp.pk
         GROUP BY 1, 2""").fetchall()}

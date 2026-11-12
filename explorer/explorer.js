@@ -5,6 +5,7 @@ const CAT = {
   person: { label: 'Person', shape: 'circle' },
   book: { label: 'Book', shape: 'square' },
   article: { label: 'Article', shape: 'triangle' },
+  chapter: { label: 'Chapter', shape: 'triangle' },
   thesis: { label: 'Thesis', shape: 'diamond' },
   review: { label: 'Review', shape: 'down' },
   other: { label: 'Other work', shape: 'round' },
@@ -20,7 +21,11 @@ const state = {
   trail: [],
 };
 
-const cat = (it) => it.type === 'work' ? (CAT[it.kind] ? it.kind : 'other') : it.type;
+// a work is shown and grouped by the kind its matched record names (kind_proposed) when that differs from the graph's
+const shownKind = (it) => it.kind_proposed || it.kind;
+const cat = (it) => it.type === 'work' ? (CAT[shownKind(it)] ? shownKind(it) : 'other') : it.type;
+const kindNote = (it) => it.type === 'work' && it.kind_proposed && it.kind_proposed !== it.kind
+  ? `listed as ${it.kind}; source says ${it.kind_proposed}` : null;
 const fmt = (n) => (n ?? 0).toLocaleString('en');
 const trunc = (s, n) => (s && s.length > n ? s.slice(0, n - 1) + '…' : s || '');
 
@@ -217,14 +222,21 @@ function renderPanel() {
   const { node, groups } = state.data;
   const c = cat(node);
   const meta = [CAT[c].label, node.year, node.journal].filter(Boolean).join(' · ');
+  const facts = node.type === 'work' ? [kindNote(node), node.in_volume,
+    node.editors_printed ? `editors as printed: ${node.editors_printed}` : null,
+    node.isbn ? `ISBN ${node.isbn}` : null, node.issn ? `ISSN ${node.issn}` : null,
+    node.journal && node.journal_source && node.journal_source !== 'keylog' && node.journal_source !== 'node-source'
+      ? `journal from the ${node.journal_source} record` : null].filter(Boolean) : [];
   const stats = [];
   if (node.type === 'person') stats.push(['works', node.works], ['citations to them', node.cited], ['reviews of their books', node.reviewed]);
   if (node.type === 'work') stats.push(['cited by', node.cited], ['reviews', node.reviewed]);
+  if (node.type === 'work' && node.cited_edition) stats.push(['of the citations, in translation or another edition', node.cited_edition]);
   if (node.type === 'institution') stats.push(['theses', node.weight]);
   const card = h('div', {},
     h('div', {}, h('span', { class: 'chip' }, icon(c), ' ', meta),
       node.resolution === 'recorded' ? h('span', { class: 'chip', title: 'Known from one source only' }, 'recorded (one source)') : null),
     h('h2', {}, node.label),
+    facts.length ? h('div', { class: 'muted' }, facts.map((f) => h('div', {}, f))) : null,
     h('div', { class: 'stats' }, stats.map(([l, v]) => h('span', {}, h('b', {}, fmt(v)), l))),
     h('div', { class: 'ids' }, h('span', { class: 'chip', title: 'Graph key' }, node.key),
       node.ids.filter((i) => !['review-credit', 'diss-person'].includes(i.scheme)).slice(0, 18).map((i) =>
@@ -236,7 +248,7 @@ function renderPanel() {
       onchange: (ev) => { ev.target.checked ? state.hidden.delete(hid) : state.hidden.add(hid);
         localStorage.setItem('gx-hidden', JSON.stringify([...state.hidden])); renderGraph(); } });
     const list = h('ul', { class: 'items' }, g.items.map(row));
-    const d = h('details', { 'data-rel': g.id, open: g.items.length <= 8 || groups.length <= 3 ? true : null },
+    const d = h('details', { 'data-rel': g.id, open: g.id !== 'candidates' && (g.items.length <= 8 || groups.length <= 3) ? true : null },
       h('summary', {}, g.label, h('span', { class: 'n' }, fmt(g.total)), h('label', { title: 'Show in the graph' }, cb, 'in view')),
       list);
     if (g.total > g.items.length) d.append(moreButton(g, list));
@@ -248,7 +260,7 @@ function renderPanel() {
 
 function row(it) {
   const c = cat(it);
-  const sub = [it.detail, it.type === 'work' && it.weight ? `cited/reviewed ${fmt(it.weight)}` : null,
+  const sub = [kindNote(it), it.detail, it.type === 'work' && it.weight ? `cited/reviewed ${fmt(it.weight)}` : null,
     it.type === 'person' && it.weight ? `${fmt(it.weight)} links to their works` : null].filter(Boolean).join(' · ');
   return h('li', { tabindex: 0, onclick: () => go(it.key), onkeydown: (ev) => { if (ev.key === 'Enter') go(it.key); }, title: it.label },
     icon(c), h('span', { class: 'lab' }, it.label, sub ? h('span', { class: 'sub' }, sub) : null),

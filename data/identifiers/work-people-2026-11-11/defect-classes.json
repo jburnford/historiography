@@ -1,0 +1,182 @@
+[
+ {
+  "id": 1,
+  "name": "citing or keyed article with no credited author",
+  "query": "JSTOR citing articles (cites.source jstor) with no AUTHORED row; keyed article works with no AUTHORED row",
+  "cause": "key_jstor_articles minted JSTOR items without crediting anyone; DOI routes credit only a claiming author",
+  "fix": "work-people jstor-author and author roles (LINKED_AUTHORED)",
+  "today": {
+   "jstor_citing_articles": 72583,
+   "keyed_articles": 426923
+  },
+  "after": {
+   "jstor_citing_articles": 41588,
+   "keyed_articles": 286347
+  }
+ },
+ {
+  "id": 2,
+  "name": "review with a printed reviewer and no person key",
+  "query": "works with reviewer_names and no AUTHORED row",
+  "cause": "key_jstor_reviews stored the printed name as a reviewer-name member and minted no name-only keys",
+  "fix": "work-people reviewer role (printed institution as the strong fact)",
+  "today": 257214,
+  "after": 158001
+ },
+ {
+  "id": 3,
+  "name": "work credited to fewer people than its author list (the record owner only)",
+  "query": "works with an OpenAlex/Crossref/JSTOR author list where some names are credited and some are not",
+  "cause": "ORCID-claim and DOI routes credit the claiming author only",
+  "fix": "author role links; co-author mints (proposal) for historians' works",
+  "today": 182922,
+  "after_links": 164975,
+  "after_links_and_proposal": null
+ },
+ {
+  "id": 4,
+  "name": "co-authored work absent from the graph",
+  "query": "OpenAlex works of tied authors with no graph work; graph DOIs no OpenAlex/Crossref record covers",
+  "cause": "harvests are History-scoped; the DOI lookup ran 2026-11-09; Crossref harvest holds History-citing journals only",
+  "fix": "not fixed here: needs an ingest decision (works of keyed historians outside History; DOI lookup refresh)",
+  "today": {
+   "tied_author_works_not_in_graph": 73240,
+   "graph_dois_without_any_author_list": null
+  },
+  "after": "unchanged"
+ },
+ {
+  "id": 5,
+  "name": "one person on several keys blocking links",
+  "query": "possible positions whose live candidates pass the duplicate-group test",
+  "cause": "minting from names (review-credit, H-Net review credits, dissertation authors) before identifiers",
+  "fix": "duplicate-group branch credits the representative meanwhile; candidate-duplicates.csv.gz for merging",
+  "today": {
+   "groups": 4893,
+   "keys": 13732
+  },
+  "after": {
+   "positions_linked_through_group": 6018,
+   "positions_still_possible": 573
+  }
+ },
+ {
+  "id": 6,
+  "name": "one work on two keys (preprint and version, same title)",
+  "query": "(person, normalised title) with two or more article/other/chapter work keys",
+  "cause": "DOI routes mint per DOI (10.2196/preprints.46643 and 10.2196/46643); ORCID records list both",
+  "fix": "not fixed: needs a work-dedupe rule (same title, same authors, preprint/version DOIs)",
+  "today": 13851,
+  "after": "unchanged"
+ },
+ {
+  "id": 7,
+  "name": "two authored claims for one person and work",
+  "query": "AUTHORED (from, to) pairs with count > 1",
+  "cause": "two routes (ORCID and DOI/LC) each minted a claim",
+  "fix": "explorer lists the work once and counts distinct works; key log unchanged",
+  "today": 134547,
+  "after": {
+   "key_log": 134547,
+   "explorer": "shown once"
+  }
+ },
+ {
+  "id": 8,
+  "name": "article/other work without a journal although a record would supply it",
+  "query": "kind article/other, journal null, and an OpenAlex/JSTOR record held for the work",
+  "cause": "works minted from ORCID records carry no journal member",
+  "fix": "not fixed: a journal backfill from the records",
+  "today": {
+   "without_journal": 634186,
+   "record_could_supply": 340517
+  },
+  "after": "unchanged"
+ },
+ {
+  "id": 9,
+  "name": "non-historian co-author with no node",
+  "query": "co-author mentions in state none on works of historian keys",
+  "cause": "only persons met in history sources were keyed",
+  "fix": "co-author mint proposal (not applied)",
+  "today": 171011,
+  "after": {
+   "people_to_mint": 70480,
+   "held": {
+    "mentions": 171011,
+    "held_twin": 29535,
+    "capped_no_orcid": 7652,
+    "held_initial_only": 2269,
+    "held_unparsed": 2859,
+    "held_unmatched_credited_author": 9409,
+    "held_organisation_name": 1364,
+    "skipped_contributor": 21,
+    "conflict_two_orcids_in_group": 11
+   }
+  }
+ },
+ {
+  "id": 10,
+  "name": "bridge lost because one unkeyed co-author is split across papers",
+  "query": "same full name, co-authors of different historians, no shared fact",
+  "cause": "the grouping guard",
+  "fix": "possible-same marks; extra facts tested on ORCID mentions",
+  "today": 960,
+  "after": "kept apart, marked"
+ },
+ {
+  "id": 11,
+  "name": "work known only from one ORCID record (no DOI): no author list to read",
+  "query": "works whose anchors are all orcid-work:",
+  "cause": "ORCID works without DOI",
+  "fix": "OpenAlex records matched by title+year+author family (openalex_people_works) read as author lists",
+  "today": 283237,
+  "after": {
+   "now_with_an_author_list": 27799
+  }
+ },
+ {
+  "id": 12,
+  "name": "the reviewed book's author printed as the author of a review record",
+  "query": "key-log AUTHORED on a review work by the author of the book it reviews; linker rows refused by the book-author check",
+  "cause": "Crossref/OpenAlex review records carry the book author (source metadata)",
+  "fix": "own_book_check refuses such links (state none / possible); the key-log claims are listed, not withdrawn",
+  "today": {
+   "key_log_claims": 186
+  },
+  "after": {
+   "refused_links": 11773
+  }
+ },
+ {
+  "id": 13,
+  "name": "the same name printed with curly and straight apostrophes lands in two families",
+  "query": "person labels with ’",
+  "cause": "link_cited_work_authors.nfold drops ’ but splits on '",
+  "fix": "apostrophes unified before matching (this script)",
+  "today": 107,
+  "after": "matched"
+ },
+ {
+  "id": 14,
+  "name": "an OpenAlex author id that joins two people",
+  "query": "links whose only tie is an OpenAlex author id carrying another ORCID than the key's",
+  "cause": "OpenAlex profile merges",
+  "fix": "such links held as possible (orcid-differs-tie-only)",
+  "today": null,
+  "after": {
+   "held": 211
+  }
+ },
+ {
+  "id": 15,
+  "name": "rarity measured in History used for a work outside History",
+  "query": "rarity-only links on OpenAlex records fetched by DOI outside the History harvest",
+  "cause": "population counts are History-scoped",
+  "fix": "a second fact is required there",
+  "today": null,
+  "after": {
+   "held": 5517
+  }
+ }
+]

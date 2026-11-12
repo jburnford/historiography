@@ -24,6 +24,7 @@ from pathlib import Path
 import duckdb
 
 from identifiers import ROOT
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 GRAPH = ROOT / 'build/graph'
 UA = 'historiography-research/1.0 (mailto:jic823@usask.ca)'
@@ -51,7 +52,7 @@ def main():
     args = ap.parse_args()
     args.cache.mkdir(parents=True, exist_ok=True)
     books = duckdb.sql(f"""SELECT w.key, any_value(w.label), any_value(w.year), list(DISTINCT p.label)
-        FROM '{GRAPH}/work.parquet' w JOIN '{GRAPH}/authored.parquet' a ON a."to" = w.key JOIN '{GRAPH}/person.parquet' p ON p.key = a."from"
+        FROM '{GRAPH}/work.parquet' w JOIN {keylog(GRAPH, 'authored')} a ON a."to" = w.key JOIN '{GRAPH}/person.parquet' p ON p.key = a."from"
         WHERE w.kind = 'book' AND w.year >= {args.since}
           AND list_has_any(list_transform(p.anchors, x -> split_part(x, ':', 1)), {HIST})
         GROUP BY 1 ORDER BY 1""").fetchall()

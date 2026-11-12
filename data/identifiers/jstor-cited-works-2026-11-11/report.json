@@ -1,0 +1,4136 @@
+{
+ "note": "rows = citation rows of the JSTOR rule parser (rules/part-*, textnotes-rules); a row that refers back (Ibid., short form, author-date) counts for its full citation; citations = rows, pairs = distinct (citing article, cited work); before = data/graph/jstor-cites.csv.gz as built into build/graph/cites.parquet (source jstor, edition rows included); after = before + this crosswalk",
+ "held": {
+  "lc-full / short_form_title_under_3_words": 6873,
+  "lc-full / initials_short_title": 3454,
+  "openalex / no_year": 2128,
+  "jstor-index / short_title_no_container": 1016,
+  "crossref-meta / other_venue_other_year": 988,
+  "openalex / short_title_no_container": 974,
+  "crossref-meta / short_title_no_container": 924,
+  "crossref-meta / main_title_other_container": 845,
+  "jstor-index / other_venue_other_year": 773,
+  "crossref-meta / no_container_agreement_short_or_unpaged": 719,
+  "crossref-meta / no_year": 534,
+  "lc-full / lc_both-comma_several_people": 452,
+  "openalex / other_venue_other_year": 444,
+  "lc-full / lc_lc-comma_several_people": 436,
+  "jstor-index / no_year": 436,
+  "lc-full / lc_exact_several_people": 288,
+  "crossref-meta / review_like": 169,
+  "lc-full / short_form_title_form": 168,
+  "openalex / several_candidates": 158,
+  "crossref-meta / main_title_subtitles_differ": 152,
+  "crossref / short_title_no_container": 139,
+  "crossref / other_venue_other_year": 135,
+  "jstor-index / several_candidates": 92,
+  "crossref-meta / several_candidates": 88,
+  "crossref / no_year": 48,
+  "crossref-meta / part_unspecified": 41,
+  "openalex / part_differs": 19,
+  "lc-full / lc_whole_several_people": 10,
+  "lc-full / lc_corpus-comma_several_people": 7,
+  "crossref-meta / short_title_edited_volume": 3,
+  "openalex / notice": 1,
+  "jstor-index / no_year_subtitles_differ": 1,
+  "crossref / no_year_subtitles_differ": 1
+ },
+ "denominator": {
+  "by_class": {
+   "attemptable_unmatched": {
+    "rows": 2783251,
+    "full_citations": 1981975
+   },
+   "unparsed": {
+    "rows": 1799997,
+    "full_citations": 1799997
+   },
+   "matched": {
+    "rows": 1041512,
+    "full_citations": 710736
+   },
+   "archival": {
+    "rows": 644923,
+    "full_citations": 558653
+   },
+   "short_attemptable": {
+    "rows": 564330,
+    "full_citations": 564330
+   },
+   "fragment_no_author": {
+    "rows": 440233,
+    "full_citations": 397991
+   },
+   "short_unresolved": {
+    "rows": 392486,
+    "full_citations": 392486
+   },
+   "title_too_short": {
+    "rows": 286292,
+    "full_citations": 197807
+   },
+   "periodical": {
+    "rows": 260620,
+    "full_citations": 231071
+   },
+   "commentary_or_other": {
+    "rows": 121062,
+    "full_citations": 101906
+   },
+   "matched_ambiguous": {
+    "rows": 83217,
+    "full_citations": 53689
+   },
+   "fragment_no_title": {
+    "rows": 78039,
+    "full_citations": 78039
+   },
+   "authordate_unresolved": {
+    "rows": 63968,
+    "full_citations": 63968
+   },
+   "web": {
+    "rows": 31654,
+    "full_citations": 31534
+   },
+   "ibid_unresolved": {
+    "rows": 9514,
+    "full_citations": 9514
+   },
+   "repeat": {
+    "rows": 532,
+    "full_citations": 0
+   }
+  },
+  "groups": {
+   "a_matched": {
+    "rows": 1041512,
+    "full_citations": 710736,
+    "rows_matched_now": 0
+   },
+   "b_attemptable": {
+    "rows": 3430798,
+    "full_citations": 2599994,
+    "rows_matched_now": 841158
+   },
+   "c_not_attemptable": {
+    "rows": 4129320,
+    "full_citations": 3862966,
+    "rows_matched_now": 0
+   }
+  },
+  "by_item_type": {
+   "article": {
+    "a_matched": {
+     "rows": 1029088,
+     "full_citations": 699924,
+     "rows_matched_now": 0
+    },
+    "b_attemptable": {
+     "rows": 3402995,
+     "full_citations": 2574305,
+     "rows_matched_now": 837382
+    },
+    "c_not_attemptable": {
+     "rows": 4088317,
+     "full_citations": 3822469,
+     "rows_matched_now": 0
+    }
+   },
+   "other": {
+    "a_matched": {
+     "rows": 2370,
+     "full_citations": 2127,
+     "rows_matched_now": 0
+    },
+    "b_attemptable": {
+     "rows": 14187,
+     "full_citations": 13656,
+     "rows_matched_now": 1920
+    },
+    "c_not_attemptable": {
+     "rows": 34262,
+     "full_citations": 34058,
+     "rows_matched_now": 0
+    }
+   },
+   "review": {
+    "a_matched": {
+     "rows": 6194,
+     "full_citations": 5623,
+     "rows_matched_now": 0
+    },
+    "b_attemptable": {
+     "rows": 7578,
+     "full_citations": 6823,
+     "rows_matched_now": 0
+    },
+    "c_not_attemptable": {
+     "rows": 3878,
+     "full_citations": 3757,
+     "rows_matched_now": 0
+    }
+   },
+   "review essay": {
+    "a_matched": {
+     "rows": 3860,
+     "full_citations": 3062,
+     "rows_matched_now": 0
+    },
+    "b_attemptable": {
+     "rows": 6038,
+     "full_citations": 5210,
+     "rows_matched_now": 1856
+    },
+    "c_not_attemptable": {
+     "rows": 2863,
+     "full_citations": 2682,
+     "rows_matched_now": 0
+    }
+   }
+  },
+  "by_decade": {
+   "1900s": {
+    "a_matched": {
+     "rows": 104,
+     "full_citations": 72,
+     "rows_matched_now": 0
+    },
+    "b_attemptable": {
+     "rows": 13336,
+     "full_citations": 11447,
+     "rows_matched_now": 692
+    },
+    "c_not_attemptable": {
+     "rows": 45225,
+     "full_citations": 43485,
+     "rows_matched_now": 0
+    }
+   },
+   "1910s": {
+    "a_matched": {
+     "rows": 596,
+     "full_citations": 314,
+     "rows_matched_now": 0
+    },
+    "b_attemptable": {
+     "rows": 18348,
+     "full_citations": 15109,
+     "rows_matched_now": 2035
+    },
+    "c_not_attemptable": {
+     "rows": 52396,
+     "full_citations": 49266,
+     "rows_matched_now": 0
+    }
+   },
+   "1920s": {
+    "a_matched": {
+     "rows": 1253,
+     "full_citations": 720,
+     "rows_matched_now": 0
+    },
+    "b_attemptable": {
+     "rows": 29785,
+     "full_citations": 24032,
+     "rows_matched_now": 3869
+    },
+    "c_not_attemptable": {
+     "rows": 79226,
+     "full_citations": 74127,
+     "rows_matched_now": 0
+    }
+   },
+   "1930s": {
+    "a_matched": {
+     "rows": 4647,
+     "full_citations": 2750,
+     "rows_matched_now": 0
+    },
+    "b_attemptable": {
+     "rows": 63071,
+     "full_citations": 48411,
+     "rows_matched_now": 10741
+    },
+    "c_not_attemptable": {
+     "rows": 141488,
+     "full_citations": 132713,
+     "rows_matched_now": 0
+    }
+   },
+   "1940s": {
+    "a_matched": {
+     "rows": 8462,
+     "full_citations": 4946,
+     "rows_matched_now": 0
+    },
+    "b_attemptable": {
+     "rows": 72840,
+     "full_citations": 52701,
+     "rows_matched_now": 16979
+    },
+    "c_not_attemptable": {
+     "rows": 141392,
+     "full_citations": 130308,
+     "rows_matched_now": 0
+    }
+   },
+   "1950s": {
+    "a_matched": {
+     "rows": 15619,
+     "full_citations": 10016,
+     "rows_matched_now": 0
+    },
+    "b_attemptable": {
+     "rows": 105031,
+     "full_citations": 77260,
+     "rows_matched_now": 25768
+    },
+    "c_not_attemptable": {
+     "rows": 202899,
+     "full_citations": 188266,
+     "rows_matched_now": 0
+    }
+   },
+   "1960s": {
+    "a_matched": {
+     "rows": 34715,
+     "full_citations": 21581,
+     "rows_matched_now": 0
+    },
+    "b_attemptable": {
+     "rows": 193866,
+     "full_citations": 139083,
+     "rows_matched_now": 47518
+    },
+    "c_not_attemptable": {
+     "rows": 324914,
+     "full_citations": 302542,
+     "rows_matched_now": 0
+    }
+   },
+   "1970s": {
+    "a_matched": {
+     "rows": 84358,
+     "full_citations": 53973,
+     "rows_matched_now": 0
+    },
+    "b_attemptable": {
+     "rows": 332771,
+     "full_citations": 243520,
+     "rows_matched_now": 83962
+    },
+    "c_not_attemptable": {
+     "rows": 474489,
+     "full_citations": 444849,
+     "rows_matched_now": 0
+    }
+   },
+   "1980s": {
+    "a_matched": {
+     "rows": 123815,
+     "full_citations": 81609,
+     "rows_matched_now": 0
+    },
+    "b_attemptable": {
+     "rows": 407644,
+     "full_citations": 305948,
+     "rows_matched_now": 103798
+    },
+    "c_not_attemptable": {
+     "rows": 512823,
+     "full_citations": 484313,
+     "rows_matched_now": 0
+    }
+   },
+   "1990s": {
+    "a_matched": {
+     "rows": 178864,
+     "full_citations": 120241,
+     "rows_matched_now": 0
+    },
+    "b_attemptable": {
+     "rows": 548041,
+     "full_citations": 411817,
+     "rows_matched_now": 137982
+    },
+    "c_not_attemptable": {
+     "rows": 635294,
+     "full_citations": 593777,
+     "rows_matched_now": 0
+    }
+   },
+   "2000s": {
+    "a_matched": {
+     "rows": 233751,
+     "full_citations": 158861,
+     "rows_matched_now": 0
+    },
+    "b_attemptable": {
+     "rows": 654730,
+     "full_citations": 497370,
+     "rows_matched_now": 161907
+    },
+    "c_not_attemptable": {
+     "rows": 646075,
+     "full_citations": 603694,
+     "rows_matched_now": 0
+    }
+   },
+   "2010s": {
+    "a_matched": {
+     "rows": 291082,
+     "full_citations": 207261,
+     "rows_matched_now": 0
+    },
+    "b_attemptable": {
+     "rows": 795017,
+     "full_citations": 612318,
+     "rows_matched_now": 203057
+    },
+    "c_not_attemptable": {
+     "rows": 658208,
+     "full_citations": 610342,
+     "rows_matched_now": 0
+    }
+   },
+   "2020s": {
+    "a_matched": {
+     "rows": 64206,
+     "full_citations": 48364,
+     "rows_matched_now": 0
+    },
+    "b_attemptable": {
+     "rows": 177954,
+     "full_citations": 144055,
+     "rows_matched_now": 42447
+    },
+    "c_not_attemptable": {
+     "rows": 129822,
+     "full_citations": 123962,
+     "rows_matched_now": 0
+    }
+   },
+   "pre-1900": {
+    "a_matched": {
+     "rows": 40,
+     "full_citations": 28,
+     "rows_matched_now": 0
+    },
+    "b_attemptable": {
+     "rows": 18364,
+     "full_citations": 16923,
+     "rows_matched_now": 403
+    },
+    "c_not_attemptable": {
+     "rows": 85069,
+     "full_citations": 81322,
+     "rows_matched_now": 0
+    }
+   }
+  },
+  "repeats": {
+   "resolved by the parser": 1287541,
+   "short form resolved here": 140393
+  },
+  "note": "a_matched = the earlier matcher found and the export kept a graph work; b_attemptable = parsed with an author and a usable title and not exported (unmatched, matched only ambiguously, or an unresolved short form of 3+ title words); c = archival/primary, Ibid./author-date with nothing to resolve to, fragments (no author or no title), unparsed or commentary, titles too short, newspapers/periodicals, web. Rows that refer back count in the group of their full citation. Book-review items are counted but never matched (they give no citations)."
+ },
+ "short_form_resolution": {
+  "rows_resolved_here": 140393,
+  "by_target_class": {
+   "attemptable_unmatched": {
+    "rows": 85236,
+    "target_matched_now": 32120
+   },
+   "title_too_short": {
+    "rows": 30894,
+    "target_matched_now": 0
+   },
+   "matched": {
+    "rows": 19947,
+    "target_matched_now": 0
+   },
+   "periodical": {
+    "rows": 3003,
+    "target_matched_now": 0
+   },
+   "matched_ambiguous": {
+    "rows": 1313,
+    "target_matched_now": 1021
+   }
+  },
+  "direct_short_form_matches": [
+   32541,
+   22478
+  ],
+  "pairs_only_from_short_forms_new": 17792,
+  "citations_added_to_already_matched_pairs": 19947
+ },
+ "before_after": {
+  "all": {
+   "articles": 94709,
+   "pairs_before": 814619,
+   "pairs_after": 1355169,
+   "rows": 8583980,
+   "rows_matched_before": 1035318,
+   "rows_matched_after": 1876476,
+   "row_rate_before": 0.1206,
+   "row_rate_after": 0.2186,
+   "median_pairs_per_article_before": 5.0,
+   "median_pairs_per_article_after": 9.0,
+   "median_pairs_before_matched_articles": 7.0,
+   "median_pairs_after_matched_articles": 11.0
+  },
+  "by_item_type": {
+   "article": {
+    "articles": 93204,
+    "pairs_before": 811243,
+    "pairs_after": 1348482,
+    "rows": 8520400,
+    "rows_matched_before": 1029088,
+    "rows_matched_after": 1866470,
+    "row_rate_before": 0.1208,
+    "row_rate_after": 0.2191,
+    "median_pairs_per_article_before": 5.0,
+    "median_pairs_per_article_after": 9.0,
+    "median_pairs_before_matched_articles": 7.0,
+    "median_pairs_after_matched_articles": 11.0
+   },
+   "other": {
+    "articles": 1275,
+    "pairs_before": 247,
+    "pairs_after": 1995,
+    "rows": 50819,
+    "rows_matched_before": 2370,
+    "rows_matched_after": 4290,
+    "row_rate_before": 0.0466,
+    "row_rate_after": 0.0844,
+    "median_pairs_per_article_before": 0.0,
+    "median_pairs_per_article_after": 0.0,
+    "median_pairs_before_matched_articles": 5.5,
+    "median_pairs_after_matched_articles": 2.5
+   },
+   "review": {
+    "articles": 2476,
+    "pairs_before": 2761,
+    "pairs_after": 2761,
+    "rows": 17650,
+    "rows_matched_before": 6194,
+    "rows_matched_after": 6194,
+    "row_rate_before": 0.3509,
+    "row_rate_after": 0.3509,
+    "median_pairs_per_article_before": 0.0,
+    "median_pairs_per_article_after": 0.0,
+    "median_pairs_before_matched_articles": 2.0,
+    "median_pairs_after_matched_articles": 2.0
+   },
+   "review essay": {
+    "articles": 230,
+    "pairs_before": 3129,
+    "pairs_after": 4692,
+    "rows": 12761,
+    "rows_matched_before": 3860,
+    "rows_matched_after": 5716,
+    "row_rate_before": 0.3025,
+    "row_rate_after": 0.4479,
+    "median_pairs_per_article_before": 9.0,
+    "median_pairs_per_article_after": 14.0,
+    "median_pairs_before_matched_articles": 9.0,
+    "median_pairs_after_matched_articles": 14.0
+   }
+  },
+  "by_decade": {
+   "1900s": {
+    "articles": 1216,
+    "pairs_before": 298,
+    "pairs_after": 719,
+    "rows": 58665,
+    "rows_matched_before": 104,
+    "rows_matched_after": 796,
+    "row_rate_before": 0.0018,
+    "row_rate_after": 0.0136,
+    "median_pairs_per_article_before": 0.0,
+    "median_pairs_per_article_after": 0.0,
+    "median_pairs_before_matched_articles": 1.0,
+    "median_pairs_after_matched_articles": 1.0
+   },
+   "1910s": {
+    "articles": 1727,
+    "pairs_before": 761,
+    "pairs_after": 1817,
+    "rows": 71334,
+    "rows_matched_before": 596,
+    "rows_matched_after": 2631,
+    "row_rate_before": 0.0084,
+    "row_rate_after": 0.0369,
+    "median_pairs_per_article_before": 0.0,
+    "median_pairs_per_article_after": 0.0,
+    "median_pairs_before_matched_articles": 1.0,
+    "median_pairs_after_matched_articles": 2.0
+   },
+   "1920s": {
+    "articles": 2053,
+    "pairs_before": 1876,
+    "pairs_after": 4056,
+    "rows": 110264,
+    "rows_matched_before": 1253,
+    "rows_matched_after": 5122,
+    "row_rate_before": 0.0114,
+    "row_rate_after": 0.0465,
+    "median_pairs_per_article_before": 0.0,
+    "median_pairs_per_article_after": 0.0,
+    "median_pairs_before_matched_articles": 1.0,
+    "median_pairs_after_matched_articles": 2.0
+   },
+   "1930s": {
+    "articles": 3722,
+    "pairs_before": 4515,
+    "pairs_after": 10827,
+    "rows": 209205,
+    "rows_matched_before": 4647,
+    "rows_matched_after": 15388,
+    "row_rate_before": 0.0222,
+    "row_rate_after": 0.0736,
+    "median_pairs_per_article_before": 0.0,
+    "median_pairs_per_article_after": 1.0,
+    "median_pairs_before_matched_articles": 2.0,
+    "median_pairs_after_matched_articles": 3.0
+   },
+   "1940s": {
+    "articles": 3810,
+    "pairs_before": 7310,
+    "pairs_after": 17102,
+    "rows": 222694,
+    "rows_matched_before": 8462,
+    "rows_matched_after": 25441,
+    "row_rate_before": 0.038,
+    "row_rate_after": 0.1142,
+    "median_pairs_per_article_before": 1.0,
+    "median_pairs_per_article_after": 2.0,
+    "median_pairs_before_matched_articles": 2.0,
+    "median_pairs_after_matched_articles": 4.0
+   },
+   "1950s": {
+    "articles": 5159,
+    "pairs_before": 12919,
+    "pairs_after": 28439,
+    "rows": 323496,
+    "rows_matched_before": 15619,
+    "rows_matched_after": 41387,
+    "row_rate_before": 0.0483,
+    "row_rate_after": 0.1279,
+    "median_pairs_per_article_before": 1.0,
+    "median_pairs_per_article_after": 3.0,
+    "median_pairs_before_matched_articles": 2.0,
+    "median_pairs_after_matched_articles": 4.0
+   },
+   "1960s": {
+    "articles": 7861,
+    "pairs_before": 27243,
+    "pairs_after": 55508,
+    "rows": 553475,
+    "rows_matched_before": 34715,
+    "rows_matched_after": 82233,
+    "row_rate_before": 0.0627,
+    "row_rate_after": 0.1486,
+    "median_pairs_per_article_before": 2.0,
+    "median_pairs_per_article_after": 4.0,
+    "median_pairs_before_matched_articles": 3.0,
+    "median_pairs_after_matched_articles": 6.0
+   },
+   "1970s": {
+    "articles": 10561,
+    "pairs_before": 63439,
+    "pairs_after": 116450,
+    "rows": 891612,
+    "rows_matched_before": 84358,
+    "rows_matched_after": 168320,
+    "row_rate_before": 0.0946,
+    "row_rate_after": 0.1888,
+    "median_pairs_per_article_before": 4.0,
+    "median_pairs_per_article_after": 7.0,
+    "median_pairs_before_matched_articles": 5.0,
+    "median_pairs_after_matched_articles": 8.0
+   },
+   "1980s": {
+    "articles": 11491,
+    "pairs_before": 95407,
+    "pairs_after": 162928,
+    "rows": 1044094,
+    "rows_matched_before": 123738,
+    "rows_matched_after": 227536,
+    "row_rate_before": 0.1185,
+    "row_rate_after": 0.2179,
+    "median_pairs_per_article_before": 5.0,
+    "median_pairs_per_article_after": 10.0,
+    "median_pairs_before_matched_articles": 6.0,
+    "median_pairs_after_matched_articles": 11.0
+   },
+   "1990s": {
+    "articles": 12691,
+    "pairs_before": 144799,
+    "pairs_after": 230076,
+    "rows": 1361463,
+    "rows_matched_before": 178697,
+    "rows_matched_after": 316679,
+    "row_rate_before": 0.1313,
+    "row_rate_after": 0.2326,
+    "median_pairs_per_article_before": 8.0,
+    "median_pairs_per_article_after": 13.0,
+    "median_pairs_before_matched_articles": 9.0,
+    "median_pairs_after_matched_articles": 14.0
+   },
+   "2000s": {
+    "articles": 13381,
+    "pairs_before": 179069,
+    "pairs_after": 283761,
+    "rows": 1534038,
+    "rows_matched_before": 233595,
+    "rows_matched_after": 395502,
+    "row_rate_before": 0.1523,
+    "row_rate_after": 0.2578,
+    "median_pairs_per_article_before": 10.0,
+    "median_pairs_per_article_after": 16.0,
+    "median_pairs_before_matched_articles": 11.0,
+    "median_pairs_after_matched_articles": 17.0
+   },
+   "2010s": {
+    "articles": 14944,
+    "pairs_before": 227116,
+    "pairs_after": 361724,
+    "rows": 1733345,
+    "rows_matched_before": 287263,
+    "rows_matched_after": 490320,
+    "row_rate_before": 0.1657,
+    "row_rate_after": 0.2829,
+    "median_pairs_per_article_before": 12.0,
+    "median_pairs_per_article_after": 20.0,
+    "median_pairs_before_matched_articles": 13.0,
+    "median_pairs_after_matched_articles": 21.0
+   },
+   "2020s": {
+    "articles": 3665,
+    "pairs_before": 49561,
+    "pairs_after": 81188,
+    "rows": 366822,
+    "rows_matched_before": 62231,
+    "rows_matched_after": 104678,
+    "row_rate_before": 0.1696,
+    "row_rate_after": 0.2854,
+    "median_pairs_per_article_before": 10.0,
+    "median_pairs_per_article_after": 18.0,
+    "median_pairs_before_matched_articles": 11.0,
+    "median_pairs_after_matched_articles": 18.0
+   },
+   "pre-1900": {
+    "articles": 2428,
+    "pairs_before": 306,
+    "pairs_after": 574,
+    "rows": 103473,
+    "rows_matched_before": 40,
+    "rows_matched_after": 443,
+    "row_rate_before": 0.0004,
+    "row_rate_after": 0.0043,
+    "median_pairs_per_article_before": 0.0,
+    "median_pairs_per_article_after": 0.0,
+    "median_pairs_before_matched_articles": 1.0,
+    "median_pairs_after_matched_articles": 1.0
+   }
+  },
+  "mean_pairs_per_article": [
+   8.6,
+   14.31,
+   10.82,
+   16.63
+  ],
+  "mean_note": "[all non-review items with parsed notes before, after; items with 1+ match before, after]",
+  "citing_keyed": [
+   [
+    false,
+    2661
+   ],
+   [
+    true,
+    94524
+   ]
+  ]
+ },
+ "new_by_source_basis": {
+  "lc-full | exact/main/single": {
+   "pairs": 172255,
+   "citations": 265716,
+   "cited_works": 108716
+  },
+  "lc-full | exact/main/editions": {
+   "pairs": 68064,
+   "citations": 107666,
+   "cited_works": 28999
+  },
+  "jstor-index | whole_title": {
+   "pairs": 57549,
+   "citations": 77368,
+   "cited_works": 42862
+  },
+  "openalex | whole_title": {
+   "pairs": 53833,
+   "citations": 72794,
+   "cited_works": 36268
+  },
+  "crossref-meta | whole_title": {
+   "pairs": 35751,
+   "citations": 47596,
+   "cited_works": 23408
+  },
+  "lc-full | whole/main/single": {
+   "pairs": 28322,
+   "citations": 43287,
+   "cited_works": 20855
+  },
+  "crossref | whole_title": {
+   "pairs": 15434,
+   "citations": 19854,
+   "cited_works": 11994
+  },
+  "lc-full | exact/editor/single": {
+   "pairs": 14547,
+   "citations": 20018,
+   "cited_works": 10464
+  },
+  "lc-full | corpus-comma/main/single": {
+   "pairs": 14289,
+   "citations": 23517,
+   "cited_works": 10559
+  },
+  "lc-full | corpus-comma/main/editions": {
+   "pairs": 9678,
+   "citations": 15996,
+   "cited_works": 5712
+  },
+  "lc-full | lc-comma/main/single": {
+   "pairs": 9472,
+   "citations": 14779,
+   "cited_works": 5861
+  },
+  "lc-full | exact/added/single": {
+   "pairs": 8404,
+   "citations": 12381,
+   "cited_works": 6050
+  },
+  "lc-full | both-comma/main/single": {
+   "pairs": 5379,
+   "citations": 8598,
+   "cited_works": 3690
+  },
+  "openalex | main_title": {
+   "pairs": 4892,
+   "citations": 6617,
+   "cited_works": 3777
+  },
+  "lc-full | whole/main/editions": {
+   "pairs": 4504,
+   "citations": 7257,
+   "cited_works": 2991
+  },
+  "jstor-index | main_title": {
+   "pairs": 4191,
+   "citations": 5508,
+   "cited_works": 3584
+  },
+  "lc-full | exact/resp/single": {
+   "pairs": 3877,
+   "citations": 5860,
+   "cited_works": 2674
+  },
+  "lc-full | lc-comma/main/editions": {
+   "pairs": 2979,
+   "citations": 4890,
+   "cited_works": 1211
+  },
+  "crossref | main_title": {
+   "pairs": 2174,
+   "citations": 2829,
+   "cited_works": 1828
+  },
+  "crossref-meta | main_title": {
+   "pairs": 2139,
+   "citations": 2831,
+   "cited_works": 1771
+  },
+  "lc-full | whole/editor/single": {
+   "pairs": 2109,
+   "citations": 2792,
+   "cited_works": 1777
+  },
+  "lc-full | exact/added/editions": {
+   "pairs": 2015,
+   "citations": 3198,
+   "cited_works": 988
+  },
+  "lc-full | corpus-comma/editor/single": {
+   "pairs": 1935,
+   "citations": 3055,
+   "cited_works": 1288
+  },
+  "lc-full | exact/editor/editions": {
+   "pairs": 1839,
+   "citations": 3114,
+   "cited_works": 962
+  },
+  "jstor-index | short_title_container": {
+   "pairs": 1632,
+   "citations": 2142,
+   "cited_works": 1280
+  },
+  "lc-full | both-comma/main/editions": {
+   "pairs": 1625,
+   "citations": 2555,
+   "cited_works": 854
+  },
+  "openalex | whole_title+oa_typed_review": {
+   "pairs": 1262,
+   "citations": 1661,
+   "cited_works": 584
+  },
+  "lc-full | whole/added/single": {
+   "pairs": 1214,
+   "citations": 1653,
+   "cited_works": 1007
+  },
+  "lc-full | corpus-comma/added/single": {
+   "pairs": 1056,
+   "citations": 1722,
+   "cited_works": 801
+  },
+  "lc-full | exact/resp/editions": {
+   "pairs": 761,
+   "citations": 1187,
+   "cited_works": 407
+  },
+  "crossref-meta | short_title_container": {
+   "pairs": 687,
+   "citations": 855,
+   "cited_works": 460
+  },
+  "lc-full | lc-comma/editor/single": {
+   "pairs": 682,
+   "citations": 1060,
+   "cited_works": 447
+  },
+  "lc-full | both-comma/editor/single": {
+   "pairs": 660,
+   "citations": 1080,
+   "cited_works": 450
+  },
+  "openalex | short_title_container": {
+   "pairs": 644,
+   "citations": 872,
+   "cited_works": 476
+  },
+  "openalex | book_main_title": {
+   "pairs": 622,
+   "citations": 860,
+   "cited_works": 424
+  },
+  "openalex | book_whole_title": {
+   "pairs": 476,
+   "citations": 692,
+   "cited_works": 337
+  },
+  "lc-full | whole/resp/single": {
+   "pairs": 420,
+   "citations": 605,
+   "cited_works": 338
+  },
+  "lc-full | corpus-comma/editor/editions": {
+   "pairs": 381,
+   "citations": 624,
+   "cited_works": 205
+  },
+  "lc-full | lc-comma/added/single": {
+   "pairs": 365,
+   "citations": 538,
+   "cited_works": 254
+  },
+  "lc-full | corpus-comma/added/editions": {
+   "pairs": 354,
+   "citations": 562,
+   "cited_works": 224
+  },
+  "lc-full | both-comma/added/single": {
+   "pairs": 264,
+   "citations": 423,
+   "cited_works": 193
+  },
+  "crossref-meta | whole_title_container_online_date": {
+   "pairs": 252,
+   "citations": 333,
+   "cited_works": 189
+  },
+  "openalex | whole_title+container_tiebreak": {
+   "pairs": 249,
+   "citations": 358,
+   "cited_works": 167
+  },
+  "crossref | short_title_container": {
+   "pairs": 217,
+   "citations": 292,
+   "cited_works": 162
+  },
+  "jstor-index | whole_title+container_tiebreak": {
+   "pairs": 166,
+   "citations": 217,
+   "cited_works": 108
+  },
+  "lc-full | whole/added/editions": {
+   "pairs": 128,
+   "citations": 248,
+   "cited_works": 70
+  },
+  "lc-full | lc-comma/editor/editions": {
+   "pairs": 82,
+   "citations": 127,
+   "cited_works": 44
+  },
+  "lc-full | lc-comma/added/editions": {
+   "pairs": 80,
+   "citations": 153,
+   "cited_works": 40
+  },
+  "lc-full | whole/editor/editions": {
+   "pairs": 76,
+   "citations": 111,
+   "cited_works": 64
+  },
+  "lc-full | both-comma/editor/editions": {
+   "pairs": 65,
+   "citations": 100,
+   "cited_works": 40
+  },
+  "openalex | no_year_long_title_container": {
+   "pairs": 62,
+   "citations": 92,
+   "cited_works": 58
+  },
+  "jstor-index | no_year_long_title_container": {
+   "pairs": 59,
+   "citations": 86,
+   "cited_works": 59
+  },
+  "lc-full | exact/main/whole-chosen": {
+   "pairs": 52,
+   "citations": 86,
+   "cited_works": 44
+  },
+  "crossref-meta | whole_title+container_tiebreak": {
+   "pairs": 44,
+   "citations": 67,
+   "cited_works": 29
+  },
+  "lc-full | both-comma/added/editions": {
+   "pairs": 33,
+   "citations": 60,
+   "cited_works": 17
+  },
+  "lc-full | whole/resp/editions": {
+   "pairs": 20,
+   "citations": 35,
+   "cited_works": 18
+  },
+  "openalex | main_title+container_tiebreak": {
+   "pairs": 17,
+   "citations": 20,
+   "cited_works": 15
+  },
+  "crossref-meta | no_year_long_title_container": {
+   "pairs": 16,
+   "citations": 17,
+   "cited_works": 16
+  },
+  "openalex | short_title_container+oa_typed_review": {
+   "pairs": 14,
+   "citations": 21,
+   "cited_works": 12
+  },
+  "jstor-index | main_title+container_tiebreak": {
+   "pairs": 9,
+   "citations": 10,
+   "cited_works": 7
+  },
+  "lc-full | exact/editor/whole-chosen": {
+   "pairs": 7,
+   "citations": 15,
+   "cited_works": 5
+  },
+  "crossref | whole_title+container_tiebreak": {
+   "pairs": 6,
+   "citations": 6,
+   "cited_works": 6
+  },
+  "crossref | no_year_long_title_container": {
+   "pairs": 6,
+   "citations": 9,
+   "cited_works": 6
+  },
+  "openalex | whole_title+container_tiebreak+oa_typed_review": {
+   "pairs": 4,
+   "citations": 4,
+   "cited_works": 2
+  },
+  "lc-full | exact/added/whole-chosen": {
+   "pairs": 2,
+   "citations": 3,
+   "cited_works": 2
+  },
+  "crossref | main_title+container_tiebreak": {
+   "pairs": 1,
+   "citations": 1,
+   "cited_works": 1
+  },
+  "openalex | no_year_long_title_container+oa_typed_review": {
+   "pairs": 1,
+   "citations": 1,
+   "cited_works": 1
+  },
+  "crossref-meta | main_title+container_tiebreak": {
+   "pairs": 1,
+   "citations": 1,
+   "cited_works": 1
+  }
+ },
+ "new_by_source": {
+  "lc-full": {
+   "pairs": 357995,
+   "citations": 555071,
+   "cited_works": 195562
+  },
+  "jstor-index": {
+   "pairs": 63606,
+   "citations": 85331,
+   "cited_works": 47140
+  },
+  "openalex": {
+   "pairs": 62076,
+   "citations": 83992,
+   "cited_works": 41207
+  },
+  "crossref-meta": {
+   "pairs": 38890,
+   "citations": 51700,
+   "cited_works": 25291
+  },
+  "crossref": {
+   "pairs": 17838,
+   "citations": 22991,
+   "cited_works": 13768
+  }
+ },
+ "new_by_cited_held_by": {
+  "lc-full | unkeyed_layer": 241762,
+  "lc-full | key": 116043,
+  "jstor-index | unkeyed_layer": 57995,
+  "openalex | unkeyed_layer": 36146,
+  "openalex | key": 25930,
+  "crossref-meta | new": 24692,
+  "crossref | unkeyed_layer": 15077,
+  "crossref-meta | unkeyed_layer": 13659,
+  "jstor-index | key": 5611,
+  "crossref | key": 2761,
+  "crossref-meta | key": 539,
+  "lc-full | new": 190
+ },
+ "new_from_previously_ambiguous_rows": 39965,
+ "top_works_gained": [
+  {
+   "work": "w-246780",
+   "title": "An inquiry into the nature and causes of the wealth of nations",
+   "year": 1776,
+   "source": "lc-full",
+   "citing_before": 67,
+   "citing_gained": 175
+  },
+  {
+   "work": "w-310098",
+   "title": "Nature's metropolis : Chicago and the Great West",
+   "year": 1991,
+   "source": "lc-full",
+   "citing_before": 20,
+   "citing_gained": 175
+  },
+  {
+   "work": "w-314082",
+   "title": "A history of English law",
+   "year": 1991,
+   "source": "lc-full",
+   "citing_before": 12,
+   "citing_gained": 159
+  },
+  {
+   "work": "w-106447",
+   "title": "Capitalism & slavery",
+   "year": 1944,
+   "source": "lc-full",
+   "citing_before": 8,
+   "citing_gained": 139
+  },
+  {
+   "work": "w-2417",
+   "title": "Wilderness and the American mind",
+   "year": 1967,
+   "source": "lc-full",
+   "citing_before": 57,
+   "citing_gained": 138
+  },
+  {
+   "work": "w-227109",
+   "title": "Commentaries on the laws of England / by William Blackstone",
+   "year": 1765,
+   "source": "lc-full",
+   "citing_before": 80,
+   "citing_gained": 122
+  },
+  {
+   "work": "w-264323",
+   "title": "One kind of freedom : the economic consequences of emancipation",
+   "year": 2001,
+   "source": "lc-full",
+   "citing_before": 9,
+   "citing_gained": 118
+  },
+  {
+   "work": "w-127019",
+   "title": "The New England mind; the seventeenth century",
+   "year": 1982,
+   "source": "lc-full",
+   "citing_before": 1,
+   "citing_gained": 110
+  },
+  {
+   "work": "w-438051",
+   "title": "Deutsche Gesellschaftsgeschichte: vol. 5: Von der Gründung der beiden deutschen Staaten bis zur Vereinigung 1949-1990 / Hans-Ulrich Wehler",
+   "year": 2008,
+   "source": "lc-full",
+   "citing_before": 7,
+   "citing_gained": 110
+  },
+  {
+   "work": "w-1176781",
+   "title": "Slavery; a problem in American institutional and intellectual life",
+   "year": 1959,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 105
+  },
+  {
+   "work": "w-1188881",
+   "title": "The transportation revolution, 1815-1860",
+   "year": 1951,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 99
+  },
+  {
+   "work": "w-379088",
+   "title": "Manliness & civilization : a cultural history of gender and race in the United States, 1880-1917",
+   "year": 1995,
+   "source": "lc-full",
+   "citing_before": 18,
+   "citing_gained": 97
+  },
+  {
+   "work": "w-199066",
+   "title": "Leviathan; or, The matter, forme and power of a commonwealth, ecclesiasticall and civil",
+   "year": 1946,
+   "source": "lc-full",
+   "citing_before": 16,
+   "citing_gained": 95
+  },
+  {
+   "work": "w-129405",
+   "title": "Silent spring",
+   "year": 2002,
+   "source": "lc-full",
+   "citing_before": 2,
+   "citing_gained": 94
+  },
+  {
+   "work": "w-110870",
+   "title": "Introduction to the history of science",
+   "year": 1962,
+   "source": "lc-full",
+   "citing_before": 9,
+   "citing_gained": 92
+  },
+  {
+   "work": "w-220796",
+   "title": "The stages of economic growth, a non-Communist manifesto",
+   "year": 1960,
+   "source": "lc-full",
+   "citing_before": 5,
+   "citing_gained": 92
+  },
+  {
+   "work": "w-339012",
+   "title": "Man and the natural world : changing attitudes in England, 1500-1800",
+   "year": 1996,
+   "source": "lc-full",
+   "citing_before": 4,
+   "citing_gained": 91
+  },
+  {
+   "work": "w-101520",
+   "title": "American Negro slavery; a survey of the supply, employment and control of Negro labor as determined by the plantation regime",
+   "year": 1966,
+   "source": "lc-full",
+   "citing_before": 21,
+   "citing_gained": 88
+  },
+  {
+   "work": "w-3040",
+   "title": "The origins of the urban crisis: race and inequality in postwar Detroit: with a new preface by the author",
+   "year": 1996,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 88
+  },
+  {
+   "work": "w-121330",
+   "title": "La société des Jacobins; recueil de documents pour l'histoire du Club des jacobins de Paris",
+   "year": 1972,
+   "source": "lc-full",
+   "citing_before": 26,
+   "citing_gained": 86
+  },
+  {
+   "work": "w-1178399",
+   "title": "The Populist revolt; a history of the Farmers' alliance and the People's Party",
+   "year": 1961,
+   "source": "lc-full",
+   "citing_before": 14,
+   "citing_gained": 81
+  },
+  {
+   "work": "w-272085",
+   "title": "The political economy of slavery; studies in the economy & society of the slave South",
+   "year": 1989,
+   "source": "lc-full",
+   "citing_before": 4,
+   "citing_gained": 80
+  },
+  {
+   "work": "w-1178063",
+   "title": "The statutes at large : being a collection of all the laws of Virginia, from the first session of the legislature in the year 1619 :  published pursuant to an act of the General Assembly of Virginia, passed on the fifth day of February one thousand e",
+   "year": 1809,
+   "source": "lc-full",
+   "citing_before": 103,
+   "citing_gained": 78
+  },
+  {
+   "work": "w-1182925",
+   "title": "Les caractères originaux de l'histoire rurale franc̜aise",
+   "year": 1968,
+   "source": "lc-full",
+   "citing_before": 15,
+   "citing_gained": 75
+  },
+  {
+   "work": "w-1817813",
+   "title": "A new and accurate description of the coast of Guinea, divided into the Gold, the Slave, and the Ivory Coasts",
+   "year": 1967,
+   "source": "lc-full",
+   "citing_before": 18,
+   "citing_gained": 75
+  },
+  {
+   "work": "w-406261",
+   "title": "The Royal African Company",
+   "year": 1975,
+   "source": "lc-full",
+   "citing_before": 1,
+   "citing_gained": 75
+  },
+  {
+   "work": "w-2113",
+   "title": "The cheese and the worms: the cosmos of a sixteenth-century miller",
+   "year": 2013,
+   "source": "lc-full",
+   "citing_before": 2,
+   "citing_gained": 74
+  },
+  {
+   "work": "w-1190320",
+   "title": "The rise of the English shipping industry in the seventeenth and eighteenth centuries",
+   "year": 2012,
+   "source": "lc-full",
+   "citing_before": 1,
+   "citing_gained": 73
+  },
+  {
+   "work": "w-178075",
+   "title": "An essay on the principle of population; or, A view of its past and present effects on human happiness; with an inquiry into our prospects respecting the future removal or mitigation of the evils which it occasions",
+   "year": 1803,
+   "source": "lc-full",
+   "citing_before": 13,
+   "citing_gained": 72
+  },
+  {
+   "work": "w-313939",
+   "title": "The printing press as an agent of change : communications and cultural transformations in early modern Europe",
+   "year": 1997,
+   "source": "lc-full",
+   "citing_before": 2,
+   "citing_gained": 72
+  },
+  {
+   "work": "lccn:70407093",
+   "title": "Recueil des actes du Comité de salut public : avec la correspondance officielle des représentants en mission et le registre du Conseil exécutif provisoire",
+   "year": 1889,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 71
+  },
+  {
+   "work": "w-246797",
+   "title": "The wealth of nations",
+   "year": 1933,
+   "source": "lc-full",
+   "citing_before": 100,
+   "citing_gained": 71
+  },
+  {
+   "work": "lccn:78032215",
+   "title": "The history of Jamaica; or, General survey of the antient and modern state of that island: with reflections on its situations, settlements, inhabitants, climate, products, commerce, laws, and government",
+   "year": 1970,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 67
+  },
+  {
+   "work": "w-215162",
+   "title": "The cholera years; the United States in 1832, 1849, and 1866",
+   "year": 1962,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 67
+  },
+  {
+   "work": "w-267681",
+   "title": "The rise of American civilization",
+   "year": 1929,
+   "source": "lc-full",
+   "citing_before": 28,
+   "citing_gained": 66
+  },
+  {
+   "work": "w-1134467",
+   "title": "A Mediterranean society : an abridgment in one volume",
+   "year": 1999,
+   "source": "lc-full",
+   "citing_before": 6,
+   "citing_gained": 64
+  },
+  {
+   "work": "w-242023",
+   "title": "Civilisation matérielle, économie et capitalisme : XVe-XVIIIe siècle",
+   "year": 1979,
+   "source": "lc-full",
+   "citing_before": 22,
+   "citing_gained": 64
+  },
+  {
+   "work": "w-236977",
+   "title": "Barbarism and religion",
+   "year": 2015,
+   "source": "lc-full",
+   "citing_before": 2,
+   "citing_gained": 63
+  },
+  {
+   "work": "w-208538",
+   "title": "A study of history",
+   "year": 1900,
+   "source": "lc-full",
+   "citing_before": 1,
+   "citing_gained": 62
+  },
+  {
+   "work": "w-302881",
+   "title": "The origins of English individualism : the family, property and social transition",
+   "year": 1978,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 62
+  },
+  {
+   "work": "w-825",
+   "title": "The souls of Black folk",
+   "year": 1953,
+   "source": "lc-full",
+   "citing_before": 21,
+   "citing_gained": 62
+  },
+  {
+   "work": "lccn:68005858",
+   "title": "Histoire financière de la France depuis 1715",
+   "year": 1965,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 60
+  },
+  {
+   "work": "w-122981",
+   "title": "Law and the conditions of freedom : in the nineteenth-century United States",
+   "year": 1956,
+   "source": "lc-full",
+   "citing_before": 1,
+   "citing_gained": 60
+  },
+  {
+   "work": "w-355033",
+   "title": "Objectivity",
+   "year": 2010,
+   "source": "lc-full",
+   "citing_before": 11,
+   "citing_gained": 60
+  },
+  {
+   "work": "w-1188714",
+   "title": "Documents relative to the colonial history of the state of New-York : procured in Holland, England, and France",
+   "year": 1853,
+   "source": "lc-full",
+   "citing_before": 42,
+   "citing_gained": 59
+  },
+  {
+   "work": "w-158349",
+   "title": "Histoire socialiste de la Révolution française",
+   "year": 1968,
+   "source": "lc-full",
+   "citing_before": 3,
+   "citing_gained": 58
+  },
+  {
+   "work": "w-416647",
+   "title": "History of agriculture in the southern United States to 1860",
+   "year": 1933,
+   "source": "lc-full",
+   "citing_before": 161,
+   "citing_gained": 58
+  },
+  {
+   "work": "lccn:79038865",
+   "title": "Annals of commerce, manufactures, fisheries, and navigation, with brief notices of the arts and sciences connected with them; containing the commercial transactions of the British Empire and other countries from the earliest accounts to the meeting o",
+   "year": 1972,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 57
+  },
+  {
+   "work": "w-1081240",
+   "title": "The structure of scientific revolutions",
+   "year": 1962,
+   "source": "lc-full",
+   "citing_before": 230,
+   "citing_gained": 57
+  },
+  {
+   "work": "w-136480",
+   "title": "The American commonwealth",
+   "year": 1893,
+   "source": "lc-full",
+   "citing_before": 5,
+   "citing_gained": 57
+  },
+  {
+   "work": "lccn:77080620",
+   "title": "The works of John Adams, second President of the United States",
+   "year": 1969,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 56
+  },
+  {
+   "work": "w-100653",
+   "title": "Les six livres de la République",
+   "year": 1986,
+   "source": "lc-full",
+   "citing_before": 10,
+   "citing_gained": 56
+  },
+  {
+   "work": "w-254856",
+   "title": "Black reconstruction in America; an essay toward a history of the part which black folk played in the attempt to reconstruct democracy in America, 1860-1880",
+   "year": 1964,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 56
+  },
+  {
+   "work": "lccn:72177608",
+   "title": "England's apprenticeship, 1603-1763",
+   "year": 1971,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 55
+  },
+  {
+   "work": "w-1082194",
+   "title": "The development of the British West Indies, 1700-1763",
+   "year": 1967,
+   "source": "lc-full",
+   "citing_before": 4,
+   "citing_gained": 55
+  },
+  {
+   "work": "w-1089271",
+   "title": "Journals of the Continental Congress, 1774-1789",
+   "year": 1968,
+   "source": "lc-full",
+   "citing_before": 1,
+   "citing_gained": 55
+  },
+  {
+   "work": "w-1182922",
+   "title": "Apologie pour l'histoire; ou, Métier d'historien",
+   "year": 1949,
+   "source": "lc-full",
+   "citing_before": 15,
+   "citing_gained": 55
+  },
+  {
+   "work": "w-127819",
+   "title": "The anatomy of melancholy : what it is, with all the kindes, causes, symptomes, prognosticks, and severall cures of it : in three maine partitions, with their seuerall sections, members, and subsections, philosophically, medicinally, historically ope",
+   "year": 1624,
+   "source": "lc-full",
+   "citing_before": 4,
+   "citing_gained": 55
+  },
+  {
+   "work": "w-132517",
+   "title": "The politics of prejudice, the anti-Japanese movement in California, and the struggle for Japanese exclusion",
+   "year": 1962,
+   "source": "lc-full",
+   "citing_before": 1,
+   "citing_gained": 55
+  },
+  {
+   "work": "w-242944",
+   "title": "American Negro slave revolts",
+   "year": 1943,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 55
+  },
+  {
+   "work": "w-127010",
+   "title": "Errand into the wilderness : an address",
+   "year": 1952,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 54
+  },
+  {
+   "work": "lccn:03017860",
+   "title": "Esmeraldo de situ orbis",
+   "year": 1892,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 52
+  },
+  {
+   "work": "lccn:53011731",
+   "title": "Home and foreign investment, 1870-1913; studies in capital accumulation",
+   "year": 1953,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 52
+  },
+  {
+   "work": "w-195667",
+   "title": "Consciousness and society; the reorientation of European social thought, 1890-1930",
+   "year": 1977,
+   "source": "lc-full",
+   "citing_before": 6,
+   "citing_gained": 52
+  },
+  {
+   "work": "w-324325",
+   "title": "The fall of the planter class in the British Caribbean, 1763-1833; a study in social and economic history",
+   "year": 1963,
+   "source": "lc-full",
+   "citing_before": 13,
+   "citing_gained": 52
+  },
+  {
+   "work": "lccn:47024986",
+   "title": "Inquiry into the history of prices in Holland",
+   "year": 1946,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 51
+  },
+  {
+   "work": "lccn:78061574",
+   "title": "The constitutional history of England",
+   "year": 1979,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 51
+  },
+  {
+   "work": "w-112750",
+   "title": "The Spanish frontier in North America",
+   "year": 2009,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 51
+  },
+  {
+   "work": "w-1804129",
+   "title": "The history of Unilever; a study in economic growth and social change",
+   "year": 1954,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 51
+  },
+  {
+   "work": "w-1825326",
+   "title": "Abstract of British historical statistics",
+   "year": 1962,
+   "source": "lc-full",
+   "citing_before": 226,
+   "citing_gained": 51
+  },
+  {
+   "work": "w-408842",
+   "title": "Our landed heritage : the public domain, 1776-1970",
+   "year": 1976,
+   "source": "lc-full",
+   "citing_before": 12,
+   "citing_gained": 51
+  },
+  {
+   "work": "lccn:60016026",
+   "title": "Commercial crisis and change in England, 1600-1642; a study in the instability of a mercantile economy",
+   "year": 1959,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 50
+  },
+  {
+   "work": "w-197221",
+   "title": "Time and narrative",
+   "year": 1984,
+   "source": "lc-full",
+   "citing_before": 1,
+   "citing_gained": 50
+  },
+  {
+   "work": "w-267643",
+   "title": "An economic interpretation of the Constitution of the United States",
+   "year": 1935,
+   "source": "lc-full",
+   "citing_before": 12,
+   "citing_gained": 50
+  },
+  {
+   "work": "w-711",
+   "title": "Wallerstein: The Modern World-System I",
+   "year": 1974,
+   "source": "lc-full",
+   "citing_before": 163,
+   "citing_gained": 50
+  },
+  {
+   "work": "lccn:36020208",
+   "title": "Ancients and moderns; a study of the background of The battle of the books",
+   "year": 1936,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 49
+  },
+  {
+   "work": "lccn:66028382",
+   "title": "Farm policies of the United States, 1790-1950: a study of their origins and development",
+   "year": 1966,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 49
+  },
+  {
+   "work": "w-270399",
+   "title": "A New England town: the first hundred years, Dedham, Massachusetts, 1636-1736",
+   "year": 1970,
+   "source": "lc-full",
+   "citing_before": 42,
+   "citing_gained": 49
+  },
+  {
+   "work": "lccn:02005529",
+   "title": "American archives: consisting of a collection of authentick records, state papers, debates, and letters and other notices of publick affairs, the whole forming a documentary history of the origin and progress of the North American colonies; of the ca",
+   "year": 1837,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 48
+  },
+  {
+   "work": "w-105997",
+   "title": "History of England from the accession of James I. to the outbreak of the civil war, 1603-1642",
+   "year": 1894,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 48
+  },
+  {
+   "work": "w-216346",
+   "title": "An essay concerning human understanding. In four books",
+   "year": 1775,
+   "source": "lc-full",
+   "citing_before": 121,
+   "citing_gained": 48
+  },
+  {
+   "work": "w-331654",
+   "title": "Les ouvriers en grève, France 1871-1890",
+   "year": 1974,
+   "source": "lc-full",
+   "citing_before": 18,
+   "citing_gained": 48
+  },
+  {
+   "work": "w-349938",
+   "title": "Discipline & experience : the mathematical way in the scientific revolution",
+   "year": 1995,
+   "source": "lc-full",
+   "citing_before": 7,
+   "citing_gained": 48
+  },
+  {
+   "work": "doi:10.1093/past/37.1.44",
+   "title": "A SIMPLE MODEL OF LONDON'S IMPORTANCE IN CHANGING ENGLISH SOCIETY AND ECONOMY 1650–1750",
+   "year": 1967,
+   "source": "crossref-meta",
+   "citing_before": 0,
+   "citing_gained": 47
+  },
+  {
+   "work": "lccn:14013688",
+   "title": "A compilation of the messages and papers of the presidents",
+   "year": 1911,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 47
+  },
+  {
+   "work": "w-113122",
+   "title": "The urban frontier; the rise of western cities, 1790-1830",
+   "year": 1996,
+   "source": "lc-full",
+   "citing_before": 2,
+   "citing_gained": 47
+  },
+  {
+   "work": "w-242025",
+   "title": "Civilization and capitalism, 15th-18th century",
+   "year": 1982,
+   "source": "lc-full",
+   "citing_before": 29,
+   "citing_gained": 47
+  },
+  {
+   "work": "w-244112",
+   "title": "A just measure of pain : the penitentiary in the industrial revolution, 1750-1850",
+   "year": 1978,
+   "source": "lc-full",
+   "citing_before": 1,
+   "citing_gained": 47
+  },
+  {
+   "work": "w-301852",
+   "title": "Africa and Africans in the making of the Atlantic world, 1400-1680",
+   "year": 1992,
+   "source": "lc-full",
+   "citing_before": 46,
+   "citing_gained": 47
+  },
+  {
+   "work": "w-364487",
+   "title": "Paysans de l'Ouest; des structures économiques et sociales aux options politiques depuis l'époque révolutionnaire dans la Sarthe",
+   "year": 1971,
+   "source": "lc-full",
+   "citing_before": 21,
+   "citing_gained": 47
+  },
+  {
+   "work": "w-76",
+   "title": "Feudal society",
+   "year": 2014,
+   "source": "lc-full",
+   "citing_before": 2,
+   "citing_gained": 47
+  },
+  {
+   "work": "w-436505",
+   "title": "Les Rois Thaumaturges: Etude sur le Caractere Surnaturel Attribue a la Puissance Royale Particulierement en France et en Angleterre / Marc Bloch",
+   "year": 1983,
+   "source": "lc-full",
+   "citing_before": 24,
+   "citing_gained": 46
+  },
+  {
+   "work": "doi:10.1093/hwj/3.1.6",
+   "title": "WORKSHOP OF THE WORLD: Steam Power and Hand Technoloy in Mid-Victorian Britain",
+   "year": 1977,
+   "source": "crossref-meta",
+   "citing_before": 0,
+   "citing_gained": 45
+  },
+  {
+   "work": "lccn:20022611",
+   "title": "The Yorkshire woollen and worsted industries, from the earliest times up to the industrial revolution",
+   "year": 1920,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 45
+  },
+  {
+   "work": "w-1188888",
+   "title": "London labour and the London poor",
+   "year": 1968,
+   "source": "lc-full",
+   "citing_before": 8,
+   "citing_gained": 45
+  },
+  {
+   "work": "w-1189962",
+   "title": "Americans and their forests : a historical geography",
+   "year": 1989,
+   "source": "lc-full",
+   "citing_before": 0,
+   "citing_gained": 45
+  },
+  {
+   "work": "w-158283",
+   "title": "The growth of political stability in England: 1675-1725",
+   "year": 1967,
+   "source": "lc-full",
+   "citing_before": 9,
+   "citing_gained": 45
+  },
+  {
+   "work": "w-2086",
+   "title": "Man and nature",
+   "year": 1965,
+   "source": "lc-full",
+   "citing_before": 14,
+   "citing_gained": 45
+  },
+  {
+   "work": "w-229879",
+   "title": "Magnalia Christi americana; or, The ecclesiastical history of New-England, from its first planting, in the year 1620, unto the year of Our Lord 1698",
+   "year": 1853,
+   "source": "lc-full",
+   "citing_before": 20,
+   "citing_gained": 45
+  },
+  {
+   "work": "w-281013",
+   "title": "Landscapes & labscapes : exploring the lab-field border in biology",
+   "year": 2002,
+   "source": "lc-full",
+   "citing_before": 4,
+   "citing_gained": 45
+  }
+ ],
+ "top_authors_gained": [
+  {
+   "person": "p-11",
+   "label": "Adam Smith",
+   "citing_before": 282,
+   "citing_after": 537,
+   "gained": 255
+  },
+  {
+   "person": "p-906",
+   "label": "Marc Bloch",
+   "citing_before": 328,
+   "citing_after": 571,
+   "gained": 243
+  },
+  {
+   "person": "p-414",
+   "label": "Fernand Braudel",
+   "citing_before": 547,
+   "citing_after": 747,
+   "gained": 200
+  },
+  {
+   "person": "p-125553",
+   "label": "Aulard, F.-A. (François-Alphonse)",
+   "citing_before": 101,
+   "citing_after": 296,
+   "gained": 195
+  },
+  {
+   "person": "p-1392",
+   "label": "W. E. B. Du Bois",
+   "citing_before": 201,
+   "citing_after": 378,
+   "gained": 177
+  },
+  {
+   "person": "lc-heading:Godechot, Jacques Léon, 1907-",
+   "label": "Godechot, Jacques Léon, 1907-",
+   "citing_before": 40,
+   "citing_after": 201,
+   "gained": 161
+  },
+  {
+   "person": "p-1093",
+   "label": "Paul Ricœur",
+   "citing_before": 46,
+   "citing_after": 205,
+   "gained": 159
+  },
+  {
+   "person": "p-134451",
+   "label": "Holdsworth, William Searle, Sir",
+   "citing_before": 18,
+   "citing_after": 176,
+   "gained": 158
+  },
+  {
+   "person": "p-202",
+   "label": "Charles A. Beard",
+   "citing_before": 91,
+   "citing_after": 247,
+   "gained": 156
+  },
+  {
+   "person": "p-3081",
+   "label": "Miller, Perry",
+   "citing_before": 196,
+   "citing_after": 349,
+   "gained": 153
+  },
+  {
+   "person": "p-422",
+   "label": "Michel Foucault",
+   "citing_before": 1331,
+   "citing_after": 1483,
+   "gained": 152
+  },
+  {
+   "person": "p-1415",
+   "label": "William Cronon",
+   "citing_before": 401,
+   "citing_after": 545,
+   "gained": 144
+  },
+  {
+   "person": "p-1656",
+   "label": "Blackstone, William",
+   "citing_before": 97,
+   "citing_after": 236,
+   "gained": 139
+  },
+  {
+   "person": "p-385",
+   "label": "Eric Williams",
+   "citing_before": 34,
+   "citing_after": 171,
+   "gained": 137
+  },
+  {
+   "person": "p-1210",
+   "label": "Roderick Nash",
+   "citing_before": 101,
+   "citing_after": 231,
+   "gained": 130
+  },
+  {
+   "person": "p-407",
+   "label": "F. W. Maitland",
+   "citing_before": 142,
+   "citing_after": 272,
+   "gained": 130
+  },
+  {
+   "person": "lc-heading:Gilson, Etienne, 1884-1978.",
+   "label": "Gilson, Etienne, 1884-1978.",
+   "citing_before": 5,
+   "citing_after": 132,
+   "gained": 127
+  },
+  {
+   "person": "p-2164",
+   "label": "Finkelman, Paul",
+   "citing_before": 54,
+   "citing_after": 180,
+   "gained": 126
+  },
+  {
+   "person": "p-107397",
+   "label": "Sutch, Richard",
+   "citing_before": 39,
+   "citing_after": 164,
+   "gained": 125
+  },
+  {
+   "person": "p-1397",
+   "label": "W. W. Rostow",
+   "citing_before": 138,
+   "citing_after": 258,
+   "gained": 120
+  },
+  {
+   "person": "p-2895",
+   "label": "Locke, John",
+   "citing_before": 285,
+   "citing_after": 405,
+   "gained": 120
+  },
+  {
+   "person": "p-3335",
+   "label": "Phillips, Ulrich Bonnell",
+   "citing_before": 118,
+   "citing_after": 238,
+   "gained": 120
+  },
+  {
+   "person": "p-3815",
+   "label": "Tindall, George B.",
+   "citing_before": 94,
+   "citing_after": 212,
+   "gained": 118
+  },
+  {
+   "person": "p-448",
+   "label": "Friedrich Engels",
+   "citing_before": 174,
+   "citing_after": 291,
+   "gained": 117
+  },
+  {
+   "person": "p-966",
+   "label": "Max Weber",
+   "citing_before": 606,
+   "citing_after": 722,
+   "gained": 116
+  },
+  {
+   "person": "lc-heading:Wehler, Hans Ulrich.",
+   "label": "Wehler, Hans Ulrich.",
+   "citing_before": 5,
+   "citing_after": 120,
+   "gained": 115
+  },
+  {
+   "person": "p-90000",
+   "label": "Ransom, Roger L",
+   "citing_before": 44,
+   "citing_after": 159,
+   "gained": 115
+  },
+  {
+   "person": "p-796",
+   "label": "Karl Marx",
+   "citing_before": 525,
+   "citing_after": 639,
+   "gained": 114
+  },
+  {
+   "person": "p-2261",
+   "label": "Gardiner, Samuel Rawson",
+   "citing_before": 23,
+   "citing_after": 133,
+   "gained": 110
+  },
+  {
+   "person": "lc-heading:Adams, John, 1735-1826.",
+   "label": "Adams, John, 1735-1826.",
+   "citing_before": 0,
+   "citing_after": 109,
+   "gained": 109
+  },
+  {
+   "person": "p-805",
+   "label": "Keith Thomas",
+   "citing_before": 296,
+   "citing_after": 404,
+   "gained": 108
+  },
+  {
+   "person": "p-873",
+   "label": "Lorraine Daston",
+   "citing_before": 290,
+   "citing_after": 398,
+   "gained": 108
+  },
+  {
+   "person": "p-2090",
+   "label": "Elkins, Stanley",
+   "citing_before": 49,
+   "citing_after": 156,
+   "gained": 107
+  },
+  {
+   "person": "p-2525",
+   "label": "Hobbes, Thomas",
+   "citing_before": 73,
+   "citing_after": 180,
+   "gained": 107
+  },
+  {
+   "person": "lc-heading:Taylor, George Rogers, 1895-",
+   "label": "Taylor, George Rogers, 1895-",
+   "citing_before": 22,
+   "citing_after": 128,
+   "gained": 106
+  },
+  {
+   "person": "p-542",
+   "label": "Hans-Ulrich Wehler",
+   "citing_before": 119,
+   "citing_after": 225,
+   "gained": 106
+  },
+  {
+   "person": "lc-heading:Halévy, Elie, 1870-1937.",
+   "label": "Halévy, Elie, 1870-1937.",
+   "citing_before": 22,
+   "citing_after": 127,
+   "gained": 105
+  },
+  {
+   "person": "p-2581",
+   "label": "Hume, David",
+   "citing_before": 185,
+   "citing_after": 289,
+   "gained": 104
+  },
+  {
+   "person": "p-1966",
+   "label": "Darwin, Charles",
+   "citing_before": 176,
+   "citing_after": 278,
+   "gained": 102
+  },
+  {
+   "person": "p-782",
+   "label": "Jürgen Habermas",
+   "citing_before": 355,
+   "citing_after": 457,
+   "gained": 102
+  },
+  {
+   "person": "p-179",
+   "label": "Carlo Ginzburg",
+   "citing_before": 229,
+   "citing_after": 330,
+   "gained": 101
+  },
+  {
+   "person": "p-3681",
+   "label": "Soboul, Albert",
+   "citing_before": 139,
+   "citing_after": 240,
+   "gained": 101
+  },
+  {
+   "person": "p-489",
+   "label": "George Sarton",
+   "citing_before": 72,
+   "citing_after": 173,
+   "gained": 101
+  },
+  {
+   "person": "p-47247",
+   "label": "Hicks, John D",
+   "citing_before": 37,
+   "citing_after": 135,
+   "gained": 98
+  },
+  {
+   "person": "p-464",
+   "label": "Gail Bederman",
+   "citing_before": 18,
+   "citing_after": 115,
+   "gained": 97
+  },
+  {
+   "person": "p-1286",
+   "label": "Sidney Webb",
+   "citing_before": 155,
+   "citing_after": 251,
+   "gained": 96
+  },
+  {
+   "person": "p-1674",
+   "label": "Bodin, Jean",
+   "citing_before": 67,
+   "citing_after": 162,
+   "gained": 95
+  },
+  {
+   "person": "p-401",
+   "label": "Eugene Genovese",
+   "citing_before": 296,
+   "citing_after": 391,
+   "gained": 95
+  },
+  {
+   "person": "p-1539",
+   "label": "Bacon, Francis",
+   "citing_before": 112,
+   "citing_after": 206,
+   "gained": 94
+  },
+  {
+   "person": "p-1992",
+   "label": "Degler, Carl N.",
+   "citing_before": 122,
+   "citing_after": 216,
+   "gained": 94
+  },
+  {
+   "person": "p-44056",
+   "label": "Govan, Thomas",
+   "citing_before": 5,
+   "citing_after": 98,
+   "gained": 93
+  },
+  {
+   "person": "p-2928",
+   "label": "Macfarlane, Alan",
+   "citing_before": 119,
+   "citing_after": 211,
+   "gained": 92
+  },
+  {
+   "person": "p-1317",
+   "label": "Steven Shapin",
+   "citing_before": 474,
+   "citing_after": 565,
+   "gained": 91
+  },
+  {
+   "person": "p-2955",
+   "label": "Malthus, Thomas Robert",
+   "citing_before": 34,
+   "citing_after": 125,
+   "gained": 91
+  },
+  {
+   "person": "p-2287",
+   "label": "Gibbon, Edward",
+   "citing_before": 29,
+   "citing_after": 119,
+   "gained": 90
+  },
+  {
+   "person": "p-598",
+   "label": "Immanuel Kant",
+   "citing_before": 127,
+   "citing_after": 216,
+   "gained": 89
+  },
+  {
+   "person": "p-521",
+   "label": "Antonio Gramsci",
+   "citing_before": 175,
+   "citing_after": 263,
+   "gained": 88
+  },
+  {
+   "person": "p-1248",
+   "label": "Samuel Eliot Morison",
+   "citing_before": 258,
+   "citing_after": 345,
+   "gained": 87
+  },
+  {
+   "person": "p-1813",
+   "label": "Carson, Rachel",
+   "citing_before": 18,
+   "citing_after": 105,
+   "gained": 87
+  },
+  {
+   "person": "p-193997",
+   "label": "Hening, William Waller, 1768-1828",
+   "citing_before": 106,
+   "citing_after": 193,
+   "gained": 87
+  },
+  {
+   "person": "p-611",
+   "label": "J. G. A. Pocock",
+   "citing_before": 597,
+   "citing_after": 683,
+   "gained": 86
+  },
+  {
+   "person": "p-1423",
+   "label": "William Stubbs",
+   "citing_before": 4,
+   "citing_after": 88,
+   "gained": 84
+  },
+  {
+   "person": "p-1991",
+   "label": "Defoe, Daniel",
+   "citing_before": 63,
+   "citing_after": 146,
+   "gained": 83
+  },
+  {
+   "person": "p-886",
+   "label": "Lucien Febvre",
+   "citing_before": 165,
+   "citing_after": 247,
+   "gained": 82
+  },
+  {
+   "person": "lc-heading:Cairncross, Alec, Sir, 1911-",
+   "label": "Cairncross, Alec, Sir, 1911-",
+   "citing_before": 17,
+   "citing_after": 98,
+   "gained": 81
+  },
+  {
+   "person": "p-3047",
+   "label": "McWilliams, Carey",
+   "citing_before": 74,
+   "citing_after": 155,
+   "gained": 81
+  },
+  {
+   "person": "p-384",
+   "label": "Eric Hobsbawm",
+   "citing_before": 861,
+   "citing_after": 942,
+   "gained": 81
+  },
+  {
+   "person": "p-1552",
+   "label": "Bancroft, Hubert Howe",
+   "citing_before": 153,
+   "citing_after": 233,
+   "gained": 80
+  },
+  {
+   "person": "p-1889",
+   "label": "Cohn, Samuel",
+   "citing_before": 94,
+   "citing_after": 174,
+   "gained": 80
+  },
+  {
+   "person": "p-125326",
+   "label": "Ford, Worthington Chauncey",
+   "citing_before": 19,
+   "citing_after": 98,
+   "gained": 79
+  },
+  {
+   "person": "p-133",
+   "label": "Bernard Bailyn",
+   "citing_before": 552,
+   "citing_after": 631,
+   "gained": 79
+  },
+  {
+   "person": "p-753",
+   "label": "John Stuart Mill",
+   "citing_before": 197,
+   "citing_after": 276,
+   "gained": 79
+  },
+  {
+   "person": "p-458",
+   "label": "G. W. F. Hegel",
+   "citing_before": 146,
+   "citing_after": 224,
+   "gained": 78
+  },
+  {
+   "person": "p-2086",
+   "label": "Eisenstein, Elizabeth L.",
+   "citing_before": 20,
+   "citing_after": 97,
+   "gained": 77
+  },
+  {
+   "person": "p-2212",
+   "label": "Franklin, Benjamin",
+   "citing_before": 157,
+   "citing_after": 234,
+   "gained": 77
+  },
+  {
+   "person": "p-1109",
+   "label": "Peter Burke",
+   "citing_before": 334,
+   "citing_after": 410,
+   "gained": 76
+  },
+  {
+   "person": "p-1750",
+   "label": "Bryce, James",
+   "citing_before": 41,
+   "citing_after": 117,
+   "gained": 76
+  },
+  {
+   "person": "p-57",
+   "label": "Allan Nevins",
+   "citing_before": 155,
+   "citing_after": 231,
+   "gained": 76
+  },
+  {
+   "person": "lc-heading:Wilson, C. H. (Charles Henry)",
+   "label": "Wilson, C. H. (Charles Henry)",
+   "citing_before": 0,
+   "citing_after": 75,
+   "gained": 75
+  },
+  {
+   "person": "p-126983",
+   "label": "Sprat, Thomas",
+   "citing_before": 24,
+   "citing_after": 99,
+   "gained": 75
+  },
+  {
+   "person": "p-136986",
+   "label": "Tedeschi, John A",
+   "citing_before": 40,
+   "citing_after": 115,
+   "gained": 75
+  },
+  {
+   "person": "p-1514",
+   "label": "Aristotle, William Ellis",
+   "citing_before": 175,
+   "citing_after": 250,
+   "gained": 75
+  },
+  {
+   "person": "p-237873",
+   "label": "Bosman, Willem",
+   "citing_before": 18,
+   "citing_after": 93,
+   "gained": 75
+  },
+  {
+   "person": "p-1766",
+   "label": "Burnet, Gilbert",
+   "citing_before": 49,
+   "citing_after": 123,
+   "gained": 74
+  },
+  {
+   "person": "p-2648",
+   "label": "Jefferson, Thomas",
+   "citing_before": 308,
+   "citing_after": 382,
+   "gained": 74
+  },
+  {
+   "person": "p-833",
+   "label": "Lawrence Stone",
+   "citing_before": 566,
+   "citing_after": 640,
+   "gained": 74
+  },
+  {
+   "person": "lc-heading:Noonan, John Thomas, 1926-",
+   "label": "Noonan, John Thomas, 1926-",
+   "citing_before": 0,
+   "citing_after": 72,
+   "gained": 72
+  },
+  {
+   "person": "p-1973",
+   "label": "Davies, K. G.",
+   "citing_before": 35,
+   "citing_after": 107,
+   "gained": 72
+  },
+  {
+   "person": "p-1121",
+   "label": "Philip Curtin",
+   "citing_before": 573,
+   "citing_after": 644,
+   "gained": 71
+  },
+  {
+   "person": "lc-heading:Augustine, Saint, Bishop of Hippo.",
+   "label": "Augustine, Saint, Bishop of Hippo.",
+   "citing_before": 0,
+   "citing_after": 70,
+   "gained": 70
+  },
+  {
+   "person": "p-4041",
+   "label": "Young, Arthur",
+   "citing_before": 38,
+   "citing_after": 108,
+   "gained": 70
+  },
+  {
+   "person": "p-495",
+   "label": "Georges Duby",
+   "citing_before": 328,
+   "citing_after": 398,
+   "gained": 70
+  },
+  {
+   "person": "p-88255",
+   "label": "Bemis, Samuel Flagg",
+   "citing_before": 43,
+   "citing_after": 113,
+   "gained": 70
+  },
+  {
+   "person": "lc-heading:Long, Edward, 1734-1813.",
+   "label": "Long, Edward, 1734-1813.",
+   "citing_before": 0,
+   "citing_after": 69,
+   "gained": 69
+  },
+  {
+   "person": "p-1293",
+   "label": "Simon Schaffer",
+   "citing_before": 291,
+   "citing_after": 360,
+   "gained": 69
+  },
+  {
+   "person": "p-1357",
+   "label": "Thomas J. Sugrue",
+   "citing_before": 72,
+   "citing_after": 141,
+   "gained": 69
+  },
+  {
+   "person": "p-380",
+   "label": "E. P. Thompson",
+   "citing_before": 1123,
+   "citing_after": 1192,
+   "gained": 69
+  },
+  {
+   "person": "lc-heading:Marion, Marcel, 1857-1940.",
+   "label": "Marion, Marcel, 1857-1940.",
+   "citing_before": 0,
+   "citing_after": 68,
+   "gained": 68
+  },
+  {
+   "person": "lc-heading:Posthumus, N. W. (Nicolaas Wilhelmus), 1880-1960.",
+   "label": "Posthumus, N. W. (Nicolaas Wilhelmus), 1880-1960.",
+   "citing_before": 0,
+   "citing_after": 68,
+   "gained": 68
+  },
+  {
+   "person": "p-1110",
+   "label": "Peter Galison",
+   "citing_before": 197,
+   "citing_after": 265,
+   "gained": 68
+  }
+ ],
+ "canon_works_top60_after": [
+  {
+   "unit": "w-849",
+   "label": "The making of the English working class",
+   "citing_after": 543,
+   "rank_after": 1,
+   "citing_before": 519,
+   "rank_before": 1
+  },
+  {
+   "unit": "w-315433",
+   "label": "Imagined communities : reflections on the origin and spread of nationalism",
+   "citing_after": 527,
+   "rank_after": 2,
+   "citing_before": 510,
+   "rank_before": 2
+  },
+  {
+   "unit": "w-90968",
+   "label": "The visible hand : the managerial revolution in American business",
+   "citing_after": 410,
+   "rank_after": 3,
+   "citing_before": 408,
+   "rank_before": 3
+  },
+  {
+   "unit": "w-666",
+   "label": "Seeing like a state: how certain schemes to improve the human condition have failed",
+   "citing_after": 327,
+   "rank_after": 4,
+   "citing_before": 320,
+   "rank_before": 4
+  },
+  {
+   "unit": "w-236980",
+   "label": "The Machiavellian moment: Florentine political thought and the Atlantic republican tradition",
+   "citing_after": 308,
+   "rank_after": 5,
+   "citing_before": 302,
+   "rank_before": 5
+  },
+  {
+   "unit": "w-204964",
+   "label": "Discipline and punish : the birth of the prison",
+   "citing_after": 302,
+   "rank_after": 6,
+   "citing_before": 275,
+   "rank_before": 8
+  },
+  {
+   "unit": "w-204983",
+   "label": "The history of sexuality",
+   "citing_after": 300,
+   "rank_after": 7,
+   "citing_before": 260,
+   "rank_before": 10
+  },
+  {
+   "unit": "w-1081240",
+   "label": "The structure of scientific revolutions",
+   "citing_after": 287,
+   "rank_after": 8,
+   "citing_before": 230,
+   "rank_before": 15
+  },
+  {
+   "unit": "w-278424",
+   "label": "Britons : forging the nation, 1707-1837",
+   "citing_after": 287,
+   "rank_after": 8,
+   "citing_before": 279,
+   "rank_before": 6
+  },
+  {
+   "unit": "w-106580",
+   "label": "The population history of England, 1541-1871 : a reconstruction",
+   "citing_after": 286,
+   "rank_after": 10,
+   "citing_before": 268,
+   "rank_before": 9
+  },
+  {
+   "unit": "w-193309",
+   "label": "Orientalism",
+   "citing_after": 280,
+   "rank_after": 11,
+   "citing_before": 277,
+   "rank_before": 7
+  },
+  {
+   "unit": "w-1825326",
+   "label": "Abstract of British historical statistics",
+   "citing_after": 277,
+   "rank_after": 12,
+   "citing_before": 226,
+   "rank_before": 18
+  },
+  {
+   "unit": "w-170748",
+   "label": "Capital: a critical analysis of capitalist production",
+   "citing_after": 264,
+   "rank_after": 13,
+   "citing_before": 243,
+   "rank_before": 11
+  },
+  {
+   "unit": "w-339014",
+   "label": "Religion and the decline of magic: studies in popular beliefs in sixteenth and seventeenth century England",
+   "citing_after": 252,
+   "rank_after": 14,
+   "citing_before": 242,
+   "rank_before": 12
+  },
+  {
+   "unit": "w-157747",
+   "label": "British economic growth, 1688-1959: trends and structure",
+   "citing_after": 243,
+   "rank_after": 15,
+   "citing_before": 213,
+   "rank_before": 21
+  },
+  {
+   "unit": "w-246780",
+   "label": "An inquiry into the nature and causes of the wealth of nations",
+   "citing_after": 242,
+   "rank_after": 16,
+   "citing_before": 67,
+   "rank_before": 425
+  },
+  {
+   "unit": "w-391642",
+   "label": "That noble dream : the \"objectivity question\" and the American historical profession",
+   "citing_after": 240,
+   "rank_after": 17,
+   "citing_before": 235,
+   "rank_before": 13
+  },
+  {
+   "unit": "w-270898",
+   "label": "The unbound Prometheus: technological change and industrial development in Western Europe from 1750 to the present",
+   "citing_after": 238,
+   "rank_after": 18,
+   "citing_before": 235,
+   "rank_before": 13
+  },
+  {
+   "unit": "w-93166",
+   "label": "Time on the cross; the economics of American Negro slavery",
+   "citing_after": 237,
+   "rank_after": 19,
+   "citing_before": 222,
+   "rank_before": 19
+  },
+  {
+   "unit": "w-107037",
+   "label": "The ideological origins of the American Revolution",
+   "citing_after": 236,
+   "rank_after": 20,
+   "citing_before": 230,
+   "rank_before": 15
+  },
+  {
+   "unit": "w-174241",
+   "label": "La distinction : critique sociale du jugement",
+   "citing_after": 236,
+   "rank_after": 20,
+   "citing_before": 230,
+   "rank_before": 15
+  },
+  {
+   "unit": "w-103108",
+   "label": "A history of magic and experimental science",
+   "citing_after": 234,
+   "rank_after": 22,
+   "citing_before": 212,
+   "rank_before": 22
+  },
+  {
+   "unit": "w-416647",
+   "label": "History of agriculture in the southern United States to 1860",
+   "citing_after": 219,
+   "rank_after": 23,
+   "citing_before": 161,
+   "rank_before": 49
+  },
+  {
+   "unit": "w-501400",
+   "label": "THE MORAL ECONOMY OF THE ENGLISH CROWD IN THE EIGHTEENTH CENTURY",
+   "citing_after": 214,
+   "rank_after": 24,
+   "citing_before": 214,
+   "rank_before": 20
+  },
+  {
+   "unit": "w-261627",
+   "label": "The search for order, 1877-1920",
+   "citing_after": 213,
+   "rank_after": 25,
+   "citing_before": 172,
+   "rank_before": 41
+  },
+  {
+   "unit": "w-711",
+   "label": "Wallerstein: The Modern World-System I",
+   "citing_after": 213,
+   "rank_after": 25,
+   "citing_before": 163,
+   "rank_before": 47
+  },
+  {
+   "unit": "w-1105862",
+   "label": "The Invention of tradition",
+   "citing_after": 208,
+   "rank_after": 27,
+   "citing_before": 200,
+   "rank_before": 23
+  },
+  {
+   "unit": "w-169192",
+   "label": "The age of reform; from Bryan to F. D. R",
+   "citing_after": 208,
+   "rank_after": 27,
+   "citing_before": 190,
+   "rank_before": 29
+  },
+  {
+   "unit": "w-372944",
+   "label": "The great divergence : China, Europe, and the making of the modern world economy",
+   "citing_after": 207,
+   "rank_after": 29,
+   "citing_before": 200,
+   "rank_before": 23
+  },
+  {
+   "unit": "w-210203",
+   "label": "Conservation and the gospel of efficiency; the progressive conservation movement, 1890-1920",
+   "citing_after": 206,
+   "rank_after": 30,
+   "citing_before": 198,
+   "rank_before": 26
+  },
+  {
+   "unit": "w-155647",
+   "label": "Leviathan and the air-pump : Hobbes, Boyle, and the experimental life : including a translation of Thomas Hobbes, Dialogus physicus de natura aeris by Simon Schaffer",
+   "citing_after": 205,
+   "rank_after": 31,
+   "citing_before": 199,
+   "rank_before": 25
+  },
+  {
+   "unit": "w-272086",
+   "label": "Roll, Jordan, roll; the world the slaves made",
+   "citing_after": 205,
+   "rank_after": 31,
+   "citing_before": 175,
+   "rank_before": 36
+  },
+  {
+   "unit": "w-227109",
+   "label": "Commentaries on the laws of England / by William Blackstone",
+   "citing_after": 202,
+   "rank_after": 33,
+   "citing_before": 80,
+   "rank_before": 278
+  },
+  {
+   "unit": "w-547",
+   "label": "Changes in the land: Indians, colonists, and the ecology of New England",
+   "citing_after": 200,
+   "rank_after": 34,
+   "citing_before": 196,
+   "rank_before": 27
+  },
+  {
+   "unit": "w-599",
+   "label": "The Atlantic slave trade; a census",
+   "citing_after": 199,
+   "rank_after": 35,
+   "citing_before": 186,
+   "rank_before": 32
+  },
+  {
+   "unit": "w-105844",
+   "label": "The creation of the American Republic, 1776-1787",
+   "citing_after": 197,
+   "rank_after": 36,
+   "citing_before": 178,
+   "rank_before": 35
+  },
+  {
+   "unit": "w-111951",
+   "label": "Metahistory : the historical imagination in nineteenth-century Europe",
+   "citing_after": 197,
+   "rank_after": 36,
+   "citing_before": 196,
+   "rank_before": 27
+  },
+  {
+   "unit": "w-133580",
+   "label": "White over Black : American attitudes toward the Negro, 1550-1812",
+   "citing_after": 197,
+   "rank_after": 36,
+   "citing_before": 174,
+   "rank_before": 37
+  },
+  {
+   "unit": "w-2417",
+   "label": "Wilderness and the American mind",
+   "citing_after": 195,
+   "rank_after": 39,
+   "citing_before": 57,
+   "rank_before": 624
+  },
+  {
+   "unit": "w-310098",
+   "label": "Nature's metropolis : Chicago and the Great West",
+   "citing_after": 195,
+   "rank_after": 39,
+   "citing_before": 20,
+   "rank_before": 4922
+  },
+  {
+   "unit": "w-219537",
+   "label": "Democracy in America",
+   "citing_after": 193,
+   "rank_after": 41,
+   "citing_before": 174,
+   "rank_before": 37
+  },
+  {
+   "unit": "w-293180",
+   "label": "The sinews of power : war, money, and the English state, 1688-1783",
+   "citing_after": 193,
+   "rank_after": 41,
+   "citing_before": 183,
+   "rank_before": 34
+  },
+  {
+   "unit": "w-1611",
+   "label": "Networks of power: electrification in Western society, 1880-1930",
+   "citing_after": 192,
+   "rank_after": 43,
+   "citing_before": 187,
+   "rank_before": 31
+  },
+  {
+   "unit": "w-180395",
+   "label": "Science in action : how to follow scientists and engineers through society",
+   "citing_after": 190,
+   "rank_after": 44,
+   "citing_before": 188,
+   "rank_before": 30
+  },
+  {
+   "unit": "w-336682",
+   "label": "Ecological imperialism : the biological expansion of Europe, 900-1900",
+   "citing_after": 188,
+   "rank_after": 45,
+   "citing_before": 185,
+   "rank_before": 33
+  },
+  {
+   "unit": "w-1178063",
+   "label": "The statutes at large : being a collection of all the laws of Virginia, from the first session of the legislature in the year 1619 :  published pursuant to an act of the General Assembly of Virginia, passed on the fifth day of February one thousand e",
+   "citing_after": 181,
+   "rank_after": 46,
+   "citing_before": 103,
+   "rank_before": 151
+  },
+  {
+   "unit": "w-1081723",
+   "label": "An economic history of West Africa",
+   "citing_after": 178,
+   "rank_after": 47,
+   "citing_before": 173,
+   "rank_before": 39
+  },
+  {
+   "unit": "w-218109",
+   "label": "The middle ground : Indians, empires, and republics in the Great Lakes region, 1650-1815",
+   "citing_after": 176,
+   "rank_after": 48,
+   "citing_before": 172,
+   "rank_before": 41
+  },
+  {
+   "unit": "w-242041",
+   "label": "La Méditerranée et le monde méditerranéen à l'époque de Philippe II",
+   "citing_after": 176,
+   "rank_after": 48,
+   "citing_before": 156,
+   "rank_before": 54
+  },
+  {
+   "unit": "w-301905",
+   "label": "Family fortunes : men and women of the English middle class, 1780-1850",
+   "citing_after": 176,
+   "rank_after": 48,
+   "citing_before": 173,
+   "rank_before": 39
+  },
+  {
+   "unit": "w-667",
+   "label": "Weapons of the weak: everyday forms of peasant resistance",
+   "citing_after": 176,
+   "rank_after": 48,
+   "citing_before": 171,
+   "rank_before": 43
+  },
+  {
+   "unit": "w-155651",
+   "label": "A social history of truth : civility and science in seventeenth-century England",
+   "citing_after": 174,
+   "rank_after": 52,
+   "citing_before": 170,
+   "rank_before": 44
+  },
+  {
+   "unit": "w-1804",
+   "label": "Gender and the politics of history",
+   "citing_after": 173,
+   "rank_after": 53,
+   "citing_before": 165,
+   "rank_before": 45
+  },
+  {
+   "unit": "w-520",
+   "label": "The idea of history",
+   "citing_after": 173,
+   "rank_after": 53,
+   "citing_before": 164,
+   "rank_before": 46
+  },
+  {
+   "unit": "w-161453",
+   "label": "The structural transformation of the public sphere : an inquiry into a category of bourgeois society",
+   "citing_after": 171,
+   "rank_after": 55,
+   "citing_before": 160,
+   "rank_before": 50
+  },
+  {
+   "unit": "w-246797",
+   "label": "The wealth of nations",
+   "citing_after": 171,
+   "rank_after": 55,
+   "citing_before": 100,
+   "rank_before": 165
+  },
+  {
+   "unit": "w-314082",
+   "label": "A history of English law",
+   "citing_after": 171,
+   "rank_after": 55,
+   "citing_before": 12,
+   "rank_before": 11077
+  },
+  {
+   "unit": "w-95194",
+   "label": "American slavery, American freedom : the ordeal of colonial Virginia",
+   "citing_after": 171,
+   "rank_after": 55,
+   "citing_before": 158,
+   "rank_before": 52
+  },
+  {
+   "unit": "w-205024",
+   "label": "Surveiller et punir : naissance de la prison",
+   "citing_after": 169,
+   "rank_after": 59,
+   "citing_before": 160,
+   "rank_before": 50
+  },
+  {
+   "unit": "w-216346",
+   "label": "An essay concerning human understanding. In four books",
+   "citing_after": 169,
+   "rank_after": 59,
+   "citing_before": 121,
+   "rank_before": 101
+  }
+ ],
+ "canon_works_biggest_risers_into_top200": [
+  {
+   "unit": "w-1176781",
+   "label": "Slavery; a problem in American institutional and intellectual life",
+   "rank_before": null,
+   "rank_after": 187
+  },
+  {
+   "unit": "w-127019",
+   "label": "The New England mind; the seventeenth century",
+   "rank_before": 118570,
+   "rank_after": 151
+  },
+  {
+   "unit": "w-438051",
+   "label": "Deutsche Gesellschaftsgeschichte: vol. 5: Von der Gründung der beiden deutschen Staaten bis zur Vereinigung 1949-1990 / Hans-Ulrich Wehler",
+   "rank_before": 22962,
+   "rank_after": 135
+  },
+  {
+   "unit": "w-106447",
+   "label": "Capitalism & slavery",
+   "rank_before": 19489,
+   "rank_after": 80
+  },
+  {
+   "unit": "w-264323",
+   "label": "One kind of freedom : the economic consequences of emancipation",
+   "rank_before": 16645,
+   "rank_after": 109
+  },
+  {
+   "unit": "w-314082",
+   "label": "A history of English law",
+   "rank_before": 11077,
+   "rank_after": 55
+  },
+  {
+   "unit": "w-199066",
+   "label": "Leviathan; or, The matter, forme and power of a commonwealth, ecclesiasticall and civil",
+   "rank_before": 7107,
+   "rank_after": 151
+  },
+  {
+   "unit": "w-379088",
+   "label": "Manliness & civilization : a cultural history of gender and race in the United States, 1880-1917",
+   "rank_before": 5856,
+   "rank_after": 137
+  },
+  {
+   "unit": "w-310098",
+   "label": "Nature's metropolis : Chicago and the Great West",
+   "rank_before": 4922,
+   "rank_after": 39
+  },
+  {
+   "unit": "w-101520",
+   "label": "American Negro slavery; a survey of the supply, employment and control of Negro labor as determined by the plantation regime",
+   "rank_before": 4539,
+   "rank_after": 160
+  },
+  {
+   "unit": "w-121330",
+   "label": "La société des Jacobins; recueil de documents pour l'histoire du Club des jacobins de Paris",
+   "rank_before": 3105,
+   "rank_after": 148
+  },
+  {
+   "unit": "w-2417",
+   "label": "Wilderness and the American mind",
+   "rank_before": 624,
+   "rank_after": 39
+  },
+  {
+   "unit": "w-246780",
+   "label": "An inquiry into the nature and causes of the wealth of nations",
+   "rank_before": 425,
+   "rank_after": 16
+  },
+  {
+   "unit": "w-227109",
+   "label": "Commentaries on the laws of England / by William Blackstone",
+   "rank_before": 278,
+   "rank_after": 33
+  },
+  {
+   "unit": "w-163735",
+   "label": "Quaderni del carcere",
+   "rank_before": 401,
+   "rank_after": 178
+  },
+  {
+   "unit": "w-137092",
+   "label": "The colonial period of American history",
+   "rank_before": 303,
+   "rank_after": 187
+  },
+  {
+   "unit": "w-246797",
+   "label": "The wealth of nations",
+   "rank_before": 165,
+   "rank_after": 55
+  },
+  {
+   "unit": "w-1178063",
+   "label": "The statutes at large : being a collection of all the laws of Virginia, from the first session of the legislature in the year 1619 :  published pursuant to an act of the General Assembly of Virginia, passed on the fifth day of February one thousand e",
+   "rank_before": 151,
+   "rank_after": 46
+  },
+  {
+   "unit": "w-278629",
+   "label": "Origins of the new South, 1877-1913",
+   "rank_before": 226,
+   "rank_after": 137
+  },
+  {
+   "unit": "w-187328",
+   "label": "Wirtschaft und Gesellschaft; Grundriss der verstehenden Soziologie. Mit einem Anhang; die rationalen und soziologischen Grundlagen der Musik",
+   "rank_before": 201,
+   "rank_after": 120
+  },
+  {
+   "unit": "w-1164107",
+   "label": "Settecento riformatore",
+   "rank_before": 236,
+   "rank_after": 155
+  },
+  {
+   "unit": "w-1188775",
+   "label": "The crowd in history; a study of popular disturbances in France and England, 1730-1848",
+   "rank_before": 214,
+   "rank_after": 155
+  },
+  {
+   "unit": "w-1188518",
+   "label": "History of agriculture in the northern United States, 1620-1860",
+   "rank_before": 171,
+   "rank_after": 114
+  },
+  {
+   "unit": "w-279105",
+   "label": "The foundations of modern political thought",
+   "rank_before": 140,
+   "rank_after": 84
+  },
+  {
+   "unit": "w-242038",
+   "label": "The Mediterranean and the mediterranean world in the age of Philip II",
+   "rank_before": 135,
+   "rank_after": 82
+  }
+ ],
+ "canon_works_top100_overlap": 88,
+ "canon_authors_top60_after": [
+  {
+   "unit": "p-422",
+   "label": "Michel Foucault",
+   "citing_after": 1483,
+   "rank_after": 1,
+   "citing_before": 1331,
+   "rank_before": 1
+  },
+  {
+   "unit": "p-380",
+   "label": "E. P. Thompson",
+   "citing_after": 1192,
+   "rank_after": 2,
+   "citing_before": 1123,
+   "rank_before": 2
+  },
+  {
+   "unit": "p-384",
+   "label": "Eric Hobsbawm",
+   "citing_after": 942,
+   "rank_after": 3,
+   "citing_before": 861,
+   "rank_before": 3
+  },
+  {
+   "unit": "p-1129",
+   "label": "Pierre Bourdieu",
+   "citing_after": 824,
+   "rank_after": 4,
+   "citing_before": 775,
+   "rank_before": 4
+  },
+  {
+   "unit": "p-414",
+   "label": "Fernand Braudel",
+   "citing_after": 747,
+   "rank_after": 5,
+   "citing_before": 547,
+   "rank_before": 14
+  },
+  {
+   "unit": "p-966",
+   "label": "Max Weber",
+   "citing_after": 722,
+   "rank_after": 6,
+   "citing_before": 606,
+   "rank_before": 8
+  },
+  {
+   "unit": "p-636",
+   "label": "James C. Scott",
+   "citing_after": 716,
+   "rank_after": 7,
+   "citing_before": 699,
+   "rank_before": 5
+  },
+  {
+   "unit": "p-611",
+   "label": "J. G. A. Pocock",
+   "citing_after": 683,
+   "rank_after": 8,
+   "citing_before": 597,
+   "rank_before": 9
+  },
+  {
+   "unit": "p-45",
+   "label": "Alfred D. Chandler Jr.",
+   "citing_after": 662,
+   "rank_after": 9,
+   "citing_before": 633,
+   "rank_before": 6
+  },
+  {
+   "unit": "p-332",
+   "label": "Douglass North",
+   "citing_after": 658,
+   "rank_after": 10,
+   "citing_before": 626,
+   "rank_before": 7
+  },
+  {
+   "unit": "p-1121",
+   "label": "Philip Curtin",
+   "citing_after": 644,
+   "rank_after": 11,
+   "citing_before": 573,
+   "rank_before": 10
+  },
+  {
+   "unit": "p-833",
+   "label": "Lawrence Stone",
+   "citing_after": 640,
+   "rank_after": 12,
+   "citing_before": 566,
+   "rank_before": 12
+  },
+  {
+   "unit": "p-796",
+   "label": "Karl Marx",
+   "citing_after": 639,
+   "rank_after": 13,
+   "citing_before": 525,
+   "rank_before": 19
+  },
+  {
+   "unit": "p-133",
+   "label": "Bernard Bailyn",
+   "citing_after": 631,
+   "rank_after": 14,
+   "citing_before": 552,
+   "rank_before": 13
+  },
+  {
+   "unit": "p-445",
+   "label": "Frederick Cooper",
+   "citing_after": 605,
+   "rank_after": 15,
+   "citing_before": 567,
+   "rank_before": 11
+  },
+  {
+   "unit": "p-1173",
+   "label": "Richard Hofstadter",
+   "citing_after": 589,
+   "rank_after": 16,
+   "citing_before": 537,
+   "rank_before": 15
+  },
+  {
+   "unit": "p-906",
+   "label": "Marc Bloch",
+   "citing_after": 571,
+   "rank_after": 17,
+   "citing_before": 328,
+   "rank_before": 56
+  },
+  {
+   "unit": "p-1317",
+   "label": "Steven Shapin",
+   "citing_after": 565,
+   "rank_after": 18,
+   "citing_before": 474,
+   "rank_before": 22
+  },
+  {
+   "unit": "p-337",
+   "label": "E. A. Wrigley",
+   "citing_after": 555,
+   "rank_after": 19,
+   "citing_before": 534,
+   "rank_before": 17
+  },
+  {
+   "unit": "p-131",
+   "label": "Benedict Anderson",
+   "citing_after": 553,
+   "rank_after": 20,
+   "citing_before": 536,
+   "rank_before": 16
+  },
+  {
+   "unit": "p-1182",
+   "label": "Richard White",
+   "citing_after": 545,
+   "rank_after": 21,
+   "citing_before": 531,
+   "rank_before": 18
+  },
+  {
+   "unit": "p-1415",
+   "label": "William Cronon",
+   "citing_after": 545,
+   "rank_after": 21,
+   "citing_before": 401,
+   "rank_before": 28
+  },
+  {
+   "unit": "p-828",
+   "label": "Bruno Latour",
+   "citing_after": 542,
+   "rank_after": 23,
+   "citing_before": 525,
+   "rank_before": 19
+  },
+  {
+   "unit": "p-11",
+   "label": "Adam Smith",
+   "citing_after": 537,
+   "rank_after": 24,
+   "citing_before": 282,
+   "rank_before": 83
+  },
+  {
+   "unit": "p-345",
+   "label": "Edmund S Morgan",
+   "citing_after": 505,
+   "rank_after": 25,
+   "citing_before": 474,
+   "rank_before": 22
+  },
+  {
+   "unit": "p-1195",
+   "label": "Robert Fogel",
+   "citing_after": 499,
+   "rank_after": 26,
+   "citing_before": 477,
+   "rank_before": 21
+  },
+  {
+   "unit": "p-722",
+   "label": "John Brewer",
+   "citing_after": 487,
+   "rank_after": 27,
+   "citing_before": 465,
+   "rank_before": 24
+  },
+  {
+   "unit": "p-212",
+   "label": "Charles Tilly",
+   "citing_after": 480,
+   "rank_after": 28,
+   "citing_before": 431,
+   "rank_before": 26
+  },
+  {
+   "unit": "p-1229",
+   "label": "Roy Porter",
+   "citing_after": 478,
+   "rank_after": 29,
+   "citing_before": 430,
+   "rank_before": 27
+  },
+  {
+   "unit": "p-709",
+   "label": "Joan Wallach Scott",
+   "citing_after": 461,
+   "rank_after": 30,
+   "citing_before": 444,
+   "rank_before": 25
+  },
+  {
+   "unit": "p-782",
+   "label": "Jürgen Habermas",
+   "citing_after": 457,
+   "rank_after": 31,
+   "citing_before": 355,
+   "rank_before": 42
+  },
+  {
+   "unit": "p-227",
+   "label": "Christopher Hill",
+   "citing_after": 435,
+   "rank_after": 32,
+   "citing_before": 399,
+   "rank_before": 29
+  },
+  {
+   "unit": "p-1141",
+   "label": "Quentin Skinner",
+   "citing_after": 428,
+   "rank_after": 33,
+   "citing_before": 380,
+   "rank_before": 35
+  },
+  {
+   "unit": "p-1025",
+   "label": "Natalie Zemon Davis",
+   "citing_after": 417,
+   "rank_after": 34,
+   "citing_before": 385,
+   "rank_before": 32
+  },
+  {
+   "unit": "p-282",
+   "label": "David S. Landes",
+   "citing_after": 411,
+   "rank_after": 35,
+   "citing_before": 386,
+   "rank_before": 31
+  },
+  {
+   "unit": "p-1109",
+   "label": "Peter Burke",
+   "citing_after": 410,
+   "rank_after": 36,
+   "citing_before": 334,
+   "rank_before": 55
+  },
+  {
+   "unit": "p-2895",
+   "label": "Locke, John",
+   "citing_after": 405,
+   "rank_after": 37,
+   "citing_before": 285,
+   "rank_before": 80
+  },
+  {
+   "unit": "p-805",
+   "label": "Keith Thomas",
+   "citing_after": 404,
+   "rank_after": 38,
+   "citing_before": 296,
+   "rank_before": 70
+  },
+  {
+   "unit": "p-3976",
+   "label": "Williamson, Jeffrey G",
+   "citing_after": 403,
+   "rank_after": 39,
+   "citing_before": 393,
+   "rank_before": 30
+  },
+  {
+   "unit": "p-893",
+   "label": "Lynn Hunt",
+   "citing_after": 403,
+   "rank_after": 39,
+   "citing_before": 381,
+   "rank_before": 34
+  },
+  {
+   "unit": "p-320",
+   "label": "Donald Worster",
+   "citing_after": 400,
+   "rank_after": 41,
+   "citing_before": 383,
+   "rank_before": 33
+  },
+  {
+   "unit": "p-495",
+   "label": "Georges Duby",
+   "citing_after": 398,
+   "rank_after": 42,
+   "citing_before": 328,
+   "rank_before": 56
+  },
+  {
+   "unit": "p-873",
+   "label": "Lorraine Daston",
+   "citing_after": 398,
+   "rank_after": 42,
+   "citing_before": 290,
+   "rank_before": 74
+  },
+  {
+   "unit": "p-1253",
+   "label": "Samuel P. Hays",
+   "citing_after": 392,
+   "rank_after": 44,
+   "citing_before": 366,
+   "rank_before": 38
+  },
+  {
+   "unit": "p-401",
+   "label": "Eugene Genovese",
+   "citing_after": 391,
+   "rank_after": 45,
+   "citing_before": 296,
+   "rank_before": 70
+  },
+  {
+   "unit": "p-2549",
+   "label": "Hopkins, A. G.",
+   "citing_after": 389,
+   "rank_after": 46,
+   "citing_before": 357,
+   "rank_before": 41
+  },
+  {
+   "unit": "p-78",
+   "label": "Ann Laura Stoler",
+   "citing_after": 388,
+   "rank_after": 47,
+   "citing_before": 360,
+   "rank_before": 39
+  },
+  {
+   "unit": "p-853",
+   "label": "Linda Colley",
+   "citing_after": 388,
+   "rank_after": 47,
+   "citing_before": 376,
+   "rank_before": 36
+  },
+  {
+   "unit": "p-483",
+   "label": "George L Mosse",
+   "citing_after": 387,
+   "rank_after": 49,
+   "citing_before": 359,
+   "rank_before": 40
+  },
+  {
+   "unit": "p-656",
+   "label": "Jan Vansina",
+   "citing_after": 384,
+   "rank_after": 50,
+   "citing_before": 351,
+   "rank_before": 45
+  },
+  {
+   "unit": "p-2648",
+   "label": "Jefferson, Thomas",
+   "citing_after": 382,
+   "rank_after": 51,
+   "citing_before": 308,
+   "rank_before": 63
+  },
+  {
+   "unit": "p-1344",
+   "label": "Terence Ranger",
+   "citing_after": 381,
+   "rank_after": 52,
+   "citing_before": 342,
+   "rank_before": 49
+  },
+  {
+   "unit": "p-358",
+   "label": "Norbert Elias",
+   "citing_after": 381,
+   "rank_after": 52,
+   "citing_before": 336,
+   "rank_before": 54
+  },
+  {
+   "unit": "p-259",
+   "label": "Daniel Roche",
+   "citing_after": 380,
+   "rank_after": 54,
+   "citing_before": 354,
+   "rank_before": 43
+  },
+  {
+   "unit": "p-1114",
+   "label": "Peter Laslett",
+   "citing_after": 379,
+   "rank_after": 55,
+   "citing_before": 352,
+   "rank_before": 44
+  },
+  {
+   "unit": "p-1392",
+   "label": "W. E. B. Du Bois",
+   "citing_after": 378,
+   "rank_after": 56,
+   "citing_before": 201,
+   "rank_before": 179
+  },
+  {
+   "unit": "p-353",
+   "label": "Edward Said",
+   "citing_after": 373,
+   "rank_after": 57,
+   "citing_before": 370,
+   "rank_before": 37
+  },
+  {
+   "unit": "p-1356",
+   "label": "Thomas P. Hughes",
+   "citing_after": 369,
+   "rank_after": 58,
+   "citing_before": 340,
+   "rank_before": 52
+  },
+  {
+   "unit": "p-821",
+   "label": "Thomas Kuhn",
+   "citing_after": 368,
+   "rank_after": 59,
+   "citing_before": 310,
+   "rank_before": 61
+  },
+  {
+   "unit": "p-46",
+   "label": "Alfred Crosby",
+   "citing_after": 364,
+   "rank_after": 60,
+   "citing_before": 347,
+   "rank_before": 47
+  }
+ ],
+ "canon_authors_biggest_risers_into_top200": [
+  {
+   "unit": "p-202",
+   "label": "Charles A. Beard",
+   "rank_before": 909,
+   "rank_after": 161
+  },
+  {
+   "unit": "p-125553",
+   "label": "Aulard, F.-A. (François-Alphonse)",
+   "rank_before": 747,
+   "rank_after": 94
+  },
+  {
+   "unit": "p-1656",
+   "label": "Blackstone, William",
+   "rank_before": 813,
+   "rank_after": 179
+  },
+  {
+   "unit": "p-1210",
+   "label": "Roderick Nash",
+   "rank_before": 747,
+   "rank_after": 188
+  },
+  {
+   "unit": "p-3335",
+   "label": "Phillips, Ulrich Bonnell",
+   "rank_before": 546,
+   "rank_after": 176
+  },
+  {
+   "unit": "p-542",
+   "label": "Hans-Ulrich Wehler",
+   "rank_before": 538,
+   "rank_after": 197
+  },
+  {
+   "unit": "p-1397",
+   "label": "W. W. Rostow",
+   "rank_before": 406,
+   "rank_after": 143
+  },
+  {
+   "unit": "p-407",
+   "label": "F. W. Maitland",
+   "rank_before": 378,
+   "rank_after": 122
+  },
+  {
+   "unit": "p-3681",
+   "label": "Soboul, Albert",
+   "rank_before": 396,
+   "rank_after": 172
+  },
+  {
+   "unit": "p-1286",
+   "label": "Sidney Webb",
+   "rank_before": 322,
+   "rank_after": 150
+  },
+  {
+   "unit": "p-1552",
+   "label": "Bancroft, Hubert Howe",
+   "rank_before": 332,
+   "rank_after": 185
+  },
+  {
+   "unit": "p-448",
+   "label": "Friedrich Engels",
+   "rank_before": 243,
+   "rank_after": 101
+  },
+  {
+   "unit": "p-57",
+   "label": "Allan Nevins",
+   "rank_before": 322,
+   "rank_after": 188
+  },
+  {
+   "unit": "p-2212",
+   "label": "Franklin, Benjamin",
+   "rank_before": 312,
+   "rank_after": 181
+  },
+  {
+   "unit": "p-3081",
+   "label": "Miller, Perry",
+   "rank_before": 193,
+   "rank_after": 70
+  },
+  {
+   "unit": "p-1966",
+   "label": "Darwin, Charles",
+   "rank_before": 237,
+   "rank_after": 114
+  },
+  {
+   "unit": "p-1392",
+   "label": "W. E. B. Du Bois",
+   "rank_before": 179,
+   "rank_after": 56
+  },
+  {
+   "unit": "p-886",
+   "label": "Lucien Febvre",
+   "rank_before": 282,
+   "rank_after": 161
+  },
+  {
+   "unit": "p-2581",
+   "label": "Hume, David",
+   "rank_before": 215,
+   "rank_after": 103
+  },
+  {
+   "unit": "p-521",
+   "label": "Antonio Gramsci",
+   "rank_before": 239,
+   "rank_after": 132
+  },
+  {
+   "unit": "p-130",
+   "label": "Benedetto Croce",
+   "rank_before": 287,
+   "rank_after": 197
+  },
+  {
+   "unit": "p-1514",
+   "label": "Aristotle, William Ellis",
+   "rank_before": 239,
+   "rank_after": 152
+  },
+  {
+   "unit": "p-753",
+   "label": "John Stuart Mill",
+   "rank_before": 188,
+   "rank_after": 118
+  },
+  {
+   "unit": "p-474",
+   "label": "Geoffrey Parker",
+   "rank_before": 261,
+   "rank_after": 193
+  },
+  {
+   "unit": "p-1839",
+   "label": "Chaunu, Pierre",
+   "rank_before": 261,
+   "rank_after": 199
+  }
+ ],
+ "canon_authors_top100_overlap": 92,
+ "audit": {
+  "strata": {
+   "crossref | given name cut from the title": {
+    "sampled": 12,
+    "right": 12,
+    "wrong": 0,
+    "new_rows_in_stratum": 475
+   },
+   "crossref | main_title": {
+    "sampled": 12,
+    "right": 12,
+    "wrong": 0,
+    "new_rows_in_stratum": 2121
+   },
+   "crossref | other bases": {
+    "sampled": 12,
+    "right": 12,
+    "wrong": 0,
+    "new_rows_in_stratum": 226
+   },
+   "crossref | whole_title": {
+    "sampled": 12,
+    "right": 12,
+    "wrong": 0,
+    "new_rows_in_stratum": 15133
+   },
+   "jstor-index | given name cut from the title": {
+    "sampled": 12,
+    "right": 12,
+    "wrong": 0,
+    "new_rows_in_stratum": 1233
+   },
+   "jstor-index | main_title": {
+    "sampled": 12,
+    "right": 12,
+    "wrong": 0,
+    "new_rows_in_stratum": 4159
+   },
+   "jstor-index | other bases": {
+    "sampled": 12,
+    "right": 12,
+    "wrong": 0,
+    "new_rows_in_stratum": 1873
+   },
+   "jstor-index | whole_title": {
+    "sampled": 12,
+    "right": 12,
+    "wrong": 0,
+    "new_rows_in_stratum": 56936
+   },
+   "lc | added/editor/resp heading": {
+    "sampled": 12,
+    "right": 12,
+    "wrong": 0,
+    "new_rows_in_stratum": 26569
+   },
+   "lc | cited year before LC": {
+    "sampled": 12,
+    "right": 12,
+    "wrong": 0,
+    "new_rows_in_stratum": 41732
+   },
+   "lc | comma title forms": {
+    "sampled": 12,
+    "right": 12,
+    "wrong": 0,
+    "new_rows_in_stratum": 39818
+   },
+   "lc | exact-whole main, given name spelled": {
+    "sampled": 12,
+    "right": 12,
+    "wrong": 0,
+    "new_rows_in_stratum": 142383
+   },
+   "lc | exact-whole main, initials only": {
+    "sampled": 12,
+    "right": 12,
+    "wrong": 0,
+    "new_rows_in_stratum": 52102
+   },
+   "lc | initial differ": {
+    "sampled": 12,
+    "right": 12,
+    "wrong": 0,
+    "new_rows_in_stratum": 7080
+   },
+   "lc | initial unknown": {
+    "sampled": 12,
+    "right": 12,
+    "wrong": 0,
+    "new_rows_in_stratum": 7923
+   },
+   "lc-full | given name cut from the title": {
+    "sampled": 12,
+    "right": 12,
+    "wrong": 0,
+    "new_rows_in_stratum": 7798
+   },
+   "lc-full | short form": {
+    "sampled": 12,
+    "right": 12,
+    "wrong": 0,
+    "new_rows_in_stratum": 25947
+   },
+   "openalex | given name cut from the title": {
+    "sampled": 12,
+    "right": 12,
+    "wrong": 0,
+    "new_rows_in_stratum": 795
+   },
+   "openalex | main_title": {
+    "sampled": 12,
+    "right": 12,
+    "wrong": 0,
+    "new_rows_in_stratum": 4843
+   },
+   "openalex | other bases": {
+    "sampled": 11,
+    "right": 11,
+    "wrong": 0,
+    "new_rows_in_stratum": 3358
+   },
+   "openalex | whole_title": {
+    "sampled": 11,
+    "right": 11,
+    "wrong": 0,
+    "new_rows_in_stratum": 53538
+   }
+  },
+  "sampled": 250,
+  "right": 250,
+  "weighted_precision": 1.0,
+  "note": "hand-judged 2026-11-11 against the note piece and the catalogue record; 250/250 right",
+  "supplement_lc_initials_year_before": {
+   "sampled": 25,
+   "right": 25,
+   "pool_new_rows": 20103,
+   "note": "released after the main sample: initials-only LC matches whose cited year is 3+ years before LC; cited years are often the first year of a date range in the title (1917-1942), or the first edition where LC holds a reprint"
+  }
+ },
+ "audit_crossref_meta": {
+  "date": "2026-11-11",
+  "target": "crossref-meta (Crossref metadata harvest) matches of JSTOR note citations, new pairs only",
+  "sample": 150,
+  "right": 149,
+  "seed": 20261112,
+  "by_basis": {
+   "main_title": {
+    "new_pairs": 2141,
+    "sampled": 27,
+    "right": 27,
+    "precision": 1.0
+   },
+   "main_title+container_tiebreak": {
+    "new_pairs": 1,
+    "sampled": 1,
+    "right": 1,
+    "precision": 1.0
+   },
+   "no_year_long_title_container": {
+    "new_pairs": 16,
+    "sampled": 16,
+    "right": 16,
+    "precision": 1.0
+   },
+   "short_title_container": {
+    "new_pairs": 690,
+    "sampled": 27,
+    "right": 26,
+    "precision": 0.963
+   },
+   "whole_title": {
+    "new_pairs": 35757,
+    "sampled": 27,
+    "right": 27,
+    "precision": 1.0
+   },
+   "whole_title+container_tiebreak": {
+    "new_pairs": 44,
+    "sampled": 26,
+    "right": 26,
+    "precision": 1.0
+   },
+   "whole_title_container_online_date": {
+    "new_pairs": 252,
+    "sampled": 26,
+    "right": 26,
+    "precision": 1.0
+   }
+  },
+  "action": "short_title_container 26/27 (96.3%) < 97%: tightened by holding short-title matches whose cited container names an edited volume (eds., edited by, 2nd ed., dir., edition): 3 forms held, all three the error class of the one wrong row; the other 26 sampled rows of that basis are unaffected",
+  "judged_from": "parsed citation fields (author, title, year, container) and the note piece against the Crossref record (title, year, journal, author families, pages)",
+  "whole_title_extra": {
+   "sampled": 40,
+   "right": 40,
+   "seed": 20261113,
+   "note": "whole_title holds 92% of the new pairs: a second random draw of 40 from that basis only (whole-extra/sample.csv); whole_title combined 67/67"
+  }
+ },
+ "counts": {
+  "cited_works": 331072,
+  "citing_self_dropped": 5,
+  "crossref_meta_review_like_dropped": 169,
+  "crossref_meta_used": 34991,
+  "jstor_index_also_crossref": 5568,
+  "jstor_index_also_openalex": 13201,
+  "lc_held_initials_short_title": 3454,
+  "lc_held_short_form_title_form": 168,
+  "lc_held_short_form_title_under_3_words": 6873,
+  "lc_rows": 342352,
+  "openalex_also_crossref": 4189,
+  "openalex_also_lc-full": 5,
+  "openalex_guard_notice": 1,
+  "openalex_guard_other_venue_other_year": 444,
+  "openalex_guard_part_differs": 19,
+  "pairs_already_in_jstor_cites": 22160,
+  "pairs_matched_here": 562570,
+  "pairs_new": 540410,
+  "several_keys_first_taken": 1267
+ }
+}

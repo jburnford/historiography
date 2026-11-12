@@ -26,6 +26,7 @@ import duckdb
 
 from identifiers import ROOT
 from key_cited_works import family_of
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 CORPUS = ROOT / 'data/field-research/dissertation-citations-2026-10-11'
 GRAPH = ROOT / 'build/graph'
@@ -55,8 +56,8 @@ def main():
     db.execute("""CREATE TABLE xw AS SELECT DISTINCT ON (w) w, coalesce(wa.key, xw0.key) AS wk FROM xw0 LEFT JOIN wa ON wa.a = xw0.key""")
     db.execute(f"""CREATE TABLE pk_anchor AS SELECT substr(a, 13) AS p, key FROM
                    (SELECT key, unnest(anchors) AS a FROM '{g}/person.parquet') WHERE a LIKE 'diss-person:%'""")
-    db.execute(f"""CREATE TABLE theirs AS SELECT "from" AS key, "to" AS wk FROM '{g}/authored.parquet'
-                   UNION SELECT "from", "to" FROM '{g}/edited.parquet'""")
+    db.execute(f"""CREATE TABLE theirs AS SELECT "from" AS key, "to" AS wk FROM {keylog(g, 'authored')}
+                   UNION SELECT "from", "to" FROM {keylog(g, 'edited')}""")
     # Corpus person ids are build artefacts: a key may hold an earlier build's id ('hobsbawn|eric j' for today's
     # 'hobsbawm|eric'). A person is also identified by works: the key authoring or editing most (over half) of
     # their crosswalked works, family names agreeing.

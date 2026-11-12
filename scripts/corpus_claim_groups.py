@@ -16,6 +16,7 @@ from pathlib import Path
 import duckdb
 
 from identifiers import ROOT
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 GRAPH = ROOT / 'build/graph'
 
@@ -36,7 +37,7 @@ def main():
     db.execute('CREATE TABLE k(k VARCHAR)')
     db.executemany('INSERT INTO k VALUES (?)', [(k,) for k in keys])
     works = defaultdict(list)
-    for k, title, year in db.execute(f"""SELECT a."from", w.label, w.year FROM '{GRAPH}/authored.parquet' a
+    for k, title, year in db.execute(f"""SELECT a."from", w.label, w.year FROM {keylog(GRAPH, 'authored')} a
             JOIN '{GRAPH}/work.parquet' w ON w.key = a."to" WHERE a."from" IN (SELECT k FROM k)
             ORDER BY w.kind = 'book' DESC, w.year""").fetchall():
         works[k].append(f"{(title or '')[:120]} ({year or '?'})")

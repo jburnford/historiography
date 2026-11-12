@@ -19,6 +19,7 @@ import duckdb
 from identifiers import State, DEFAULT_DIR, materialise
 from merge_guard import blocked_keys
 from held_lc_rules import stems
+from graph_tables import keylog   # key-log rows of the merged edge tables (2026-11-11)
 
 ROOT = Path(__file__).resolve().parents[1]
 G = ROOT / 'build/graph'
@@ -52,7 +53,7 @@ def main():
     live = {k: v for k, v in state.keys.items() if v['type'] == 'person' and v['status'] in ('active', 'provisional')}
     db = duckdb.connect()
     works = collections.defaultdict(list)
-    for k, t, y, kind in db.execute(f"""SELECT a."from", w.label, w.year, w.kind FROM '{G}/authored.parquet' a
+    for k, t, y, kind in db.execute(f"""SELECT a."from", w.label, w.year, w.kind FROM {keylog(G, 'authored')} a
             JOIN '{G}/work.parquet' w ON w.key = a."to" WHERE w.year IS NOT NULL""").fetchall():
         for c in state.lookup(k):
             works[c].append((t, y, kind))
