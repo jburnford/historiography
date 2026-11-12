@@ -1,0 +1,826 @@
+{
+ "date": "2026-11-12",
+ "script": "scripts/audit_openalex_profiles.py",
+ "rule": [
+  "A credit that rests on an OpenAlex author profile (route a: key-log claim minted by openalex_people_works.py; route b: linked credit author-works:openalex-author-orcid) is tested against facts the project already trusts; topic and venue never decide.",
+  "Safe whatever else: the work prints the key's ORCID on that authorship, or the key holds the work by independent evidence.",
+  "Contradictions: date-before-window (the work is older than the key's career window: birth + 20, else PhD - 10, reviews PhD - 9; career_window.py and the linker's PHD_START); printed name disagrees (link_cited_work_authors.forms / name_level as patched by link_work_people; family differs = no family word in common); an ORCID printed on the authorship that is not the key's; the profile's own ORCID is not the key's (or is another key's); a namesake key holds the same title by independent evidence; date-before-span (a key with no life or PhD years: the work is 50+ years older than the key's earliest independently held work; the linker's span fallback widened, as its 10 years flagged mostly the key's own early works); profile-contaminated (the same profile brings this key two or more date-contradicted works: its other unsupported works for this key are suspect).",
+  "Route a: withdraw on date-before-window; hold for review on any other contradiction (date-after-death is not used: in the audit it marked posthumous items and wrong life years, never another person).",
+  "Route b: demote to author_candidates on date-before-window, date-before-span, family differs, printed ORCID differs, or when the profile is tied to the key by its ORCID alone (no work of the profile is the key's by independent evidence: indep_works = 0); name-given-differs, title-holder and profile-contaminated credits stay credited and are listed (most name-given hits are initials, nicknames and name-order artefacts of the shared name parser; title holders are mostly duplicate keys; contaminated profiles are about half right)."
+ ],
+ "anatomy": {
+  "keylog_events_with_route_a_basis": 1007679,
+  "route_a_work_mints": 485845,
+  "route_a_claims": 504513,
+  "route_a_claims_active": 504513,
+  "route_a_claims_by_round": {
+   "2026-11-09": 443319,
+   "2026-11-10": 61194
+  },
+  "route_a_claims_person_moved_by_merge": 3622,
+  "route_b_linked_credits": 239757,
+  "route_b_raw_orcid_credits_for_comparison": 74943,
+  "route_a_people": 34182,
+  "route_a_openalex_ids": 35135,
+  "route_b_people": 13077,
+  "route_b_openalex_ids": 13323,
+  "people_either_route": 37615,
+  "openalex_ids_tied_to_a_key": 80626,
+  "openalex_ids_tied_to_2plus_keys": 2261,
+  "openalex_ids_crediting_2plus_keys": 0,
+  "keys_with_2plus_openalex_ids": 7842,
+  "keys_crediting_from_2plus_ids": 1139,
+  "credits_by_stratum": {
+   "a/clean:fact": 3414,
+   "a/clean:indep0": 140291,
+   "a/clean:indep1": 110049,
+   "a/clean:indep2+": 214070,
+   "a/hard:date-after-death": 291,
+   "a/hard:date-before-span": 165,
+   "a/hard:date-before-window": 244,
+   "a/hard:name-family-differs": 1,
+   "a/hard:name-given-differs": 1606,
+   "a/hard:other-key-holds-title": 4,
+   "a/hard:printed-orcid-differs": 586,
+   "a/hard:profile-contaminated": 1122,
+   "a/hard:profile-orcid-differs": 1557,
+   "a/hard:profile-orcid-other-key": 21,
+   "a/safe:already-independent": 4,
+   "a/safe:printed-orcid": 31088,
+   "b/clean:fact": 235,
+   "b/clean:indep0": 616,
+   "b/clean:indep1": 6978,
+   "b/clean:indep2+": 221935,
+   "b/hard:date-after-death": 116,
+   "b/hard:date-before-span": 222,
+   "b/hard:date-before-window": 1018,
+   "b/hard:name-family-differs": 57,
+   "b/hard:name-given-differs": 1803,
+   "b/hard:other-key-holds-title": 23,
+   "b/hard:printed-orcid-differs": 293,
+   "b/hard:profile-contaminated": 6461
+  },
+  "contradictions_any": {
+   "a/profile-orcid-differs": 2028,
+   "a/name-given-differs": 1749,
+   "a/profile-contaminated": 1163,
+   "a/printed-orcid-differs": 586,
+   "a/date-before-window": 300,
+   "a/date-after-death": 293,
+   "a/date-before-span": 227,
+   "a/profile-orcid-other-key": 31,
+   "a/other-key-holds-title": 9,
+   "a/name-family-differs": 1,
+   "b/profile-contaminated": 6686,
+   "b/name-given-differs": 1996,
+   "b/date-before-window": 1020,
+   "b/printed-orcid-differs": 293,
+   "b/date-before-span": 222,
+   "b/date-after-death": 117,
+   "b/name-family-differs": 60,
+   "b/other-key-holds-title": 25
+  },
+  "descriptive_signals": {
+   "a/profile-orcid-unkeyed": 93867,
+   "a/profile-span-60": 80941,
+   "a/printed-orcid-unkeyed": 18069,
+   "a/profile-gap-25": 16763,
+   "a/venue-shared": 16295,
+   "a/profile-multi-key": 13346,
+   "a/name-unread": 643,
+   "a/after-death-book": 596,
+   "a/window-inconsistent": 276,
+   "a/name-unparsed": 37,
+   "b/profile-multi-key": 37805,
+   "b/venue-shared": 35468,
+   "b/profile-span-60": 19718,
+   "b/profile-gap-25": 4626,
+   "b/name-unread": 581,
+   "b/name-unparsed": 558,
+   "b/window-inconsistent": 121,
+   "b/after-death-book": 108
+  },
+  "support_facts": {
+   "a/printed-orcid-same": 31088,
+   "a/inst": 13210,
+   "a/coauthor": 69,
+   "a/already-independent": 4,
+   "b/inst": 11581,
+   "b/coauthor": 332
+  },
+  "independent_works_of_profile": {
+   "a/0": 142730,
+   "a/1": 114532,
+   "a/2": 52542,
+   "a/3": 30142,
+   "a/4": 21863,
+   "a/5+": 142704,
+   "b/0": 1310,
+   "b/1": 7642,
+   "b/2": 7676,
+   "b/3": 7532,
+   "b/4": 8271,
+   "b/5+": 207326
+  }
+ },
+ "decisions": {
+  "a/hold": 5060,
+  "a/keep": 499205,
+  "a/withdraw": 248,
+  "b/demote": 2673,
+  "b/flag": 7823,
+  "b/keep": 229261
+ },
+ "decision_reasons": {
+  "a/hold/name-given-differs": 1581,
+  "a/hold/profile-orcid-differs": 1506,
+  "a/hold/profile-contaminated": 1122,
+  "a/hold/printed-orcid-differs;profile-orcid-differs": 435,
+  "a/hold/date-before-span": 163,
+  "a/hold/printed-orcid-differs": 116,
+  "a/hold/name-given-differs;profile-orcid-differs": 33,
+  "a/hold/name-given-differs;profile-contaminated": 27,
+  "a/hold/profile-orcid-other-key": 19,
+  "a/hold/name-given-differs;printed-orcid-differs;profile-orcid-differs": 13,
+  "a/hold/profile-contaminated;profile-orcid-differs": 11,
+  "a/hold/printed-orcid-differs;profile-orcid-other-key": 10,
+  "a/hold/date-before-span;profile-orcid-differs": 6,
+  "a/hold/name-given-differs;printed-orcid-differs": 6,
+  "a/hold/other-key-holds-title": 4,
+  "a/hold/printed-orcid-differs;profile-contaminated;profile-orcid-differs": 3,
+  "a/hold/date-before-span;name-given-differs": 2,
+  "a/hold/name-given-differs;profile-orcid-other-key": 2,
+  "a/hold/name-family-differs": 1,
+  "a/withdraw/date-before-window": 248,
+  "b/demote/profile-only": 1083,
+  "b/demote/date-before-window": 966,
+  "b/demote/printed-orcid-differs": 287,
+  "b/demote/date-before-span;profile-only": 174,
+  "b/demote/name-family-differs": 57,
+  "b/demote/date-before-window;profile-only": 52,
+  "b/demote/date-before-span": 48,
+  "b/demote/name-family-differs;printed-orcid-differs": 3,
+  "b/demote/date-before-window;printed-orcid-differs": 2,
+  "b/demote/printed-orcid-differs;profile-only": 1,
+  "b/flag/profile-contaminated": 6122,
+  "b/flag/name-given-differs": 1498,
+  "b/flag/name-given-differs;profile-contaminated": 180,
+  "b/flag/other-key-holds-title": 15,
+  "b/flag/other-key-holds-title;profile-contaminated": 8
+ },
+ "decision_people": {
+  "a/hold": 998,
+  "a/keep": 33914,
+  "a/withdraw": 174,
+  "b/demote": 517,
+  "b/flag": 476,
+  "b/keep": 12813
+ },
+ "audit": {
+  "judged": 213,
+  "draws": {
+   "1": "uniform within route x stratum",
+   "2": "uniform within route x stratum, namesake keys >= 2"
+  },
+  "judgments": "R: the key's person wrote it; W: another person; M: the key itself mixes people and the work is one of theirs (defect class 9, not counted as wrong here); U: unclear from the metadata",
+  "by_draw_stratum": {
+   "1/a/clean:fact": {
+    "n": 5,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "1/a/clean:indep0": {
+    "n": 13,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "1/a/clean:indep1": {
+    "n": 14,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "1/a/clean:indep2+": {
+    "n": 14,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "1/a/hard:date-after-death": {
+    "n": 4,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "1/a/hard:date-before-window": {
+    "n": 4,
+    "wrong": 4,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "1/a/hard:name-given-differs": {
+    "n": 4,
+    "wrong": 1,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "1/a/hard:printed-orcid-differs": {
+    "n": 4,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "1/a/hard:profile-orcid-differs": {
+    "n": 6,
+    "wrong": 0,
+    "mixed_key": 2,
+    "unclear": 1
+   },
+   "1/a/hard:profile-orcid-other-key": {
+    "n": 4,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "1/a/safe:printed-orcid": {
+    "n": 5,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "1/b/clean:fact": {
+    "n": 5,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "1/b/clean:indep0": {
+    "n": 3,
+    "wrong": 1,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "1/b/clean:indep1": {
+    "n": 11,
+    "wrong": 1,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "1/b/clean:indep2+": {
+    "n": 18,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "1/b/hard:date-after-death": {
+    "n": 4,
+    "wrong": 0,
+    "mixed_key": 1,
+    "unclear": 0
+   },
+   "1/b/hard:date-before-window": {
+    "n": 4,
+    "wrong": 4,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "1/b/hard:name-given-differs": {
+    "n": 2,
+    "wrong": 1,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "1/b/hard:printed-orcid-differs": {
+    "n": 4,
+    "wrong": 2,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "1/b/hard:profile-contaminated": {
+    "n": 3,
+    "wrong": 3,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "2/a/clean:indep0": {
+    "n": 12,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "2/a/clean:indep1": {
+    "n": 9,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "2/a/clean:indep2+": {
+    "n": 12,
+    "wrong": 0,
+    "mixed_key": 1,
+    "unclear": 0
+   },
+   "2/a/hard:name-given-differs": {
+    "n": 5,
+    "wrong": 1,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "2/a/hard:profile-contaminated": {
+    "n": 2,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "2/a/hard:profile-orcid-differs": {
+    "n": 6,
+    "wrong": 0,
+    "mixed_key": 1,
+    "unclear": 0
+   },
+   "2/a/safe:printed-orcid": {
+    "n": 4,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "2/b/clean:indep0": {
+    "n": 6,
+    "wrong": 2,
+    "mixed_key": 3,
+    "unclear": 0
+   },
+   "2/b/clean:indep1": {
+    "n": 8,
+    "wrong": 2,
+    "mixed_key": 1,
+    "unclear": 1
+   },
+   "2/b/clean:indep2+": {
+    "n": 10,
+    "wrong": 1,
+    "mixed_key": 1,
+    "unclear": 0
+   },
+   "2/b/hard:name-family-differs": {
+    "n": 2,
+    "wrong": 2,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "2/b/hard:name-given-differs": {
+    "n": 4,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "2/b/hard:other-key-holds-title": {
+    "n": 1,
+    "wrong": 1,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "2/b/hard:profile-contaminated": {
+    "n": 1,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   }
+  },
+  "by_cell": {
+   "a/clean:fact/False": {
+    "n": 5,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/clean:indep0/False": {
+    "n": 11,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/clean:indep0/True": {
+    "n": 14,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/clean:indep1/False": {
+    "n": 13,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/clean:indep1/True": {
+    "n": 10,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/clean:indep2+/False": {
+    "n": 14,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/clean:indep2+/True": {
+    "n": 12,
+    "wrong": 0,
+    "mixed_key": 1,
+    "unclear": 0
+   },
+   "a/hard:date-after-death/False": {
+    "n": 4,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/hard:date-before-window/False": {
+    "n": 1,
+    "wrong": 1,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/hard:date-before-window/True": {
+    "n": 3,
+    "wrong": 3,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/hard:name-given-differs/False": {
+    "n": 3,
+    "wrong": 1,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/hard:name-given-differs/True": {
+    "n": 6,
+    "wrong": 1,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/hard:printed-orcid-differs/False": {
+    "n": 3,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/hard:printed-orcid-differs/True": {
+    "n": 1,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/hard:profile-contaminated/True": {
+    "n": 2,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/hard:profile-orcid-differs/False": {
+    "n": 3,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/hard:profile-orcid-differs/True": {
+    "n": 9,
+    "wrong": 0,
+    "mixed_key": 3,
+    "unclear": 1
+   },
+   "a/hard:profile-orcid-other-key/False": {
+    "n": 4,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/safe:printed-orcid/False": {
+    "n": 5,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/safe:printed-orcid/True": {
+    "n": 4,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/clean:fact/False": {
+    "n": 4,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/clean:fact/True": {
+    "n": 1,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/clean:indep0/False": {
+    "n": 2,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/clean:indep0/True": {
+    "n": 7,
+    "wrong": 3,
+    "mixed_key": 3,
+    "unclear": 0
+   },
+   "b/clean:indep1/False": {
+    "n": 9,
+    "wrong": 1,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/clean:indep1/True": {
+    "n": 10,
+    "wrong": 2,
+    "mixed_key": 1,
+    "unclear": 1
+   },
+   "b/clean:indep2+/False": {
+    "n": 17,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/clean:indep2+/True": {
+    "n": 11,
+    "wrong": 1,
+    "mixed_key": 1,
+    "unclear": 0
+   },
+   "b/hard:date-after-death/False": {
+    "n": 3,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/hard:date-after-death/True": {
+    "n": 1,
+    "wrong": 0,
+    "mixed_key": 1,
+    "unclear": 0
+   },
+   "b/hard:date-before-window/False": {
+    "n": 2,
+    "wrong": 2,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/hard:date-before-window/True": {
+    "n": 2,
+    "wrong": 2,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/hard:name-family-differs/True": {
+    "n": 2,
+    "wrong": 2,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/hard:name-given-differs/False": {
+    "n": 1,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/hard:name-given-differs/True": {
+    "n": 5,
+    "wrong": 1,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/hard:other-key-holds-title/True": {
+    "n": 1,
+    "wrong": 1,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/hard:printed-orcid-differs/False": {
+    "n": 3,
+    "wrong": 1,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/hard:printed-orcid-differs/True": {
+    "n": 1,
+    "wrong": 1,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/hard:profile-contaminated/False": {
+    "n": 3,
+    "wrong": 3,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/hard:profile-contaminated/True": {
+    "n": 1,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   }
+  },
+  "by_decision": {
+   "a/hold": {
+    "n": 31,
+    "wrong": 2,
+    "mixed_key": 3,
+    "unclear": 1
+   },
+   "a/keep": {
+    "n": 92,
+    "wrong": 0,
+    "mixed_key": 1,
+    "unclear": 0
+   },
+   "a/withdraw": {
+    "n": 4,
+    "wrong": 4,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/demote": {
+    "n": 23,
+    "wrong": 14,
+    "mixed_key": 3,
+    "unclear": 0
+   },
+   "b/flag": {
+    "n": 7,
+    "wrong": 2,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/keep": {
+    "n": 56,
+    "wrong": 4,
+    "mixed_key": 3,
+    "unclear": 1
+   }
+  },
+  "by_decision_reason": {
+   "a/hold/name-given-differs": {
+    "n": 9,
+    "wrong": 2,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/hold/printed-orcid-differs": {
+    "n": 2,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/hold/printed-orcid-differs;profile-orcid-differs": {
+    "n": 1,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/hold/printed-orcid-differs;profile-orcid-other-key": {
+    "n": 1,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/hold/profile-contaminated": {
+    "n": 2,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/hold/profile-orcid-differs": {
+    "n": 12,
+    "wrong": 0,
+    "mixed_key": 3,
+    "unclear": 1
+   },
+   "a/hold/profile-orcid-other-key": {
+    "n": 4,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "a/keep/": {
+    "n": 92,
+    "wrong": 0,
+    "mixed_key": 1,
+    "unclear": 0
+   },
+   "a/withdraw/date-before-window": {
+    "n": 4,
+    "wrong": 4,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/demote/date-before-window": {
+    "n": 4,
+    "wrong": 4,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/demote/name-family-differs": {
+    "n": 2,
+    "wrong": 2,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/demote/name-family-differs;printed-orcid-differs": {
+    "n": 1,
+    "wrong": 1,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/demote/printed-orcid-differs": {
+    "n": 3,
+    "wrong": 1,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/demote/profile-only": {
+    "n": 13,
+    "wrong": 6,
+    "mixed_key": 3,
+    "unclear": 0
+   },
+   "b/flag/name-given-differs": {
+    "n": 5,
+    "wrong": 1,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/flag/other-key-holds-title;profile-contaminated": {
+    "n": 1,
+    "wrong": 1,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/flag/profile-contaminated": {
+    "n": 1,
+    "wrong": 0,
+    "mixed_key": 0,
+    "unclear": 0
+   },
+   "b/keep/": {
+    "n": 56,
+    "wrong": 4,
+    "mixed_key": 3,
+    "unclear": 1
+   }
+  },
+  "estimated_wrong": {
+   "a/hold": {
+    "credits": 5060,
+    "est_wrong": 499,
+    "est_rate": 0.0986
+   },
+   "a/keep": {
+    "credits": 499205,
+    "est_wrong": 0,
+    "est_rate": 0.0
+   },
+   "a/withdraw": {
+    "credits": 248,
+    "est_wrong": 244,
+    "est_rate": 0.9839
+   },
+   "b/demote": {
+    "credits": 2673,
+    "est_wrong": 1684,
+    "est_rate": 0.6301
+   },
+   "b/flag": {
+    "credits": 7823,
+    "est_wrong": 3123,
+    "est_rate": 0.3992
+   },
+   "b/keep": {
+    "credits": 229261,
+    "est_wrong": 4258,
+    "est_rate": 0.0186
+   }
+  },
+  "credits_in_cells_without_a_judgment": 396
+ },
+ "recredit_candidates": [
+  171,
+  120
+ ],
+ "outputs": {
+  "proposal_withdraw_ops": 248,
+  "held": 5060,
+  "route_b_unsafe": 2673,
+  "route_b_flagged": 7823
+ }
+}
