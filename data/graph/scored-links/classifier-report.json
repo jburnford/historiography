@@ -1,0 +1,8974 @@
+{
+ "counts": {
+  "train_pairs": 63701,
+  "train_pos": 29490,
+  "calib_pairs": 75639,
+  "test_pairs": 73706,
+  "blocks": {
+   "present": 149414,
+   "imp": 146358,
+   "drop": 8155,
+   "prod": 669465
+  },
+  "blocks_by_split": {
+   "0": {
+    "present": 29681,
+    "imp": 29291,
+    "drop": 1371
+   },
+   "1": {
+    "present": 29733,
+    "imp": 29379,
+    "drop": 1694
+   },
+   "2": {
+    "present": 29541,
+    "imp": 29215,
+    "drop": 1450
+   },
+   "3": {
+    "present": 29904,
+    "imp": 29500,
+    "drop": 1436
+   }
+  },
+  "absent_blocks_with_candidates": {
+   "present": 2098,
+   "imp": 146358,
+   "drop": 8155
+  },
+  "clerical": {
+   "clerical-dev": 520,
+   "clerical-test": 488
+  },
+  "clerical_class": {
+   "clerical-dev": {
+    "key": 482,
+    "not-keyed": 38
+   },
+   "clerical-test": {
+    "key": 454,
+    "not-keyed": 34
+   }
+  }
+ },
+ "gold_cleanup": {
+  "gold_positions": 154668,
+  "merged_resolved": 210,
+  "dropped_name_disagrees": 4678,
+  "relabelled_duplicate": 10170,
+  "relabelled_right_after_merge": 0,
+  "fs_check_rows": 20000,
+  "fs_check_maxdiff": 0.0
+ },
+ "seed": 20261112,
+ "clerical_weight": 20.0,
+ "thresholds": {
+  "gbt": {
+   "author|multi": {
+    "t_link": 2.0,
+    "t_other": 0.0,
+    "recall": 0.0,
+    "note": "no threshold meets the bound"
+   },
+   "author|single": {
+    "t_link": 1.0,
+    "t_other": 0.02,
+    "recall": 0.6276,
+    "wrong": 0.00187,
+    "upper": 0.00365,
+    "links": 6739,
+    "neff": 2734.9,
+    "raised_by_clerical": true
+   },
+   "jstor-author|multi": {
+    "t_link": 2.0,
+    "t_other": 0.0,
+    "recall": 0.0,
+    "note": "no threshold meets the bound"
+   },
+   "jstor-author|single": {
+    "t_link": 0.825,
+    "t_other": 0.02,
+    "recall": 0.8391,
+    "wrong": 0.00153,
+    "upper": 0.00388,
+    "links": 1669,
+    "neff": 1599.4
+   },
+   "reviewer|multi": {
+    "t_link": 0.99,
+    "t_other": 0.5,
+    "recall": 0.6238,
+    "wrong": 0.00076,
+    "upper": 0.00298,
+    "links": 1311,
+    "neff": 1311.0
+   },
+   "reviewer|single": {
+    "t_link": 0.825,
+    "t_other": 0.5,
+    "recall": 0.8854,
+    "wrong": 0.00111,
+    "upper": 0.00196,
+    "links": 7937,
+    "neff": 6571.6
+   },
+   "_clerical_dev_check": {
+    "links": 45,
+    "wrong": 0
+   }
+  },
+  "logit": {
+   "author|multi": {
+    "t_link": 2.0,
+    "t_other": 0.0,
+    "recall": 0.0,
+    "note": "no threshold meets the bound"
+   },
+   "author|single": {
+    "t_link": 1.0,
+    "t_other": 0.02,
+    "recall": 0.605,
+    "wrong": 0.00181,
+    "upper": 0.00361,
+    "links": 6449,
+    "neff": 2639.4,
+    "raised_by_clerical": true
+   },
+   "jstor-author|multi": {
+    "t_link": 2.0,
+    "t_other": 0.0,
+    "recall": 0.0,
+    "note": "no threshold meets the bound"
+   },
+   "jstor-author|single": {
+    "t_link": 0.96,
+    "t_other": 0.02,
+    "recall": 0.8611,
+    "wrong": 0.00204,
+    "upper": 0.00458,
+    "links": 1735,
+    "neff": 1643.9
+   },
+   "reviewer|multi": {
+    "t_link": 0.99,
+    "t_other": 0.5,
+    "recall": 0.5576,
+    "wrong": 0.00085,
+    "upper": 0.00333,
+    "links": 1172,
+    "neff": 1172.0
+   },
+   "reviewer|single": {
+    "t_link": 0.85,
+    "t_other": 0.5,
+    "recall": 0.908,
+    "wrong": 0.0022,
+    "upper": 0.0033,
+    "links": 8334,
+    "neff": 6796.2
+   },
+   "_clerical_dev_check": {
+    "links": 59,
+    "wrong": 0
+   }
+  },
+  "two-stage": {
+   "author|multi": {
+    "t_link": 2.0,
+    "t_other": 0.0,
+    "recall": 0.0,
+    "note": "no threshold meets the bound"
+   },
+   "author|single": {
+    "t_link": 0.995,
+    "t_other": 0.02,
+    "recall": 0.5984,
+    "wrong": 0.00152,
+    "upper": 0.00323,
+    "links": 6337,
+    "neff": 2598.9,
+    "raised_by_clerical": true
+   },
+   "jstor-author|multi": {
+    "t_link": 2.0,
+    "t_other": 0.0,
+    "recall": 0.0,
+    "note": "no threshold meets the bound"
+   },
+   "jstor-author|single": {
+    "t_link": 0.9,
+    "t_other": 0.5,
+    "recall": 0.8225,
+    "wrong": 0.00109,
+    "upper": 0.00324,
+    "links": 1623,
+    "neff": 1565.6
+   },
+   "reviewer|multi": {
+    "t_link": 0.985,
+    "t_other": 0.5,
+    "recall": 0.6114,
+    "wrong": 0.00078,
+    "upper": 0.00304,
+    "links": 1285,
+    "neff": 1285.0
+   },
+   "reviewer|single": {
+    "t_link": 0.9,
+    "t_other": 0.5,
+    "recall": 0.8691,
+    "wrong": 0.0009,
+    "upper": 0.00168,
+    "links": 7761,
+    "neff": 6507.1
+   },
+   "_clerical_dev_check": {
+    "links": 65,
+    "wrong": 0
+   }
+  },
+  "fs": {
+   "author|multi": {
+    "t_link": 2.0,
+    "t_other": 0.0,
+    "recall": 0.0,
+    "note": "no threshold meets the bound"
+   },
+   "author|single": {
+    "t_link": 0.975,
+    "t_other": 0.5,
+    "recall": 0.5367,
+    "wrong": 0.00231,
+    "upper": 0.00442,
+    "links": 5255,
+    "neff": 2362.9
+   },
+   "jstor-author|multi": {
+    "t_link": 2.0,
+    "t_other": 0.0,
+    "recall": 0.0,
+    "note": "no threshold meets the bound"
+   },
+   "jstor-author|single": {
+    "t_link": 0.95,
+    "t_other": 0.02,
+    "recall": 0.8276,
+    "wrong": 0.00193,
+    "upper": 0.00449,
+    "links": 1652,
+    "neff": 1575.1
+   },
+   "reviewer|multi": {
+    "t_link": 0.995,
+    "t_other": 0.5,
+    "recall": 0.3876,
+    "wrong": 0.0,
+    "upper": 0.00236,
+    "links": 814,
+    "neff": 814.0
+   },
+   "reviewer|single": {
+    "t_link": 0.96,
+    "t_other": 0.5,
+    "recall": 0.8941,
+    "wrong": 0.00284,
+    "upper": 0.00407,
+    "links": 8233,
+    "neff": 6765.1
+   },
+   "_clerical_dev_check": {
+    "links": 102,
+    "wrong": 0
+   }
+  }
+ },
+ "evaluation": {
+  "gbt": {
+   "test": {
+    "overall": {
+     "blocks": 60840,
+     "links": 12046,
+     "wrong_links": 203,
+     "wrong_share": 0.00103,
+     "upper95": 0.00178,
+     "recall": 0.3618,
+     "authors_present": 29555
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 5765,
+      "links": 1296,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0022,
+      "recall": 0.0802,
+      "authors_present": 5080
+     },
+     "single": {
+      "blocks": 55075,
+      "links": 10750,
+      "wrong_links": 203,
+      "wrong_share": 0.00106,
+      "upper95": 0.00184,
+      "recall": 0.4004,
+      "authors_present": 24475
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 5765,
+      "links": 1296,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0022,
+      "recall": 0.0802,
+      "authors_present": 5080
+     },
+     "single-2-5": {
+      "blocks": 18062,
+      "links": 6004,
+      "wrong_links": 137,
+      "wrong_share": 0.00082,
+      "upper95": 0.0018,
+      "recall": 0.4662,
+      "authors_present": 8273
+     },
+     "single-26+": {
+      "blocks": 1227,
+      "links": 57,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.03603,
+      "recall": 0.1956,
+      "authors_present": 118
+     },
+     "single-6-25": {
+      "blocks": 3825,
+      "links": 860,
+      "wrong_links": 5,
+      "wrong_share": 0.00605,
+      "upper95": 0.0143,
+      "recall": 0.2318,
+      "authors_present": 1397
+     },
+     "single-initials": {
+      "blocks": 520,
+      "links": 98,
+      "wrong_links": 1,
+      "wrong_share": 0.00439,
+      "upper95": 0.04831,
+      "recall": 0.2005,
+      "authors_present": 216
+     },
+     "single-unique": {
+      "blocks": 9389,
+      "links": 3424,
+      "wrong_links": 60,
+      "wrong_share": 0.0008,
+      "upper95": 0.00219,
+      "recall": 0.4702,
+      "authors_present": 4549
+     },
+     "single-unmeasured": {
+      "blocks": 22052,
+      "links": 307,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.00623,
+      "recall": 0.0309,
+      "authors_present": 9922
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 32478,
+      "links": 633,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0055,
+      "recall": 0.0721,
+      "authors_present": 15692
+     },
+     "jstor-author": {
+      "blocks": 5207,
+      "links": 1827,
+      "wrong_links": 40,
+      "wrong_share": 0.00151,
+      "upper95": 0.00372,
+      "recall": 0.7624,
+      "authors_present": 2542
+     },
+     "reviewer": {
+      "blocks": 23155,
+      "links": 9586,
+      "wrong_links": 163,
+      "wrong_share": 0.00105,
+      "upper95": 0.0018,
+      "recall": 0.8768,
+      "authors_present": 11321
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 35687,
+      "links": 8907,
+      "wrong_links": 152,
+      "wrong_share": 0.00123,
+      "upper95": 0.0021,
+      "recall": 0.6501,
+      "authors_present": 11819
+     },
+     "1": {
+      "blocks": 25153,
+      "links": 3139,
+      "wrong_links": 51,
+      "wrong_share": 0.00058,
+      "upper95": 0.00238,
+      "recall": 0.1799,
+      "authors_present": 17736
+     }
+    },
+    "by_country": {
+     "AU": {
+      "blocks": 8,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "BE": {
+      "blocks": 34,
+      "links": 3,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.46508,
+      "recall": 0.0734,
+      "authors_present": 30
+     },
+     "BR": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "CA": {
+      "blocks": 268,
+      "links": 48,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.06758,
+      "recall": 0.4435,
+      "authors_present": 99
+     },
+     "CH": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "CO": {
+      "blocks": 3,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "DE": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "ES": {
+      "blocks": 7,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.4825,
+      "authors_present": 3
+     },
+     "FR": {
+      "blocks": 62,
+      "links": 3,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.44743,
+      "recall": 0.0619,
+      "authors_present": 47
+     },
+     "GB": {
+      "blocks": 371,
+      "links": 63,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.03618,
+      "recall": 0.1837,
+      "authors_present": 263
+     },
+     "IT": {
+      "blocks": 73,
+      "links": 8,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.21796,
+      "recall": 0.2384,
+      "authors_present": 52
+     },
+     "SE": {
+      "blocks": 138,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.0295,
+      "authors_present": 125
+     },
+     "US": {
+      "blocks": 414,
+      "links": 106,
+      "wrong_links": 2,
+      "wrong_share": 0.00644,
+      "upper95": 0.0332,
+      "recall": 0.4615,
+      "authors_present": 205
+     },
+     "US/CA (AHA)": {
+      "blocks": 17876,
+      "links": 8186,
+      "wrong_links": 123,
+      "wrong_share": 0.00095,
+      "upper95": 0.00177,
+      "recall": 0.6887,
+      "authors_present": 11152
+     },
+     "ZA": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "ZZ": {
+      "blocks": 24,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36249,
+      "recall": 0.0508,
+      "authors_present": 20
+     },
+     "unknown": {
+      "blocks": 41555,
+      "links": 3623,
+      "wrong_links": 78,
+      "wrong_share": 0.00111,
+      "upper95": 0.00292,
+      "recall": 0.2052,
+      "authors_present": 17551
+     }
+    },
+    "by_decade": {
+     "1610.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1760.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1790.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "1800.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1840.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1860.0": {
+      "blocks": 4,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.5019,
+      "authors_present": 2
+     },
+     "1870.0": {
+      "blocks": 6,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 3
+     },
+     "1880.0": {
+      "blocks": 11,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 5
+     },
+     "1890.0": {
+      "blocks": 8,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "1900.0": {
+      "blocks": 4,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "1910.0": {
+      "blocks": 24,
+      "links": 5,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.31937,
+      "recall": 0.2513,
+      "authors_present": 11
+     },
+     "1920.0": {
+      "blocks": 74,
+      "links": 23,
+      "wrong_links": 1,
+      "wrong_share": 0.00116,
+      "upper95": 0.09094,
+      "recall": 0.4093,
+      "authors_present": 37
+     },
+     "1930.0": {
+      "blocks": 109,
+      "links": 45,
+      "wrong_links": 1,
+      "wrong_share": 0.00074,
+      "upper95": 0.04938,
+      "recall": 0.6129,
+      "authors_present": 54
+     },
+     "1940.0": {
+      "blocks": 249,
+      "links": 94,
+      "wrong_links": 1,
+      "wrong_share": 0.00056,
+      "upper95": 0.02448,
+      "recall": 0.5877,
+      "authors_present": 118
+     },
+     "1950.0": {
+      "blocks": 408,
+      "links": 150,
+      "wrong_links": 5,
+      "wrong_share": 0.00168,
+      "upper95": 0.01861,
+      "recall": 0.5371,
+      "authors_present": 201
+     },
+     "1960.0": {
+      "blocks": 1063,
+      "links": 409,
+      "wrong_links": 3,
+      "wrong_share": 0.00022,
+      "upper95": 0.006,
+      "recall": 0.6752,
+      "authors_present": 521
+     },
+     "1970.0": {
+      "blocks": 2309,
+      "links": 818,
+      "wrong_links": 18,
+      "wrong_share": 0.00222,
+      "upper95": 0.00703,
+      "recall": 0.6036,
+      "authors_present": 1103
+     },
+     "1980.0": {
+      "blocks": 4700,
+      "links": 1546,
+      "wrong_links": 27,
+      "wrong_share": 0.00095,
+      "upper95": 0.00346,
+      "recall": 0.6338,
+      "authors_present": 2183
+     },
+     "1990.0": {
+      "blocks": 9117,
+      "links": 2733,
+      "wrong_links": 47,
+      "wrong_share": 0.00101,
+      "upper95": 0.00275,
+      "recall": 0.5802,
+      "authors_present": 4345
+     },
+     "2000.0": {
+      "blocks": 15038,
+      "links": 3078,
+      "wrong_links": 41,
+      "wrong_share": 0.00091,
+      "upper95": 0.00269,
+      "recall": 0.3768,
+      "authors_present": 7254
+     },
+     "2010.0": {
+      "blocks": 21100,
+      "links": 2780,
+      "wrong_links": 57,
+      "wrong_share": 0.00123,
+      "upper95": 0.00336,
+      "recall": 0.2387,
+      "authors_present": 10402
+     },
+     "2020.0": {
+      "blocks": 6570,
+      "links": 344,
+      "wrong_links": 2,
+      "wrong_share": 0.00017,
+      "upper95": 0.01179,
+      "recall": 0.1468,
+      "authors_present": 3273
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 32478,
+      "links": 633,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0055,
+      "recall": 0.0721,
+      "authors_present": 15692
+     },
+     "jstor-author": {
+      "blocks": 5207,
+      "links": 1827,
+      "wrong_links": 40,
+      "wrong_share": 0.00151,
+      "upper95": 0.00372,
+      "recall": 0.7624,
+      "authors_present": 2542
+     },
+     "reviewer": {
+      "blocks": 23155,
+      "links": 9586,
+      "wrong_links": 163,
+      "wrong_share": 0.00105,
+      "upper95": 0.0018,
+      "recall": 0.8768,
+      "authors_present": 11321
+     }
+    }
+   },
+   "clerical_test": {
+    "overall": {
+     "blocks": 488,
+     "links": 46,
+     "wrong_links": 1,
+     "wrong_share": 0.02174,
+     "upper95": 0.08187,
+     "recall": 0.0991,
+     "authors_present": 454
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 155,
+      "links": 12,
+      "wrong_links": 1,
+      "wrong_share": 0.08333,
+      "upper95": 0.28313,
+      "recall": 0.0769,
+      "authors_present": 143
+     },
+     "single": {
+      "blocks": 333,
+      "links": 34,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.05453,
+      "recall": 0.1093,
+      "authors_present": 311
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 155,
+      "links": 12,
+      "wrong_links": 1,
+      "wrong_share": 0.08333,
+      "upper95": 0.28313,
+      "recall": 0.0769,
+      "authors_present": 143
+     },
+     "single-2-5": {
+      "blocks": 39,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36249,
+      "recall": 0.1143,
+      "authors_present": 35
+     },
+     "single-26+": {
+      "blocks": 34,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 30
+     },
+     "single-6-25": {
+      "blocks": 95,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.15687,
+      "recall": 0.1209,
+      "authors_present": 91
+     },
+     "single-initials": {
+      "blocks": 48,
+      "links": 12,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.14506,
+      "recall": 0.2553,
+      "authors_present": 47
+     },
+     "single-unique": {
+      "blocks": 73,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36249,
+      "recall": 0.0563,
+      "authors_present": 71
+     },
+     "single-unmeasured": {
+      "blocks": 44,
+      "links": 3,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.44407,
+      "recall": 0.0811,
+      "authors_present": 37
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 309,
+      "links": 10,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.17077,
+      "recall": 0.0362,
+      "authors_present": 276
+     },
+     "editor": {
+      "blocks": 47,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 46
+     },
+     "jstor-author": {
+      "blocks": 64,
+      "links": 15,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11831,
+      "recall": 0.2344,
+      "authors_present": 64
+     },
+     "main": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "reviewer": {
+      "blocks": 67,
+      "links": 21,
+      "wrong_links": 1,
+      "wrong_share": 0.04762,
+      "upper95": 0.17169,
+      "recall": 0.2985,
+      "authors_present": 67
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 442,
+      "links": 45,
+      "wrong_links": 1,
+      "wrong_share": 0.02222,
+      "upper95": 0.08362,
+      "recall": 0.1063,
+      "authors_present": 414
+     },
+     "1": {
+      "blocks": 46,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.025,
+      "authors_present": 40
+     }
+    },
+    "by_country": {
+     "BE": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "CA": {
+      "blocks": 3,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 3
+     },
+     "FR": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "GB": {
+      "blocks": 6,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.25,
+      "authors_present": 4
+     },
+     "US": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "US/CA (AHA)": {
+      "blocks": 149,
+      "links": 16,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11145,
+      "recall": 0.1176,
+      "authors_present": 136
+     },
+     "unknown": {
+      "blocks": 327,
+      "links": 29,
+      "wrong_links": 1,
+      "wrong_share": 0.03448,
+      "upper95": 0.1271,
+      "recall": 0.0906,
+      "authors_present": 309
+     }
+    },
+    "by_decade": {
+     "1810.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1900.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1910.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1920.0": {
+      "blocks": 3,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 3
+     },
+     "1930.0": {
+      "blocks": 10,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.25,
+      "authors_present": 8
+     },
+     "1940.0": {
+      "blocks": 8,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.25,
+      "authors_present": 8
+     },
+     "1950.0": {
+      "blocks": 20,
+      "links": 3,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.44407,
+      "recall": 0.1579,
+      "authors_present": 19
+     },
+     "1960.0": {
+      "blocks": 21,
+      "links": 3,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.44407,
+      "recall": 0.1429,
+      "authors_present": 21
+     },
+     "1970.0": {
+      "blocks": 40,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36249,
+      "recall": 0.1026,
+      "authors_present": 39
+     },
+     "1980.0": {
+      "blocks": 53,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 0.12,
+      "authors_present": 50
+     },
+     "1990.0": {
+      "blocks": 74,
+      "links": 7,
+      "wrong_links": 1,
+      "wrong_share": 0.14286,
+      "upper95": 0.44042,
+      "recall": 0.0833,
+      "authors_present": 72
+     },
+     "2000.0": {
+      "blocks": 84,
+      "links": 7,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.23246,
+      "recall": 0.0875,
+      "authors_present": 80
+     },
+     "2010.0": {
+      "blocks": 118,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.15687,
+      "recall": 0.1,
+      "authors_present": 110
+     },
+     "2020.0": {
+      "blocks": 51,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.0263,
+      "authors_present": 38
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 357,
+      "links": 10,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.17077,
+      "recall": 0.031,
+      "authors_present": 323
+     },
+     "jstor-author": {
+      "blocks": 64,
+      "links": 15,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11831,
+      "recall": 0.2344,
+      "authors_present": 64
+     },
+     "reviewer": {
+      "blocks": 67,
+      "links": 21,
+      "wrong_links": 1,
+      "wrong_share": 0.04762,
+      "upper95": 0.17169,
+      "recall": 0.2985,
+      "authors_present": 67
+     }
+    }
+   },
+   "clerical_dev": {
+    "overall": {
+     "blocks": 520,
+     "links": 45,
+     "wrong_links": 0,
+     "wrong_share": 0.0,
+     "upper95": 0.04156,
+     "recall": 0.0934,
+     "authors_present": 482
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 204,
+      "links": 15,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11831,
+      "recall": 0.0802,
+      "authors_present": 187
+     },
+     "single": {
+      "blocks": 316,
+      "links": 30,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.06152,
+      "recall": 0.1017,
+      "authors_present": 295
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 204,
+      "links": 15,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11831,
+      "recall": 0.0802,
+      "authors_present": 187
+     },
+     "single-2-5": {
+      "blocks": 56,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.0357,
+      "authors_present": 56
+     },
+     "single-26+": {
+      "blocks": 35,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.0385,
+      "authors_present": 26
+     },
+     "single-6-25": {
+      "blocks": 98,
+      "links": 17,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.10535,
+      "recall": 0.1828,
+      "authors_present": 93
+     },
+     "single-initials": {
+      "blocks": 42,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 0.1579,
+      "authors_present": 38
+     },
+     "single-unique": {
+      "blocks": 57,
+      "links": 3,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.44407,
+      "recall": 0.0526,
+      "authors_present": 57
+     },
+     "single-unmeasured": {
+      "blocks": 28,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.04,
+      "authors_present": 25
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 309,
+      "links": 5,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.30575,
+      "recall": 0.0184,
+      "authors_present": 272
+     },
+     "editor": {
+      "blocks": 80,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 79
+     },
+     "jstor-author": {
+      "blocks": 66,
+      "links": 20,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09048,
+      "recall": 0.303,
+      "authors_present": 66
+     },
+     "main": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "reviewer": {
+      "blocks": 63,
+      "links": 20,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09048,
+      "recall": 0.3175,
+      "authors_present": 63
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 449,
+      "links": 42,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.04444,
+      "recall": 0.1012,
+      "authors_present": 415
+     },
+     "1": {
+      "blocks": 71,
+      "links": 3,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.44407,
+      "recall": 0.0448,
+      "authors_present": 67
+     }
+    },
+    "by_country": {
+     "CA": {
+      "blocks": 5,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 4
+     },
+     "GB": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "US": {
+      "blocks": 4,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.3333,
+      "authors_present": 3
+     },
+     "US/CA (AHA)": {
+      "blocks": 156,
+      "links": 18,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09988,
+      "recall": 0.1295,
+      "authors_present": 139
+     },
+     "unknown": {
+      "blocks": 353,
+      "links": 26,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.07055,
+      "recall": 0.0778,
+      "authors_present": 334
+     }
+    },
+    "by_decade": {
+     "1890.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1910.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1920.0": {
+      "blocks": 4,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.25,
+      "authors_present": 4
+     },
+     "1930.0": {
+      "blocks": 9,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.25,
+      "authors_present": 8
+     },
+     "1940.0": {
+      "blocks": 10,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.125,
+      "authors_present": 8
+     },
+     "1950.0": {
+      "blocks": 11,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 9
+     },
+     "1960.0": {
+      "blocks": 21,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.1053,
+      "authors_present": 19
+     },
+     "1970.0": {
+      "blocks": 38,
+      "links": 3,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.44407,
+      "recall": 0.0909,
+      "authors_present": 33
+     },
+     "1980.0": {
+      "blocks": 54,
+      "links": 8,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.20751,
+      "recall": 0.1538,
+      "authors_present": 52
+     },
+     "1990.0": {
+      "blocks": 66,
+      "links": 9,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.18737,
+      "recall": 0.1552,
+      "authors_present": 58
+     },
+     "2000.0": {
+      "blocks": 106,
+      "links": 7,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.23246,
+      "recall": 0.07,
+      "authors_present": 100
+     },
+     "2010.0": {
+      "blocks": 146,
+      "links": 12,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.14506,
+      "recall": 0.0845,
+      "authors_present": 142
+     },
+     "2020.0": {
+      "blocks": 50,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 44
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 391,
+      "links": 5,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.30575,
+      "recall": 0.0142,
+      "authors_present": 353
+     },
+     "jstor-author": {
+      "blocks": 66,
+      "links": 20,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09048,
+      "recall": 0.303,
+      "authors_present": 66
+     },
+     "reviewer": {
+      "blocks": 63,
+      "links": 20,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09048,
+      "recall": 0.3175,
+      "authors_present": 63
+     }
+    }
+   }
+  },
+  "logit": {
+   "test": {
+    "overall": {
+     "blocks": 60840,
+     "links": 13308,
+     "wrong_links": 340,
+     "wrong_share": 0.00234,
+     "upper95": 0.00342,
+     "recall": 0.4104,
+     "authors_present": 29555
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 5765,
+      "links": 1114,
+      "wrong_links": 2,
+      "wrong_share": 0.02374,
+      "upper95": 0.03653,
+      "recall": 0.069,
+      "authors_present": 5080
+     },
+     "single": {
+      "blocks": 55075,
+      "links": 12194,
+      "wrong_links": 338,
+      "wrong_share": 0.00189,
+      "upper95": 0.00289,
+      "recall": 0.4572,
+      "authors_present": 24475
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 5765,
+      "links": 1114,
+      "wrong_links": 2,
+      "wrong_share": 0.02374,
+      "upper95": 0.03653,
+      "recall": 0.069,
+      "authors_present": 5080
+     },
+     "single-2-5": {
+      "blocks": 18062,
+      "links": 6277,
+      "wrong_links": 213,
+      "wrong_share": 0.00118,
+      "upper95": 0.00229,
+      "recall": 0.4999,
+      "authors_present": 8273
+     },
+     "single-26+": {
+      "blocks": 1227,
+      "links": 79,
+      "wrong_links": 2,
+      "wrong_share": 0.00934,
+      "upper95": 0.06914,
+      "recall": 0.3568,
+      "authors_present": 118
+     },
+     "single-6-25": {
+      "blocks": 3825,
+      "links": 996,
+      "wrong_links": 16,
+      "wrong_share": 0.0137,
+      "upper95": 0.0276,
+      "recall": 0.3232,
+      "authors_present": 1397
+     },
+     "single-initials": {
+      "blocks": 520,
+      "links": 102,
+      "wrong_links": 2,
+      "wrong_share": 0.00832,
+      "upper95": 0.0568,
+      "recall": 0.2108,
+      "authors_present": 216
+     },
+     "single-unique": {
+      "blocks": 9389,
+      "links": 3638,
+      "wrong_links": 105,
+      "wrong_share": 0.00117,
+      "upper95": 0.00286,
+      "recall": 0.5494,
+      "authors_present": 4549
+     },
+     "single-unmeasured": {
+      "blocks": 22052,
+      "links": 1102,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.00174,
+      "recall": 0.1111,
+      "authors_present": 9922
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 32478,
+      "links": 1673,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.00285,
+      "recall": 0.1419,
+      "authors_present": 15692
+     },
+     "jstor-author": {
+      "blocks": 5207,
+      "links": 1894,
+      "wrong_links": 58,
+      "wrong_share": 0.00258,
+      "upper95": 0.00518,
+      "recall": 0.7816,
+      "authors_present": 2542
+     },
+     "reviewer": {
+      "blocks": 23155,
+      "links": 9741,
+      "wrong_links": 282,
+      "wrong_share": 0.00314,
+      "upper95": 0.00431,
+      "recall": 0.8875,
+      "authors_present": 11321
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 35687,
+      "links": 9048,
+      "wrong_links": 240,
+      "wrong_share": 0.00215,
+      "upper95": 0.00323,
+      "recall": 0.6603,
+      "authors_present": 11819
+     },
+     "1": {
+      "blocks": 25153,
+      "links": 4260,
+      "wrong_links": 100,
+      "wrong_share": 0.00265,
+      "upper95": 0.00528,
+      "recall": 0.2527,
+      "authors_present": 17736
+     }
+    },
+    "by_country": {
+     "AU": {
+      "blocks": 8,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "BE": {
+      "blocks": 34,
+      "links": 8,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.31717,
+      "recall": 0.3219,
+      "authors_present": 30
+     },
+     "BR": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "CA": {
+      "blocks": 268,
+      "links": 51,
+      "wrong_links": 2,
+      "wrong_share": 0.00144,
+      "upper95": 0.06813,
+      "recall": 0.4596,
+      "authors_present": 99
+     },
+     "CH": {
+      "blocks": 2,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.9323,
+      "authors_present": 2
+     },
+     "CO": {
+      "blocks": 3,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "DE": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "ES": {
+      "blocks": 7,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.73626,
+      "recall": 0.5175,
+      "authors_present": 3
+     },
+     "FR": {
+      "blocks": 62,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.33183,
+      "recall": 0.0791,
+      "authors_present": 47
+     },
+     "GB": {
+      "blocks": 371,
+      "links": 73,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0363,
+      "recall": 0.2159,
+      "authors_present": 263
+     },
+     "IT": {
+      "blocks": 73,
+      "links": 10,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.19299,
+      "recall": 0.2597,
+      "authors_present": 52
+     },
+     "SE": {
+      "blocks": 138,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.52693,
+      "recall": 0.0633,
+      "authors_present": 125
+     },
+     "US": {
+      "blocks": 414,
+      "links": 110,
+      "wrong_links": 2,
+      "wrong_share": 0.00573,
+      "upper95": 0.03681,
+      "recall": 0.5188,
+      "authors_present": 205
+     },
+     "US/CA (AHA)": {
+      "blocks": 17876,
+      "links": 8269,
+      "wrong_links": 154,
+      "wrong_share": 0.00168,
+      "upper95": 0.00273,
+      "recall": 0.7037,
+      "authors_present": 11152
+     },
+     "ZA": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "ZZ": {
+      "blocks": 24,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.74769,
+      "recall": 0.2747,
+      "authors_present": 20
+     },
+     "unknown": {
+      "blocks": 41555,
+      "links": 4772,
+      "wrong_links": 182,
+      "wrong_share": 0.00318,
+      "upper95": 0.00568,
+      "recall": 0.2702,
+      "authors_present": 17551
+     }
+    },
+    "by_decade": {
+     "1610.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1760.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1790.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "1800.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1840.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1860.0": {
+      "blocks": 4,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "1870.0": {
+      "blocks": 6,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.5415,
+      "authors_present": 3
+     },
+     "1880.0": {
+      "blocks": 11,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 5
+     },
+     "1890.0": {
+      "blocks": 8,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "1900.0": {
+      "blocks": 4,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.7007,
+      "authors_present": 2
+     },
+     "1910.0": {
+      "blocks": 24,
+      "links": 5,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.31937,
+      "recall": 0.2513,
+      "authors_present": 11
+     },
+     "1920.0": {
+      "blocks": 74,
+      "links": 22,
+      "wrong_links": 1,
+      "wrong_share": 0.00122,
+      "upper95": 0.09527,
+      "recall": 0.3869,
+      "authors_present": 37
+     },
+     "1930.0": {
+      "blocks": 109,
+      "links": 46,
+      "wrong_links": 2,
+      "wrong_share": 0.00148,
+      "upper95": 0.051,
+      "recall": 0.6129,
+      "authors_present": 54
+     },
+     "1940.0": {
+      "blocks": 249,
+      "links": 94,
+      "wrong_links": 2,
+      "wrong_share": 0.0009,
+      "upper95": 0.02553,
+      "recall": 0.5813,
+      "authors_present": 118
+     },
+     "1950.0": {
+      "blocks": 408,
+      "links": 153,
+      "wrong_links": 7,
+      "wrong_share": 0.0022,
+      "upper95": 0.01957,
+      "recall": 0.5425,
+      "authors_present": 201
+     },
+     "1960.0": {
+      "blocks": 1063,
+      "links": 422,
+      "wrong_links": 8,
+      "wrong_share": 0.00273,
+      "upper95": 0.01108,
+      "recall": 0.6998,
+      "authors_present": 521
+     },
+     "1970.0": {
+      "blocks": 2309,
+      "links": 849,
+      "wrong_links": 25,
+      "wrong_share": 0.00269,
+      "upper95": 0.0077,
+      "recall": 0.6202,
+      "authors_present": 1103
+     },
+     "1980.0": {
+      "blocks": 4700,
+      "links": 1589,
+      "wrong_links": 44,
+      "wrong_share": 0.00265,
+      "upper95": 0.00607,
+      "recall": 0.6463,
+      "authors_present": 2183
+     },
+     "1990.0": {
+      "blocks": 9117,
+      "links": 2776,
+      "wrong_links": 80,
+      "wrong_share": 0.00267,
+      "upper95": 0.00508,
+      "recall": 0.5822,
+      "authors_present": 4345
+     },
+     "2000.0": {
+      "blocks": 15038,
+      "links": 3191,
+      "wrong_links": 82,
+      "wrong_share": 0.00363,
+      "upper95": 0.00657,
+      "recall": 0.3973,
+      "authors_present": 7254
+     },
+     "2010.0": {
+      "blocks": 21100,
+      "links": 3086,
+      "wrong_links": 83,
+      "wrong_share": 0.00163,
+      "upper95": 0.00404,
+      "recall": 0.2802,
+      "authors_present": 10402
+     },
+     "2020.0": {
+      "blocks": 6570,
+      "links": 1066,
+      "wrong_links": 6,
+      "wrong_share": 0.00018,
+      "upper95": 0.00535,
+      "recall": 0.368,
+      "authors_present": 3273
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 32478,
+      "links": 1673,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.00285,
+      "recall": 0.1419,
+      "authors_present": 15692
+     },
+     "jstor-author": {
+      "blocks": 5207,
+      "links": 1894,
+      "wrong_links": 58,
+      "wrong_share": 0.00258,
+      "upper95": 0.00518,
+      "recall": 0.7816,
+      "authors_present": 2542
+     },
+     "reviewer": {
+      "blocks": 23155,
+      "links": 9741,
+      "wrong_links": 282,
+      "wrong_share": 0.00314,
+      "upper95": 0.00431,
+      "recall": 0.8875,
+      "authors_present": 11321
+     }
+    }
+   },
+   "clerical_test": {
+    "overall": {
+     "blocks": 488,
+     "links": 69,
+     "wrong_links": 0,
+     "wrong_share": 0.0,
+     "upper95": 0.02735,
+     "recall": 0.152,
+     "authors_present": 454
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 155,
+      "links": 8,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.20751,
+      "recall": 0.0559,
+      "authors_present": 143
+     },
+     "single": {
+      "blocks": 333,
+      "links": 61,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.03087,
+      "recall": 0.1961,
+      "authors_present": 311
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 155,
+      "links": 8,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.20751,
+      "recall": 0.0559,
+      "authors_present": 143
+     },
+     "single-2-5": {
+      "blocks": 39,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.0571,
+      "authors_present": 35
+     },
+     "single-26+": {
+      "blocks": 34,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 0.2,
+      "authors_present": 30
+     },
+     "single-6-25": {
+      "blocks": 95,
+      "links": 27,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.06805,
+      "recall": 0.2967,
+      "authors_present": 91
+     },
+     "single-initials": {
+      "blocks": 48,
+      "links": 13,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.13489,
+      "recall": 0.2766,
+      "authors_present": 47
+     },
+     "single-unique": {
+      "blocks": 73,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 0.0845,
+      "authors_present": 71
+     },
+     "single-unmeasured": {
+      "blocks": 44,
+      "links": 7,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.23246,
+      "recall": 0.1892,
+      "authors_present": 37
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 309,
+      "links": 22,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.08269,
+      "recall": 0.0797,
+      "authors_present": 276
+     },
+     "editor": {
+      "blocks": 47,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 46
+     },
+     "jstor-author": {
+      "blocks": 64,
+      "links": 20,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09048,
+      "recall": 0.3125,
+      "authors_present": 64
+     },
+     "main": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "reviewer": {
+      "blocks": 67,
+      "links": 27,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.06805,
+      "recall": 0.403,
+      "authors_present": 67
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 442,
+      "links": 64,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.02945,
+      "recall": 0.1546,
+      "authors_present": 414
+     },
+     "1": {
+      "blocks": 46,
+      "links": 5,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.30575,
+      "recall": 0.125,
+      "authors_present": 40
+     }
+    },
+    "by_country": {
+     "BE": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "CA": {
+      "blocks": 3,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 3
+     },
+     "FR": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "GB": {
+      "blocks": 6,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.25,
+      "authors_present": 4
+     },
+     "US": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "US/CA (AHA)": {
+      "blocks": 149,
+      "links": 25,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.07324,
+      "recall": 0.1838,
+      "authors_present": 136
+     },
+     "unknown": {
+      "blocks": 327,
+      "links": 43,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.04344,
+      "recall": 0.1392,
+      "authors_present": 309
+     }
+    },
+    "by_decade": {
+     "1810.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1900.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1910.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1920.0": {
+      "blocks": 3,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 3
+     },
+     "1930.0": {
+      "blocks": 10,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.25,
+      "authors_present": 8
+     },
+     "1940.0": {
+      "blocks": 8,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.25,
+      "authors_present": 8
+     },
+     "1950.0": {
+      "blocks": 20,
+      "links": 3,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.44407,
+      "recall": 0.1579,
+      "authors_present": 19
+     },
+     "1960.0": {
+      "blocks": 21,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.0952,
+      "authors_present": 21
+     },
+     "1970.0": {
+      "blocks": 40,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 0.1538,
+      "authors_present": 39
+     },
+     "1980.0": {
+      "blocks": 53,
+      "links": 9,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.18737,
+      "recall": 0.18,
+      "authors_present": 50
+     },
+     "1990.0": {
+      "blocks": 74,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.15687,
+      "recall": 0.1528,
+      "authors_present": 72
+     },
+     "2000.0": {
+      "blocks": 84,
+      "links": 10,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.17077,
+      "recall": 0.125,
+      "authors_present": 80
+     },
+     "2010.0": {
+      "blocks": 118,
+      "links": 16,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11145,
+      "recall": 0.1455,
+      "authors_present": 110
+     },
+     "2020.0": {
+      "blocks": 51,
+      "links": 8,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.20751,
+      "recall": 0.2105,
+      "authors_present": 38
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 357,
+      "links": 22,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.08269,
+      "recall": 0.0681,
+      "authors_present": 323
+     },
+     "jstor-author": {
+      "blocks": 64,
+      "links": 20,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09048,
+      "recall": 0.3125,
+      "authors_present": 64
+     },
+     "reviewer": {
+      "blocks": 67,
+      "links": 27,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.06805,
+      "recall": 0.403,
+      "authors_present": 67
+     }
+    }
+   },
+   "clerical_dev": {
+    "overall": {
+     "blocks": 520,
+     "links": 59,
+     "wrong_links": 0,
+     "wrong_share": 0.0,
+     "upper95": 0.0319,
+     "recall": 0.1224,
+     "authors_present": 482
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 204,
+      "links": 9,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.18737,
+      "recall": 0.0481,
+      "authors_present": 187
+     },
+     "single": {
+      "blocks": 316,
+      "links": 50,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0375,
+      "recall": 0.1695,
+      "authors_present": 295
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 204,
+      "links": 9,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.18737,
+      "recall": 0.0481,
+      "authors_present": 187
+     },
+     "single-2-5": {
+      "blocks": 56,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.0179,
+      "authors_present": 56
+     },
+     "single-26+": {
+      "blocks": 35,
+      "links": 5,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.30575,
+      "recall": 0.1923,
+      "authors_present": 26
+     },
+     "single-6-25": {
+      "blocks": 98,
+      "links": 22,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.08269,
+      "recall": 0.2366,
+      "authors_present": 93
+     },
+     "single-initials": {
+      "blocks": 42,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.15687,
+      "recall": 0.2895,
+      "authors_present": 38
+     },
+     "single-unique": {
+      "blocks": 57,
+      "links": 7,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.23246,
+      "recall": 0.1228,
+      "authors_present": 57
+     },
+     "single-unmeasured": {
+      "blocks": 28,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36249,
+      "recall": 0.16,
+      "authors_present": 25
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 309,
+      "links": 15,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11831,
+      "recall": 0.0551,
+      "authors_present": 272
+     },
+     "editor": {
+      "blocks": 80,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 79
+     },
+     "jstor-author": {
+      "blocks": 66,
+      "links": 22,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.08269,
+      "recall": 0.3333,
+      "authors_present": 66
+     },
+     "main": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "reviewer": {
+      "blocks": 63,
+      "links": 22,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.08269,
+      "recall": 0.3492,
+      "authors_present": 63
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 449,
+      "links": 52,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.03609,
+      "recall": 0.1253,
+      "authors_present": 415
+     },
+     "1": {
+      "blocks": 71,
+      "links": 7,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.23246,
+      "recall": 0.1045,
+      "authors_present": 67
+     }
+    },
+    "by_country": {
+     "CA": {
+      "blocks": 5,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 4
+     },
+     "GB": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "US": {
+      "blocks": 4,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 3
+     },
+     "US/CA (AHA)": {
+      "blocks": 156,
+      "links": 22,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.08269,
+      "recall": 0.1583,
+      "authors_present": 139
+     },
+     "unknown": {
+      "blocks": 353,
+      "links": 37,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.05025,
+      "recall": 0.1108,
+      "authors_present": 334
+     }
+    },
+    "by_decade": {
+     "1890.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1910.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1920.0": {
+      "blocks": 4,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.25,
+      "authors_present": 4
+     },
+     "1930.0": {
+      "blocks": 9,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.25,
+      "authors_present": 8
+     },
+     "1940.0": {
+      "blocks": 10,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.125,
+      "authors_present": 8
+     },
+     "1950.0": {
+      "blocks": 11,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 9
+     },
+     "1960.0": {
+      "blocks": 21,
+      "links": 3,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.44407,
+      "recall": 0.1579,
+      "authors_present": 19
+     },
+     "1970.0": {
+      "blocks": 38,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36249,
+      "recall": 0.1212,
+      "authors_present": 33
+     },
+     "1980.0": {
+      "blocks": 54,
+      "links": 8,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.20751,
+      "recall": 0.1538,
+      "authors_present": 52
+     },
+     "1990.0": {
+      "blocks": 66,
+      "links": 12,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.14506,
+      "recall": 0.2069,
+      "authors_present": 58
+     },
+     "2000.0": {
+      "blocks": 106,
+      "links": 10,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.17077,
+      "recall": 0.1,
+      "authors_present": 100
+     },
+     "2010.0": {
+      "blocks": 146,
+      "links": 13,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.13489,
+      "recall": 0.0915,
+      "authors_present": 142
+     },
+     "2020.0": {
+      "blocks": 50,
+      "links": 5,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.30575,
+      "recall": 0.1136,
+      "authors_present": 44
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 391,
+      "links": 15,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11831,
+      "recall": 0.0425,
+      "authors_present": 353
+     },
+     "jstor-author": {
+      "blocks": 66,
+      "links": 22,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.08269,
+      "recall": 0.3333,
+      "authors_present": 66
+     },
+     "reviewer": {
+      "blocks": 63,
+      "links": 22,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.08269,
+      "recall": 0.3492,
+      "authors_present": 63
+     }
+    }
+   }
+  },
+  "two-stage": {
+   "test": {
+    "overall": {
+     "blocks": 60840,
+     "links": 13686,
+     "wrong_links": 183,
+     "wrong_share": 0.00073,
+     "upper95": 0.00143,
+     "recall": 0.4657,
+     "authors_present": 29555
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 5765,
+      "links": 1276,
+      "wrong_links": 2,
+      "wrong_share": 0.00154,
+      "upper95": 0.00519,
+      "recall": 0.0789,
+      "authors_present": 5080
+     },
+     "single": {
+      "blocks": 55075,
+      "links": 12410,
+      "wrong_links": 181,
+      "wrong_share": 0.00072,
+      "upper95": 0.00143,
+      "recall": 0.5188,
+      "authors_present": 24475
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 5765,
+      "links": 1276,
+      "wrong_links": 2,
+      "wrong_share": 0.00154,
+      "upper95": 0.00519,
+      "recall": 0.0789,
+      "authors_present": 5080
+     },
+     "single-2-5": {
+      "blocks": 18062,
+      "links": 6388,
+      "wrong_links": 125,
+      "wrong_share": 0.00065,
+      "upper95": 0.00159,
+      "recall": 0.5902,
+      "authors_present": 8273
+     },
+     "single-26+": {
+      "blocks": 1227,
+      "links": 62,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0629,
+      "recall": 0.3107,
+      "authors_present": 118
+     },
+     "single-6-25": {
+      "blocks": 3825,
+      "links": 835,
+      "wrong_links": 2,
+      "wrong_share": 0.00193,
+      "upper95": 0.01144,
+      "recall": 0.2935,
+      "authors_present": 1397
+     },
+     "single-initials": {
+      "blocks": 520,
+      "links": 100,
+      "wrong_links": 1,
+      "wrong_share": 0.00402,
+      "upper95": 0.04801,
+      "recall": 0.2192,
+      "authors_present": 216
+     },
+     "single-unique": {
+      "blocks": 9389,
+      "links": 3586,
+      "wrong_links": 52,
+      "wrong_share": 0.00061,
+      "upper95": 0.00208,
+      "recall": 0.6033,
+      "authors_present": 4549
+     },
+     "single-unmeasured": {
+      "blocks": 22052,
+      "links": 1439,
+      "wrong_links": 1,
+      "wrong_share": 0.00028,
+      "upper95": 0.00195,
+      "recall": 0.1449,
+      "authors_present": 9922
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 32478,
+      "links": 2515,
+      "wrong_links": 3,
+      "wrong_share": 0.00022,
+      "upper95": 0.0021,
+      "recall": 0.2485,
+      "authors_present": 15692
+     },
+     "jstor-author": {
+      "blocks": 5207,
+      "links": 1779,
+      "wrong_links": 34,
+      "wrong_share": 0.00122,
+      "upper95": 0.00332,
+      "recall": 0.7436,
+      "authors_present": 2542
+     },
+     "reviewer": {
+      "blocks": 23155,
+      "links": 9392,
+      "wrong_links": 146,
+      "wrong_share": 0.0009,
+      "upper95": 0.00161,
+      "recall": 0.8619,
+      "authors_present": 11321
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 35687,
+      "links": 8849,
+      "wrong_links": 137,
+      "wrong_share": 0.001,
+      "upper95": 0.00184,
+      "recall": 0.6706,
+      "authors_present": 11819
+     },
+     "1": {
+      "blocks": 25153,
+      "links": 4837,
+      "wrong_links": 46,
+      "wrong_share": 0.0004,
+      "upper95": 0.00173,
+      "recall": 0.3365,
+      "authors_present": 17736
+     }
+    },
+    "by_country": {
+     "AU": {
+      "blocks": 8,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "BE": {
+      "blocks": 34,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26218,
+      "recall": 0.4,
+      "authors_present": 30
+     },
+     "BR": {
+      "blocks": 2,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.9323,
+      "authors_present": 2
+     },
+     "CA": {
+      "blocks": 268,
+      "links": 50,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.06526,
+      "recall": 0.5016,
+      "authors_present": 99
+     },
+     "CH": {
+      "blocks": 2,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.9323,
+      "authors_present": 2
+     },
+     "CO": {
+      "blocks": 3,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "DE": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "ES": {
+      "blocks": 7,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.4825,
+      "authors_present": 3
+     },
+     "FR": {
+      "blocks": 62,
+      "links": 7,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.30314,
+      "recall": 0.0848,
+      "authors_present": 47
+     },
+     "GB": {
+      "blocks": 371,
+      "links": 70,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.03862,
+      "recall": 0.2211,
+      "authors_present": 263
+     },
+     "IT": {
+      "blocks": 73,
+      "links": 15,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.23855,
+      "recall": 0.4487,
+      "authors_present": 52
+     },
+     "SE": {
+      "blocks": 138,
+      "links": 5,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.507,
+      "recall": 0.0654,
+      "authors_present": 125
+     },
+     "US": {
+      "blocks": 414,
+      "links": 115,
+      "wrong_links": 2,
+      "wrong_share": 0.00521,
+      "upper95": 0.03782,
+      "recall": 0.5713,
+      "authors_present": 205
+     },
+     "US/CA (AHA)": {
+      "blocks": 17876,
+      "links": 8263,
+      "wrong_links": 107,
+      "wrong_share": 0.00075,
+      "upper95": 0.00154,
+      "recall": 0.7095,
+      "authors_present": 11152
+     },
+     "ZA": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "ZZ": {
+      "blocks": 24,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 0.0762,
+      "authors_present": 20
+     },
+     "unknown": {
+      "blocks": 41555,
+      "links": 5141,
+      "wrong_links": 74,
+      "wrong_share": 0.00067,
+      "upper95": 0.00204,
+      "recall": 0.3514,
+      "authors_present": 17551
+     }
+    },
+    "by_decade": {
+     "1610.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1760.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1790.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "1800.0": {
+      "blocks": 2,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 1.0,
+      "authors_present": 1
+     },
+     "1840.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1860.0": {
+      "blocks": 4,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.5019,
+      "authors_present": 2
+     },
+     "1870.0": {
+      "blocks": 6,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.3586,
+      "authors_present": 3
+     },
+     "1880.0": {
+      "blocks": 11,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 5
+     },
+     "1890.0": {
+      "blocks": 8,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "1900.0": {
+      "blocks": 4,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.7007,
+      "authors_present": 2
+     },
+     "1910.0": {
+      "blocks": 24,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36123,
+      "recall": 0.4349,
+      "authors_present": 11
+     },
+     "1920.0": {
+      "blocks": 74,
+      "links": 24,
+      "wrong_links": 1,
+      "wrong_share": 0.00096,
+      "upper95": 0.09997,
+      "recall": 0.4915,
+      "authors_present": 37
+     },
+     "1930.0": {
+      "blocks": 109,
+      "links": 44,
+      "wrong_links": 1,
+      "wrong_share": 0.00077,
+      "upper95": 0.05048,
+      "recall": 0.5915,
+      "authors_present": 54
+     },
+     "1940.0": {
+      "blocks": 249,
+      "links": 95,
+      "wrong_links": 1,
+      "wrong_share": 0.00054,
+      "upper95": 0.02605,
+      "recall": 0.6162,
+      "authors_present": 118
+     },
+     "1950.0": {
+      "blocks": 408,
+      "links": 150,
+      "wrong_links": 5,
+      "wrong_share": 0.00165,
+      "upper95": 0.01989,
+      "recall": 0.5496,
+      "authors_present": 201
+     },
+     "1960.0": {
+      "blocks": 1063,
+      "links": 398,
+      "wrong_links": 2,
+      "wrong_share": 0.00125,
+      "upper95": 0.00896,
+      "recall": 0.6829,
+      "authors_present": 521
+     },
+     "1970.0": {
+      "blocks": 2309,
+      "links": 818,
+      "wrong_links": 16,
+      "wrong_share": 0.00192,
+      "upper95": 0.00697,
+      "recall": 0.6463,
+      "authors_present": 1103
+     },
+     "1980.0": {
+      "blocks": 4700,
+      "links": 1560,
+      "wrong_links": 24,
+      "wrong_share": 0.00077,
+      "upper95": 0.00343,
+      "recall": 0.6745,
+      "authors_present": 2183
+     },
+     "1990.0": {
+      "blocks": 9117,
+      "links": 2792,
+      "wrong_links": 42,
+      "wrong_share": 0.00065,
+      "upper95": 0.00234,
+      "recall": 0.6328,
+      "authors_present": 4345
+     },
+     "2000.0": {
+      "blocks": 15038,
+      "links": 3299,
+      "wrong_links": 38,
+      "wrong_share": 0.0005,
+      "upper95": 0.00217,
+      "recall": 0.4563,
+      "authors_present": 7254
+     },
+     "2010.0": {
+      "blocks": 21100,
+      "links": 3385,
+      "wrong_links": 52,
+      "wrong_share": 0.00094,
+      "upper95": 0.00295,
+      "recall": 0.3549,
+      "authors_present": 10402
+     },
+     "2020.0": {
+      "blocks": 6570,
+      "links": 1088,
+      "wrong_links": 1,
+      "wrong_share": 3e-05,
+      "upper95": 0.00456,
+      "recall": 0.3996,
+      "authors_present": 3273
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 32478,
+      "links": 2515,
+      "wrong_links": 3,
+      "wrong_share": 0.00022,
+      "upper95": 0.0021,
+      "recall": 0.2485,
+      "authors_present": 15692
+     },
+     "jstor-author": {
+      "blocks": 5207,
+      "links": 1779,
+      "wrong_links": 34,
+      "wrong_share": 0.00122,
+      "upper95": 0.00332,
+      "recall": 0.7436,
+      "authors_present": 2542
+     },
+     "reviewer": {
+      "blocks": 23155,
+      "links": 9392,
+      "wrong_links": 146,
+      "wrong_share": 0.0009,
+      "upper95": 0.00161,
+      "recall": 0.8619,
+      "authors_present": 11321
+     }
+    }
+   },
+   "clerical_test": {
+    "overall": {
+     "blocks": 488,
+     "links": 59,
+     "wrong_links": 1,
+     "wrong_share": 0.01695,
+     "upper95": 0.06435,
+     "recall": 0.1278,
+     "authors_present": 454
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 155,
+      "links": 10,
+      "wrong_links": 1,
+      "wrong_share": 0.1,
+      "upper95": 0.33056,
+      "recall": 0.0629,
+      "authors_present": 143
+     },
+     "single": {
+      "blocks": 333,
+      "links": 49,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.03825,
+      "recall": 0.1576,
+      "authors_present": 311
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 155,
+      "links": 10,
+      "wrong_links": 1,
+      "wrong_share": 0.1,
+      "upper95": 0.33056,
+      "recall": 0.0629,
+      "authors_present": 143
+     },
+     "single-2-5": {
+      "blocks": 39,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 0.1714,
+      "authors_present": 35
+     },
+     "single-26+": {
+      "blocks": 34,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.0667,
+      "authors_present": 30
+     },
+     "single-6-25": {
+      "blocks": 95,
+      "links": 12,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.14506,
+      "recall": 0.1319,
+      "authors_present": 91
+     },
+     "single-initials": {
+      "blocks": 48,
+      "links": 19,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09494,
+      "recall": 0.4043,
+      "authors_present": 47
+     },
+     "single-unique": {
+      "blocks": 73,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 0.0845,
+      "authors_present": 71
+     },
+     "single-unmeasured": {
+      "blocks": 44,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36249,
+      "recall": 0.1081,
+      "authors_present": 37
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 309,
+      "links": 30,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.06152,
+      "recall": 0.1087,
+      "authors_present": 276
+     },
+     "editor": {
+      "blocks": 47,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 46
+     },
+     "jstor-author": {
+      "blocks": 64,
+      "links": 12,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.14506,
+      "recall": 0.1875,
+      "authors_present": 64
+     },
+     "main": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "reviewer": {
+      "blocks": 67,
+      "links": 17,
+      "wrong_links": 1,
+      "wrong_share": 0.05882,
+      "upper95": 0.20815,
+      "recall": 0.2388,
+      "authors_present": 67
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 442,
+      "links": 57,
+      "wrong_links": 1,
+      "wrong_share": 0.01754,
+      "upper95": 0.06654,
+      "recall": 0.1353,
+      "authors_present": 414
+     },
+     "1": {
+      "blocks": 46,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.05,
+      "authors_present": 40
+     }
+    },
+    "by_country": {
+     "BE": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "CA": {
+      "blocks": 3,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.3333,
+      "authors_present": 3
+     },
+     "FR": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "GB": {
+      "blocks": 6,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.25,
+      "authors_present": 4
+     },
+     "US": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "US/CA (AHA)": {
+      "blocks": 149,
+      "links": 19,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09494,
+      "recall": 0.1397,
+      "authors_present": 136
+     },
+     "unknown": {
+      "blocks": 327,
+      "links": 38,
+      "wrong_links": 1,
+      "wrong_share": 0.02632,
+      "upper95": 0.09834,
+      "recall": 0.1197,
+      "authors_present": 309
+     }
+    },
+    "by_decade": {
+     "1810.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1900.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1910.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1920.0": {
+      "blocks": 3,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 3
+     },
+     "1930.0": {
+      "blocks": 10,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.125,
+      "authors_present": 8
+     },
+     "1940.0": {
+      "blocks": 8,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.25,
+      "authors_present": 8
+     },
+     "1950.0": {
+      "blocks": 20,
+      "links": 5,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.30575,
+      "recall": 0.2632,
+      "authors_present": 19
+     },
+     "1960.0": {
+      "blocks": 21,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36249,
+      "recall": 0.1905,
+      "authors_present": 21
+     },
+     "1970.0": {
+      "blocks": 40,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 0.1538,
+      "authors_present": 39
+     },
+     "1980.0": {
+      "blocks": 53,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 0.12,
+      "authors_present": 50
+     },
+     "1990.0": {
+      "blocks": 74,
+      "links": 9,
+      "wrong_links": 1,
+      "wrong_share": 0.11111,
+      "upper95": 0.36067,
+      "recall": 0.1111,
+      "authors_present": 72
+     },
+     "2000.0": {
+      "blocks": 84,
+      "links": 10,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.17077,
+      "recall": 0.125,
+      "authors_present": 80
+     },
+     "2010.0": {
+      "blocks": 118,
+      "links": 12,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.14506,
+      "recall": 0.1091,
+      "authors_present": 110
+     },
+     "2020.0": {
+      "blocks": 51,
+      "links": 3,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.44407,
+      "recall": 0.0789,
+      "authors_present": 38
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 357,
+      "links": 30,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.06152,
+      "recall": 0.0929,
+      "authors_present": 323
+     },
+     "jstor-author": {
+      "blocks": 64,
+      "links": 12,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.14506,
+      "recall": 0.1875,
+      "authors_present": 64
+     },
+     "reviewer": {
+      "blocks": 67,
+      "links": 17,
+      "wrong_links": 1,
+      "wrong_share": 0.05882,
+      "upper95": 0.20815,
+      "recall": 0.2388,
+      "authors_present": 67
+     }
+    }
+   },
+   "clerical_dev": {
+    "overall": {
+     "blocks": 520,
+     "links": 65,
+     "wrong_links": 0,
+     "wrong_share": 0.0,
+     "upper95": 0.02901,
+     "recall": 0.1349,
+     "authors_present": 482
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 204,
+      "links": 13,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.13489,
+      "recall": 0.0695,
+      "authors_present": 187
+     },
+     "single": {
+      "blocks": 316,
+      "links": 52,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.03609,
+      "recall": 0.1763,
+      "authors_present": 295
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 204,
+      "links": 13,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.13489,
+      "recall": 0.0695,
+      "authors_present": 187
+     },
+     "single-2-5": {
+      "blocks": 56,
+      "links": 5,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.30575,
+      "recall": 0.0893,
+      "authors_present": 56
+     },
+     "single-26+": {
+      "blocks": 35,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36249,
+      "recall": 0.1538,
+      "authors_present": 26
+     },
+     "single-6-25": {
+      "blocks": 98,
+      "links": 22,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.08269,
+      "recall": 0.2366,
+      "authors_present": 93
+     },
+     "single-initials": {
+      "blocks": 42,
+      "links": 12,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.14506,
+      "recall": 0.3158,
+      "authors_present": 38
+     },
+     "single-unique": {
+      "blocks": 57,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36249,
+      "recall": 0.0702,
+      "authors_present": 57
+     },
+     "single-unmeasured": {
+      "blocks": 28,
+      "links": 5,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.30575,
+      "recall": 0.2,
+      "authors_present": 25
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 309,
+      "links": 27,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.06805,
+      "recall": 0.0993,
+      "authors_present": 272
+     },
+     "editor": {
+      "blocks": 80,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 79
+     },
+     "jstor-author": {
+      "blocks": 66,
+      "links": 19,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09494,
+      "recall": 0.2879,
+      "authors_present": 66
+     },
+     "main": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "reviewer": {
+      "blocks": 63,
+      "links": 19,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09494,
+      "recall": 0.3016,
+      "authors_present": 63
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 449,
+      "links": 58,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.03244,
+      "recall": 0.1398,
+      "authors_present": 415
+     },
+     "1": {
+      "blocks": 71,
+      "links": 7,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.23246,
+      "recall": 0.1045,
+      "authors_present": 67
+     }
+    },
+    "by_country": {
+     "CA": {
+      "blocks": 5,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 4
+     },
+     "GB": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "US": {
+      "blocks": 4,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 3
+     },
+     "US/CA (AHA)": {
+      "blocks": 156,
+      "links": 23,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.07928,
+      "recall": 0.1655,
+      "authors_present": 139
+     },
+     "unknown": {
+      "blocks": 353,
+      "links": 42,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.04444,
+      "recall": 0.1257,
+      "authors_present": 334
+     }
+    },
+    "by_decade": {
+     "1890.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1910.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1920.0": {
+      "blocks": 4,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.5,
+      "authors_present": 4
+     },
+     "1930.0": {
+      "blocks": 9,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.25,
+      "authors_present": 8
+     },
+     "1940.0": {
+      "blocks": 10,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.25,
+      "authors_present": 8
+     },
+     "1950.0": {
+      "blocks": 11,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 9
+     },
+     "1960.0": {
+      "blocks": 21,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36249,
+      "recall": 0.2105,
+      "authors_present": 19
+     },
+     "1970.0": {
+      "blocks": 38,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36249,
+      "recall": 0.1212,
+      "authors_present": 33
+     },
+     "1980.0": {
+      "blocks": 54,
+      "links": 10,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.17077,
+      "recall": 0.1923,
+      "authors_present": 52
+     },
+     "1990.0": {
+      "blocks": 66,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.15687,
+      "recall": 0.1897,
+      "authors_present": 58
+     },
+     "2000.0": {
+      "blocks": 106,
+      "links": 12,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.14506,
+      "recall": 0.12,
+      "authors_present": 100
+     },
+     "2010.0": {
+      "blocks": 146,
+      "links": 13,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.13489,
+      "recall": 0.0915,
+      "authors_present": 142
+     },
+     "2020.0": {
+      "blocks": 50,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36249,
+      "recall": 0.0909,
+      "authors_present": 44
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 391,
+      "links": 27,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.06805,
+      "recall": 0.0765,
+      "authors_present": 353
+     },
+     "jstor-author": {
+      "blocks": 66,
+      "links": 19,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09494,
+      "recall": 0.2879,
+      "authors_present": 66
+     },
+     "reviewer": {
+      "blocks": 63,
+      "links": 19,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09494,
+      "recall": 0.3016,
+      "authors_present": 63
+     }
+    }
+   }
+  },
+  "fs": {
+   "test": {
+    "overall": {
+     "blocks": 60840,
+     "links": 16375,
+     "wrong_links": 427,
+     "wrong_share": 0.00264,
+     "upper95": 0.00376,
+     "recall": 0.5921,
+     "authors_present": 29555
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 5765,
+      "links": 685,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0028,
+      "recall": 0.0416,
+      "authors_present": 5080
+     },
+     "single": {
+      "blocks": 55075,
+      "links": 15690,
+      "wrong_links": 427,
+      "wrong_share": 0.00266,
+      "upper95": 0.0038,
+      "recall": 0.6676,
+      "authors_present": 24475
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 5765,
+      "links": 685,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0028,
+      "recall": 0.0416,
+      "authors_present": 5080
+     },
+     "single-2-5": {
+      "blocks": 18062,
+      "links": 6985,
+      "wrong_links": 176,
+      "wrong_share": 0.00128,
+      "upper95": 0.00243,
+      "recall": 0.719,
+      "authors_present": 8273
+     },
+     "single-26+": {
+      "blocks": 1227,
+      "links": 76,
+      "wrong_links": 1,
+      "wrong_share": 0.03329,
+      "upper95": 0.11499,
+      "recall": 0.4026,
+      "authors_present": 118
+     },
+     "single-6-25": {
+      "blocks": 3825,
+      "links": 1070,
+      "wrong_links": 17,
+      "wrong_share": 0.01317,
+      "upper95": 0.0277,
+      "recall": 0.4211,
+      "authors_present": 1397
+     },
+     "single-initials": {
+      "blocks": 520,
+      "links": 80,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.04896,
+      "recall": 0.2214,
+      "authors_present": 216
+     },
+     "single-unique": {
+      "blocks": 9389,
+      "links": 4098,
+      "wrong_links": 186,
+      "wrong_share": 0.00273,
+      "upper95": 0.00504,
+      "recall": 0.79,
+      "authors_present": 4549
+     },
+     "single-unmeasured": {
+      "blocks": 22052,
+      "links": 3381,
+      "wrong_links": 47,
+      "wrong_share": 0.00571,
+      "upper95": 0.00817,
+      "recall": 0.336,
+      "authors_present": 9922
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 32478,
+      "links": 5311,
+      "wrong_links": 84,
+      "wrong_share": 0.003,
+      "upper95": 0.00545,
+      "recall": 0.4493,
+      "authors_present": 15692
+     },
+     "jstor-author": {
+      "blocks": 5207,
+      "links": 1799,
+      "wrong_links": 48,
+      "wrong_share": 0.00168,
+      "upper95": 0.00399,
+      "recall": 0.7483,
+      "authors_present": 2542
+     },
+     "reviewer": {
+      "blocks": 23155,
+      "links": 9265,
+      "wrong_links": 295,
+      "wrong_share": 0.00256,
+      "upper95": 0.00364,
+      "recall": 0.8647,
+      "authors_present": 11321
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 35687,
+      "links": 8951,
+      "wrong_links": 301,
+      "wrong_share": 0.00375,
+      "upper95": 0.00523,
+      "recall": 0.703,
+      "authors_present": 11819
+     },
+     "1": {
+      "blocks": 25153,
+      "links": 7424,
+      "wrong_links": 126,
+      "wrong_share": 0.0017,
+      "upper95": 0.00333,
+      "recall": 0.5222,
+      "authors_present": 17736
+     }
+    },
+    "by_country": {
+     "AU": {
+      "blocks": 8,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "BE": {
+      "blocks": 34,
+      "links": 13,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.22703,
+      "recall": 0.4731,
+      "authors_present": 30
+     },
+     "BR": {
+      "blocks": 2,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.73626,
+      "recall": 1.0,
+      "authors_present": 2
+     },
+     "CA": {
+      "blocks": 268,
+      "links": 56,
+      "wrong_links": 3,
+      "wrong_share": 0.00171,
+      "upper95": 0.06306,
+      "recall": 0.619,
+      "authors_present": 99
+     },
+     "CH": {
+      "blocks": 2,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.9323,
+      "authors_present": 2
+     },
+     "CO": {
+      "blocks": 3,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.1867,
+      "authors_present": 2
+     },
+     "DE": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "ES": {
+      "blocks": 7,
+      "links": 3,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.54768,
+      "recall": 1.0,
+      "authors_present": 3
+     },
+     "FR": {
+      "blocks": 62,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.32453,
+      "recall": 0.254,
+      "authors_present": 47
+     },
+     "GB": {
+      "blocks": 371,
+      "links": 94,
+      "wrong_links": 4,
+      "wrong_share": 0.00658,
+      "upper95": 0.05223,
+      "recall": 0.2801,
+      "authors_present": 263
+     },
+     "IT": {
+      "blocks": 73,
+      "links": 18,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.22591,
+      "recall": 0.4587,
+      "authors_present": 52
+     },
+     "SE": {
+      "blocks": 138,
+      "links": 27,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.17091,
+      "recall": 0.3208,
+      "authors_present": 125
+     },
+     "US": {
+      "blocks": 414,
+      "links": 125,
+      "wrong_links": 3,
+      "wrong_share": 0.00479,
+      "upper95": 0.03999,
+      "recall": 0.7131,
+      "authors_present": 205
+     },
+     "US/CA (AHA)": {
+      "blocks": 17876,
+      "links": 8455,
+      "wrong_links": 222,
+      "wrong_share": 0.00281,
+      "upper95": 0.00418,
+      "recall": 0.7543,
+      "authors_present": 11152
+     },
+     "ZA": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "ZZ": {
+      "blocks": 24,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.54609,
+      "recall": 0.389,
+      "authors_present": 20
+     },
+     "unknown": {
+      "blocks": 41555,
+      "links": 7558,
+      "wrong_links": 195,
+      "wrong_share": 0.00249,
+      "upper95": 0.00429,
+      "recall": 0.5184,
+      "authors_present": 17551
+     }
+    },
+    "by_decade": {
+     "1610.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1760.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1790.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "1800.0": {
+      "blocks": 2,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 1.0,
+      "authors_present": 1
+     },
+     "1840.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1860.0": {
+      "blocks": 4,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.4981,
+      "authors_present": 2
+     },
+     "1870.0": {
+      "blocks": 6,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.3586,
+      "authors_present": 3
+     },
+     "1880.0": {
+      "blocks": 11,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.2136,
+      "authors_present": 5
+     },
+     "1890.0": {
+      "blocks": 8,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "1900.0": {
+      "blocks": 4,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.7007,
+      "authors_present": 2
+     },
+     "1910.0": {
+      "blocks": 24,
+      "links": 7,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.31895,
+      "recall": 0.6185,
+      "authors_present": 11
+     },
+     "1920.0": {
+      "blocks": 74,
+      "links": 28,
+      "wrong_links": 1,
+      "wrong_share": 0.00073,
+      "upper95": 0.09812,
+      "recall": 0.6482,
+      "authors_present": 37
+     },
+     "1930.0": {
+      "blocks": 109,
+      "links": 42,
+      "wrong_links": 1,
+      "wrong_share": 0.00081,
+      "upper95": 0.05313,
+      "recall": 0.5636,
+      "authors_present": 54
+     },
+     "1940.0": {
+      "blocks": 249,
+      "links": 89,
+      "wrong_links": 2,
+      "wrong_share": 0.00076,
+      "upper95": 0.03621,
+      "recall": 0.6439,
+      "authors_present": 118
+     },
+     "1950.0": {
+      "blocks": 408,
+      "links": 152,
+      "wrong_links": 4,
+      "wrong_share": 0.00109,
+      "upper95": 0.02384,
+      "recall": 0.6285,
+      "authors_present": 201
+     },
+     "1960.0": {
+      "blocks": 1063,
+      "links": 416,
+      "wrong_links": 8,
+      "wrong_share": 0.00177,
+      "upper95": 0.00982,
+      "recall": 0.7064,
+      "authors_present": 521
+     },
+     "1970.0": {
+      "blocks": 2309,
+      "links": 852,
+      "wrong_links": 26,
+      "wrong_share": 0.00252,
+      "upper95": 0.00808,
+      "recall": 0.6778,
+      "authors_present": 1103
+     },
+     "1980.0": {
+      "blocks": 4700,
+      "links": 1623,
+      "wrong_links": 43,
+      "wrong_share": 0.00228,
+      "upper95": 0.00587,
+      "recall": 0.7099,
+      "authors_present": 2183
+     },
+     "1990.0": {
+      "blocks": 9117,
+      "links": 2932,
+      "wrong_links": 81,
+      "wrong_share": 0.00208,
+      "upper95": 0.00455,
+      "recall": 0.6841,
+      "authors_present": 4345
+     },
+     "2000.0": {
+      "blocks": 15038,
+      "links": 3749,
+      "wrong_links": 101,
+      "wrong_share": 0.00308,
+      "upper95": 0.00589,
+      "recall": 0.5536,
+      "authors_present": 7254
+     },
+     "2010.0": {
+      "blocks": 21100,
+      "links": 4511,
+      "wrong_links": 130,
+      "wrong_share": 0.00265,
+      "upper95": 0.00516,
+      "recall": 0.5183,
+      "authors_present": 10402
+     },
+     "2020.0": {
+      "blocks": 6570,
+      "links": 1950,
+      "wrong_links": 30,
+      "wrong_share": 0.00323,
+      "upper95": 0.00849,
+      "recall": 0.6696,
+      "authors_present": 3273
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 32478,
+      "links": 5311,
+      "wrong_links": 84,
+      "wrong_share": 0.003,
+      "upper95": 0.00545,
+      "recall": 0.4493,
+      "authors_present": 15692
+     },
+     "jstor-author": {
+      "blocks": 5207,
+      "links": 1799,
+      "wrong_links": 48,
+      "wrong_share": 0.00168,
+      "upper95": 0.00399,
+      "recall": 0.7483,
+      "authors_present": 2542
+     },
+     "reviewer": {
+      "blocks": 23155,
+      "links": 9265,
+      "wrong_links": 295,
+      "wrong_share": 0.00256,
+      "upper95": 0.00364,
+      "recall": 0.8647,
+      "authors_present": 11321
+     }
+    }
+   },
+   "clerical_test": {
+    "overall": {
+     "blocks": 488,
+     "links": 119,
+     "wrong_links": 0,
+     "wrong_share": 0.0,
+     "upper95": 0.01598,
+     "recall": 0.2621,
+     "authors_present": 454
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 155,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 0.042,
+      "authors_present": 143
+     },
+     "single": {
+      "blocks": 333,
+      "links": 113,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.01682,
+      "recall": 0.3633,
+      "authors_present": 311
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 155,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 0.042,
+      "authors_present": 143
+     },
+     "single-2-5": {
+      "blocks": 39,
+      "links": 12,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.14506,
+      "recall": 0.3429,
+      "authors_present": 35
+     },
+     "single-26+": {
+      "blocks": 34,
+      "links": 10,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.17077,
+      "recall": 0.3333,
+      "authors_present": 30
+     },
+     "single-6-25": {
+      "blocks": 95,
+      "links": 39,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.04776,
+      "recall": 0.4286,
+      "authors_present": 91
+     },
+     "single-initials": {
+      "blocks": 48,
+      "links": 23,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.07928,
+      "recall": 0.4894,
+      "authors_present": 47
+     },
+     "single-unique": {
+      "blocks": 73,
+      "links": 14,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.12606,
+      "recall": 0.1972,
+      "authors_present": 71
+     },
+     "single-unmeasured": {
+      "blocks": 44,
+      "links": 15,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11831,
+      "recall": 0.4054,
+      "authors_present": 37
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 309,
+      "links": 79,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.02394,
+      "recall": 0.2862,
+      "authors_present": 276
+     },
+     "editor": {
+      "blocks": 47,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 46
+     },
+     "jstor-author": {
+      "blocks": 64,
+      "links": 15,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11831,
+      "recall": 0.2344,
+      "authors_present": 64
+     },
+     "main": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "reviewer": {
+      "blocks": 67,
+      "links": 25,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.07324,
+      "recall": 0.3731,
+      "authors_present": 67
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 442,
+      "links": 108,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.01759,
+      "recall": 0.2609,
+      "authors_present": 414
+     },
+     "1": {
+      "blocks": 46,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.15687,
+      "recall": 0.275,
+      "authors_present": 40
+     }
+    },
+    "by_country": {
+     "BE": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "CA": {
+      "blocks": 3,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 3
+     },
+     "FR": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "GB": {
+      "blocks": 6,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.25,
+      "authors_present": 4
+     },
+     "US": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "US/CA (AHA)": {
+      "blocks": 149,
+      "links": 43,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.04344,
+      "recall": 0.3162,
+      "authors_present": 136
+     },
+     "unknown": {
+      "blocks": 327,
+      "links": 75,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0252,
+      "recall": 0.2427,
+      "authors_present": 309
+     }
+    },
+    "by_decade": {
+     "1810.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1900.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1910.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1920.0": {
+      "blocks": 3,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.3333,
+      "authors_present": 3
+     },
+     "1930.0": {
+      "blocks": 10,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.25,
+      "authors_present": 8
+     },
+     "1940.0": {
+      "blocks": 8,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.25,
+      "authors_present": 8
+     },
+     "1950.0": {
+      "blocks": 20,
+      "links": 7,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.23246,
+      "recall": 0.3684,
+      "authors_present": 19
+     },
+     "1960.0": {
+      "blocks": 21,
+      "links": 10,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.17077,
+      "recall": 0.4762,
+      "authors_present": 21
+     },
+     "1970.0": {
+      "blocks": 40,
+      "links": 13,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.13489,
+      "recall": 0.3333,
+      "authors_present": 39
+     },
+     "1980.0": {
+      "blocks": 53,
+      "links": 18,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09988,
+      "recall": 0.36,
+      "authors_present": 50
+     },
+     "1990.0": {
+      "blocks": 74,
+      "links": 17,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.10535,
+      "recall": 0.2361,
+      "authors_present": 72
+     },
+     "2000.0": {
+      "blocks": 84,
+      "links": 18,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09988,
+      "recall": 0.225,
+      "authors_present": 80
+     },
+     "2010.0": {
+      "blocks": 118,
+      "links": 21,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.08641,
+      "recall": 0.1909,
+      "authors_present": 110
+     },
+     "2020.0": {
+      "blocks": 51,
+      "links": 10,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.17077,
+      "recall": 0.2632,
+      "authors_present": 38
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 357,
+      "links": 79,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.02394,
+      "recall": 0.2446,
+      "authors_present": 323
+     },
+     "jstor-author": {
+      "blocks": 64,
+      "links": 15,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11831,
+      "recall": 0.2344,
+      "authors_present": 64
+     },
+     "reviewer": {
+      "blocks": 67,
+      "links": 25,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.07324,
+      "recall": 0.3731,
+      "authors_present": 67
+     }
+    }
+   },
+   "clerical_dev": {
+    "overall": {
+     "blocks": 520,
+     "links": 102,
+     "wrong_links": 0,
+     "wrong_share": 0.0,
+     "upper95": 0.01861,
+     "recall": 0.2116,
+     "authors_present": 482
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 204,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36249,
+      "recall": 0.0214,
+      "authors_present": 187
+     },
+     "single": {
+      "blocks": 316,
+      "links": 98,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.01936,
+      "recall": 0.3322,
+      "authors_present": 295
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 204,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36249,
+      "recall": 0.0214,
+      "authors_present": 187
+     },
+     "single-2-5": {
+      "blocks": 56,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.15687,
+      "recall": 0.1964,
+      "authors_present": 56
+     },
+     "single-26+": {
+      "blocks": 35,
+      "links": 14,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.12606,
+      "recall": 0.5385,
+      "authors_present": 26
+     },
+     "single-6-25": {
+      "blocks": 98,
+      "links": 38,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.04897,
+      "recall": 0.4086,
+      "authors_present": 93
+     },
+     "single-initials": {
+      "blocks": 42,
+      "links": 14,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.12606,
+      "recall": 0.3684,
+      "authors_present": 38
+     },
+     "single-unique": {
+      "blocks": 57,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.15687,
+      "recall": 0.193,
+      "authors_present": 57
+     },
+     "single-unmeasured": {
+      "blocks": 28,
+      "links": 10,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.17077,
+      "recall": 0.4,
+      "authors_present": 25
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 309,
+      "links": 69,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.02735,
+      "recall": 0.2537,
+      "authors_present": 272
+     },
+     "editor": {
+      "blocks": 80,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 79
+     },
+     "jstor-author": {
+      "blocks": 66,
+      "links": 17,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.10535,
+      "recall": 0.2576,
+      "authors_present": 66
+     },
+     "main": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "reviewer": {
+      "blocks": 63,
+      "links": 16,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11145,
+      "recall": 0.254,
+      "authors_present": 63
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 449,
+      "links": 91,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.02083,
+      "recall": 0.2193,
+      "authors_present": 415
+     },
+     "1": {
+      "blocks": 71,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.15687,
+      "recall": 0.1642,
+      "authors_present": 67
+     }
+    },
+    "by_country": {
+     "CA": {
+      "blocks": 5,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 4
+     },
+     "GB": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "US": {
+      "blocks": 4,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 3
+     },
+     "US/CA (AHA)": {
+      "blocks": 156,
+      "links": 33,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.05613,
+      "recall": 0.2374,
+      "authors_present": 139
+     },
+     "unknown": {
+      "blocks": 353,
+      "links": 69,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.02735,
+      "recall": 0.2066,
+      "authors_present": 334
+     }
+    },
+    "by_decade": {
+     "1890.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1910.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1920.0": {
+      "blocks": 4,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.25,
+      "authors_present": 4
+     },
+     "1930.0": {
+      "blocks": 9,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.25,
+      "authors_present": 8
+     },
+     "1940.0": {
+      "blocks": 10,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.25,
+      "authors_present": 8
+     },
+     "1950.0": {
+      "blocks": 11,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.1111,
+      "authors_present": 9
+     },
+     "1960.0": {
+      "blocks": 21,
+      "links": 8,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.20751,
+      "recall": 0.4211,
+      "authors_present": 19
+     },
+     "1970.0": {
+      "blocks": 38,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.15687,
+      "recall": 0.3333,
+      "authors_present": 33
+     },
+     "1980.0": {
+      "blocks": 54,
+      "links": 16,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11145,
+      "recall": 0.3077,
+      "authors_present": 52
+     },
+     "1990.0": {
+      "blocks": 66,
+      "links": 15,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11831,
+      "recall": 0.2586,
+      "authors_present": 58
+     },
+     "2000.0": {
+      "blocks": 106,
+      "links": 20,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09048,
+      "recall": 0.2,
+      "authors_present": 100
+     },
+     "2010.0": {
+      "blocks": 146,
+      "links": 17,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.10535,
+      "recall": 0.1197,
+      "authors_present": 142
+     },
+     "2020.0": {
+      "blocks": 50,
+      "links": 8,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.20751,
+      "recall": 0.1818,
+      "authors_present": 44
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 391,
+      "links": 69,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.02735,
+      "recall": 0.1955,
+      "authors_present": 353
+     },
+     "jstor-author": {
+      "blocks": 66,
+      "links": 17,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.10535,
+      "recall": 0.2576,
+      "authors_present": 66
+     },
+     "reviewer": {
+      "blocks": 63,
+      "links": 16,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11145,
+      "recall": 0.254,
+      "authors_present": 63
+     }
+    }
+   }
+  },
+  "rule": {
+   "test": {
+    "overall": {
+     "blocks": 60840,
+     "links": 33577,
+     "wrong_links": 10063,
+     "wrong_share": 0.06104,
+     "upper95": 0.06497,
+     "recall": 0.8042,
+     "authors_present": 29555
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 5765,
+      "links": 1459,
+      "wrong_links": 11,
+      "wrong_share": 0.01871,
+      "upper95": 0.02827,
+      "recall": 0.247,
+      "authors_present": 5080
+     },
+     "single": {
+      "blocks": 55075,
+      "links": 32118,
+      "wrong_links": 10052,
+      "wrong_share": 0.06259,
+      "upper95": 0.06668,
+      "recall": 0.8807,
+      "authors_present": 24475
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 5765,
+      "links": 1459,
+      "wrong_links": 11,
+      "wrong_share": 0.01871,
+      "upper95": 0.02827,
+      "recall": 0.247,
+      "authors_present": 5080
+     },
+     "single-2-5": {
+      "blocks": 18062,
+      "links": 12514,
+      "wrong_links": 5140,
+      "wrong_share": 0.0482,
+      "upper95": 0.05327,
+      "recall": 0.8886,
+      "authors_present": 8273
+     },
+     "single-26+": {
+      "blocks": 1227,
+      "links": 127,
+      "wrong_links": 42,
+      "wrong_share": 0.19036,
+      "upper95": 0.28768,
+      "recall": 0.6698,
+      "authors_present": 118
+     },
+     "single-6-25": {
+      "blocks": 3825,
+      "links": 1523,
+      "wrong_links": 449,
+      "wrong_share": 0.17803,
+      "upper95": 0.20734,
+      "recall": 0.8395,
+      "authors_present": 1397
+     },
+     "single-initials": {
+      "blocks": 520,
+      "links": 109,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.02205,
+      "recall": 0.7318,
+      "authors_present": 216
+     },
+     "single-unique": {
+      "blocks": 9389,
+      "links": 8754,
+      "wrong_links": 4414,
+      "wrong_share": 0.07823,
+      "upper95": 0.08673,
+      "recall": 0.8874,
+      "authors_present": 4549
+     },
+     "single-unmeasured": {
+      "blocks": 22052,
+      "links": 9091,
+      "wrong_links": 7,
+      "wrong_share": 0.00031,
+      "upper95": 0.00075,
+      "recall": 0.9155,
+      "authors_present": 9922
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 32478,
+      "links": 14555,
+      "wrong_links": 2055,
+      "wrong_share": 0.06717,
+      "upper95": 0.07349,
+      "recall": 0.7662,
+      "authors_present": 15692
+     },
+     "jstor-author": {
+      "blocks": 5207,
+      "links": 3497,
+      "wrong_links": 1515,
+      "wrong_share": 0.04396,
+      "upper95": 0.05183,
+      "recall": 0.8387,
+      "authors_present": 2542
+     },
+     "reviewer": {
+      "blocks": 23155,
+      "links": 15525,
+      "wrong_links": 6493,
+      "wrong_share": 0.05533,
+      "upper95": 0.05951,
+      "recall": 0.8799,
+      "authors_present": 11321
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 35687,
+      "links": 18080,
+      "wrong_links": 8998,
+      "wrong_share": 0.12226,
+      "upper95": 0.12891,
+      "recall": 0.8151,
+      "authors_present": 11819
+     },
+     "1": {
+      "blocks": 25153,
+      "links": 15497,
+      "wrong_links": 1065,
+      "wrong_share": 0.01682,
+      "upper95": 0.02007,
+      "recall": 0.7974,
+      "authors_present": 17736
+     }
+    },
+    "by_country": {
+     "AU": {
+      "blocks": 8,
+      "links": 2,
+      "wrong_links": 2,
+      "wrong_share": 1.0,
+      "upper95": 1.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "BE": {
+      "blocks": 34,
+      "links": 30,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11375,
+      "recall": 1.0,
+      "authors_present": 30
+     },
+     "BR": {
+      "blocks": 2,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.73626,
+      "recall": 1.0,
+      "authors_present": 2
+     },
+     "CA": {
+      "blocks": 268,
+      "links": 127,
+      "wrong_links": 51,
+      "wrong_share": 0.09289,
+      "upper95": 0.18288,
+      "recall": 0.8657,
+      "authors_present": 99
+     },
+     "CH": {
+      "blocks": 2,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.0677,
+      "authors_present": 2
+     },
+     "CO": {
+      "blocks": 3,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.1867,
+      "authors_present": 2
+     },
+     "DE": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "ES": {
+      "blocks": 7,
+      "links": 3,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.54768,
+      "recall": 1.0,
+      "authors_present": 3
+     },
+     "FR": {
+      "blocks": 62,
+      "links": 38,
+      "wrong_links": 1,
+      "wrong_share": 0.01492,
+      "upper95": 0.17329,
+      "recall": 0.758,
+      "authors_present": 47
+     },
+     "GB": {
+      "blocks": 371,
+      "links": 201,
+      "wrong_links": 28,
+      "wrong_share": 0.01954,
+      "upper95": 0.05753,
+      "recall": 0.7046,
+      "authors_present": 263
+     },
+     "IT": {
+      "blocks": 73,
+      "links": 59,
+      "wrong_links": 8,
+      "wrong_share": 0.0617,
+      "upper95": 0.19942,
+      "recall": 0.9894,
+      "authors_present": 52
+     },
+     "SE": {
+      "blocks": 138,
+      "links": 120,
+      "wrong_links": 3,
+      "wrong_share": 0.00505,
+      "upper95": 0.0671,
+      "recall": 0.8146,
+      "authors_present": 125
+     },
+     "US": {
+      "blocks": 414,
+      "links": 195,
+      "wrong_links": 34,
+      "wrong_share": 0.04058,
+      "upper95": 0.09121,
+      "recall": 0.8166,
+      "authors_present": 205
+     },
+     "US/CA (AHA)": {
+      "blocks": 17876,
+      "links": 11071,
+      "wrong_links": 2203,
+      "wrong_share": 0.04145,
+      "upper95": 0.04593,
+      "recall": 0.8279,
+      "authors_present": 11152
+     },
+     "ZA": {
+      "blocks": 1,
+      "links": 1,
+      "wrong_links": 1,
+      "wrong_share": 1.0,
+      "upper95": 1.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "ZZ": {
+      "blocks": 24,
+      "links": 18,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.32383,
+      "recall": 0.8894,
+      "authors_present": 20
+     },
+     "unknown": {
+      "blocks": 41555,
+      "links": 21708,
+      "wrong_links": 7732,
+      "wrong_share": 0.07193,
+      "upper95": 0.07775,
+      "recall": 0.793,
+      "authors_present": 17551
+     }
+    },
+    "by_decade": {
+     "1610.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1760.0": {
+      "blocks": 2,
+      "links": 2,
+      "wrong_links": 1,
+      "wrong_share": 0.08854,
+      "upper95": 0.78092,
+      "recall": 1.0,
+      "authors_present": 1
+     },
+     "1790.0": {
+      "blocks": 1,
+      "links": 1,
+      "wrong_links": 1,
+      "wrong_share": 1.0,
+      "upper95": 1.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "1800.0": {
+      "blocks": 2,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 1.0,
+      "authors_present": 1
+     },
+     "1840.0": {
+      "blocks": 2,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 1.0,
+      "authors_present": 1
+     },
+     "1860.0": {
+      "blocks": 4,
+      "links": 2,
+      "wrong_links": 1,
+      "wrong_share": 0.08854,
+      "upper95": 0.78092,
+      "recall": 0.4981,
+      "authors_present": 2
+     },
+     "1870.0": {
+      "blocks": 6,
+      "links": 3,
+      "wrong_links": 1,
+      "wrong_share": 0.04402,
+      "upper95": 0.602,
+      "recall": 0.9001,
+      "authors_present": 3
+     },
+     "1880.0": {
+      "blocks": 11,
+      "links": 7,
+      "wrong_links": 3,
+      "wrong_share": 0.06877,
+      "upper95": 0.43498,
+      "recall": 0.7848,
+      "authors_present": 5
+     },
+     "1890.0": {
+      "blocks": 8,
+      "links": 2,
+      "wrong_links": 1,
+      "wrong_share": 0.05629,
+      "upper95": 0.77676,
+      "recall": 0.8853,
+      "authors_present": 2
+     },
+     "1900.0": {
+      "blocks": 4,
+      "links": 2,
+      "wrong_links": 1,
+      "wrong_share": 0.10359,
+      "upper95": 0.78314,
+      "recall": 0.7007,
+      "authors_present": 2
+     },
+     "1910.0": {
+      "blocks": 24,
+      "links": 15,
+      "wrong_links": 7,
+      "wrong_share": 0.0761,
+      "upper95": 0.36423,
+      "recall": 0.7674,
+      "authors_present": 11
+     },
+     "1920.0": {
+      "blocks": 74,
+      "links": 59,
+      "wrong_links": 26,
+      "wrong_share": 0.0658,
+      "upper95": 0.17965,
+      "recall": 0.8407,
+      "authors_present": 37
+     },
+     "1930.0": {
+      "blocks": 109,
+      "links": 73,
+      "wrong_links": 26,
+      "wrong_share": 0.04779,
+      "upper95": 0.14773,
+      "recall": 0.8373,
+      "authors_present": 54
+     },
+     "1940.0": {
+      "blocks": 249,
+      "links": 156,
+      "wrong_links": 59,
+      "wrong_share": 0.04658,
+      "upper95": 0.10992,
+      "recall": 0.8751,
+      "authors_present": 118
+     },
+     "1950.0": {
+      "blocks": 408,
+      "links": 263,
+      "wrong_links": 102,
+      "wrong_share": 0.05493,
+      "upper95": 0.09959,
+      "recall": 0.7883,
+      "authors_present": 201
+     },
+     "1960.0": {
+      "blocks": 1063,
+      "links": 763,
+      "wrong_links": 323,
+      "wrong_share": 0.05609,
+      "upper95": 0.08045,
+      "recall": 0.8476,
+      "authors_present": 521
+     },
+     "1970.0": {
+      "blocks": 2309,
+      "links": 1497,
+      "wrong_links": 608,
+      "wrong_share": 0.06971,
+      "upper95": 0.08846,
+      "recall": 0.8313,
+      "authors_present": 1103
+     },
+     "1980.0": {
+      "blocks": 4700,
+      "links": 2898,
+      "wrong_links": 1156,
+      "wrong_share": 0.0712,
+      "upper95": 0.08495,
+      "recall": 0.8323,
+      "authors_present": 2183
+     },
+     "1990.0": {
+      "blocks": 9117,
+      "links": 5612,
+      "wrong_links": 2167,
+      "wrong_share": 0.06615,
+      "upper95": 0.07593,
+      "recall": 0.8189,
+      "authors_present": 4345
+     },
+     "2000.0": {
+      "blocks": 15038,
+      "links": 8279,
+      "wrong_links": 2672,
+      "wrong_share": 0.06715,
+      "upper95": 0.07568,
+      "recall": 0.7868,
+      "authors_present": 7254
+     },
+     "2010.0": {
+      "blocks": 21100,
+      "links": 10713,
+      "wrong_links": 2519,
+      "wrong_share": 0.05643,
+      "upper95": 0.06339,
+      "recall": 0.7929,
+      "authors_present": 10402
+     },
+     "2020.0": {
+      "blocks": 6570,
+      "links": 3228,
+      "wrong_links": 389,
+      "wrong_share": 0.05001,
+      "upper95": 0.06219,
+      "recall": 0.8354,
+      "authors_present": 3273
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 32478,
+      "links": 14555,
+      "wrong_links": 2055,
+      "wrong_share": 0.06717,
+      "upper95": 0.07349,
+      "recall": 0.7662,
+      "authors_present": 15692
+     },
+     "jstor-author": {
+      "blocks": 5207,
+      "links": 3497,
+      "wrong_links": 1515,
+      "wrong_share": 0.04396,
+      "upper95": 0.05183,
+      "recall": 0.8387,
+      "authors_present": 2542
+     },
+     "reviewer": {
+      "blocks": 23155,
+      "links": 15525,
+      "wrong_links": 6493,
+      "wrong_share": 0.05533,
+      "upper95": 0.05951,
+      "recall": 0.8799,
+      "authors_present": 11321
+     }
+    }
+   },
+   "clerical_test": {
+    "overall": {
+     "blocks": 488,
+     "links": 203,
+     "wrong_links": 2,
+     "wrong_share": 0.00985,
+     "upper95": 0.027,
+     "recall": 0.4427,
+     "authors_present": 454
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 155,
+      "links": 31,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.05961,
+      "recall": 0.2168,
+      "authors_present": 143
+     },
+     "single": {
+      "blocks": 333,
+      "links": 172,
+      "wrong_links": 2,
+      "wrong_share": 0.01163,
+      "upper95": 0.03181,
+      "recall": 0.5466,
+      "authors_present": 311
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 155,
+      "links": 31,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.05961,
+      "recall": 0.2168,
+      "authors_present": 143
+     },
+     "single-2-5": {
+      "blocks": 39,
+      "links": 21,
+      "wrong_links": 1,
+      "wrong_share": 0.04762,
+      "upper95": 0.17169,
+      "recall": 0.5714,
+      "authors_present": 35
+     },
+     "single-26+": {
+      "blocks": 34,
+      "links": 19,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09494,
+      "recall": 0.6333,
+      "authors_present": 30
+     },
+     "single-6-25": {
+      "blocks": 95,
+      "links": 44,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.04248,
+      "recall": 0.4835,
+      "authors_present": 91
+     },
+     "single-initials": {
+      "blocks": 48,
+      "links": 9,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.18737,
+      "recall": 0.1915,
+      "authors_present": 47
+     },
+     "single-unique": {
+      "blocks": 73,
+      "links": 55,
+      "wrong_links": 1,
+      "wrong_share": 0.01818,
+      "upper95": 0.06888,
+      "recall": 0.7606,
+      "authors_present": 71
+     },
+     "single-unmeasured": {
+      "blocks": 44,
+      "links": 24,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.07614,
+      "recall": 0.6486,
+      "authors_present": 37
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 309,
+      "links": 122,
+      "wrong_links": 2,
+      "wrong_share": 0.01639,
+      "upper95": 0.04463,
+      "recall": 0.4348,
+      "authors_present": 276
+     },
+     "editor": {
+      "blocks": 47,
+      "links": 19,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09494,
+      "recall": 0.413,
+      "authors_present": 46
+     },
+     "jstor-author": {
+      "blocks": 64,
+      "links": 26,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.07055,
+      "recall": 0.4062,
+      "authors_present": 64
+     },
+     "main": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "reviewer": {
+      "blocks": 67,
+      "links": 36,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0516,
+      "recall": 0.5373,
+      "authors_present": 67
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 442,
+      "links": 182,
+      "wrong_links": 2,
+      "wrong_share": 0.01099,
+      "upper95": 0.03008,
+      "recall": 0.4348,
+      "authors_present": 414
+     },
+     "1": {
+      "blocks": 46,
+      "links": 21,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.08641,
+      "recall": 0.525,
+      "authors_present": 40
+     }
+    },
+    "by_country": {
+     "BE": {
+      "blocks": 1,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 1.0,
+      "authors_present": 1
+     },
+     "CA": {
+      "blocks": 3,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.3333,
+      "authors_present": 3
+     },
+     "FR": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "GB": {
+      "blocks": 6,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.5,
+      "authors_present": 4
+     },
+     "US": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "US/CA (AHA)": {
+      "blocks": 149,
+      "links": 53,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.03543,
+      "recall": 0.3897,
+      "authors_present": 136
+     },
+     "unknown": {
+      "blocks": 327,
+      "links": 146,
+      "wrong_links": 2,
+      "wrong_share": 0.0137,
+      "upper95": 0.03739,
+      "recall": 0.466,
+      "authors_present": 309
+     }
+    },
+    "by_decade": {
+     "1810.0": {
+      "blocks": 1,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 1.0,
+      "authors_present": 1
+     },
+     "1900.0": {
+      "blocks": 1,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 1.0,
+      "authors_present": 1
+     },
+     "1910.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1920.0": {
+      "blocks": 3,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.3333,
+      "authors_present": 3
+     },
+     "1930.0": {
+      "blocks": 10,
+      "links": 4,
+      "wrong_links": 1,
+      "wrong_share": 0.25,
+      "upper95": 0.65071,
+      "recall": 0.375,
+      "authors_present": 8
+     },
+     "1940.0": {
+      "blocks": 8,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.25,
+      "authors_present": 8
+     },
+     "1950.0": {
+      "blocks": 20,
+      "links": 5,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.30575,
+      "recall": 0.2632,
+      "authors_present": 19
+     },
+     "1960.0": {
+      "blocks": 21,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.15687,
+      "recall": 0.5238,
+      "authors_present": 21
+     },
+     "1970.0": {
+      "blocks": 40,
+      "links": 9,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.18737,
+      "recall": 0.2308,
+      "authors_present": 39
+     },
+     "1980.0": {
+      "blocks": 53,
+      "links": 23,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.07928,
+      "recall": 0.46,
+      "authors_present": 50
+     },
+     "1990.0": {
+      "blocks": 74,
+      "links": 33,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.05613,
+      "recall": 0.4583,
+      "authors_present": 72
+     },
+     "2000.0": {
+      "blocks": 84,
+      "links": 38,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.04897,
+      "recall": 0.475,
+      "authors_present": 80
+     },
+     "2010.0": {
+      "blocks": 118,
+      "links": 51,
+      "wrong_links": 1,
+      "wrong_share": 0.01961,
+      "upper95": 0.07411,
+      "recall": 0.4545,
+      "authors_present": 110
+     },
+     "2020.0": {
+      "blocks": 51,
+      "links": 24,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.07614,
+      "recall": 0.6316,
+      "authors_present": 38
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 357,
+      "links": 141,
+      "wrong_links": 2,
+      "wrong_share": 0.01418,
+      "upper95": 0.0387,
+      "recall": 0.4303,
+      "authors_present": 323
+     },
+     "jstor-author": {
+      "blocks": 64,
+      "links": 26,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.07055,
+      "recall": 0.4062,
+      "authors_present": 64
+     },
+     "reviewer": {
+      "blocks": 67,
+      "links": 36,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0516,
+      "recall": 0.5373,
+      "authors_present": 67
+     }
+    }
+   }
+  },
+  "scorer-c2": {
+   "test": {
+    "overall": {
+     "blocks": 60840,
+     "links": 14072,
+     "wrong_links": 454,
+     "wrong_share": 0.00244,
+     "upper95": 0.00358,
+     "recall": 0.5531,
+     "authors_present": 29555
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 5765,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 5080
+     },
+     "single": {
+      "blocks": 55075,
+      "links": 14072,
+      "wrong_links": 454,
+      "wrong_share": 0.00244,
+      "upper95": 0.00358,
+      "recall": 0.629,
+      "authors_present": 24475
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 5765,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 5080
+     },
+     "single-2-5": {
+      "blocks": 18062,
+      "links": 6959,
+      "wrong_links": 302,
+      "wrong_share": 0.00242,
+      "upper95": 0.00392,
+      "recall": 0.7444,
+      "authors_present": 8273
+     },
+     "single-26+": {
+      "blocks": 1227,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 118
+     },
+     "single-6-25": {
+      "blocks": 3825,
+      "links": 579,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.00331,
+      "recall": 0.111,
+      "authors_present": 1397
+     },
+     "single-initials": {
+      "blocks": 520,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 216
+     },
+     "single-unique": {
+      "blocks": 9389,
+      "links": 3760,
+      "wrong_links": 128,
+      "wrong_share": 0.00242,
+      "upper95": 0.00473,
+      "recall": 0.745,
+      "authors_present": 4549
+     },
+     "single-unmeasured": {
+      "blocks": 22052,
+      "links": 2774,
+      "wrong_links": 24,
+      "wrong_share": 0.00354,
+      "upper95": 0.00581,
+      "recall": 0.2771,
+      "authors_present": 9922
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 32478,
+      "links": 4774,
+      "wrong_links": 74,
+      "wrong_share": 0.00295,
+      "upper95": 0.00539,
+      "recall": 0.4407,
+      "authors_present": 15692
+     },
+     "jstor-author": {
+      "blocks": 5207,
+      "links": 1684,
+      "wrong_links": 112,
+      "wrong_share": 0.00253,
+      "upper95": 0.00537,
+      "recall": 0.7021,
+      "authors_present": 2542
+     },
+     "reviewer": {
+      "blocks": 23155,
+      "links": 7614,
+      "wrong_links": 268,
+      "wrong_share": 0.00168,
+      "upper95": 0.00264,
+      "recall": 0.7559,
+      "authors_present": 11321
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 35687,
+      "links": 7500,
+      "wrong_links": 312,
+      "wrong_share": 0.00293,
+      "upper95": 0.00436,
+      "recall": 0.6293,
+      "authors_present": 11819
+     },
+     "1": {
+      "blocks": 25153,
+      "links": 6572,
+      "wrong_links": 142,
+      "wrong_share": 0.00206,
+      "upper95": 0.00384,
+      "recall": 0.5051,
+      "authors_present": 17736
+     }
+    },
+    "by_country": {
+     "AU": {
+      "blocks": 8,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "BE": {
+      "blocks": 34,
+      "links": 12,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.2095,
+      "recall": 0.5314,
+      "authors_present": 30
+     },
+     "BR": {
+      "blocks": 2,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.9323,
+      "authors_present": 2
+     },
+     "CA": {
+      "blocks": 268,
+      "links": 49,
+      "wrong_links": 2,
+      "wrong_share": 0.00112,
+      "upper95": 0.06658,
+      "recall": 0.5903,
+      "authors_present": 99
+     },
+     "CH": {
+      "blocks": 2,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.9323,
+      "authors_present": 2
+     },
+     "CO": {
+      "blocks": 3,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.1867,
+      "authors_present": 2
+     },
+     "DE": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "ES": {
+      "blocks": 7,
+      "links": 3,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.54768,
+      "recall": 1.0,
+      "authors_present": 3
+     },
+     "FR": {
+      "blocks": 62,
+      "links": 9,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.3469,
+      "recall": 0.2426,
+      "authors_present": 47
+     },
+     "GB": {
+      "blocks": 371,
+      "links": 78,
+      "wrong_links": 2,
+      "wrong_share": 0.00544,
+      "upper95": 0.05325,
+      "recall": 0.2855,
+      "authors_present": 263
+     },
+     "IT": {
+      "blocks": 73,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.27747,
+      "recall": 0.4062,
+      "authors_present": 52
+     },
+     "SE": {
+      "blocks": 138,
+      "links": 19,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.17314,
+      "recall": 0.3311,
+      "authors_present": 125
+     },
+     "US": {
+      "blocks": 414,
+      "links": 97,
+      "wrong_links": 2,
+      "wrong_share": 0.00083,
+      "upper95": 0.03951,
+      "recall": 0.5765,
+      "authors_present": 205
+     },
+     "US/CA (AHA)": {
+      "blocks": 17876,
+      "links": 6928,
+      "wrong_links": 229,
+      "wrong_share": 0.00189,
+      "upper95": 0.00315,
+      "recall": 0.6599,
+      "authors_present": 11152
+     },
+     "ZA": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "ZZ": {
+      "blocks": 24,
+      "links": 10,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56621,
+      "recall": 0.3763,
+      "authors_present": 20
+     },
+     "unknown": {
+      "blocks": 41555,
+      "links": 6853,
+      "wrong_links": 219,
+      "wrong_share": 0.00282,
+      "upper95": 0.00473,
+      "recall": 0.5064,
+      "authors_present": 17551
+     }
+    },
+    "by_decade": {
+     "1610.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1760.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1790.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "1800.0": {
+      "blocks": 2,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 1.0,
+      "authors_present": 1
+     },
+     "1840.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1860.0": {
+      "blocks": 4,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "1870.0": {
+      "blocks": 6,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.3586,
+      "authors_present": 3
+     },
+     "1880.0": {
+      "blocks": 11,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.2136,
+      "authors_present": 5
+     },
+     "1890.0": {
+      "blocks": 8,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "1900.0": {
+      "blocks": 4,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.7007,
+      "authors_present": 2
+     },
+     "1910.0": {
+      "blocks": 24,
+      "links": 5,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.37542,
+      "recall": 0.5459,
+      "authors_present": 11
+     },
+     "1920.0": {
+      "blocks": 74,
+      "links": 24,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09845,
+      "recall": 0.5398,
+      "authors_present": 37
+     },
+     "1930.0": {
+      "blocks": 109,
+      "links": 40,
+      "wrong_links": 3,
+      "wrong_share": 0.01273,
+      "upper95": 0.08238,
+      "recall": 0.5192,
+      "authors_present": 54
+     },
+     "1940.0": {
+      "blocks": 249,
+      "links": 85,
+      "wrong_links": 3,
+      "wrong_share": 0.00137,
+      "upper95": 0.03937,
+      "recall": 0.6256,
+      "authors_present": 118
+     },
+     "1950.0": {
+      "blocks": 408,
+      "links": 138,
+      "wrong_links": 10,
+      "wrong_share": 0.0033,
+      "upper95": 0.02845,
+      "recall": 0.541,
+      "authors_present": 201
+     },
+     "1960.0": {
+      "blocks": 1063,
+      "links": 374,
+      "wrong_links": 15,
+      "wrong_share": 0.0027,
+      "upper95": 0.01239,
+      "recall": 0.6558,
+      "authors_present": 521
+     },
+     "1970.0": {
+      "blocks": 2309,
+      "links": 718,
+      "wrong_links": 29,
+      "wrong_share": 0.00184,
+      "upper95": 0.00755,
+      "recall": 0.6105,
+      "authors_present": 1103
+     },
+     "1980.0": {
+      "blocks": 4700,
+      "links": 1378,
+      "wrong_links": 56,
+      "wrong_share": 0.00192,
+      "upper95": 0.00562,
+      "recall": 0.6421,
+      "authors_present": 2183
+     },
+     "1990.0": {
+      "blocks": 9117,
+      "links": 2493,
+      "wrong_links": 81,
+      "wrong_share": 0.00156,
+      "upper95": 0.00397,
+      "recall": 0.6299,
+      "authors_present": 4345
+     },
+     "2000.0": {
+      "blocks": 15038,
+      "links": 3193,
+      "wrong_links": 108,
+      "wrong_share": 0.00264,
+      "upper95": 0.00543,
+      "recall": 0.5121,
+      "authors_present": 7254
+     },
+     "2010.0": {
+      "blocks": 21100,
+      "links": 3904,
+      "wrong_links": 119,
+      "wrong_share": 0.00226,
+      "upper95": 0.00472,
+      "recall": 0.4945,
+      "authors_present": 10402
+     },
+     "2020.0": {
+      "blocks": 6570,
+      "links": 1696,
+      "wrong_links": 30,
+      "wrong_share": 0.00381,
+      "upper95": 0.00951,
+      "recall": 0.6377,
+      "authors_present": 3273
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 32478,
+      "links": 4774,
+      "wrong_links": 74,
+      "wrong_share": 0.00295,
+      "upper95": 0.00539,
+      "recall": 0.4407,
+      "authors_present": 15692
+     },
+     "jstor-author": {
+      "blocks": 5207,
+      "links": 1684,
+      "wrong_links": 112,
+      "wrong_share": 0.00253,
+      "upper95": 0.00537,
+      "recall": 0.7021,
+      "authors_present": 2542
+     },
+     "reviewer": {
+      "blocks": 23155,
+      "links": 7614,
+      "wrong_links": 268,
+      "wrong_share": 0.00168,
+      "upper95": 0.00264,
+      "recall": 0.7559,
+      "authors_present": 11321
+     }
+    }
+   },
+   "clerical_test": {
+    "overall": {
+     "blocks": 488,
+     "links": 39,
+     "wrong_links": 0,
+     "wrong_share": 0.0,
+     "upper95": 0.04776,
+     "recall": 0.0859,
+     "authors_present": 454
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 155,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 143
+     },
+     "single": {
+      "blocks": 333,
+      "links": 39,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.04776,
+      "recall": 0.1254,
+      "authors_present": 311
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 155,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 143
+     },
+     "single-2-5": {
+      "blocks": 39,
+      "links": 14,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.12606,
+      "recall": 0.4,
+      "authors_present": 35
+     },
+     "single-26+": {
+      "blocks": 34,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 30
+     },
+     "single-6-25": {
+      "blocks": 95,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 91
+     },
+     "single-initials": {
+      "blocks": 48,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 47
+     },
+     "single-unique": {
+      "blocks": 73,
+      "links": 12,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.14506,
+      "recall": 0.169,
+      "authors_present": 71
+     },
+     "single-unmeasured": {
+      "blocks": 44,
+      "links": 13,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.13489,
+      "recall": 0.3514,
+      "authors_present": 37
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 309,
+      "links": 39,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.04776,
+      "recall": 0.1413,
+      "authors_present": 276
+     },
+     "editor": {
+      "blocks": 47,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 46
+     },
+     "jstor-author": {
+      "blocks": 64,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 64
+     },
+     "main": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "reviewer": {
+      "blocks": 67,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 67
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 442,
+      "links": 32,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.05781,
+      "recall": 0.0773,
+      "authors_present": 414
+     },
+     "1": {
+      "blocks": 46,
+      "links": 7,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.23246,
+      "recall": 0.175,
+      "authors_present": 40
+     }
+    },
+    "by_country": {
+     "BE": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "CA": {
+      "blocks": 3,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 3
+     },
+     "FR": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "GB": {
+      "blocks": 6,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 4
+     },
+     "US": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "US/CA (AHA)": {
+      "blocks": 149,
+      "links": 13,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.13489,
+      "recall": 0.0956,
+      "authors_present": 136
+     },
+     "unknown": {
+      "blocks": 327,
+      "links": 26,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.07055,
+      "recall": 0.0841,
+      "authors_present": 309
+     }
+    },
+    "by_decade": {
+     "1810.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1900.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1910.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1920.0": {
+      "blocks": 3,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 3
+     },
+     "1930.0": {
+      "blocks": 10,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 8
+     },
+     "1940.0": {
+      "blocks": 8,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 8
+     },
+     "1950.0": {
+      "blocks": 20,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.1053,
+      "authors_present": 19
+     },
+     "1960.0": {
+      "blocks": 21,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36249,
+      "recall": 0.1905,
+      "authors_present": 21
+     },
+     "1970.0": {
+      "blocks": 40,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.0256,
+      "authors_present": 39
+     },
+     "1980.0": {
+      "blocks": 53,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36249,
+      "recall": 0.08,
+      "authors_present": 50
+     },
+     "1990.0": {
+      "blocks": 74,
+      "links": 7,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.23246,
+      "recall": 0.0972,
+      "authors_present": 72
+     },
+     "2000.0": {
+      "blocks": 84,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 0.075,
+      "authors_present": 80
+     },
+     "2010.0": {
+      "blocks": 118,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.15687,
+      "recall": 0.1,
+      "authors_present": 110
+     },
+     "2020.0": {
+      "blocks": 51,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36249,
+      "recall": 0.1053,
+      "authors_present": 38
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 357,
+      "links": 39,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.04776,
+      "recall": 0.1207,
+      "authors_present": 323
+     },
+     "jstor-author": {
+      "blocks": 64,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 64
+     },
+     "reviewer": {
+      "blocks": 67,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 67
+     }
+    }
+   }
+  },
+  "scorer+fs": {
+   "test": {
+    "overall": {
+     "blocks": 60840,
+     "links": 16858,
+     "wrong_links": 587,
+     "wrong_share": 0.00321,
+     "upper95": 0.00441,
+     "recall": 0.6151,
+     "authors_present": 29555
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 5765,
+      "links": 685,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0028,
+      "recall": 0.0416,
+      "authors_present": 5080
+     },
+     "single": {
+      "blocks": 55075,
+      "links": 16173,
+      "wrong_links": 587,
+      "wrong_share": 0.00324,
+      "upper95": 0.00446,
+      "recall": 0.6938,
+      "authors_present": 24475
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 5765,
+      "links": 685,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0028,
+      "recall": 0.0416,
+      "authors_present": 5080
+     },
+     "single-2-5": {
+      "blocks": 18062,
+      "links": 7432,
+      "wrong_links": 319,
+      "wrong_share": 0.00239,
+      "upper95": 0.00382,
+      "recall": 0.7728,
+      "authors_present": 8273
+     },
+     "single-26+": {
+      "blocks": 1227,
+      "links": 76,
+      "wrong_links": 1,
+      "wrong_share": 0.03329,
+      "upper95": 0.11499,
+      "recall": 0.4026,
+      "authors_present": 118
+     },
+     "single-6-25": {
+      "blocks": 3825,
+      "links": 1070,
+      "wrong_links": 17,
+      "wrong_share": 0.01317,
+      "upper95": 0.0277,
+      "recall": 0.4211,
+      "authors_present": 1397
+     },
+     "single-initials": {
+      "blocks": 520,
+      "links": 80,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.04896,
+      "recall": 0.2214,
+      "authors_present": 216
+     },
+     "single-unique": {
+      "blocks": 9389,
+      "links": 4134,
+      "wrong_links": 203,
+      "wrong_share": 0.00284,
+      "upper95": 0.00518,
+      "recall": 0.7921,
+      "authors_present": 4549
+     },
+     "single-unmeasured": {
+      "blocks": 22052,
+      "links": 3381,
+      "wrong_links": 47,
+      "wrong_share": 0.00571,
+      "upper95": 0.00817,
+      "recall": 0.336,
+      "authors_present": 9922
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 32478,
+      "links": 5486,
+      "wrong_links": 99,
+      "wrong_share": 0.00349,
+      "upper95": 0.00598,
+      "recall": 0.4778,
+      "authors_present": 15692
+     },
+     "jstor-author": {
+      "blocks": 5207,
+      "links": 1917,
+      "wrong_links": 124,
+      "wrong_share": 0.00313,
+      "upper95": 0.00597,
+      "recall": 0.7658,
+      "authors_present": 2542
+     },
+     "reviewer": {
+      "blocks": 23155,
+      "links": 9455,
+      "wrong_links": 364,
+      "wrong_share": 0.00288,
+      "upper95": 0.00401,
+      "recall": 0.8771,
+      "authors_present": 11321
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 35687,
+      "links": 9178,
+      "wrong_links": 415,
+      "wrong_share": 0.00442,
+      "upper95": 0.00601,
+      "recall": 0.7172,
+      "authors_present": 11819
+     },
+     "1": {
+      "blocks": 25153,
+      "links": 7680,
+      "wrong_links": 172,
+      "wrong_share": 0.00221,
+      "upper95": 0.00396,
+      "recall": 0.5508,
+      "authors_present": 17736
+     }
+    },
+    "by_country": {
+     "AU": {
+      "blocks": 8,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "BE": {
+      "blocks": 34,
+      "links": 14,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.20319,
+      "recall": 0.5413,
+      "authors_present": 30
+     },
+     "BR": {
+      "blocks": 2,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.73626,
+      "recall": 1.0,
+      "authors_present": 2
+     },
+     "CA": {
+      "blocks": 268,
+      "links": 56,
+      "wrong_links": 3,
+      "wrong_share": 0.00171,
+      "upper95": 0.06306,
+      "recall": 0.619,
+      "authors_present": 99
+     },
+     "CH": {
+      "blocks": 2,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.9323,
+      "authors_present": 2
+     },
+     "CO": {
+      "blocks": 3,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.1867,
+      "authors_present": 2
+     },
+     "DE": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "ES": {
+      "blocks": 7,
+      "links": 3,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.54768,
+      "recall": 1.0,
+      "authors_present": 3
+     },
+     "FR": {
+      "blocks": 62,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.32453,
+      "recall": 0.254,
+      "authors_present": 47
+     },
+     "GB": {
+      "blocks": 371,
+      "links": 97,
+      "wrong_links": 4,
+      "wrong_share": 0.00607,
+      "upper95": 0.05024,
+      "recall": 0.3039,
+      "authors_present": 263
+     },
+     "IT": {
+      "blocks": 73,
+      "links": 19,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.20721,
+      "recall": 0.4913,
+      "authors_present": 52
+     },
+     "SE": {
+      "blocks": 138,
+      "links": 28,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.15706,
+      "recall": 0.3503,
+      "authors_present": 125
+     },
+     "US": {
+      "blocks": 414,
+      "links": 126,
+      "wrong_links": 4,
+      "wrong_share": 0.00521,
+      "upper95": 0.04081,
+      "recall": 0.7131,
+      "authors_present": 205
+     },
+     "US/CA (AHA)": {
+      "blocks": 17876,
+      "links": 8616,
+      "wrong_links": 307,
+      "wrong_share": 0.00336,
+      "upper95": 0.00483,
+      "recall": 0.7658,
+      "authors_present": 11152
+     },
+     "ZA": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "ZZ": {
+      "blocks": 24,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.54609,
+      "recall": 0.389,
+      "authors_present": 20
+     },
+     "unknown": {
+      "blocks": 41555,
+      "links": 7873,
+      "wrong_links": 269,
+      "wrong_share": 0.00311,
+      "upper95": 0.005,
+      "recall": 0.5474,
+      "authors_present": 17551
+     }
+    },
+    "by_decade": {
+     "1610.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1760.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1790.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "1800.0": {
+      "blocks": 2,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 1.0,
+      "authors_present": 1
+     },
+     "1840.0": {
+      "blocks": 2,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1860.0": {
+      "blocks": 4,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.4981,
+      "authors_present": 2
+     },
+     "1870.0": {
+      "blocks": 6,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.3586,
+      "authors_present": 3
+     },
+     "1880.0": {
+      "blocks": 11,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.2136,
+      "authors_present": 5
+     },
+     "1890.0": {
+      "blocks": 8,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 2
+     },
+     "1900.0": {
+      "blocks": 4,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.7007,
+      "authors_present": 2
+     },
+     "1910.0": {
+      "blocks": 24,
+      "links": 7,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.31895,
+      "recall": 0.6185,
+      "authors_present": 11
+     },
+     "1920.0": {
+      "blocks": 74,
+      "links": 28,
+      "wrong_links": 1,
+      "wrong_share": 0.00073,
+      "upper95": 0.09812,
+      "recall": 0.6482,
+      "authors_present": 37
+     },
+     "1930.0": {
+      "blocks": 109,
+      "links": 45,
+      "wrong_links": 3,
+      "wrong_share": 0.01131,
+      "upper95": 0.07269,
+      "recall": 0.585,
+      "authors_present": 54
+     },
+     "1940.0": {
+      "blocks": 249,
+      "links": 95,
+      "wrong_links": 4,
+      "wrong_share": 0.00171,
+      "upper95": 0.03644,
+      "recall": 0.6717,
+      "authors_present": 118
+     },
+     "1950.0": {
+      "blocks": 408,
+      "links": 160,
+      "wrong_links": 10,
+      "wrong_share": 0.0028,
+      "upper95": 0.02709,
+      "recall": 0.6368,
+      "authors_present": 201
+     },
+     "1960.0": {
+      "blocks": 1063,
+      "links": 430,
+      "wrong_links": 16,
+      "wrong_share": 0.00262,
+      "upper95": 0.01128,
+      "recall": 0.7237,
+      "authors_present": 521
+     },
+     "1970.0": {
+      "blocks": 2309,
+      "links": 873,
+      "wrong_links": 37,
+      "wrong_share": 0.0031,
+      "upper95": 0.00899,
+      "recall": 0.6967,
+      "authors_present": 1103
+     },
+     "1980.0": {
+      "blocks": 4700,
+      "links": 1662,
+      "wrong_links": 69,
+      "wrong_share": 0.00306,
+      "upper95": 0.00699,
+      "recall": 0.7186,
+      "authors_present": 2183
+     },
+     "1990.0": {
+      "blocks": 9117,
+      "links": 2998,
+      "wrong_links": 105,
+      "wrong_share": 0.0024,
+      "upper95": 0.00498,
+      "recall": 0.7024,
+      "authors_present": 4345
+     },
+     "2000.0": {
+      "blocks": 15038,
+      "links": 3865,
+      "wrong_links": 138,
+      "wrong_share": 0.00366,
+      "upper95": 0.0066,
+      "recall": 0.5779,
+      "authors_present": 7254
+     },
+     "2010.0": {
+      "blocks": 21100,
+      "links": 4682,
+      "wrong_links": 166,
+      "wrong_share": 0.00309,
+      "upper95": 0.00567,
+      "recall": 0.5458,
+      "authors_present": 10402
+     },
+     "2020.0": {
+      "blocks": 6570,
+      "links": 1987,
+      "wrong_links": 38,
+      "wrong_share": 0.00394,
+      "upper95": 0.0094,
+      "recall": 0.6933,
+      "authors_present": 3273
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 32478,
+      "links": 5486,
+      "wrong_links": 99,
+      "wrong_share": 0.00349,
+      "upper95": 0.00598,
+      "recall": 0.4778,
+      "authors_present": 15692
+     },
+     "jstor-author": {
+      "blocks": 5207,
+      "links": 1917,
+      "wrong_links": 124,
+      "wrong_share": 0.00313,
+      "upper95": 0.00597,
+      "recall": 0.7658,
+      "authors_present": 2542
+     },
+     "reviewer": {
+      "blocks": 23155,
+      "links": 9455,
+      "wrong_links": 364,
+      "wrong_share": 0.00288,
+      "upper95": 0.00401,
+      "recall": 0.8771,
+      "authors_present": 11321
+     }
+    }
+   },
+   "clerical_test": {
+    "overall": {
+     "blocks": 488,
+     "links": 121,
+     "wrong_links": 0,
+     "wrong_share": 0.0,
+     "upper95": 0.01572,
+     "recall": 0.2665,
+     "authors_present": 454
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 155,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 0.042,
+      "authors_present": 143
+     },
+     "single": {
+      "blocks": 333,
+      "links": 115,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.01653,
+      "recall": 0.3698,
+      "authors_present": 311
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 155,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 0.042,
+      "authors_present": 143
+     },
+     "single-2-5": {
+      "blocks": 39,
+      "links": 14,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.12606,
+      "recall": 0.4,
+      "authors_present": 35
+     },
+     "single-26+": {
+      "blocks": 34,
+      "links": 10,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.17077,
+      "recall": 0.3333,
+      "authors_present": 30
+     },
+     "single-6-25": {
+      "blocks": 95,
+      "links": 39,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.04776,
+      "recall": 0.4286,
+      "authors_present": 91
+     },
+     "single-initials": {
+      "blocks": 48,
+      "links": 23,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.07928,
+      "recall": 0.4894,
+      "authors_present": 47
+     },
+     "single-unique": {
+      "blocks": 73,
+      "links": 14,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.12606,
+      "recall": 0.1972,
+      "authors_present": 71
+     },
+     "single-unmeasured": {
+      "blocks": 44,
+      "links": 15,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11831,
+      "recall": 0.4054,
+      "authors_present": 37
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 309,
+      "links": 81,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.02336,
+      "recall": 0.2935,
+      "authors_present": 276
+     },
+     "editor": {
+      "blocks": 47,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 46
+     },
+     "jstor-author": {
+      "blocks": 64,
+      "links": 15,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11831,
+      "recall": 0.2344,
+      "authors_present": 64
+     },
+     "main": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "reviewer": {
+      "blocks": 67,
+      "links": 25,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.07324,
+      "recall": 0.3731,
+      "authors_present": 67
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 442,
+      "links": 110,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.01727,
+      "recall": 0.2657,
+      "authors_present": 414
+     },
+     "1": {
+      "blocks": 46,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.15687,
+      "recall": 0.275,
+      "authors_present": 40
+     }
+    },
+    "by_country": {
+     "BE": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "CA": {
+      "blocks": 3,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 3
+     },
+     "FR": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "GB": {
+      "blocks": 6,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.25,
+      "authors_present": 4
+     },
+     "US": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": null,
+      "authors_present": 0
+     },
+     "US/CA (AHA)": {
+      "blocks": 149,
+      "links": 44,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.04248,
+      "recall": 0.3235,
+      "authors_present": 136
+     },
+     "unknown": {
+      "blocks": 327,
+      "links": 76,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.02487,
+      "recall": 0.246,
+      "authors_present": 309
+     }
+    },
+    "by_decade": {
+     "1810.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1900.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1910.0": {
+      "blocks": 1,
+      "links": 0,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0,
+      "recall": 0.0,
+      "authors_present": 1
+     },
+     "1920.0": {
+      "blocks": 3,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 0.3333,
+      "authors_present": 3
+     },
+     "1930.0": {
+      "blocks": 10,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.25,
+      "authors_present": 8
+     },
+     "1940.0": {
+      "blocks": 8,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 0.25,
+      "authors_present": 8
+     },
+     "1950.0": {
+      "blocks": 20,
+      "links": 8,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.20751,
+      "recall": 0.4211,
+      "authors_present": 19
+     },
+     "1960.0": {
+      "blocks": 21,
+      "links": 10,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.17077,
+      "recall": 0.4762,
+      "authors_present": 21
+     },
+     "1970.0": {
+      "blocks": 40,
+      "links": 13,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.13489,
+      "recall": 0.3333,
+      "authors_present": 39
+     },
+     "1980.0": {
+      "blocks": 53,
+      "links": 18,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09988,
+      "recall": 0.36,
+      "authors_present": 50
+     },
+     "1990.0": {
+      "blocks": 74,
+      "links": 18,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09988,
+      "recall": 0.25,
+      "authors_present": 72
+     },
+     "2000.0": {
+      "blocks": 84,
+      "links": 18,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.09988,
+      "recall": 0.225,
+      "authors_present": 80
+     },
+     "2010.0": {
+      "blocks": 118,
+      "links": 21,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.08641,
+      "recall": 0.1909,
+      "authors_present": 110
+     },
+     "2020.0": {
+      "blocks": 51,
+      "links": 10,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.17077,
+      "recall": 0.2632,
+      "authors_present": 38
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 357,
+      "links": 81,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.02336,
+      "recall": 0.2508,
+      "authors_present": 323
+     },
+     "jstor-author": {
+      "blocks": 64,
+      "links": 15,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11831,
+      "recall": 0.2344,
+      "authors_present": 64
+     },
+     "reviewer": {
+      "blocks": 67,
+      "links": 25,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.07324,
+      "recall": 0.3731,
+      "authors_present": 67
+     }
+    }
+   },
+   "added_test": {
+    "overall": {
+     "blocks": 2786,
+     "links": 2786,
+     "wrong_links": 133,
+     "wrong_share": 0.01004,
+     "upper95": 0.01708,
+     "recall": 1.0004,
+     "authors_present": 2651
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 685,
+      "links": 685,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0028,
+      "recall": 1.0,
+      "authors_present": 685
+     },
+     "single": {
+      "blocks": 2101,
+      "links": 2101,
+      "wrong_links": 133,
+      "wrong_share": 0.01092,
+      "upper95": 0.01892,
+      "recall": 1.0004,
+      "authors_present": 1966
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 685,
+      "links": 685,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0028,
+      "recall": 1.0,
+      "authors_present": 685
+     },
+     "single-2-5": {
+      "blocks": 473,
+      "links": 473,
+      "wrong_links": 17,
+      "wrong_share": 0.0015,
+      "upper95": 0.00752,
+      "recall": 1.0,
+      "authors_present": 456
+     },
+     "single-26+": {
+      "blocks": 76,
+      "links": 76,
+      "wrong_links": 1,
+      "wrong_share": 0.03329,
+      "upper95": 0.11499,
+      "recall": 1.0033,
+      "authors_present": 74
+     },
+     "single-6-25": {
+      "blocks": 491,
+      "links": 491,
+      "wrong_links": 17,
+      "wrong_share": 0.01781,
+      "upper95": 0.04097,
+      "recall": 1.0,
+      "authors_present": 474
+     },
+     "single-initials": {
+      "blocks": 80,
+      "links": 80,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.04896,
+      "recall": 1.0,
+      "authors_present": 80
+     },
+     "single-unique": {
+      "blocks": 374,
+      "links": 374,
+      "wrong_links": 75,
+      "wrong_share": 0.00932,
+      "upper95": 0.02834,
+      "recall": 1.0012,
+      "authors_present": 298
+     },
+     "single-unmeasured": {
+      "blocks": 607,
+      "links": 607,
+      "wrong_links": 23,
+      "wrong_share": 0.01579,
+      "upper95": 0.02598,
+      "recall": 1.0,
+      "authors_present": 584
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 712,
+      "links": 712,
+      "wrong_links": 25,
+      "wrong_share": 0.00982,
+      "upper95": 0.03009,
+      "recall": 1.0007,
+      "authors_present": 686
+     },
+     "jstor-author": {
+      "blocks": 233,
+      "links": 233,
+      "wrong_links": 12,
+      "wrong_share": 0.00961,
+      "upper95": 0.02562,
+      "recall": 1.0,
+      "authors_present": 221
+     },
+     "reviewer": {
+      "blocks": 1841,
+      "links": 1841,
+      "wrong_links": 96,
+      "wrong_share": 0.01031,
+      "upper95": 0.01685,
+      "recall": 1.0003,
+      "authors_present": 1744
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 1678,
+      "links": 1678,
+      "wrong_links": 103,
+      "wrong_share": 0.015,
+      "upper95": 0.02352,
+      "recall": 1.0007,
+      "authors_present": 1573
+     },
+     "1": {
+      "blocks": 1108,
+      "links": 1108,
+      "wrong_links": 30,
+      "wrong_share": 0.00396,
+      "upper95": 0.0156,
+      "recall": 1.0,
+      "authors_present": 1078
+     }
+    },
+    "by_country": {
+     "BE": {
+      "blocks": 2,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 1.0,
+      "authors_present": 2
+     },
+     "BR": {
+      "blocks": 1,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 1.0,
+      "authors_present": 1
+     },
+     "CA": {
+      "blocks": 7,
+      "links": 7,
+      "wrong_links": 1,
+      "wrong_share": 0.01369,
+      "upper95": 0.32952,
+      "recall": 1.0,
+      "authors_present": 6
+     },
+     "FR": {
+      "blocks": 2,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 1.0,
+      "authors_present": 2
+     },
+     "GB": {
+      "blocks": 19,
+      "links": 19,
+      "wrong_links": 2,
+      "wrong_share": 0.01572,
+      "upper95": 0.1768,
+      "recall": 1.0,
+      "authors_present": 17
+     },
+     "IT": {
+      "blocks": 8,
+      "links": 8,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.20751,
+      "recall": 1.0,
+      "authors_present": 8
+     },
+     "SE": {
+      "blocks": 9,
+      "links": 9,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.18737,
+      "recall": 1.0,
+      "authors_present": 9
+     },
+     "US": {
+      "blocks": 29,
+      "links": 29,
+      "wrong_links": 2,
+      "wrong_share": 0.02326,
+      "upper95": 0.17036,
+      "recall": 1.0,
+      "authors_present": 27
+     },
+     "US/CA (AHA)": {
+      "blocks": 1688,
+      "links": 1688,
+      "wrong_links": 78,
+      "wrong_share": 0.01243,
+      "upper95": 0.02049,
+      "recall": 1.0002,
+      "authors_present": 1609
+     },
+     "ZZ": {
+      "blocks": 1,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 1.0,
+      "authors_present": 1
+     },
+     "unknown": {
+      "blocks": 1020,
+      "links": 1020,
+      "wrong_links": 50,
+      "wrong_share": 0.00658,
+      "upper95": 0.02052,
+      "recall": 1.0006,
+      "authors_present": 969
+     }
+    },
+    "by_decade": {
+     "1860.0": {
+      "blocks": 1,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 1.0,
+      "authors_present": 1
+     },
+     "1910.0": {
+      "blocks": 2,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 1.0,
+      "authors_present": 2
+     },
+     "1920.0": {
+      "blocks": 4,
+      "links": 4,
+      "wrong_links": 1,
+      "wrong_share": 0.00436,
+      "upper95": 0.60688,
+      "recall": 1.0,
+      "authors_present": 3
+     },
+     "1930.0": {
+      "blocks": 5,
+      "links": 5,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.30976,
+      "recall": 1.0,
+      "authors_present": 5
+     },
+     "1940.0": {
+      "blocks": 10,
+      "links": 10,
+      "wrong_links": 1,
+      "wrong_share": 0.00634,
+      "upper95": 0.20823,
+      "recall": 1.0,
+      "authors_present": 9
+     },
+     "1950.0": {
+      "blocks": 22,
+      "links": 22,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.21438,
+      "recall": 1.0,
+      "authors_present": 22
+     },
+     "1960.0": {
+      "blocks": 56,
+      "links": 56,
+      "wrong_links": 1,
+      "wrong_share": 0.00182,
+      "upper95": 0.04268,
+      "recall": 1.0,
+      "authors_present": 55
+     },
+     "1970.0": {
+      "blocks": 155,
+      "links": 155,
+      "wrong_links": 8,
+      "wrong_share": 0.0119,
+      "upper95": 0.04564,
+      "recall": 1.0,
+      "authors_present": 147
+     },
+     "1980.0": {
+      "blocks": 284,
+      "links": 284,
+      "wrong_links": 13,
+      "wrong_share": 0.01247,
+      "upper95": 0.03782,
+      "recall": 1.0,
+      "authors_present": 271
+     },
+     "1990.0": {
+      "blocks": 505,
+      "links": 505,
+      "wrong_links": 24,
+      "wrong_share": 0.00968,
+      "upper95": 0.02602,
+      "recall": 1.0,
+      "authors_present": 481
+     },
+     "2000.0": {
+      "blocks": 672,
+      "links": 672,
+      "wrong_links": 30,
+      "wrong_share": 0.01153,
+      "upper95": 0.03026,
+      "recall": 1.0005,
+      "authors_present": 641
+     },
+     "2010.0": {
+      "blocks": 778,
+      "links": 778,
+      "wrong_links": 47,
+      "wrong_share": 0.01107,
+      "upper95": 0.02812,
+      "recall": 1.0009,
+      "authors_present": 730
+     },
+     "2020.0": {
+      "blocks": 291,
+      "links": 291,
+      "wrong_links": 8,
+      "wrong_share": 0.00545,
+      "upper95": 0.04536,
+      "recall": 1.0,
+      "authors_present": 283
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 712,
+      "links": 712,
+      "wrong_links": 25,
+      "wrong_share": 0.00982,
+      "upper95": 0.03009,
+      "recall": 1.0007,
+      "authors_present": 686
+     },
+     "jstor-author": {
+      "blocks": 233,
+      "links": 233,
+      "wrong_links": 12,
+      "wrong_share": 0.00961,
+      "upper95": 0.02562,
+      "recall": 1.0,
+      "authors_present": 221
+     },
+     "reviewer": {
+      "blocks": 1841,
+      "links": 1841,
+      "wrong_links": 96,
+      "wrong_share": 0.01031,
+      "upper95": 0.01685,
+      "recall": 1.0003,
+      "authors_present": 1744
+     }
+    }
+   },
+   "added_clerical_test": {
+    "overall": {
+     "blocks": 82,
+     "links": 82,
+     "wrong_links": 0,
+     "wrong_share": 0.0,
+     "upper95": 0.02308,
+     "recall": 1.0,
+     "authors_present": 82
+    },
+    "by_multi": {
+     "multi": {
+      "blocks": 6,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 1.0,
+      "authors_present": 6
+     },
+     "single": {
+      "blocks": 76,
+      "links": 76,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.02487,
+      "recall": 1.0,
+      "authors_present": 76
+     }
+    },
+    "by_stratum": {
+     "multi": {
+      "blocks": 6,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 1.0,
+      "authors_present": 6
+     },
+     "single-26+": {
+      "blocks": 10,
+      "links": 10,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.17077,
+      "recall": 1.0,
+      "authors_present": 10
+     },
+     "single-6-25": {
+      "blocks": 39,
+      "links": 39,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.04776,
+      "recall": 1.0,
+      "authors_present": 39
+     },
+     "single-initials": {
+      "blocks": 23,
+      "links": 23,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.07928,
+      "recall": 1.0,
+      "authors_present": 23
+     },
+     "single-unique": {
+      "blocks": 2,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 1.0,
+      "authors_present": 2
+     },
+     "single-unmeasured": {
+      "blocks": 2,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 1.0,
+      "authors_present": 2
+     }
+    },
+    "by_role": {
+     "author": {
+      "blocks": 42,
+      "links": 42,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.04444,
+      "recall": 1.0,
+      "authors_present": 42
+     },
+     "jstor-author": {
+      "blocks": 15,
+      "links": 15,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11831,
+      "recall": 1.0,
+      "authors_present": 15
+     },
+     "reviewer": {
+      "blocks": 25,
+      "links": 25,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.07324,
+      "recall": 1.0,
+      "authors_present": 25
+     }
+    },
+    "by_has_orcid": {
+     "0": {
+      "blocks": 78,
+      "links": 78,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.02425,
+      "recall": 1.0,
+      "authors_present": 78
+     },
+     "1": {
+      "blocks": 4,
+      "links": 4,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.36249,
+      "recall": 1.0,
+      "authors_present": 4
+     }
+    },
+    "by_country": {
+     "GB": {
+      "blocks": 1,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 1.0,
+      "authors_present": 1
+     },
+     "US/CA (AHA)": {
+      "blocks": 31,
+      "links": 31,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.05961,
+      "recall": 1.0,
+      "authors_present": 31
+     },
+     "unknown": {
+      "blocks": 50,
+      "links": 50,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.0375,
+      "recall": 1.0,
+      "authors_present": 50
+     }
+    },
+    "by_decade": {
+     "1920.0": {
+      "blocks": 1,
+      "links": 1,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.77148,
+      "recall": 1.0,
+      "authors_present": 1
+     },
+     "1930.0": {
+      "blocks": 2,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 1.0,
+      "authors_present": 2
+     },
+     "1940.0": {
+      "blocks": 2,
+      "links": 2,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.56926,
+      "recall": 1.0,
+      "authors_present": 2
+     },
+     "1950.0": {
+      "blocks": 6,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 1.0,
+      "authors_present": 6
+     },
+     "1960.0": {
+      "blocks": 6,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 1.0,
+      "authors_present": 6
+     },
+     "1970.0": {
+      "blocks": 12,
+      "links": 12,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.14506,
+      "recall": 1.0,
+      "authors_present": 12
+     },
+     "1980.0": {
+      "blocks": 14,
+      "links": 14,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.12606,
+      "recall": 1.0,
+      "authors_present": 14
+     },
+     "1990.0": {
+      "blocks": 11,
+      "links": 11,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.15687,
+      "recall": 1.0,
+      "authors_present": 11
+     },
+     "2000.0": {
+      "blocks": 12,
+      "links": 12,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.14506,
+      "recall": 1.0,
+      "authors_present": 12
+     },
+     "2010.0": {
+      "blocks": 10,
+      "links": 10,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.17077,
+      "recall": 1.0,
+      "authors_present": 10
+     },
+     "2020.0": {
+      "blocks": 6,
+      "links": 6,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.26417,
+      "recall": 1.0,
+      "authors_present": 6
+     }
+    },
+    "by_rg": {
+     "author": {
+      "blocks": 42,
+      "links": 42,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.04444,
+      "recall": 1.0,
+      "authors_present": 42
+     },
+     "jstor-author": {
+      "blocks": 15,
+      "links": 15,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.11831,
+      "recall": 1.0,
+      "authors_present": 15
+     },
+     "reviewer": {
+      "blocks": 25,
+      "links": 25,
+      "wrong_links": 0,
+      "wrong_share": 0.0,
+      "upper95": 0.07324,
+      "recall": 1.0,
+      "authors_present": 25
+     }
+    }
+   }
+  }
+ },
+ "final_model": "fs",
+ "importance": {
+  "fs": 0.4761,
+  "ctx_w": 0.1112,
+  "oa_n_l": 0.0447,
+  "bearers_l": 0.0388,
+  "lc_others": 0.0363,
+  "freq": 0.0313,
+  "neg": 0.0253,
+  "best_fs": 0.0233,
+  "topic": 0.023,
+  "n": 0.0227,
+  "rg": 0.0204,
+  "decade": 0.0176,
+  "date": 0.0171,
+  "share": 0.0157,
+  "margin": 0.0154,
+  "runner_fs": 0.0145,
+  "topic_sc": 0.0133,
+  "name": 0.0122,
+  "kind": 0.0091,
+  "n_auth": 0.0075,
+  "rank": 0.0051,
+  "review_record": 0.0044,
+  "aff": 0.0041,
+  "venue": 0.0038,
+  "n_close": 0.0037,
+  "net_ln": 0.0017,
+  "other_max_ctx": 0.001,
+  "net_edof": 0.0003,
+  "cites": 0.0002,
+  "network": 0.0001,
+  "other_ctx_any": 0.0,
+  "net_kl": 0.0,
+  "prize": 0.0,
+  "net_ced": 0.0,
+  "net_adv": 0.0,
+  "net_col": 0.0,
+  "net_vol": 0.0,
+  "nco": 0.0
+ },
+ "partial_dependence": {
+  "fs": {
+   "-9.518": 0.2755,
+   "-1.855": 0.4493,
+   "0.029": 0.5316,
+   "1.591": 0.5945,
+   "5.66": 0.7726,
+   "13.232": 0.9611,
+   "31.572": 0.9612
+  },
+  "margin": {
+   "-28.194": 0.6177,
+   "-5.035": 0.6174,
+   "16.387": 0.6121,
+   "30.0": 0.5906
+  },
+  "runner_fs": {
+   "-30.0": 0.574,
+   "-5.692": 0.6378,
+   "4.062": 0.7532,
+   "27.577": 0.669
+  },
+  "n": {
+   "1.0": 0.5591,
+   "2.0": 0.6595,
+   "5.0": 0.738,
+   "35.0": 0.7664
+  },
+  "topic": {
+   "0.0": 0.5762,
+   "2.0": 0.6095,
+   "4.0": 0.613
+  },
+  "name": {
+   "0.0": 0.6165,
+   "4.0": 0.5908,
+   "5.0": 0.5759,
+   "6.0": 0.5623
+  },
+  "share": {
+   "0.0": 0.5466,
+   "0.026": 0.6982,
+   "1.0": 0.5777
+  },
+  "other_ctx_any": {
+   "0.0": 0.578,
+   "1.0": 0.5746
+  }
+ },
+ "production": {
+  "review": 462606,
+  "link": 129312,
+  "none": 77547
+ },
+ "production_by_stratum": {
+  "multi": {
+   "review": 107486,
+   "none": 36209,
+   "link": 1424
+  },
+  "single-2-5": {
+   "review": 150245,
+   "link": 63934,
+   "none": 4430
+  },
+  "single-26+": {
+   "none": 10380,
+   "review": 3171,
+   "link": 662
+  },
+  "single-6-25": {
+   "review": 43292,
+   "link": 8513,
+   "none": 4331
+  },
+  "single-initials": {
+   "review": 12165,
+   "none": 12126,
+   "link": 2135
+  },
+  "single-unique": {
+   "review": 101267,
+   "link": 45885,
+   "none": 2603
+  },
+  "single-unmeasured": {
+   "review": 44980,
+   "none": 7468,
+   "link": 6759
+  }
+ },
+ "finalize": {
+  "final_model": "fs",
+  "certified_addition_strata": [
+   "multi"
+  ],
+  "bound": 0.005,
+  "min_links": 300,
+  "rows": 591918,
+  "decisions": {
+   "review": 462606,
+   "link": 129312
+  },
+  "load": 1424,
+  "load_by_role_stratum": {
+   "reviewer|multi": 1424
+  },
+  "classifier_links_also_scorer_links": 113698,
+  "classifier_links_not_certified": 14190,
+  "scorer_links_in_classifier_review": 45467
+ }
+}

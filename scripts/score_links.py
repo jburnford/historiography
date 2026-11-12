@@ -1868,32 +1868,17 @@ def eval_block(T, th, pis, attrs):
     return out
 
 
-def decide2(args):
-    """round two: the configurations one change at a time (C0 round one; C1 audit pi; C2 + margin rule and undetected
-    duplicates not wrong; C3 + relational fields and prizes; C4 + collective passes), each calibrated on splits 1-2 and
-    evaluated on split 3; the last one writes the production decisions"""
+def clean_gold(db, cd, pv, srcs):
+    """round-two gold clean-up, shared by decide2 and train_link_classifier: merged gold keys to their survivors
+    (key-log cache replaced_by, read-only); gold rows whose key no longer agrees with the printed name get split -1
+    (dropped); undetected duplicates of the gold key (names agree, no two LC authorities) relabelled 2 (not wrong).
+    Changes cd.label and pv.gold / pv.split in place; returns the counts."""
     import numpy as np
-    import pandas as pd
-    t0 = time.time()
-    allw = json.load(open(S / 'weights-all.json'))
-    models = allw['models']
-    audit2 = json.load(open(S / 'audit-pi.json'))['by_stratum']
-    db = duck()
-    srcs = [str(S / 'positions.parquet')] + ([str(S / 'positions-extra.parquet')] if (S / 'positions-extra.parquet').exists() else [])
-    meta = db.execute(f"""SELECT pid, tbl, role, kind, year, route_a,
-            role = 'author' AND regexp_matches(coalesce(title, ''), '(?i)^\\s*review of|\\breviews?\\b|besprechung|rezension|reseñas?\\b|recensioni?\\b|comptes? rendus?')
-            AS review_record FROM read_parquet({srcs}, union_by_name=true) WHERE credited = '' OR gold_sel""").df()
-    meta['route_a'] = meta.route_a.fillna(False).astype(bool)
-    pv = read_pos("true")
-    pos_w = {p_: (w, tuple(x for x in (e or '').split('|') if x)) for p_, w, e in zip(pv.pid, pv.work, pv.ex)}
-    pv = pv[['pid', 'mode', 'split', 'gold', 'n_live', 'g_status', 'rule_state', 'rule_key', 'rule_branch', 'rule_drop_state',
-             'rule_drop_key', 'exact', 'capped', 'n_date_out', 'n_hard', 'imp_key']]
-    cd = read_pairs('true', ['pid', 'mode', 'key', 'label'] + list(FIELDS) + ['oa_tie'] + list(NET2))
+    L, W = _modules()
     # gold clean-up (round two): merged gold keys to their survivors (key-log cache replaced_by, read-only); gold rows whose
     # key no longer agrees with the printed name are dropped (counted); undetected duplicates of the gold key (names agree,
     # no two LC authorities) are not wrong
     import sqlite3
-    L, W = _modules()
     G = GRAPH
     con = sqlite3.connect(f"file:{ROOT / 'build/keylog-state.sqlite'}?mode=ro", uri=True)
     repl = dict(con.execute("SELECT key, replaced_by FROM keys WHERE type = 'person' AND replaced_by IS NOT NULL AND replaced_by <> ''").fetchall())
@@ -1935,6 +1920,33 @@ def decide2(args):
     gold_cleanup['relabelled_duplicate'] = int(((labs == 2) & (cd.label.values == 0)).sum())
     gold_cleanup['relabelled_right_after_merge'] = int(((labs == 1) & (cd.label.values != 1)).sum())
     cd['label'] = labs
+    return gold_cleanup
+
+
+def decide2(args):
+    """round two: the configurations one change at a time (C0 round one; C1 audit pi; C2 + margin rule and undetected
+    duplicates not wrong; C3 + relational fields and prizes; C4 + collective passes), each calibrated on splits 1-2 and
+    evaluated on split 3; the last one writes the production decisions"""
+    import numpy as np
+    import pandas as pd
+    t0 = time.time()
+    allw = json.load(open(S / 'weights-all.json'))
+    models = allw['models']
+    audit2 = json.load(open(S / 'audit-pi.json'))['by_stratum']
+    db = duck()
+    srcs = [str(S / 'positions.parquet')] + ([str(S / 'positions-extra.parquet')] if (S / 'positions-extra.parquet').exists() else [])
+    meta = db.execute(f"""SELECT pid, tbl, role, kind, year, route_a,
+            role = 'author' AND regexp_matches(coalesce(title, ''), '(?i)^\\s*review of|\\breviews?\\b|besprechung|rezension|reseñas?\\b|recensioni?\\b|comptes? rendus?')
+            AS review_record FROM read_parquet({srcs}, union_by_name=true) WHERE credited = '' OR gold_sel""").df()
+    meta['route_a'] = meta.route_a.fillna(False).astype(bool)
+    pv = read_pos("true")
+    pos_w = {p_: (w, tuple(x for x in (e or '').split('|') if x)) for p_, w, e in zip(pv.pid, pv.work, pv.ex)}
+    pv = pv[['pid', 'mode', 'split', 'gold', 'n_live', 'g_status', 'rule_state', 'rule_key', 'rule_branch', 'rule_drop_state',
+             'rule_drop_key', 'exact', 'capped', 'n_date_out', 'n_hard', 'imp_key']]
+    cd = read_pairs('true', ['pid', 'mode', 'key', 'label'] + list(FIELDS) + ['oa_tie'] + list(NET2))
+    L, W = _modules()
+    G = GRAPH
+    gold_cleanup = clean_gold(db, cd, pv, srcs)
     print('gold clean-up', gold_cleanup, flush=True)
     lab3 = cd.label.values == 3
     print('loaded', len(cd), len(pv), round(time.time() - t0), rss(), 'MB', flush=True)
