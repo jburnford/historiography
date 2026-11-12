@@ -81,3 +81,5 @@ summary label { font-weight: 400; font-size: 11px; color: var(--muted); display:
 .items svg { flex: none; position: relative; top: 2px; }
 button.moreb { font: inherit; font-size: 12px; margin: 4px 0 0 22px; padding: 2px 8px; border: 1px solid var(--line); background: var(--surface); color: var(--accent); border-radius: 5px; cursor: pointer; }
 .empty { color: var(--muted); padding: 40px; text-align: center; }
+/* credits under an edition role (edition editor, translator, introducer, series editor): not the person's own work */
+details[data-rel="editions_prepared"] summary, details[data-rel="edition_people"] summary { font-style: italic; color: var(--text-2); }

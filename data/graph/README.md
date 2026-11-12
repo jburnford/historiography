@@ -45,6 +45,10 @@ every node and edge type. In brief:
 | `author-works/volumes.csv.gz` | 105,602 | `scripts/export_work_containers.py export` | Volumes the chapters are in that the graph did not hold: id (`volume:<hash>` or `doi:`), title, year, ISBN, DOI, editors as printed, publisher, source, chapters, keyed contributors |
 | `work-containers.csv.gz` | 307,724 | the same | Keyed chapters (and works the source calls chapters) without a volume: container title, ISBN, DOI, editors, year, publisher, source, `proposed_kind`, `volume_work` (a graph work, or a volume in `author-works/volumes.csv.gz`), `volume_basis`, candidates |
 | `work-journals.csv.gz` | 343,942 | the same | Keyed article and other works without a journal: journal, ISSN, source (OpenAlex, ORCID, JSTOR, Crossref), `proposed_kind` |
+| `volume-editors.csv.gz`, `volume-editors-report.json` | 69,409 (2026-11-11) | `scripts/volume_editors.py export` | Printed editors of the volumes chapters are in (LC 2016 245 $c / 700 relators, Crossref book and chapter records): volume, position, printed name, source (lc / crossref), state (`exact` / `linked` / `credited`: agrees with a key-log or linked credit on the volume itself / `possible` / `ambiguous` / `none` / `held`: a list of more than six names), person key, candidates, basis |
+| `edition-roles.csv.gz` | 201,102 (2026-11-11) | `scripts/edition_roles.py` (report and audit in `data/identifiers/edition-roles-2026-11-11/`) | The role behind each AUTHORED and EDITED credit, read from the LC record: person, work, credit (authored / edited), evidence, source, role (author, volume-editor, author-editor, edition-editor, translator, introducer, series-editor, unknown, absent), basis, the LC main entry's key / LC authority / printed name, `author_new` |
+| `work-years.csv.gz` | 106,669 (2026-11-11) | `scripts/work_first_years.py` (report in `data/identifiers/work-years-2026-11-11/`) | First publication year of a work key dated by a reprint: key, year, `first_year` (all evidence), `first_year_catalogue` (catalogue evidence only), basis (LC notes, 008 reprint dates, LC and edition clusters, printed thesis years), sources, flags |
+| `edition-canonical-fixes.csv.gz` | 2,165 (2026-11-11) | the same | Canonical keys of the translation roll-up that are themselves translations while the original is known: cluster, current and proposed canonical, basis, original language and year, theses citing the current key (hand check 19 of 20) |
 
 The cited works become Work nodes keyed by their identifier with resolution `unkeyed`, unless the key log holds one of
 their identifiers (then the key). The build adds the thesis CITES edges (`source` `thesis-matched`) and three tables
@@ -119,12 +123,47 @@ through `scripts/graph_tables.py` like the other merged tables.
 state, basis) holds the foreword writers and series editors of the work-people table. They are not authors: they do
 not enter AUTHORED, COAUTHORED, the REVIEWED derivation or `author_candidates`.
 
+**Roles of credits, volume editors and first years (2026-11-12).** `authored.parquet` and `edited.parquet` have
+`role` and `role_basis` columns; the evidence of a row is never changed, the role qualifies it.
+- EDITED: the role from `edition-roles.csv.gz` (volume-editor, author-editor, edition-editor, translator, introducer,
+  series-editor; `unknown` when the table has none). Rows from `volume-editors.csv.gz` are `volume-editor`.
+- AUTHORED: `author`, unless `edition-roles.csv.gz` names translator, introducer, edition-editor, series-editor or
+  volume-editor, or `volume-editors.csv.gz` credits the person as the editor of that volume (ORCID "edited-book"
+  records filed as authorship; when LC names the person as the main entry the row stays `author`, counted in
+  `authored_volume_editor_kept_author_by_lc`). `role_basis` keeps the table's basis (for `author` rows with another
+  role in the table, `<role>:<basis>`, e.g. `absent:lc-main-entry-other;person-not-in-record`).
+- Credits with role edition-editor, translator, introducer or series-editor are someone else's work prepared by the
+  person: they do not count as citations of the person's own work (report `class_15_edition_roles`; the explorer lists
+  them as "Editions and translations they prepared"). volume-editor, author-editor, author and unknown count as before.
+- `volume-editors.csv.gz`: every row that is not `held` gives the volume node's `editors_printed` (where it had none);
+  `exact`, `linked` and `credited` rows become EDITED rows with `evidence = 'linked'`, source
+  `volume-editors:<lc|crossref>`, state, claim `volume-editors:<source>:<position>`; not for a (person, volume) that
+  edition-roles classes as series-editor or that is in CONTRIBUTED, and not where the person already has an AUTHORED
+  credit on the volume (that row gets role volume-editor instead). `possible` and `ambiguous` rows are
+  `author_candidates` with role `editor`. Report: `volume_editors_*` and the measure `volume_editors_series_risk`
+  (Crossref volume-editor credits of one person on 3+ volumes of one publisher).
+- `data/identifiers/edition-roles-2026-11-11/missing-authors.csv.gz`: the LC main entry of an edition-role work, keyed
+  but not credited, is an AUTHORED row (`evidence = 'linked'`, source `edition-roles:lc-main-entry`, state `exact`).
+- `data/identifiers/work-people-2026-11-11/lc-author-conflicts.csv.gz` (not audited): linked AUTHORED credits on a book
+  whose LC main entry is someone else and who is not in the LC record are demoted to `author_candidates` (reason
+  names the main entry); key-log credits stay and are counted (`lc_author_conflicts.keylog_open`).
+- `work-years.csv.gz` gives Work `first_year`, `first_year_catalogue`, `first_year_basis`; `year` is unchanged.
+- `edition-canonical-fixes.csv.gz`: a thesis or JSTOR citation of a fixed canonical key moves to the original (CITES
+  source thesis-edition / jstor-edition, `cited_as` the translation key, edition true unless the work is also cited
+  directly), the translation roll-up's EDITION_OF edges to the fixed key point to the original, and an EDITION_OF edge
+  (route `edition-canonical-fix:<basis>`) joins the two; a key with two proposals is skipped. Crossref CITES are not
+  rolled up and are left alone. Report: `edition_canonical_fix_*`.
+- `report.json` republishes classes 15 and 17 on each build (`class_15_edition_roles`, `class_17_reprint_years`) from
+  the loaded tables and the two reports. `linkage.corpus_rate_with_compilations` counts the compilation citations
+  once (the exported figure, kept as `corpus_rate_with_compilations_as_exported`, added 2,827 already matched rows).
+
 To refresh after the sources change:
 - **Dissertation citations:** key the corpus's new dissertations in the log, rerun `scripts/key_cited_works.py`, then `scripts/export_citations.py`.
 - **JSTOR:** rerun `scripts/export_jstor_citations.py`.
 - **Cited works (LC/OpenAlex/Crossref matches, Crossref metadata, journal metadata, translations):** rerun the matchers and `scripts/link_cited_work_authors.py`, then `scripts/export_cited_works.py`, then `scripts/link_work_people.py recheck-cited` (the export rewrites `authors.csv.gz` without the recheck).
 - **Works of keyed people, volumes, journals:** `scripts/author_works.py export`, then `scripts/export_work_containers.py export`.
 - **JSTOR-matched cited works:** rerun `scripts/key_jstor_cited_works_full.py`, then `scripts/export_jstor_cited_works.py`.
+- **Volume editors, edition roles, first years:** `scripts/volume_editors.py export`, `scripts/edition_roles.py` and `scripts/work_first_years.py` read a graph build; rerun them after the credits or the cites they read change, then rebuild.
 - **Crossref:** run `crossref_citations.py bridge`, apply its proposal, rebuild the graph, run `crossref_citations.py export`, then `git add` the parts.
 
 Example query (Benjamin Hoy's students, LadybugDB):

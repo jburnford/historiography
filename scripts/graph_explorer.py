@@ -29,8 +29,18 @@ OPTIONAL = ['edition_of',                               # translation/edition no
             'contributed']                              # foreword writers, series editors -> work (2026-11-11)
 # columns a newer build adds; an older build gets them as NULL so the explorer still builds against it
 ADDED = {'part_of': [('evidence', "'keylog'"), ('source', 'NULL'), ('volume_basis', 'NULL')],
-         'author_candidates': [('reason', 'NULL')]}
-WORK_ADDED = ('issn', 'journal_source', 'kind_proposed', 'isbn', 'editors_printed')
+         'author_candidates': [('reason', 'NULL')],
+         # the part a person had in the work (2026-11-12, data/graph/edition-roles.csv.gz, volume-editors.csv.gz)
+         'authored': [('role', "'author'"), ('role_basis', 'NULL')],
+         'edited': [('role', "'unknown'"), ('role_basis', 'NULL')]}
+WORK_ADDED = ('issn', 'journal_source', 'kind_proposed', 'isbn', 'editors_printed', 'first_year_basis')
+WORK_ADDED_INT = ('first_year', 'first_year_catalogue')
+# credits under which a person prepared someone else's work (an edition, a translation, an introduction, a series):
+# shown apart and never counted as citations of the person's own work (class 15, 2026-11-12)
+EDITION_ROLES = "('edition-editor','translator','introducer','series-editor')"
+NOT_AUTHOR = "('edition-editor','translator','introducer','series-editor','volume-editor')"
+ROLE_L = ("CASE e.role WHEN 'edition-editor' THEN 'edited this edition' WHEN 'translator' THEN 'translator' "
+          "WHEN 'introducer' THEN 'introduction' WHEN 'series-editor' THEN 'series editor' ELSE e.role END")
 # a thesis citing a translation or later edition is a CITES edge to the canonical work (edition = true unless it also
 # cites the work directly; cited_as = the node it was cited as); the canonical work counts the citation
 EDITION_D = ("CASE WHEN bool_or(e.edition) OR any_value(e.cited_as) IS NOT NULL THEN 'cited in translation or another edition'"
@@ -42,6 +52,8 @@ LINKED_D = ("CASE WHEN bool_or(e.evidence = 'keylog') THEN NULL ELSE "
             "'linked: ' || string_agg(DISTINCT CASE e.state WHEN 'exact' THEN 'by identifier' ELSE 'by rule' END || ' ('"
             " || CASE e.source WHEN 'lc' THEN 'LC' WHEN 'openalex' THEN 'OpenAlex' WHEN 'work-people:reviewer' THEN 'printed reviewer'"
             " WHEN 'work-people:jstor-author' THEN 'JSTOR author' WHEN 'work-people:author' THEN 'OpenAlex/Crossref author list'"
+            " WHEN 'volume-editors:crossref' THEN 'Crossref editor list' WHEN 'volume-editors:lc' THEN 'LC editor statement'"
+            " WHEN 'edition-roles:lc-main-entry' THEN 'LC main entry'"
             " ELSE e.source END || ')', '; ') || '; not a key-log claim' END")
 BOOK_D = "(SELECT label FROM nodes WHERE key = any_value(e.book)) || CASE WHEN bool_and(e.evidence = 'linked') THEN ' (linked)' ELSE '' END"
 POSSIBLE_D = ("'unconfirmed: ' || CASE WHEN any_value(e.reason) IS NOT NULL THEN any_value(e.reason) || ' -- not credited' "
@@ -64,8 +76,9 @@ CONTRIB_D = ("'contributor (' || string_agg(DISTINCT CASE e.basis WHEN 'lc-forew
 # `e` is the edge row, `o` the other node. Rows are grouped by the other node (n = number of edges to it).
 REL = {
     'person': [
-        ('authored', 'Works authored', 'authored', 'from', 'to', WORK_ROW_D),
-        ('edited', 'Works edited', 'edited', 'from', 'to', LINKED_D),
+        ('authored', 'Works authored', 'authored', 'from', 'to', WORK_ROW_D, f"coalesce(e.role, 'author') NOT IN {NOT_AUTHOR}"),
+        ('edited', 'Works edited', None, None, None, None),     # EDITED (not edition roles) + AUTHORED as volume editor
+        ('editions_prepared', 'Editions and translations they prepared', None, None, None, None),
         ('contributed', 'Forewords and series contributions', 'contributed', 'from', 'to', CONTRIB_D),
         ('supervised', 'Supervised theses', 'supervised', 'from', 'to', None),
         ('students', 'Students', 'advised', 'from', 'to', "(SELECT label FROM nodes WHERE key = any_value(e.thesis))"),
@@ -84,8 +97,10 @@ REL = {
         ('candidates', 'Unconfirmed candidates (not credited)', 'author_candidates', 'from', 'to', POSSIBLE_D),
     ],
     'work': [
-        ('authors', 'Authors', 'authored', 'to', 'from', LINKED_D),
-        ('editors', 'Editors', 'edited', 'to', 'from', LINKED_D),
+        ('authors', 'Authors', 'authored', 'to', 'from', LINKED_D, f"coalesce(e.role, 'author') NOT IN {NOT_AUTHOR}"),
+        ('editors', 'Editors', None, None, None, None),
+        ('edition_people', 'This edition prepared by (editors, translators, introductions, series editors)', None, None, None, None),
+        ('volume_editors', 'Editors of the volume it is in', None, None, None, None),
         ('contributors', 'Contributors (foreword, series editor)', 'contributed', 'to', 'from', CONTRIB_D),
         ('chapter_authors', 'Contributors (authors of its chapters)', None, None, None, None),
         ('supervisors', 'Supervisors', 'supervised', 'to', 'from', None),
@@ -136,12 +151,15 @@ def build():
         FROM '{G}/work.parquet' w
         LEFT JOIN (SELECT "to" k, count(*) n FROM e_cites_t GROUP BY 1) c ON c.k = w.key
         LEFT JOIN (SELECT "to" k, count(*) n FROM e_reviews_t GROUP BY 1) r ON r.k = w.key""")
-    # one row per (person, work) even when the key log holds two authored claims for it
-    db.execute("""CREATE TABLE person_w AS SELECT a."from" AS key, count(*) works, sum(w.cited) cited, sum(w.reviewed) reviewed
-        FROM (SELECT DISTINCT "from", "to" FROM e_authored_f) a JOIN work_w w ON w.key = a."to" GROUP BY 1""")
+    # one row per (person, work) even when the key log holds two authored claims for it; credits under an edition role
+    # (edition editor, translator, introducer, series editor) are not the person's own work (2026-11-12)
+    db.execute(f"""CREATE TABLE person_w AS SELECT a."from" AS key, count(*) works, sum(w.cited) cited, sum(w.reviewed) reviewed
+        FROM (SELECT DISTINCT "from", "to" FROM e_authored_f WHERE coalesce(role, 'author') NOT IN {EDITION_ROLES}) a
+        JOIN work_w w ON w.key = a."to" GROUP BY 1""")
     wcols = {r[0] for r in db.execute(f"DESCRIBE SELECT * FROM '{G}/work.parquet'").fetchall()}
-    wx = ', '.join(f'w.{c}' if c in wcols else f'NULL::VARCHAR AS {c}' for c in WORK_ADDED)
-    nx = ', '.join(f'NULL::VARCHAR AS {c}' for c in WORK_ADDED)
+    wx = ', '.join([f'w.{c}' if c in wcols else f'NULL::VARCHAR AS {c}' for c in WORK_ADDED]
+                   + [f'w.{c}' if c in wcols else f'NULL::INTEGER AS {c}' for c in WORK_ADDED_INT])
+    nx = ', '.join([f'NULL::VARCHAR AS {c}' for c in WORK_ADDED] + [f'NULL::INTEGER AS {c}' for c in WORK_ADDED_INT])
     db.execute(f"""CREATE TABLE nodes AS
         SELECT p.key, 'person' AS type, p.label, NULL::VARCHAR AS kind, NULL::INTEGER AS year, NULL::VARCHAR AS journal,
                p.resolution, p.anchors, coalesce(s.cited, 0) + coalesce(s.reviewed, 0) AS weight,
@@ -156,12 +174,15 @@ def build():
                (SELECT count(*) FROM e_awarded_by_t a WHERE a."to" = i.key), NULL, NULL, NULL, {nx}
           FROM '{G}/institution.parquet' i
         ORDER BY key""")
-    # a chapter's volume as one line: 'in <volume> (<year>), edited by <keyed editors, else editors as printed>'
-    db.execute("""CREATE TABLE vol_note AS
-        WITH eds AS (SELECT e."to" AS v, string_agg(DISTINCT p.label, ', ') AS names FROM e_edited_t e
+    # a chapter's volume as one line: 'in <volume> (<year>), edited by <credited editors>; editors as printed: <names>'
+    # (credited: EDITED other than edition roles, and AUTHORED credits that are volume editorships; 2026-11-12)
+    db.execute(f"""CREATE TABLE vol_note AS
+        WITH ed AS (SELECT "from", "to" FROM e_edited_t WHERE coalesce(role, 'unknown') NOT IN {EDITION_ROLES}
+                    UNION SELECT "from", "to" FROM e_authored_t WHERE role = 'volume-editor'),
+             eds AS (SELECT e."to" AS v, string_agg(DISTINCT p.label, ', ') AS names FROM ed e
                      JOIN nodes p ON p.key = e."from" GROUP BY 1)
         SELECT po."from" AS key, string_agg(DISTINCT 'in ' || v.label || coalesce(' (' || v.year || ')', '')
-               || coalesce(', edited by ' || coalesce(eds.names, v.editors_printed || ' (as printed)'), ''), '; ') AS note
+               || coalesce(', edited by ' || eds.names, '') || coalesce('; editors as printed: ' || v.editors_printed, ''), ' | ') AS note
         FROM e_part_of_f po JOIN nodes v ON v.key = po."to" LEFT JOIN eds ON eds.v = po."to"
         GROUP BY 1 ORDER BY 1""")
     db.execute("""CREATE TABLE search AS SELECT key, type, weight, strip_accents(lower(label)) AS s FROM nodes
@@ -224,9 +245,43 @@ class Graph:
 
     def group_sql(self, rel, key):
         """SQL yielding (other_key, n, detail) rows for one relation of one node."""
-        rid, _, table, me, other, detail = rel
+        rid, _, table, me, other, detail = rel[:6]
+        where = f' AND {rel[6]}' if len(rel) > 6 else ''
         if rid in ('editions', 'edition_of', 'candidates', 'contributed', 'contributors') and not self.has(table):
             return 'SELECT NULL k, 0 n, NULL d, 0 lk WHERE false'
+        if rid in ('edited', 'editors'):  # EDITED (not an edition role) and AUTHORED credits that are volume editorships
+            me, other = ('from', 'to') if rid == 'edited' else ('to', 'from')
+            side = 'f' if me == 'from' else 't'
+            return (f"""SELECT e."{other}" k, 1 n, concat_ws(' · ', {LINKED_D}, CASE WHEN bool_or(e.how = 'authored')
+                        THEN 'editor of the volume (the source record files it as authorship: ' || any_value(e.role_basis) || ')' END) d,
+                        bool_and(e.evidence = 'linked')::INT lk FROM (
+                        SELECT "from", "to", evidence, state, source, role_basis, 'edited' how FROM e_edited_{side}
+                         WHERE "{me}" = $k AND coalesce(role, 'unknown') NOT IN {EDITION_ROLES}
+                        UNION ALL SELECT "from", "to", evidence, state, source, role_basis, 'authored' FROM e_authored_{side}
+                         WHERE "{me}" = $k AND role = 'volume-editor') e GROUP BY 1""")
+        if rid in ('editions_prepared', 'edition_people'):    # edition editor, translator, introducer, series editor
+            me, other = ('from', 'to') if rid == 'editions_prepared' else ('to', 'from')
+            side = 'f' if me == 'from' else 't'
+            return (f"""SELECT e."{other}" k, 1 n, concat_ws(' · ', string_agg(DISTINCT {ROLE_L}, ', '), {LINKED_D},
+                        'not counted as a citation of their own work') d, bool_and(e.evidence = 'linked')::INT lk FROM (
+                        SELECT "from", "to", evidence, state, source, role FROM e_authored_{side}
+                         WHERE "{me}" = $k AND role IN {EDITION_ROLES}
+                        UNION ALL SELECT "from", "to", evidence, state, source, role FROM e_edited_{side}
+                         WHERE "{me}" = $k AND role IN {EDITION_ROLES}) e GROUP BY 1""")
+        if rid == 'volume_editors':       # a chapter's volume(s): credited editors, then unconfirmed candidates
+            cand = ("""UNION ALL SELECT ac."from", v.v, 'candidate', NULL, ac.source FROM v JOIN e_author_candidates_t ac
+                       ON ac."to" = v.v WHERE ac.role = 'editor'""" if self.has('author_candidates') else '')
+            return (f"""WITH v AS (SELECT DISTINCT "to" v FROM e_part_of_f WHERE "from" = $k),
+                        c AS (SELECT e."from", v.v, e.evidence, e.state, e.source FROM v JOIN e_edited_t e ON e."to" = v.v
+                               WHERE coalesce(e.role, 'unknown') NOT IN {EDITION_ROLES}
+                              UNION ALL SELECT e."from", v.v, e.evidence, e.state, e.source FROM v JOIN e_authored_t e
+                               ON e."to" = v.v WHERE e.role = 'volume-editor' {cand})
+                        SELECT c."from" k, count(DISTINCT c.v) n,
+                               string_agg(DISTINCT CASE WHEN c.evidence = 'candidate' THEN 'unconfirmed candidate (name match only; not credited): '
+                                          ELSE '' END || 'editor of ' || nv.label
+                                          || CASE WHEN c.evidence = 'linked' THEN ' (linked: ' || c.source || ')' ELSE '' END, '; ') d,
+                               bool_and(c.evidence <> 'keylog')::INT lk
+                        FROM c JOIN nodes nv ON nv.key = c.v GROUP BY 1""")
         if rid == 'coauthors':            # one row per pair; key-log works plus works resting on a linked credit
             cols = ("""works + CASE WHEN evidence = 'keylog' THEN linked_works ELSE 0 END n,
                        (works + CASE WHEN evidence = 'keylog' THEN linked_works ELSE 0 END) || ' works'
@@ -265,25 +320,25 @@ class Graph:
                        bool_and(a.evidence = 'linked')::INT lk
                        FROM e_part_of_t p JOIN e_authored_t a ON a."to" = p."from" WHERE p."to" = $k GROUP BY 1""")
         if rid == 'cited_by_people':      # people whose works cite this person's works (key-log and linked authors)
-            return ("""SELECT a2."from" k, count(DISTINCT c."from") n, count(DISTINCT c."from") || ' citing works'
+            return (f"""SELECT a2."from" k, count(DISTINCT c."from") n, count(DISTINCT c."from") || ' citing works'
                        || CASE WHEN bool_and(a2.evidence = 'linked') THEN ' (linked author credit)' ELSE '' END d,
                        bool_and(a2.evidence = 'linked')::INT lk
                        FROM e_authored_f a JOIN e_cites_t c ON c."to" = a."to" JOIN e_authored_t a2 ON a2."to" = c."from"
-                       WHERE a."from" = $k AND a2."from" <> $k GROUP BY 1""")
+                       WHERE a."from" = $k AND a2."from" <> $k AND coalesce(a.role, 'author') NOT IN {EDITION_ROLES} GROUP BY 1""")
         if rid == 'cited_by_works':       # distinct citing documents (theses, articles), not people
-            return ("""SELECT c."from" k, count(DISTINCT a."to") n, count(DISTINCT a."to") || ' of this person''s works cited' d
-                       FROM (SELECT DISTINCT "to" FROM e_authored_f WHERE "from" = $k) a JOIN e_cites_t c ON c."to" = a."to"
-                       GROUP BY 1""")
+            return (f"""SELECT c."from" k, count(DISTINCT a."to") n, count(DISTINCT a."to") || ' of this person''s works cited' d
+                       FROM (SELECT DISTINCT "to" FROM e_authored_f WHERE "from" = $k AND coalesce(role, 'author') NOT IN {EDITION_ROLES}) a
+                       JOIN e_cites_t c ON c."to" = a."to" GROUP BY 1""")
         if rid == 'cites_people':         # people whose works this person's works cite
-            return ("""SELECT a2."from" k, count(DISTINCT c."to") n, count(DISTINCT c."to") || ' works cited' d
+            return (f"""SELECT a2."from" k, count(DISTINCT c."to") n, count(DISTINCT c."to") || ' works cited' d
                        FROM e_authored_f a JOIN e_cites_f c ON c."from" = a."to" JOIN e_authored_t a2 ON a2."to" = c."to"
-                       WHERE a."from" = $k AND a2."from" <> $k GROUP BY 1""")
+                       WHERE a."from" = $k AND a2."from" <> $k AND coalesce(a2.role, 'author') NOT IN {EDITION_ROLES} GROUP BY 1""")
         side = 'f' if me == 'from' else 't'
         d = detail or 'NULL'
         # a person and a work once, even when the key log holds two claims for them (2026-11-11)
         n = '1' if table in ('authored', 'edited') else 'count(*)'
         lk = "bool_and(e.evidence = 'linked')::INT" if table in EVIDENCE_TABLES else '0'
-        return f'SELECT e."{other}" k, {n} n, {d} d, {lk} lk FROM e_{table}_{side} e WHERE e."{me}" = $k GROUP BY 1'
+        return f'SELECT e."{other}" k, {n} n, {d} d, {lk} lk FROM e_{table}_{side} e WHERE e."{me}" = $k{where} GROUP BY 1'
 
     def group(self, key, rel, offset=0, limit=12, sort='weight'):
         order = 'o.year DESC NULLS LAST, o.weight DESC' if sort == 'year' else 'g.n DESC, o.weight DESC, o.year DESC NULLS LAST'
@@ -301,13 +356,14 @@ class Graph:
     def node(self, key, limit=12, sort='weight'):
         r = self.cur().execute("""SELECT key, type, label, kind, year, journal, resolution, anchors, weight, works, cited, reviewed,
                                   kind_proposed, issn, journal_source, isbn, editors_printed,
-                                  (SELECT note FROM vol_note WHERE vol_note.key = nodes.key)
+                                  (SELECT note FROM vol_note WHERE vol_note.key = nodes.key),
+                                  first_year, first_year_catalogue, first_year_basis
                                   FROM nodes WHERE key = ?""", [key]).fetchone()
         if not r:
             return None
         n = dict(zip(['key', 'type', 'label', 'kind', 'year', 'journal', 'resolution', 'anchors', 'weight', 'works',
                       'cited', 'reviewed', 'kind_proposed', 'issn', 'journal_source', 'isbn', 'editors_printed',
-                      'in_volume'], r))
+                      'in_volume', 'first_year', 'first_year_catalogue', 'first_year_basis'], r))
         n['ids'] = ids(n.pop('anchors'))
         if n['type'] == 'work':          # citations that reached this work through a translation or another edition
             n['cited_edition'] = self.cur().execute(

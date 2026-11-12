@@ -78,6 +78,20 @@ is untracked) and writes to build/graph/ (git-ignored):
   (`linked`, source orcid-container / doi-container / author-works-container, `volume_basis`); keyed works get journal and
   issn from data/graph/work-journals.csv.gz where they had none (`journal_source` says from where) and `kind_proposed`
   where a matched record names another kind (`kind` is not changed).
+- 2026-11-12 (integration pass four): AUTHORED and EDITED carry `role` and `role_basis` (data/graph/edition-roles.csv.gz,
+  scripts/edition_roles.py): EDITED volume-editor / edition-editor / author-editor / translator / introducer /
+  series-editor / unknown; AUTHORED 'author' unless the table names translator, introducer, edition-editor,
+  series-editor or volume-editor, or data/graph/volume-editors.csv.gz credits the person as the volume's editor (ORCID
+  'edited-book' records filed as authorship). Credits with role edition-editor, translator, introducer or series-editor
+  are not citations of the person's own work (report `class_15_edition_roles`). volume-editors.csv.gz
+  (scripts/volume_editors.py) also gives `editors_printed` and EDITED rows with evidence linked (source
+  volume-editors:<source>; not for a series editor or contributor of the volume), possible editors as author_candidates
+  (role editor); the LC main entries of edition-role works (data/identifiers/edition-roles-2026-11-11/missing-authors)
+  are AUTHORED rows (source edition-roles:lc-main-entry); linked credits in
+  data/identifiers/work-people-2026-11-11/lc-author-conflicts.csv.gz are demoted to author_candidates (key-log ones
+  counted); works get `first_year`, `first_year_catalogue`, `first_year_basis` (data/graph/work-years.csv.gz; `year`
+  unchanged); data/graph/edition-canonical-fixes.csv.gz moves the thesis and JSTOR citations of a canonical key that is
+  a translation to the original and adds the EDITION_OF edge between them; report `class_17_reprint_years`.
 The key-log state comes from the SQLite cache (build/keylog-state.sqlite, scripts/keylog_snapshot.py; 2026-11-10),
 caught up to the log's last event first and then read in bulk, so the build no longer replays the whole log (10 GB);
 --replay replays it instead (the old path, for checking one against the other).
@@ -130,6 +144,23 @@ AUTHOR_WORKS = ROOT / 'data/graph/author-works'     # scripts/author_works.py (2
                                                     # the unkeyed volumes chapters are in
 WORK_CONTAINERS = ROOT / 'data/graph/work-containers.csv.gz'   # export_work_containers.py: chapter -> volume, proposed kind
 WORK_JOURNALS = ROOT / 'data/graph/work-journals.csv.gz'       # export_work_containers.py: journal, ISSN, proposed kind
+# 2026-11-12 (integration pass four):
+VOLUME_EDITORS = ROOT / 'data/graph/volume-editors.csv.gz'     # scripts/volume_editors.py: printed editors of the volumes
+                                                               # chapters are in (LC 2016, Crossref), linked to person keys
+EDITION_ROLES = ROOT / 'data/graph/edition-roles.csv.gz'       # scripts/edition_roles.py: the role behind each AUTHORED /
+                                                               # EDITED credit (author, volume-editor, edition-editor, ...)
+WORK_YEARS = ROOT / 'data/graph/work-years.csv.gz'             # scripts/work_first_years.py: first publication year
+EDITION_FIXES = ROOT / 'data/graph/edition-canonical-fixes.csv.gz'   # work_first_years.py: canonical keys that are
+                                                                     # translations while the original is known
+ER_DIR = ROOT / 'data/identifiers/edition-roles-2026-11-11'
+MISSING_AUTHORS = ER_DIR / 'missing-authors.csv.gz'            # the LC main entry of an edition-role work, keyed: AUTHORED
+LC_CONFLICTS = ROOT / 'data/identifiers/work-people-2026-11-11/lc-author-conflicts.csv.gz'   # authored credits on a book
+                                                               # whose LC main entry is someone else (not audited)
+WY_REPORT = ROOT / 'data/identifiers/work-years-2026-11-11/report.json'
+# roles under which a credit is not a citation of the person's own work (class 15): they prepared someone else's work
+EDITION_ROLE_SET = ('edition-editor', 'translator', 'introducer', 'series-editor')
+# AUTHORED rows keep role 'author' unless edition-roles names one of these (or the volume-editors table credits them)
+AUTHORED_ROLES = EDITION_ROLE_SET + ('volume-editor',)
 # volume links (PART_OF, evidence linked) loaded by basis: exact title (one candidate), the book DOI, one of several
 # title candidates chosen by its EDITED credits or LCCN, the main title (loaded with its basis, to be audited), and a
 # new unkeyed volume made from the chapter's own container record. Never ':held' (two or more candidates left).
@@ -772,6 +803,230 @@ def work_facts(state, types, wi, report):
                 report[f"kind_proposed|journals|{w['kind']}->{r['proposed_kind']}"] += 1
 
 
+def volume_editors(state, types, resolve, wi, report):
+    """data/graph/volume-editors.csv.gz (2026-11-12): editors_printed on the volume node for every row that is not
+    `held` (when the node has none); exact, linked and credited rows as candidate EDITED rows (evidence linked, source
+    'volume-editors:<source>'; filtered later against AUTHORED, series editors and contributors); possible and
+    ambiguous rows as author_candidates (role 'editor'). Returns (rows, candidate rows, raw volume id per row)."""
+    names, linked, cands, seen = defaultdict(list), [], {}, set()
+
+    def one(name):
+        ks = [k for k in state.lookup(name) if types.get(k) == 'person'] if name else []
+        return ks[0] if len(ks) == 1 else None
+    for r in read_rows(VOLUME_EDITORS):
+        w = resolve(r['volume'])
+        if not w:
+            report['volume_editors_volume_unresolved'] += 1
+            continue
+        st = r['state']
+        if st != 'held':                # held: a list of more than six names (a board or the contributors)
+            names[w].append(r['printed_name'])
+        if st in ('exact', 'linked', 'credited'):
+            ks = {k for x in r['person_key'].split(';') if (k := one(x))}
+            if len(ks) != 1:
+                report['volume_editors_person_unresolved'] += 1
+                continue
+            k = ks.pop()
+            if (k, w) not in seen:
+                seen.add((k, w))
+                linked.append({'from': k, 'to': w, 'claim': f"volume-editors:{r['source']}:{r['position']}",
+                               'resolution': 'linked', 'source': f"volume-editors:{r['source']}", 'state': st,
+                               'role': 'volume-editor', 'role_basis': f"volume-editors:{r['source']}:{st}",
+                               'vol_id': r['volume']})
+        elif st in ('possible', 'ambiguous'):
+            cs = sorted({k for c in r['candidates'].split(';') if (k := one(c))})
+            for k in cs:
+                cands.setdefault((k, w), {'from': k, 'to': w, 'n_candidates': len(cs), 'signals': None,
+                                          'source': f"volume-editors:{r['source']}", 'role': 'editor',
+                                          'reason': f"printed volume editor '{r['printed_name']}': "
+                                                    + ('the sole name-compatible person, no confirming fact' if len(cs) == 1
+                                                       else f'one of {len(cs)} name-compatible people')})
+    for w, ns in names.items():
+        node = wi.get(w)
+        if node is not None and not node.get('editors_printed'):
+            node['editors_printed'] = '; '.join(dict.fromkeys(ns))
+            report['volume_editors_printed_set'] += 1
+    report['volume_editors_rows_exact_linked_credited'] = len(linked)
+    report['volume_editors_candidate_rows'] = len(cands)
+    return linked, list(cands.values())
+
+
+def edition_roles():
+    """(person, work, credit) -> (role, basis) from data/graph/edition-roles.csv.gz; where the key log has two claims
+    under different evidence and the table two rows, a specific role wins over 'unknown' / 'absent'."""
+    out = {}
+    for r in read_rows(EDITION_ROLES):
+        k = (r['person'], r['work'], r['credit'])
+        old = out.get(k)
+        if old is None or (old[0] in ('unknown', 'absent') and r['role'] not in ('unknown', 'absent')):
+            out[k] = (r['role'], r['basis'] or None)
+    return out
+
+
+def work_years(wi, resolve, report):
+    """first_year (earliest evidence: LC notes, reprint 008, edition clusters, printed thesis years),
+    first_year_catalogue (catalogue evidence only) and first_year_basis from data/graph/work-years.csv.gz; `year` is
+    not changed."""
+    for r in read_rows(WORK_YEARS):
+        if not r['first_year'] and not r['first_year_catalogue']:
+            continue
+        w = wi.get(r['key'])
+        if w is None:
+            n = resolve(r['key'])
+            w = wi.get(n) if n else None
+        if w is None:
+            report['work_years_unresolved'] += 1
+            continue
+        y = lambda v: int(v[:4]) if v[:4].isdigit() else None
+        w['first_year'], w['first_year_catalogue'], w['first_year_basis'] = y(r['first_year']), y(r['first_year_catalogue']), r['basis'] or None
+        report['work_years_set'] += 1
+        if w['first_year'] is not None and w['first_year'] != w['year']:
+            report['work_years_first_year_differs'] += 1
+
+
+def canonical_fixes(state, types, cited_key, report):
+    """data/graph/edition-canonical-fixes.csv.gz: current canonical work -> proposed canonical (the original). A
+    current key with two proposals is skipped; chains (a proposal that is itself a current key) are followed."""
+    def work(name):
+        if name in cited_key:
+            return cited_key[name]
+        ks = [k for k in state.lookup(name) if types.get(k) == 'work']
+        return ks[0] if len(ks) == 1 else None
+    props = defaultdict(set)
+    rows = {}
+    for r in read_rows(EDITION_FIXES):
+        a, b = work(r['current_canonical']), work(r['proposed_canonical'])
+        if not a or not b or a == b:
+            report['edition_canonical_fixes_unresolved'] += 1
+            continue
+        props[a].add(b)
+        rows.setdefault(a, r)
+    fix = {}
+    for a, bs in props.items():
+        if len(bs) > 1:
+            report['edition_canonical_fixes_skipped_two_proposals'] += 1
+            continue
+        fix[a] = next(iter(bs))
+    for a in list(fix):                     # follow chains to the end (bounded)
+        b, n = fix[a], 0
+        while b in fix and n < 10 and fix[b] != a:
+            b, n = fix[b], n + 1
+        fix[a] = b
+    report['edition_canonical_fixes_loaded'] = len(fix)
+    return fix, rows
+
+
+def apply_canonical_fixes(cites, cited_as, fix, report):
+    """Move thesis and JSTOR citations of a fixed canonical work (a translation) to the original, as the roll-up of
+    translations does: thesis-edition / jstor-edition source, edition true unless the citing work also cites the
+    original directly, cited_as = the translation key. Crossref edges (no roll-up) are left alone."""
+    move = [(a, b) for (a, b) in cites if b in fix]
+    for a, b in move:
+        v = cites.pop((a, b))
+        ca = cited_as.pop((a, b), set())
+        t = fix[b]
+        if a == t:
+            report['edition_canonical_fix_self_cite_dropped'] += 1
+            continue
+        src = v >> 1
+        nsrc = (16 if src & THESIS_BITS else 0) | (64 if src & (2 | 32 | 64) else 0)
+        old = cites.get((a, t))
+        report['edition_canonical_fix_cites_moved' if old is None else 'edition_canonical_fix_cites_merged'] += 1
+        if src & THESIS_BITS:
+            report['edition_canonical_fix_thesis_cites'] += 1
+        cites[(a, t)] = cites_code(True, nsrc, old)
+        cited_as.setdefault((a, t), set()).update(ca | {b})
+
+
+def series_editor_measure(ve_rows, publisher_of, er, contributed, report):
+    """Crossref editor lists sometimes name series editors. Counted measure: people linked as volume editor through
+    Crossref on 3+ volumes of one publisher, and how many of them edition-roles or CONTRIBUTED already flag as series
+    editor somewhere."""
+    flagged = {p for (p, w, c), (role, _) in er.items() if role == 'series-editor'} | {r['from'] for r in contributed
+                                                                                       if (r['basis'] or '').startswith('series')}
+    by = defaultdict(set)
+    nopub = 0
+    for r in ve_rows:
+        if r['source'] != 'volume-editors:crossref':
+            continue
+        pub = publisher_of.get(r['vol_id']) or publisher_of.get(r['to'])
+        if not pub:                 # no publisher named: the DOI's registrant and ISBN publisher block (10.1515/9780295...)
+            m = re.match(r'doi:(10\.\d+)/(97[89]\d{4})', r['vol_id'])
+            pub = f'doi-block {m.group(1)}/{m.group(2)}' if m else None
+        if not pub:
+            nopub += 1
+            continue
+        by[r['from'], pub.strip().lower()].add(r['to'])
+    many = {k: v for k, v in by.items() if len(v) >= 3}
+    people = {p for p, _ in many}
+    report['volume_editors_series_risk'] = dict(
+        note=('Crossref volume-editor credits (EDITED evidence linked, source volume-editors:crossref) of one person on 3+ '
+              'volumes of one publisher (publisher from author-works/volumes.csv.gz and work-containers.csv.gz); '
+              'flagged = also a series editor in edition-roles or CONTRIBUTED. Not audited'),
+        crossref_rows=sum(1 for r in ve_rows if r['source'] == 'volume-editors:crossref'),
+        crossref_rows_no_publisher=nopub,
+        person_publisher_pairs_3plus=len(many), people_3plus=len(people),
+        volumes_3plus=sum(len(v) for v in many.values()),
+        people_3plus_flagged_series_editor=len(people & flagged),
+        top=sorted(([p, pub, len(v)] for (p, pub), v in many.items()), key=lambda x: -x[2])[:15])
+
+
+def class_measures(out, report):
+    """Classes 15 and 17 (ARCHITECTURE.md §8), republished each build from the loaded tables (DuckDB on the Parquet
+    just written) and from the edition-roles and work-years reports."""
+    import duckdb
+    db = duckdb.connect()
+    db.execute(f"SET memory_limit = '3GB'; SET threads = 3; SET temp_directory = '{out}/duckdb-tmp'; SET preserve_insertion_order = false")
+    ex = "('" + "','".join(EDITION_ROLE_SET) + "')"
+    db.execute(f"""CREATE TABLE tw AS SELECT DISTINCT "from" src, "to" dst FROM '{out}/cites.parquet'
+                   WHERE source LIKE '%thesis%'""")
+    db.execute(f"""CREATE TABLE cred AS SELECT "from" AS person, "to" AS work, 'authored' AS credit, role FROM '{out}/authored.parquet'
+                   UNION ALL SELECT "from", "to", 'edited', role FROM '{out}/edited.parquet'""")
+    db.execute(f"""CREATE TABLE pt AS SELECT c.person, t.src, bool_or(c.role NOT IN {ex}) own,
+                   bool_or(c.credit = 'authored' AND c.role NOT IN {ex}) au FROM cred c JOIN tw t ON t.dst = c.work GROUP BY 1, 2""")
+    db.execute("CREATE TABLE rk AS SELECT person, count(*) n, rank() OVER (ORDER BY count(*) DESC) r FROM pt GROUP BY 1")
+    c15 = dict(note=('cited people = person keys with a credit on a work a thesis cites (AUTHORED and EDITED, any evidence); '
+                     'counting = credits whose role is not edition-editor, translator, introducer or series-editor (those '
+                     'prepared someone else\'s work and are not citations of the person\'s own)'))
+    c15['cited_people_all_credits'], c15['cited_people_counting'] = db.execute(
+        'SELECT count(DISTINCT person), count(DISTINCT person) FILTER (WHERE own) FROM pt').fetchone()
+    c15['person_thesis_pairs_all'], c15['person_thesis_pairs_counting'] = db.execute(
+        'SELECT count(*), count(*) FILTER (WHERE own) FROM pt').fetchone()
+    c15['top500_half_or_more_via_edition_roles'] = db.execute("""SELECT count(*) FROM (SELECT p.person, count(*) n,
+        count(*) FILTER (WHERE NOT own) lost FROM pt p JOIN rk USING (person) WHERE rk.r <= 500 GROUP BY 1) WHERE lost >= 0.5 * n""").fetchone()[0]
+    c15['top500_half_or_more_not_authored_counting'] = db.execute("""SELECT count(*) FROM (SELECT p.person, count(*) n,
+        count(*) FILTER (WHERE NOT au) e FROM pt p JOIN rk USING (person) WHERE rk.r <= 500 GROUP BY 1) WHERE e >= 0.5 * n""").fetchone()[0]
+    c15['credits_by_role'] = {f'{a}:{b}': n for a, b, n in db.execute(
+        'SELECT credit, role, count(*) FROM cred GROUP BY 1, 2 ORDER BY 1, 3 DESC').fetchall()}
+    try:
+        er = json.loads((ER_DIR / 'report.json').read_text())
+        c15['edition_roles_report'] = {k: er.get(k) for k in ('top500_half_or_more_via_edition_roles',
+                                       'top500_half_or_more_via_any_edited_before', 'theses_with_edition_credit_pairs',
+                                       'proposed_authored_rows', 'lc_author_conflicts')}
+        c15['edition_roles_report']['audit'] = {k: er.get('audit', {}).get(k) for k in
+                                                ('edition_editor_precision_final', 'volume_editor_precision_final')}
+    except (OSError, ValueError):
+        pass
+    db.execute(f"""CREATE TABLE wy AS SELECT key, year, first_year FROM '{out}/work.parquet'""")
+    c17 = dict(note='thesis citations (thesis CITES pairs) of a work dated after the thesis year + 1, by the key year and by '
+                    'coalesce(first_year, year)')
+    c17['thesis_pairs_dated'], c17['after_thesis_by_year'], c17['after_thesis_by_first_year'] = db.execute("""
+        SELECT count(*), count(*) FILTER (WHERE w.year > t.year + 1),
+               count(*) FILTER (WHERE coalesce(w.first_year, w.year) > t.year + 1)
+        FROM tw JOIN wy t ON t.key = tw.src JOIN wy w ON w.key = tw.dst WHERE t.year IS NOT NULL AND w.year IS NOT NULL""").fetchone()
+    try:
+        wy = json.loads(WY_REPORT.read_text())
+        c17['work_years_report'] = dict(anachronisms={k: v for k, v in wy.get('anachronisms', {}).items() if k != 'by_cause'},
+                                        canonical_fixes={k: v for k, v in wy.get('canonical_fixes', {}).items()
+                                                         if not k.startswith('veyne')})
+    except (OSError, ValueError):
+        pass
+    db.close()
+    shutil.rmtree(Path(out) / 'duckdb-tmp', ignore_errors=True)
+    report['class_15_edition_roles'] = c15
+    report['class_17_reprint_years'] = c17
+
+
 def defect_counts(works, rels, wp_linked, cites):
     """Gap measures each rebuild should shrink (owner 2026-11-11: keep issues visible; defect classes in
     data/identifiers/work-people-2026-11-11/defect-classes.json)."""
@@ -784,7 +1039,7 @@ def defect_counts(works, rels, wp_linked, cites):
     for r in wp_linked:
         lauth[r['to']].add(r['from'])
     kind = {w['key']: w['kind'] for w in works}
-    jstor_citing = {a for (a, b), v in cites.items() if (v >> 1) & (2 | 32)}
+    jstor_citing = {a for (a, b), v in cites.items() if (v >> 1) & (2 | 32 | 64)}   # jstor-edition too (2026-11-12)
     reviews_of = {r['from'] for r in rels['REVIEWS']}
     printed = {w['key'] for w in works if w['reviewer_names']}
     keyed = [w for w in works if w['resolution'] != 'unkeyed']
@@ -839,8 +1094,12 @@ def main():
     aw_files = aw_files if all(p.exists() for p in aw_files) else []
     fact_files = [p for p in (WORK_CONTAINERS, WORK_JOURNALS) if p.exists()]
     fact_files = fact_files if len(fact_files) == 2 else []
+    # 2026-11-12: volume editors, edition roles, first years, canonical fixes, missing LC authors, LC author conflicts
+    pass4 = {p: p.exists() for p in (VOLUME_EDITORS, EDITION_ROLES, WORK_YEARS, EDITION_FIXES, MISSING_AUTHORS, LC_CONFLICTS)}
+    pass4_files = [p for p, ok in pass4.items() if ok]
     require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS) if p.exists()] + crossref_parts + article_parts
-                    + ([] if args.untracked_ok else cited_files + edition_files + jc_files + wp_files + aw_files + fact_files))
+                    + ([] if args.untracked_ok else cited_files + edition_files + jc_files + wp_files + aw_files + fact_files
+                       + pass4_files))
     state = ReplayView(args.state) if args.replay else CacheView(args.state)
     OUT.mkdir(parents=True, exist_ok=True)
     report = Counter()
@@ -892,6 +1151,10 @@ def main():
                                          else ({}, {}, [], set()))
     if fact_files:                  # journal, ISSN, proposed kind of keyed works (export_work_containers.py)
         work_facts(state, types, wi, report)
+    if pass4[WORK_YEARS]:           # first publication year beside `year` (2026-11-12)
+        work_years(wi, resolve, report)
+    # volume editors (2026-11-12): editors_printed on the node now; the EDITED rows are merged with the other credits
+    ve_rows, ve_cands = volume_editors(state, types, resolve, wi, report) if pass4[VOLUME_EDITORS] else ([], [])
     del wi
     s, L = pa.string(), pa.list_(pa.string())
     report['Person'] = write('person', people, pa.schema([('key', s), ('label', s), ('resolution', s), ('anchors', L)] +
@@ -900,7 +1163,8 @@ def main():
                                                     ('kind', s), ('lccn', s), ('year', pa.int32()),
                                                     ('reviewer_names', L), ('journal', s), ('issn', s),
                                                     ('journal_source', s), ('kind_proposed', s), ('isbn', s),
-                                                    ('editors_printed', s)]))
+                                                    ('editors_printed', s), ('first_year', pa.int32()),
+                                                    ('first_year_catalogue', pa.int32()), ('first_year_basis', s)]))
     report['Institution'] = write('institution', insts, pa.schema([('key', s), ('label', s), ('resolution', s),
                                                                   ('anchors', L), ('ror', s)]))
 
@@ -955,6 +1219,99 @@ def main():
         skip = {(r['from'], r['to']) for r in possible_authors} | {(r['from'], r['to']) for r in linked['AUTHORED']}
         possible_authors = possible_authors + [r for r in aw_cands if (r['from'], r['to']) not in skip]
         del cw_have, skip
+    # 2026-11-12 (integration pass four): roles of credits, missing LC main-entry authors, LC author conflicts, volume
+    # editors. Key-log rows are never dropped or rewritten: the role qualifies a credit, the evidence stays.
+    er = edition_roles() if pass4[EDITION_ROLES] else {}
+    linked = dict(linked)
+    linked['AUTHORED'] = list(linked.get('AUTHORED', []))
+    linked['EDITED'] = list(linked.get('EDITED', []))
+
+    def person1(name):
+        ks = [k for k in state.lookup(name) if types.get(k) == 'person'] if name else []
+        return ks[0] if len(ks) == 1 else None
+    if pass4[MISSING_AUTHORS]:      # the LC main entry of an edition-role work, keyed but not credited (edition_roles.py)
+        have = {(r['from'], r['to']) for r in rels['AUTHORED']} | {(x['from'], x['to']) for x in linked['AUTHORED']}
+        add = []
+        for r in read_rows(MISSING_AUTHORS):
+            k, w = person1(r['person']), resolve(r['work'])
+            if not k or not w:
+                report['missing_authors_unresolved'] += 1
+                continue
+            if (k, w) in have:
+                report['missing_authors_already_credited'] += 1
+                continue
+            have.add((k, w))
+            add.append({'from': k, 'to': w, 'claim': f"edition-roles:lc-main-entry:{r['lcnaf']}", 'resolution': 'linked',
+                        'source': 'edition-roles:lc-main-entry', 'state': 'exact', 'role': 'author',
+                        'role_basis': 'lc-main-entry'})
+        report['missing_authors_AUTHORED_added'] = len(add)
+        linked['AUTHORED'] += add
+        del have, add
+    if pass4[LC_CONFLICTS]:         # a linked authored credit on a book whose LC main entry is someone else: a candidate
+        conf, open_keylog = {}, 0
+        for r in read_rows(LC_CONFLICTS):
+            if r['evidence'] != 'linked':
+                open_keylog += 1
+                continue
+            k, w = person1(r['person']), resolve(r['work'])
+            if k and w:
+                conf[k, w] = r
+        keep, dem = [], []
+        for x in linked['AUTHORED']:
+            (dem if (x['from'], x['to']) in conf else keep).append(x)
+        linked['AUTHORED'] = keep
+        pa_have = {(r['from'], r['to']) for r in possible_authors}
+        for x in dem:
+            r = conf[x['from'], x['to']]
+            if (x['from'], x['to']) not in pa_have:
+                possible_authors.append({'from': x['from'], 'to': x['to'], 'n_candidates': 1, 'signals': r['basis'] or None,
+                                         'source': x['source'], 'role': 'author',
+                                         'reason': f"linked credit ({x['source']}) demoted: the LC main entry is "
+                                                   f"{r['lc_main_entry'] or 'another person'} and this person is not in the LC record"})
+        report['lc_author_conflicts'] = dict(
+            note=('data/identifiers/work-people-2026-11-11/lc-author-conflicts.csv.gz (not audited): linked credits demoted to '
+                  'author_candidates; key-log credits left as they are (an open measure)'),
+            linked_in_table=len(conf), linked_demoted=len(dem), keylog_open=open_keylog)
+        del keep, dem, pa_have, conf
+    ve_auth_role, ve_loaded = {}, []
+    if ve_rows or ve_cands:         # volume editors: EDITED rows, unless the pair is a series editorship, a contributor,
+        # or an AUTHORED credit (then the AUTHORED row gets role volume-editor: ORCID 'edited-book' records)
+        auth_pairs = {(r['from'], r['to']) for r in rels['AUTHORED']} | {(x['from'], x['to']) for x in linked['AUTHORED']}
+        ed_keylog = {(r['from'], r['to']) for r in rels['EDITED']}
+        series = {(p, w) for (p, w, c), (role, _) in er.items() if role == 'series-editor'}
+        contrib = {(r['from'], r['to']) for r in contributed}
+        ed_have = {(x['from'], x['to']) for x in linked['EDITED']}
+        for r in ve_rows:
+            p = (r['from'], r['to'])
+            if p in ed_keylog:
+                report['volume_editors_already_keylog_edited'] += 1
+            elif p in series or p in contrib:
+                report['volume_editors_skipped_series_editor' if p in series else 'volume_editors_skipped_contributor'] += 1
+            elif p in auth_pairs:
+                ve_auth_role.setdefault(p, r['role_basis'])
+                report[f"volume_editors_on_authored|{r['state']}"] += 1
+            elif p in ed_have:
+                report['volume_editors_already_linked_edited'] += 1
+            else:
+                ed_have.add(p)
+                ve_loaded.append(r)
+        linked['EDITED'] += ve_loaded
+        report['volume_editors_EDITED_added'] = len(ve_loaded)
+        # a person already listed as a candidate author of the volume is listed again as candidate editor (role editor)
+        skip = {(r['from'], r['to']) for r in possible_authors if r.get('role') == 'editor'} | auth_pairs | ed_keylog | ed_have
+        add = [r for r in ve_cands if (r['from'], r['to']) not in skip]
+        report['volume_editors_candidates_added'] = len(add)
+        possible_authors = possible_authors + add
+        del auth_pairs, ed_keylog, series, contrib, ed_have, skip, add, ve_rows, ve_cands
+        publisher_of = {}
+        for r in read_rows(AUTHOR_WORKS / 'volumes.csv.gz'):
+            if r['publisher']:
+                publisher_of[r['id']] = r['publisher']
+        for r in read_rows(WORK_CONTAINERS):
+            if r['container_publisher'] and r['volume_work']:
+                publisher_of.setdefault(r['volume_work'], r['container_publisher'])
+        series_editor_measure(ve_loaded, publisher_of, er, contributed, report)
+        del publisher_of
     for name in ('SUPERVISED', 'PUBLISHED_AS', 'REVIEWS'):
         report[name] = write(name.lower(), rels[name], rel_schema)
     # PART_OF: the key log's chapter -> volume claims (evidence keylog) and the volume links of 2026-11-11 (evidence
@@ -972,15 +1329,52 @@ def main():
     # one edge type per relation (owner, 2026-11-11): AUTHORED and EDITED carry `evidence` -- 'keylog' for the key
     # log's claims, 'linked' for rule/identifier credits outside it (source and state say which). Identity scripts read
     # evidence = 'keylog' only; the linked rows never feed identity work.
-    ev_schema = pa.schema([('from', s), ('to', s), ('claim', s), ('resolution', s), ('evidence', s), ('source', s), ('state', s)])
+    # role and role_basis (2026-11-12): the part a person had in the work. EDITED: edition-roles (default 'unknown';
+    # volume-editors rows 'volume-editor'); AUTHORED: 'author' unless edition-roles names translator, introducer,
+    # edition-editor, series-editor or volume-editor, or the volume-editors table credits the person as editor of that
+    # volume (ORCID 'edited-book' records credited as authorship).
+    ev_schema = pa.schema([('from', s), ('to', s), ('claim', s), ('resolution', s), ('evidence', s), ('source', s), ('state', s),
+                           ('role', s), ('role_basis', s)])
+    role_count = Counter()
+
+    def role_of(name, r):
+        f, t = r['from'], r['to']
+        if name == 'EDITED':
+            if r.get('role'):
+                return r['role'], r.get('role_basis')
+            x = er.get((f, t, 'edited'))
+            return (x[0], x[1]) if x else ('unknown', None)
+        x = er.get((f, t, 'authored'))
+        if x and x[0] in AUTHORED_ROLES:
+            return x
+        vb = ve_auth_role.get((f, t))
+        if vb:
+            if x and x[0] == 'author':      # the LC main entry is the person: kept as author, counted
+                role_count['authored_volume_editor_kept_author_by_lc'] += 1
+                return x
+            return 'volume-editor', vb
+        if r.get('role'):
+            return r['role'], r.get('role_basis')
+        return 'author', (f'{x[0]}:{x[1]}' if x and x[0] != 'author' else (x[1] if x else None))
     for name in ('AUTHORED', 'EDITED'):
         keyed = {(r['from'], r['to']) for r in rels[name]}
         lrows = [r for r in linked.get(name, []) if (r['from'], r['to']) not in keyed]
         report[f'{name}_linked_dropped_as_in_keylog'] = len(linked.get(name, [])) - len(lrows)
-        rows_ = [dict(r, evidence='keylog', source=None, state=None) for r in rels[name]] + [dict(r, evidence='linked') for r in lrows]
+        rows_ = []
+        for ev, src in (('keylog', rels[name]), ('linked', lrows)):
+            for r in src:
+                role, basis = role_of(name, r)
+                role_count[f'{name}|{ev}|{role}'] += 1
+                rows_.append({'from': r['from'], 'to': r['to'], 'claim': r['claim'], 'resolution': r['resolution'],
+                              'evidence': ev, 'source': r.get('source') if ev == 'linked' else None,
+                              'state': r.get('state') if ev == 'linked' else None, 'role': role, 'role_basis': basis})
         report[name] = write(name.lower(), rows_, ev_schema)
         report[f'{name}_by_evidence'] = dict(keylog=len(rels[name]), linked=len(lrows))
+        report[f'{name}_by_role'] = {k.split('|', 1)[1]: v for k, v in sorted(role_count.items()) if k.startswith(name + '|')}
         del rows_
+    report['authored_volume_editor_kept_author_by_lc'] = role_count['authored_volume_editor_kept_author_by_lc']
+    report['edition_roles_rows_loaded'] = len(er)
+    del er
     keyed_pairs = {name: {(x['from'], x['to']) for x in rels[name]} for name in ('AUTHORED', 'EDITED')}
     linked = {name: [r for r in linked.get(name, []) if (r['from'], r['to']) not in keyed_pairs[name]] for name in ('AUTHORED', 'EDITED')}
     del keyed_pairs
@@ -1216,7 +1610,13 @@ def main():
             thesis_cites_rate=round(thesis_pairs / corpus['citations'], 4),
             corpus_rows_matched=corpus['matched_after'], corpus_rate=corpus['rate_after'],
             corpus_rate_before=corpus['rate_before'],
-            corpus_rate_with_compilations=corpus.get('rate_with_compilations'),
+            # export_cited_works' rate_with_compilations added every compilation row, also the 2,827 already matched;
+            # the per-kind with_compilations counts are right (matched or a compilation, once), so their sum is used
+            corpus_rate_with_compilations=(round(sum(v['with_compilations'] for v in corpus['by_kind'].values())
+                                                 / corpus['citations'], 4) if corpus.get('by_kind') else None),
+            corpus_rows_with_compilations=(sum(v['with_compilations'] for v in corpus['by_kind'].values())
+                                           if corpus.get('by_kind') else None),
+            corpus_rate_with_compilations_as_exported=corpus.get('rate_with_compilations'),
             corpus_moved_to_canonical=corpus.get('moved_citations'),
             corpus_by_kind={k: v['rate_after'] for k, v in corpus.get('by_kind', {}).items()},
             corpus_rate_brazil=corpus.get('by_country', {}).get('BR', {}).get('rate_after'))
@@ -1265,11 +1665,29 @@ def main():
             else:
                 report['jstor_matched_cites_unresolved'] += 1
     cites_schema = pa.schema([('from', s), ('to', s), ('edition', pa.bool_()), ('source', s), ('cited_as', s)])
+    # canonical fixes (2026-11-12): a canonical work that is itself a translation while the original is known; its thesis
+    # and JSTOR citations move to the original (as the translation roll-up) and EDITION_OF points to the original
+    if pass4[EDITION_FIXES]:
+        cfix, cfix_rows = canonical_fixes(state, types, cited_key, report)
+        n0 = len(cites)
+        apply_canonical_fixes(cites, cited_as, cfix, report)
+        report['edition_canonical_fix_cites_pairs_removed'] = n0 - len(cites)
+        if isinstance(report.get('linkage'), dict):
+            report['linkage']['thesis_cites_pairs_after_canonical_fixes'] = sum(1 for v in cites.values() if (v >> 1) & THESIS_BITS)
+    else:
+        cfix, cfix_rows = {}, {}
     if edition_files:               # translation/edition node -> canonical work (EDITION_OF; keys are not merged)
         eo = {}
+        for (a, b) in cfix.items():  # the fixed canonical -> the original
+            r = cfix_rows[a]
+            eo[a, b] = {'from': a, 'to': b, 'relation': 'translation', 'route': f"edition-canonical-fix:{r['basis']}",
+                        'theses': int(r['theses_citing_current'] or 0)}
         for r in read_rows(CITED / 'editions.csv.gz'):
             b = cited_key.get(r['canonical']) if r['canonical'] in cited_key else (
                 (lambda ks: ks[0] if len(ks) == 1 else None)([k for k in state.lookup(r['canonical']) if types.get(k) == 'work']))
+            if b in cfix:
+                report['edition_of_canonical_fixed'] += 1
+                b = cfix[b]
             if not b or r['cited_as'].startswith('corpus:'):
                 report['edition_of_skipped' if not b else 'edition_of_unmatched_before'] += 1
                 continue
@@ -1298,6 +1716,8 @@ def main():
             loaded={k: v for k, v in sorted(wp_counts.items())})
         lk['defects'] = defect_counts(works, rels, wp_linked, cites)
         report['linkage'] = lk
+    del cites, cited_as, works, rels, linked, possible_authors
+    class_measures(OUT, report)     # classes 15 and 17 from the tables just written (2026-11-12)
     if args.db:
         load_db(report)
     (OUT / 'report.json').write_text(json.dumps(dict(sorted(report.items())), indent=1) + '\n')
@@ -1317,12 +1737,13 @@ def load_db(report):
     conn.execute(f'CREATE NODE TABLE Person(key STRING, label STRING, resolution STRING, {ids}, PRIMARY KEY (key))')
     conn.execute('CREATE NODE TABLE Work(key STRING, label STRING, resolution STRING, anchors STRING[], kind STRING, '
                  'lccn STRING, year INT32, reviewer_names STRING[], journal STRING, issn STRING, journal_source STRING, '
-                 'kind_proposed STRING, isbn STRING, editors_printed STRING, PRIMARY KEY (key))')
+                 'kind_proposed STRING, isbn STRING, editors_printed STRING, first_year INT32, first_year_catalogue INT32, '
+                 'first_year_basis STRING, PRIMARY KEY (key))')
     conn.execute('CREATE NODE TABLE Institution(key STRING, label STRING, resolution STRING, anchors STRING[], '
                  'ror STRING, PRIMARY KEY (key))')
     for name in ('AUTHORED', 'EDITED'):
         conn.execute(f'CREATE REL TABLE {name}(FROM Person TO Work, claim STRING, resolution STRING, evidence STRING, '
-                     'source STRING, state STRING)')
+                     'source STRING, state STRING, role STRING, role_basis STRING)')
     conn.execute('CREATE REL TABLE SUPERVISED(FROM Person TO Work, claim STRING, resolution STRING)')
     conn.execute('CREATE REL TABLE PUBLISHED_AS(FROM Work TO Work, claim STRING, resolution STRING)')
     conn.execute('CREATE REL TABLE REVIEWS(FROM Work TO Work, claim STRING, resolution STRING)')

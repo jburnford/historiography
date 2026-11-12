@@ -411,7 +411,7 @@ def main():
     db.close()
     pairs, epairs, cpairs = {}, {}, set()
     keep_old, moved = set(), []
-    corpus_rows = matched_old = matched_new = matched_any = recovered = moved_rows = comp_rows = 0
+    corpus_rows = matched_old = matched_new = matched_any = recovered = moved_rows = comp_rows = comp_only = 0
     matched_11_10 = 0                                # the 2026-11-10 definition: the three OLD crosswalks or this table
     per_source_rows = Counter()
     rate = defaultdict(Counter)                      # dimension value -> citations, before, after, with_compilations
@@ -425,6 +425,7 @@ def main():
         matched_11_10 += w in old3 or n
         recovered += t and not (o or n)
         comp_rows += c
+        comp_only += c and not (o or n or t)        # compilation rows no other route matched
         for dim in (f"kind:{kind_of.get(w) or '?'}", f"country:{country.get(d) or '?'}", 'all'):
             rate[dim].update(citations=1, before=o or n, after=o or n or t, with_compilations=o or n or t or c)
         if t:
@@ -477,7 +478,9 @@ def main():
                             rate_as_counted_2026_11_10=round(matched_11_10 / corpus_rows, 4),
                             rate_after=round((matched_any + recovered) / corpus_rows, 4),
                             compilation_citations=comp_rows,
-                            rate_with_compilations=round((matched_any + recovered + comp_rows) / corpus_rows, 4),
+                            compilation_citations_not_otherwise_matched=comp_only,
+                            # 2026-11-12: counted once (adding comp_rows double counted the rows already matched)
+                            rate_with_compilations=round((matched_any + recovered + comp_only) / corpus_rows, 4),
                             moved_citations=moved_rows, new_citations_by_source=dict(per_source_rows),
                             by_kind={k[5:]: rates(v) for k, v in sorted(rate.items()) if k.startswith('kind:')},
                             by_country={k[8:]: rates(v) for k, v in sorted(rate.items(), key=lambda kv: -kv[1]['citations'])

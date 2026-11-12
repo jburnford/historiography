@@ -222,7 +222,10 @@ function renderPanel() {
   const { node, groups } = state.data;
   const c = cat(node);
   const meta = [CAT[c].label, node.year, node.journal].filter(Boolean).join(' · ');
-  const facts = node.type === 'work' ? [kindNote(node), node.in_volume,
+  // first publication year where it differs from the key's year (a reprint or a translation; data/graph/work-years)
+  const first = node.type === 'work' && node.first_year && node.first_year !== node.year
+    ? `first published ${node.first_year}` + (node.first_year_basis ? ` (${node.first_year_basis.replaceAll(';', ', ')})` : '') : null;
+  const facts = node.type === 'work' ? [kindNote(node), first, node.in_volume,
     node.editors_printed ? `editors as printed: ${node.editors_printed}` : null,
     node.isbn ? `ISBN ${node.isbn}` : null, node.issn ? `ISSN ${node.issn}` : null,
     node.journal && node.journal_source && node.journal_source !== 'keylog' && node.journal_source !== 'node-source'
