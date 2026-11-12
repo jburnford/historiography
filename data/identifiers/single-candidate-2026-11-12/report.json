@@ -1,0 +1,2204 @@
+{
+ "note": "Pass eight (2026-11-12), ARCHITECTURE.md section 8 class 38: the single-candidate, no-fact class on the evening build (name-only + work-people part-00), measured with link_work_people.py link (signals x:*). Rules: i = date-impossible LC namesakes no longer count against rarity; ii = topic against the volume title and sibling chapters (threshold); iii = full given name + scholarly evidence + history venue + life/PhD window, no fact (bearers bound). gold = masked gold (all credited name-only and work-people positions); masked_author / orcid_namesake = namesake tests; absent_author_estimate = absent share x masked-author fire rate / production fire rate, by band (absent shares 6% unique/2-5, 29% 6-25, 40% 26+); clerical = data/graph/scored-links/clerical-labels.csv mapped to positions. No rule adopted.",
+ "class_strata": {
+  "possible_single_positions": 245051,
+  "possible_single_works": 202310,
+  "eligible_dated_no_contradiction": 168629,
+  "eligible_works": 151068,
+  "not_eligible_by_branch": {
+   "review-record-rarity-only": 26620,
+   "outside-history-rarity-only": 23001,
+   "one-candidate-none-dated": 10634,
+   "several-several-dated": 10599,
+   "same-title-as-own-book": 2578,
+   "name-form-tie-no-fact": 1388,
+   "one-candidate-common-name": 625,
+   "orcid-differs-tie-only": 287,
+   "several-none-dated": 206,
+   "one-candidate-surname-variant-name": 168,
+   "one-candidate-variant-name": 114,
+   "several-one-dated-no-fact": 105
+  },
+  "by_table": {
+   "no": 116650,
+   "wp": 128401
+  },
+  "by_name": {
+   "full": 111666,
+   "init": 22852,
+   "surname-variant": 14360,
+   "variant": 12479,
+   "initial": 7272
+  },
+  "by_band": {
+   "2-5": 91343,
+   "6-25": 43958,
+   "unique": 20572,
+   "26+": 12756
+  },
+  "by_band_dp": {
+   "2-5": 92766,
+   "6-25": 43078,
+   "unique": 21458,
+   "26+": 11327
+  },
+  "by_scholar": {
+   "False": 97795,
+   "True": 70834
+  },
+  "by_venue": {
+   "none": 81741,
+   "journal": 79835,
+   "volume": 7053
+  },
+  "by_win": {
+   "life": 67678,
+   "span": 47821,
+   "phd": 29526,
+   "phd-start": 21443,
+   "sup-aff": 1940,
+   "corpus-span": 120,
+   "death": 99,
+   "cites": 2
+  },
+  "by_lcdp": {
+   "6+": 42509,
+   "1": 52652,
+   "2-5": 41105,
+   "0": 32363
+  },
+  "by_dated_namesakes_ruled_out": {
+   "0": 130147,
+   "2-5": 14220,
+   "6+": 6069,
+   "1": 18193
+  },
+  "by_role": {
+   "author": 107334,
+   "jstor-author": 16676,
+   "reviewer": 44619
+  },
+  "by_kind": {
+   "article": 138300,
+   "chapter": 12126,
+   "book": 10981,
+   "other": 3298,
+   "review": 3191,
+   "preprint": 327,
+   "dataset": 270,
+   "thesis": 136
+  },
+  "name_x_band": {
+   "full|2-5": 69103,
+   "full|6-25": 33312,
+   "init|unique": 10627,
+   "full|26+": 9251,
+   "init|2-5": 8523,
+   "surname-variant|2-5": 5682,
+   "variant|2-5": 4966,
+   "variant|unique": 3988,
+   "surname-variant|unique": 3946,
+   "init|6-25": 3466,
+   "initial|2-5": 3069,
+   "surname-variant|6-25": 2846,
+   "variant|6-25": 2726,
+   "initial|unique": 2011,
+   "surname-variant|26+": 1886,
+   "initial|6-25": 1608,
+   "variant|26+": 799,
+   "initial|26+": 584,
+   "init|26+": 236
+  },
+  "full_band_x_scholar_x_venue": {
+   "2-5|no-scholar|none": 22969,
+   "2-5|no-scholar|journal": 17712,
+   "2-5|scholar|journal": 16360,
+   "6-25|no-scholar|none": 9345,
+   "2-5|scholar|none": 8767,
+   "6-25|scholar|journal": 8477,
+   "6-25|no-scholar|journal": 7743,
+   "6-25|scholar|none": 6298,
+   "26+|scholar|none": 2686,
+   "26+|no-scholar|none": 2362,
+   "2-5|no-scholar|volume": 2310,
+   "26+|scholar|journal": 2172,
+   "26+|no-scholar|journal": 1674,
+   "2-5|scholar|volume": 985,
+   "6-25|no-scholar|volume": 897,
+   "6-25|scholar|volume": 552,
+   "26+|no-scholar|volume": 220,
+   "26+|scholar|volume": 137
+  }
+ },
+ "clerical_possible_single_wrong_if_linked_by_band": {
+  "2-5": {
+   "wrong": 8,
+   "n": 56
+  },
+  "26+": {
+   "wrong": 14,
+   "n": 36
+  },
+  "6-25": {
+   "wrong": 13,
+   "n": 75
+  },
+  "unique": {
+   "wrong": 4,
+   "n": 34
+  }
+ },
+ "rules": {
+  "i": {
+   "evaluation": {
+    "gold": {
+     "eligible": 35037,
+     "fires": 451,
+     "wrong": 4,
+     "wrong_share": 0.00887,
+     "upper95": 0.02018,
+     "recall_in_eligible": 0.0129
+    },
+    "masked_author": {
+     "eligible": 29937,
+     "false_links": 10,
+     "share": 0.0003
+    },
+    "orcid_namesake": {
+     "eligible": 2642,
+     "false_links": 9
+    },
+    "production": {
+     "positions": 1883,
+     "works": 1873,
+     "by_band": {
+      "2-5": 1758,
+      "6-25": 125
+     },
+     "by_table": {
+      "no": 802,
+      "wp": 1081
+     }
+    },
+    "clerical-dev": {
+     "fires": 0,
+     "wrong": 0,
+     "wrong_share": null,
+     "ci95": [
+      0.0,
+      1.0
+     ],
+     "wrong_items": []
+    },
+    "clerical-test": {
+     "fires": 2,
+     "wrong": 0,
+     "wrong_share": 0.0,
+     "ci95": [
+      0,
+      0.6576
+     ],
+     "wrong_items": []
+    }
+   },
+   "absent_author_estimate": {
+    "by_band": {
+     "2-5": {
+      "prod_eligible": 91343,
+      "prod_fires": 1758,
+      "f": 0.0192,
+      "masked_eligible": 8459,
+      "masked_fires": 10,
+      "absent_share": 0.06,
+      "est": 0.0037,
+      "upper95": 0.0064
+     },
+     "6-25": {
+      "prod_eligible": 43958,
+      "prod_fires": 125,
+      "f": 0.0028,
+      "masked_eligible": 14390,
+      "masked_fires": 0,
+      "absent_share": 0.29,
+      "est": 0.0,
+      "upper95": 0.0258
+     }
+    },
+    "overall": 0.0034,
+    "overall_upper95": 0.0077
+   }
+  },
+  "i-2-5": {
+   "evaluation": {
+    "gold": {
+     "eligible": 35037,
+     "fires": 428,
+     "wrong": 4,
+     "wrong_share": 0.00935,
+     "upper95": 0.02126,
+     "recall_in_eligible": 0.0122
+    },
+    "masked_author": {
+     "eligible": 29937,
+     "false_links": 10,
+     "share": 0.0003
+    },
+    "orcid_namesake": {
+     "eligible": 2642,
+     "false_links": 8
+    },
+    "production": {
+     "positions": 1758,
+     "works": 1749,
+     "by_band": {
+      "2-5": 1758
+     },
+     "by_table": {
+      "no": 731,
+      "wp": 1027
+     }
+    },
+    "clerical-dev": {
+     "fires": 0,
+     "wrong": 0,
+     "wrong_share": null,
+     "ci95": [
+      0.0,
+      1.0
+     ],
+     "wrong_items": []
+    },
+    "clerical-test": {
+     "fires": 0,
+     "wrong": 0,
+     "wrong_share": null,
+     "ci95": [
+      0.0,
+      1.0
+     ],
+     "wrong_items": []
+    }
+   },
+   "absent_author_estimate": {
+    "by_band": {
+     "2-5": {
+      "prod_eligible": 91343,
+      "prod_fires": 1758,
+      "f": 0.0192,
+      "masked_eligible": 8459,
+      "masked_fires": 10,
+      "absent_share": 0.06,
+      "est": 0.0037,
+      "upper95": 0.0064
+     }
+    },
+    "overall": 0.0037,
+    "overall_upper95": 0.0064
+   }
+  },
+  "iii@2": {
+   "evaluation": {
+    "gold": {
+     "eligible": 35037,
+     "fires": 223,
+     "wrong": 7,
+     "wrong_share": 0.03139,
+     "upper95": 0.05815,
+     "recall_in_eligible": 0.0064
+    },
+    "masked_author": {
+     "eligible": 29937,
+     "false_links": 47,
+     "share": 0.0016
+    },
+    "orcid_namesake": {
+     "eligible": 2642,
+     "false_links": 0
+    },
+    "production": {
+     "positions": 3274,
+     "works": 3255,
+     "by_band": {
+      "2-5": 3274
+     },
+     "by_table": {
+      "no": 934,
+      "wp": 2340
+     }
+    },
+    "clerical-dev": {
+     "fires": 2,
+     "wrong": 0,
+     "wrong_share": 0.0,
+     "ci95": [
+      0,
+      0.6576
+     ],
+     "wrong_items": []
+    },
+    "clerical-test": {
+     "fires": 0,
+     "wrong": 0,
+     "wrong_share": null,
+     "ci95": [
+      0.0,
+      1.0
+     ],
+     "wrong_items": []
+    }
+   },
+   "absent_author_estimate": {
+    "by_band": {
+     "2-5": {
+      "prod_eligible": 91343,
+      "prod_fires": 3274,
+      "f": 0.0358,
+      "masked_eligible": 8459,
+      "masked_fires": 47,
+      "absent_share": 0.06,
+      "est": 0.0093,
+      "upper95": 0.0119
+     }
+    },
+    "overall": 0.0093,
+    "overall_upper95": 0.0119
+   }
+  },
+  "iii@3": {
+   "evaluation": {
+    "gold": {
+     "eligible": 35037,
+     "fires": 410,
+     "wrong": 9,
+     "wrong_share": 0.02195,
+     "upper95": 0.03799,
+     "recall_in_eligible": 0.0117
+    },
+    "masked_author": {
+     "eligible": 29937,
+     "false_links": 116,
+     "share": 0.0039
+    },
+    "orcid_namesake": {
+     "eligible": 2642,
+     "false_links": 0
+    },
+    "production": {
+     "positions": 4909,
+     "works": 4863,
+     "by_band": {
+      "2-5": 4909
+     },
+     "by_table": {
+      "no": 1421,
+      "wp": 3488
+     }
+    },
+    "clerical-dev": {
+     "fires": 3,
+     "wrong": 0,
+     "wrong_share": 0.0,
+     "ci95": [
+      0,
+      0.5615
+     ],
+     "wrong_items": []
+    },
+    "clerical-test": {
+     "fires": 0,
+     "wrong": 0,
+     "wrong_share": null,
+     "ci95": [
+      0.0,
+      1.0
+     ],
+     "wrong_items": []
+    }
+   },
+   "absent_author_estimate": {
+    "by_band": {
+     "2-5": {
+      "prod_eligible": 91343,
+      "prod_fires": 4909,
+      "f": 0.0537,
+      "masked_eligible": 8459,
+      "masked_fires": 116,
+      "absent_share": 0.06,
+      "est": 0.0153,
+      "upper95": 0.0179
+     }
+    },
+    "overall": 0.0153,
+    "overall_upper95": 0.0179
+   }
+  },
+  "ii@20": {
+   "evaluation": {
+    "gold": {
+     "eligible": 35037,
+     "fires": 548,
+     "wrong": 0,
+     "wrong_share": 0.0,
+     "upper95": 0.00545,
+     "recall_in_eligible": 0.0156
+    },
+    "masked_author": {
+     "eligible": 29937,
+     "false_links": 133,
+     "share": 0.0044
+    },
+    "orcid_namesake": {
+     "eligible": 2642,
+     "false_links": 14
+    },
+    "production": {
+     "positions": 877,
+     "works": 846,
+     "by_band": {
+      "6-25": 165,
+      "2-5": 608,
+      "26+": 99,
+      "unique": 5
+     },
+     "by_table": {
+      "no": 712,
+      "wp": 165
+     }
+    },
+    "clerical-dev": {
+     "fires": 0,
+     "wrong": 0,
+     "wrong_share": null,
+     "ci95": [
+      0.0,
+      1.0
+     ],
+     "wrong_items": []
+    },
+    "clerical-test": {
+     "fires": 0,
+     "wrong": 0,
+     "wrong_share": null,
+     "ci95": [
+      0.0,
+      1.0
+     ],
+     "wrong_items": []
+    }
+   },
+   "absent_author_estimate": {
+    "by_band": {
+     "unique": {
+      "prod_eligible": 20572,
+      "prod_fires": 5,
+      "f": 0.0002,
+      "masked_eligible": 125,
+      "masked_fires": 0,
+      "absent_share": 0.06,
+      "est": 0.0,
+      "upper95": 1.0
+     },
+     "2-5": {
+      "prod_eligible": 91343,
+      "prod_fires": 608,
+      "f": 0.0067,
+      "masked_eligible": 8459,
+      "masked_fires": 36,
+      "absent_share": 0.06,
+      "est": 0.0384,
+      "upper95": 0.051
+     },
+     "6-25": {
+      "prod_eligible": 43958,
+      "prod_fires": 165,
+      "f": 0.0038,
+      "masked_eligible": 14390,
+      "masked_fires": 55,
+      "absent_share": 0.29,
+      "est": 0.2953,
+      "upper95": 0.3712
+     },
+     "26+": {
+      "prod_eligible": 12756,
+      "prod_fires": 99,
+      "f": 0.0078,
+      "masked_eligible": 6963,
+      "masked_fires": 42,
+      "absent_share": 0.4,
+      "est": 0.3109,
+      "upper95": 0.4042
+     }
+    },
+    "overall": 0.1172,
+    "overall_upper95": 0.1565
+   }
+  }
+ },
+ "rules_smaller_gold": {
+  "i": {
+   "gold": {
+    "eligible": 28067,
+    "fires": 314,
+    "wrong": 2,
+    "wrong_share": 0.00637,
+    "upper95": 0.01991,
+    "recall_in_eligible": 0.0112
+   },
+   "masked_author": {
+    "eligible": 10702,
+    "false_links": 0,
+    "share": 0.0
+   },
+   "orcid_namesake": {
+    "eligible": 2642,
+    "false_links": 9
+   },
+   "production_weighted": {
+    "unique": {
+     "gold_eligible": 1097,
+     "q_present": 0.0,
+     "masked_eligible": 28,
+     "q_absent": 0.0172,
+     "absent_share": 0.06,
+     "est_wrong_share": null
+    },
+    "2-5": {
+     "gold_eligible": 19043,
+     "q_present": 0.0153,
+     "masked_eligible": 2822,
+     "q_absent": 0.0002,
+     "absent_share": 0.06,
+     "est_wrong_share": 0.0007
+    },
+    "6-25": {
+     "gold_eligible": 6753,
+     "q_present": 0.0033,
+     "masked_eligible": 5260,
+     "q_absent": 0.0001,
+     "absent_share": 0.29,
+     "est_wrong_share": 0.0118
+    },
+    "26+": {
+     "gold_eligible": 1174,
+     "q_present": 0.0,
+     "masked_eligible": 2592,
+     "q_absent": 0.0002,
+     "absent_share": 0.4,
+     "est_wrong_share": null
+    }
+   },
+   "production": {
+    "positions": 1883,
+    "works": 1873,
+    "by_band": {
+     "2-5": 1758,
+     "6-25": 125
+    },
+    "by_table": {
+     "no": 802,
+     "wp": 1081
+    }
+   },
+   "direct_estimate": {
+    "by_band": {
+     "2-5": {
+      "prod_eligible": 91343,
+      "prod_fires": 1758,
+      "f": 0.0192,
+      "masked_eligible": 2822,
+      "masked_fires": 0,
+      "absent_share": 0.06,
+      "est": 0.0,
+      "upper95": 0.004
+     },
+     "6-25": {
+      "prod_eligible": 43958,
+      "prod_fires": 125,
+      "f": 0.0028,
+      "masked_eligible": 5260,
+      "masked_fires": 0,
+      "absent_share": 0.29,
+      "est": 0.0,
+      "upper95": 0.0705
+     }
+    },
+    "overall": 0.0,
+    "overall_upper95": 0.0084
+   },
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "wrong_share": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "wrong_items": []
+   },
+   "clerical-test": {
+    "fires": 2,
+    "wrong": 0,
+    "wrong_share": 0.0,
+    "ci95": [
+     0,
+     0.6576
+    ],
+    "wrong_items": []
+   }
+  },
+  "ii@10": {
+   "gold": {
+    "eligible": 28067,
+    "fires": 2269,
+    "wrong": 39,
+    "wrong_share": 0.01719,
+    "upper95": 0.02253,
+    "recall_in_eligible": 0.0808
+   },
+   "masked_author": {
+    "eligible": 10702,
+    "false_links": 119,
+    "share": 0.0111
+   },
+   "orcid_namesake": {
+    "eligible": 2642,
+    "false_links": 65
+   },
+   "production_weighted": {
+    "unique": {
+     "gold_eligible": 1097,
+     "q_present": 0.0073,
+     "masked_eligible": 28,
+     "q_absent": 0.0172,
+     "absent_share": 0.06,
+     "est_wrong_share": 0.1311
+    },
+    "2-5": {
+     "gold_eligible": 19043,
+     "q_present": 0.0893,
+     "masked_eligible": 2822,
+     "q_absent": 0.019,
+     "absent_share": 0.06,
+     "est_wrong_share": 0.0134
+    },
+    "6-25": {
+     "gold_eligible": 6753,
+     "q_present": 0.0696,
+     "masked_eligible": 5260,
+     "q_absent": 0.0069,
+     "absent_share": 0.29,
+     "est_wrong_share": 0.0391
+    },
+    "26+": {
+     "gold_eligible": 1174,
+     "q_present": 0.0767,
+     "masked_eligible": 2592,
+     "q_absent": 0.0118,
+     "absent_share": 0.4,
+     "est_wrong_share": 0.0928
+    }
+   },
+   "production": {
+    "positions": 4386,
+    "works": 4237,
+    "by_band": {
+     "2-5": 2683,
+     "6-25": 1318,
+     "unique": 78,
+     "26+": 307
+    },
+    "by_table": {
+     "no": 2521,
+     "wp": 1865
+    }
+   },
+   "direct_estimate": {
+    "by_band": {
+     "unique": {
+      "prod_eligible": 20572,
+      "prod_fires": 78,
+      "f": 0.0038,
+      "masked_eligible": 28,
+      "masked_fires": 0,
+      "absent_share": 0.06,
+      "est": 0.0,
+      "upper95": 1.0
+     },
+     "2-5": {
+      "prod_eligible": 91343,
+      "prod_fires": 2683,
+      "f": 0.0294,
+      "masked_eligible": 2822,
+      "masked_fires": 53,
+      "absent_share": 0.06,
+      "est": 0.0384,
+      "upper95": 0.0483
+     },
+     "6-25": {
+      "prod_eligible": 43958,
+      "prod_fires": 1318,
+      "f": 0.03,
+      "masked_eligible": 5260,
+      "masked_fires": 36,
+      "absent_share": 0.29,
+      "est": 0.0662,
+      "upper95": 0.0879
+     },
+     "26+": {
+      "prod_eligible": 12756,
+      "prod_fires": 307,
+      "f": 0.0241,
+      "masked_eligible": 2592,
+      "masked_fires": 30,
+      "absent_share": 0.4,
+      "est": 0.1924,
+      "upper95": 0.2625
+     }
+    },
+    "overall": 0.0568,
+    "overall_upper95": 0.0922
+   },
+   "clerical-dev": {
+    "fires": 3,
+    "wrong": 0,
+    "wrong_share": 0.0,
+    "ci95": [
+     0,
+     0.5615
+    ],
+    "wrong_items": []
+   },
+   "clerical-test": {
+    "fires": 8,
+    "wrong": 1,
+    "wrong_share": 0.125,
+    "ci95": [
+     0.0224,
+     0.4709
+    ],
+    "wrong_items": [
+     "A041"
+    ]
+   }
+  },
+  "ii@15": {
+   "gold": {
+    "eligible": 28067,
+    "fires": 1177,
+    "wrong": 21,
+    "wrong_share": 0.01784,
+    "upper95": 0.02588,
+    "recall_in_eligible": 0.0419
+   },
+   "masked_author": {
+    "eligible": 10702,
+    "false_links": 72,
+    "share": 0.0067
+   },
+   "orcid_namesake": {
+    "eligible": 2642,
+    "false_links": 34
+   },
+   "production_weighted": {
+    "unique": {
+     "gold_eligible": 1097,
+     "q_present": 0.0055,
+     "masked_eligible": 28,
+     "q_absent": 0.0172,
+     "absent_share": 0.06,
+     "est_wrong_share": 0.1675
+    },
+    "2-5": {
+     "gold_eligible": 19043,
+     "q_present": 0.0457,
+     "masked_eligible": 2822,
+     "q_absent": 0.0097,
+     "absent_share": 0.06,
+     "est_wrong_share": 0.0134
+    },
+    "6-25": {
+     "gold_eligible": 6753,
+     "q_present": 0.0364,
+     "masked_eligible": 5260,
+     "q_absent": 0.0047,
+     "absent_share": 0.29,
+     "est_wrong_share": 0.0496
+    },
+    "26+": {
+     "gold_eligible": 1174,
+     "q_present": 0.046,
+     "masked_eligible": 2592,
+     "q_absent": 0.0083,
+     "absent_share": 0.4,
+     "est_wrong_share": 0.1073
+    }
+   },
+   "production": {
+    "positions": 2608,
+    "works": 2517,
+    "by_band": {
+     "2-5": 1640,
+     "6-25": 733,
+     "unique": 37,
+     "26+": 198
+    },
+    "by_table": {
+     "no": 1552,
+     "wp": 1056
+    }
+   },
+   "direct_estimate": {
+    "by_band": {
+     "unique": {
+      "prod_eligible": 20572,
+      "prod_fires": 37,
+      "f": 0.0018,
+      "masked_eligible": 28,
+      "masked_fires": 0,
+      "absent_share": 0.06,
+      "est": 0.0,
+      "upper95": 1.0
+     },
+     "2-5": {
+      "prod_eligible": 91343,
+      "prod_fires": 1640,
+      "f": 0.018,
+      "masked_eligible": 2822,
+      "masked_fires": 27,
+      "absent_share": 0.06,
+      "est": 0.032,
+      "upper95": 0.0444
+     },
+     "6-25": {
+      "prod_eligible": 43958,
+      "prod_fires": 733,
+      "f": 0.0167,
+      "masked_eligible": 5260,
+      "masked_fires": 24,
+      "absent_share": 0.29,
+      "est": 0.0794,
+      "upper95": 0.1126
+     },
+     "26+": {
+      "prod_eligible": 12756,
+      "prod_fires": 198,
+      "f": 0.0155,
+      "masked_eligible": 2592,
+      "masked_fires": 21,
+      "absent_share": 0.4,
+      "est": 0.2088,
+      "upper95": 0.3036
+     }
+    },
+    "overall": 0.0583,
+    "overall_upper95": 0.0968
+   },
+   "clerical-dev": {
+    "fires": 3,
+    "wrong": 0,
+    "wrong_share": 0.0,
+    "ci95": [
+     0,
+     0.5615
+    ],
+    "wrong_items": []
+   },
+   "clerical-test": {
+    "fires": 6,
+    "wrong": 1,
+    "wrong_share": 0.1667,
+    "ci95": [
+     0.0301,
+     0.5635
+    ],
+    "wrong_items": [
+     "A041"
+    ]
+   }
+  },
+  "ii@20": {
+   "gold": {
+    "eligible": 28067,
+    "fires": 178,
+    "wrong": 0,
+    "wrong_share": 0.0,
+    "upper95": 0.01669,
+    "recall_in_eligible": 0.0063
+   },
+   "masked_author": {
+    "eligible": 10702,
+    "false_links": 24,
+    "share": 0.0022
+   },
+   "orcid_namesake": {
+    "eligible": 2642,
+    "false_links": 14
+   },
+   "production_weighted": {
+    "unique": {
+     "gold_eligible": 1097,
+     "q_present": 0.0009,
+     "masked_eligible": 28,
+     "q_absent": 0.0172,
+     "absent_share": 0.06,
+     "est_wrong_share": 0.547
+    },
+    "2-5": {
+     "gold_eligible": 19043,
+     "q_present": 0.007,
+     "masked_eligible": 2822,
+     "q_absent": 0.0023,
+     "absent_share": 0.06,
+     "est_wrong_share": 0.0205
+    },
+    "6-25": {
+     "gold_eligible": 6753,
+     "q_present": 0.0046,
+     "masked_eligible": 5260,
+     "q_absent": 0.002,
+     "absent_share": 0.29,
+     "est_wrong_share": 0.1508
+    },
+    "26+": {
+     "gold_eligible": 1174,
+     "q_present": 0.0102,
+     "masked_eligible": 2592,
+     "q_absent": 0.0033,
+     "absent_share": 0.4,
+     "est_wrong_share": 0.1761
+    }
+   },
+   "production": {
+    "positions": 877,
+    "works": 846,
+    "by_band": {
+     "6-25": 165,
+     "2-5": 608,
+     "26+": 99,
+     "unique": 5
+    },
+    "by_table": {
+     "no": 712,
+     "wp": 165
+    }
+   },
+   "direct_estimate": {
+    "by_band": {
+     "unique": {
+      "prod_eligible": 20572,
+      "prod_fires": 5,
+      "f": 0.0002,
+      "masked_eligible": 28,
+      "masked_fires": 0,
+      "absent_share": 0.06,
+      "est": 0.0,
+      "upper95": 1.0
+     },
+     "2-5": {
+      "prod_eligible": 91343,
+      "prod_fires": 608,
+      "f": 0.0067,
+      "masked_eligible": 2822,
+      "masked_fires": 6,
+      "absent_share": 0.06,
+      "est": 0.0192,
+      "upper95": 0.0391
+     },
+     "6-25": {
+      "prod_eligible": 43958,
+      "prod_fires": 165,
+      "f": 0.0038,
+      "masked_eligible": 5260,
+      "masked_fires": 10,
+      "absent_share": 0.29,
+      "est": 0.1469,
+      "upper95": 0.2547
+     },
+     "26+": {
+      "prod_eligible": 12756,
+      "prod_fires": 99,
+      "f": 0.0078,
+      "masked_eligible": 2592,
+      "masked_fires": 8,
+      "absent_share": 0.4,
+      "est": 0.1591,
+      "upper95": 0.2945
+     }
+    },
+    "overall": 0.0589,
+    "overall_upper95": 0.114
+   },
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "wrong_share": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "wrong_items": []
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "wrong_share": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "wrong_items": []
+   }
+  },
+  "ii@25": {
+   "gold": {
+    "eligible": 28067,
+    "fires": 148,
+    "wrong": 0,
+    "wrong_share": 0.0,
+    "upper95": 0.02004,
+    "recall_in_eligible": 0.0053
+   },
+   "masked_author": {
+    "eligible": 10702,
+    "false_links": 18,
+    "share": 0.0017
+   },
+   "orcid_namesake": {
+    "eligible": 2642,
+    "false_links": 12
+   },
+   "production_weighted": {
+    "unique": {
+     "gold_eligible": 1097,
+     "q_present": 0.0,
+     "masked_eligible": 28,
+     "q_absent": 0.0172,
+     "absent_share": 0.06,
+     "est_wrong_share": null
+    },
+    "2-5": {
+     "gold_eligible": 19043,
+     "q_present": 0.0059,
+     "masked_eligible": 2822,
+     "q_absent": 0.0016,
+     "absent_share": 0.06,
+     "est_wrong_share": 0.0169
+    },
+    "6-25": {
+     "gold_eligible": 6753,
+     "q_present": 0.0034,
+     "masked_eligible": 5260,
+     "q_absent": 0.002,
+     "absent_share": 0.29,
+     "est_wrong_share": 0.1931
+    },
+    "26+": {
+     "gold_eligible": 1174,
+     "q_present": 0.0102,
+     "masked_eligible": 2592,
+     "q_absent": 0.0017,
+     "absent_share": 0.4,
+     "est_wrong_share": 0.1017
+    }
+   },
+   "production": {
+    "positions": 635,
+    "works": 621,
+    "by_band": {
+     "6-25": 128,
+     "2-5": 465,
+     "26+": 37,
+     "unique": 5
+    },
+    "by_table": {
+     "no": 522,
+     "wp": 113
+    }
+   },
+   "direct_estimate": {
+    "by_band": {
+     "unique": {
+      "prod_eligible": 20572,
+      "prod_fires": 5,
+      "f": 0.0002,
+      "masked_eligible": 28,
+      "masked_fires": 0,
+      "absent_share": 0.06,
+      "est": 0.0,
+      "upper95": 1.0
+     },
+     "2-5": {
+      "prod_eligible": 91343,
+      "prod_fires": 465,
+      "f": 0.0051,
+      "masked_eligible": 2822,
+      "masked_fires": 4,
+      "absent_share": 0.06,
+      "est": 0.0167,
+      "upper95": 0.04
+     },
+     "6-25": {
+      "prod_eligible": 43958,
+      "prod_fires": 128,
+      "f": 0.0029,
+      "masked_eligible": 5260,
+      "masked_fires": 10,
+      "absent_share": 0.29,
+      "est": 0.1893,
+      "upper95": 0.3283
+     },
+     "26+": {
+      "prod_eligible": 12756,
+      "prod_fires": 37,
+      "f": 0.0029,
+      "masked_eligible": 2592,
+      "masked_fires": 4,
+      "absent_share": 0.4,
+      "est": 0.2128,
+      "upper95": 0.5098
+     }
+    },
+    "overall": 0.0628,
+    "overall_upper95": 0.1331
+   },
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "wrong_share": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "wrong_items": []
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "wrong_share": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "wrong_items": []
+   }
+  },
+  "ii@30": {
+   "gold": {
+    "eligible": 28067,
+    "fires": 129,
+    "wrong": 0,
+    "wrong_share": 0.0,
+    "upper95": 0.02296,
+    "recall_in_eligible": 0.0046
+   },
+   "masked_author": {
+    "eligible": 10702,
+    "false_links": 16,
+    "share": 0.0015
+   },
+   "orcid_namesake": {
+    "eligible": 2642,
+    "false_links": 10
+   },
+   "production_weighted": {
+    "unique": {
+     "gold_eligible": 1097,
+     "q_present": 0.0,
+     "masked_eligible": 28,
+     "q_absent": 0.0172,
+     "absent_share": 0.06,
+     "est_wrong_share": null
+    },
+    "2-5": {
+     "gold_eligible": 19043,
+     "q_present": 0.0051,
+     "masked_eligible": 2822,
+     "q_absent": 0.0012,
+     "absent_share": 0.06,
+     "est_wrong_share": 0.0151
+    },
+    "6-25": {
+     "gold_eligible": 6753,
+     "q_present": 0.0033,
+     "masked_eligible": 5260,
+     "q_absent": 0.0018,
+     "absent_share": 0.29,
+     "est_wrong_share": 0.1846
+    },
+    "26+": {
+     "gold_eligible": 1174,
+     "q_present": 0.0077,
+     "masked_eligible": 2592,
+     "q_absent": 0.0017,
+     "absent_share": 0.4,
+     "est_wrong_share": 0.1311
+    }
+   },
+   "production": {
+    "positions": 512,
+    "works": 499,
+    "by_band": {
+     "2-5": 390,
+     "6-25": 101,
+     "26+": 16,
+     "unique": 5
+    },
+    "by_table": {
+     "no": 423,
+     "wp": 89
+    }
+   },
+   "direct_estimate": {
+    "by_band": {
+     "unique": {
+      "prod_eligible": 20572,
+      "prod_fires": 5,
+      "f": 0.0002,
+      "masked_eligible": 28,
+      "masked_fires": 0,
+      "absent_share": 0.06,
+      "est": 0.0,
+      "upper95": 1.0
+     },
+     "2-5": {
+      "prod_eligible": 91343,
+      "prod_fires": 390,
+      "f": 0.0043,
+      "masked_eligible": 2822,
+      "masked_fires": 3,
+      "absent_share": 0.06,
+      "est": 0.0149,
+      "upper95": 0.0409
+     },
+     "6-25": {
+      "prod_eligible": 43958,
+      "prod_fires": 101,
+      "f": 0.0023,
+      "masked_eligible": 5260,
+      "masked_fires": 9,
+      "absent_share": 0.29,
+      "est": 0.216,
+      "upper95": 0.386
+     },
+     "26+": {
+      "prod_eligible": 12756,
+      "prod_fires": 16,
+      "f": 0.0013,
+      "masked_eligible": 2592,
+      "masked_fires": 4,
+      "absent_share": 0.4,
+      "est": 0.4921,
+      "upper95": 1.0
+     }
+    },
+    "overall": 0.0694,
+    "overall_upper95": 0.1483
+   },
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "wrong_share": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "wrong_items": []
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "wrong_share": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "wrong_items": []
+   }
+  },
+  "ii@40": {
+   "gold": {
+    "eligible": 28067,
+    "fires": 111,
+    "wrong": 0,
+    "wrong_share": 0.0,
+    "upper95": 0.02663,
+    "recall_in_eligible": 0.004
+   },
+   "masked_author": {
+    "eligible": 10702,
+    "false_links": 12,
+    "share": 0.0011
+   },
+   "orcid_namesake": {
+    "eligible": 2642,
+    "false_links": 9
+   },
+   "production_weighted": {
+    "unique": {
+     "gold_eligible": 1097,
+     "q_present": 0.0,
+     "masked_eligible": 28,
+     "q_absent": 0.0172,
+     "absent_share": 0.06,
+     "est_wrong_share": null
+    },
+    "2-5": {
+     "gold_eligible": 19043,
+     "q_present": 0.0045,
+     "masked_eligible": 2822,
+     "q_absent": 0.0012,
+     "absent_share": 0.06,
+     "est_wrong_share": 0.0172
+    },
+    "6-25": {
+     "gold_eligible": 6753,
+     "q_present": 0.0025,
+     "masked_eligible": 5260,
+     "q_absent": 0.001,
+     "absent_share": 0.29,
+     "est_wrong_share": 0.145
+    },
+    "26+": {
+     "gold_eligible": 1174,
+     "q_present": 0.0068,
+     "masked_eligible": 2592,
+     "q_absent": 0.0017,
+     "absent_share": 0.4,
+     "est_wrong_share": 0.1451
+    }
+   },
+   "production": {
+    "positions": 336,
+    "works": 327,
+    "by_band": {
+     "2-5": 248,
+     "6-25": 82,
+     "26+": 5,
+     "unique": 1
+    },
+    "by_table": {
+     "no": 257,
+     "wp": 79
+    }
+   },
+   "direct_estimate": {
+    "by_band": {
+     "unique": {
+      "prod_eligible": 20572,
+      "prod_fires": 1,
+      "f": 0.0,
+      "masked_eligible": 28,
+      "masked_fires": 0,
+      "absent_share": 0.06,
+      "est": 0.0,
+      "upper95": 1.0
+     },
+     "2-5": {
+      "prod_eligible": 91343,
+      "prod_fires": 248,
+      "f": 0.0027,
+      "masked_eligible": 2822,
+      "masked_fires": 3,
+      "absent_share": 0.06,
+      "est": 0.0235,
+      "upper95": 0.0643
+     },
+     "6-25": {
+      "prod_eligible": 43958,
+      "prod_fires": 82,
+      "f": 0.0019,
+      "masked_eligible": 5260,
+      "masked_fires": 5,
+      "absent_share": 0.29,
+      "est": 0.1478,
+      "upper95": 0.3231
+     },
+     "26+": {
+      "prod_eligible": 12756,
+      "prod_fires": 5,
+      "f": 0.0004,
+      "masked_eligible": 2592,
+      "masked_fires": 4,
+      "absent_share": 0.4,
+      "est": 1.0,
+      "upper95": 1.0
+     }
+    },
+    "overall": 0.0683,
+    "overall_upper95": 0.1441
+   },
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "wrong_share": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "wrong_items": []
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "wrong_share": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "wrong_items": []
+   }
+  },
+  "iii@bearers<=1": {
+   "gold": {
+    "eligible": 28067,
+    "fires": 9,
+    "wrong": 0,
+    "wrong_share": 0.0,
+    "upper95": 0.28313,
+    "recall_in_eligible": 0.0003
+   },
+   "masked_author": {
+    "eligible": 10702,
+    "false_links": 0,
+    "share": 0.0
+   },
+   "orcid_namesake": {
+    "eligible": 2642,
+    "false_links": 0
+   },
+   "production_weighted": {
+    "unique": {
+     "gold_eligible": 1097,
+     "q_present": 0.0,
+     "masked_eligible": 28,
+     "q_absent": 0.0172,
+     "absent_share": 0.06,
+     "est_wrong_share": null
+    },
+    "2-5": {
+     "gold_eligible": 19043,
+     "q_present": 0.0005,
+     "masked_eligible": 2822,
+     "q_absent": 0.0002,
+     "absent_share": 0.06,
+     "est_wrong_share": 0.0234
+    },
+    "6-25": {
+     "gold_eligible": 6753,
+     "q_present": 0.0,
+     "masked_eligible": 5260,
+     "q_absent": 0.0001,
+     "absent_share": 0.29,
+     "est_wrong_share": null
+    },
+    "26+": {
+     "gold_eligible": 1174,
+     "q_present": 0.0,
+     "masked_eligible": 2592,
+     "q_absent": 0.0002,
+     "absent_share": 0.4,
+     "est_wrong_share": null
+    }
+   },
+   "production": {
+    "positions": 79,
+    "works": 79,
+    "by_band": {
+     "2-5": 79
+    },
+    "by_table": {
+     "no": 14,
+     "wp": 65
+    }
+   },
+   "direct_estimate": {
+    "by_band": {
+     "2-5": {
+      "prod_eligible": 91343,
+      "prod_fires": 79,
+      "f": 0.0009,
+      "masked_eligible": 2822,
+      "masked_fires": 0,
+      "absent_share": 0.06,
+      "est": 0.0,
+      "upper95": 0.0893
+     }
+    },
+    "overall": 0.0,
+    "overall_upper95": 0.0893
+   },
+   "clerical-dev": {
+    "fires": 0,
+    "wrong": 0,
+    "wrong_share": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "wrong_items": []
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "wrong_share": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "wrong_items": []
+   }
+  },
+  "iii@bearers<=2": {
+   "gold": {
+    "eligible": 28067,
+    "fires": 138,
+    "wrong": 2,
+    "wrong_share": 0.01449,
+    "upper95": 0.04492,
+    "recall_in_eligible": 0.0049
+   },
+   "masked_author": {
+    "eligible": 10702,
+    "false_links": 12,
+    "share": 0.0011
+   },
+   "orcid_namesake": {
+    "eligible": 2642,
+    "false_links": 0
+   },
+   "production_weighted": {
+    "unique": {
+     "gold_eligible": 1097,
+     "q_present": 0.0,
+     "masked_eligible": 28,
+     "q_absent": 0.0172,
+     "absent_share": 0.06,
+     "est_wrong_share": null
+    },
+    "2-5": {
+     "gold_eligible": 19043,
+     "q_present": 0.0072,
+     "masked_eligible": 2822,
+     "q_absent": 0.0044,
+     "absent_share": 0.06,
+     "est_wrong_share": 0.0375
+    },
+    "6-25": {
+     "gold_eligible": 6753,
+     "q_present": 0.0,
+     "masked_eligible": 5260,
+     "q_absent": 0.0001,
+     "absent_share": 0.29,
+     "est_wrong_share": null
+    },
+    "26+": {
+     "gold_eligible": 1174,
+     "q_present": 0.0,
+     "masked_eligible": 2592,
+     "q_absent": 0.0002,
+     "absent_share": 0.4,
+     "est_wrong_share": null
+    }
+   },
+   "production": {
+    "positions": 3274,
+    "works": 3255,
+    "by_band": {
+     "2-5": 3274
+    },
+    "by_table": {
+     "no": 934,
+     "wp": 2340
+    }
+   },
+   "direct_estimate": {
+    "by_band": {
+     "2-5": {
+      "prod_eligible": 91343,
+      "prod_fires": 3274,
+      "f": 0.0358,
+      "masked_eligible": 2822,
+      "masked_fires": 12,
+      "absent_share": 0.06,
+      "est": 0.0071,
+      "upper95": 0.0117
+     }
+    },
+    "overall": 0.0071,
+    "overall_upper95": 0.0117
+   },
+   "clerical-dev": {
+    "fires": 2,
+    "wrong": 0,
+    "wrong_share": 0.0,
+    "ci95": [
+     0,
+     0.6576
+    ],
+    "wrong_items": []
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "wrong_share": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "wrong_items": []
+   }
+  },
+  "iii@bearers<=3": {
+   "gold": {
+    "eligible": 28067,
+    "fires": 285,
+    "wrong": 3,
+    "wrong_share": 0.01053,
+    "upper95": 0.02698,
+    "recall_in_eligible": 0.0102
+   },
+   "masked_author": {
+    "eligible": 10702,
+    "false_links": 26,
+    "share": 0.0024
+   },
+   "orcid_namesake": {
+    "eligible": 2642,
+    "false_links": 0
+   },
+   "production_weighted": {
+    "unique": {
+     "gold_eligible": 1097,
+     "q_present": 0.0,
+     "masked_eligible": 28,
+     "q_absent": 0.0172,
+     "absent_share": 0.06,
+     "est_wrong_share": null
+    },
+    "2-5": {
+     "gold_eligible": 19043,
+     "q_present": 0.0149,
+     "masked_eligible": 2822,
+     "q_absent": 0.0094,
+     "absent_share": 0.06,
+     "est_wrong_share": 0.0386
+    },
+    "6-25": {
+     "gold_eligible": 6753,
+     "q_present": 0.0001,
+     "masked_eligible": 5260,
+     "q_absent": 0.0001,
+     "absent_share": 0.29,
+     "est_wrong_share": 0.2077
+    },
+    "26+": {
+     "gold_eligible": 1174,
+     "q_present": 0.0,
+     "masked_eligible": 2592,
+     "q_absent": 0.0002,
+     "absent_share": 0.4,
+     "est_wrong_share": null
+    }
+   },
+   "production": {
+    "positions": 4909,
+    "works": 4863,
+    "by_band": {
+     "2-5": 4909
+    },
+    "by_table": {
+     "no": 1421,
+     "wp": 3488
+    }
+   },
+   "direct_estimate": {
+    "by_band": {
+     "2-5": {
+      "prod_eligible": 91343,
+      "prod_fires": 4909,
+      "f": 0.0537,
+      "masked_eligible": 2822,
+      "masked_fires": 26,
+      "absent_share": 0.06,
+      "est": 0.0103,
+      "upper95": 0.0144
+     }
+    },
+    "overall": 0.0103,
+    "overall_upper95": 0.0144
+   },
+   "clerical-dev": {
+    "fires": 3,
+    "wrong": 0,
+    "wrong_share": 0.0,
+    "ci95": [
+     0,
+     0.5615
+    ],
+    "wrong_items": []
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "wrong_share": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "wrong_items": []
+   }
+  },
+  "iii@bearers<=5": {
+   "gold": {
+    "eligible": 28067,
+    "fires": 486,
+    "wrong": 3,
+    "wrong_share": 0.00617,
+    "upper95": 0.01588,
+    "recall_in_eligible": 0.0173
+   },
+   "masked_author": {
+    "eligible": 10702,
+    "false_links": 115,
+    "share": 0.0107
+   },
+   "orcid_namesake": {
+    "eligible": 2642,
+    "false_links": 0
+   },
+   "production_weighted": {
+    "unique": {
+     "gold_eligible": 1097,
+     "q_present": 0.0,
+     "masked_eligible": 28,
+     "q_absent": 0.0172,
+     "absent_share": 0.06,
+     "est_wrong_share": null
+    },
+    "2-5": {
+     "gold_eligible": 19043,
+     "q_present": 0.0249,
+     "masked_eligible": 2822,
+     "q_absent": 0.036,
+     "absent_share": 0.06,
+     "est_wrong_share": 0.0843
+    },
+    "6-25": {
+     "gold_eligible": 6753,
+     "q_present": 0.0016,
+     "masked_eligible": 5260,
+     "q_absent": 0.0028,
+     "absent_share": 0.29,
+     "est_wrong_share": 0.4087
+    },
+    "26+": {
+     "gold_eligible": 1174,
+     "q_present": 0.0,
+     "masked_eligible": 2592,
+     "q_absent": 0.0002,
+     "absent_share": 0.4,
+     "est_wrong_share": null
+    }
+   },
+   "production": {
+    "positions": 6646,
+    "works": 6557,
+    "by_band": {
+     "2-5": 6433,
+     "6-25": 213
+    },
+    "by_table": {
+     "no": 1938,
+     "wp": 4708
+    }
+   },
+   "direct_estimate": {
+    "by_band": {
+     "2-5": {
+      "prod_eligible": 91343,
+      "prod_fires": 6433,
+      "f": 0.0704,
+      "masked_eligible": 2822,
+      "masked_fires": 101,
+      "absent_share": 0.06,
+      "est": 0.0305,
+      "upper95": 0.0359
+     },
+     "6-25": {
+      "prod_eligible": 43958,
+      "prod_fires": 213,
+      "f": 0.0048,
+      "masked_eligible": 5260,
+      "masked_fires": 14,
+      "absent_share": 0.29,
+      "est": 0.1593,
+      "upper95": 0.2531
+     }
+    },
+    "overall": 0.0346,
+    "overall_upper95": 0.0429
+   },
+   "clerical-dev": {
+    "fires": 4,
+    "wrong": 0,
+    "wrong_share": 0.0,
+    "ci95": [
+     0,
+     0.4899
+    ],
+    "wrong_items": []
+   },
+   "clerical-test": {
+    "fires": 0,
+    "wrong": 0,
+    "wrong_share": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "wrong_items": []
+   }
+  },
+  "iii@bearers<=10": {
+   "gold": {
+    "eligible": 28067,
+    "fires": 653,
+    "wrong": 4,
+    "wrong_share": 0.00613,
+    "upper95": 0.01396,
+    "recall_in_eligible": 0.0233
+   },
+   "masked_author": {
+    "eligible": 10702,
+    "false_links": 202,
+    "share": 0.0189
+   },
+   "orcid_namesake": {
+    "eligible": 2642,
+    "false_links": 0
+   },
+   "production_weighted": {
+    "unique": {
+     "gold_eligible": 1097,
+     "q_present": 0.0,
+     "masked_eligible": 28,
+     "q_absent": 0.0172,
+     "absent_share": 0.06,
+     "est_wrong_share": null
+    },
+    "2-5": {
+     "gold_eligible": 19043,
+     "q_present": 0.0249,
+     "masked_eligible": 2822,
+     "q_absent": 0.036,
+     "absent_share": 0.06,
+     "est_wrong_share": 0.0843
+    },
+    "6-25": {
+     "gold_eligible": 6753,
+     "q_present": 0.0264,
+     "masked_eligible": 5260,
+     "q_absent": 0.0193,
+     "absent_share": 0.29,
+     "est_wrong_share": 0.2302
+    },
+    "26+": {
+     "gold_eligible": 1174,
+     "q_present": 0.0,
+     "masked_eligible": 2592,
+     "q_absent": 0.0002,
+     "absent_share": 0.4,
+     "est_wrong_share": null
+    }
+   },
+   "production": {
+    "positions": 8503,
+    "works": 8369,
+    "by_band": {
+     "2-5": 6433,
+     "6-25": 2070
+    },
+    "by_table": {
+     "no": 2519,
+     "wp": 5984
+    }
+   },
+   "direct_estimate": {
+    "by_band": {
+     "2-5": {
+      "prod_eligible": 91343,
+      "prod_fires": 6433,
+      "f": 0.0704,
+      "masked_eligible": 2822,
+      "masked_fires": 101,
+      "absent_share": 0.06,
+      "est": 0.0305,
+      "upper95": 0.0359
+     },
+     "6-25": {
+      "prod_eligible": 43958,
+      "prod_fires": 2070,
+      "f": 0.0471,
+      "masked_eligible": 5260,
+      "masked_fires": 101,
+      "absent_share": 0.29,
+      "est": 0.1183,
+      "upper95": 0.1396
+     }
+    },
+    "overall": 0.0519,
+    "overall_upper95": 0.0612
+   },
+   "clerical-dev": {
+    "fires": 6,
+    "wrong": 0,
+    "wrong_share": 0.0,
+    "ci95": [
+     0,
+     0.3903
+    ],
+    "wrong_items": []
+   },
+   "clerical-test": {
+    "fires": 2,
+    "wrong": 0,
+    "wrong_share": 0.0,
+    "ci95": [
+     0,
+     0.6576
+    ],
+    "wrong_items": []
+   }
+  },
+  "iii@bearers<=25": {
+   "gold": {
+    "eligible": 28067,
+    "fires": 791,
+    "wrong": 4,
+    "wrong_share": 0.00506,
+    "upper95": 0.01153,
+    "recall_in_eligible": 0.0282
+   },
+   "masked_author": {
+    "eligible": 10702,
+    "false_links": 450,
+    "share": 0.042
+   },
+   "orcid_namesake": {
+    "eligible": 2642,
+    "false_links": 1
+   },
+   "production_weighted": {
+    "unique": {
+     "gold_eligible": 1097,
+     "q_present": 0.0,
+     "masked_eligible": 28,
+     "q_absent": 0.0172,
+     "absent_share": 0.06,
+     "est_wrong_share": null
+    },
+    "2-5": {
+     "gold_eligible": 19043,
+     "q_present": 0.0249,
+     "masked_eligible": 2822,
+     "q_absent": 0.036,
+     "absent_share": 0.06,
+     "est_wrong_share": 0.0843
+    },
+    "6-25": {
+     "gold_eligible": 6753,
+     "q_present": 0.0456,
+     "masked_eligible": 5260,
+     "q_absent": 0.0643,
+     "absent_share": 0.29,
+     "est_wrong_share": 0.3656
+    },
+    "26+": {
+     "gold_eligible": 1174,
+     "q_present": 0.0068,
+     "masked_eligible": 2592,
+     "q_absent": 0.0044,
+     "absent_share": 0.4,
+     "est_wrong_share": 0.3026
+    }
+   },
+   "production": {
+    "positions": 10238,
+    "works": 10062,
+    "by_band": {
+     "6-25": 3661,
+     "2-5": 6433,
+     "26+": 144
+    },
+    "by_table": {
+     "no": 3166,
+     "wp": 7072
+    }
+   },
+   "direct_estimate": {
+    "by_band": {
+     "2-5": {
+      "prod_eligible": 91343,
+      "prod_fires": 6433,
+      "f": 0.0704,
+      "masked_eligible": 2822,
+      "masked_fires": 101,
+      "absent_share": 0.06,
+      "est": 0.0305,
+      "upper95": 0.0359
+     },
+     "6-25": {
+      "prod_eligible": 43958,
+      "prod_fires": 3661,
+      "f": 0.0833,
+      "masked_eligible": 5260,
+      "masked_fires": 338,
+      "absent_share": 0.29,
+      "est": 0.2238,
+      "upper95": 0.2443
+     },
+     "26+": {
+      "prod_eligible": 12756,
+      "prod_fires": 144,
+      "f": 0.0113,
+      "masked_eligible": 2592,
+      "masked_fires": 11,
+      "absent_share": 0.4,
+      "est": 0.1504,
+      "upper95": 0.2537
+     }
+    },
+    "overall": 0.1013,
+    "overall_upper95": 0.1135
+   },
+   "clerical-dev": {
+    "fires": 6,
+    "wrong": 0,
+    "wrong_share": 0.0,
+    "ci95": [
+     0,
+     0.3903
+    ],
+    "wrong_items": []
+   },
+   "clerical-test": {
+    "fires": 3,
+    "wrong": 0,
+    "wrong_share": 0.0,
+    "ci95": [
+     0,
+     0.5615
+    ],
+    "wrong_items": []
+   }
+  }
+ },
+ "linked_credits_by_stratum": {
+  "no|2-5|fact": 18232,
+  "no|2-5|no-fact": 15618,
+  "no|26+|fact": 756,
+  "no|26+|no-fact": 116,
+  "no|6-25|fact": 3659,
+  "no|6-25|no-fact": 1864,
+  "no|initials|fact": 842,
+  "no|initials|no-fact": 673,
+  "no|unique|fact": 9093,
+  "no|unique|no-fact": 22434,
+  "wp|2-5|fact": 42506,
+  "wp|2-5|no-fact": 42909,
+  "wp|26+|fact": 2242,
+  "wp|26+|no-fact": 415,
+  "wp|6-25|fact": 10524,
+  "wp|6-25|no-fact": 5113,
+  "wp|initials|fact": 4352,
+  "wp|initials|no-fact": 3138,
+  "wp|unique|fact": 24299,
+  "wp|unique|no-fact": 57760
+ },
+ "clerical_linked_by_stratum": {
+  "2-5|fact": {
+   "wrong": 0,
+   "n": 50,
+   "ci95": [
+    0,
+    0.071
+   ]
+  },
+  "2-5|no-fact": {
+   "wrong": 1,
+   "n": 25,
+   "ci95": [
+    0.007,
+    0.195
+   ]
+  },
+  "26+|fact": {
+   "wrong": 0,
+   "n": 31,
+   "ci95": [
+    0,
+    0.11
+   ]
+  },
+  "6-25|fact": {
+   "wrong": 1,
+   "n": 74,
+   "ci95": [
+    0.002,
+    0.073
+   ]
+  },
+  "6-25|no-fact": {
+   "wrong": 0,
+   "n": 16,
+   "ci95": [
+    0,
+    0.194
+   ]
+  },
+  "initials|fact": {
+   "wrong": 0,
+   "n": 25,
+   "ci95": [
+    0,
+    0.133
+   ]
+  },
+  "initials|no-fact": {
+   "wrong": 0,
+   "n": 2,
+   "ci95": [
+    0,
+    0.658
+   ]
+  },
+  "unique|fact": {
+   "wrong": 0,
+   "n": 33,
+   "ci95": [
+    0,
+    0.104
+   ]
+  },
+  "unique|no-fact": {
+   "wrong": 1,
+   "n": 99,
+   "ci95": [
+    0.002,
+    0.055
+   ]
+  }
+ },
+ "cited_works_linked_by_stratum": {
+  "2-5|fact": 10772,
+  "2-5|no-fact": 3460,
+  "26+|fact": 286,
+  "26+|no-fact": 47,
+  "6-25|fact": 2192,
+  "6-25|no-fact": 455,
+  "initials|fact": 663,
+  "unique|fact": 5317,
+  "unique|no-fact": 5214,
+  "unmeasured|no-fact": 111
+ }
+}

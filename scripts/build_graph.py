@@ -191,6 +191,7 @@ REVIEW_BOOKS = ROOT / 'data/graph/review-books.csv.gz'
 REVIEW_AUTHORS = ROOT / 'data/graph/review-authors.csv.gz'
 WORK_DUPS = ROOT / 'data/graph/work-duplicates.csv.gz'
 SCORED_LINKS = ROOT / 'data/graph/scored-links/links.csv.gz'   # scripts/score_links.py (Fellegi-Sunter scorer), loaded by graph_scored_links.py
+CLASSIFIED_LINKS = ROOT / 'data/graph/scored-links/classified.csv.gz'   # the classifier's certified links (load = True only; pass eight)
 LC_BOOKS = ROOT / 'data/graph/lc-books-by-authority.csv.gz'   # lc_catalogue_credits.py measure: LC books of keys with
                                                               # scholarly evidence the graph lacked (unkeyed lccn: nodes)   # scripts/review_books.py: articles that review a book (class 29)
 # roles under which a credit is not a citation of the person's own work (class 15): they prepared someone else's work;
@@ -1291,7 +1292,7 @@ def main():
         prize_files, p5_files = [], []
     require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS) if p.exists()] + crossref_parts + article_parts
                     + ([] if args.untracked_ok else cited_files + edition_files + jc_files + wp_files + aw_files + fact_files
-                       + pass4_files + no_files + prize_files + p5_files + ([SCORED_LINKS] if SCORED_LINKS.exists() else [])))
+                       + pass4_files + no_files + prize_files + p5_files + ([SCORED_LINKS] if SCORED_LINKS.exists() else []) + ([CLASSIFIED_LINKS] if CLASSIFIED_LINKS.exists() else [])))
     state = ReplayView(args.state) if args.replay else CacheView(args.state)
     OUT.mkdir(parents=True, exist_ok=True)
     report = Counter()
@@ -1767,6 +1768,10 @@ def main():
         from graph_scored_links import scored_layer
         scored_layer(read_rows, SCORED_LINKS, person1, resolve, scored_wi, {r['from'] for r in rb_rows}, rels, linked,
                      possible_authors, report, ra=ra)
+    # pass eight (2026-11-12): the classifier's certified links (classified.csv.gz rows with load = True only)
+    if CLASSIFIED_LINKS.exists() and not os.environ.get('BUILD_SCORED_OFF'):
+        from graph_scored_links import classified_layer
+        classified_layer(read_rows, CLASSIFIED_LINKS, person1, resolve, rels, linked, report, ra=ra)
     del scored_wi, ra, plabel
     ev_schema = pa.schema([('from', s), ('to', s), ('claim', s), ('resolution', s), ('evidence', s), ('source', s), ('state', s),
                            ('role', s), ('role_basis', s), ('score', pa.float64()), ('n_claims', pa.int32()), ('claims', s)])

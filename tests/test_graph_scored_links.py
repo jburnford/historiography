@@ -78,5 +78,40 @@ class Scored(unittest.TestCase):
         self.assertTrue(all(c['reason'] == 'scored-review' for c in cands[1:]))
 
 
+
+class Classified(unittest.TestCase):
+    """pass eight: the classifier's certified links (classified.csv.gz rows with load = True only)"""
+    @staticmethod
+    def crow(work, pos, key, load='True', role='reviewer', p='0.9961'):
+        return dict(position=str(pos), work=work, role=role, pos='0', printed_name='X', decision='link', person_key=key,
+                    probability=p, stratum='multi', load=load, model='fs test')
+
+    def load(self, rows, keylog=(), linked=None, ra=None):
+        from graph_scored_links import classified_layer
+        rels = {'AUTHORED': [{'from': a, 'to': b} for a, b in keylog], 'EDITED': []}
+        linked = linked or {'AUTHORED': [], 'EDITED': []}
+        rep = {}
+        classified_layer(lambda p: rows, Path('x'), lambda k: k or None, lambda w: w, rels, linked, rep, ra=ra)
+        return linked, rep['classified_links']
+
+    def test_only_load_true_rows(self):
+        linked, rep = self.load([self.crow('w1', 1, 'p-1'), self.crow('w2', 2, 'p-2', load='False')])
+        [r] = linked['AUTHORED']
+        self.assertEqual((r['from'], r['source'], r['state'], r['score'], r['role']), ('p-1', 'classified-links', 'classified', 0.9961, 'author'))
+        self.assertEqual(rep['added|AUTHORED'], 1)
+
+    def test_credited_pairs_skipped(self):
+        linked, rep = self.load([self.crow('w1', 1, 'p-1'), self.crow('w2', 2, 'p-1')], keylog=[('p-1', 'w1')],
+                               linked={'AUTHORED': [{'from': 'p-1', 'to': 'w2'}], 'EDITED': []})
+        self.assertEqual(len(linked['AUTHORED']), 1)            # only the existing linked row
+        self.assertEqual(rep['pair_already_credited'], 2)
+
+    def test_reviewed_author_refused(self):
+        ra = reviewed([('w1', 'b1')], [('p-2', 'b1')], [], {'p-2': 'Becher, Ursula'})
+        linked, rep = self.load([self.crow('w1', 1, 'p-2')], ra=ra)
+        self.assertEqual(linked['AUTHORED'], [])
+        self.assertEqual(rep['reviewed_author_refused|book-credit'], 1)
+
+
 if __name__ == '__main__':
     unittest.main()

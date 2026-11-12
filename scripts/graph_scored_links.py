@@ -150,3 +150,45 @@ def scored_layer(read_rows, path, person1, resolve, wi, review_works, rels, link
         linked[name] += add[name]
         R[f'added|{name}'] = len(add[name])
     report['scored_links'] = dict(sorted(R.items()))
+
+
+def classified_layer(read_rows, path, person1, resolve, rels, linked, report, ra=None):
+    """Pass eight (2026-11-12): the link classifier's certified links (data/graph/scored-links/classified.csv.gz,
+    scripts/score_links.py classifier; final model the calibrated Fellegi-Sunter rule). Only rows with load = True are
+    read: 1,424 reviewer positions with several candidates (0 wrong of 685 on the gold test). Each becomes a linked
+    AUTHORED row, source `classified-links`, state `classified`, `score` = the classifier's probability. Skipped and
+    counted: pairs already credited (key log or any linked loader), positions whose work or key does not resolve, and
+    the reviewed-author check (scripts/reviewed_authors.py: a person credited on the reviewed book, or bearing a printed
+    reviewed-author name, is never the review's reviewer). No other row of the file is loaded."""
+    R = Counter()
+    have = {(r['from'], r['to']) for r in rels['AUTHORED']} | {(r['from'], r['to']) for r in rels['EDITED']}
+    have |= {(r['from'], r['to']) for r in linked['AUTHORED']} | {(r['from'], r['to']) for r in linked['EDITED']}
+    add = []
+    for r in read_rows(path):
+        if str(r.get('load')).lower() != 'true':
+            continue
+        R['rows_load_true'] += 1
+        role = r['role']
+        if role != 'reviewer':
+            R[f'skipped_role|{role}'] += 1
+            continue
+        w, k = resolve(r['work']), person1(r['person_key'])
+        if not w or not k:
+            R['unresolved'] += 1
+            continue
+        if (k, w) in have:
+            R['pair_already_credited'] += 1
+            continue
+        if ra is not None:
+            why = ra.why(k, w)
+            if why:
+                R[f'reviewed_author_refused|{why}'] += 1
+                continue
+        p = float(r['probability']) if r.get('probability') else None
+        add.append({'from': k, 'to': w, 'claim': f"classified-links:{role}:{r['position']}", 'resolution': 'linked',
+                    'source': 'classified-links', 'state': 'classified', 'score': p, 'role': 'author',
+                    'role_basis': f"classified-links:{r.get('stratum') or ''}:{r.get('model') or ''}"[:200]})
+        have.add((k, w))
+    linked['AUTHORED'] += add
+    R['added|AUTHORED'] = len(add)
+    report['classified_links'] = dict(sorted(R.items()))

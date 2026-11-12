@@ -684,6 +684,99 @@ class WPPeople(L.People):
                 WHERE r.tie LIKE '%work%' AND r.person <> ''""").fetchall():
             ties[a][p].append((w, y))
         self.ties = HideTies({a: dict(v) for a, v in ties.items() if len(v) == 1})
+        # pass eight (2026-11-12): keys with scholarly evidence: a PhD year (AHA record, key-log thesis), a dissertation
+        # corpus author or AHA directory anchor, a supervision, a dated directory affiliation (AHA directory, IHR staff list)
+        self.scholar = set(self.phd)
+        for k, an in db.execute(f"SELECT key, anchors FROM '{G}/person.parquet'").fetchall():
+            if any(a.startswith(('aha-phd:', 'aha:', 'diss-author:')) for a in an or ()):
+                self.scholar.add(k)
+        for (k,) in db.execute(f"""SELECT DISTINCT "from" FROM '{G}/supervised.parquet' UNION
+                SELECT DISTINCT "from" FROM '{G}/affiliated_with.parquet' WHERE source IN ('aha_directory', 'ihr')""").fetchall():
+            self.scholar.add(k)
+
+
+# ---------------------------------------------------------------- pass eight: the single-candidate, no-fact class
+# (2026-11-12, ARCHITECTURE.md section 8 class 38). A position whose only surviving candidate fits the dates but has no
+# confirming fact and a name that is not rare stays `possible`. Three candidate rules were measured on masked gold, the
+# masked-author namesake test and the clerical labels (data/graph/scored-links/clerical-labels.csv); single_extras()
+# computes their inputs for every such position and writes them to the signals ('x:...'), and a rule links only when
+# it is named in P['ADOPT'] (link --adopt).
+LCD = {}       # (family, first given) -> [(lcid, birth, death)] of LC authorities with a birth or death year
+
+
+def _y4(s):
+    m = re.search(r'(\d{4})', str(s or ''))
+    return int(m.group(1)) if m else None
+
+
+def lc_dated(db, needed):
+    """LC personal-name authorities with a birth or death year, by the rarity key of population_counts (same parse)"""
+    out = defaultdict(list)
+    cur = db.execute(f"""SELECT lcid, label, birth, death FROM '{L.LC_NAMES}' WHERE NOT deprecated
+            AND (coalesce(birth, '') <> '' OR coalesce(death, '') <> '')""")
+    while True:
+        rows = cur.fetchmany(200000)
+        if not rows:
+            break
+        for lcid, label, b, d in rows:
+            if not label or ',' not in label:
+                continue
+            fam = label.partition(',')[0]
+            f = L.fam_norm(fam)
+            g = L.gwords(label)
+            if g and (f, g[0]) in needed:
+                out[f, g[0]].append((lcid, _y4(b), _y4(d)))
+    return out
+
+
+def lc_impossible(b, d, year, book):
+    """an LC namesake who cannot have written a work of this year: under 20 (career_window.ADULT), or, for anything but
+    a book (posthumous editions), dead more than two years (AFTER_DEATH) or over 100 with no death year recorded"""
+    if b is not None and year < b + L.ADULT:
+        return True
+    if not book and d is not None and year > d + L.AFTER_DEATH:
+        return True
+    if not book and d is None and b is not None and year > b + 100:
+        return True
+    return False
+
+
+def single_extras(people, p, fe, pop, P, k):
+    """inputs of the pass-eight rules for a position whose only live candidate k is dated and carries no contradiction"""
+    c = fe['cands'][k]
+    if c.get('tied') or c['why'] or not p.get('year'):
+        return None
+    good, how = L.date_test(c, p['year'], p['book'], P)
+    if not good:
+        return None
+    n_lc, n_oa = pop[0].get(fe['name_key'], 0), pop[1].get(fe['name_key'], 0)
+    own = L.own_lc(fe, [k])
+    own_ids = set(c.get('klc', ())) | set(p.get('lc') or ())
+    book = (p.get('kind') or '') == 'book'
+    imp = sum(1 for lcid, b, d in LCD.get(fe['name_key'], ()) if lcid not in own_ids and lc_impossible(b, d, p['year'], book))
+    others = max(0, n_lc - own)
+    others_dp = max(0, others - imp)
+    lev = c['lev']
+    name = 'init' if all(len(w) == 1 for w in c['g']) else ('full' if lev == 'full' else lev)
+    review_like = p.get('kind') == 'review' or bool(REVIEWISH.search(p['title'] or '')) or p.get('role') == 'reviewer'
+    x = dict(others=others, others_dp=others_dp, n_oa=n_oa, name=name, scholar=k in people.scholar,
+             venue=fe.get('venue') or 'none', topicv=c.get('topicv', 0.0), win=how,
+             author_review=p.get('role') == 'author' and review_like)
+    x['bearers'] = max(others + 1, n_oa)
+    x['bearers_dp'] = max(others_dp + 1, n_oa)
+    x['sig'] = [f"x:lco={others}", f"x:lcdp={others_dp}", f"x:oa={n_oa}", f"x:name={name}",
+                'x:scholar' if x['scholar'] else 'x:noscholar', f"x:venue={x['venue']}", f"x:topicv={x['topicv']:.1f}",
+                f"x:win={how}"] + (['x:author-review'] if x['author_review'] else [])
+    x['fires'] = {
+        # (i) namesakes the dates rule out no longer count against rarity
+        'unique-rare-dated-namesakes': name == 'full' and others > P['RARE_LC'] and others_dp <= P['RARE_LC'] and n_oa <= P['RARE_OA'],
+        # (ii) topic against the volume's title and its sibling chapters' titles as well as the work's own
+        'unique-topic-volume': name in ('full', 'variant') and x['topicv'] >= P.get('TOPICV_MIN', 1e9),
+        # (iii) a printed full given name, a scholar, a history venue, the career window: no positive fact
+        'single-scholar-history-venue': (name == 'full' and x['scholar'] and x['venue'] != 'none' and how in ('life', 'phd')
+                                         and not x['author_review'] and x['bearers_dp'] <= P.get('SCHOLAR_MAX_BEARERS', 0)),
+    }
+    return x
 
 
 def make_pos(r):
@@ -692,7 +785,7 @@ def make_pos(r):
              role=r['role'], name=apos(r['name']), title=r['title'], year=r['year'], book=False, lc=[], lc_how='',
              orcid=r['orcid'] or '', oa_author=r['oa_author'] or '', rors=list(r['rors'] or []), insts=list(r['insts'] or []),
              raw_aff=list(r['raw_aff'] or []), citing=0, sb=None, sd=None, initial_check='', venue='', oa_type='',
-             kind=r.get('kind') or '')
+             kind=r.get('kind') or '', journal=r.get('journal') or '')
     if r['inst_ror'] and r['inst_ror'] not in p['rors']:
         p['rors'].append(r['inst_ror'])
     p['forms'] = forms(p['name'])
@@ -813,6 +906,13 @@ def rule_wp_core(people, p, fe, pop, P, use_dup=True):
         good, how = L.date_test(c, p['year'], p['book'], P)
         if good and not (set(c['why']) - {'orcid-differs'}) and 'orcid-differs' not in c['why'] and fullform_rare(fe, c, pop, P, cands):
             return 'linked', cands[0], 'unique-rare-fullform', cands, sig + [f'date:{how}', 'fullform-rare']
+        # pass eight: the single-candidate, no-fact class (single_extras); a rule links only when adopted (link --adopt)
+        x = single_extras(people, p, fe, pop, P, cands[0]) if not br.startswith('name-form-tie') else None
+        if x:
+            sig = sig + x['sig']
+            for name in P.get('ADOPT', ()):
+                if x['fires'].get(name):
+                    return 'linked', cands[0], name, cands, sig + [f"date:{x['win']}"]
     if st == 'possible' and len(cands) > 1 and br == 'several-several-dated' and P.get('ONE_NETWORK_FACT'):
         # 2026-11-12 (Andrew Watson probe): several candidates fit the dates and exactly one of them has a network fact
         # for this position (a co-author, co-editor, advisor / student or dated colleague of someone credited on the work
@@ -998,6 +1098,12 @@ class Topics:
                 d[t] = d.get(t, 0) + 1
         print('topics:', len(self.idf), 'weighted words,', len(self.prof), 'profiles', flush=True)
 
+    def score_terms(self, k, terms, hidden=()):
+        d = self.prof.get(k)
+        if not d:
+            return 0.0
+        return sum(self.idf[t] for t in terms if t in d and t in self.idf and not (t in hidden and d[t] <= 1))
+
     def score(self, k, title, hide_work_title=None):
         d = self.prof.get(k)
         if not d:
@@ -1030,6 +1136,45 @@ def nameonly_features(db, people, topic_min=0.0):
                 ved[w].add(k)
     print('name-only facts:', len(coed) // 2, 'co-editor pairs,', len(adv) // 2, 'advisor pairs,', len(vp), 'chapters with volume people', flush=True)
     topics = Topics(db, people) if topic_min > 0 else None
+    # pass eight: history venues (journal catalogue titles and aliases) and each chapter's volume context (the volume's
+    # title and the titles of its other chapters: graph PART_OF of any evidence, and the fetched sibling chapters)
+    from key_review_reviewers import journal_key
+    hist_j = set()
+    with open(ROOT / 'data/journal-catalogue/catalogue.csv', newline='', encoding='utf-8') as fh:
+        for r in csv.DictReader(fh):
+            for t in [r['title']] + (r['aliases'] or '').split(' | '):
+                jk = journal_key(t) if t else ''
+                if jk:
+                    hist_j.add(jk)
+    vol_of, vol_titles = {}, defaultdict(list)
+    for ch, vol, lab, vlab in db.execute(f"""SELECT p."from", p."to", w.label, v.label FROM '{G}/part_of.parquet' p
+            LEFT JOIN '{G}/work.parquet' w ON w.key = p."from" LEFT JOIN '{G}/work.parquet' v ON v.key = p."to\"""").fetchall():
+        vol_of.setdefault(ch, vol)
+        if not vol_titles[vol] and vlab:
+            vol_titles[vol].append(vlab)
+        if lab:
+            vol_titles[vol].append(lab)
+    if (SCRATCH / 'sibling-chapters.parquet').exists():
+        vlabel = {}
+        for ch, vol, lab in db.execute(f"SELECT id, volume_work, title FROM '{SCRATCH}/sibling-chapters.parquet' WHERE id <> '' AND volume_work <> ''").fetchall():
+            vol_of.setdefault(ch, vol)
+            if lab:
+                vol_titles[vol].append(lab)
+            if vol not in vlabel:
+                vlabel[vol] = None
+        if vlabel:
+            db.register('vl', db.execute('SELECT unnest(?) AS key', [sorted(vlabel)]).df())
+            for k, lab in db.execute(f"SELECT w.key, w.label FROM '{G}/work.parquet' w JOIN vl USING (key)").fetchall():
+                if lab and lab not in vol_titles[k][:1]:
+                    vol_titles[k].insert(0, lab)
+    vol_terms = {}
+    for vol, ts in vol_titles.items():
+        tt = set()
+        for t in ts:
+            tt |= topic_terms(t)
+        vol_terms[vol] = tt
+    del vol_titles
+    print('pass eight:', len(hist_j), 'history journal keys,', len(vol_of), 'chapters with a volume', flush=True)
 
     def features(people_, p, mask=None, exacts=None, refkeys=None, citers_of=None):
         fe = L.features(people_, p, mask=mask, exacts=exacts, refkeys=refkeys, citers_of=citers_of)
@@ -1071,6 +1216,13 @@ def nameonly_features(db, people, topic_min=0.0):
                     break
             if k in ved.get(w, ()):
                 c['facts'].append('volume-editor')
+            # pass eight (rule ii): topic against the volume's title and sibling chapters as well as the work's own title
+            if topics is not None and c.get('lev') in ('full', 'variant') and not review_like:
+                ctx = topic_terms(p['title']) | vol_terms.get(vol_of.get(w), set())
+                hid = topic_terms(p['title']) if (h and h[1] == k and h[0] == w) else set()
+                c['topicv'] = topics.score_terms(k, ctx, hid)
+        jk = journal_key(p.get('journal') or '') if p.get('journal') else ''
+        fe['venue'] = 'journal' if jk and jk in hist_j else ('volume' if vp.get(w) else 'none')
         return fe
     return features
 
@@ -1155,6 +1307,8 @@ def link(args):
         for f, _, g in forms(lab):
             needed.add((f, g[0]))
     pop = L.population_counts(db, needed)
+    LCD.clear()
+    LCD.update(lc_dated(db, needed))
     print('population', len(needed), round(time.time() - t0), flush=True)
     P = dict(json.loads((ROOT / 'data/identifiers/cited-work-authors-2026-11-10/report.json').read_text())['tuning']['chosen'])
     P['FACTS'] = tuple(P['FACTS'])
@@ -1166,6 +1320,11 @@ def link(args):
         if args.topic_min > 0 and args.facts != 'none':
             P['FACTS'] = P['FACTS'] + ('topic',)
         print('facts', P['FACTS'], flush=True)
+    # pass eight: the single-candidate rules adopted (state linked, own branch names); thresholds chosen on the dev half
+    P['ADOPT'] = tuple(x for x in (getattr(args, 'adopt', '') or '').split(',') if x)
+    P['TOPICV_MIN'] = getattr(args, 'topicv_min', 1e9)
+    P['SCHOLAR_MAX_BEARERS'] = getattr(args, 'scholar_max_bearers', 0)
+    print('adopt', P['ADOPT'], 'topicv_min', P['TOPICV_MIN'], 'scholar_max_bearers', P['SCHOLAR_MAX_BEARERS'], flush=True)
 
     # pass 1: ORCID exacts per work (co-author fact)
     exact_of = defaultdict(set)
@@ -1227,7 +1386,7 @@ def link(args):
                 st, k, br, sig = guard(r, st, k, br, sig, fe, P, book_titles, reviewed_authors, outside)
                 cls = None if st != 'linked' else 'right' if k == g else judge(k, g)
                 gold_out.append(dict(pid=r['pid'], role=role, half=stable_half(g), dup=use_dup, true=g, state=st, key=k or '',
-                                     true_listed=g in (cands or []),
+                                     true_listed=g in (cands or []), cands='|'.join(cands or []),
                                      branch=br, cls=cls or '', sig=' '.join(sig), in_cands=g in fe['cands'],
                                      n_live=len(cands), name=r['name'], year=r['year'], how=r['credited_how']))
             # masked author: another name-compatible key proven a different person from g; drop g, hide its ids
@@ -1245,7 +1404,7 @@ def link(args):
                 fe2 = features(people, p, mask=m2, exacts=ex, refkeys=refkeys.get(r['work']), citers_of=citers_of)
                 st, k, br, cands, sig = rule_wp(people, p, fe2, pop, P, use_dup=not args.no_dup)
                 st, k, br, sig = guard(r, st, k, br, sig, fe2, P, book_titles, reviewed_authors, outside)
-                ns_out.append(dict(test='masked-author', pid=r['pid'], role=role, proven=k2, true=g, state=st, key=k or '',
+                ns_out.append(dict(test='masked-author', pid=r['pid'], role=role, proven=k2, true=g, state=st, key=k or '', cands='|'.join(cands or []),
                                    branch=br, false_link=st == 'linked' and k == k2, sig=' '.join(sig), name=r['name'], year=r['year']))
             HIDE[0] = None
     # ORCID namesake: the printed ORCID is on no key; the one name-compatible key holds a different ORCID
@@ -1263,12 +1422,12 @@ def link(args):
         fe = features(people, p, mask=m, exacts=authors.get(r['work'], set()), refkeys=refkeys.get(r['work']), citers_of=citers_of)
         st, kk, br, cands, sig = rule_wp(people, p, fe, pop, P, use_dup=not args.no_dup)
         st, kk, br, sig = guard(r, st, kk, br, sig, fe, P, book_titles, reviewed_authors, outside)
-        ns_out.append(dict(test='orcid-namesake', pid=r['pid'], role=r['role'], proven=k, true='', state=st, key=kk or '',
+        ns_out.append(dict(test='orcid-namesake', pid=r['pid'], role=r['role'], proven=k, true='', state=st, key=kk or '', cands='|'.join(cands or []),
                            branch=br, false_link=st == 'linked', sig=' '.join(sig), name=r['name'], year=r['year']))
     print('tests', len(gold_out), len(ns_out), round(time.time() - t0), flush=True)
     import pyarrow as pa
     import pyarrow.parquet as pq
-    tag = f'-{args.limit}' if args.limit else ''
+    tag = (f'-{args.limit}' if args.limit else '') + (getattr(args, 'out_tag', '') or '')
     pq.write_table(pa.Table.from_pylist(out), SCRATCH / f'results{tag}.parquet')
     pq.write_table(pa.Table.from_pylist(gold_out), SCRATCH / f'gold{tag}.parquet')
     if ns_out:
@@ -3015,6 +3174,8 @@ def nameonly_positions(args):
     for fn in sorted((S / 'oa').glob('*.jsonl')):
         for line in open(fn, encoding='utf-8'):
             r = json.loads(line)
+            if 'authorships' not in r:      # oa/doi-lookup-extra.jsonl (nameonly-extra) lists ids only, for the outside set
+                continue
             ws = set(id_work.get('openalex:' + r['work'], ())) | (set(id_work.get('doi:' + r['doi'], ())) if r['doi'] else set())
             for w in ws:
                 if w not in best or len(r['authorships']) > len(best[w]['authorships']):
@@ -3670,6 +3831,12 @@ def main():
     a.add_argument('--new-facts', action='store_true', help='FACTS_NAMEONLY on the 11-11 positions (run volume-people first)')
     a.add_argument('--no-one-fact', action='store_true', help='without the several-dated-one-fact branch')
     a.add_argument('--topic-min', type=float, default=0.0, help='topic fact at or above this score (0: off)')
+    a.add_argument('--adopt', default='', help='pass-eight single-candidate rules that link (comma list; default none: '
+                   'their inputs are written to the signals only)')
+    a.add_argument('--topicv-min', type=float, default=1e9, help='rule unique-topic-volume: volume-context topic score')
+    a.add_argument('--scholar-max-bearers', type=int, default=0, help='rule single-scholar-history-venue: at most this '
+                   'many bearers of the name (date-possible LC namesakes + 1, or OpenAlex History ids)')
+    a.add_argument('--out-tag', default='', help='suffix of the results / gold / namesake files (a variant run)')
     sub.add_parser('mints')
     sub.add_parser('panel')
     sub.add_parser('audit')
