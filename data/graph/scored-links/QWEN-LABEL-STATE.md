@@ -70,3 +70,18 @@ ssh nibi 'cd ~/projects/def-jic823/historiography-topics/linklabel/scripts && sb
   (`ssh nibi scancel 27060104 27060108`) once the Fir results are in, or use whichever finishes first.
   Fetch: `for n in val-nofacts val-facts; do mkdir -p $QL/$n; rsync -a fir:/scratch/jic823/linklabel/results/$n/ $QL/$n/; done`
   Production run on Fir after acceptance: `ssh fir 'cd /scratch/jic823/linklabel/scripts && sbatch --time=8:00:00 label_links_qwen_fir.slurm ../data/prod-dossiers.jsonl.gz prod <chosen options>'` (dossiers already copied).
+
+- 2026-11-13 morning: both Fir validation jobs finished (3686060 val-nofacts, 3686062 val-facts; 16–20 min each, 4,074
+  verdicts each). Development half: showing the linker's computed facts made Qwen slightly worse (more dangerous links),
+  so the no-facts variant was chosen, with policy greedy+sc (temperature-0 answer confirmed by the three samples).
+  Held-out half, read once: 422 links, agreement with Opus 89.5%, recall of Opus links 91%, dangerous 3 = 0.71%
+  (95% interval 0.2–1.9%). The three: A051 Dugdale (the 1937 Balfour biography is by Blanche Dugdale; Opus right),
+  A222 Robert M. Price (a political scientist on Ghana, key is a Liberia thesis writer with 26+ name bearers; Opus right),
+  A263 Patricio Silva (a review record relabelled not-keyed by the reviewed-author override; Opus judges had linked the
+  same key as Qwen). Accepted under the stated rule (point estimate ≤1%); the interval's upper end is above 1%.
+  Known weakness to handle downstream: plausible-topic links on very common names (26+ bearers) with one candidate.
+- Production labelling run submitted on Fir: `prod`, 40,000 dossiers, `--greedy --samples 3`, --time 12:00:00 (job id in
+  the commit message / `ssh fir squeue -u $USER`). Resubmit the same command to resume if it hits the limit.
+  Fetch: `mkdir -p $QL/prod; rsync -a fir:/scratch/jic823/linklabel/results/prod/ $QL/prod/` then
+  `python3 scripts/label_links_qwen.py write ...` (see --help) to make data/graph/scored-links/qwen-labels.csv.gz,
+  applying policy greedy+sc. Next: extend scripts/train_link_classifier.py to train on these labels (Plato CPU).
