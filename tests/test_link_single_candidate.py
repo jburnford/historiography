@@ -110,5 +110,43 @@ class PassNine(unittest.TestCase):
         self.assertEqual(x['others_act'], 1)        # one undated namesake set aside of two others
 
 
+class Adopted(unittest.TestCase):
+    """2026-11-13: the two adopted combinations (subject + subfield/venue + tie; subject + tie), as pass nine measured"""
+
+    def x(self, **kw):
+        d = dict(name='full', psz=5, pth=False, lrs=4.0, lrf=0.0, vrep=0, rv=0, ct=0, cca=0, author_review=False,
+                 others=0, others_act=0, n_oa=0)
+        d.update(kw)
+        return d
+
+    def test_all_three(self):
+        f = W.p9_fires(self.x(lrf=2.0, rv=1), {'RARE_LC': 0, 'RARE_OA': 20})
+        self.assertTrue(f['single-subject-subfield-tie'])
+        self.assertTrue(f['single-subject-tie'])
+
+    def test_subject_and_tie_only(self):
+        f = W.p9_fires(self.x(cca=2), {'RARE_LC': 0, 'RARE_OA': 20})
+        self.assertFalse(f['single-subject-subfield-tie'])
+        self.assertTrue(f['single-subject-tie'])
+
+    def test_not_two_of_three_without_subject_nor_subject_alone(self):
+        P = {'RARE_LC': 0, 'RARE_OA': 20}
+        f = W.p9_fires(self.x(lrs=1.0, lrf=3.0, rv=1), P)          # subfield + tie, no subject
+        self.assertFalse(f['single-subject-subfield-tie'] or f['single-subject-tie'])
+        f = W.p9_fires(self.x(lrf=3.0), P)                          # subject + subfield, no tie
+        self.assertFalse(f['single-subject-subfield-tie'] or f['single-subject-tie'])
+        f = W.p9_fires(self.x(cca=1), P)                            # co-citation below 2 is no tie
+        self.assertFalse(f['single-subject-tie'])
+
+    def test_guards(self):
+        P = {'RARE_LC': 0, 'RARE_OA': 20}
+        self.assertFalse(W.p9_fires(self.x(name='init', rv=1), P)['single-subject-tie'])
+        self.assertFalse(W.p9_fires(self.x(author_review=True, rv=1), P)['single-subject-tie'])
+        self.assertFalse(W.p9_fires(self.x(psz=1, rv=1), P)['single-subject-tie'])   # thin profile, no thesis
+
+    def test_default_adopt(self):
+        self.assertEqual(W.ADOPT_DEFAULT, 'single-subject-subfield-tie,single-subject-tie')
+
+
 if __name__ == '__main__':
     unittest.main()

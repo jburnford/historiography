@@ -263,11 +263,10 @@ def fetch(args):
         out = F.get(url)
         recent.append(out is None)
         del recent[:-20]
-        if len(recent) == 20 and sum(recent) > 10:
-            print('more than half of the last 20 requests unanswered; pausing 300s', flush=True)
-            log.write(json.dumps(dict(pause=time.strftime('%H:%M:%S'), requests=F.requests)) + '\n')
-            recent.clear()
-            time.sleep(300)
+        # 2026-11-13: dropped connections count as a refusal (the run stops and is recorded; no pause-and-continue):
+        # more than half of the last 20 unanswered, or three in a row unanswered after their retry
+        if (len(recent) == 20 and sum(recent) > 10) or (len(recent) >= 3 and all(recent[-3:])):
+            raise Refused(f'dropped connections: {sum(recent)} of the last {len(recent)} requests unanswered')
         return out
 
     def stop(reason):

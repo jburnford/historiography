@@ -264,6 +264,21 @@ the volume's ISBN).
   `x:topicv`, `x:win`). A rule links only when named with `--adopt` (branches `unique-rare-dated-namesakes`,
   `unique-topic-volume`, `single-scholar-history-venue`; thresholds `--topicv-min`, `--scholar-max-bearers`). None was adopted in pass eight (none met a 0.5% wrong-link share with an upper bound; ARCHITECTURE.md §8 class 38), so the tables carry the signals only. Both linkers were rerun on the evening build (`nameonly-positions`, `nameonly-extra`, `link --nameonly --gold-no-oa --topic-min 20`, `nameonly-report`, `nameonly-export`; `volume-people`, `link --new-facts --topic-min 20`, `report`, `export`). `nameonly-positions` now skips the id-only list `oa/doi-lookup-extra.jsonl` that `nameonly-extra` writes.
 
+**Pass nine adopted (2026-11-13).**
+- Single-candidate positions (class 38): `link_work_people.py link` now adopts by default (`ADOPT_DEFAULT`; `--adopt ""`
+  for none) the two rarest pass-nine combinations, at the levels measured in
+  `data/identifiers/single-candidate-2026-11-12/pass-nine-report.json`: branch `single-subject-subfield-tie` (subject
+  ratio lrs >= 3, subfield ratio lrf >= 1 or the same journal, and a documented tie: REVIEWED either way, citations
+  between the people's works, or thesis co-citation >= 2) and branch `single-subject-tie` (subject + a tie). Both need a
+  full printed given name and a single surviving candidate (dated, uncontradicted); the pass-nine facts must be on (not
+  `--no-p9`). The signals carry `evidence=subject+subfield+review|cites|cocite`; the build sets `role_basis` to
+  `evidence: subject + subfield + review tie` (work-people and name-only rows) and the explorer prints it in place of
+  "by rule". The any-two-of-three rule and subject alone stay off.
+- REVIEWED also ties a reviewer to the editors of the reviewed volume (owner: "reviews are tied to editors"): credits with
+  role volume-editor (EDITED, and AUTHORED filed as volume editor), key log and linked; column `target_role`
+  (`author` / `volume-editor`); edition editors, translators, series editors and contributors stay out. Report
+  `REVIEWED_volume_editor_rows`; the explorer adds "(reviewed the volume they edited)".
+
 To refresh after the sources change:
 - **Dissertation citations:** key the corpus's new dissertations in the log, rerun `scripts/key_cited_works.py`, then `scripts/export_citations.py`.
 - **JSTOR:** rerun `scripts/export_jstor_citations.py`.

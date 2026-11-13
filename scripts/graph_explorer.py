@@ -38,7 +38,9 @@ ADDED = {'part_of': [('evidence', "'keylog'"), ('source', 'NULL'), ('volume_basi
          # co-editor pairs resting on linked editor credits (2026-11-12)
          'coedited': [('evidence', "'keylog'"), ('linked_works', '0')],
          # reviews of a book found by title or a review-style label (2026-11-12, scripts/review_books.py)
-         'reviews': [('evidence', "'keylog'"), ('source', 'NULL')]}
+         'reviews': [('evidence', "'keylog'"), ('source', 'NULL')],
+         # reviewer -> editor of the reviewed volume (2026-11-13)
+         'reviewed': [('target_role', "'author'")]}
 WORK_ADDED = ('issn', 'journal_source', 'kind_proposed', 'isbn', 'editors_printed', 'first_year_basis')
 WORK_ADDED_INT = ('first_year', 'first_year_catalogue')
 # credits under which a person prepared someone else's work (an edition, a translation, an introduction, a series):
@@ -59,7 +61,7 @@ EDITION_OF_D = "any_value(e.relation) || ', ' || any_value(e.theses) || ' citing
 # rows resting only on a credit outside the key log are marked; key-log rows carry no note
 LINKED_D = ("CASE WHEN bool_or(e.evidence = 'keylog') THEN NULL ELSE "
             "'linked: ' || string_agg(DISTINCT CASE WHEN e.source = 'scored-links' THEN 'scored link (score ' || round(e.score, 1) || ')' WHEN e.source = 'classified-links' THEN 'classified link (p=' || round(e.score, 3) || ')' ELSE "
-            "CASE e.state WHEN 'exact' THEN 'by identifier' ELSE 'by rule' END || ' ('"
+            "CASE WHEN e.state = 'exact' THEN 'by identifier' WHEN e.role_basis LIKE 'evidence: %' THEN substr(e.role_basis, 11) ELSE 'by rule' END || ' ('"
             " || CASE e.source WHEN 'lc' THEN 'LC' WHEN 'openalex' THEN 'OpenAlex' WHEN 'work-people:reviewer' THEN 'printed reviewer'"
             " WHEN 'work-people:jstor-author' THEN 'JSTOR author' WHEN 'work-people:author' THEN 'OpenAlex/Crossref author list'"
             " WHEN 'volume-editors:crossref' THEN 'Crossref editor list' WHEN 'volume-editors:lc' THEN 'LC editor statement'"
@@ -79,7 +81,8 @@ LINKED_D = ("CASE WHEN bool_or(e.evidence = 'keylog') THEN NULL ELSE "
 # EDITOR_OF (2026-11-12): the volume, marked when the row rests on a linked PART_OF, editor or author credit
 VOLUME_D = ("(SELECT label FROM nodes WHERE key = any_value(e.volume)) || CASE WHEN count(DISTINCT e.volume) > 1 THEN ' and others' ELSE '' END "
             "|| CASE WHEN bool_and(e.evidence = 'linked') THEN ' (linked: a volume link or credit outside the key log)' ELSE '' END")
-BOOK_D = "(SELECT label FROM nodes WHERE key = any_value(e.book)) || CASE WHEN bool_and(e.evidence = 'linked') THEN ' (linked)' ELSE '' END"
+BOOK_D = ("(SELECT label FROM nodes WHERE key = any_value(e.book)) || CASE WHEN bool_and(e.evidence = 'linked') THEN ' (linked)' ELSE '' END"
+          " || CASE WHEN bool_and(e.target_role = 'volume-editor') THEN ' (reviewed the volume they edited)' ELSE '' END")
 POSSIBLE_D = ("'unconfirmed: ' || CASE WHEN any_value(e.reason) IS NOT NULL THEN any_value(e.reason) || ' -- not credited' "
               "WHEN any_value(e.n_candidates) = 1 THEN 'name match only (the sole candidate left after the "
               "name and date tests; no confirming fact)' ELSE 'one of ' || any_value(e.n_candidates) || ' candidates for this "

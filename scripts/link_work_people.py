@@ -922,7 +922,12 @@ def rule_wp_core(people, p, fe, pop, P, use_dup=True):
             sig = sig + x['sig']
             for name in P.get('ADOPT', ()):
                 if x['fires'].get(name):
-                    return 'linked', cands[0], name, cands, sig + [f"date:{x['win']}"]
+                    extra = []
+                    if name in ('single-subject-subfield-tie', 'single-subject-tie'):
+                        a1, a2, a3, ties = adopted_kinds(x)
+                        extra = ['evidence=subject' + ('+subfield' if a2 and name == 'single-subject-subfield-tie' else '')
+                                 + '+' + '|'.join(ties)]
+                    return 'linked', cands[0], name, cands, sig + [f"date:{x['win']}"] + extra
     if st == 'possible' and len(cands) > 1 and br == 'several-several-dated' and P.get('ONE_NETWORK_FACT'):
         # 2026-11-12 (Andrew Watson probe): several candidates fit the dates and exactly one of them has a network fact
         # for this position (a co-author, co-editor, advisor / student or dated colleague of someone credited on the work
@@ -1542,12 +1547,36 @@ def p9_kinds(x, P):
     return k1, k2, k3
 
 
+# Adopted 2026-11-13 (owner: "make the changes"): the two rarest combinations of pass nine, at the levels measured there
+# (data/identifiers/single-candidate-2026-11-12/pass-nine-report.json, combos 'all3(K1:lrs>=3,K2:lrf>=1|vrep,
+# K3:review|cites|cocite>=2)' and 'K1:lrs>=3 & K3:review|cites|cocite>=2'): a full printed given name, the only surviving
+# candidate (dated, uncontradicted), and subject (K1) + subfield or same journal (K2) + a documented tie (K3), or
+# subject + a tie. Not the any-two-of-three rule and not subject alone (both failed the bound).
+ADOPT_DEFAULT = 'single-subject-subfield-tie,single-subject-tie'
+A_LEVELS = dict(K1=3.0, K2=1.0, CC=2)
+
+
+def adopted_kinds(x):
+    """(K1, K2, K3, ties) as analyse9.py measured them: profile of 3+ works or a thesis; an author-role review record
+    takes no K1/K2; K3 = REVIEWED either way, citations between works, or thesis co-citation >= 2"""
+    rl = bool(x.get('author_review'))
+    prof = x.get('psz', 0) >= 3 or bool(x.get('pth'))
+    k1 = not rl and prof and x.get('lrs', 0) >= A_LEVELS['K1']
+    k2 = not rl and ((prof and x.get('lrf', 0) >= A_LEVELS['K2']) or x.get('vrep', 0) >= 1)
+    ties = [t for t, ok in (('review', x.get('rv', 0) >= 1), ('cites', x.get('ct', 0) >= 1),
+                            ('cocite', x.get('cca', 0) >= A_LEVELS['CC'])) if ok]
+    return k1, k2, bool(ties), ties
+
+
 def p9_fires(x, P):
     k1, k2, k3 = p9_kinds(x, P)
     full = x['name'] == 'full'
     present = sum(1 for v in (k1, k2, k3) if v)
     strong = any(v == 2 for v in (k1, k2, k3))
+    a1, a2, a3, _ties = adopted_kinds(x)
     return {
+        'single-subject-subfield-tie': full and a1 and a2 and a3,
+        'single-subject-tie': full and a1 and a3,
         # D: a full printed given name, the only surviving candidate, and two kinds (or one strong kind plus another)
         'single-two-kinds': full and present >= 2,
         'single-strong-kind': full and present >= 1 and strong and P.get('D_STRONG_ALONE', False),
@@ -3409,6 +3438,13 @@ class PoliteCrossref:
                 if e.code == 404:
                     return 'not-found', None
                 status = f'error:{str(e)[:80]}'
+            except (urllib.error.URLError, ConnectionError, TimeoutError) as e:
+                # 2026-11-13: a dropped connection stops the run like a refusal (recorded, never retried here)
+                rec = dict(at=time.strftime('%Y-%m-%dT%H:%M:%S'), code='dropped', url=url, calls=self.calls,
+                           error=str(e)[:120])
+                with open(self.refusals, 'a') as f:
+                    f.write(json.dumps(rec) + '\n')
+                raise CrossrefRefused(rec)
             except Exception as e:
                 status = f'error:{str(e)[:80]}'
             time.sleep(5 * (attempt + 1))
@@ -4317,8 +4353,8 @@ def main():
     a.add_argument('--new-facts', action='store_true', help='FACTS_NAMEONLY on the 11-11 positions (run volume-people first)')
     a.add_argument('--no-one-fact', action='store_true', help='without the several-dated-one-fact branch')
     a.add_argument('--topic-min', type=float, default=0.0, help='topic fact at or above this score (0: off)')
-    a.add_argument('--adopt', default='', help='pass-eight single-candidate rules that link (comma list; default none: '
-                   'their inputs are written to the signals only)')
+    a.add_argument('--adopt', default=ADOPT_DEFAULT, help='single-candidate rules that link (comma list; default since 2026-11-13: the two adopted pass-nine combinations; '
+                   'pass --adopt "" for none: the inputs of the others are written to the signals only)')
     a.add_argument('--topicv-min', type=float, default=1e9, help='rule unique-topic-volume: volume-context topic score')
     a.add_argument('--scholar-max-bearers', type=int, default=0, help='rule single-scholar-history-venue: at most this '
                    'many bearers of the name (date-possible LC namesakes + 1, or OpenAlex History ids)')

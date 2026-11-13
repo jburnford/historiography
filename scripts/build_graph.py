@@ -12,7 +12,8 @@ is untracked) and writes to build/graph/ (git-ignored):
 - `PART_OF` (Work -> Work): a chapter and the volume it is in; `EDITOR_OF` (Person -> Person), derived: a
   volume's editor -> each author of a chapter in it (with the chapter and volume keys; user, 2026-11-05);
 - `REVIEWED` (Person -> Person), derived: the author of a review -> each author of the book it reviews, with
-  the review and book keys (user, 2026-11-02: edges between reviewers and the authors of the books);
+  the review and book keys (user, 2026-11-02: edges between reviewers and the authors of the books); since
+  2026-11-13 also -> each volume editor of the reviewed book (`target_role` = 'volume-editor');
 - `ADVISED` (Person -> Person), derived: a thesis's supervisor -> its author (with the claim and thesis keys),
   and the log's person-to-person `advised` claims (Wikidata's doctoral advisors where the student's thesis is
   not in the log; thesis empty);
@@ -573,6 +574,22 @@ def cited_authors(state, types, cited_key, rels, report):
     return linked, list(possible.values()), best
 
 
+# 2026-11-13: the two adopted single-candidate combinations of link_work_people.py (branches single-subject-subfield-tie,
+# single-subject-tie) name their evidence in role_basis ('evidence: subject + subfield + review tie'); the explorer shows it
+ADOPTED_BRANCHES = ('single-subject-subfield-tie', 'single-subject-tie')
+_TIE_WORD = {'review': 'review tie', 'cites': 'citation tie', 'cocite': 'co-citation tie'}
+
+
+def adopted_evidence(r):
+    """'evidence: subject + subfield + review tie' for a credit row of an adopted branch, else None"""
+    if (r.get('branch') or '') not in ADOPTED_BRANCHES:
+        return None
+    ev = next((x[9:] for x in (r.get('signals') or '').split() if x.startswith('evidence=')), '')
+    head, _, ties = ev.rpartition('+')
+    parts = [w for w in head.split('+') if w] + [_TIE_WORD.get(t, t) for t in ties.split('|') if t]
+    return 'evidence: ' + ' + '.join(parts or ['subject', 'tie'])
+
+
 def work_people(state, types, rels, report):
     """AUTHORED rows with evidence linked (exact/linked) and author_candidates rows (possible) from data/graph/work-people;
     works and person keys resolved through merges. A credit the key log already holds is skipped (counted).
@@ -622,8 +639,13 @@ def work_people(state, types, rels, report):
                 elif (k, w) not in seen:
                     seen.add((k, w))
                     counts[f'{role}|{st}'] += 1
-                    linked.append({'from': k, 'to': w, 'claim': f"work-people:{role}:{r['position']}", 'resolution': 'linked',
-                                   'source': f'work-people:{role}', 'state': st})
+                    row = {'from': k, 'to': w, 'claim': f"work-people:{role}:{r['position']}", 'resolution': 'linked',
+                           'source': f'work-people:{role}', 'state': st}
+                    ab = adopted_evidence(r)
+                    if ab:
+                        row.update(role='author', role_basis=ab)
+                        counts[f"{role}|{st}|{r['branch']}"] += 1
+                    linked.append(row)
             elif st == 'possible':
                 cands = sorted({k for c in r['candidates'].split('|') if (k := one(c, 'person'))})
                 counts[f'{role}|possible'] += 1
@@ -843,6 +865,10 @@ def name_only_credits(state, types, rels, resolve, chapter_node, report):
                 if tie:             # class 37: found through a stated alternate family-name form of the key
                     row.update(role='author', role_basis=f"name-form-tie: printed as \"{r['printed_name']}\"; tie: {tie[14:]}")
                     report['name_only|linked_through_name_form_tie'] += 1
+                ab = adopted_evidence(r)
+                if ab and not tie:
+                    row.update(role='author', role_basis=ab)
+                    report[f"name_only|{st}|{r['branch']}"] += 1
                 linked.append(row)
         elif st == 'possible':
             ks = sorted({k for c in r['candidates'].split('|') if (k := person(c))})
@@ -1818,6 +1844,7 @@ def main():
     # make no COAUTHORED pair and no REVIEWED edge; volume-editor credits (keylog or linked) join COEDITED instead;
     # linked EDITED credits as volume editor join COEDITED with evidence linked.
     not_author = {}                 # (person, work) -> role, AUTHORED rows whose role is not author
+    vol_editor_credits = {'keylog': defaultdict(set), 'linked': defaultdict(set)}   # EDITED role volume-editor, for REVIEWED
     linked_coeditor = set()         # (person, work) linked EDITED rows with an editor role (not an edition role)
     for name in ('AUTHORED', 'EDITED'):
         keyed = {(r['from'], r['to']) for r in rels[name]}
@@ -1831,6 +1858,8 @@ def main():
                     not_author[r['from'], r['to']] = role
                 elif name == 'EDITED' and ev == 'linked' and role in ('volume-editor', 'author-editor', 'unknown'):
                     linked_coeditor.add((r['from'], r['to']))
+                if name == 'EDITED' and role == 'volume-editor':
+                    vol_editor_credits[ev][r['to']].add(r['from'])
                 role_count[f'{name}|{ev}|{role}'] += 1
                 dp = dup_prov.get((name, (r['from'], r['to']))) if ev == 'keylog' else None
                 rows_.append({'from': r['from'], 'to': r['to'], 'claim': r['claim'], 'resolution': r['resolution'],
@@ -1884,10 +1913,33 @@ def main():
     both_all = {w: authors.get(w, set()) | lauth_all.get(w, set()) for w in set(authors) | set(lauth_all)}
     rl = sorted({(a, b, r['from'], r['to']) for r in rels['REVIEWS'] + rb_rows for a in both_all.get(r['from'], ())
                  for b in both_all.get(r['to'], ()) if a != b} - set(reviewed))
-    report['REVIEWED'] = write('reviewed', [{'from': a, 'to': b, 'review': rv, 'book': bk, 'evidence': 'keylog'} for a, b, rv, bk in reviewed]
-                               + [{'from': a, 'to': b, 'review': rv, 'book': bk, 'evidence': 'linked'} for a, b, rv, bk in rl],
-                               pa.schema([('from', s), ('to', s), ('review', s), ('book', s), ('evidence', s)]))
-    report['REVIEWED_by_evidence'] = dict(keylog=len(reviewed), linked=len(rl))
+    # 2026-11-13 (owner: "reviews are tied to editors"): a review of an edited volume ties the reviewer to the volume's
+    # editors: credits with role volume-editor (EDITED, and AUTHORED filed as volume editor), key log and linked alike;
+    # edition editors, translators, series editors and contributors stay out. target_role = 'volume-editor' on these rows.
+    ked = defaultdict(set)
+    for w, ks in vol_editor_credits['keylog'].items():
+        ked[w] |= ks
+    for w, ks in auth_editors.items():
+        ked[w] |= ks
+    led = defaultdict(set)
+    for w, ks in vol_editor_credits['linked'].items():
+        led[w] |= ks
+    for w, ks in lauth_editors.items():
+        led[w] |= ks
+    have_rv = {(a, b, rv, bk) for a, b, rv, bk in reviewed} | set(rl)
+    rv_ed_k = sorted({(a, b, r['from'], r['to']) for r in rels['REVIEWS'] for a in authors[r['from']]
+                      for b in ked.get(r['to'], ()) if a != b} - have_rv)
+    rv_ed_l = sorted({(a, b, r['from'], r['to']) for r in rels['REVIEWS'] + rb_rows for a in both_all.get(r['from'], ())
+                      for b in ked.get(r['to'], set()) | led.get(r['to'], set()) if a != b} - have_rv - set(rv_ed_k))
+    del ked, led, have_rv
+    report['REVIEWED'] = write('reviewed', [{'from': a, 'to': b, 'review': rv, 'book': bk, 'evidence': 'keylog', 'target_role': 'author'} for a, b, rv, bk in reviewed]
+                               + [{'from': a, 'to': b, 'review': rv, 'book': bk, 'evidence': 'linked', 'target_role': 'author'} for a, b, rv, bk in rl]
+                               + [{'from': a, 'to': b, 'review': rv, 'book': bk, 'evidence': 'keylog', 'target_role': 'volume-editor'} for a, b, rv, bk in rv_ed_k]
+                               + [{'from': a, 'to': b, 'review': rv, 'book': bk, 'evidence': 'linked', 'target_role': 'volume-editor'} for a, b, rv, bk in rv_ed_l],
+                               pa.schema([('from', s), ('to', s), ('review', s), ('book', s), ('evidence', s), ('target_role', s)]))
+    report['REVIEWED_by_evidence'] = dict(keylog=len(reviewed) + len(rv_ed_k), linked=len(rl) + len(rv_ed_l))
+    report['REVIEWED_volume_editor_rows'] = dict(keylog=len(rv_ed_k), linked=len(rv_ed_l))
+    del rv_ed_k, rv_ed_l
     del rl
     # editor -> contributor: a volume's editors -> the authors of a chapter in it (user, 2026-11-05: editors of
     # books I've published in)
@@ -2331,7 +2383,7 @@ def load_db(report):
     conn.execute('CREATE REL TABLE CONTRIBUTED(FROM Person TO Work, claim STRING, resolution STRING, evidence STRING, '
                  'source STRING, state STRING, basis STRING)')
     conn.execute('CREATE REL TABLE EDITOR_OF(FROM Person TO Person, chapter STRING, volume STRING, evidence STRING)')
-    conn.execute('CREATE REL TABLE REVIEWED(FROM Person TO Person, review STRING, book STRING, evidence STRING)')
+    conn.execute('CREATE REL TABLE REVIEWED(FROM Person TO Person, review STRING, book STRING, evidence STRING, target_role STRING)')
     conn.execute('CREATE REL TABLE ADVISED(FROM Person TO Person, claim STRING, thesis STRING, evidence STRING)')
     conn.execute('CREATE REL TABLE COEDITED(FROM Person TO Person, works INT32, titles INT32, first_year INT32, last_year INT32, '
                  'work_keys STRING[])')
