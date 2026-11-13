@@ -3581,6 +3581,41 @@ def sibling_chapters(G, db):
 KNOWN_EXACT_SQL = "(a.evidence = 'keylog' OR (a.state = 'exact' AND coalesce(a.source, '') <> 'author-works:openalex-author-orcid'))"
 
 
+def sibling_twins(db, G, new_sib):
+    """{chapter doi: dict(keyed_work, kind, year, journal, title, keyed_has_doi)} for fetched chapters whose keyed twin is
+    in the same volume (work_dup_pairs.sibling_twin)"""
+    from work_dup_pairs import fold_title, sibling_twin
+    vols = sorted({v['volume'] for v in new_sib.values()})
+    if not vols:
+        return {}
+    db.register('tv', db.execute('SELECT unnest(?) AS v', [vols]).df())
+    vt = dict(db.execute(f"SELECT key, label FROM '{G}/work.parquet' WHERE key IN (SELECT v FROM tv)").fetchall())
+    ch = defaultdict(list)
+    info = {}
+    for v, k, kind, year, journal, label, anchors in db.execute(f"""SELECT DISTINCT p."to", w.key, w.kind, w.year, w.journal, w.label, w.anchors
+            FROM '{G}/part_of.parquet' p JOIN tv ON tv.v = p."to" JOIN '{G}/work.parquet' w ON w.key = p."from"
+            WHERE w.resolution <> 'unkeyed'""").fetchall():
+        ch[v].append(k)
+        info[k] = (kind, year, journal, label, any(a.startswith('doi:') for a in anchors or ()))
+    lab = {}
+    fam = defaultdict(set)
+    ks = sorted(info)
+    db.register('tk', db.execute('SELECT unnest(?) AS k', [ks or ['']]).df())
+    for k, w, l in db.execute(f"""SELECT a."from", a."to", p.label FROM {keylog(G, 'authored')} a JOIN tk ON tk.k = a."to"
+            JOIN '{G}/person.parquet' p ON p.key = a."from" """).fetchall():
+        f = l.split(',', 1)[0] if ',' in (l or '') else ((l or '').split() or [''])[-1]
+        fam[w].add(fold_title(f))
+    out = {}
+    for d, v in new_sib.items():
+        printed = [(a['name'] or '').split()[-1] if (a['name'] or '').split() else '' for a in v['authors']]
+        k = sibling_twin(v['title'], vt.get(v['volume']), printed,
+                         [(k, fold_title(info[k][3]), fam.get(k, ())) for k in ch.get(v['volume'], ())])
+        if k:
+            kind, year, journal, label, has_doi = info[k]
+            out[d] = dict(keyed_work=k, kind=kind, year=year, journal=journal, title=label, keyed_has_doi='1' if has_doi else '0')
+    return out
+
+
 def volume_people_rows(db, G, chap, extra=None):
     """[dict(work=chapter, key, how, volume)]: key-log editors of the chapter's volume (EDITED, AUTHORED volume-editor) and
     the key-log / identifier authors of its other chapters"""
@@ -3655,7 +3690,19 @@ def nameonly_positions(args):
     for (c,) in db.execute(f"""SELECT DISTINCT "from" FROM '{G}/part_of.parquet' WHERE source = 'name-only-volume'""").fetchall():
         known.pop(c, None)
     new_sib = {d: v for d, v in sib.items() if ('doi:' + d) not in known}
-    print(len(sib), 'sibling chapters;', len(new_sib), 'not in the graph', flush=True)
+    # 2026-11-13 (class 11, rule 1a of scripts/work_dup_pairs.py): a fetched chapter whose keyed twin is in the same volume
+    # (same folded title, not the volume's title, a printed author bearing the family name of a key-log author of it) is
+    # not a new node: the pair is recorded (S/sibling-twins.parquet -> name-only/chapter-twins.csv.gz) and its printed
+    # authors are read as positions on the keyed chapter
+    twins = sibling_twins(db, G, new_sib)
+    for d in twins:
+        new_sib.pop(d)
+    print(len(sib), 'sibling chapters;', len(new_sib), 'not in the graph;', len(twins), 'twins of a keyed chapter', flush=True)
+    twin_pos = {}
+    for d, t in twins.items():
+        if t['keyed_work'] not in work:      # a target already reads its own record
+            work[t['keyed_work']] = (t['kind'], t['year'], t['journal'], t['title'])
+            twin_pos[d] = t
     keys = sorted(work)
     db.register('kk', db.execute('SELECT unnest(?) AS key', [keys]).df())
     gold_cr, rule_cr = defaultdict(set), defaultdict(set)
@@ -3766,6 +3813,17 @@ def nameonly_positions(args):
         for i, a in enumerate(v['authors']):
             if a['name']:
                 add('crossref-volume', w, i, len(v['authors']), a['name'], a['orcid'], raw_aff=a['aff'], inst=(a['aff'] or [''])[0])
+    for d, t in twin_pos.items():
+        v = sib[d]
+        stats['works_crossref_volume_twin'] += 1
+        for i, a in enumerate(v['authors']):
+            if a['name']:
+                add('crossref-volume', t['keyed_work'], i, len(v['authors']), a['name'], a['orcid'], raw_aff=a['aff'],
+                    inst=(a['aff'] or [''])[0])
+    pq.write_table(pa.Table.from_pylist([dict(id='doi:' + d, doi=d, keyed_work=t['keyed_work'], volume_work=sib[d]['volume'],
+                                              title=sib[d]['title'], keyed_has_doi=t['keyed_has_doi']) for d, t in twins.items()]
+                                        or [dict(id='', doi='', keyed_work='', volume_work='', title='', keyed_has_doi='')]),
+                   S / 'sibling-twins.parquet')
     stats['target_works'] = len(keys)
     stats['works_without_record'] = len(set(keys) - done)
     for i, r in enumerate(rows):
@@ -3999,6 +4057,13 @@ def nameonly_export(args):
                 w.writerow(r)
                 m += 1
     print('chapters', m)
+    # chapters not added because their keyed twin is in the same volume (nameonly-positions; class 11 rule 1a)
+    if (S / 'sibling-twins.parquet').exists():
+        tcols = ['id', 'doi', 'keyed_work', 'volume_work', 'title', 'keyed_has_doi']
+        with gzip.open(NO_TABLE / 'chapter-twins.csv.gz', 'wt', newline='', encoding='utf-8') as f:
+            w = csv.writer(f)
+            w.writerow(tcols)
+            w.writerows(db.execute(f"SELECT {', '.join(tcols)} FROM '{S}/sibling-twins.parquet' WHERE id <> '' ORDER BY id").fetchall())
     parts = write_parts(NO_OUT / 'links', rows(''), cols)
     print('links', [(p.name, p.stat().st_size) for p in parts])
 

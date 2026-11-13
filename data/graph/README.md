@@ -59,7 +59,7 @@ every node and edge type. In brief:
 | `scored-links/` | links 591,283 (2026-11-12) | `scripts/score_links.py` (the scorer's own report and weights there) | Scored linkage of printed names to keys: work, role, position, printed name, person key, score, decision (link / exact / review / none), rule_state, rule_key, source. The build loads it through `scripts/graph_scored_links.py`: scorer-only `link` rows as AUTHORED / EDITED with evidence linked, source `scored-links`, state `scored` and `score` (author-role links on works that read as reviews excluded; `added`/`resp` LC entries not loaded); a rule row the scorer agrees with gets `score`; `review` rows as author_candidates (reason `scored-review`, at most three per position); `exact` rows not loaded (the rule path makes them). Report `scored_links` |
 | `review-books.csv.gz` | 41,183 (2026-11-12, pass seven; 11,858 in pass five) | `scripts/review_books.py` (report and held list in `data/identifiers/review-books-2026-11-12/`) | Articles that review a book: review, book, rule (`title`: an article titled exactly as a book of 3+ words by another author, 0-6 years later, in a journal; `label`: the record prints the reviewed book and its author, e.g. 'SURNAME, Given (YYYY) Title', 'Title. By Name', 'Review of'; pass seven: the book's main title and an author family anywhere in a review-like label, or its ISBN), basis, kinds, book title and year, `book_lccn` and `lc_main_lcnaf` (an LC record the graph lacked: an unkeyed `lccn:` node), `book_families`. The build sets kind `review` on unkeyed records (kind_proposed on keyed ones) and adds REVIEWS with `evidence = 'linked'` (source `review-books:<rule>`); no credit is made |
 | `review-authors.csv.gz` | 66,918 (2026-11-12, pass seven) | `scripts/review_books.py` | Printed reviewed authors of review-like records: review, names (as the label prints them), families, source (`label`: parsed only; `label-match`: the matched book's family too). Read by the build's reviewed-author check (`scripts/reviewed_authors.py`, class 29b) |
-| `work-duplicates.csv.gz` | 16,935 (2026-11-12, pass seven) | `scripts/work_dup_pairs.py` (review file and proposal in `data/identifiers/work-dup-merges-2026-11-12/`) | One work under two keys (class 11): hidden, shown, basis (`exact-doi`, `exact-isbn`, `title-year-person`, `title-year-person:preprint`). The build loads it as SAME_WORK; nothing is merged |
+| `work-duplicates.csv.gz` | 17,564 (2026-11-13, pass ten; 16,935 on 2026-11-12) | `scripts/work_dup_pairs.py` (review file and proposal in `data/identifiers/work-dup-merges-2026-11-12/`) | One work under two keys (class 11): hidden, shown, basis (`exact-doi`, `exact-isbn`, `title-year-person`, `title-year-person:preprint`, and from 2026-11-13 `same-volume-title` and `title-year-candidate-credit`: an unkeyed record of a keyed work). The build loads it as SAME_WORK; nothing is merged |
 | `prizes/` | prizes 114,867; winners 114,867; works 7,849; lc 1,670; found 478 | `scripts/prizes_harvest.py`, `scripts/prizes_link.py`, `scripts/key_cited_works_recent_books.py` (found) | Prize facts (awarding bodies' pages and Wikidata awards), winners linked to person keys, prize works matched to the graph, LC records and book records found for them. The build (scripts/graph_prizes.py) makes Prize nodes, AWARDED edges and prize work nodes, below |
 
 The cited works become Work nodes keyed by their identifier with resolution `unkeyed`, unless the key log holds one of
@@ -243,6 +243,24 @@ the volume's ISBN).
 - Works listed twice (class 11): AUTHORED and EDITED have `n_claims` and `claims` (rows unchanged; the claims of a pair
   with their routes); `same_work.parquet` (SAME_WORK, Work → Work, hidden → shown, `basis`) from `work-duplicates.csv.gz`.
   The explorer lists a pair once on a person page and does not count the hidden key.
+- Unkeyed records of keyed works (class 11, pass ten, 2026-11-13): `work_dup_pairs.py` also pairs an unkeyed record with
+  a keyed work by `same-volume-title` (same folded title over 15 characters, both PART_OF one volume, not the volume's
+  own title, and a person on the unkeyed record is a key-log author of the keyed chapter or bears the family name of
+  one) and `title-year-candidate-credit` (same folded title over 20 characters and not generic: a heading list plus the
+  titles borne by 20+ work nodes; years within one; a name candidate on the unkeyed record holds a key-log credit on
+  the keyed work). One shown (the keyed work) per unkeyed record. The unkeyed record's DOI, where the keyed work has
+  none, is listed in `data/identifiers/work-dup-merges-2026-11-12/doi-attach-candidates.csv` (key, doi, basis) for a
+  later key-log `attach` proposal (none built). In the build (`same_work_carry`, report `same_work_carry`), the hidden
+  record's candidate rows for people credited on the keyed work are dropped; its other candidates and linked credits
+  are carried to the keyed work (source `same-work:<source>`) unless a key-log author of the keyed work bears that
+  person's family name under another key (the position is theirs; nothing contradicts a key-log author list). The
+  explorer shows an unkeyed hidden key as its keyed work (`requested`, `requested_note`), lists the hidden key's DOI /
+  OpenAlex id among the keyed work's identifiers (`also_held_as`), and counts citations of any hidden key on the shown
+  work (distinct citing works; the work's cited-by list, its people's cited-by lists and weights). The thesis match rate
+  (`linkage.corpus_rate*`) counts corpus citation rows matched to any node and is not changed by SAME_WORK.
+  `link_work_people.py nameonly-positions` no longer makes a chapter node for a fetched chapter whose keyed twin is in
+  the same volume (same tests): it records the pair (`name-only/chapter-twins.csv.gz` at `nameonly-export`) and reads
+  the chapter's printed authors as positions on the keyed chapter (takes effect at the next name-only relink).
 - Name-only (classes 27, 33, 37): `link_work_people.py nameonly-siblings --tier keylog|linked --first <keys>` (polite
   client, stops on 429/403), `nameonly-fuller` (full names for family-name-only journal records from a second record by
   DOI: local records first, then up to `--max` Crossref lookups), then `nameonly-positions`, `nameonly-extra`, `link
@@ -280,6 +298,10 @@ the volume's ISBN).
   `REVIEWED_volume_editor_rows`; the explorer adds "(reviewed the volume they edited)".
 
 To refresh after the sources change:
+- **Explorer (every restart):** `python3 scripts/graph_explorer.py build`, restart the server on port 4180 (find the old
+  one by port), then `python3 scripts/explorer_sweep.py` (a random sample of person, work and prize nodes plus a fixed
+  probe list through `/api/node` and every `/api/group` they list; exits non-zero on any error).
+- **Works under two keys:** `scripts/work_dup_pairs.py` reads a graph build; rerun it after a build, then rebuild.
 - **Dissertation citations:** key the corpus's new dissertations in the log, rerun `scripts/key_cited_works.py`, then `scripts/export_citations.py`.
 - **JSTOR:** rerun `scripts/export_jstor_citations.py`.
 - **Cited works (LC/OpenAlex/Crossref matches, Crossref metadata, journal metadata, translations):** rerun the matchers and `scripts/link_cited_work_authors.py`, then `scripts/export_cited_works.py`, then `scripts/link_work_people.py recheck-cited` (the export rewrites `authors.csv.gz` without the recheck).

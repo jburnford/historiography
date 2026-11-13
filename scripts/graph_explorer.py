@@ -94,7 +94,7 @@ CLAIMS_D = ("CASE WHEN max(coalesce(e.n_claims, 1)::INT) > 1 THEN max(e.n_claims
             "|| any_value(e.claims) END")
 # and one work held under two keys (SAME_WORK) is listed once on a person credited on both: the other key is named
 ALSO_D = ("(SELECT 'also held as ' || string_agg(coalesce(n.label, '') || ' [' || d.hidden || '; ' || d.basis || ']', ' | ') "
-          "FROM dup_hide d JOIN nodes n ON n.key = d.hidden WHERE d.person = $k AND d.shown = any_value(e.\"to\"))")
+          "FROM sw d JOIN nodes n ON n.key = d.hidden WHERE d.shown = any_value(e.\"to\"))")
 # class 37: a credit found through a stated alternate family-name form (the form is a source note, never a label or alias)
 TIE_D = "CASE WHEN bool_or(e.role_basis LIKE 'name-form-tie:%') THEN substr(any_value(e.role_basis), 16) END"
 WORK_ROW_D = f"concat_ws(' · ', {LINKED_D}, {VOL_D}, {CLAIMS_D}, {ALSO_D}, {TIE_D})"
@@ -211,10 +211,17 @@ def build():
         for col, default in ADDED.get(e, []):
             for side in 'ft':
                 db.execute(f'ALTER TABLE e_{e}_{side} ADD COLUMN IF NOT EXISTS {col} VARCHAR DEFAULT {default}')
+    # one work under two keys (class 11): every SAME_WORK pair, hidden -> shown; citations of the hidden key count on the
+    # shown work too (distinct citing works; 2026-11-13), the hidden node keeps its own count
+    if (G / 'same_work.parquet').exists():
+        db.execute(f"""CREATE TABLE sw AS SELECT DISTINCT "from" AS hidden, "to" AS shown, basis FROM '{G}/same_work.parquet' ORDER BY shown""")
+    else:
+        db.execute("CREATE TABLE sw (hidden VARCHAR, shown VARCHAR, basis VARCHAR)")
     db.execute(f"""CREATE TABLE work_w AS SELECT w.key,
         coalesce(c.n, 0) AS cited, coalesce(r.n, 0) AS reviewed
         FROM '{G}/work.parquet' w
-        LEFT JOIN (SELECT "to" k, count(*) n FROM e_cites_t GROUP BY 1) c ON c.k = w.key
+        LEFT JOIN (SELECT k, count(DISTINCT f) n FROM (SELECT "to" k, "from" f FROM e_cites_t
+                   UNION ALL SELECT sw.shown, c."from" FROM sw JOIN e_cites_t c ON c."to" = sw.hidden) GROUP BY 1) c ON c.k = w.key
         LEFT JOIN (SELECT "to" k, count(*) n FROM e_reviews_t GROUP BY 1) r ON r.k = w.key""")
     # one row per (person, work) even when the key log holds two authored claims for it; credits under an edition role
     # (edition editor, translator, introducer, series editor, contributor) are not the person's own work (2026-11-12)
@@ -411,16 +418,27 @@ class Graph:
                        || CASE WHEN bool_and(a.evidence = 'linked') THEN ' (linked author credit)' ELSE '' END d,
                        bool_and(a.evidence = 'linked')::INT lk
                        FROM e_part_of_t p JOIN e_authored_t a ON a."to" = p."from" WHERE p."to" = $k GROUP BY 1""")
+        if rid == 'cited_by':             # a work's citing works, with those citing its other key (SAME_WORK hidden)
+            return (f"""SELECT e."from" k, 1 n, concat_ws(' · ', {EDITION_D}, CASE WHEN bool_and(e."to" <> $k)
+                        THEN 'cites it as ' || any_value(e."to") END) d, 0 lk
+                        FROM e_cites_t e WHERE e."to" = $k OR e."to" IN (SELECT hidden FROM sw WHERE shown = $k) GROUP BY 1""")
         if rid == 'cited_by_people':      # people whose works cite this person's works (key-log and linked authors)
             return (f"""SELECT a2."from" k, count(DISTINCT c."from") n, count(DISTINCT c."from") || ' citing works'
                        || CASE WHEN bool_and(a2.evidence = 'linked') THEN ' (linked author credit)' ELSE '' END d,
                        bool_and(a2.evidence = 'linked')::INT lk
-                       FROM e_authored_f a JOIN e_cites_t c ON c."to" = a."to" JOIN e_authored_t a2 ON a2."to" = c."from"
-                       WHERE a."from" = $k AND a2."from" <> $k AND coalesce(a.role, 'author') NOT IN {EDITION_ROLES} GROUP BY 1""")
+                       FROM (SELECT "to" FROM e_authored_f WHERE "from" = $k AND coalesce(role, 'author') NOT IN {EDITION_ROLES}
+                             UNION SELECT sw.hidden FROM e_authored_f x JOIN sw ON sw.shown = x."to"
+                             WHERE x."from" = $k AND coalesce(x.role, 'author') NOT IN {EDITION_ROLES}) a
+                       JOIN e_cites_t c ON c."to" = a."to" JOIN e_authored_t a2 ON a2."to" = c."from"
+                       WHERE a2."from" <> $k GROUP BY 1""")
         if rid == 'cited_by_works':       # distinct citing documents (theses, articles), not people
             return (f"""SELECT c."from" k, count(DISTINCT a."to") n, count(DISTINCT a."to") || ' of this person''s works cited' d
-                       FROM (SELECT DISTINCT "to" FROM e_authored_f WHERE "from" = $k AND coalesce(role, 'author') NOT IN {EDITION_ROLES}) a
-                       JOIN e_cites_t c ON c."to" = a."to" GROUP BY 1""")
+                       FROM (SELECT DISTINCT coalesce(sw.shown, x."to") "to", x."to" AS held FROM (
+                               SELECT "to" FROM e_authored_f WHERE "from" = $k AND coalesce(role, 'author') NOT IN {EDITION_ROLES}
+                               UNION SELECT sw.hidden FROM e_authored_f y JOIN sw ON sw.shown = y."to"
+                               WHERE y."from" = $k AND coalesce(y.role, 'author') NOT IN {EDITION_ROLES}) x
+                             LEFT JOIN sw ON sw.hidden = x."to" AND sw.shown IN (SELECT "to" FROM e_authored_f WHERE "from" = $k)) a
+                       JOIN e_cites_t c ON c."to" = a.held GROUP BY 1""")
         if rid == 'cites_people':         # people whose works this person's works cite
             return (f"""SELECT a2."from" k, count(DISTINCT c."to") n, count(DISTINCT c."to") || ' works cited' d
                        FROM e_authored_f a JOIN e_cites_f c ON c."from" = a."to" JOIN e_authored_t a2 ON a2."to" = c."to"
@@ -446,6 +464,16 @@ class Graph:
         return [item(r[:-2]) for r in rows], total
 
     def node(self, key, limit=12, sort='weight'):
+        # an unkeyed record of a keyed work (SAME_WORK hidden -> shown, class 11) is shown as the keyed work
+        to = self.cur().execute("""SELECT sw.shown, sw.basis FROM sw JOIN nodes h ON h.key = sw.hidden AND h.resolution = 'unkeyed'
+                                    JOIN nodes s ON s.key = sw.shown AND s.resolution <> 'unkeyed'
+                                    WHERE sw.hidden = ? ORDER BY sw.shown LIMIT 1""", [key]).fetchone()
+        if to:
+            out = self.node(to[0], limit, sort)
+            if out:
+                out['node']['requested'] = key
+                out['node']['requested_note'] = f'{key} is the same work, held as {to[0]} ({to[1]})'
+                return out
         r = self.cur().execute("""SELECT key, type, label, kind, year, journal, resolution, anchors, weight, works, cited, reviewed,
                                   kind_proposed, issn, journal_source, isbn, editors_printed,
                                   (SELECT note FROM vol_note WHERE vol_note.key = nodes.key),
@@ -457,6 +485,14 @@ class Graph:
                       'cited', 'reviewed', 'kind_proposed', 'issn', 'journal_source', 'isbn', 'editors_printed',
                       'in_volume', 'first_year', 'first_year_catalogue', 'first_year_basis'], r))
         n['ids'] = ids(n.pop('anchors'))
+        if n['type'] == 'work':          # identifiers of its other keys (SAME_WORK hidden), 'also held as'
+            have = {(i['scheme'], i['value'].lower()) for i in n['ids']}
+            for h, anc in self.cur().execute("""SELECT sw.hidden, n.anchors FROM sw JOIN nodes n ON n.key = sw.hidden
+                                                WHERE sw.shown = ? ORDER BY 1""", [key]).fetchall():
+                for i in ids(anc):
+                    if (i['scheme'], i['value'].lower()) not in have and i['scheme'] in ('doi', 'openalex', 'lccn', 'isbn'):
+                        have.add((i['scheme'], i['value'].lower()))
+                        n['ids'].append(dict(i, also_held_as=h))
         if n['type'] == 'work':          # citations that reached this work through a translation or another edition
             n['cited_edition'] = self.cur().execute(
                 'SELECT count(*) FROM e_cites_t WHERE "to" = ? AND (edition OR cited_as IS NOT NULL)', [key]).fetchone()[0]

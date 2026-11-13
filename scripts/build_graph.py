@@ -129,6 +129,7 @@ import csv
 import gzip
 import json
 import re
+import unicodedata
 import shutil
 import sqlite3
 import subprocess
@@ -883,6 +884,85 @@ def name_only_credits(state, types, rels, resolve, chapter_node, report):
             open_works.add(w)
     report['name_only_works_with_a_keyed_name_candidate_and_no_link'] = len(open_works)
     return linked, list(cands.values())
+
+
+SAME_WORK_CARRY_BASES = ('same-volume-title', 'title-year-candidate-credit')   # scripts/work_dup_pairs.py NEW_BASES
+
+
+def person_family(label):
+    """folded family name of a person label ('Last, First' or 'First Last'), as scripts/work_dup_pairs.py family()"""
+    lab = re.sub(r'\s*\(.*?\)|,?\s*\d{4}-(\d{4})?\.?$', '', label or '').strip()
+    f = lab.split(',', 1)[0] if ',' in lab else (lab.split() or [''])[-1]
+    f = unicodedata.normalize('NFKD', f).encode('ascii', 'ignore').decode().lower()
+    return re.sub(r'[^a-z0-9]+', ' ', f).strip()
+
+
+def same_work_carry(pairs, keylog_rows, linked_rows, cand_rows, plabel):
+    """Pass ten (2026-11-13, class 11): for each SAME_WORK pair hidden unkeyed record -> shown keyed work (the two new
+    bases), settle the hidden record's people on the shown work:
+      - a candidate row on the hidden record for a person credited on the shown work (key log or linked) is dropped:
+        that person is credited;
+      - a candidate or linked credit for another person is carried to the shown work (source 'same-work:<source>'), unless
+        the shown work's key-log authors hold that position: a key-log author bears the same family name under another key
+        (the printed name is theirs; carrying it would contradict the key-log author list), then it is dropped / not carried;
+      - carried candidates leave the hidden record (listed once); linked credits stay on it as well (the explorer lists
+        the pair once for a person credited on both).
+    Returns (linked rows, candidate rows, counts)."""
+    counts = Counter()
+    if not pairs:
+        return linked_rows, cand_rows, dict(counts)
+    shown_of = {}
+    for r in pairs:
+        shown_of.setdefault(r['from'], r['to'])
+    shown = set(shown_of.values())
+    kl = defaultdict(set)
+    for r in keylog_rows:
+        if r['to'] in shown:
+            kl[r['to']].add(r['from'])
+    cred = defaultdict(set, {k: set(v) for k, v in kl.items()})
+    for r in linked_rows:
+        if r['to'] in shown:
+            cred[r['to']].add(r['from'])
+    fam = lambda k: person_family(plabel.get(k, ''))      # noqa: E731
+    kl_fam = {w: {fam(k) for k in ks} - {''} for w, ks in kl.items()}
+
+    def held(p, w):         # a key-log author of w bears p's family name under another key
+        return p not in kl.get(w, ()) and fam(p) in kl_fam.get(w, ())
+    have_c = {(r['from'], r['to']) for r in cand_rows}
+    out_c = []
+    for r in cand_rows:
+        w = shown_of.get(r['to'])
+        if not w:
+            out_c.append(r)
+            continue
+        p = r['from']
+        if p in cred[w]:
+            counts['candidates_dropped_credited_on_shown'] += 1
+        elif held(p, w):
+            counts['candidates_dropped_position_held_by_keylog_author'] += 1
+        elif (p, w) in have_c:
+            counts['candidates_dropped_already_candidate_on_shown'] += 1
+        else:
+            have_c.add((p, w))
+            out_c.append(dict(r, to=w, source=f"same-work:{r.get('source') or ''}"))
+            counts['candidates_carried_to_shown'] += 1
+    add = []
+    seen = set()
+    for r in linked_rows:
+        w = shown_of.get(r['to'])
+        if not w:
+            continue
+        p = r['from']
+        if p in cred[w]:
+            counts['linked_already_credited_on_shown'] += 1
+        elif held(p, w):
+            counts['linked_not_carried_position_held_by_keylog_author'] += 1
+        elif (p, w) not in seen:
+            seen.add((p, w))
+            add.append(dict(r, to=w, claim=f"{r.get('claim') or ''}@same-work", source=f"same-work:{r.get('source') or ''}"))
+            counts['linked_carried_to_shown'] += 1
+    counts['pairs'] = len(shown_of)
+    return linked_rows + add, out_c, dict(counts)
 
 
 def review_book_nodes(state, types, works, wi, unkeyed, resolve, report):
@@ -1759,6 +1839,10 @@ def main():
             seen_sw.add((h, sh))
             same.append({'from': h, 'to': sh, 'basis': r['basis']})
     report['SAME_WORK'] = write('same_work', same, pa.schema([('from', s), ('to', s), ('basis', s)]))
+    report['SAME_WORK_by_basis'] = dict(Counter(r['basis'] for r in same))
+    # pass ten (2026-11-13): an unkeyed record of a keyed work (rules same-volume-title, title-year-candidate-credit);
+    # its people are settled on the keyed work below (same_work_carry)
+    same_new = [r for r in same if r['basis'] in SAME_WORK_CARRY_BASES and r['from'] in unkeyed and r['to'] not in unkeyed]
     del same
     del kl_rev
     # PART_OF: the key log's chapter -> volume claims (evidence keylog) and the volume links of 2026-11-11 (evidence
@@ -1798,7 +1882,10 @@ def main():
     if CLASSIFIED_LINKS.exists() and not os.environ.get('BUILD_SCORED_OFF'):
         from graph_scored_links import classified_layer
         classified_layer(read_rows, CLASSIFIED_LINKS, person1, resolve, rels, linked, report, ra=ra)
-    del scored_wi, ra, plabel
+    # pass ten (class 11): the people of a hidden unkeyed record settled on the keyed work it duplicates
+    linked['AUTHORED'], possible_authors, report['same_work_carry'] = same_work_carry(
+        same_new, rels['AUTHORED'], linked.get('AUTHORED', []), possible_authors, plabel)
+    del scored_wi, ra, plabel, same_new
     ev_schema = pa.schema([('from', s), ('to', s), ('claim', s), ('resolution', s), ('evidence', s), ('source', s), ('state', s),
                            ('role', s), ('role_basis', s), ('score', pa.float64()), ('n_claims', pa.int32()), ('claims', s)])
     # pass seven (class 11): two or more key-log claims for one person and work. The rows stay (identity scripts and
