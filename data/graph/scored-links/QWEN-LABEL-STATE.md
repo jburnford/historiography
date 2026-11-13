@@ -59,3 +59,14 @@ rsync -a $QL/prod-dossiers.jsonl.gz nibi:projects/def-jic823/historiography-topi
 ssh nibi 'cd ~/projects/def-jic823/historiography-topics/linklabel/scripts && sbatch --time=8:00:00 label_links_qwen.slurm ../data/prod-dossiers.jsonl.gz prod <chosen options>'
 # then write qwen-labels.csv.gz (write to a temp name, move into place) and retrain on Plato (train_link_classifier.py; not yet extended for Qwen labels)
 ```
+
+- 2026-11-12 evening: moved to Fir (GPU fair-share 0.36 against Nibi's 0.13; the user pointed there). Model and vLLM
+  container (0.17, apptainer) were already on Fir scratch from the JSTOR runs. Workspace `/scratch/jic823/linklabel/`
+  (scripts, data, results, logs); job script `scripts/label_links_qwen_fir.slurm`. Submitted:
+  - job 3686060 `val-nofacts`: `--greedy --samples 3` (started within a minute)
+  - job 3686062 `val-facts`: `--greedy --samples 3 --facts` (pending on priority)
+  Untested there: StructuredOutputsParams under vLLM 0.17 (the Nibi venv has 0.25); if the log shows an import or
+  guided-decoding error, resubmit with `--no-guided`. The Nibi jobs 27060104/27060108 are still queued: cancel them
+  (`ssh nibi scancel 27060104 27060108`) once the Fir results are in, or use whichever finishes first.
+  Fetch: `for n in val-nofacts val-facts; do mkdir -p $QL/$n; rsync -a fir:/scratch/jic823/linklabel/results/$n/ $QL/$n/; done`
+  Production run on Fir after acceptance: `ssh fir 'cd /scratch/jic823/linklabel/scripts && sbatch --time=8:00:00 label_links_qwen_fir.slurm ../data/prod-dossiers.jsonl.gz prod <chosen options>'` (dossiers already copied).
