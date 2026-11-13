@@ -345,9 +345,9 @@ class Graph:
             side = 'f' if me == 'from' else 't'
             return (f"""SELECT e."{other}" k, 1 n, concat_ws(' · ', string_agg(DISTINCT {ROLE_L}, ', '), {LINKED_D},
                         'not counted as a citation of their own work') d, bool_and(e.evidence = 'linked')::INT lk FROM (
-                        SELECT "from", "to", evidence, state, source, score, role FROM e_authored_{side}
+                        SELECT "from", "to", evidence, state, source, score, role, role_basis FROM e_authored_{side}
                          WHERE "{me}" = $k AND role IN {EDITION_ROLES}
-                        UNION ALL SELECT "from", "to", evidence, state, source, score, role FROM e_edited_{side}
+                        UNION ALL SELECT "from", "to", evidence, state, source, score, role, role_basis FROM e_edited_{side}
                          WHERE "{me}" = $k AND role IN {EDITION_ROLES}) e GROUP BY 1""")
         if rid == 'volume_editors':       # a chapter's volume(s): credited editors, then unconfirmed candidates
             cand = ("""UNION ALL SELECT ac."from", v.v, 'candidate', NULL, ac.source FROM v JOIN e_author_candidates_t ac
