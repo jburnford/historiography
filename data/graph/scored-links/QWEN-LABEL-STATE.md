@@ -85,3 +85,73 @@ ssh nibi 'cd ~/projects/def-jic823/historiography-topics/linklabel/scripts && sb
   Fetch: `mkdir -p $QL/prod; rsync -a fir:/scratch/jic823/linklabel/results/prod/ $QL/prod/` then
   `python3 scripts/label_links_qwen.py write ...` (see --help) to make data/graph/scored-links/qwen-labels.csv.gz,
   applying policy greedy+sc. Next: extend scripts/train_link_classifier.py to train on these labels (Plato CPU).
+
+## Retraining on the Qwen labels (2026-11-13; Task 1) — ready, final run waits for the Fir labels
+Fir job 3789666 (`prod`) started about 06:37 on 2026-11-13; by 08:10 it had 6,054 verdicts = 1,554 positions (four
+passes each), about 1,000 positions an hour after model load: the 40,000 positions need roughly 35–40 hours, i.e. three
+or four 12-hour submissions. Each time it ends on its time limit without DONE, resume (same command, it skips what is done):
+`ssh fir 'cd /scratch/jic823/linklabel/scripts && sbatch --time=12:00:00 label_links_qwen_fir.slurm ../data/prod-dossiers.jsonl.gz prod --greedy --samples 3'`
+(check: `ssh fir 'ls /scratch/jic823/linklabel/results/prod/; squeue -u $USER'`).
+
+What is built (uncommitted):
+- scripts/train_link_classifier.py: `train --qwen-labels` (label_links_qwen.py `write` format, policy greedy+sc):
+  labels on the candidates Qwen saw (its key 1, a duplicate it named 2, others 0; unseen candidates unlabelled;
+  cannot-tell / error left out; clerical positions left out); label weights `--qwen-w26` 0.3 (single-candidate link,
+  26+ band) and `--qwen-wnofact` 0.5 (single-candidate link without a positive linker fact); splits by fixed pid hash:
+  qwen-test 12.5% (≈5,000 of 40,000) held out, qwen-cal 1 in 5 of the rest (calibration + a production-weighted
+  threshold check that can only raise thresholds), qwen-train the rest. Opus clerical-test is still read only in the
+  final evaluation. `--sim-absent keep|down|drop` (default down, `--sim-absent-weight 0.1`) for the simulated
+  absent-author blocks of the training split. Key attributes stay out of the features. New evaluation blocks:
+  `qwen_test` (production weights) beside `test` (gold) and `clerical_test` (Opus held-out) for every model and the rule
+  and scorer-C2 baselines, by multi, stratum (name band), role, has_orcid, rg, rg|multi; `rule_weak_by_qwen` (Qwen's
+  verdicts on the rule's links in the weak strata, production-weighted); `probes` (p-4256, p-24137 and
+  doi:10.2307/j.ctvxkn5q7.4).
+- Pass-eight/nine evidence as features of every pair (`p9-inputs` local, `p9-features` Plato; link_work_people.py's own
+  Pass9 / lc_dated / lc_impossible / nameonly_features imported, not edited): p9_lrs (kind 1), p9_lrf and p9_vrep
+  (kind 2), p9_rv, p9_ct, p9_cca, p9_cck (kind 3), p9_prof, p9_lro, p9_lcin (rule C), p9_lcdp (date-possible LC
+  namesakes), p9_lcact; set-level p9_lrs_other, p9_lrs_margin. Monotone non-decreasing: the kind 1–3 features (with the
+  earlier topic, venue, network, cites, prize). The pair's own work is hidden from the candidate's profile and ties in
+  every mode. Built for all 1,375,974 pairs (Plato job 6022340, 6.9 min, 7.5 GB): inputs-1113/p9-features.parquet.
+- scripts/plato_paths.py (runs a linker with its '/mnt/e' constants pointed at the Plato mirror $E_MIRROR),
+  scripts/linkclf_plato.slurm (STEP=features|train|wp-measure), scripts/linkclf_final_run.sh (the final run).
+- Plato workspace /project/clifford/historiography-kg: scripts/, data/graph/, build/graph/ (2026-11-12 15:27 build),
+  build/keylog-state.sqlite, emirror/ (LC personal names, slim OpenAlex people rows, ties), linkclf/inputs-1113 (the
+  classifier inputs of 2026-11-12 + p9 files), linkclf/p9data, slim dissertation-corpus id tables (work/year, citation
+  pairs, authored pairs: no text).
+
+## Final run (one command, when the Fir run has its DONE marker)
+```bash
+cd /home/jic823/historiography && bash scripts/linkclf_final_run.sh     # fetch, write qwen-labels.csv.gz, submit Plato train
+# when the Plato job is done (about 15 min):
+mkdir -p $SP/judge/out-final && rsync -a plato:/project/clifford/historiography-kg/linkclf/out-final/ $SP/judge/out-final/
+#   read train-report.json: evaluation.<model>.{clerical_test,qwen_test,test}, rule_weak_by_qwen, probes
+# only if the owner accepts the numbers (writes data/graph/scored-links/classified.csv.gz, classifier-report.json, -manifest.json):
+python3 scripts/train_link_classifier.py finalize --run $SP/judge/out-final --inputs $SP/judge/clf-inputs
+```
+In those commands use B=build/linkclf-2026-11-13 in place of $SP/judge (the scratchpad does not survive the move):
+`--run $B/out-final --inputs $B/clf-inputs`. linkclf_final_run.sh reads the Qwen files from $B/qwen by default.
+
+## Jobs left running on 2026-11-13 (machine moved; nothing waits on them locally)
+| job | what | output (Plato, /project/clifford/historiography-kg/linkclf) | marker |
+| --- | --- | --- | --- |
+| 6022340 | p9-features, done (6.9 min, 7.5 GB) | inputs-1113/p9-features.parquet | finished OK |
+| 6022362 | DRY RUN train: Opus labels + 1,554 Qwen positions (993 train / 240 cal / 170 test), sim-absent down 0.1, pass-nine features | out-dry/ (train-report.json, classified.csv.gz, blocks-*.parquet, models) | out-dry/DONE or out-dry/DONE.FAILED (marker jobs 6022376/77) |
+| 6022347 | Task 2: link_work_people link --new-facts --topic-min 20 --gold 150000 --out-tag=-p9 on the work-people class (linking done in 1,585 s), then analyse_pass_nine.py (name-only + work-people + pooled) | pass-nine-work-people-report.json; wp-scratch/{results,gold,namesake,rarity}-p9.parquet | pass-nine-work-people.DONE or .DONE.FAILED (6022378/79) |
+Earlier failed attempts (fixed): 6022341/6022343 (missing orcid_ground on PYTHONPATH, missing corpus id tables),
+6022342/6022360 (two bugs at the report stage of train). Fetch:
+```bash
+B=build/linkclf-2026-11-13; L=plato:/project/clifford/historiography-kg/linkclf
+ssh plato 'ls /project/clifford/historiography-kg/linkclf/{out-dry,.}/*DONE*; squeue -u $USER'
+mkdir -p $B/out-dry && rsync -a --exclude 'model-*' $L/out-dry/ $B/out-dry/
+rsync -a $L/pass-nine-work-people-report.json data/identifiers/single-candidate-2026-11-12/pass-nine-work-people-report.json
+rsync -a $L/logs/ $B/plato-logs/
+```
+Task 2 report keys: no / wp / pooled (sizes, kinds, combos, multi), meets_bound (names of kinds and combinations whose
+production upper bound AND gold upper bound are <= 0.5%, per class and pooled). Sizes seen in the log: name-only
+gold single 21,703, masked-author single 3,137, production single 73,259; work-people gold single 6,364, masked-author
+single 7,565, production single 95,370. Nothing adopted; link_work_people.py not edited.
+Fir labels now: fetch + write by hand (same as the first two lines of linkclf_final_run.sh):
+`rsync -a fir:/scratch/jic823/linklabel/results/prod/ build/linkclf-2026-11-13/qwen/prod/ && python3 scripts/label_links_qwen.py write --verdicts build/linkclf-2026-11-13/qwen/prod/verdicts.jsonl --dossiers build/linkclf-2026-11-13/qwen/prod-dossiers.jsonl.gz --sample build/linkclf-2026-11-13/qwen/prod-sample.csv --policy greedy+sc --out data/graph/scored-links/qwen-labels.tmp.csv.gz && mv data/graph/scored-links/qwen-labels.tmp.csv.gz data/graph/scored-links/qwen-labels.csv.gz`
+Local copies of the session scratch: build/linkclf-2026-11-13/{qwen, clf-inputs (classifier inputs + p9 inputs),
+sc-positions.parquet, p9-analysis}. Not verified: the dry-run report contents (job still running at hand-back), the
+Task 2 numbers, whether the Fir run finishes inside three or four resubmissions.

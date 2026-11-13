@@ -16,7 +16,10 @@ Subcommands
   label-dossiers  dossier text for clerical judges (the round-two audit format) and JSONL for a list of positions
   label-merge     clerical verdicts -> data/graph/scored-links/clerical-labels.csv
   features        pair and set-level features for gold, simulated-absent and production blocks -> Parquet
+  p9-inputs       (local) position metadata and volume people for the pass-eight/nine evidence features
+  p9-features     (Plato) pass-eight/nine evidence of every pair, by link_work_people's own code -> p9-features.parquet
   train           gradient-boosted trees, logistic regression, calibration, thresholds; evaluation; model + manifest
+                  (2026-11-13: --qwen-labels adds the Qwen production labels; --sim-absent; pass-nine features)
   score           production decisions -> data/graph/scored-links/classified.csv.gz
 
 Writes no proposal and touches no key log. Local steps stay under 4 GB (score_links.duck: 3 GB, 3 threads); the full
@@ -340,6 +343,194 @@ def prep(args):
     print('prep done', round(time.time() - t0), 's', SL.rss(), 'MB', flush=True)
 
 
+# ------------------------------------------------------------------------------------------------ pass eight / nine evidence
+
+# 2026-11-13: the evidence kinds of link_work_people.py passes eight and nine as features of every pair (single and
+# several candidates, every block variant). Computed by link_work_people's own code (Pass9, lc_dated, lc_impossible,
+# nameonly_features for the volume context), imported, never edited here. Per pair:
+#   p9_lrs   kind 1: likelihood ratio of the work's vocabulary (title, volume title and sibling chapters, journal) under
+#            the candidate's key-log profile against all graph titles (positive-only, capped per term)
+#   p9_lrf   kind 2: the same over subfield words;  p9_vrep: other key-log works of the candidate in the same journal
+#   p9_rv    kind 3: REVIEWED either way with a person credited on the work or its volume (2 key log, 1 linked)
+#   p9_ct    citations between the candidate's works and theirs (2 key log on both sides, 1 any);  p9_cca/p9_cck:
+#            theses co-citing them (any evidence / key log)
+#   p9_prof  profile usable (3+ key-log works or a thesis);  p9_lro: best profile score of an LC namesake authority
+#   p9_lcin  undated LC namesakes silent > 25 years in another subject (rule C);  p9_lcdp: LC namesakes the dates do not
+#            rule out (lc_others minus date-impossible);  p9_lcact: p9_lcdp minus p9_lcin
+# The pair's own work is hidden from the candidate's profile and ties in every mode (HIDE = (work, key)), as the masked
+# gold credit is in the linker's tests, so production and gold rows are computed alike.
+P9_F = ['p9_lrs', 'p9_lrf', 'p9_vrep', 'p9_rv', 'p9_ct', 'p9_cca', 'p9_cck', 'p9_prof', 'p9_lro', 'p9_lcin', 'p9_lcdp', 'p9_lcact']
+P9_SET = ['p9_lrs_other', 'p9_lrs_margin']
+P9_MONO = ['p9_lrs', 'p9_lrf', 'p9_vrep', 'p9_rv', 'p9_ct', 'p9_cca', 'p9_cck']
+USE_P9 = [True]
+
+
+def p9_inputs(args):
+    """local, light: what the Plato p9-features job reads beside the classifier inputs: p9-blocks.parquet (pid, mode,
+    work, co-credited keys `ex`, gold key), p9-pos.parquet (position metadata: printed name, title, year, journal, kind,
+    role: metadata only), p9-scratch/volume-people.parquet (the scorer's volume people) and sibling-chapters.parquet"""
+    SL = _sl()
+    S = SL.S
+    out = Path(args.out)
+    (out / 'p9-scratch').mkdir(parents=True, exist_ok=True)
+    db = SL.duck()
+    db.execute(f"""COPY (SELECT pid, mode, work, coalesce(ex, '') ex, coalesce(gold, '') gold FROM read_parquet('{S / 'pairs'}/pos-*.parquet', union_by_name=true)
+            WHERE coalesce(exact, '') = '') TO '{out / 'p9-blocks.parquet'}' (FORMAT parquet)""")
+    db.execute(f"""COPY (SELECT pid, tbl, work, name, title, year, coalesce(nullif(wjournal, ''), journal, '') journal, kind, role
+            FROM read_parquet(['{S / 'positions.parquet'}', '{S / 'positions-extra.parquet'}'], union_by_name=true)
+            WHERE pid IN (SELECT DISTINCT pid FROM '{out / 'p9-blocks.parquet'}')) TO '{out / 'p9-pos.parquet'}' (FORMAT parquet)""")
+    db.execute(f"COPY (SELECT work, key, how FROM '{S / 'aux-vp.parquet'}') TO '{out / 'p9-scratch/volume-people.parquet'}' (FORMAT parquet)")
+    sib = Path(args.siblings)
+    if sib.exists():
+        db.execute(f"COPY (SELECT id, volume_work, title FROM '{sib}') TO '{out / 'p9-scratch/sibling-chapters.parquet'}' (FORMAT parquet)")
+    for f in ('p9-blocks.parquet', 'p9-pos.parquet'):
+        print(f, db.execute(f"SELECT count(*) FROM '{out / f}'").fetchone()[0], flush=True)
+
+
+_P9W = {}
+
+
+def _p9_chunk(pids):
+    """worker: pass-nine facts of every pair of the given positions (all modes); the Pass9 object is inherited (fork)"""
+    W, S9, POS, BLK, PAIRS, LCOWN, P = (_P9W[k] for k in ('W', 'S9', 'POS', 'BLK', 'PAIRS', 'LCOWN', 'P'))
+    out = []
+    for pid in pids:
+        r = POS.get(pid)
+        if r is None:
+            continue
+        p = W.make_pos(dict(source='', oa_work='', work=r['work'], pos=0, role=r['role'], name=r['name'] or '', title=r['title'] or '',
+                            year=r['year'], orcid='', oa_author='', rors=[], insts=[], raw_aff=[], inst_ror='', kind=r['kind'] or '',
+                            journal=r['journal'] or ''))
+        fs_ = p['forms']
+        nk = (fs_[0][0], fs_[0][2][0]) if fs_ and fs_[0][2] else None
+        book = (r['kind'] or '') == 'book'
+        for mode, keys in PAIRS.get(pid, {}).items():
+            ex, gold = BLK.get((pid, mode), ('', ''))
+            exs = {x for x in ex.split('|') if x}
+            hide_gold = gold if mode in ('present', 'imp') else ''
+            own_ids = set()
+            for k, _ in keys:
+                own_ids |= LCOWN.get(k, set())
+            imp = 0
+            if nk and p['year']:
+                imp = sum(1 for lcid, b, d in W.LCD.get(nk, ()) if lcid not in own_ids and W.lc_impossible(b, d, p['year'], book))
+            vp = _P9W['VP'].get(r['work'], ())
+            ved = _P9W['VED'].get(r['work'], ())
+            for k, lc_others in keys:
+                if nk is None:
+                    out.append((pid, mode, k) + (0.0,) * 10 + (-1.0, -1.0))
+                    continue
+                oth = {k2: ('ed' if k2 in ved else 'sib') for k2 in vp if k2 != hide_gold}
+                for k2 in exs:
+                    if k2 != hide_gold:
+                        oth.setdefault(k2, 'co')
+                fe = dict(p9=dict(w=r['work'], others=oth), name_key=nk)
+                W.HIDE[0] = (r['work'], k)
+                y = S9.facts(None, p, fe, k, own_ids, P)
+                W.HIDE[0] = None
+                lco = -1.0 if lc_others is None or lc_others != lc_others else float(lc_others)
+                lcdp = -1.0 if lco < 0 else float(max(0, lco - imp))
+                lcact = -1.0 if lcdp < 0 else float(max(0, lcdp - y['lc_inactive']))
+                out.append((pid, mode, k, y['lrs'], y['lrf'], float(y['vrep']), float(y['rv']), float(y['ct']), float(y['cca']), float(y['cck']),
+                            float(y['psz'] >= 3 or bool(y['pth'])), y['lro'], float(y['lc_inactive']), lcdp, lcact))
+    return out
+
+
+def p9_features(args):
+    """Plato: pass-eight/nine evidence for every pair of the classifier inputs -> INPUTS/p9-features.parquet"""
+    import multiprocessing as mp
+    import pandas as pd
+    import pyarrow as pa
+    import pyarrow.parquet as pq
+    inp = Path(args.inputs)
+    os.environ.setdefault('WP_SCRATCH', str(inp / 'p9-scratch'))
+    sys.path.insert(0, str(ROOT / 'scripts'))
+    import plato_paths
+    import link_work_people as W
+    plato_paths.patch()
+    t0 = time.time()
+    db = W.duck()
+    C = pd.read_parquet(inp / 'pairs.parquet', columns=['pid', 'mode', 'key', 'lc_others'])
+    if args.sample:
+        C = C[(C.pid.values * 2654435761) % 1000 < args.sample * 1000]
+    pos = pd.read_parquet(inp / 'p9-pos.parquet')
+    pos = pos[pos.pid.isin(set(C.pid))]
+    blk = pd.read_parquet(inp / 'p9-blocks.parquet')
+    blk = blk[blk.pid.isin(set(C.pid))]
+    POS = {int(r['pid']): r for r in pos.to_dict('records')}
+    for r in POS.values():
+        r['year'] = None if r['year'] is None or r['year'] != r['year'] else int(r['year'])
+    BLK = {(int(p), m): (e, g) for p, m, e, g in zip(blk.pid, blk['mode'], blk.ex, blk.gold)}
+    PAIRS = defaultdict(lambda: defaultdict(list))
+    for p, m, k, lo in zip(C.pid.values, C['mode'].values, C.key.values, C.lc_others.values):
+        PAIRS[int(p)][m].append((k, lo))
+    PAIRS = {p: dict(v) for p, v in PAIRS.items()}
+    print('pairs', len(C), 'positions', len(POS), round(time.time() - t0), 's', flush=True)
+    # LC authorities of each candidate key (excluded from the namesakes: own_lc)
+    keys = sorted(set(C.key))
+    db.register('kk', pd.DataFrame({'key': keys}))
+    LCOWN = defaultdict(set)
+    for k, an in db.execute(f"SELECT p.key, p.anchors FROM '{W.GRAPH}/person.parquet' p JOIN kk USING (key)").fetchall():
+        LCOWN[k] = {a[6:] for a in an or () if a.startswith('lcnaf:')}
+    needed = set()
+    for r in POS.values():
+        fs_ = W.forms(W.apos(r['name'] or ''))
+        if fs_ and fs_[0][2]:
+            needed.add((fs_[0][0], fs_[0][2][0]))
+    W.LCD.clear()
+    W.LCD.update(W.lc_dated(db, needed))
+    print('LC dated namesakes for', len(W.LCD), 'of', len(needed), 'names', round(time.time() - t0), 's', flush=True)
+    feats = W.nameonly_features(db, None, topic_min=0.0)        # only for the volume context (vctx) and volume people
+    VED = defaultdict(set)
+    for w, k, how in db.execute(f"SELECT work, key, how FROM '{W.SCRATCH}/volume-people.parquet'").fetchall():
+        if how == 'volume-editor':
+            VED[w].add(k)
+    others_all = set()
+    for ks in feats.vp.values():
+        others_all |= ks
+    for e, _ in BLK.values():
+        others_all |= {x for x in e.split('|') if x}
+    works = {r['work'] for r in POS.values()}
+    S9 = W.Pass9(db, None, works, others_all, feats.vctx, needed)
+    P = dict(ACT_N=25)
+    _P9W.update(W=W, S9=S9, POS=POS, BLK=BLK, PAIRS=PAIRS, LCOWN=LCOWN, P=P, VP=feats.vp, VED=VED)
+    print('pass nine ready', round(time.time() - t0), 's', flush=True)
+    pids = sorted(PAIRS)
+    nproc = int(os.environ.get('SLURM_CPUS_PER_TASK', args.procs))
+    chunks = [pids[i:i + 2000] for i in range(0, len(pids), 2000)]
+    rows = []
+    if nproc > 1:
+        with mp.get_context('fork').Pool(nproc) as pool:
+            for i, part in enumerate(pool.imap_unordered(_p9_chunk, chunks)):
+                rows += part
+                if i % 50 == 0:
+                    print(i, '/', len(chunks), len(rows), round(time.time() - t0), 's', flush=True)
+    else:
+        for i, ch in enumerate(chunks):
+            rows += _p9_chunk(ch)
+    cols = ['pid', 'mode', 'key'] + P9_F
+    F = pd.DataFrame(rows, columns=cols)
+    for c in P9_F:
+        F[c] = F[c].astype('float32')
+    pq.write_table(pa.Table.from_pandas(F, preserve_index=False), inp / 'p9-features.parquet', compression='zstd')
+    print('written', len(F), 'pairs', {c: round(float((F[c] > 0).mean()), 4) for c in P9_F}, round(time.time() - t0), 's', flush=True)
+
+
+def p9_set_features(C):
+    """block-level pass-nine features: the strongest subject ratio among the other candidates, this one's margin to it"""
+    import numpy as np
+    g = C.groupby(['mode', 'pid'], sort=False, observed=True)
+    v = C.p9_lrs.values
+    mx = g.p9_lrs.transform('max').values
+    nmx = C.assign(_m=(v >= mx).astype(np.int16)).groupby(['mode', 'pid'], sort=False, observed=True)._m.transform('sum').values
+    below = C.assign(_b=np.where(v < mx, v, -np.inf)).groupby(['mode', 'pid'], sort=False, observed=True)._b.transform('max').values
+    srt = np.where(nmx > 1, mx, np.where(np.isfinite(below), below, 0.0))
+    other = np.where(C.n.values == 1, 0.0, np.where(v >= mx, srt, mx))
+    C['p9_lrs_other'] = other.astype(np.float32)
+    C['p9_lrs_margin'] = (v - other).astype(np.float32)
+    return C
+
+
 # ------------------------------------------------------------------------------------------------ features (Plato)
 
 ORD = {
@@ -383,7 +574,12 @@ KEY_FEATURES = [False]
 
 
 def feature_names():
-    return list(ORD) + list(BIN) + ['topic_sc', 'nco'] + PAIR_NUM + (KEY_ATTR if KEY_FEATURES[0] else []) + SET_F + POS_F + list(CATS)
+    return list(ORD) + list(BIN) + ['topic_sc', 'nco'] + PAIR_NUM + (KEY_ATTR if KEY_FEATURES[0] else []) + SET_F + POS_F + list(CATS) + \
+        ((P9_F + P9_SET) if USE_P9[0] else [])
+
+
+def mono_up():
+    return MONO_UP + (P9_MONO if USE_P9[0] else [])
 
 
 def set_features(F):
@@ -472,6 +668,21 @@ def build_features(inp, sample=0.0):
     for f, levels in CATS.items():
         C[f] = pd.Categorical(C[f].astype(str), categories=levels)
     C = set_features(C)
+    if USE_P9[0]:
+        P9 = pd.read_parquet(inp / 'p9-features.parquet')
+        C = C.merge(P9, on=['mode', 'pid', 'key'], how='left')
+        # the drop variant is the present block without the true key: the same pairs, the same evidence
+        dm = C['mode'].values == 'drop'
+        if dm.any():
+            pres = P9[P9['mode'] == 'present'].drop(columns=['mode']).set_index(['pid', 'key'])
+            j = pres.reindex(pd.MultiIndex.from_arrays([C.pid.values[dm], C.key.values[dm]]))
+            for c in P9_F:
+                C.loc[dm, c] = j[c].values
+        miss = int(C.p9_lrs.isna().sum())
+        for c in P9_F:
+            C[c] = C[c].fillna(-1.0 if c in ('p9_lcdp', 'p9_lcact') else 0.0).astype(np.float32)
+        C = p9_set_features(C)
+        print('pass-nine features merged; pairs without them', miss, flush=True)
     print('features', len(C), round(time.time() - t0), 's', flush=True)
     return C, PV, M
 
@@ -513,6 +724,7 @@ def train(args):
     out.mkdir(parents=True, exist_ok=True)
     t0 = time.time()
     KEY_FEATURES[0] = args.key_features
+    USE_P9[0] = not args.no_p9 and (inp / 'p9-features.parquet').exists()
     C, PV, M = build_features(inp, args.sample)
     prep_meta = json.load(open(inp / 'prep.json'))
     # ---- block table: one row per (mode, pid)
@@ -534,7 +746,21 @@ def train(args):
     for i in np.nonzero(isc)[0]:
         p, k = int(C.pid.values[i]), C.key.values[i]
         lab[i] = 1 if k == lab_of[p] else 2 if k in same[p] else 0
+    # Qwen production labels (2026-11-13): the candidates the labeller saw get 1 (its key), 2 (a duplicate it named) or
+    # 0; candidates it did not see stay unlabelled (-1); cannot-tell and errors are left out
+    Q = load_qwen(args.qwen_labels, set(lab_of), args) if args.qwen_labels else None
+    qsplit = np.full(len(C), '', dtype=object)
+    if Q is not None:
+        qd = Q.set_index('position')
+        isq = prod & C.pid.isin(set(qd.index)).values
+        dec, dups, shown, qs = qd.decision.to_dict(), qd.dups.to_dict(), qd.shown.to_dict(), qd.qsplit.to_dict()
+        for i in np.nonzero(isq)[0]:
+            p, k = int(C.pid.values[i]), C.key.values[i]
+            d = dec[p]
+            lab[i] = 1 if k == d else 2 if k in dups[p] else 0 if k in shown[p] else -1
+            qsplit[i] = qs[p]
     C['y'] = lab
+    C['qwen'] = qsplit
     C['clerical'] = np.where(isc, C.pid.map(csplit), '')
     split = dict(zip(zip(PV['mode'], PV.pid), PV.split))
     C['split'] = [split.get((m, p), -1) for m, p in zip(C['mode'].values, C.pid.values)]
@@ -543,7 +769,7 @@ def train(args):
     C.loc[ra & (C['mode'].values != 'prod'), 'split'] = -1        # route-a gold is unreliable (decide2 excludes it)
     print('labels', C.groupby('mode').y.value_counts().unstack().fillna(0).astype(int).to_dict(), flush=True)
     # ---- block weights: simulated absents and present gold mixed to each stratum's production absent share
-    B = C[C['rank'] == 0][['mode', 'pid', 'n', 'neg', 'freq', 'rg', 'split', 'clerical']].copy()
+    B = C[C['rank'] == 0][['mode', 'pid', 'n', 'neg', 'freq', 'rg', 'split', 'clerical', 'qwen']].copy()
     B['stratum'] = strata_of(B)
     pres_true = set(zip(C['mode'][C.y == 1], C.pid[C.y == 1]))
     B['present'] = [(m, p) in pres_true for m, p in zip(B['mode'], B.pid)]
@@ -568,10 +794,24 @@ def train(args):
     B.loc[B.clerical != '', 'w'] = args.clerical_weight
     if args.clerical_mode == 'validate':
         B.loc[B.clerical == 'clerical-dev', 'w'] = 1.0
-    C = C.merge(B[['mode', 'pid', 'w', 'stratum']], on=['mode', 'pid'], how='left')
-    trn = ((C.split == 1) & (C['mode'] != 'prod')) | ((C.clerical == 'clerical-dev') & (args.clerical_mode == 'train'))
+    # simulated absent authors (the impersonated namesake and the present block without its author) in the training
+    # split: kept, down-weighted or dropped (run 3 learned from them that well-documented keys absorb namesakes)
+    sim = (B.split == 1) & B['mode'].isin(['imp', 'drop'])
+    if args.sim_absent == 'drop':
+        B.loc[sim, 'w'] = 0.0
+    elif args.sim_absent == 'down':
+        B.loc[sim, 'w'] = B.w[sim] * args.sim_absent_weight
+    B['pw'] = 0.0
+    if Q is not None:
+        qd = Q.set_index('position')
+        qm = B['mode'].eq('prod') & B.pid.isin(set(qd.index))
+        B.loc[qm, 'w'] = B.pid[qm].map(qd.tw).values
+        B.loc[qm, 'pw'] = B.pid[qm].map(qd.weight).values
+    C = C.merge(B[['mode', 'pid', 'w', 'pw', 'stratum']], on=['mode', 'pid'], how='left')
+    trn = ((C.split == 1) & (C['mode'] != 'prod')) | ((C.clerical == 'clerical-dev') & (args.clerical_mode == 'train')) | (C.qwen == 'qwen-train')
+    trn &= C.w.values > 0
     trn &= C.y.isin([0, 1]).values
-    cal = (C.split == 2) & (C['mode'] != 'prod')
+    cal = ((C.split == 2) & (C['mode'] != 'prod')) | (C.qwen == 'qwen-cal')
     tst = (C.split == 3) & (C['mode'] != 'prod')
     feats = feature_names()
     counts = dict(train_pairs=int(trn.sum()), train_pos=int(C[trn].y.sum()), calib_pairs=int(cal.sum()), test_pairs=int(tst.sum()),
@@ -579,11 +819,15 @@ def train(args):
                   blocks_by_split={str(s): {m: int(((B['mode'] == m) & (B.split == s)).sum()) for m in ('present', 'imp', 'drop')} for s in (0, 1, 2, 3)},
                   absent_blocks_with_candidates={m: int(((B['mode'] == m) & ~B.present).sum()) for m in ('present', 'imp', 'drop')},
                   clerical={s: int((B.clerical == s).sum()) for s in ('clerical-dev', 'clerical-test')},
+                  qwen={s: int((B.qwen == s).sum()) for s in ('qwen-train', 'qwen-cal', 'qwen-test')},
+                  qwen_linked={s: int(((B.qwen == s) & B.present).sum()) for s in ('qwen-train', 'qwen-cal', 'qwen-test')},
+                  sim_absent=dict(mode=args.sim_absent, weight=args.sim_absent_weight, training_blocks=int(sim.sum())),
+                  pass_nine_features=USE_P9[0],
                   clerical_class={s: {k: int(v) for k, v in pd.Series([('key' if lab_of[p].startswith('p-') else lab_of[p]) for p in B.pid[B.clerical == s]]).value_counts().items()}
                                   for s in ('clerical-dev', 'clerical-test')})
     print('counts', json.dumps(counts), flush=True)
     X = C[feats]
-    mono = [1 if f in MONO_UP else 0 for f in feats]
+    mono = [1 if f in mono_up() else 0 for f in feats]
     models = {}
     # (A) one pair model over present and absent blocks
     models['gbt'] = fit_gbt(X[trn], C.y[trn], C.w[trn], mono, feats, args.seed)
@@ -603,7 +847,8 @@ def train(args):
     pres_blocks = C.groupby(['mode', 'pid']).y.max()
     Bt_y = pd.Series([pres_blocks.get((m, p), 0) for m, p in zip(Bt['mode'], Bt.pid)], index=Bt.index).clip(upper=1)
     f2 = feats + ['_p1']
-    trb = ((Bt.split == 1) & (Bt['mode'] != 'prod')) | ((Bt.clerical == 'clerical-dev') & (args.clerical_mode == 'train'))
+    trb = (((Bt.split == 1) & (Bt['mode'] != 'prod')) | ((Bt.clerical == 'clerical-dev') & (args.clerical_mode == 'train'))
+           | (Bt.qwen == 'qwen-train')) & (Bt.w > 0)
     st2 = fit_gbt(Bt.loc[trb, f2], Bt_y[trb], Bt.w[trb], mono + [1], f2, args.seed)
     p2 = dict(zip(zip(Bt['mode'], Bt.pid), predict(st2, Bt[f2])))
     raw['two-stage'] = p1 * np.array([p2.get((m, p), 0.0) for m, p in zip(C['mode'].values, C.pid.values)])
@@ -625,6 +870,10 @@ def train(args):
         th[name] = choose_thresholds(BT[(BT.split == 2) & (BT['mode'] != 'prod')], args.bound)
         if args.clerical_mode == 'validate':
             th[name] = validate_on_clerical(BT[BT.clerical == 'clerical-dev'], th[name], args.bound)
+        if Q is not None:
+            # production-drawn check on the Qwen calibration labels (production weights): can only raise thresholds
+            th[name] = validate_on_clerical(BT[BT.qwen == 'qwen-cal'].assign(w=lambda d: d.pw), th[name], args.bound,
+                                            weighted=True, tag='_qwen_cal_check')
     res['thresholds'] = th
     # head-to-head on split 3 and clerical-test: rule linker, naive scorer C2, each model
     BT0 = blocks['gbt']
@@ -633,11 +882,13 @@ def train(args):
         D = apply_thresholds(BT, th[name])
         ev[name] = dict(test=evaluate_blocks(D[(D.split == 3) & (D['mode'] != 'prod')]),
                         clerical_test=evaluate_blocks(D[D.clerical == 'clerical-test']),
-                        clerical_dev=evaluate_blocks(D[D.clerical == 'clerical-dev']))
+                        clerical_dev=evaluate_blocks(D[D.clerical == 'clerical-dev']),
+                        qwen_test=evaluate_blocks(D[D.qwen == 'qwen-test'].assign(w=lambda d: d.pw)))
     for name in ('rule', 'scorer-c2'):
         D = baseline_blocks(BT0, C, PV, inp, name, prep_meta)
         ev[name] = dict(test=evaluate_blocks(D[(D.split == 3) & (D['mode'] != 'prod')]),
-                        clerical_test=evaluate_blocks(D[D.clerical == 'clerical-test']))
+                        clerical_test=evaluate_blocks(D[D.clerical == 'clerical-test']),
+                        qwen_test=evaluate_blocks(D[D.qwen == 'qwen-test'].assign(w=lambda d: d.pw)))
         if name == 'scorer-c2':
             # the production policy: the scorer's links stand; the classifier adds links where the scorer made none
             F = apply_thresholds(blocks[args.final], th[args.final])
@@ -652,7 +903,9 @@ def train(args):
             ev['scorer+' + args.final] = dict(test=evaluate_blocks(D2[(D2.split == 3) & (D2['mode'] != 'prod')]),
                                              clerical_test=evaluate_blocks(D2[D2.clerical == 'clerical-test']),
                                              added_test=evaluate_blocks(D2[(D2.split == 3) & (D2['mode'] != 'prod') & D2.added]),
-                                             added_clerical_test=evaluate_blocks(D2[(D2.clerical == 'clerical-test') & D2.added]))
+                                             added_clerical_test=evaluate_blocks(D2[(D2.clerical == 'clerical-test') & D2.added]),
+                                             qwen_test=evaluate_blocks(D2[D2.qwen == 'qwen-test'].assign(w=lambda d: d.pw)),
+                                             added_qwen_test=evaluate_blocks(D2[(D2.qwen == 'qwen-test') & D2.added].assign(w=lambda d: d.pw)))
     res['evaluation'] = ev
     best = args.final
     res['final_model'] = best
@@ -666,21 +919,124 @@ def train(args):
     prodD = D[D['mode'] == 'prod']
     res['production'] = prodD.decision.value_counts().to_dict()
     res['production_by_stratum'] = {k: v.decision.value_counts().to_dict() for k, v in prodD.groupby('stratum')}
+    if Q is not None:
+        res['rule_weak_by_qwen'] = rule_weak_by_qwen(args.qwen_labels)
+    res['probes'] = probes(args, C, D, M, blocks, th)
     pc = C[C['mode'] == 'prod'][['pid', 'key', 'rank']].copy()
     pc['p'] = calp[best][(C['mode'] == 'prod').values]
     contrib = top_features(models['gbt'] if best == 'gbt' else None, X[(C['mode'] == 'prod').values], feats) if best == 'gbt' else \
         fs_fields(C[C['mode'] == 'prod'], prep_meta)
     pc['top'] = contrib
     write_classified(out, prodD, pc, M)
-    keepb = ['mode', 'pid', 'key', 'p', 'p2', 'y', 'has_author', 'split', 'clerical', 'w', 'stratum', 'rg', 'role', 'tbl', 'freq', 'n', 'fs', 'margin', 'decision', 'link', 'wrong']
+    keepb = ['mode', 'pid', 'key', 'p', 'p2', 'y', 'has_author', 'split', 'clerical', 'qwen', 'pw', 'w', 'stratum', 'rg', 'role', 'tbl', 'freq', 'n', 'fs', 'margin', 'decision', 'link', 'wrong']
     for name in blocks:
         D = apply_thresholds(blocks[name], th[name])
-        D[(D['mode'] != 'prod') & D.split.isin([2, 3]) | (D.clerical != '')][keepb].to_parquet(out / f'blocks-{name}.parquet', index=False)
+        D[(D['mode'] != 'prod') & D.split.isin([2, 3]) | (D.clerical != '') | (D.qwen != '')][keepb].to_parquet(out / f'blocks-{name}.parquet', index=False)
     json.dump(res, open(out / 'train-report.json', 'w'), indent=1, default=float)
     print(json.dumps({k: v for k, v in res.items() if k in ('counts', 'thresholds', 'production')}, default=float, indent=1))
     for name, e in ev.items():
         print(name, 'TEST', json.dumps(e['test'].get('overall')), '\n   CLERICAL', json.dumps(e['clerical_test'].get('overall')), flush=True)
     print('done', round(time.time() - t0), 's', flush=True)
+
+
+def _qhash(pid, salt):
+    return int(hashlib.md5(f'{salt}:{int(pid)}'.encode()).hexdigest()[:8], 16)
+
+
+def load_qwen(path, exclude, args):
+    """qwen-labels.csv.gz (label_links_qwen.py write, policy greedy+sc) -> one row per decided position: decision (a key
+    or not-keyed), duplicates it named, the keys it saw (shown + own-book excluded), training weight `tw`, production
+    weight `weight`, split qwen-train / qwen-cal / qwen-test. Positions in the Opus clerical sets are left out (the
+    held-out half stays untouched). Label weights (owner, 2026-11-13; the labeller's measured errors were plausible-topic
+    links on one candidate with a very common name): a link on a single-candidate position in the 26+ band x qwen_w26;
+    a link on a single-candidate position with no positive fact (the linker's has_fact, or no fact stated by Qwen)
+    x qwen_wnofact. Held out: a fixed hash share (default 0.125 = 5,000 of the 40,000 sample), the rest 1 in 5 to
+    calibration."""
+    import numpy as np
+    import pandas as pd
+    Q = pd.read_csv(path, dtype=str, keep_default_na=False)
+    n0 = len(Q)
+    Q['position'] = Q.position.astype('int64')
+    Q = Q[~Q.position.isin(exclude)].copy()
+    dec = Q.decision.astype(str)
+    Q = Q[dec.str.startswith('p-') | (dec == 'not-keyed')].copy()
+    Q['dups'] = [set(x for x in d.split('|') if x.startswith('p-')) for d in Q.duplicate_keys]
+    Q['shown'] = [set(x for x in s_.split('|') if x.startswith('p-')) | {x.split(':')[0] for x in e.split('|') if x.startswith('p-')}
+                  for s_, e in zip(Q.candidates_shown, Q.excluded)]
+    single = Q.band.astype(str).str.startswith('single').values
+    link = Q.decision.str.startswith('p-').values
+    nofact = Q.nofact.astype(str).str.lower().isin(['true', '1']).values | (Q.facts.astype(str).str.strip() == '').values
+    tw = np.full(len(Q), float(args.qwen_weight))
+    tw[single & link & (Q.band.values == 'single-26+')] *= args.qwen_w26
+    tw[single & link & nofact] *= args.qwen_wnofact
+    Q['tw'] = tw
+    Q['weight'] = pd.to_numeric(Q.weight, errors='coerce').fillna(1.0)
+    h = np.array([_qhash(p, 'qwen-holdout') % 10000 for p in Q.position])
+    h2 = np.array([_qhash(p, 'qwen-cal') % 5 for p in Q.position])
+    Q['qsplit'] = np.where(h < args.qwen_holdout * 10000, 'qwen-test', np.where(h2 == 0, 'qwen-cal', 'qwen-train'))
+    print('qwen labels', n0, 'rows;', len(Q), 'decided (key or not-keyed) outside the clerical sets;',
+          Q.qsplit.value_counts().to_dict(), 'links', int(link.sum()), 'down-weighted', int((tw < args.qwen_weight).sum()), flush=True)
+    return Q
+
+
+def rule_weak_by_qwen(path):
+    """the rule linker's existing links in the weak strata (sample cells rule-weak|*): Qwen's verdicts, weighted to
+    production (weight = production count / sampled). right = Qwen names the rule's key (or a duplicate of it); wrong =
+    another key or not-keyed; undecided = cannot-tell / error (reported, not counted)"""
+    import numpy as np
+    import pandas as pd
+    Q = pd.read_csv(path, dtype=str, keep_default_na=False)
+    Q = Q[Q.cell.str.startswith('rule-weak|')].copy()
+    if not len(Q):
+        return {}
+    Q['w'] = pd.to_numeric(Q.weight, errors='coerce').fillna(1.0)
+    Q['out'] = ['right' if d == k or k in set(dk.split('|')) else 'undecided' if not (d.startswith('p-') or d == 'not-keyed') else 'wrong'
+                for d, k, dk in zip(Q.decision, Q.rule_key, Q.duplicate_keys)]
+
+    def one(g):
+        dd = g[g.out != 'undecided']
+        if not len(dd):
+            return dict(n=int(len(g)), undecided=int(len(g)))
+        w = dd.w.values
+        r = float((w * (dd.out == 'wrong').values).sum() / w.sum())
+        neff = w.sum() ** 2 / (w ** 2).sum()
+        return dict(n=int(len(g)), decided=int(len(dd)), undecided=int((g.out == 'undecided').sum()), wrong=int((dd.out == 'wrong').sum()),
+                    wrong_not_keyed=int(((dd.out == 'wrong') & (dd.decision == 'not-keyed')).sum()),
+                    wrong_share_production=round(r, 4), upper95=round(jeffreys_upper(r * neff, neff), 4),
+                    production_links=round(float(g.w.sum())))
+    out = dict(overall=one(Q))
+    out['by_cell'] = {c: one(g) for c, g in Q.groupby('cell')}
+    out['note'] = ("Qwen (greedy+sc) on rule-linked positions sampled from the weak strata; Qwen's own error on the Opus "
+                   "held-out half was 0.71% (upper 1.9%) of its links and it abstains on ~9% of Opus links, so 'wrong' here "
+                   "includes Qwen's not-keyed on true links (a missed author counts against the rule)")
+    return out
+
+
+def probes(args, C, D, M, blocks, th):
+    """the owner's probe positions (never targets): decisions of the final model on every production block where a
+    probe key is a candidate, and on the probe works"""
+    keys = [k for k in (args.probe_keys or '').split(',') if k]
+    works = [w for w in (args.probe_works or '').split(',') if w]
+    pc = C[C['mode'] == 'prod'][['pid', 'key', 'fs']]
+    pids = set(pc.pid[pc.key.isin(keys)]) | set(M.pid[M.work.isin(works)])
+    if not pids:
+        return {}
+    cand = pc[pc.pid.isin(pids)].sort_values(['pid', 'fs'], ascending=[True, False]).groupby('pid').key.apply(lambda s: '|'.join(s)).to_dict()
+    R = D[(D['mode'] == 'prod') & D.pid.isin(pids)][['pid', 'key', 'p', 'p2', 'decision', 'stratum', 'rg', 'multi']].merge(
+        M[['pid', 'work', 'role', 'printed']], on='pid', how='left')
+    R['candidates'] = R.pid.map(cand)
+    R['p'] = R.p.round(4)
+    R['p2'] = R.p2.round(4)
+    out = {}
+    for k in keys:
+        g = R[R.candidates.str.contains(k, regex=False)]
+        out[k] = dict(positions=int(len(g)), by_cell={c: x.decision.value_counts().to_dict() for c, x in g.groupby(g.rg.astype(str) + '|' + g.multi.astype(str))},
+                      linked_to_key=int(((g.decision == 'link') & (g.key == k)).sum()),
+                      linked_to_other=int(((g.decision == 'link') & (g.key != k)).sum()),
+                      rows=g.head(60).to_dict('records'))
+    for w in works:
+        out[w] = R[R.work == w].to_dict('records')
+    return out
 
 
 def fit_gbt(X, y, w, mono, feats, seed):
@@ -747,9 +1103,10 @@ def block_table(C, p):
     has = D.assign(_t=(D.y.values == 1)).groupby(['mode', 'pid'], sort=False)._t.max().rename('has_author').reset_index()
     BT = first.merge(sec, on=['mode', 'pid'], how='left').merge(has, on=['mode', 'pid'], how='left')
     BT['p2'] = BT.p2.fillna(0.0)
-    attrs = C[C['rank'] == 0][['mode', 'pid', 'split', 'clerical', 'w', 'stratum', 'rg', 'role', 'tbl', 'gold_table', 'freq', 'n', 'has_orcid', 'country', 'decade', 'fs', 'margin']]
+    attrs = C[C['rank'] == 0][['mode', 'pid', 'split', 'clerical', 'qwen', 'w', 'pw', 'stratum', 'rg', 'role', 'tbl', 'gold_table', 'freq', 'n', 'has_orcid', 'country', 'decade', 'fs', 'margin']]
     BT = BT.merge(attrs, on=['mode', 'pid'], how='left')
     BT['multi'] = np.where(BT.stratum == 'multi', 'multi', 'single')
+    BT['rg_multi'] = BT.rg.astype(str) + '|' + BT.multi
     return BT
 
 
@@ -776,7 +1133,7 @@ def choose_thresholds(T, bound):
     return out
 
 
-def validate_on_clerical(V, th, bound, step=0.005):
+def validate_on_clerical(V, th, bound, step=0.005, weighted=False, tag='_clerical_dev_check'):
     """production-drawn check of gold-calibrated thresholds: while the clerical-dev links (positions not used in
     training) hold wrong links above the bound, raise the single-candidate link thresholds of the groups that made
     them (owner's bound; the clerical set is too small to set thresholds alone, so it can only make them stricter)"""
@@ -784,7 +1141,7 @@ def validate_on_clerical(V, th, bound, step=0.005):
     for _ in range(200):
         D = apply_thresholds(V, th)
         L = D[D.link]
-        if not len(L) or L.wrong.mean() <= bound:
+        if not len(L) or (float((L.w * L.wrong).sum() / max(1e-12, L.w.sum())) if weighted else L.wrong.mean()) <= bound:
             break
         bad = L[L.wrong].groupby(['rg', 'multi']).size()
         for (rg, mu), _n in bad.items():
@@ -792,7 +1149,7 @@ def validate_on_clerical(V, th, bound, step=0.005):
             t['t_link'] = round(min(2.0, t['t_link'] + step), 4)
             t['raised_by_clerical'] = True
     D = apply_thresholds(V, th)
-    th['_clerical_dev_check'] = dict(links=int(D.link.sum()), wrong=int(D.wrong.sum()))
+    th[tag] = dict(links=int(D.link.sum()), wrong=int(D.wrong.sum()))
     return th
 
 
@@ -822,7 +1179,7 @@ def evaluate_blocks(D):
     if not len(D):
         return {}
     out['overall'] = one(D)
-    for col in ('multi', 'stratum', 'role', 'has_orcid', 'country', 'decade', 'rg'):
+    for col in ('multi', 'stratum', 'role', 'has_orcid', 'country', 'decade', 'rg', 'rg_multi'):
         out['by_' + col] = {str(k): one(g) for k, g in D.groupby(col)}
     return out
 
@@ -926,7 +1283,12 @@ def save_models(out, models, st1, st2, feats, mono, f2, raw, C, cm, args):
                seed=args.seed, clerical_weight=args.clerical_weight, bound=args.bound, final=args.final,
                model_kind={n: getattr(m, 'kind_', '') for n, m in models.items()},
                training='gold splits by hidden key (score_links.split_of): 0 Fellegi-Sunter weights, 1 train, 2 calibration + thresholds, '
-                        '3 test; clerical-dev labels in training at the clerical weight; clerical-test never used before the final evaluation',
+                        '3 test; clerical-dev labels validate thresholds (or train at the clerical weight); clerical-test never used before the '
+                        'final evaluation; Qwen production labels (when given): qwen-train in training at their label weights, qwen-cal in '
+                        'calibration and as a threshold check (production weights), qwen-test (5,000 positions) held out',
+               qwen_labels=dict(path=args.qwen_labels, md5=hashlib.md5(Path(args.qwen_labels).read_bytes()).hexdigest()) if args.qwen_labels else None,
+               qwen_weights=dict(base=args.qwen_weight, band26=args.qwen_w26, nofact=args.qwen_wnofact, holdout=args.qwen_holdout),
+               sim_absent=dict(mode=args.sim_absent, weight=args.sim_absent_weight), pass_nine_features=USE_P9[0],
                inputs={p.name: hashlib.md5(p.read_bytes()).hexdigest() for p in sorted(Path(args.inputs).glob('*')) if p.is_file() and p.stat().st_size < 2e9},
                built=time.strftime('%Y-%m-%d %H:%M'))
     json.dump(man, open(out / 'manifest.json', 'w'), indent=1)
@@ -1085,6 +1447,24 @@ def main():
     a.add_argument('--clerical-mode', default='validate', choices=['validate', 'train'])
     a.add_argument('--key-features', action='store_true', help='use key attributes as features (run 2; confounded)')
     a.add_argument('--sample', type=float, default=0.0, help='development: keep this share of positions (by pid hash)')
+    a.add_argument('--qwen-labels', help='qwen-labels.csv.gz (label_links_qwen.py write): production training labels')
+    a.add_argument('--qwen-weight', type=float, default=1.0)
+    a.add_argument('--qwen-w26', type=float, default=0.3, help='x weight of single-candidate links in the 26+ name band')
+    a.add_argument('--qwen-wnofact', type=float, default=0.5, help='x weight of single-candidate links with no positive fact')
+    a.add_argument('--qwen-holdout', type=float, default=0.125, help='held-out share of the Qwen positions (5,000 of 40,000)')
+    a.add_argument('--sim-absent', default='down', choices=['keep', 'down', 'drop'],
+                   help='simulated absent-author blocks (imp, drop) in the training split')
+    a.add_argument('--sim-absent-weight', type=float, default=0.1)
+    a.add_argument('--no-p9', action='store_true', help='leave out the pass-eight/nine evidence features')
+    a.add_argument('--probe-keys', default='p-4256,p-24137')
+    a.add_argument('--probe-works', default='doi:10.2307/j.ctvxkn5q7.4')
+    a = sub.add_parser('p9-inputs')
+    a.add_argument('--out', default=str(J / 'clf-inputs'))
+    a.add_argument('--siblings', default=str(J.parent / 'nameonly8' / 'sibling-chapters.parquet'))
+    a = sub.add_parser('p9-features')
+    a.add_argument('--inputs', default=str(J / 'clf-inputs'))
+    a.add_argument('--procs', type=int, default=4)
+    a.add_argument('--sample', type=float, default=0.0)
     a = sub.add_parser('finalize')
     a.add_argument('--run', required=True, help='folder with train-report.json, manifest.json, classified.csv.gz')
     a.add_argument('--inputs', default=str(J / 'clf-inputs'))
@@ -1093,7 +1473,8 @@ def main():
     args = ap.parse_args()
     if args.cmd == 'finalize':
         return finalize(args)
-    {'label-sample': sample_new, 'label-dossiers': export, 'label-merge': label_merge, 'prep': prep, 'train': train}[args.cmd](args)
+    {'label-sample': sample_new, 'label-dossiers': export, 'label-merge': label_merge, 'prep': prep, 'train': train,
+     'p9-inputs': p9_inputs, 'p9-features': p9_features}[args.cmd](args)
 
 
 if __name__ == '__main__':
