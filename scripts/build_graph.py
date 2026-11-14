@@ -188,6 +188,11 @@ PRIZE_FILES = [PRIZES / f'{n}.csv.gz' for n in ('prizes', 'winners', 'works', 'l
 LC_CREDITS = ROOT / 'data/graph/lc-credits.csv.gz'   # scripts/lc_catalogue_credits.py: LC main / added entries on a key
                                                      # for works with an LCCN and no credit
 REVIEW_BOOKS = ROOT / 'data/graph/review-books.csv.gz'
+# 2026-11-14 (classes 40, 41; scripts/note_and_review_books.py): books named only in a keyed person's LC authority notes
+# (unkeyed `lcnote:` nodes, linked AUTHORED source lc-authority-note) and reviews whose label prints the author and title
+# of a book credited to that person (REVIEWS linked, source review-books:titled)
+NOTE_BOOKS = ROOT / 'data/graph/lc-note-books.csv.gz'
+REVIEW_TITLED = ROOT / 'data/graph/review-titled-books.csv.gz'
 # pass seven (2026-11-12): printed reviewed authors of review-like records (scripts/review_books.py; class 29b) and works
 # held under two keys (scripts/work_dup_pairs.py; class 11)
 REVIEW_AUTHORS = ROOT / 'data/graph/review-authors.csv.gz'
@@ -967,13 +972,13 @@ def same_work_carry(pairs, keylog_rows, linked_rows, cand_rows, plabel):
     return linked_rows + add, out_c, dict(counts)
 
 
-def review_book_nodes(state, types, works, wi, unkeyed, resolve, report):
+def review_book_nodes(state, types, works, wi, unkeyed, resolve, report, path=REVIEW_BOOKS, tag='review_books'):
     """Reviews filed as articles (data/graph/review-books.csv.gz, scripts/review_books.py; 2026-11-12, class 29): an
     unkeyed article/other record that reviews a book gets kind 'review'; a keyed one gets kind_proposed 'review' (the key
     log's kind is not changed). Returns linked REVIEWS rows (review -> book; evidence linked, source review-books:<rule>).
     No credit is made: the reviewer is never the book's author."""
     out, seen = [], set()
-    for r in read_rows(REVIEW_BOOKS):
+    for r in read_rows(path):
         rv, bk = resolve(r['review']), resolve(r['book'])
         if rv and not bk and r['book'].startswith('lccn:') and r.get('book_lccn'):
             # pass seven: an LC record the review names and the graph lacked: an unkeyed book node from the catalogue
@@ -986,23 +991,23 @@ def review_book_nodes(state, types, works, wi, unkeyed, resolve, report):
                      reviewer_names=[], journal=None)
             works.append(w)
             wi[bk] = w
-            report['review_books_lc_book_nodes_added'] += 1
+            report[f'{tag}_lc_book_nodes_added'] += 1
         if not rv or not bk or rv == bk or rv not in wi:
-            report['review_books_unresolved'] += 1
+            report[f'{tag}_unresolved'] += 1
             continue
         w = wi[rv]
         if w['resolution'] == 'unkeyed' and w['kind'] in ('article', 'other'):
             w['kind_before_review_rule'] = w['kind']
             w['kind'] = 'review'
-            report['review_books_retyped_unkeyed'] += 1
+            report[f'{tag}_retyped_unkeyed'] += 1
         elif w['resolution'] != 'unkeyed':
             w['kind_proposed'] = 'review'
-            report['review_books_kind_proposed_keyed'] += 1
+            report[f'{tag}_kind_proposed_keyed'] += 1
         if (rv, bk) not in seen:
             seen.add((rv, bk))
             out.append({'from': rv, 'to': bk, 'claim': f"review-books:{r['rule']}:{r['basis']}", 'resolution': 'linked',
                         'evidence': 'linked', 'source': f"review-books:{r['rule']}", 'lc_main_lcnaf': r.get('lc_main_lcnaf') or ''})
-    report['review_books_REVIEWS_linked'] = len(out)
+    report[f'{tag}_REVIEWS_linked'] = len(out)
     return out
 
 
@@ -1395,7 +1400,7 @@ def main():
     no_files = [NAME_ONLY / 'credits.csv.gz', NAME_ONLY / 'chapters.csv.gz']
     no_files = no_files if all(p.exists() for p in no_files) else []
     prize_files = PRIZE_FILES if all(p.exists() for p in PRIZE_FILES) else []
-    p5_files = [p for p in (LC_CREDITS, REVIEW_BOOKS, LC_BOOKS, REVIEW_AUTHORS, WORK_DUPS) if p.exists()]
+    p5_files = [p for p in (LC_CREDITS, REVIEW_BOOKS, LC_BOOKS, REVIEW_AUTHORS, WORK_DUPS, NOTE_BOOKS, REVIEW_TITLED) if p.exists()]
     if os.environ.get('BUILD_PASS5_OFF'):          # a baseline build without the pass-five layers (check builds only)
         prize_files, p5_files = [], []
     require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS) if p.exists()] + crossref_parts + article_parts
@@ -1459,7 +1464,24 @@ def main():
     else:
         pz = None
     # reviews of books (2026-11-12, class 29): unkeyed article records that review a book are retyped; book nodes made
+    nb_rows = []                    # books named only in LC authority notes (2026-11-14, class 40): unkeyed lcnote: nodes
+    if NOTE_BOOKS in p5_files:
+        for r in read_rows(NOTE_BOOKS):
+            n = r['work']
+            if n not in wi:
+                unkeyed.add(n)
+                types[n] = 'work'
+                w = dict(key=n, label=r['title'] or None, resolution='unkeyed', anchors=[n], kind='book', lccn=None,
+                         year=int(r['year']) if (r['year'] or '').isdigit() else None, reviewer_names=[], journal=None)
+                works.append(w)
+                wi[n] = w
+                report['lc_note_books_nodes_added'] += 1
+            nb_rows.append(r)
     rb_rows = review_book_nodes(state, types, works, wi, unkeyed, resolve, report) if REVIEW_BOOKS in p5_files else []
+    if REVIEW_TITLED in p5_files:   # reviews whose label prints a keyed person's book (2026-11-14, class 41)
+        have_rb = {(r['from'], r['to']) for r in rb_rows}
+        rb_rows += [r for r in review_book_nodes(state, types, works, wi, unkeyed, resolve, report, REVIEW_TITLED,
+                                                 'review_titled') if (r['from'], r['to']) not in have_rb]
     lcb_rows = []                   # LC books of keys with scholarly evidence the graph lacked (2026-11-12)
     if LC_BOOKS in p5_files:
         for r in read_rows(LC_BOOKS):
@@ -1616,6 +1638,23 @@ def main():
                             'resolution': 'linked', 'source': src, 'state': 'linked' if tied else 'exact',
                             'role': 'author', 'role_basis': 'lc-main-entry'})
         report['lc_authority_books_AUTHORED_added'] = len(add)
+        linked['AUTHORED'] += add
+        del have, add
+    if nb_rows:                     # note books: the authority's key (anchored: exact; a proposed tie: linked)
+        have = {(r['from'], r['to']) for r in rels['AUTHORED']} | {(x['from'], x['to']) for x in linked['AUTHORED']}
+        add = []
+        for r in nb_rows:
+            anchored = person1(f"lcnaf:{r['lcnaf']}")
+            k = anchored or person1(r['person'])
+            if not k:
+                report['lc_note_books_person_unresolved'] += 1
+                continue
+            if (k, r['work']) not in have:
+                have.add((k, r['work']))
+                add.append({'from': k, 'to': r['work'], 'claim': f"lc-authority-note:{r['lcnaf']}:{r['work']}",
+                            'resolution': 'linked', 'source': 'lc-authority-note', 'state': 'exact' if anchored else 'linked',
+                            'role': 'author', 'role_basis': 'lc-670'})
+        report['lc_note_books_AUTHORED_added'] = len(add)
         linked['AUTHORED'] += add
         del have, add
     if any(r.get('lc_main_lcnaf') for r in rb_rows):   # pass seven: the LC main entry of a reviewed book found in LC
