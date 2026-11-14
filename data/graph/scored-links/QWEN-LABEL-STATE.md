@@ -236,3 +236,7 @@ is unaffected).
   7 right demotions, 4 unclear. Qwen's not-keyed verdicts are weak; consider switching demotions off.
 - Note: when label_links_qwen_rest_merge.sh rewrites qwen-labels.csv.gz, rerun `python3 scripts/qwen_positions.py`
   (needs build/linkclf-2026-11-13/clf-inputs/meta.parquet with the rest pids) before the next build.
+
+## Chunks 5–12 resubmitted as chained short jobs (2026-11-14)
+
+The 10-hour jobs for rest-05 … rest-12 were cancelled while pending and each chunk resubmitted as a chain of short jobs with the same result name (the job script resumes from the verdicts already written): three jobs of 3:30 per chunk (rest-12: two of 2:30), each later part with `--dependency=afternotok:<previous> --kill-on-invalid-dep=yes`, so it runs only if the previous part timed out or failed and is cancelled automatically when the chunk finishes. First parts: 4020870, 4020873, 4020876, 4020879, 4020882, 4020885, 4020888, 4020891. rest-01 … rest-04 run as single 10-hour jobs (3944948, 3945025, 3945028, 3945031). Never run two jobs with the same result name at once. Collect with `bash scripts/label_links_qwen_rest_merge.sh`.
