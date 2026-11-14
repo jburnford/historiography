@@ -31,14 +31,14 @@
  },
  "positions_by_source_state": {
   "crossref|none": 81387,
-  "crossref|linked": 34509,
-  "crossref|possible": 27595,
+  "crossref|linked": 34508,
+  "crossref|possible": 27596,
   "crossref|ambiguous": 12432,
   "crossref|credited": 446,
   "crossref|exact": 260,
   "crossref-volume|none": 13874,
-  "crossref-volume|linked": 7940,
-  "crossref-volume|possible": 2686,
+  "crossref-volume|linked": 7939,
+  "crossref-volume|possible": 2687,
   "crossref-volume|ambiguous": 1514,
   "crossref-volume|credited": 214,
   "crossref-volume|exact": 25,
@@ -53,9 +53,9 @@
   "ojs|ambiguous": 49,
   "openalex|none": 250912,
   "openalex|credited": 74722,
-  "openalex|possible": 58803,
+  "openalex|possible": 58801,
   "openalex|exact": 41802,
-  "openalex|linked": 31109,
+  "openalex|linked": 31111,
   "openalex|ambiguous": 18662
  },
  "class": {
@@ -64,9 +64,9 @@
   "positions_naming_a_keyed_person_by_name": 335201,
   "works_naming_a_keyed_person": 219155,
   "credited_now_exact_or_linked": 115982,
-  "works_credited_now": 95776,
+  "works_credited_now": 95775,
   "open_possible_or_ambiguous": 167329,
-  "works_open": 116822,
+  "works_open": 116823,
   "note": "a position names a keyed person when at least one key bears a compatible name before the date test (states exact/linked/possible/ambiguous, and none when every such key was ruled out by dates, a proven namesake, or the book-author check); exact = an ORCID printed on the record is on the key"
  },
  "by_state_branch": {
@@ -77,14 +77,14 @@
   "linked|unique-rare": 35194,
   "linked|unique-rare-span": 13542,
   "linked|unique-second-fact": 12609,
-  "linked|unique-rare-fullname": 6855,
+  "linked|unique-rare-fullname": 6854,
   "linked|dupgroup:unique-rare": 1873,
   "linked|several-dated-one-fact": 1614,
   "linked|unique-rare-fullform": 633,
   "linked|several-one-survives": 402,
   "linked|dupgroup:unique-rare-span": 346,
-  "linked|single-subject-subfield-tie": 302,
-  "linked|single-subject-tie": 166,
+  "linked|single-subject-subfield-tie": 305,
+  "linked|single-subject-tie": 164,
   "linked|unique-rare-sup-aff": 146,
   "linked|unique-rare-variant": 72,
   "linked|dupgroup:unique-rare-fullname": 56,
@@ -133,12 +133,12 @@
   "without_orcid": 3190
  },
  "linked_without_fact_by_branch": {
-  "single-subject-tie": 166,
-  "single-subject-subfield-tie": 302,
+  "single-subject-tie": 164,
+  "single-subject-subfield-tie": 305,
   "unique-rare": 24740,
   "unique-rare-span": 9309,
   "dupgroup:unique-rare": 1104,
-  "unique-rare-fullname": 4699,
+  "unique-rare-fullname": 4698,
   "unique-rare-fullform": 633,
   "unique-rare-sup-aff": 138,
   "unique-rare-variant": 55,
@@ -152,11 +152,11 @@
  "tests": {
   "gold_rows": 20000,
   "gold": {
-   "linked": 3578,
-   "right_or_duplicate_key": 3565,
+   "linked": 3579,
+   "right_or_duplicate_key": 3566,
    "wrong": 13,
    "precision": 0.9964,
-   "recall": 0.1782
+   "recall": 0.1783
   },
   "gold_by_how_credited": {
    "name": {
@@ -168,9 +168,9 @@
    },
    "orcid": {
     "rows": 19589,
-    "linked": 3367,
-    "right": 3354,
-    "recall": 0.1712,
+    "linked": 3368,
+    "right": 3355,
+    "recall": 0.1713,
     "precision": 0.9961
    }
   },
@@ -218,10 +218,10 @@
     "recall": 0.0001
    },
    "topic": {
-    "linked": 1698,
-    "right": 1692,
+    "linked": 1699,
+    "right": 1693,
     "precision": 0.9965,
-    "recall": 0.0846
+    "recall": 0.0847
    },
    "volume-editor": {
     "linked": 28,
@@ -258,8 +258,8 @@
     "precision": 1.0
    },
    "topic": {
-    "linked": 486,
-    "right": 485,
+    "linked": 487,
+    "right": 486,
     "precision": 0.9979
    },
    "volume-editor": {
@@ -335,14 +335,14 @@
     "precision": 1.0
    },
    "unique-second-fact": {
-    "linked": 883,
-    "right": 882,
+    "linked": 884,
+    "right": 883,
     "precision": 0.9989
    }
   },
   "gold_not_linked": {
    "possible|outside-history-rarity-only": 5963,
-   "possible|one-candidate-common-name": 5012,
+   "possible|one-candidate-common-name": 5011,
    "ambiguous|several-several-dated": 2597,
    "none|no-compatible-name": 897,
    "possible|one-candidate-surname-variant-name": 498,

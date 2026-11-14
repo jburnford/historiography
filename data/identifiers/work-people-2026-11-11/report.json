@@ -15,8 +15,8 @@
    "positions_by_state": {
     "credited": 829885,
     "none": 321843,
-    "linked": 80460,
-    "possible": 59232,
+    "linked": 80459,
+    "possible": 59233,
     "exact": 55598,
     "ambiguous": 18981
    },
@@ -24,7 +24,7 @@
    "branches": {
     "no-compatible-name": 294600,
     "unique-second-fact": 29658,
-    "one-candidate-common-name": 20354,
+    "one-candidate-common-name": 20355,
     "unique-rare": 19910,
     "unique-rare-span": 19069,
     "only-date-excluded": 17131,
@@ -41,11 +41,11 @@
     "same-title-as-own-book": 1227,
     "dupgroup:unique-rare": 1175,
     "name-form-tie-no-fact": 411,
-    "single-subject-tie": 405,
+    "single-subject-tie": 409,
     "dupgroup:unique-rare-span": 397,
     "several-one-survives": 321,
     "unique-rare-fullform": 223,
-    "single-subject-subfield-tie": 183,
+    "single-subject-subfield-tie": 178,
     "several-none-dated": 173,
     "unique-rare-sup-aff": 141,
     "dupgroup:unique-rare-fullname": 102,
@@ -59,15 +59,15 @@
     "dupgroup:unique-rare-sup-aff": 3,
     "dupgroup:unique-rare-variant": 1
    },
-   "possible_one_candidate": 58336,
+   "possible_one_candidate": 58337,
    "works": {
     "works": 839433,
     "with_a_credited_person_before": 796608,
-    "after": 807817,
+    "after": 807818,
     "every_name_credited_before": 614467,
-    "every_name_credited_after": 665168
+    "every_name_credited_after": 665172
    },
-   "people_linked": 30380
+   "people_linked": 30384
   },
   "jstor-author": {
    "positions": 124364,
@@ -127,9 +127,9 @@
   "reviewer": {
    "positions": 311205,
    "positions_by_state": {
-    "linked": 102582,
+    "linked": 102583,
     "none": 85408,
-    "possible": 49970,
+    "possible": 49969,
     "credited": 45145,
     "ambiguous": 26229,
     "exact": 1871
@@ -137,7 +137,7 @@
    "positions_already_credited_under_another_name": 0,
    "branches": {
     "no-compatible-name": 76546,
-    "one-candidate-common-name": 33779,
+    "one-candidate-common-name": 33778,
     "unique-rare": 33034,
     "unique-rare-phd-start": 27584,
     "unique-rare-fullname": 12645,
@@ -164,23 +164,23 @@
     "unique-rare-sup-aff": 69,
     "dupgroup:unique-rare-fullname": 32,
     "several-one-dated-no-fact": 29,
+    "single-subject-tie": 9,
     "single-subject-subfield-tie": 9,
-    "single-subject-tie": 8,
     "unique-rare-corpus-span": 6,
     "dupgroup:unique-rare-variant": 5,
     "only-proven-namesakes": 3,
     "several-none-dated": 2,
     "dupgroup:unique-rare-sup-aff": 1
    },
-   "possible_one_candidate": 49889,
+   "possible_one_candidate": 49888,
    "works": {
     "works": 302316,
     "with_a_credited_person_before": 45102,
     "after": 148623,
     "every_name_credited_before": 44145,
-    "every_name_credited_after": 145190
+    "every_name_credited_after": 145191
    },
-   "people_linked": 33592
+   "people_linked": 33593
   }
  },
  "excluded_by_date": {
@@ -216,17 +216,17 @@
   "printed_reviewer_credited_after": 148623
  },
  "coauthor_credits_added": {
-  "credits": 56400,
-  "works": 41974,
-  "people": 24688,
+  "credits": 56398,
+  "works": 41969,
+  "people": 24691,
   "note": "exact/linked authors on works where another author is already credited in the key log"
  },
  "gold": {
   "note": "held-out half (stable hash of the credited key = 1); the other half was used only to decide whether the duplicate-group branch is admitted",
   "rows": {
    "reviewer": 20000,
-   "author": 20000,
-   "jstor-author": 9668
+   "jstor-author": 9668,
+   "author": 20000
   },
   "by_role": {
    "author": {
@@ -1473,36 +1473,36 @@
  },
  "namesake": {
   "rows": {
+   "masked-author|author": 2059,
    "masked-author|reviewer": 4271,
    "orcid-namesake|reviewer": 168,
    "masked-author|jstor-author": 1885,
    "orcid-namesake|jstor-author": 30,
-   "orcid-namesake|author": 2158,
-   "masked-author|author": 2059
+   "orcid-namesake|author": 2158
   },
   "false_links": {
    "masked-author|jstor-author": 17,
    "orcid-namesake|jstor-author": 20,
    "orcid-namesake|author": 342,
+   "masked-author|author": 8,
    "masked-author|reviewer": 12,
-   "orcid-namesake|reviewer": 88,
-   "masked-author|author": 8
+   "orcid-namesake|reviewer": 88
   },
   "false_links_by_branch": {
    "masked-author|several-dated-one-fact": 3,
    "masked-author|single-subject-tie": 2,
    "orcid-namesake|unique-second-fact": 253,
-   "orcid-namesake|unique-rare-phd-start": 16,
-   "orcid-namesake|unique-rare-fullname": 70,
+   "masked-author|single-subject-subfield-tie": 1,
+   "orcid-namesake|unique-rare-span": 46,
+   "orcid-namesake|single-subject-subfield-tie": 1,
    "masked-author|unique-second-fact": 26,
    "masked-author|several-one-survives": 1,
    "masked-author|unique-rare-span": 4,
    "orcid-namesake|unique-rare-variant": 2,
    "orcid-namesake|unique-rare": 59,
    "orcid-namesake|single-subject-tie": 3,
-   "masked-author|single-subject-subfield-tie": 1,
-   "orcid-namesake|unique-rare-span": 46,
-   "orcid-namesake|single-subject-subfield-tie": 1
+   "orcid-namesake|unique-rare-phd-start": 16,
+   "orcid-namesake|unique-rare-fullname": 70
   }
  },
  "unkeyed": {
@@ -1516,16 +1516,6 @@
    "names_with_2plus_works": 5924,
    "names_with_5plus_works": 863
   },
-  "reviewer": {
-   "positions": 85408,
-   "works": 83008,
-   "with_printed_institution": 30610,
-   "with_orcid": 7666,
-   "distinct_names": 61369,
-   "distinct_name_institution": 63632,
-   "names_with_2plus_works": 12204,
-   "names_with_5plus_works": 1272
-  },
   "author": {
    "positions": 321843,
    "works": 141209,
@@ -1535,6 +1525,16 @@
    "distinct_name_institution": 195468,
    "names_with_2plus_works": 43255,
    "names_with_5plus_works": 7727
+  },
+  "reviewer": {
+   "positions": 85408,
+   "works": 83008,
+   "with_printed_institution": 30610,
+   "with_orcid": 7666,
+   "distinct_names": 61369,
+   "distinct_name_institution": 63632,
+   "names_with_2plus_works": 12204,
+   "names_with_5plus_works": 1272
   }
  },
  "unkeyed_top": {
@@ -1662,6 +1662,149 @@
    {
     "name": "Baron Du Casse",
     "works": 30,
+    "institutions": []
+   }
+  ],
+  "author": [
+   {
+    "name": "Гринин Антон Леонидович",
+    "works": 2086,
+    "institutions": []
+   },
+   {
+    "name": "Nancy R. Hearst",
+    "works": 289,
+    "institutions": []
+   },
+   {
+    "name": "James Kashugyera Tumwine",
+    "works": 276,
+    "institutions": []
+   },
+   {
+    "name": "Laurie Laybourn‐Langton",
+    "works": 241,
+    "institutions": []
+   },
+   {
+    "name": "Pedro de Cieza de León",
+    "works": 211,
+    "institutions": []
+   },
+   {
+    "name": "А. М. Ковалева",
+    "works": 211,
+    "institutions": []
+   },
+   {
+    "name": "Abraham Haileamlak",
+    "works": 159,
+    "institutions": [
+     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
+    ]
+   },
+   {
+    "name": "Joy Muhia",
+    "works": 151,
+    "institutions": [
+     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
+    ]
+   },
+   {
+    "name": "Siaka Sidibé",
+    "works": 147,
+    "institutions": [
+     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
+    ]
+   },
+   {
+    "name": "Abdelmadjid Snouber",
+    "works": 147,
+    "institutions": [
+     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
+    ]
+   },
+   {
+    "name": "Lilia Zakhama",
+    "works": 147,
+    "institutions": [
+     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
+    ]
+   },
+   {
+    "name": "Jean‐Marie Kayembe Ntumba",
+    "works": 146,
+    "institutions": [
+     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
+    ]
+   },
+   {
+    "name": "Carlos Augusto Monteiro",
+    "works": 146,
+    "institutions": []
+   },
+   {
+    "name": "Aiah Albert Gbakima",
+    "works": 146,
+    "institutions": []
+   },
+   {
+    "name": "Fhumulani Mavis Mulaudzi",
+    "works": 145,
+    "institutions": [
+     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
+    ]
+   },
+   {
+    "name": "Friday Ebhodaghe Okonofua",
+    "works": 145,
+    "institutions": []
+   },
+   {
+    "name": "James W. M. Kigera",
+    "works": 144,
+    "institutions": []
+   },
+   {
+    "name": "David Ofori‐Adjei",
+    "works": 144,
+    "institutions": []
+   },
+   {
+    "name": "Maha El‐Adawy",
+    "works": 141,
+    "institutions": []
+   },
+   {
+    "name": "Mohammad Sahar Yassien",
+    "works": 139,
+    "institutions": [
+     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
+    ]
+   },
+   {
+    "name": "Arun Mitra",
+    "works": 137,
+    "institutions": []
+   },
+   {
+    "name": "Andy Haines",
+    "works": 136,
+    "institutions": []
+   },
+   {
+    "name": "Elena N. Naumova",
+    "works": 135,
+    "institutions": []
+   },
+   {
+    "name": "Ira Helfand",
+    "works": 134,
+    "institutions": []
+   },
+   {
+    "name": "Antonio García y García",
+    "works": 130,
     "institutions": []
    }
   ],
@@ -1829,149 +1972,6 @@
      "University of Florida"
     ]
    }
-  ],
-  "author": [
-   {
-    "name": "Гринин Антон Леонидович",
-    "works": 2086,
-    "institutions": []
-   },
-   {
-    "name": "Nancy R. Hearst",
-    "works": 289,
-    "institutions": []
-   },
-   {
-    "name": "James Kashugyera Tumwine",
-    "works": 276,
-    "institutions": []
-   },
-   {
-    "name": "Laurie Laybourn‐Langton",
-    "works": 241,
-    "institutions": []
-   },
-   {
-    "name": "Pedro de Cieza de León",
-    "works": 211,
-    "institutions": []
-   },
-   {
-    "name": "А. М. Ковалева",
-    "works": 211,
-    "institutions": []
-   },
-   {
-    "name": "Abraham Haileamlak",
-    "works": 159,
-    "institutions": [
-     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
-    ]
-   },
-   {
-    "name": "Joy Muhia",
-    "works": 151,
-    "institutions": [
-     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
-    ]
-   },
-   {
-    "name": "Siaka Sidibé",
-    "works": 147,
-    "institutions": [
-     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
-    ]
-   },
-   {
-    "name": "Abdelmadjid Snouber",
-    "works": 147,
-    "institutions": [
-     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
-    ]
-   },
-   {
-    "name": "Lilia Zakhama",
-    "works": 147,
-    "institutions": [
-     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
-    ]
-   },
-   {
-    "name": "Jean‐Marie Kayembe Ntumba",
-    "works": 146,
-    "institutions": [
-     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
-    ]
-   },
-   {
-    "name": "Carlos Augusto Monteiro",
-    "works": 146,
-    "institutions": []
-   },
-   {
-    "name": "Aiah Albert Gbakima",
-    "works": 146,
-    "institutions": []
-   },
-   {
-    "name": "Fhumulani Mavis Mulaudzi",
-    "works": 145,
-    "institutions": [
-     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
-    ]
-   },
-   {
-    "name": "Friday Ebhodaghe Okonofua",
-    "works": 145,
-    "institutions": []
-   },
-   {
-    "name": "James W. M. Kigera",
-    "works": 144,
-    "institutions": []
-   },
-   {
-    "name": "David Ofori‐Adjei",
-    "works": 144,
-    "institutions": []
-   },
-   {
-    "name": "Maha El‐Adawy",
-    "works": 141,
-    "institutions": []
-   },
-   {
-    "name": "Mohammad Sahar Yassien",
-    "works": 139,
-    "institutions": [
-     "The authors’ titles or affiliations are as follows: Editor-in-Chief, East African Medical Journal (L.A.); Editor-in-Chief, West African Journal of Medicine (G.E.E.); Editor-in-Chief, Sierra Leone Jour"
-    ]
-   },
-   {
-    "name": "Arun Mitra",
-    "works": 137,
-    "institutions": []
-   },
-   {
-    "name": "Andy Haines",
-    "works": 136,
-    "institutions": []
-   },
-   {
-    "name": "Elena N. Naumova",
-    "works": 135,
-    "institutions": []
-   },
-   {
-    "name": "Ira Helfand",
-    "works": 134,
-    "institutions": []
-   },
-   {
-    "name": "Antonio García y García",
-    "works": 130,
-    "institutions": []
-   }
   ]
  },
  "candidate_duplicates": {
@@ -1980,8 +1980,8 @@
   "works_at_stake": 14559,
   "groups_of_3plus": 1954,
   "by_test": {
-   "strict (credited meanwhile)": 2532,
-   "loose (name rare test failed; nothing credited)": 2370
+   "strict (credited meanwhile)": 2531,
+   "loose (name rare test failed; nothing credited)": 2371
   },
   "note": "duplicate-group test (link_work_people.dup_group); not merged; credits meanwhile go to the group representative (identifier-bearing key, else most works)"
  }
