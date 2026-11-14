@@ -1,0 +1,162 @@
+{
+ "measure": {
+  "works": 1122753,
+  "with_positions": 740061,
+  "works_more_printed_than_graph": 126286,
+  "a_no_positions|crossref-held-on-E": 6739,
+  "a_no_positions|not-held": 26289,
+  "a_no_positions|crossref-held-on-E|more-printed-than-graph": 937,
+  "no_author_list|review-with-reviewer-positions (not a gap)": 302315,
+  "no_author_list|review-record-no-reviewer-printed (not counted)": 47349,
+  "c_positions_candidates_no_edge": 76,
+  "c_positions_tied_to_key_no_edge": 1,
+  "works_by_cause": {
+   "b": 125762,
+   "a-held": 937,
+   "c": 77
+  },
+  "b_positions_by_reason": {
+   "not-in-11-11-mints": 245370,
+   "minted-11-11-then-dropped-by-narrowing:single-work-or-name-only": 17237,
+   "narrowed-held:orcid-only-inferred-single-work": 11047,
+   "held-11-11:more-than-25-authors-no-orcid": 3633,
+   "held-11-11:a key-log author of this work matches no printed name: the m": 2364,
+   "held-11-11:name not parsed": 1156,
+   "held-11-11:an organisation or project printed as an author": 737,
+   "held-11-11:initial-only name without ORCID": 681,
+   "narrowed-held:a person key (or a promoted LC heading) bears the same full ": 537,
+   "narrowed-held:fewer-than-two-works-after-drops": 376,
+   "narrowed-held:orcid-only-inferred-no-shared-fact": 142,
+   "held-11-11:a person key bears a compatible name: possible-same, not min": 122,
+   "narrowed-held:organisation or non-personal name": 76,
+   "narrowed-proposal-not-applied": 37
+  },
+  "a_missing_by_kind": {
+   "book": 3164,
+   "article": 22559,
+   "thesis": 566
+  },
+  "a_missing_by_prefix_top": {
+   "10.2307": 13639,
+   "10.5281": 700,
+   "10.2139": 638,
+   "10.4324": 564,
+   "10.1163": 547,
+   "10.1353": 354,
+   "10.1007": 287,
+   "10.1515": 266,
+   "10.13140": 260,
+   "10.1093": 231,
+   "10.1017": 230,
+   "10.11588": 175,
+   "10.6084": 165,
+   "10.1057": 135,
+   "10.2143": 123
+  },
+  "a_sample_fetch_crossref_2026_11_14": {
+   "seed": 20261114,
+   "sampled": 300,
+   "from_population": "key-log DOI works, not reviews, no author list on disk (26,289)",
+   "status": {
+    "200": 91,
+    "404": 209
+   },
+   "not_found_jstor_10_2307": 146,
+   "found_with_0_authors": 38,
+   "found_1_author": 27,
+   "found_2plus_authors": 26,
+   "more_printed_than_graph": 20,
+   "estimate_works_with_missing_coauthors": "6.7% of 26,289 = about 1,750 (95% CI about 1,080-2,660)",
+   "seconds": 222,
+   "throttled": false,
+   "client": "one client, generic User-Agent, no contact details, 0.5 s between requests"
+  },
+  "bulk_fetch_not_run": {
+   "command": "flock build/.heavy.lock python3 scripts/coauthor_gaps.py fetch  # resumable: build/coauthor-gaps-2026-11-14/bulk-fetch.jsonl",
+   "dois": 26289,
+   "expected_hours": "about 8 at the sample rate; about 70% will 404 (JSTOR 10.2307 DOIs are not Crossref DOIs)",
+   "after": "positions from the fetched records must be loaded like positions-crossref.parquet (link_work_people.py crossref) before mints can see them"
+  }
+ },
+ "propose": {
+  "added_by_loosening": {
+   "H": 6601,
+   "GH": 22,
+   "G": 13
+  },
+  "claims": 10224,
+  "dry_run_events": 18909,
+  "held|ORCID already on a key": 159,
+  "held|a key bears a compatible name (linker state possible/ambiguous): a link question, not a mint": 23869,
+  "held|a key-log author of the work matches no printed name (the mention may be that author)": 6379,
+  "held|a live key bears the same full name": 965,
+  "held|initials only (a mint needs the printed full name)": 2424,
+  "held|more than 25 authors and no ORCID": 3660,
+  "held|name not parsed": 2551,
+  "held|organisation or non-personal name": 1210,
+  "held|the printed name is in the title (the subject, not an author)": 1148,
+  "held|two printed ORCIDs in one group": 4,
+  "keylog_seq": 5837623,
+  "mentions": 85479,
+  "narrowed_rule_would_keep": 2049,
+  "not_covered|single work, no ORCID, not a history venue (co-author of a historian key)": 30695,
+  "people_by_n_works": {
+   "1": 7614,
+   "2": 843,
+   "3": 144,
+   "4": 44,
+   "5": 40
+  },
+  "people_by_rule": {
+   "H": 6601,
+   "OGH": 232,
+   "GH": 609,
+   "OH": 930,
+   "O": 83,
+   "G": 200,
+   "OG": 30
+  },
+  "people_to_mint": 8685,
+  "people_with_variant_name_key": 44,
+  "works_skipped|a journal record with a book title (probably a review)": 17397,
+  "works_skipped|pre-1990 record with 5+ names (a section)": 1956,
+  "works_skipped|review or notes section record": 3905,
+  "works_skipped|review record": 43015,
+  "works_skipped|three pages or fewer (review or note)": 56670,
+  "probes": [
+   {
+    "label": "Iva Lučić",
+    "rule": "GH",
+    "orcid": "0000-0003-0835-5896",
+    "works": [
+     "w-1480407",
+     "w-549919"
+    ]
+   },
+   {
+    "label": "Sam Huckerby",
+    "rule": "H",
+    "orcid": "",
+    "works": [
+     "w-703278"
+    ]
+   }
+  ],
+  "sample_check": {
+   "rows": 60,
+   "right": 56,
+   "wrong": 2,
+   "unclear": 2,
+   "wrong_cases": [
+    "Chris Lıghtfoot: dotless ı defeats the name fold; should link to p-97899",
+    "Hutton Da: garbled printed name"
+   ],
+   "unclear_cases": [
+    "Felipe Pereda: volume contributor listing",
+    "Angela Zimmerman: possibly Andrew Zimmerman p-4063"
+   ],
+   "wrong_upper_95": "10.2% (2/60)",
+   "first_pass_before_guards": "60 checked on the run before the section/subject/pre-1990 guards: 6 wrong (5 review or notes section records, 1 subject printed as author)"
+  }
+ }
+}

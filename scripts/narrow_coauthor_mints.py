@@ -11,8 +11,9 @@ mints) is narrowed here to the people who rest on more than one printed name:
   OpenAlex author id, the same historian co-author, the same printed institution ROR; link_work_people.mints).
 Dropped: single-work or name-only people; organisation names (link_work_people.ORG and a wider list of corporate
 words); every mention on a work whose key-log author matches no printed name (rechecked against the current graph);
-known source errors (KNOWN_ERRORS: the OpenAlex record of w-549919 names Iva Lučić where the author is Iva Peša,
-p-6823); and the general class behind it, an OpenAlex author attribution that disagrees with the printed record:
+known source errors (KNOWN_ERRORS, empty since 2026-11-14: its one entry vetoed Iva Lučić on w-549919 as an OpenAlex
+error for Iva Peša p-6823, but Crossref prints Jim Clifford and Iva Lučić on that paper and Peša is not on it; the veto
+was a mistake and is withdrawn); and an OpenAlex author attribution that disagrees with the printed record:
 - the ORCID OpenAlex gives (`author.orcid`) differs from the printed one (`raw_orcid`);
 - the printed name at the position (`raw_author_name`) disagrees with OpenAlex's display name for the author (family
   name differs): the OpenAlex profile carries another person;
@@ -68,8 +69,10 @@ ORG = re.compile(r'(?i)\b(team|group|consortium|collaborat\w*|network|committee|
                  r'council|institut\w*|universit\w*|department|centre|center|museum|library|foundation|press|muse|periodical|'
                  r'veranstaltung|commission|working party|archives|ministry|agency|corporation|laboratory|editorial board|'
                  r'gmbh|ltd|inc|anonymous|unknown author|et al)\b|[()&/@]|\d')
-KNOWN_ERRORS = {('w-549919', 1): 'OpenAlex/publisher record names Iva Lučić (ORCID 0000-0003-0835-5896, inferred by '
-                                 'OpenAlex); the author is Iva Peša, p-6823 (owner, 2026-11-11)'}
+# (work, position) -> reason. 2026-11-14: the 11-11 entry ('w-549919', 1) 'names Iva Lučić; the author is Iva Peša p-6823'
+# was wrong (Crossref doi:10.1016/j.jhg.2026.04.005 prints Jim Clifford and Iva Lučić; Peša is a different person, not on
+# the paper) and is removed; Lučić is minted in data/identifiers/coauthor-mints-2026-11-14
+KNOWN_ERRORS = {}
 
 
 def source_file(name):
