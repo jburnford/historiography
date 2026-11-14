@@ -1,16 +1,16 @@
 {
- "built": "2026-11-12 11:37",
- "graph_snapshot": "Thu Nov 12 09:22:01 2026",
+ "built": "2026-11-13 23:28",
+ "graph_snapshot": "Fri Nov 13 20:55:00 2026",
  "model": "naive (C2: audit pi, margin rule)",
  "thresholds": {
   "author": {
    "single": {
     "unique": 6.5,
-    "2-5": 5.0,
+    "2-5": 5.5,
     "6-25": 1000000000.0,
     "26+": 1000000000.0,
     "initials": 1000000000.0,
-    "unmeasured": 7.0
+    "unmeasured": 7.5
    },
    "multi": 1000000000.0,
    "margin": 0,
@@ -20,7 +20,7 @@
   "jstor-author": {
    "single": {
     "unique": 6.0,
-    "2-5": 4.0,
+    "2-5": 4.5,
     "6-25": 1000000000.0,
     "26+": 1000000000.0,
     "initials": 1000000000.0,
@@ -28,21 +28,21 @@
    },
    "multi": 1000000000.0,
    "margin": 0,
-   "review": 4.0,
+   "review": 0.5,
    "runner_max": 1000000000.0
   },
   "reviewer": {
    "single": {
-    "unique": 5.0,
-    "2-5": 4.0,
-    "6-25": 11.0,
+    "unique": 5.5,
+    "2-5": 4.5,
+    "6-25": 1000000000.0,
     "26+": 1000000000.0,
     "initials": 1000000000.0,
     "unmeasured": 1000000000.0
    },
    "multi": 1000000000.0,
    "margin": 0,
-   "review": 4.0,
+   "review": 4.5,
    "runner_max": 1000000000.0
   }
  },
@@ -50,77 +50,77 @@
   "author": {
    "single-unique": {
     "pi": 0.1191,
-    "n_prod": 81492,
-    "n_present": 1987,
-    "n_absent": 2914
+    "n_prod": 92605,
+    "n_present": 2157,
+    "n_absent": 2795
    },
    "single-2-5": {
     "pi": 0.1212,
-    "n_prod": 125581,
-    "n_present": 3931,
-    "n_absent": 4398
+    "n_prod": 151093,
+    "n_present": 3710,
+    "n_absent": 4521
    },
    "single-6-25": {
     "pi": 0.4196,
-    "n_prod": 32835,
-    "n_present": 522,
-    "n_absent": 1067
+    "n_prod": 35053,
+    "n_present": 516,
+    "n_absent": 1108
    },
    "single-26+": {
     "pi": 0.7784,
-    "n_prod": 9328,
-    "n_present": 59,
-    "n_absent": 291
+    "n_prod": 9578,
+    "n_present": 60,
+    "n_absent": 306
    },
    "single-initials": {
     "pi": 0.3706,
-    "n_prod": 17449,
-    "n_present": 207,
-    "n_absent": 449
+    "n_prod": 18233,
+    "n_present": 212,
+    "n_absent": 454
    },
    "single-unmeasured": {
     "pi": 0.3324,
-    "n_prod": 59207,
-    "n_present": 19607,
-    "n_absent": 25734
+    "n_prod": 88163,
+    "n_present": 19518,
+    "n_absent": 25770
    },
    "multi": {
     "pi": 0.5536,
-    "n_prod": 98833,
-    "n_present": 5262,
-    "n_absent": 2718
+    "n_prod": 101152,
+    "n_present": 5339,
+    "n_absent": 2753
    }
   },
   "jstor-author": {
    "single-unique": {
-    "pi": 0.0408,
-    "n_prod": 19467,
-    "n_present": 1320,
-    "n_absent": 1277
+    "pi": 0.0423,
+    "n_prod": 20512,
+    "n_present": 1321,
+    "n_absent": 1227
    },
    "single-2-5": {
-    "pi": 0.0408,
-    "n_prod": 27270,
-    "n_present": 1934,
-    "n_absent": 2350
+    "pi": 0.0423,
+    "n_prod": 28143,
+    "n_present": 1932,
+    "n_absent": 2387
    },
    "single-6-25": {
-    "pi": 0.4415,
-    "n_prod": 5505,
-    "n_present": 414,
-    "n_absent": 711
+    "pi": 0.4329,
+    "n_prod": 5619,
+    "n_present": 410,
+    "n_absent": 717
    },
    "single-26+": {
-    "pi": 0.7511,
-    "n_prod": 1268,
+    "pi": 0.7616,
+    "n_prod": 1279,
     "n_present": 44,
-    "n_absent": 215
+    "n_absent": 209
    },
    "single-initials": {
-    "pi": 0.5192,
-    "n_prod": 3656,
+    "pi": 0.5154,
+    "n_prod": 3684,
     "n_present": 217,
-    "n_absent": 330
+    "n_absent": 337
    },
    "single-unmeasured": {
     "pi": 1.0,
@@ -129,40 +129,40 @@
     "n_absent": 0
    },
    "multi": {
-    "pi": 0.4482,
-    "n_prod": 11254,
-    "n_present": 719,
-    "n_absent": 339
+    "pi": 0.4358,
+    "n_prod": 11336,
+    "n_present": 724,
+    "n_absent": 341
    }
   },
   "reviewer": {
    "single-unique": {
-    "pi": 0.046,
-    "n_prod": 48796,
-    "n_present": 6209,
-    "n_absent": 6453
+    "pi": 0.048,
+    "n_prod": 50610,
+    "n_present": 6398,
+    "n_absent": 6255
    },
    "single-2-5": {
-    "pi": 0.046,
-    "n_prod": 65758,
-    "n_present": 9923,
-    "n_absent": 12231
+    "pi": 0.048,
+    "n_prod": 65714,
+    "n_present": 9726,
+    "n_absent": 12421
    },
    "single-6-25": {
     "pi": 0.7129,
-    "n_prod": 17796,
-    "n_present": 2058,
+    "n_prod": 17912,
+    "n_present": 2049,
     "n_absent": 3974
    },
    "single-26+": {
-    "pi": 0.8407,
-    "n_prod": 3617,
+    "pi": 0.8251,
+    "n_prod": 3626,
     "n_present": 256,
-    "n_absent": 1603
+    "n_absent": 1600
    },
    "single-initials": {
-    "pi": 0.7039,
-    "n_prod": 5321,
+    "pi": 0.7073,
+    "n_prod": 5307,
     "n_present": 28,
     "n_absent": 64
    },
@@ -173,10 +173,10 @@
     "n_absent": 0
    },
    "multi": {
-    "pi": 0.7908,
-    "n_prod": 35032,
-    "n_present": 4084,
-    "n_absent": 1804
+    "pi": 0.7949,
+    "n_prod": 35311,
+    "n_present": 4096,
+    "n_absent": 1815
    }
   }
  },
@@ -410,11 +410,11 @@
     "author": {
      "single": {
       "unique": 1000000000.0,
-      "2-5": 11.0,
+      "2-5": 11.5,
       "6-25": 1000000000.0,
       "26+": 1000000000.0,
       "initials": 1000000000.0,
-      "unmeasured": 9.5
+      "unmeasured": 8.5
      },
      "multi": 1000000000.0,
      "margin": 0,
@@ -424,7 +424,7 @@
     "jstor-author": {
      "single": {
       "unique": 6.0,
-      "2-5": 4.0,
+      "2-5": 4.5,
       "6-25": 1000000000.0,
       "26+": 1000000000.0,
       "initials": 1000000000.0,
@@ -432,120 +432,120 @@
      },
      "multi": 1000000000.0,
      "margin": 0,
-     "review": 4.0,
+     "review": 0.5,
      "runner_max": 1000000000.0
     },
     "reviewer": {
      "single": {
-      "unique": 5.0,
-      "2-5": 4.0,
-      "6-25": 11.0,
+      "unique": 5.5,
+      "2-5": 4.5,
+      "6-25": 1000000000.0,
       "26+": 1000000000.0,
       "initials": 1000000000.0,
       "unmeasured": 1000000000.0
      },
      "multi": 1000000000.0,
      "margin": 0,
-     "review": 4.0,
+     "review": 4.5,
      "runner_max": 1000000000.0
     }
    },
    "pi": {
     "author": {
-     "single-unique": 0.5667,
-     "single-2-5": 0.5667,
-     "single-6-25": 0.572,
-     "single-26+": 0.9394,
-     "single-initials": 0.633,
-     "single-unmeasured": 0.6731,
-     "multi": 0.5667
+     "single-unique": 0.5785,
+     "single-2-5": 0.5785,
+     "single-6-25": 0.5785,
+     "single-26+": 0.9093,
+     "single-initials": 0.6735,
+     "single-unmeasured": 0.5785,
+     "multi": 0.5785
     },
     "jstor-author": {
-     "single-unique": 0.0408,
-     "single-2-5": 0.0408,
-     "single-6-25": 0.4415,
-     "single-26+": 0.7511,
-     "single-initials": 0.5192,
+     "single-unique": 0.0423,
+     "single-2-5": 0.0423,
+     "single-6-25": 0.4329,
+     "single-26+": 0.7616,
+     "single-initials": 0.5154,
      "single-unmeasured": 1.0,
-     "multi": 0.4482
+     "multi": 0.4358
     },
     "reviewer": {
-     "single-unique": 0.046,
-     "single-2-5": 0.046,
+     "single-unique": 0.048,
+     "single-2-5": 0.048,
      "single-6-25": 0.7129,
-     "single-26+": 0.8407,
-     "single-initials": 0.7039,
+     "single-26+": 0.8251,
+     "single-initials": 0.7073,
      "single-unmeasured": 1.0,
-     "multi": 0.7908
+     "multi": 0.7949
     }
    },
-   "calib_est_fdr": 0.00298,
+   "calib_est_fdr": 0.00278,
    "test": {
     "overall": {
-     "positions": 30261,
-     "link": 11641,
-     "review": 12032,
-     "right": 11638,
+     "positions": 30352,
+     "link": 11813,
+     "review": 12041,
+     "right": 11811,
      "wrong": 0,
-     "dup_key": 3,
+     "dup_key": 2,
      "precision": 1.0,
-     "precision_dup_as_wrong": 0.9997,
-     "recall": 0.3846,
-     "est_false_share": 0.00314,
-     "absent_positions": 35509,
-     "absent_false": 824,
+     "precision_dup_as_wrong": 0.9998,
+     "recall": 0.3891,
+     "est_false_share": 0.00298,
+     "absent_positions": 35631,
+     "absent_false": 722,
      "rule": {
-      "positions": 30261,
-      "link": 23522,
-      "right": 23354,
-      "wrong": 8,
-      "dup_key": 160,
-      "precision": 0.9997,
-      "recall": 0.7718
+      "positions": 30352,
+      "link": 23654,
+      "right": 23492,
+      "wrong": 11,
+      "dup_key": 151,
+      "precision": 0.9995,
+      "recall": 0.774
      }
     },
     "rg": {
      "author": {
-      "n": 16319,
-      "recall": 0.118,
+      "n": 16414,
+      "recall": 0.1669,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.0005,
-      "absent_false": 2,
-      "rule_recall": 0.7584,
-      "rule_precision": 0.9998
+      "est_false_share": 0.0017,
+      "absent_false": 9,
+      "rule_recall": 0.7576,
+      "rule_precision": 0.9997
      },
      "jstor-author": {
-      "n": 2565,
-      "recall": 0.6125,
+      "n": 2564,
+      "recall": 0.6088,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00238,
-      "absent_false": 111,
-      "rule_recall": 0.7727,
+      "est_false_share": 0.00248,
+      "absent_false": 112,
+      "rule_recall": 0.775,
       "rule_precision": 0.9995
      },
      "reviewer": {
-      "n": 11377,
-      "recall": 0.7157,
+      "n": 11374,
+      "recall": 0.6603,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00374,
-      "absent_false": 711,
-      "rule_recall": 0.7906,
-      "rule_precision": 0.9994
+      "est_false_share": 0.00344,
+      "absent_false": 601,
+      "rule_recall": 0.7974,
+      "rule_precision": 0.9993
      }
     },
     "band": {
      "2-5": {
-      "n": 9673,
-      "recall": 0.6387,
+      "n": 9443,
+      "recall": 0.6414,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00323,
-      "absent_false": 569,
-      "rule_recall": 0.7999,
-      "rule_precision": 0.9994
+      "est_false_share": 0.00293,
+      "absent_false": 498,
+      "rule_recall": 0.8065,
+      "rule_precision": 0.9993
      },
      "26+": {
       "n": 861,
@@ -558,27 +558,27 @@
       "rule_precision": 0.9956
      },
      "6-25": {
-      "n": 2118,
-      "recall": 0.2734,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.5817,
-      "rule_precision": 0.9984
-     },
-     "initials": {
-      "n": 296,
+      "n": 2101,
       "recall": 0.0,
       "precision": null,
       "wrong": 0,
       "est_false_share": 0.0,
       "absent_false": 0,
-      "rule_recall": 0.4088,
+      "rule_recall": 0.5859,
+      "rule_precision": 0.9976
+     },
+     "initials": {
+      "n": 304,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.4178,
       "rule_precision": 1.0
      },
      "no live candidate": {
-      "n": 357,
+      "n": 351,
       "recall": 0.0,
       "precision": null,
       "wrong": 0,
@@ -588,146 +588,146 @@
       "rule_precision": null
      },
      "unique": {
-      "n": 5049,
-      "recall": 0.6599,
+      "n": 5279,
+      "recall": 0.6431,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00321,
-      "absent_false": 253,
-      "rule_recall": 0.9022,
+      "est_false_share": 0.00291,
+      "absent_false": 215,
+      "rule_recall": 0.8988,
       "rule_precision": 1.0
      },
      "unmeasured": {
-      "n": 11907,
-      "recall": 0.1301,
+      "n": 12013,
+      "recall": 0.1964,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00206,
-      "absent_false": 2,
-      "rule_recall": 0.7963,
-      "rule_precision": 1.0
+      "est_false_share": 0.00401,
+      "absent_false": 9,
+      "rule_recall": 0.7946,
+      "rule_precision": 0.9998
      }
     },
     "orcid": {
      "key has ORCID": {
-      "n": 19103,
-      "recall": 0.2127,
+      "n": 19200,
+      "recall": 0.2498,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00281,
-      "absent_false": 183,
-      "rule_recall": 0.7583,
-      "rule_precision": 0.9998
+      "est_false_share": 0.00223,
+      "absent_false": 146,
+      "rule_recall": 0.7607,
+      "rule_precision": 0.9996
      },
      "no ORCID": {
-      "n": 11158,
-      "recall": 0.6788,
+      "n": 11152,
+      "recall": 0.6289,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00333,
-      "absent_false": 641,
-      "rule_recall": 0.7949,
+      "est_false_share": 0.00714,
+      "absent_false": 576,
+      "rule_recall": 0.7969,
       "rule_precision": 0.9994
      }
     },
     "country": {
      "BE": {
-      "n": 30,
-      "recall": 0.1667,
+      "n": 33,
+      "recall": 0.1515,
       "precision": 1.0,
       "wrong": 0,
       "est_false_share": 0.0,
       "absent_false": 0,
-      "rule_recall": 1.0,
+      "rule_recall": 0.9697,
       "rule_precision": 1.0
      },
      "CA": {
-      "n": 96,
-      "recall": 0.4375,
+      "n": 95,
+      "recall": 0.4526,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00066,
-      "absent_false": 1,
-      "rule_recall": 0.7917,
+      "est_false_share": 0.00129,
+      "absent_false": 2,
+      "rule_recall": 0.8,
       "rule_precision": 1.0
      },
      "FR": {
-      "n": 93,
-      "recall": 0.0538,
+      "n": 89,
+      "recall": 0.0674,
       "precision": 1.0,
       "wrong": 0,
       "est_false_share": 0.0,
       "absent_false": 0,
-      "rule_recall": 0.3978,
-      "rule_precision": 1.0
+      "rule_recall": 0.3933,
+      "rule_precision": 0.9459
      },
      "GB": {
-      "n": 238,
-      "recall": 0.2647,
+      "n": 235,
+      "recall": 0.2681,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00153,
-      "absent_false": 3,
-      "rule_recall": 0.7269,
+      "est_false_share": 0.0005,
+      "absent_false": 1,
+      "rule_recall": 0.7489,
       "rule_precision": 1.0
      },
      "IT": {
-      "n": 80,
-      "recall": 0.1125,
+      "n": 76,
+      "recall": 0.1184,
       "precision": 1.0,
       "wrong": 0,
       "est_false_share": 0.0,
       "absent_false": 0,
-      "rule_recall": 0.6375,
+      "rule_recall": 0.6447,
       "rule_precision": 1.0
      },
      "SE": {
-      "n": 125,
-      "recall": 0.032,
+      "n": 130,
+      "recall": 0.1231,
       "precision": 1.0,
       "wrong": 0,
       "est_false_share": 0.0,
       "absent_false": 0,
-      "rule_recall": 0.936,
+      "rule_recall": 0.9385,
       "rule_precision": 1.0
      },
      "US": {
       "n": 204,
-      "recall": 0.5049,
+      "recall": 0.4657,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00158,
-      "absent_false": 5,
+      "est_false_share": 0.00339,
+      "absent_false": 9,
       "rule_recall": 0.7794,
       "rule_precision": 1.0
      },
      "US/CA (AHA)": {
-      "n": 9397,
-      "recall": 0.6666,
+      "n": 9442,
+      "recall": 0.6233,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00315,
-      "absent_false": 534,
-      "rule_recall": 0.8104,
-      "rule_precision": 0.9993
+      "est_false_share": 0.00321,
+      "absent_false": 481,
+      "rule_recall": 0.8119,
+      "rule_precision": 0.9992
      },
      "unknown": {
-      "n": 19966,
-      "recall": 0.257,
+      "n": 20015,
+      "recall": 0.2834,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00294,
-      "absent_false": 281,
-      "rule_recall": 0.7548,
+      "est_false_share": 0.00256,
+      "absent_false": 229,
+      "rule_recall": 0.7569,
       "rule_precision": 0.9998
      }
     }
    },
    "production": {
-    "none": 1498507,
-    "review": 247850,
-    "exact": 129558,
-    "link": 94031
+    "none": 1390316,
+    "review": 276409,
+    "exact": 190800,
+    "link": 123931
    }
   },
   "C1-audit-pi": {
@@ -735,11 +735,11 @@
     "author": {
      "single": {
       "unique": 6.5,
-      "2-5": 5.0,
+      "2-5": 5.5,
       "6-25": 1000000000.0,
       "26+": 1000000000.0,
       "initials": 1000000000.0,
-      "unmeasured": 7.0
+      "unmeasured": 7.5
      },
      "multi": 1000000000.0,
      "margin": 0,
@@ -749,7 +749,7 @@
     "jstor-author": {
      "single": {
       "unique": 6.0,
-      "2-5": 4.0,
+      "2-5": 4.5,
       "6-25": 1000000000.0,
       "26+": 1000000000.0,
       "initials": 1000000000.0,
@@ -757,21 +757,21 @@
      },
      "multi": 1000000000.0,
      "margin": 0,
-     "review": 4.0,
+     "review": 0.5,
      "runner_max": 1000000000.0
     },
     "reviewer": {
      "single": {
-      "unique": 5.0,
-      "2-5": 4.0,
-      "6-25": 11.0,
+      "unique": 5.5,
+      "2-5": 4.5,
+      "6-25": 1000000000.0,
       "26+": 1000000000.0,
       "initials": 1000000000.0,
       "unmeasured": 1000000000.0
      },
      "multi": 1000000000.0,
      "margin": 0,
-     "review": 4.0,
+     "review": 4.5,
      "runner_max": 1000000000.0
     }
    },
@@ -786,91 +786,91 @@
      "multi": 0.5536
     },
     "jstor-author": {
-     "single-unique": 0.0408,
-     "single-2-5": 0.0408,
-     "single-6-25": 0.4415,
-     "single-26+": 0.7511,
-     "single-initials": 0.5192,
+     "single-unique": 0.0423,
+     "single-2-5": 0.0423,
+     "single-6-25": 0.4329,
+     "single-26+": 0.7616,
+     "single-initials": 0.5154,
      "single-unmeasured": 1.0,
-     "multi": 0.4482
+     "multi": 0.4358
     },
     "reviewer": {
-     "single-unique": 0.046,
-     "single-2-5": 0.046,
+     "single-unique": 0.048,
+     "single-2-5": 0.048,
      "single-6-25": 0.7129,
-     "single-26+": 0.8407,
-     "single-initials": 0.7039,
+     "single-26+": 0.8251,
+     "single-initials": 0.7073,
      "single-unmeasured": 1.0,
-     "multi": 0.7908
+     "multi": 0.7949
     }
    },
-   "calib_est_fdr": 0.00306,
+   "calib_est_fdr": 0.00254,
    "test": {
     "overall": {
-     "positions": 30261,
-     "link": 14415,
-     "review": 12811,
-     "right": 14357,
+     "positions": 30352,
+     "link": 13591,
+     "review": 13862,
+     "right": 13541,
      "wrong": 0,
-     "dup_key": 58,
+     "dup_key": 50,
      "precision": 1.0,
-     "precision_dup_as_wrong": 0.996,
-     "recall": 0.4744,
-     "est_false_share": 0.00319,
-     "absent_positions": 35509,
-     "absent_false": 901,
+     "precision_dup_as_wrong": 0.9963,
+     "recall": 0.4461,
+     "est_false_share": 0.00297,
+     "absent_positions": 35631,
+     "absent_false": 776,
      "rule": {
-      "positions": 30261,
-      "link": 23522,
-      "right": 23354,
-      "wrong": 8,
-      "dup_key": 160,
-      "precision": 0.9997,
-      "recall": 0.7718
+      "positions": 30352,
+      "link": 23654,
+      "right": 23492,
+      "wrong": 11,
+      "dup_key": 151,
+      "precision": 0.9995,
+      "recall": 0.774
      }
     },
     "rg": {
      "author": {
-      "n": 16319,
-      "recall": 0.2846,
+      "n": 16414,
+      "recall": 0.2723,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00299,
-      "absent_false": 79,
-      "rule_recall": 0.7584,
-      "rule_precision": 0.9998
+      "est_false_share": 0.00279,
+      "absent_false": 63,
+      "rule_recall": 0.7576,
+      "rule_precision": 0.9997
      },
      "jstor-author": {
-      "n": 2565,
-      "recall": 0.6125,
+      "n": 2564,
+      "recall": 0.6088,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00238,
-      "absent_false": 111,
-      "rule_recall": 0.7727,
+      "est_false_share": 0.00248,
+      "absent_false": 112,
+      "rule_recall": 0.775,
       "rule_precision": 0.9995
      },
      "reviewer": {
-      "n": 11377,
-      "recall": 0.7157,
+      "n": 11374,
+      "recall": 0.6603,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00374,
-      "absent_false": 711,
-      "rule_recall": 0.7906,
-      "rule_precision": 0.9994
+      "est_false_share": 0.00344,
+      "absent_false": 601,
+      "rule_recall": 0.7974,
+      "rule_precision": 0.9993
      }
     },
     "band": {
      "2-5": {
-      "n": 9673,
-      "recall": 0.7352,
+      "n": 9443,
+      "recall": 0.7285,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00318,
-      "absent_false": 599,
-      "rule_recall": 0.7999,
-      "rule_precision": 0.9994
+      "est_false_share": 0.00277,
+      "absent_false": 522,
+      "rule_recall": 0.8065,
+      "rule_precision": 0.9993
      },
      "26+": {
       "n": 861,
@@ -883,27 +883,27 @@
       "rule_precision": 0.9956
      },
      "6-25": {
-      "n": 2118,
-      "recall": 0.2734,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.5817,
-      "rule_precision": 0.9984
-     },
-     "initials": {
-      "n": 296,
+      "n": 2101,
       "recall": 0.0,
       "precision": null,
       "wrong": 0,
       "est_false_share": 0.0,
       "absent_false": 0,
-      "rule_recall": 0.4088,
+      "rule_recall": 0.5859,
+      "rule_precision": 0.9976
+     },
+     "initials": {
+      "n": 304,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.4178,
       "rule_precision": 1.0
      },
      "no live candidate": {
-      "n": 357,
+      "n": 351,
       "recall": 0.0,
       "precision": null,
       "wrong": 0,
@@ -913,146 +913,146 @@
       "rule_precision": null
      },
      "unique": {
-      "n": 5049,
-      "recall": 0.7758,
+      "n": 5279,
+      "recall": 0.7681,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00322,
-      "absent_false": 273,
-      "rule_recall": 0.9022,
+      "est_false_share": 0.00337,
+      "absent_false": 239,
+      "rule_recall": 0.8988,
       "rule_precision": 1.0
      },
      "unmeasured": {
-      "n": 11907,
-      "recall": 0.2309,
+      "n": 12013,
+      "recall": 0.217,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00406,
-      "absent_false": 29,
-      "rule_recall": 0.7963,
-      "rule_precision": 1.0
+      "est_false_share": 0.0022,
+      "absent_false": 15,
+      "rule_recall": 0.7946,
+      "rule_precision": 0.9998
      }
     },
     "orcid": {
      "key has ORCID": {
-      "n": 19103,
-      "recall": 0.3452,
+      "n": 19200,
+      "recall": 0.3306,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00304,
-      "absent_false": 256,
-      "rule_recall": 0.7583,
-      "rule_precision": 0.9998
+      "est_false_share": 0.00267,
+      "absent_false": 199,
+      "rule_recall": 0.7607,
+      "rule_precision": 0.9996
      },
      "no ORCID": {
-      "n": 11158,
-      "recall": 0.6956,
+      "n": 11152,
+      "recall": 0.6451,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00364,
-      "absent_false": 645,
-      "rule_recall": 0.7949,
+      "est_false_share": 0.00343,
+      "absent_false": 577,
+      "rule_recall": 0.7969,
       "rule_precision": 0.9994
      }
     },
     "country": {
      "BE": {
-      "n": 30,
-      "recall": 0.4,
+      "n": 33,
+      "recall": 0.3636,
       "precision": 1.0,
       "wrong": 0,
       "est_false_share": 0.0,
       "absent_false": 0,
-      "rule_recall": 1.0,
+      "rule_recall": 0.9697,
       "rule_precision": 1.0
      },
      "CA": {
-      "n": 96,
-      "recall": 0.5208,
+      "n": 95,
+      "recall": 0.5158,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00039,
-      "absent_false": 1,
-      "rule_recall": 0.7917,
+      "est_false_share": 0.00074,
+      "absent_false": 2,
+      "rule_recall": 0.8,
       "rule_precision": 1.0
      },
      "FR": {
-      "n": 93,
-      "recall": 0.0968,
+      "n": 89,
+      "recall": 0.1124,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.02007,
-      "absent_false": 1,
-      "rule_recall": 0.3978,
-      "rule_precision": 1.0
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.3933,
+      "rule_precision": 0.9459
      },
      "GB": {
-      "n": 238,
-      "recall": 0.3193,
+      "n": 235,
+      "recall": 0.2979,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00113,
-      "absent_false": 3,
-      "rule_recall": 0.7269,
+      "est_false_share": 0.00036,
+      "absent_false": 1,
+      "rule_recall": 0.7489,
       "rule_precision": 1.0
      },
      "IT": {
-      "n": 80,
-      "recall": 0.1375,
+      "n": 76,
+      "recall": 0.1316,
       "precision": 1.0,
       "wrong": 0,
       "est_false_share": 0.0,
       "absent_false": 0,
-      "rule_recall": 0.6375,
+      "rule_recall": 0.6447,
       "rule_precision": 1.0
      },
      "SE": {
-      "n": 125,
-      "recall": 0.152,
+      "n": 130,
+      "recall": 0.2077,
       "precision": 1.0,
       "wrong": 0,
       "est_false_share": 0.0,
       "absent_false": 0,
-      "rule_recall": 0.936,
+      "rule_recall": 0.9385,
       "rule_precision": 1.0
      },
      "US": {
       "n": 204,
-      "recall": 0.549,
+      "recall": 0.5049,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00083,
-      "absent_false": 5,
+      "est_false_share": 0.00176,
+      "absent_false": 9,
       "rule_recall": 0.7794,
       "rule_precision": 1.0
      },
      "US/CA (AHA)": {
-      "n": 9397,
-      "recall": 0.6845,
+      "n": 9442,
+      "recall": 0.6378,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00425,
-      "absent_false": 541,
-      "rule_recall": 0.8104,
-      "rule_precision": 0.9993
+      "est_false_share": 0.00345,
+      "absent_false": 485,
+      "rule_recall": 0.8119,
+      "rule_precision": 0.9992
      },
      "unknown": {
-      "n": 19966,
-      "recall": 0.3816,
+      "n": 20015,
+      "recall": 0.3606,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00301,
-      "absent_false": 350,
-      "rule_recall": 0.7548,
+      "est_false_share": 0.00274,
+      "absent_false": 279,
+      "rule_recall": 0.7569,
       "rule_precision": 0.9998
      }
     }
    },
    "production": {
-    "none": 1415524,
-    "review": 265699,
-    "link": 159165,
-    "exact": 129558
+    "none": 1288108,
+    "review": 306597,
+    "link": 195951,
+    "exact": 190800
    }
   },
   "C2-margin-rule": {
@@ -1060,11 +1060,11 @@
     "author": {
      "single": {
       "unique": 6.5,
-      "2-5": 5.0,
+      "2-5": 5.5,
       "6-25": 1000000000.0,
       "26+": 1000000000.0,
       "initials": 1000000000.0,
-      "unmeasured": 7.0
+      "unmeasured": 7.5
      },
      "multi": 1000000000.0,
      "margin": 0,
@@ -1074,7 +1074,7 @@
     "jstor-author": {
      "single": {
       "unique": 6.0,
-      "2-5": 4.0,
+      "2-5": 4.5,
       "6-25": 1000000000.0,
       "26+": 1000000000.0,
       "initials": 1000000000.0,
@@ -1082,21 +1082,21 @@
      },
      "multi": 1000000000.0,
      "margin": 0,
-     "review": 4.0,
+     "review": 0.5,
      "runner_max": 1000000000.0
     },
     "reviewer": {
      "single": {
-      "unique": 5.0,
-      "2-5": 4.0,
-      "6-25": 11.0,
+      "unique": 5.5,
+      "2-5": 4.5,
+      "6-25": 1000000000.0,
       "26+": 1000000000.0,
       "initials": 1000000000.0,
       "unmeasured": 1000000000.0
      },
      "multi": 1000000000.0,
      "margin": 0,
-     "review": 4.0,
+     "review": 4.5,
      "runner_max": 1000000000.0
     }
    },
@@ -1111,91 +1111,91 @@
      "multi": 0.5536
     },
     "jstor-author": {
-     "single-unique": 0.0408,
-     "single-2-5": 0.0408,
-     "single-6-25": 0.4415,
-     "single-26+": 0.7511,
-     "single-initials": 0.5192,
+     "single-unique": 0.0423,
+     "single-2-5": 0.0423,
+     "single-6-25": 0.4329,
+     "single-26+": 0.7616,
+     "single-initials": 0.5154,
      "single-unmeasured": 1.0,
-     "multi": 0.4482
+     "multi": 0.4358
     },
     "reviewer": {
-     "single-unique": 0.046,
-     "single-2-5": 0.046,
+     "single-unique": 0.048,
+     "single-2-5": 0.048,
      "single-6-25": 0.7129,
-     "single-26+": 0.8407,
-     "single-initials": 0.7039,
+     "single-26+": 0.8251,
+     "single-initials": 0.7073,
      "single-unmeasured": 1.0,
-     "multi": 0.7908
+     "multi": 0.7949
     }
    },
-   "calib_est_fdr": 0.00304,
+   "calib_est_fdr": 0.00253,
    "test": {
     "overall": {
-     "positions": 30261,
-     "link": 14415,
-     "review": 12811,
-     "right": 14357,
+     "positions": 30352,
+     "link": 13591,
+     "review": 13862,
+     "right": 13541,
      "wrong": 0,
-     "dup_key": 58,
+     "dup_key": 50,
      "precision": 1.0,
-     "precision_dup_as_wrong": 0.996,
-     "recall": 0.4744,
-     "est_false_share": 0.00316,
-     "absent_positions": 35509,
-     "absent_false": 896,
+     "precision_dup_as_wrong": 0.9963,
+     "recall": 0.4461,
+     "est_false_share": 0.00296,
+     "absent_positions": 35631,
+     "absent_false": 774,
      "rule": {
-      "positions": 30261,
-      "link": 23522,
-      "right": 23354,
-      "wrong": 7,
-      "dup_key": 161,
-      "precision": 0.9997,
-      "recall": 0.7718
+      "positions": 30352,
+      "link": 23654,
+      "right": 23492,
+      "wrong": 10,
+      "dup_key": 152,
+      "precision": 0.9996,
+      "recall": 0.774
      }
     },
     "rg": {
      "author": {
-      "n": 16319,
-      "recall": 0.2846,
+      "n": 16414,
+      "recall": 0.2723,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00293,
-      "absent_false": 74,
-      "rule_recall": 0.7584,
-      "rule_precision": 0.9998
+      "est_false_share": 0.00276,
+      "absent_false": 61,
+      "rule_recall": 0.7576,
+      "rule_precision": 0.9997
      },
      "jstor-author": {
-      "n": 2565,
-      "recall": 0.6125,
+      "n": 2564,
+      "recall": 0.6088,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00238,
-      "absent_false": 111,
-      "rule_recall": 0.7727,
+      "est_false_share": 0.00248,
+      "absent_false": 112,
+      "rule_recall": 0.775,
       "rule_precision": 1.0
      },
      "reviewer": {
-      "n": 11377,
-      "recall": 0.7157,
+      "n": 11374,
+      "recall": 0.6603,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00374,
-      "absent_false": 711,
-      "rule_recall": 0.7906,
-      "rule_precision": 0.9994
+      "est_false_share": 0.00344,
+      "absent_false": 601,
+      "rule_recall": 0.7974,
+      "rule_precision": 0.9993
      }
     },
     "band": {
      "2-5": {
-      "n": 9673,
-      "recall": 0.7352,
+      "n": 9443,
+      "recall": 0.7285,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00318,
-      "absent_false": 599,
-      "rule_recall": 0.7999,
-      "rule_precision": 0.9994
+      "est_false_share": 0.00277,
+      "absent_false": 522,
+      "rule_recall": 0.8065,
+      "rule_precision": 0.9993
      },
      "26+": {
       "n": 861,
@@ -1208,27 +1208,27 @@
       "rule_precision": 0.9956
      },
      "6-25": {
-      "n": 2118,
-      "recall": 0.2734,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.5817,
-      "rule_precision": 0.9992
-     },
-     "initials": {
-      "n": 296,
+      "n": 2101,
       "recall": 0.0,
       "precision": null,
       "wrong": 0,
       "est_false_share": 0.0,
       "absent_false": 0,
-      "rule_recall": 0.4088,
+      "rule_recall": 0.5859,
+      "rule_precision": 0.9984
+     },
+     "initials": {
+      "n": 304,
+      "recall": 0.0,
+      "precision": null,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.4178,
       "rule_precision": 1.0
      },
      "no live candidate": {
-      "n": 357,
+      "n": 351,
       "recall": 0.0,
       "precision": null,
       "wrong": 0,
@@ -1238,1620 +1238,304 @@
       "rule_precision": null
      },
      "unique": {
-      "n": 5049,
-      "recall": 0.7758,
+      "n": 5279,
+      "recall": 0.7681,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00322,
-      "absent_false": 273,
-      "rule_recall": 0.9022,
+      "est_false_share": 0.00337,
+      "absent_false": 239,
+      "rule_recall": 0.8988,
       "rule_precision": 1.0
      },
      "unmeasured": {
-      "n": 11907,
-      "recall": 0.2309,
+      "n": 12013,
+      "recall": 0.217,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00336,
-      "absent_false": 24,
-      "rule_recall": 0.7963,
-      "rule_precision": 1.0
+      "est_false_share": 0.00191,
+      "absent_false": 13,
+      "rule_recall": 0.7946,
+      "rule_precision": 0.9998
      }
     },
     "orcid": {
      "key has ORCID": {
-      "n": 19103,
-      "recall": 0.3452,
+      "n": 19200,
+      "recall": 0.3306,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00301,
-      "absent_false": 251,
-      "rule_recall": 0.7583,
-      "rule_precision": 0.9999
+      "est_false_share": 0.00266,
+      "absent_false": 197,
+      "rule_recall": 0.7607,
+      "rule_precision": 0.9997
      },
      "no ORCID": {
-      "n": 11158,
-      "recall": 0.6956,
+      "n": 11152,
+      "recall": 0.6451,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00364,
-      "absent_false": 645,
-      "rule_recall": 0.7949,
+      "est_false_share": 0.00343,
+      "absent_false": 577,
+      "rule_recall": 0.7969,
       "rule_precision": 0.9994
      }
     },
     "country": {
      "BE": {
-      "n": 30,
-      "recall": 0.4,
+      "n": 33,
+      "recall": 0.3636,
       "precision": 1.0,
       "wrong": 0,
       "est_false_share": 0.0,
       "absent_false": 0,
-      "rule_recall": 1.0,
+      "rule_recall": 0.9697,
       "rule_precision": 1.0
      },
      "CA": {
-      "n": 96,
-      "recall": 0.5208,
+      "n": 95,
+      "recall": 0.5158,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00039,
+      "est_false_share": 0.00074,
+      "absent_false": 2,
+      "rule_recall": 0.8,
+      "rule_precision": 1.0
+     },
+     "FR": {
+      "n": 89,
+      "recall": 0.1124,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.0,
+      "absent_false": 0,
+      "rule_recall": 0.3933,
+      "rule_precision": 0.9459
+     },
+     "GB": {
+      "n": 235,
+      "recall": 0.2979,
+      "precision": 1.0,
+      "wrong": 0,
+      "est_false_share": 0.00036,
       "absent_false": 1,
-      "rule_recall": 0.7917,
-      "rule_precision": 1.0
-     },
-     "FR": {
-      "n": 93,
-      "recall": 0.0968,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.02007,
-      "absent_false": 1,
-      "rule_recall": 0.3978,
-      "rule_precision": 1.0
-     },
-     "GB": {
-      "n": 238,
-      "recall": 0.3193,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00113,
-      "absent_false": 3,
-      "rule_recall": 0.7269,
+      "rule_recall": 0.7489,
       "rule_precision": 1.0
      },
      "IT": {
-      "n": 80,
-      "recall": 0.1375,
+      "n": 76,
+      "recall": 0.1316,
       "precision": 1.0,
       "wrong": 0,
       "est_false_share": 0.0,
       "absent_false": 0,
-      "rule_recall": 0.6375,
+      "rule_recall": 0.6447,
       "rule_precision": 1.0
      },
      "SE": {
-      "n": 125,
-      "recall": 0.152,
+      "n": 130,
+      "recall": 0.2077,
       "precision": 1.0,
       "wrong": 0,
       "est_false_share": 0.0,
       "absent_false": 0,
-      "rule_recall": 0.936,
+      "rule_recall": 0.9385,
       "rule_precision": 1.0
      },
      "US": {
       "n": 204,
-      "recall": 0.549,
+      "recall": 0.5049,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00083,
-      "absent_false": 5,
+      "est_false_share": 0.00176,
+      "absent_false": 9,
       "rule_recall": 0.7794,
       "rule_precision": 1.0
      },
      "US/CA (AHA)": {
-      "n": 9397,
-      "recall": 0.6845,
+      "n": 9442,
+      "recall": 0.6378,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00425,
-      "absent_false": 541,
-      "rule_recall": 0.8104,
-      "rule_precision": 0.9993
-     },
-     "unknown": {
-      "n": 19966,
-      "recall": 0.3816,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00297,
-      "absent_false": 345,
-      "rule_recall": 0.7548,
-      "rule_precision": 0.9999
-     }
-    }
-   },
-   "production": {
-    "none": 1415524,
-    "review": 265699,
-    "link": 159165,
-    "exact": 129558
-   }
-  },
-  "C3-relational": {
-   "thresholds": {
-    "author": {
-     "single": {
-      "unique": 11.0,
-      "2-5": 8.5,
-      "6-25": 1000000000.0,
-      "26+": 1000000000.0,
-      "initials": 1000000000.0,
-      "unmeasured": 10.5
-     },
-     "multi": 1000000000.0,
-     "margin": 0,
-     "review": 0.0,
-     "runner_max": 1000000000.0
-    },
-    "jstor-author": {
-     "single": {
-      "unique": 8.0,
-      "2-5": 5.0,
-      "6-25": 1000000000.0,
-      "26+": 1000000000.0,
-      "initials": 1000000000.0,
-      "unmeasured": 1000000000.0
-     },
-     "multi": 1000000000.0,
-     "margin": 0,
-     "review": 1.0,
-     "runner_max": 1000000000.0
-    },
-    "reviewer": {
-     "single": {
-      "unique": 7.5,
-      "2-5": 4.5,
-      "6-25": 11.5,
-      "26+": 1000000000.0,
-      "initials": 1000000000.0,
-      "unmeasured": 1000000000.0
-     },
-     "multi": 1000000000.0,
-     "margin": 0,
-     "review": 4.5,
-     "runner_max": 1000000000.0
-    }
-   },
-   "pi": {
-    "author": {
-     "single-unique": 0.1191,
-     "single-2-5": 0.1212,
-     "single-6-25": 0.4196,
-     "single-26+": 0.7784,
-     "single-initials": 0.3706,
-     "single-unmeasured": 0.3324,
-     "multi": 0.5536
-    },
-    "jstor-author": {
-     "single-unique": 0.0408,
-     "single-2-5": 0.0408,
-     "single-6-25": 0.4358,
-     "single-26+": 0.7566,
-     "single-initials": 0.5397,
-     "single-unmeasured": 1.0,
-     "multi": 0.4311
-    },
-    "reviewer": {
-     "single-unique": 0.046,
-     "single-2-5": 0.046,
-     "single-6-25": 0.7206,
-     "single-26+": 0.8333,
-     "single-initials": 0.6993,
-     "single-unmeasured": 1.0,
-     "multi": 0.7946
-    }
-   },
-   "calib_est_fdr": 0.00275,
-   "test": {
-    "overall": {
-     "positions": 30261,
-     "link": 12992,
-     "review": 14551,
-     "right": 12944,
-     "wrong": 0,
-     "dup_key": 48,
-     "precision": 1.0,
-     "precision_dup_as_wrong": 0.9963,
-     "recall": 0.4277,
-     "est_false_share": 0.0032,
-     "absent_positions": 35509,
-     "absent_false": 1011,
-     "rule": {
-      "positions": 30261,
-      "link": 23522,
-      "right": 23354,
-      "wrong": 7,
-      "dup_key": 161,
-      "precision": 0.9997,
-      "recall": 0.7718
-     }
-    },
-    "rg": {
-     "author": {
-      "n": 16319,
-      "recall": 0.2132,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00172,
-      "absent_false": 35,
-      "rule_recall": 0.7584,
-      "rule_precision": 0.9998
-     },
-     "jstor-author": {
-      "n": 2565,
-      "recall": 0.5926,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00257,
-      "absent_false": 115,
-      "rule_recall": 0.7727,
-      "rule_precision": 1.0
-     },
-     "reviewer": {
-      "n": 11377,
-      "recall": 0.6983,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00473,
-      "absent_false": 861,
-      "rule_recall": 0.7906,
-      "rule_precision": 0.9994
-     }
-    },
-    "band": {
-     "2-5": {
-      "n": 9673,
-      "recall": 0.6862,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00321,
-      "absent_false": 654,
-      "rule_recall": 0.8,
-      "rule_precision": 0.9994
-     },
-     "26+": {
-      "n": 858,
-      "recall": 0.0,
-      "precision": null,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.2634,
-      "rule_precision": 0.9956
-     },
-     "6-25": {
-      "n": 2118,
-      "recall": 0.2705,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.5817,
+      "est_false_share": 0.00345,
+      "absent_false": 485,
+      "rule_recall": 0.8119,
       "rule_precision": 0.9992
      },
-     "initials": {
-      "n": 296,
-      "recall": 0.0,
-      "precision": null,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.4088,
-      "rule_precision": 1.0
-     },
-     "no live candidate": {
-      "n": 357,
-      "recall": 0.0,
-      "precision": null,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.0,
-      "rule_precision": null
-     },
-     "unique": {
-      "n": 5052,
-      "recall": 0.7086,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00333,
-      "absent_false": 342,
-      "rule_recall": 0.9016,
-      "rule_precision": 1.0
-     },
-     "unmeasured": {
-      "n": 11907,
-      "recall": 0.1808,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00268,
-      "absent_false": 15,
-      "rule_recall": 0.7963,
-      "rule_precision": 1.0
-     }
-    },
-    "orcid": {
-     "key has ORCID": {
-      "n": 19103,
-      "recall": 0.2846,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00294,
-      "absent_false": 263,
-      "rule_recall": 0.7583,
-      "rule_precision": 0.9999
-     },
-     "no ORCID": {
-      "n": 11158,
-      "recall": 0.6729,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0043,
-      "absent_false": 748,
-      "rule_recall": 0.7949,
-      "rule_precision": 0.9994
-     }
-    },
-    "country": {
-     "BE": {
-      "n": 30,
-      "recall": 0.3333,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 1.0,
-      "rule_precision": 1.0
-     },
-     "CA": {
-      "n": 96,
-      "recall": 0.4688,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.7917,
-      "rule_precision": 1.0
-     },
-     "FR": {
-      "n": 93,
-      "recall": 0.0538,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.02919,
-      "absent_false": 2,
-      "rule_recall": 0.3978,
-      "rule_precision": 1.0
-     },
-     "GB": {
-      "n": 238,
-      "recall": 0.2647,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00096,
-      "absent_false": 2,
-      "rule_recall": 0.7269,
-      "rule_precision": 1.0
-     },
-     "IT": {
-      "n": 80,
-      "recall": 0.125,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.6375,
-      "rule_precision": 1.0
-     },
-     "SE": {
-      "n": 125,
-      "recall": 0.096,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.936,
-      "rule_precision": 1.0
-     },
-     "US": {
-      "n": 204,
-      "recall": 0.5245,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00081,
-      "absent_false": 4,
-      "rule_recall": 0.7794,
-      "rule_precision": 1.0
-     },
-     "US/CA (AHA)": {
-      "n": 9397,
-      "recall": 0.6643,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00325,
-      "absent_false": 563,
-      "rule_recall": 0.8104,
-      "rule_precision": 0.9993
-     },
      "unknown": {
-      "n": 19966,
-      "recall": 0.3223,
+      "n": 20015,
+      "recall": 0.3606,
       "precision": 1.0,
       "wrong": 0,
-      "est_false_share": 0.00355,
-      "absent_false": 440,
-      "rule_recall": 0.7548,
+      "est_false_share": 0.00272,
+      "absent_false": 277,
+      "rule_recall": 0.7569,
       "rule_precision": 0.9999
      }
     }
    },
    "production": {
-    "none": 1398644,
-    "review": 308690,
-    "link": 133054,
-    "exact": 129558
-   }
-  },
-  "C4-collective-pass1": {
-   "thresholds": {
-    "author": {
-     "single": {
-      "unique": 11.0,
-      "2-5": 8.5,
-      "6-25": 1000000000.0,
-      "26+": 1000000000.0,
-      "initials": 1000000000.0,
-      "unmeasured": 10.5
-     },
-     "multi": 1000000000.0,
-     "margin": 0,
-     "review": 0.0,
-     "runner_max": 1000000000.0
-    },
-    "jstor-author": {
-     "single": {
-      "unique": 8.0,
-      "2-5": 5.0,
-      "6-25": 1000000000.0,
-      "26+": 1000000000.0,
-      "initials": 1000000000.0,
-      "unmeasured": 1000000000.0
-     },
-     "multi": 1000000000.0,
-     "margin": 0,
-     "review": 1.5,
-     "runner_max": 1000000000.0
-    },
-    "reviewer": {
-     "single": {
-      "unique": 7.5,
-      "2-5": 4.5,
-      "6-25": 11.5,
-      "26+": 1000000000.0,
-      "initials": 1000000000.0,
-      "unmeasured": 1000000000.0
-     },
-     "multi": 1000000000.0,
-     "margin": 0,
-     "review": 4.5,
-     "runner_max": 1000000000.0
-    }
-   },
-   "pi": {
-    "author": {
-     "single-unique": 0.1191,
-     "single-2-5": 0.1212,
-     "single-6-25": 0.4196,
-     "single-26+": 0.7784,
-     "single-initials": 0.3706,
-     "single-unmeasured": 0.3324,
-     "multi": 0.5536
-    },
-    "jstor-author": {
-     "single-unique": 0.0408,
-     "single-2-5": 0.0408,
-     "single-6-25": 0.4354,
-     "single-26+": 0.7579,
-     "single-initials": 0.5373,
-     "single-unmeasured": 1.0,
-     "multi": 0.4337
-    },
-    "reviewer": {
-     "single-unique": 0.046,
-     "single-2-5": 0.046,
-     "single-6-25": 0.7206,
-     "single-26+": 0.8333,
-     "single-initials": 0.6993,
-     "single-unmeasured": 1.0,
-     "multi": 0.7946
-    }
-   },
-   "calib_est_fdr": 0.00273,
-   "test": {
-    "overall": {
-     "positions": 30261,
-     "link": 13163,
-     "review": 14345,
-     "right": 13115,
-     "wrong": 0,
-     "dup_key": 48,
-     "precision": 1.0,
-     "precision_dup_as_wrong": 0.9964,
-     "recall": 0.4334,
-     "est_false_share": 0.00318,
-     "absent_positions": 35509,
-     "absent_false": 1011,
-     "rule": {
-      "positions": 30261,
-      "link": 23522,
-      "right": 23354,
-      "wrong": 7,
-      "dup_key": 161,
-      "precision": 0.9997,
-      "recall": 0.7718
-     }
-    },
-    "rg": {
-     "author": {
-      "n": 16319,
-      "recall": 0.2236,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00169,
-      "absent_false": 35,
-      "rule_recall": 0.7584,
-      "rule_precision": 0.9998
-     },
-     "jstor-author": {
-      "n": 2565,
-      "recall": 0.5934,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00257,
-      "absent_false": 115,
-      "rule_recall": 0.7727,
-      "rule_precision": 1.0
-     },
-     "reviewer": {
-      "n": 11377,
-      "recall": 0.6983,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00473,
-      "absent_false": 861,
-      "rule_recall": 0.7906,
-      "rule_precision": 0.9994
-     }
-    },
-    "band": {
-     "2-5": {
-      "n": 9673,
-      "recall": 0.6871,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0032,
-      "absent_false": 654,
-      "rule_recall": 0.8,
-      "rule_precision": 0.9994
-     },
-     "26+": {
-      "n": 858,
-      "recall": 0.0,
-      "precision": null,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.2634,
-      "rule_precision": 0.9956
-     },
-     "6-25": {
-      "n": 2118,
-      "recall": 0.2705,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.5817,
-      "rule_precision": 0.9992
-     },
-     "initials": {
-      "n": 296,
-      "recall": 0.0,
-      "precision": null,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.4088,
-      "rule_precision": 1.0
-     },
-     "no live candidate": {
-      "n": 357,
-      "recall": 0.0,
-      "precision": null,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.0,
-      "rule_precision": null
-     },
-     "unique": {
-      "n": 5052,
-      "recall": 0.7098,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00332,
-      "absent_false": 342,
-      "rule_recall": 0.9016,
-      "rule_precision": 1.0
-     },
-     "unmeasured": {
-      "n": 11907,
-      "recall": 0.194,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0025,
-      "absent_false": 15,
-      "rule_recall": 0.7963,
-      "rule_precision": 1.0
-     }
-    },
-    "orcid": {
-     "key has ORCID": {
-      "n": 19103,
-      "recall": 0.2934,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00292,
-      "absent_false": 263,
-      "rule_recall": 0.7583,
-      "rule_precision": 0.9999
-     },
-     "no ORCID": {
-      "n": 11158,
-      "recall": 0.6731,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00428,
-      "absent_false": 748,
-      "rule_recall": 0.7949,
-      "rule_precision": 0.9994
-     }
-    },
-    "country": {
-     "BE": {
-      "n": 30,
-      "recall": 0.3333,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 1.0,
-      "rule_precision": 1.0
-     },
-     "CA": {
-      "n": 96,
-      "recall": 0.4688,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.7917,
-      "rule_precision": 1.0
-     },
-     "FR": {
-      "n": 93,
-      "recall": 0.0538,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.02919,
-      "absent_false": 2,
-      "rule_recall": 0.3978,
-      "rule_precision": 1.0
-     },
-     "GB": {
-      "n": 238,
-      "recall": 0.2773,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00095,
-      "absent_false": 2,
-      "rule_recall": 0.7269,
-      "rule_precision": 1.0
-     },
-     "IT": {
-      "n": 80,
-      "recall": 0.15,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.6375,
-      "rule_precision": 1.0
-     },
-     "SE": {
-      "n": 125,
-      "recall": 0.096,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.936,
-      "rule_precision": 1.0
-     },
-     "US": {
-      "n": 204,
-      "recall": 0.5294,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00081,
-      "absent_false": 4,
-      "rule_recall": 0.7794,
-      "rule_precision": 1.0
-     },
-     "US/CA (AHA)": {
-      "n": 9397,
-      "recall": 0.665,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00324,
-      "absent_false": 563,
-      "rule_recall": 0.8104,
-      "rule_precision": 0.9993
-     },
-     "unknown": {
-      "n": 19966,
-      "recall": 0.3302,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00353,
-      "absent_false": 440,
-      "rule_recall": 0.7548,
-      "rule_precision": 0.9999
-     }
-    }
-   },
-   "production": {
-    "none": 1401752,
-    "review": 302217,
-    "link": 136419,
-    "exact": 129558
-   }
-  },
-  "C4-collective-pass2": {
-   "thresholds": {
-    "author": {
-     "single": {
-      "unique": 11.0,
-      "2-5": 8.5,
-      "6-25": 1000000000.0,
-      "26+": 1000000000.0,
-      "initials": 1000000000.0,
-      "unmeasured": 10.5
-     },
-     "multi": 1000000000.0,
-     "margin": 0,
-     "review": 0.0,
-     "runner_max": 1000000000.0
-    },
-    "jstor-author": {
-     "single": {
-      "unique": 8.0,
-      "2-5": 5.0,
-      "6-25": 1000000000.0,
-      "26+": 1000000000.0,
-      "initials": 1000000000.0,
-      "unmeasured": 1000000000.0
-     },
-     "multi": 1000000000.0,
-     "margin": 0,
-     "review": 1.5,
-     "runner_max": 1000000000.0
-    },
-    "reviewer": {
-     "single": {
-      "unique": 7.5,
-      "2-5": 4.5,
-      "6-25": 11.5,
-      "26+": 1000000000.0,
-      "initials": 1000000000.0,
-      "unmeasured": 1000000000.0
-     },
-     "multi": 1000000000.0,
-     "margin": 0,
-     "review": 4.5,
-     "runner_max": 1000000000.0
-    }
-   },
-   "pi": {
-    "author": {
-     "single-unique": 0.1191,
-     "single-2-5": 0.1212,
-     "single-6-25": 0.4196,
-     "single-26+": 0.7784,
-     "single-initials": 0.3706,
-     "single-unmeasured": 0.3324,
-     "multi": 0.5536
-    },
-    "jstor-author": {
-     "single-unique": 0.0408,
-     "single-2-5": 0.0408,
-     "single-6-25": 0.4352,
-     "single-26+": 0.7579,
-     "single-initials": 0.5373,
-     "single-unmeasured": 1.0,
-     "multi": 0.4334
-    },
-    "reviewer": {
-     "single-unique": 0.046,
-     "single-2-5": 0.046,
-     "single-6-25": 0.7206,
-     "single-26+": 0.8333,
-     "single-initials": 0.6993,
-     "single-unmeasured": 1.0,
-     "multi": 0.7946
-    }
-   },
-   "calib_est_fdr": 0.00273,
-   "test": {
-    "overall": {
-     "positions": 30261,
-     "link": 13176,
-     "review": 14335,
-     "right": 13128,
-     "wrong": 0,
-     "dup_key": 48,
-     "precision": 1.0,
-     "precision_dup_as_wrong": 0.9964,
-     "recall": 0.4338,
-     "est_false_share": 0.00318,
-     "absent_positions": 35509,
-     "absent_false": 1011,
-     "rule": {
-      "positions": 30261,
-      "link": 23522,
-      "right": 23354,
-      "wrong": 7,
-      "dup_key": 161,
-      "precision": 0.9997,
-      "recall": 0.7718
-     }
-    },
-    "rg": {
-     "author": {
-      "n": 16319,
-      "recall": 0.2244,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00169,
-      "absent_false": 35,
-      "rule_recall": 0.7584,
-      "rule_precision": 0.9998
-     },
-     "jstor-author": {
-      "n": 2565,
-      "recall": 0.5934,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00257,
-      "absent_false": 115,
-      "rule_recall": 0.7727,
-      "rule_precision": 1.0
-     },
-     "reviewer": {
-      "n": 11377,
-      "recall": 0.6983,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00473,
-      "absent_false": 861,
-      "rule_recall": 0.7906,
-      "rule_precision": 0.9994
-     }
-    },
-    "band": {
-     "2-5": {
-      "n": 9673,
-      "recall": 0.6872,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0032,
-      "absent_false": 654,
-      "rule_recall": 0.8,
-      "rule_precision": 0.9994
-     },
-     "26+": {
-      "n": 858,
-      "recall": 0.0,
-      "precision": null,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.2634,
-      "rule_precision": 0.9956
-     },
-     "6-25": {
-      "n": 2118,
-      "recall": 0.2705,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.5817,
-      "rule_precision": 0.9992
-     },
-     "initials": {
-      "n": 296,
-      "recall": 0.0,
-      "precision": null,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.4088,
-      "rule_precision": 1.0
-     },
-     "no live candidate": {
-      "n": 357,
-      "recall": 0.0,
-      "precision": null,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.0,
-      "rule_precision": null
-     },
-     "unique": {
-      "n": 5052,
-      "recall": 0.7098,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00332,
-      "absent_false": 342,
-      "rule_recall": 0.9016,
-      "rule_precision": 1.0
-     },
-     "unmeasured": {
-      "n": 11907,
-      "recall": 0.195,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00249,
-      "absent_false": 15,
-      "rule_recall": 0.7963,
-      "rule_precision": 1.0
-     }
-    },
-    "orcid": {
-     "key has ORCID": {
-      "n": 19103,
-      "recall": 0.294,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00292,
-      "absent_false": 263,
-      "rule_recall": 0.7583,
-      "rule_precision": 0.9999
-     },
-     "no ORCID": {
-      "n": 11158,
-      "recall": 0.6731,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00428,
-      "absent_false": 748,
-      "rule_recall": 0.7949,
-      "rule_precision": 0.9994
-     }
-    },
-    "country": {
-     "BE": {
-      "n": 30,
-      "recall": 0.3333,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 1.0,
-      "rule_precision": 1.0
-     },
-     "CA": {
-      "n": 96,
-      "recall": 0.4688,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.7917,
-      "rule_precision": 1.0
-     },
-     "FR": {
-      "n": 93,
-      "recall": 0.0538,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.02919,
-      "absent_false": 2,
-      "rule_recall": 0.3978,
-      "rule_precision": 1.0
-     },
-     "GB": {
-      "n": 238,
-      "recall": 0.2773,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00095,
-      "absent_false": 2,
-      "rule_recall": 0.7269,
-      "rule_precision": 1.0
-     },
-     "IT": {
-      "n": 80,
-      "recall": 0.15,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.6375,
-      "rule_precision": 1.0
-     },
-     "SE": {
-      "n": 125,
-      "recall": 0.096,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.936,
-      "rule_precision": 1.0
-     },
-     "US": {
-      "n": 204,
-      "recall": 0.5294,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00081,
-      "absent_false": 4,
-      "rule_recall": 0.7794,
-      "rule_precision": 1.0
-     },
-     "US/CA (AHA)": {
-      "n": 9397,
-      "recall": 0.6651,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00324,
-      "absent_false": 563,
-      "rule_recall": 0.8104,
-      "rule_precision": 0.9993
-     },
-     "unknown": {
-      "n": 19966,
-      "recall": 0.3308,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00352,
-      "absent_false": 440,
-      "rule_recall": 0.7548,
-      "rule_precision": 0.9999
-     }
-    }
-   },
-   "production": {
-    "none": 1401739,
-    "review": 302104,
-    "link": 136545,
-    "exact": 129558
-   }
-  },
-  "C4-collective-pass3": {
-   "thresholds": {
-    "author": {
-     "single": {
-      "unique": 11.0,
-      "2-5": 8.5,
-      "6-25": 1000000000.0,
-      "26+": 1000000000.0,
-      "initials": 1000000000.0,
-      "unmeasured": 10.5
-     },
-     "multi": 1000000000.0,
-     "margin": 0,
-     "review": 0.0,
-     "runner_max": 1000000000.0
-    },
-    "jstor-author": {
-     "single": {
-      "unique": 8.0,
-      "2-5": 5.0,
-      "6-25": 1000000000.0,
-      "26+": 1000000000.0,
-      "initials": 1000000000.0,
-      "unmeasured": 1000000000.0
-     },
-     "multi": 1000000000.0,
-     "margin": 0,
-     "review": 1.5,
-     "runner_max": 1000000000.0
-    },
-    "reviewer": {
-     "single": {
-      "unique": 7.5,
-      "2-5": 4.5,
-      "6-25": 11.5,
-      "26+": 1000000000.0,
-      "initials": 1000000000.0,
-      "unmeasured": 1000000000.0
-     },
-     "multi": 1000000000.0,
-     "margin": 0,
-     "review": 4.5,
-     "runner_max": 1000000000.0
-    }
-   },
-   "pi": {
-    "author": {
-     "single-unique": 0.1191,
-     "single-2-5": 0.1212,
-     "single-6-25": 0.4196,
-     "single-26+": 0.7784,
-     "single-initials": 0.3706,
-     "single-unmeasured": 0.3324,
-     "multi": 0.5536
-    },
-    "jstor-author": {
-     "single-unique": 0.0408,
-     "single-2-5": 0.0408,
-     "single-6-25": 0.4352,
-     "single-26+": 0.7579,
-     "single-initials": 0.5373,
-     "single-unmeasured": 1.0,
-     "multi": 0.4334
-    },
-    "reviewer": {
-     "single-unique": 0.046,
-     "single-2-5": 0.046,
-     "single-6-25": 0.7206,
-     "single-26+": 0.8333,
-     "single-initials": 0.6993,
-     "single-unmeasured": 1.0,
-     "multi": 0.7946
-    }
-   },
-   "calib_est_fdr": 0.00273,
-   "test": {
-    "overall": {
-     "positions": 30261,
-     "link": 13176,
-     "review": 14335,
-     "right": 13128,
-     "wrong": 0,
-     "dup_key": 48,
-     "precision": 1.0,
-     "precision_dup_as_wrong": 0.9964,
-     "recall": 0.4338,
-     "est_false_share": 0.00318,
-     "absent_positions": 35509,
-     "absent_false": 1011,
-     "rule": {
-      "positions": 30261,
-      "link": 23522,
-      "right": 23354,
-      "wrong": 7,
-      "dup_key": 161,
-      "precision": 0.9997,
-      "recall": 0.7718
-     }
-    },
-    "rg": {
-     "author": {
-      "n": 16319,
-      "recall": 0.2244,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00169,
-      "absent_false": 35,
-      "rule_recall": 0.7584,
-      "rule_precision": 0.9998
-     },
-     "jstor-author": {
-      "n": 2565,
-      "recall": 0.5934,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00257,
-      "absent_false": 115,
-      "rule_recall": 0.7727,
-      "rule_precision": 1.0
-     },
-     "reviewer": {
-      "n": 11377,
-      "recall": 0.6983,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00473,
-      "absent_false": 861,
-      "rule_recall": 0.7906,
-      "rule_precision": 0.9994
-     }
-    },
-    "band": {
-     "2-5": {
-      "n": 9673,
-      "recall": 0.6872,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0032,
-      "absent_false": 654,
-      "rule_recall": 0.8,
-      "rule_precision": 0.9994
-     },
-     "26+": {
-      "n": 858,
-      "recall": 0.0,
-      "precision": null,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.2634,
-      "rule_precision": 0.9956
-     },
-     "6-25": {
-      "n": 2118,
-      "recall": 0.2705,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.5817,
-      "rule_precision": 0.9992
-     },
-     "initials": {
-      "n": 296,
-      "recall": 0.0,
-      "precision": null,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.4088,
-      "rule_precision": 1.0
-     },
-     "no live candidate": {
-      "n": 357,
-      "recall": 0.0,
-      "precision": null,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.0,
-      "rule_precision": null
-     },
-     "unique": {
-      "n": 5052,
-      "recall": 0.7098,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00332,
-      "absent_false": 342,
-      "rule_recall": 0.9016,
-      "rule_precision": 1.0
-     },
-     "unmeasured": {
-      "n": 11907,
-      "recall": 0.195,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00249,
-      "absent_false": 15,
-      "rule_recall": 0.7963,
-      "rule_precision": 1.0
-     }
-    },
-    "orcid": {
-     "key has ORCID": {
-      "n": 19103,
-      "recall": 0.294,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00292,
-      "absent_false": 263,
-      "rule_recall": 0.7583,
-      "rule_precision": 0.9999
-     },
-     "no ORCID": {
-      "n": 11158,
-      "recall": 0.6731,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00428,
-      "absent_false": 748,
-      "rule_recall": 0.7949,
-      "rule_precision": 0.9994
-     }
-    },
-    "country": {
-     "BE": {
-      "n": 30,
-      "recall": 0.3333,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 1.0,
-      "rule_precision": 1.0
-     },
-     "CA": {
-      "n": 96,
-      "recall": 0.4688,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.7917,
-      "rule_precision": 1.0
-     },
-     "FR": {
-      "n": 93,
-      "recall": 0.0538,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.02919,
-      "absent_false": 2,
-      "rule_recall": 0.3978,
-      "rule_precision": 1.0
-     },
-     "GB": {
-      "n": 238,
-      "recall": 0.2773,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00095,
-      "absent_false": 2,
-      "rule_recall": 0.7269,
-      "rule_precision": 1.0
-     },
-     "IT": {
-      "n": 80,
-      "recall": 0.15,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.6375,
-      "rule_precision": 1.0
-     },
-     "SE": {
-      "n": 125,
-      "recall": 0.096,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.0,
-      "absent_false": 0,
-      "rule_recall": 0.936,
-      "rule_precision": 1.0
-     },
-     "US": {
-      "n": 204,
-      "recall": 0.5294,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00081,
-      "absent_false": 4,
-      "rule_recall": 0.7794,
-      "rule_precision": 1.0
-     },
-     "US/CA (AHA)": {
-      "n": 9397,
-      "recall": 0.6651,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00324,
-      "absent_false": 563,
-      "rule_recall": 0.8104,
-      "rule_precision": 0.9993
-     },
-     "unknown": {
-      "n": 19966,
-      "recall": 0.3308,
-      "precision": 1.0,
-      "wrong": 0,
-      "est_false_share": 0.00352,
-      "absent_false": 440,
-      "rule_recall": 0.7548,
-      "rule_precision": 0.9999
-     }
-    }
-   },
-   "production": {
-    "none": 1401738,
-    "review": 302096,
-    "link": 136554,
-    "exact": 129558
+    "none": 1288108,
+    "review": 306597,
+    "link": 195951,
+    "exact": 190800
    }
   }
  },
- "collective_passes": [
-  {
-   "links_in": 260500,
-   "links_out": 263769,
-   "coll_facts": 27372
-  },
-  {
-   "links_in": 263769,
-   "links_out": 263874,
-   "coll_facts": 29898
-  },
-  {
-   "links_in": 263874,
-   "links_out": 263882,
-   "coll_facts": 29938
-  }
- ],
+ "collective_passes": [],
  "production": {
-  "positions": 1969946,
+  "positions": 1981456,
   "by_decision": {
-   "none": 1415524,
-   "review": 265699,
-   "link": 159165,
-   "exact": 129558
+   "none": 1288108,
+   "review": 306597,
+   "link": 195951,
+   "exact": 190800
   },
   "vs_rule": {
    "by_table_role": {
     "cr|author": {
-     "positions": 9322,
-     "scorer_link": 3208,
-     "scorer_exact": 675,
-     "scorer_review": 3104,
-     "rule_linked": 3197,
-     "same_key": 1934,
+     "positions": 9293,
+     "scorer_link": 3304,
+     "scorer_exact": 690,
+     "scorer_review": 3215,
+     "rule_linked": 3509,
+     "same_key": 2162,
      "other_key": 0,
-     "scorer_only": 1274,
-     "rule_only": 1263
+     "scorer_only": 1142,
+     "rule_only": 1347
     },
     "cw|added": {
      "positions": 16706,
-     "scorer_link": 111,
-     "scorer_exact": 7675,
-     "scorer_review": 299,
-     "rule_linked": 128,
-     "same_key": 35,
+     "scorer_link": 134,
+     "scorer_exact": 7689,
+     "scorer_review": 410,
+     "rule_linked": 165,
+     "same_key": 44,
      "other_key": 0,
-     "scorer_only": 76,
-     "rule_only": 93
+     "scorer_only": 90,
+     "rule_only": 121
     },
     "cw|author": {
      "positions": 75417,
-     "scorer_link": 13879,
-     "scorer_exact": 8126,
-     "scorer_review": 19650,
-     "rule_linked": 25305,
-     "same_key": 13183,
+     "scorer_link": 14092,
+     "scorer_exact": 8941,
+     "scorer_review": 21228,
+     "rule_linked": 26078,
+     "same_key": 13254,
      "other_key": 0,
-     "scorer_only": 696,
-     "rule_only": 12122
+     "scorer_only": 838,
+     "rule_only": 12824
     },
     "cw|editor": {
      "positions": 27786,
-     "scorer_link": 218,
-     "scorer_exact": 8992,
-     "scorer_review": 900,
-     "rule_linked": 279,
-     "same_key": 59,
+     "scorer_link": 228,
+     "scorer_exact": 9032,
+     "scorer_review": 1199,
+     "rule_linked": 387,
+     "same_key": 74,
      "other_key": 0,
-     "scorer_only": 159,
-     "rule_only": 220
+     "scorer_only": 154,
+     "rule_only": 313
     },
     "cw|main": {
      "positions": 193838,
-     "scorer_link": 1713,
-     "scorer_exact": 61897,
-     "scorer_review": 4514,
-     "rule_linked": 1862,
-     "same_key": 565,
+     "scorer_link": 1609,
+     "scorer_exact": 62111,
+     "scorer_review": 5321,
+     "rule_linked": 2425,
+     "same_key": 709,
      "other_key": 0,
-     "scorer_only": 1148,
-     "rule_only": 1297
+     "scorer_only": 900,
+     "rule_only": 1716
     },
     "cw|resp": {
      "positions": 3144,
-     "scorer_link": 7,
-     "scorer_exact": 1332,
-     "scorer_review": 36,
-     "rule_linked": 12,
+     "scorer_link": 8,
+     "scorer_exact": 1336,
+     "scorer_review": 50,
+     "rule_linked": 15,
      "same_key": 5,
      "other_key": 0,
-     "scorer_only": 2,
-     "rule_only": 7
+     "scorer_only": 3,
+     "rule_only": 10
     },
     "jm|author": {
      "positions": 1080,
-     "scorer_link": 124,
+     "scorer_link": 121,
      "scorer_exact": 0,
-     "scorer_review": 318,
-     "rule_linked": 280,
-     "same_key": 92,
+     "scorer_review": 332,
+     "rule_linked": 295,
+     "same_key": 98,
      "other_key": 0,
-     "scorer_only": 32,
-     "rule_only": 188
+     "scorer_only": 23,
+     "rule_only": 197
     },
     "no|author": {
-     "positions": 659387,
-     "scorer_link": 33415,
-     "scorer_exact": 21849,
-     "scorer_review": 116569,
-     "rule_linked": 62321,
-     "same_key": 19927,
+     "positions": 670926,
+     "scorer_link": 40651,
+     "scorer_exact": 42358,
+     "scorer_review": 129579,
+     "rule_linked": 74209,
+     "same_key": 27186,
      "other_key": 0,
-     "scorer_only": 13488,
-     "rule_only": 42394
+     "scorer_only": 13465,
+     "rule_only": 47023
     },
     "ve|editor": {
      "positions": 66396,
-     "scorer_link": 10021,
+     "scorer_link": 10094,
      "scorer_exact": 0,
-     "scorer_review": 21510,
-     "rule_linked": 21405,
-     "same_key": 7951,
+     "scorer_review": 23775,
+     "rule_linked": 22363,
+     "same_key": 8244,
      "other_key": 0,
-     "scorer_only": 2070,
-     "rule_only": 13454
+     "scorer_only": 1850,
+     "rule_only": 14119
     },
     "wp|author": {
      "positions": 536114,
-     "scorer_link": 18884,
-     "scorer_exact": 16579,
-     "scorer_review": 64717,
-     "rule_linked": 43134,
-     "same_key": 13460,
+     "scorer_link": 51803,
+     "scorer_exact": 55948,
+     "scorer_review": 69811,
+     "rule_linked": 79113,
+     "same_key": 46151,
      "other_key": 0,
-     "scorer_only": 5424,
-     "rule_only": 29674
+     "scorer_only": 5652,
+     "rule_only": 32962
     },
     "wp|jstor-author": {
      "positions": 114696,
-     "scorer_link": 27330,
-     "scorer_exact": 778,
-     "scorer_review": 11331,
-     "rule_linked": 41419,
-     "same_key": 23394,
+     "scorer_link": 27655,
+     "scorer_exact": 822,
+     "scorer_review": 30403,
+     "rule_linked": 42519,
+     "same_key": 23798,
      "other_key": 0,
-     "scorer_only": 3936,
-     "rule_only": 18025
+     "scorer_only": 3857,
+     "rule_only": 18721
     },
     "wp|reviewer": {
      "positions": 266060,
-     "scorer_link": 50255,
-     "scorer_exact": 1655,
-     "scorer_review": 22751,
-     "rule_linked": 100734,
-     "same_key": 43840,
+     "scorer_link": 46252,
+     "scorer_exact": 1873,
+     "scorer_review": 21274,
+     "rule_linked": 102565,
+     "same_key": 40797,
      "other_key": 0,
-     "scorer_only": 6415,
-     "rule_only": 56894
+     "scorer_only": 5455,
+     "rule_only": 61768
     }
    },
-   "rule_recomputed_agrees_with_exported": 0.9879,
-   "capped_blocks": 245,
-   "no_live_candidate": 1300236
+   "rule_recomputed_agrees_with_exported": 0.9938,
+   "capped_blocks": 253,
+   "no_live_candidate": 1236273
   }
  },
  "links_csv_rows": {
-  "link": 159165,
-  "exact": 129558,
-  "review": 302560
+  "link": 195951,
+  "exact": 190800,
+  "review": 347343
  },
- "duplicate_candidates": 39,
+ "duplicate_candidates": 37,
  "prep": {
   "stats": [
    [
@@ -2865,10 +1549,10 @@
    [
     "no",
     "author",
-    734803,
-    75416,
+    746459,
+    75533,
     50000,
-    0
+    76
    ],
    [
     "wp",
@@ -2897,8 +1581,8 @@
   ],
   "residue": {
    "works_by_source": {
-    "crossref": 3260,
-    "crossref-meta": 5222,
+    "crossref": 3253,
+    "crossref-meta": 5199,
     "journal-meta": 2792,
     "lc-translations": 1764
    },
@@ -2907,17 +1591,17 @@
    "works_family_names_only": 1621,
    "note": "journal-metadata harvest only (build/journal-meta-2026-11-11); the Crossref metadata harvest on E: was read by link_work_people nameonly-extract, so its residue has no record there; lc-translations have no printed-name source here"
   },
-  "outside": 609637,
-  "pop_rows": 2329372,
-  "graph": "/tmp/claude-1000/-home-jic823-historiography/d3abee1e-2938-4bf9-afec-f3685cadff31/scratchpad/scored/graph",
-  "graph_built": "Thu Nov 12 09:22:01 2026",
+  "outside": 617376,
+  "pop_rows": 2332491,
+  "graph": "/home/jic823/historiography/build/scratch-relink-2026-11-13/scored/graph",
+  "graph_built": "Fri Nov 13 20:55:00 2026",
   "extra": {
    "tables": [
     [
      "cr",
      "crossref-meta-residue",
-     9322,
-     7810
+     9293,
+     7781
     ],
     [
      "cw",
@@ -2945,12 +1629,12 @@
     ]
    ],
    "crossref_meta_residue": {
-    "works_wanted": 8401,
-    "with_authors": 7810,
-    "positions": 9322
+    "works_wanted": 8371,
+    "with_authors": 7781,
+    "positions": 9293
    },
    "family_name_only_positions": {
-    "no": 6434,
+    "no": 6452,
     "wp": 9688,
     "jm": 9,
     "cw": 1321,

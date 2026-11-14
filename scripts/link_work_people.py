@@ -3579,6 +3579,12 @@ def sibling_chapters(G, db):
 # identifier credits used as a work's known authors: an ORCID that OpenAlex put on its author profile (not printed on
 # the work) is not one (2026-11-12: OpenAlex profiles merge namesakes; Andrew Watson p-21351)
 KNOWN_EXACT_SQL = "(a.evidence = 'keylog' OR (a.state = 'exact' AND coalesce(a.source, '') <> 'author-works:openalex-author-orcid'))"
+# credits made downstream of this class's own positions (2026-11-13 relink): this class's earlier export, the scorer, the
+# classifier and Qwen read the name-only positions, and the build carries them to a work's twin (same-work:<source>).
+# Counting them as 'already linked by a rule' dropped the position, so the next scorer run could not score it and the
+# credit vanished at the following build (a feedback loss). They are neither gold nor 'already linked'.
+DOWNSTREAM_SQL = """(coalesce(a.source, '') NOT LIKE 'name-only:%' AND coalesce(a.source, '') NOT IN
+    ('scored-links', 'classified-links', 'qwen-links') AND coalesce(a.source, '') NOT LIKE 'same-work:%')"""
 
 
 def sibling_twins(db, G, new_sib):
@@ -3708,7 +3714,7 @@ def nameonly_positions(args):
     gold_cr, rule_cr = defaultdict(set), defaultdict(set)
     # this class's own earlier credits (source name-only:*, loaded by an earlier build) are neither gold nor 'already linked'
     for k, w, known in db.execute(f"""SELECT a."from", a."to", {KNOWN_EXACT_SQL} FROM '{G}/authored.parquet' a
-            JOIN kk ON kk.key = a."to" WHERE coalesce(a.source, '') NOT LIKE 'name-only:%'""").fetchall():
+            JOIN kk ON kk.key = a."to" WHERE {DOWNSTREAM_SQL}""").fetchall():
         (gold_cr if known else rule_cr)[w].add(k)
     extra = [dict(work=w, key=k) for w, ks in gold_cr.items() for k in ks]
     # positions from the records
@@ -4121,7 +4127,7 @@ def nameonly_extra(args):
             WHERE source IN ('recent-books', 'journal-meta')""").fetchall()}
     credits = defaultdict(list)                  # node -> [(key, known)] credits already on it (not name-only)
     for k, w, known in db.execute(f"""SELECT a."from", a."to", {KNOWN_EXACT_SQL} FROM '{G}/authored.parquet' a
-            WHERE coalesce(a.source, '') NOT LIKE 'name-only:%' AND a."to" IN (SELECT unnest(?))""",
+            WHERE {DOWNSTREAM_SQL} AND a."to" IN (SELECT unnest(?))""",
                                   [sorted({keyof.get(i.lower() if i.startswith('doi:') else i, i) for i in cw})]).fetchall():
         credits[w].append((k, known))
     rows, outside, targets = [], [], []

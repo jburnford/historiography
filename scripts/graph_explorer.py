@@ -217,6 +217,14 @@ def build():
         db.execute(f"""CREATE TABLE sw AS SELECT DISTINCT "from" AS hidden, "to" AS shown, basis FROM '{G}/same_work.parquet' ORDER BY shown""")
     else:
         db.execute("CREATE TABLE sw (hidden VARCHAR, shown VARCHAR, basis VARCHAR)")
+    # fetched chapters the name-only loader folded into their keyed twin in the same volume (never nodes; 2026-11-13,
+    # data/graph/name-only/chapter-twins.csv.gz): a request for the chapter's DOI shows the keyed work
+    tw = ROOT / 'data/graph/name-only/chapter-twins.csv.gz'
+    if tw.exists():
+        db.execute(f"""CREATE TABLE twin AS SELECT DISTINCT id, keyed_work, doi FROM read_csv('{tw}', all_varchar=true)
+                       WHERE id IS NOT NULL AND id <> '' ORDER BY id""")
+    else:
+        db.execute("CREATE TABLE twin (id VARCHAR, keyed_work VARCHAR, doi VARCHAR)")
     db.execute(f"""CREATE TABLE work_w AS SELECT w.key,
         coalesce(c.n, 0) AS cited, coalesce(r.n, 0) AS reviewed
         FROM '{G}/work.parquet' w
@@ -325,6 +333,10 @@ class Graph:
         if not hasattr(self, '_tables'):
             self._tables = {r[0] for r in self.cur().execute('SELECT table_name FROM information_schema.tables').fetchall()}
         return f'e_{table}_f' in self._tables
+
+    def has_table(self, name):
+        self.has('')
+        return name in self._tables
 
     def cur(self):
         if not hasattr(self.local, 'c'):
@@ -474,6 +486,16 @@ class Graph:
                 out['node']['requested'] = key
                 out['node']['requested_note'] = f'{key} is the same work, held as {to[0]} ({to[1]})'
                 return out
+        if self.has_table('twin'):
+            tw = self.cur().execute("""SELECT t.keyed_work FROM twin t JOIN nodes n ON n.key = t.keyed_work
+                                        WHERE t.id = ? AND NOT EXISTS (SELECT 1 FROM nodes x WHERE x.key = t.id) LIMIT 1""", [key]).fetchone()
+            if tw:
+                out = self.node(tw[0], limit, sort)
+                if out:
+                    out['node']['requested'] = key
+                    out['node']['requested_note'] = (f'{key} is the same chapter, held as {tw[0]} (fetched record of a keyed '
+                                                     'chapter in the same volume; its printed authors are read on the keyed chapter)')
+                    return out
         r = self.cur().execute("""SELECT key, type, label, kind, year, journal, resolution, anchors, weight, works, cited, reviewed,
                                   kind_proposed, issn, journal_source, isbn, editors_printed,
                                   (SELECT note FROM vol_note WHERE vol_note.key = nodes.key),
@@ -493,6 +515,11 @@ class Graph:
                     if (i['scheme'], i['value'].lower()) not in have and i['scheme'] in ('doi', 'openalex', 'lccn', 'isbn'):
                         have.add((i['scheme'], i['value'].lower()))
                         n['ids'].append(dict(i, also_held_as=h))
+            if self.has_table('twin'):
+                for tid, doi in self.cur().execute("SELECT id, doi FROM twin WHERE keyed_work = ? ORDER BY 1", [key]).fetchall():
+                    if doi and ('doi', doi.lower()) not in have:
+                        have.add(('doi', doi.lower()))
+                        n['ids'].append(dict(scheme='doi', value=doi, url=f'https://doi.org/{doi}', also_held_as=tid))
         if n['type'] == 'work':          # citations that reached this work through a translation or another edition
             n['cited_edition'] = self.cur().execute(
                 'SELECT count(*) FROM e_cites_t WHERE "to" = ? AND (edition OR cited_as IS NOT NULL)', [key]).fetchone()[0]
