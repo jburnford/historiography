@@ -55,3 +55,49 @@ Books from reviews alone (`books-from-reviews.csv.gz`, counted, not created): 62
 different venues with the same printed author (a known given name) and no graph book; 208 with an ISBN in a review. A
 30-row look: about 24 read right; misreadings put a book's subject first ('Hardenberg, Carl-Hans Graf von', 'Friedrich
 der Große') or split 'Ernesto y Bonachía Hernando, Juan A. (eds.)'.
+
+## Rerun after the independent spot check (2026-11-14, evening)
+
+`lc-note-spot-check-2026-11-14` found that about half of the loaded note books duplicated a book the graph already
+held (28 of 60), 3 of 60 were wrong and one was an edited volume. The B1 test is now fuller (`note_and_review_books.py`):
+
+- LC abbreviations expanded (encyc., N.Y.C, Ren., u., cent., gov't, Amer., Univ. ...); a word LC cut with a full stop
+  matches any word it begins; one-letter typos and spellings in words of 5+ letters agree (undergrouth, Parlour,
+  Missionaires, traveller);
+- the note title against ALL works the person holds (key-log or linked credit, edited, candidate or possible author;
+  any kind but reviews), every year the note prints (`1974, c1968`) -2..+2: the whole note title as the opening words
+  of the work's title or of its subtitle, 3+ note words anywhere inside it, or the work's main title inside the note
+  (articles and chapters: both ways and within a year); uncredited graph books of the title likewise;
+- the hold: a book credited in the note's role (authored for an author note, edited for an editor note) from 2 years
+  before to 2 after the note that shares a non-generic title word, or any such book from 2 before to 2 after for a CIP
+  note; held rows go to `note-books-held.csv.gz` with the reason and the book, not into the graph;
+- translations held: a title in a romanised script (ALA-LC marks, dot-below consonants, macron vowels) for a person
+  holding Latin-script books, or a Latin-script title whose language (function words) is none of the languages of the
+  person's credited books when an earlier book exists;
+- dropped: article markers (`IN <serial>`, caption, `v. N, no. N`, a source opening with `page N`), sources that are
+  not works ('Amazon page, Nov. 22'), video recordings (`[VR]`);
+- an editor form in the note (`ed.`, `(ed.)`, `edited by`; not `2nd ed.`) loads the book with role editor: the build
+  credits it EDITED (column `role`);
+- keys whose LC anchor is known to be another person's authority (`wrong-anchors.csv`: p-215405 Tyson, no2022030202)
+  are excluded; their rows are written to `note-books-wrong-anchor.csv`.
+
+Rows: 1,353 committed (1,325 in the uncommitted rerun before this change) -> **484 loaded** (role author 479, editor 5);
+842 held (same work held by the person 470, credited book nearby with a shared word 200, CIP note with a credited book
+nearby 61, graph book of the title 49, translation 45, article marker 14, not a work 3), 1 wrong anchor.
+
+Test set (the checker's 60 rows, `checked-note-books.csv`): all 28 duplicates and all 3 wrong rows are no longer loaded
+(Tyson by the wrong-anchor list, Yamanaka and Ott by the article markers); 1 of 25 right rows is held (Stoker, a CIP note
+with an authored book two years later); the 4 unclear rows stay loaded. Stoker's book is an edited volume the note does
+not mark as edited (no editor form), so the role fix cannot reach it.
+
+Hand check of 40 loaded rows (`note-books-recheck-sample.csv`, by hash): 34 right, 1 wrong (Decker p-6628: a children's
+book author's authority on a key that mixes several Michael Deckers; a wrong-anchor case for the key log), 5 unclear
+(probable offprints, a student paper, two pamphlets). The first pass of this check, before the last fixes, found 3 wrong
+(an Amazon page, a video course, Decker) and 6 duplicates (5 translations and one CIP title); those rules were added
+then and the sample re-drawn by the same hash.
+
+B2 review ties: the person's works sharing the review's short title, two or more that are not theses -> held unless the
+printed subtitle picks one (265 reviews); never a thesis node for a review 3+ years after the thesis (53 refused); a
+printed subtitle that shares no word with the work's subtitle refuses the tie (35). Ties 1,788 committed -> **1,655**;
+held 272. Test set (`checked-review-ties.csv`): both wrong ties gone (Le Zotte refused, Cottier held), 2 of 58 right ties
+held (several works of the same short title).

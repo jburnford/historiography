@@ -46,7 +46,8 @@ import duckdb
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from key_lc_authority_notes import parse_source, toks  # noqa: E402
-from lc_canon_people import titles_agree  # noqa: E402
+from key_lc_authority_notes import STOPW  # noqa: E402
+from lc_canon_people import titles_agree, words as lc_words  # noqa: E402
 from link_cited_work_authors import forms  # noqa: E402
 from propose_person_dup_merges import names_agree  # noqa: E402
 from review_books import fold, main_title as rb_main  # noqa: E402
@@ -70,6 +71,117 @@ def fold_main(t):
     return rb_main(t)
 
 
+# ---- fuller title evidence (2026-11-14, after the independent spot check lc-note-spot-check-2026-11-14: 28 of 60 loaded
+# note books duplicated a held book under a CIP/working title, a main-title- or subtitle-only form, an LC abbreviation or
+# typo, a translation or the exact title)
+ABBR = [(r'\bN\.\s?Y\.\s?C\b\.?', 'New York City'), (r'\bN\.\s?Y\.(?=\s|,|$)', 'New York'), (r'\bencyc\b\.?', 'encyclopedia'),
+        (r'\bRen\.', 'Renaissance'), (r'(?<=\s)u\.(?=\s)', 'und'), (r"\bgov['\u2019]?t\b\.?", 'government'),
+        (r'\bcent\b\.?', 'century'), (r'\bhist\.', 'history'), (r'\bAmer\.', 'American'), (r'\bintl\b\.?', 'international'),
+        (r"\bnat['\u2019]?l\b\.?", 'national'), (r'\bassoc\.', 'association'), (r'\bUniv\.', 'University'),
+        (r'\bsoc\.', 'society'), (r'\bpolit\.', 'political'), (r'\becon\.', 'economic'), (r'&', ' and ')]
+GENERIC = {'history', 'histories', 'historical', 'essay', 'essays', 'american', 'america', 'world', 'life', 'century',
+           'introduction', 'guide', 'selected', 'collected', 'papers', 'documents', 'national', 'modern', 'early',
+           'british', 'english', 'social', 'political', 'politics', 'age', 'times', 'people', 'state', 'states', 'united'}
+# ALA-LC romanisation marks (Cyrillic ligatures, soft signs, Wade-Giles 'ʻ', Hebrew/Arabic dot-below consonants, macron
+# vowels of Greek, Persian, Japanese): a title written in a romanised script ('ha-Yehudim be-Ameriḳah', 'Kataskopeia stēn')
+ROMANISED = re.compile('[︠︡ʹʺʻʼʿʾ̣̄ĭḥḳṭṣẓḍṇṛĀāĒēĪīŌōŪū]')
+LANG_WORDS = {'en': {'the', 'and', 'of', 'with', 'from', 'to', 'its', 'their'},
+              'fr': {'le', 'les', 'des', 'du', 'et', 'aux', 'au', 'une', 'dans', 'pour', 'sur'},
+              'de': {'der', 'die', 'das', 'und', 'im', 'zur', 'zum', 'von', 'den', 'dem', 'ein', 'eine', 'mit', 'auf'},
+              'es': {'el', 'los', 'las', 'y', 'por'},
+              'pt': {'o', 'os', 'do', 'dos', 'das', 'em', 'no', 'na', 'um', 'uma', 'ao', 'pela', 'pelo'},
+              'it': {'il', 'lo', 'gli', 'della', 'delle', 'dei', 'degli', 'nel', 'nella', 'alla', 'sul'}}
+NOT_BOOK_TITLE = re.compile(r"(?i)\b(?:amazon|web ?page|home ?page|press release|catalog(?:ue)? record|faculty page|podcast|"
+                            r"publisher'?s? (?:web ?site|page|catalog))\b|\b(?:jan|feb|mar|apr|jun|jul|aug|sept?|oct|nov|dec)\.?\s+\d{1,2}$")
+ARTICLE_SRC = re.compile(r'\sIN\s+[A-Z]')                            # 'Victorian illness revisited ... IN PACSCLnews'
+ARTICLE_DATA = re.compile(r'\bcaption\b|\bv\.\s*\d+\s*,?\s*(?:no|n|issue)\.\s*\d+|^\s*(?:page|p\.)\s*\d+\b', re.I)
+EDITOR = re.compile(r'\(\s*eds?\.?\s*\)|(?<![\w.])eds?\.(?=[\s,;)\]]|$)|\bedited\s+by\b|\beditors?\b|\(ed\b', re.I)
+EDITION = re.compile(r'\b(?:\d+(?:st|nd|rd|th|d)|rev|new|enl|enlarged|revised|corr|abridged|[a-z]+th)\.?\s+eds?\.', re.I)
+OTHER_ROLE = re.compile(r'\b(?:compil|translat|trans\.|tr\.|trad\.|hrsg|hg\.|illustrat|photograph|introd|foreword|preface|'
+                        r'pr[eé]face|selected by|interviewed)', re.I)
+CIP = re.compile(r'\b(?:e-?CIP|CIP|ECIP)\b')
+
+
+def ntoks(title):
+    """content tokens of a title in order, LC abbreviations expanded; a word LC cut with a full stop ('Calif.') is kept
+    as a prefix token ending '*'"""
+    t = title or ''
+    for pat, rep_ in ABBR:
+        t = re.sub(pat, rep_, t, flags=re.I)
+    out = []
+    for raw in re.split(r"[\s/:;,()\[\]\"“”«»?!]+", t):
+        ab = raw.endswith('.') and len(raw.rstrip('.')) >= 3 and raw.rstrip('.').isalpha() and raw[:1].isupper()
+        for w in lc_words(raw):
+            if w in STOPW or w.isdigit() or len(w) < 2:
+                continue
+            out.append(w + '*' if ab else w)
+    return out
+
+
+def _lev1(a, b):
+    if abs(len(a) - len(b)) > 1:
+        return False
+    if len(a) == len(b):
+        return sum(x != y for x, y in zip(a, b)) <= 1
+    if len(a) > len(b):
+        a, b = b, a
+    i = 0
+    while i < len(a) and a[i] == b[i]:
+        i += 1
+    return a[i:] == b[i + 1:]
+
+
+def teq(a, b):
+    """token equality allowing an LC abbreviation ('Calif*' ~ 'california') and one-letter typos and spellings in words of
+    five letters or more ('undergrouth', 'parlour', 'missionaires', 'traveller')"""
+    if a == b:
+        return True
+    a0, b0 = a.rstrip('*'), b.rstrip('*')
+    if a0 == b0 or (a.endswith('*') and b0.startswith(a0)) or (b.endswith('*') and a0.startswith(b0)):
+        return True
+    return min(len(a0), len(b0)) >= 5 and _lev1(a0, b0)
+
+
+def contained(xs, ys):
+    return bool(xs) and all(any(teq(x, y) for y in ys) for x in xs)
+
+
+def shares(xs, ys):
+    return any(teq(x, y) for x in xs if x.rstrip('*') not in GENERIC for y in ys)
+
+
+def main_part(t):
+    return re.split(r'\s*[:.?!]\s|\s+/\s|\s+=\s', (t or '') + ' ', 1)[0]
+
+
+def lang(title):
+    """the language whose function words a title uses, when one language clearly wins (else None)"""
+    ws = lc_words(title or '')
+    sc = Counter({l: sum(w in v for w in ws) for l, v in LANG_WORDS.items()}).most_common(2)
+    return sc[0][0] if sc[0][1] >= 1 and sc[0][1] > sc[1][1] else None
+
+
+def same_work(note_title, label, kind):
+    """the note title names this work: the whole note title inside the work's title (a short title, a subtitle only, the
+    same title), or the work's main title inside the note title (a CIP title that adds words); a single word only when
+    both are that word. Articles and chapters: both ways (a book and a same-titled article are told apart by the build)"""
+    if not label or re.match(r'(?i)\s*(review of|rezension|compte rendu|book review)', label):
+        return False
+    n, w, wm = ntoks(note_title), ntoks(label), ntoks(main_part(label))
+    if len(n) == 1 or len(wm) == 1:
+        return len(n) == 1 and len(wm) == 1 and teq(n[0], wm[0]) and len(n[0]) >= 5
+    if len(n) < 2:
+        return False
+    if kind in ('article', 'chapter'):
+        return contained(n, w) and contained(wm, n)
+    ws = w[len(wm):]
+    # two words: only as the opening words of the title or of its subtitle ('David Joris', 'Parlour politics'), never
+    # anywhere inside ('Renaissance Florence' is not 'Two memoirs of Renaissance Florence')
+    pre = lambda xs, ys: len(ys) >= len(xs) and all(teq(a, b) for a, b in zip(xs, ys))
+    return (pre(n, w) or pre(n, ws) or (len(n) >= 3 and contained(n, w))
+            or (len(wm) >= 2 and contained(wm, n) and (len(wm) >= 3 or pre(wm, n))))
+
+
 def main():
     c = duckdb.connect()
     c.execute("SET memory_limit='5GB'; SET threads=4")
@@ -86,17 +198,42 @@ def main():
         auths.setdefault(lc, (k, 'proposed'))
     c.execute('CREATE OR REPLACE TABLE al AS SELECT unnest(?) lcid', [sorted(auths)])
     notes = q(f"SELECT n.lcid, n.notes, a.label FROM '{NOTES}' n JOIN '{NAMES}' a ON a.lcid = n.lcid WHERE n.lcid IN (SELECT lcid FROM al)")
+    # the build's `lcnote:` nodes and their credits are this script's own earlier output (the table is rewritten whole):
+    # they are neither 'already credited' nor 'a graph book' (2026-11-14 rerun on a build that loads them)
     credited = defaultdict(list)                  # person -> (title, year, kind)
     for k, t, y, kind in q(f"""SELECT x."from", w.label, w.year, w.kind FROM (
             SELECT "from", "to" FROM '{G}/authored.parquet' UNION SELECT "from", "to" FROM '{G}/edited.parquet'
             UNION SELECT "from", "to" FROM '{G}/linked_authored.parquet' UNION SELECT "from", "to" FROM '{G}/linked_edited.parquet') x
-            JOIN '{G}/work.parquet' w ON w.key = x."to" WHERE w.label IS NOT NULL AND w.kind <> 'review'"""):
+            JOIN '{G}/work.parquet' w ON w.key = x."to" WHERE w.label IS NOT NULL AND w.kind <> 'review'
+            AND w.key NOT LIKE 'lcnote:%'"""):
         credited[k].append((t, y, kind))
     books_by_title = defaultdict(list)            # folded main title -> (key, year)
-    for k, t, y in q(f"SELECT key, label, coalesce(first_year, year) FROM '{G}/work.parquet' WHERE kind = 'book' AND label IS NOT NULL"):
+    books_by_head = defaultdict(list)             # first two normalised title words -> (key, year, label)
+    for k, t, y in q(f"""SELECT key, label, coalesce(first_year, year) FROM '{G}/work.parquet' WHERE kind = 'book'
+                         AND label IS NOT NULL AND key NOT LIKE 'lcnote:%'"""):
         m = fold_main(t)
         if len(m.split()) >= 2:
             books_by_title[m].append((k, y))
+        nt = [x.rstrip('*') for x in ntoks(main_part(t))[:2]]
+        if nt:
+            books_by_head[tuple(nt)].append((k, y, t))
+    # every work the person holds, any relation (key-log or linked credit, edited, candidate or possible author) and any
+    # kind but reviews: the duplicate test of the 2026-11-14 spot check
+    held_by = defaultdict(list)                   # person -> (key, kind, year, label, relation: author / editor / candidate)
+    for k, w_, kind, y, t, rel in q(f"""SELECT x."from", w.key, w.kind, coalesce(w.first_year, w.year), w.label, min(x.rel) FROM (
+            SELECT "from", "to", 'author' rel FROM '{G}/authored.parquet' UNION ALL SELECT "from", "to", 'editor' FROM '{G}/edited.parquet'
+            UNION ALL SELECT "from", "to", 'author' FROM '{G}/linked_authored.parquet'
+            UNION ALL SELECT "from", "to", 'editor' FROM '{G}/linked_edited.parquet'
+            UNION ALL SELECT "from", "to", 'zcandidate' FROM '{G}/author_candidates.parquet'
+            UNION ALL SELECT "from", "to", 'zcandidate' FROM '{G}/possible_author.parquet') x
+            JOIN '{G}/work.parquet' w ON w.key = x."to" WHERE w.label IS NOT NULL AND w.kind <> 'review'
+            AND w.key NOT LIKE 'lcnote:%' GROUP BY ALL"""):
+        held_by[k].append((w_, kind, y, t, rel.lstrip('z')))
+    wrong_anchor = {}                             # key -> lcnaf: a key-log anchor known to be another person's authority
+    wa_path = OUT / 'wrong-anchors.csv'
+    if wa_path.exists():
+        with open(wa_path, encoding='utf-8') as f:
+            wrong_anchor = {r['person']: r['lcnaf'] for r in csv.DictReader(f) if not r['person'].startswith('#')}
     # keys with scholarly evidence (as lc_catalogue_credits.py): a thesis or AHA anchor, a key-log thesis, a directory
     # anchor, supervision, a review; the anchored population also holds primary-source people (composers, politicians)
     scholarly = {k for (k,) in q(f"""SELECT key FROM '{G}/person.parquet' WHERE len(list_filter(anchors, a -> a LIKE 'aha-phd:%'
@@ -127,7 +264,7 @@ def main():
     print('facts loaded', len(notes), 'authorities with notes', flush=True)
 
     # ---------------------------------------------------------------- B1
-    nb_rows, nb_measure = [], []
+    nb_rows, nb_measure, cands, nb_held, nb_wrong_anchor = [], [], [], [], []
     for lcid, ns, label in notes:
         k, link = auths[lcid]
         fam = next((f for f, _, _ in forms(label)), '')
@@ -146,7 +283,7 @@ def main():
             # NUC reports ('nuc87-52716: His ... [MI] 1974') are mostly microfilmed dissertations with cut titles;
             # recordings, scores, microforms and visual material are not books; a cut title ('...') or a year not set off
             # by a comma ('Music in Texas--frontier to 1900:') cannot name a book
-            if re.match(r'(?i)nuc', src) or re.search(r'\[(?:SR|MI|VM|MU|GR|SCORE)\]', src) or '...' in src or \
+            if re.match(r'(?i)nuc', src) or re.search(r'\[(?:SR|MI|VM|VR|VC|MU|GR|SCORE)\]', src) or '...' in src or \
                     not re.search(r'(?<![-\d])\d{4}-?\d{0,4}\s*[:.]?\s*$', src) or \
                     not re.search(r',\s*\[?(?:c|p|©)?\s*\d{4}\??\]?\s*[:.]?\s*$', src) or \
                     re.search(r'\d{4}-\d{2,4}\s*[:.]?\s*$', src):
@@ -172,37 +309,127 @@ def main():
                          r'\b(?:Spring|Fall|Summer|Winter|May|August|December) \d{4}\)', data):    # an electronic thesis ('PDF title page')
                 rep['b1_thesis_notes'] += 1
                 continue
-            title = re.sub(r'(?:,\s*\d{4})+$', '', title).strip(' ,')    # 'In the shadow of the sword, 1988, c1987'
-            role = 'not-author' if NOT_AUTHOR.search(data) else 'author'
+            # 'In the shadow of the sword, 1988, c1987', 'A cidade de São Paulo, 1974, c1968': every printed year counts
+            tail = re.search(r'(?:,\s*\d{4})+$', title)
+            years = sorted({year} | ({int(y) for y in re.findall(r'\d{4}', tail.group(0))} if tail else set()))
+            title = re.sub(r'(?:,\s*\d{4})+$', '', title).strip(' ,')
+            # editor form ('ed.', '(ed.)', 'edited by'; not '2nd ed.') -> EDITED; other roles are counted, not loaded
+            if OTHER_ROLE.search(data):
+                role = 'not-author'
+            elif EDITOR.search(EDITION.sub(' ', data)) or EDITOR.search(EDITION.sub(' ', src)):
+                role = 'editor'
+            else:
+                role = 'not-author' if NOT_AUTHOR.search(data) else 'author'
             sch = k in scholarly
             rep[f"b1_missing|{form}|{role}|{link}|{'scholarly' if sch else 'other-key'}"] += 1
             nb_measure.append(dict(person=k, lcnaf=lcid, form=form, role=role, link=link, title=title, year=year,
                                    scholarly=sch))
-            if form in ('own', 'own-name') and role == 'author' and sch:
-                nb_rows.append(dict(work=f'lcnote:{lcid}:{i}', title=title, year=year, person=k, lcnaf=lcid, link=link,
-                                    abbreviated=bool(re.search(r'\b[a-z]{2,6}\.(?=\s|,|$)', title)), note=raw[:300]))
+            if form in ('own', 'own-name') and role in ('author', 'editor') and sch:
+                cands.append(dict(work=f'lcnote:{lcid}:{i}', title=title, year=year, person=k, lcnaf=lcid, link=link,
+                                  role=role, years=years, abbreviated=bool(re.search(r'\b[a-z]{2,6}\.(?=\s|,|$)', title)),
+                                  cip=bool(CIP.search(data)), src=src, data=data, note=raw[:300]))
+    # ---- B1 second stage: the fuller duplicate test (2026-11-14 spot check). Order: a wrong anchor, an article marker,
+    # the same work held by the person (any relation, any kind, years -2..+2), a graph book of the title (-2..+2), a
+    # translation of a held book, and the hold: a credited book from 2 years before to 1 after the note year (2 after
+    # for a CIP note) unless the titles are clearly different works (no shared non-generic word, and not a CIP note)
+    romanised_ok = {r['person'] for r in cands if not ROMANISED.search(r['title'])}
+    for r in cands:
+        k, year, title = r['person'], r['year'], r['title']
+        why, basis = None, ''
+        if wrong_anchor.get(k) == r['lcnaf']:
+            nb_wrong_anchor.append(r)
+            rep['b1x_wrong_anchor'] += 1
+            continue
+        yrs = r['years']
+        near_y = lambda y, w: y is None or any(abs(y - x) <= w for x in yrs)
+        if ARTICLE_SRC.search(r['src']) or ARTICLE_DATA.search(r['data']) or re.search(r'(?i)\bcaption\b', r['src']):
+            why = 'article-marker'
+        elif NOT_BOOK_TITLE.search(title):                 # 'His Amazon page, Nov. 22, 2022': a source, not a work
+            why = 'not-a-work-source'
+        if not why:
+            for w_, kind, y, t, rel in held_by.get(k, ()):
+                # an article or chapter of the same title counts only within a year (a book and an article on it two
+                # years later are two works: Railroad pathfinder 1988, its 1990 article, spot check 2026-11-14)
+                win = 1 if kind in ('article', 'chapter') else 2
+                if near_y(y, win) and same_work(title, t, kind):
+                    why, basis = 'held-by-person', f'{w_} {kind} {y} | {t[:120]}'
+                    break
+        if not why:
+            nt = tuple(x.rstrip('*') for x in ntoks(main_part(title))[:2])
+            for b, y, t in books_by_head.get(nt, ()):
+                if near_y(y, 2) and same_work(title, t, 'book'):
+                    why, basis = 'graph-book-of-the-title', f'{b} {y} | {t[:120]}'
+                    break
+        if not why and ROMANISED.search(title):
+            others = [(w_, y, t) for w_, kind, y, t, rel in held_by.get(k, ()) if rel != 'candidate' and kind == 'book'
+                      and not ROMANISED.search(t)]
+            if others or k in romanised_ok:
+                why, basis = 'translation-probable', (f'{others[0][0]} | {others[0][2][:100]}' if others else 'a Latin-script note book')
+        if not why and not ROMANISED.search(title):
+            # a Latin-script translation: the note's language is none of the languages of the person's credited books and
+            # an earlier book exists ('A decadência do império da pimenta' 1981 = 'Twilight of the pepper empire' 1978)
+            nl = lang(title)
+            bl = [(w_, y, t, lang(t)) for w_, kind, y, t, rel in held_by.get(k, ()) if rel == 'author' and kind == 'book']
+            ls = {x[3] for x in bl if x[3]}
+            if nl and ls and nl not in ls and any(y is not None and y <= max(yrs) for _, y, _, _ in bl):
+                x = next(x for x in bl if x[3])
+                why, basis = 'translation-probable', f'{nl} note; books in {"/".join(sorted(ls))}: {x[0]} | {x[2][:90]}'
+        if not why:
+            hi = 2 if r['cip'] else 1
+            # books credited in the note's role (an authored note against authored books, an editor note against edited
+            # ones: a CIP title of a monograph is not the edited volume of the next year; Puff, Stoker)
+            # a shared word: from 2 years before to 2 after (a working title published two years on: 'A woman's calling'
+            # 2000 / 'The healer's calling' 2002); no shared word: only a CIP note, 2 before to 2 after
+            near = [(w_, y, t) for w_, kind, y, t, rel in held_by.get(k, ())
+                    if rel == r['role'] and kind == 'book' and y is not None and min(yrs) - 2 <= y <= max(yrs) + 2]
+            if near:
+                nn = ntoks(title)
+                sh = [x for x in near if shares(nn, ntoks(x[2]))]
+                near = [x for x in near if x[1] <= max(yrs) + hi]
+                if sh or r['cip']:
+                    why = 'credited-book-nearby-' + ('shared-words' if sh else 'cip')
+                    x = (sh or near)[0]
+                    basis = f'{x[0]} {x[1]} | {x[2][:120]}'
+        if why:
+            rep[f'b1x_{why}'] += 1
+            nb_held.append(dict(work=r['work'], person=k, lcnaf=r['lcnaf'], year=year, title=title, role=r['role'],
+                                reason=why, basis=basis, note=r['note'][:200]))
+            continue
+        nb_rows.append({x: r[x] for x in ('work', 'title', 'year', 'person', 'lcnaf', 'link', 'role', 'abbreviated', 'note')})
+    rep['b1_first_stage_rows'] = len(cands)
     rep['b1_loaded_books'] = len(nb_rows)
+    rep['b1_loaded_by_role'] = dict(Counter(r['role'] for r in nb_rows))
+    rep['b1_held'] = len(nb_held)
     rep['b1_loaded_people'] = len({r['person'] for r in nb_rows})
     rep['b1_loaded_by_link'] = dict(Counter(r['link'] for r in nb_rows))
     rep['b1_loaded_abbreviated_titles'] = sum(1 for r in nb_rows if r['abbreviated'])
     OUT.mkdir(parents=True, exist_ok=True)
     import hashlib
-    nbs = sorted(nb_rows, key=lambda r: hashlib.md5(r['work'].encode()).hexdigest())[:60]    # stable across reruns
-    sp = OUT / 'note-books-sample-checked.csv'
+    # a second hand check after the fuller duplicate test (40 loaded rows by hash; the first sample file is kept as it was)
+    nbs = sorted(nb_rows, key=lambda r: hashlib.md5(('recheck' + r['work']).encode()).hexdigest())[:40]
+    sp = OUT / 'note-books-recheck-sample.csv'
     old = {}
     if sp.exists():
         with open(sp, encoding='utf-8') as f:
             old = {r['work']: (r['verdict'], r['note_by_hand']) for r in csv.DictReader(f)}
     with open(sp, 'w', newline='', encoding='utf-8') as f:
         w = csv.writer(f)
-        w.writerow(['work', 'person', 'person_label', 'link', 'year', 'title', 'note', 'verdict', 'note_by_hand'])
+        w.writerow(['work', 'person', 'person_label', 'link', 'role', 'year', 'title', 'note', 'verdict', 'note_by_hand'])
         for r in nbs:
-            w.writerow([r['work'], r['person'], people[r['person']][0], r['link'], r['year'], r['title'], r['note'][:200],
+            w.writerow([r['work'], r['person'], people[r['person']][0], r['link'], r['role'], r['year'], r['title'], r['note'][:200],
                         *old.get(r['work'], ('', ''))])
     with gzip.open(NOTE_BOOKS, 'wt', newline='', encoding='utf-8') as f:
-        w = csv.DictWriter(f, fieldnames=['work', 'title', 'year', 'person', 'lcnaf', 'link', 'abbreviated', 'note'])
+        w = csv.DictWriter(f, fieldnames=['work', 'title', 'year', 'person', 'lcnaf', 'link', 'role', 'abbreviated', 'note'])
         w.writeheader()
         w.writerows(sorted(nb_rows, key=lambda r: r['work']))
+    with gzip.open(OUT / 'note-books-held.csv.gz', 'wt', newline='', encoding='utf-8') as f:
+        w = csv.DictWriter(f, fieldnames=['work', 'person', 'lcnaf', 'year', 'title', 'role', 'reason', 'basis', 'note'])
+        w.writeheader()
+        w.writerows(sorted(nb_held, key=lambda r: r['work']))
+    with open(OUT / 'note-books-wrong-anchor.csv', 'w', newline='', encoding='utf-8') as f:
+        w = csv.DictWriter(f, fieldnames=['work', 'person', 'lcnaf', 'year', 'title', 'note'], extrasaction='ignore')
+        w.writeheader()
+        w.writerows(nb_wrong_anchor)
     print('B1', len(nb_rows), 'note books loaded', flush=True)
 
     # ---------------------------------------------------------------- B2
@@ -213,7 +440,8 @@ def main():
     for k, t, y, kind, key, isbn in q(f"""SELECT x."from", w.label, coalesce(w.first_year, w.year), w.kind, w.key, w.isbn FROM (
             SELECT "from", "to" FROM '{G}/authored.parquet' UNION SELECT "from", "to" FROM '{G}/edited.parquet'
             UNION SELECT "from", "to" FROM '{G}/linked_authored.parquet' UNION SELECT "from", "to" FROM '{G}/linked_edited.parquet') x
-            JOIN '{G}/work.parquet' w ON w.key = x."to" WHERE w.label IS NOT NULL AND w.kind IN ('book', 'thesis', 'other')"""):
+            JOIN '{G}/work.parquet' w ON w.key = x."to" WHERE w.label IS NOT NULL AND w.kind IN ('book', 'thesis', 'other')
+            AND w.key NOT LIKE 'lcnote:%'"""):
         work_of[k].append((t, y, kind, key, isbn))
     for k, xs in nb_of.items():
         for t, y, kind, key in xs:
@@ -231,8 +459,10 @@ def main():
         for f, _, g in forms(l):
             if g and not all(len(x) == 1 for x in g):
                 pidx[f].append(k)
+    # REVIEWS rows this script made in an earlier run (source review-books:titled) do not count: the table is rewritten whole
+    own = "coalesce(source, '') <> 'review-books:titled'"
     revs = q(f"""SELECT w.key, w.label, w.year, w.kind, w.journal, w.resolution FROM '{G}/work.parquet' w
-                 WHERE w.label IS NOT NULL AND w.key NOT IN (SELECT "from" FROM '{G}/reviews.parquet')
+                 WHERE w.label IS NOT NULL AND w.key NOT IN (SELECT "from" FROM '{G}/reviews.parquet' WHERE {own})
                  AND (w.kind = 'review' OR w.kind_proposed = 'review'
                       OR (w.kind IN ('article', 'other') AND regexp_matches(w.label, '{MARKER}')))""")
     rep['b2_population'] = len(revs)
@@ -244,7 +474,7 @@ def main():
     rep['b2_review_kind_total'] = q(f"SELECT count(*) FROM '{G}/work.parquet' WHERE kind = 'review'")[0][0]
     rep['b2_review_kind_without_REVIEWS'] = sum(1 for r in revs if r[3] == 'review')
     rep['b2_kind_proposed_review_without_REVIEWS'] = q(f"""SELECT count(*) FROM '{G}/work.parquet' WHERE kind <> 'review'
-        AND kind_proposed = 'review' AND key NOT IN (SELECT "from" FROM '{G}/reviews.parquet')""")[0][0]
+        AND kind_proposed = 'review' AND key NOT IN (SELECT "from" FROM '{G}/reviews.parquet' WHERE {own})""")[0][0]
     ties, held, groups = [], [], defaultdict(list)
     for key, label, ryear, kind, journal, res in revs:
         p = parse(label)
@@ -271,15 +501,47 @@ def main():
                 if cands & credited_on.get(key, set()):
                     rep['b2_reviewed_author_credited_on_the_review'] += 1
                     continue
+                rsub = ntoks(rd['title'][len(main_part(rd['title'])):])     # the subtitle the review prints, if any
                 for k in cands:
+                    # every work of the person (any kind but reviews) that shares the review's short title: two or more
+                    # that are not theses -> the label cannot say which (Cottier: 'Fatale Gewalt' 2015 and 2017; spot
+                    # check 2026-11-14), unless the printed subtitle picks one
+                    same_short = {}
+                    for w_, wkind, y, t, cr in held_by.get(k, ()):
+                        if cr and wkind != 'thesis' and not re.match(r'(?i)\s*review of', t or '') and \
+                                (titles_agree(rd['title'], t) or fold_main(t) == m):
+                            same_short[w_] = t
                     for t, by, bkind, bkey, _ in work_of.get(k, ()):
                         if not (titles_agree(rd['title'], t) or fold_main(t) == m):
                             continue
                         if by and ryear and not (by - 1 <= ryear <= by + 8):
                             rep['b2_title_fits_date_does_not'] += 1
                             continue
+                        # never a thesis node for a review 3+ years after the thesis (the book of the thesis is reviewed;
+                        # Le Zotte 2013 thesis, 2018 review of the 2017 book)
+                        if bkind == 'thesis' and by and ryear and ryear - by >= 3:
+                            rep['b2_thesis_review_3plus_years_later'] += 1
+                            continue
+                        wsub = ntoks(t[len(main_part(t)):])
+                        if len(rsub) >= 2 and len(wsub) >= 2 and not shares(rsub, wsub):
+                            rep['b2_subtitle_differs'] += 1
+                            continue
+                        others = set(same_short) - {bkey}
+                        if others and bkind != 'note-book':
+                            pick = [w_ for w_, tt in same_short.items()
+                                    if len(rsub) >= 2 and shares(rsub, ntoks(tt[len(main_part(tt)):]))]
+                            if pick != [bkey]:
+                                hits.setdefault(bkey, ('titled', f'{nm} | {t[:80]}', 'several-works:' + k + ':' +
+                                                       ' '.join(sorted(same_short))))
+                                continue
                         hits.setdefault(bkey, ('titled', f'{nm} | {t[:80]}', k if len(cands) == 1 else 'several:' + k))
+        sev = {b: v for b, v in hits.items() if v[2].startswith('several-works:')}
         hits = {b: v for b, v in hits.items() if not v[2].startswith('several')}
+        if sev and not any(v[0] == 'isbn' for v in hits.values()):
+            rep['b2_held_several_works_same_short_title'] += 1
+            held.append(dict(review=key, label=label[:200],
+                             books='several-works-same-short-title: ' + next(iter(sev.values()))[2].split(':', 2)[2]))
+            continue
         if not hits:
             continue
         if len(hits) > 1:
