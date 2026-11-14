@@ -115,3 +115,66 @@ class Classified(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class ModelLayer(unittest.TestCase):
+    """2026-11-13: classifier decision = link rows and Qwen verdicts (graph_scored_links.model_layer)"""
+    @staticmethod
+    def crow(pid, work, key, role='reviewer', pos='0', tbl='wp', src='review'):
+        return dict(position=str(pid), work=work, role=role, pos=pos, decision='link', person_key=key, probability='0.99',
+                    stratum='multi', model='gbt test', tbl=tbl, list_source=src)
+
+    @staticmethod
+    def qrow(pid, work, decision, role='reviewer', rule_key=''):
+        return dict(position=str(pid), work=work, role=role, decision=decision, rule_key=rule_key, votes='3/3',
+                    confidence='high', reason='r')
+
+    def load(self, crows, qrows, qpos, linked=None, keylog=()):
+        from graph_scored_links import model_layer
+        rels = {'AUTHORED': [{'from': a, 'to': b} for a, b in keylog], 'EDITED': []}
+        linked = linked or {'AUTHORED': [], 'EDITED': []}
+        cands, rep = [], {}
+        files = {'c': crows, 'q': qrows, 'p': qpos}
+
+        class P:
+            def __init__(self, n):
+                self.n = n
+
+            def exists(self):
+                return True
+        model_layer(lambda p: files[p.n], P('c'), P('q'), P('p'), lambda k: k or None, lambda w: w, {}, set(), rels,
+                    linked, cands, rep)
+        return linked, cands, rep['model_links']
+
+    def rule(self, key, work, pos='0', role='reviewer', state='linked'):
+        return {'from': key, 'to': work, 'claim': f'work-people:{role}:{pos}', 'source': f'work-people:{role}', 'state': state}
+
+    def test_loads_new_and_counts_same(self):
+        linked = {'AUTHORED': [self.rule('p-1', 'w1')], 'EDITED': []}
+        lk, cands, rep = self.load([self.crow(1, 'w1', 'p-1'), self.crow(2, 'w2', 'p-2')],
+                                   [self.qrow(3, 'w3', 'p-3')], [dict(position='3', tbl='wp', list_source='review', pos='0')], linked)
+        srcs = sorted(r['source'] for r in lk['AUTHORED'])
+        self.assertEqual(srcs, ['classified-links', 'qwen-links', 'work-people:reviewer'])
+        self.assertEqual(rep['clf|already_linked|work-people:reviewer'], 1)
+
+    def test_qwen_not_keyed_demotes_rule_and_classifier(self):
+        linked = {'AUTHORED': [self.rule('p-1', 'w1'), self.rule('p-9', 'w9', state='exact')], 'EDITED': []}
+        lk, cands, rep = self.load([self.crow(1, 'w1', 'p-5', pos='1')], [self.qrow(1, 'w1', 'not-keyed'), self.qrow(2, 'w9', 'not-keyed')],
+                                   [dict(position='1', tbl='wp', list_source='review', pos='0'),
+                                    dict(position='2', tbl='wp', list_source='review', pos='0')], linked)
+        self.assertEqual([r['from'] for r in lk['AUTHORED']], ['p-9'])        # identifier link kept
+        self.assertEqual({c['from'] for c in cands}, {'p-1', 'p-5'})   # rule and classifier keys become candidates
+        self.assertEqual(rep['qwen_not_keyed|rule_row_exact_kept'], 1)
+
+    def test_conflict_links_neither(self):
+        linked = {'AUTHORED': [self.rule('p-1', 'w1')], 'EDITED': []}
+        lk, cands, rep = self.load([], [self.qrow(1, 'w1', 'p-2')], [dict(position='1', tbl='wp', list_source='review', pos='0')], linked)
+        self.assertEqual(lk['AUTHORED'], [])
+        self.assertEqual({c['from'] for c in cands}, {'p-1', 'p-2'})
+        self.assertEqual(rep['conflicts'], 1)
+
+    def test_keylog_position_skipped(self):
+        lk, cands, rep = self.load([], [self.qrow(1, 'w1', 'p-2', rule_key='p-1')],
+                                   [dict(position='1', tbl='no', list_source='openalex', pos='0')], keylog=[('p-1', 'w1')])
+        self.assertEqual(lk['AUTHORED'], [])
+        self.assertEqual(rep['qwen_key|keylog_credits_position'], 1)

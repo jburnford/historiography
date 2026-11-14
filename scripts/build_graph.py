@@ -193,7 +193,9 @@ REVIEW_BOOKS = ROOT / 'data/graph/review-books.csv.gz'
 REVIEW_AUTHORS = ROOT / 'data/graph/review-authors.csv.gz'
 WORK_DUPS = ROOT / 'data/graph/work-duplicates.csv.gz'
 SCORED_LINKS = ROOT / 'data/graph/scored-links/links.csv.gz'   # scripts/score_links.py (Fellegi-Sunter scorer), loaded by graph_scored_links.py
-CLASSIFIED_LINKS = ROOT / 'data/graph/scored-links/classified.csv.gz'   # the classifier's certified links (load = True only; pass eight)
+CLASSIFIED_LINKS = ROOT / 'data/graph/scored-links/classified.csv.gz'   # the classifier's links (decision = link, 2026-11-13)
+QWEN_LABELS = ROOT / 'data/graph/scored-links/qwen-labels.csv.gz'       # Qwen's direct verdicts (2026-11-13, source qwen-links)
+QWEN_POSITIONS = ROOT / 'data/graph/scored-links/qwen-positions.csv.gz'  # their list positions (scripts/qwen_positions.py)
 LC_BOOKS = ROOT / 'data/graph/lc-books-by-authority.csv.gz'   # lc_catalogue_credits.py measure: LC books of keys with
                                                               # scholarly evidence the graph lacked (unkeyed lccn: nodes)   # scripts/review_books.py: articles that review a book (class 29)
 # roles under which a credit is not a citation of the person's own work (class 15): they prepared someone else's work;
@@ -1488,6 +1490,16 @@ def main():
                 if w and w in wi and w not in scored_wi:
                     x = wi[w]
                     scored_wi[w] = dict(kind=x.get('kind'), kind_proposed=x.get('kind_proposed'), label=x.get('label'))
+        for path, col in ((CLASSIFIED_LINKS, 'decision'), (QWEN_LABELS, 'decision')):   # 2026-11-13: model_layer
+            if not path.exists():
+                continue
+            for r in read_rows(path):
+                d = r[col]
+                if d == 'link' or d.startswith('p-'):
+                    w = resolve(r['work'])
+                    if w and w in wi and w not in scored_wi:
+                        x = wi[w]
+                        scored_wi[w] = dict(kind=x.get('kind'), kind_proposed=x.get('kind_proposed'), label=x.get('label'))
     del wi
     s, L = pa.string(), pa.list_(pa.string())
     report['Person'] = write('person', people, pa.schema([('key', s), ('label', s), ('resolution', s), ('anchors', L)] +
@@ -1878,10 +1890,14 @@ def main():
         from graph_scored_links import scored_layer
         scored_layer(read_rows, SCORED_LINKS, person1, resolve, scored_wi, {r['from'] for r in rb_rows}, rels, linked,
                      possible_authors, report, ra=ra)
-    # pass eight (2026-11-12): the classifier's certified links (classified.csv.gz rows with load = True only)
-    if CLASSIFIED_LINKS.exists() and not os.environ.get('BUILD_SCORED_OFF'):
-        from graph_scored_links import classified_layer
-        classified_layer(read_rows, CLASSIFIED_LINKS, person1, resolve, rels, linked, report, ra=ra)
+    # pass eight (2026-11-12) loaded the classifier's certified links (load = True); 2026-11-13: the retrained
+    # classifier's links (every decision = link row) and Qwen's direct verdicts (source qwen-links), with Qwen's
+    # not-keyed verdicts and disagreements returning the rule links of the positions it read to the candidates
+    if CLASSIFIED_LINKS.exists() and QWEN_LABELS.exists() and not os.environ.get('BUILD_SCORED_OFF'):
+        from graph_scored_links import model_layer
+        model_layer(read_rows, CLASSIFIED_LINKS, QWEN_LABELS, QWEN_POSITIONS, person1, resolve, scored_wi,
+                    {r['from'] for r in rb_rows}, rels, linked, possible_authors, report, ra=ra,
+                    conflicts_path=OUT / 'model-link-conflicts.csv')
     # pass ten (class 11): the people of a hidden unkeyed record settled on the keyed work it duplicates
     linked['AUTHORED'], possible_authors, report['same_work_carry'] = same_work_carry(
         same_new, rels['AUTHORED'], linked.get('AUTHORED', []), possible_authors, plabel)

@@ -37,7 +37,21 @@
   "date",
   "neg",
   "rg",
-  "kind"
+  "kind",
+  "p9_lrs",
+  "p9_lrf",
+  "p9_vrep",
+  "p9_rv",
+  "p9_ct",
+  "p9_cca",
+  "p9_cck",
+  "p9_prof",
+  "p9_lro",
+  "p9_lcin",
+  "p9_lcdp",
+  "p9_lcact",
+  "p9_lrs_other",
+  "p9_lrs_margin"
  ],
  "monotone_up": [
   "aff",
@@ -54,7 +68,14 @@
   "net_col",
   "net_vol",
   "topic_sc",
-  "nco"
+  "nco",
+  "p9_lrs",
+  "p9_lrf",
+  "p9_vrep",
+  "p9_rv",
+  "p9_ct",
+  "p9_cca",
+  "p9_cck"
  ],
  "categorical": [
   "freq",
@@ -102,25 +123,57 @@
   "neg",
   "rg",
   "kind",
+  "p9_lrs",
+  "p9_lrf",
+  "p9_vrep",
+  "p9_rv",
+  "p9_ct",
+  "p9_cca",
+  "p9_cck",
+  "p9_prof",
+  "p9_lro",
+  "p9_lcin",
+  "p9_lcdp",
+  "p9_lcact",
+  "p9_lrs_other",
+  "p9_lrs_margin",
   "_p1"
  ],
  "seed": 20261112,
  "clerical_weight": 20.0,
  "bound": 0.005,
- "final": "fs",
+ "final": "gbt",
  "model_kind": {
   "gbt": "lightgbm",
   "logit": "logit"
  },
- "training": "gold splits by hidden key (score_links.split_of): 0 Fellegi-Sunter weights, 1 train, 2 calibration + thresholds, 3 test; clerical-dev labels in training at the clerical weight; clerical-test never used before the final evaluation",
+ "training": "gold splits by hidden key (score_links.split_of): 0 Fellegi-Sunter weights, 1 train, 2 calibration + thresholds, 3 test; clerical-dev labels validate thresholds (or train at the clerical weight); clerical-test never used before the final evaluation; Qwen production labels (when given): qwen-train in training at their label weights, qwen-cal in calibration and as a threshold check (production weights), qwen-test (5,000 positions) held out",
+ "qwen_labels": {
+  "path": "/project/clifford/historiography-kg/linkclf/qwen-labels.csv.gz",
+  "md5": "daeafc6168f0d353cdd7bf085eb910f9"
+ },
+ "qwen_weights": {
+  "base": 1.0,
+  "band26": 0.3,
+  "nofact": 0.5,
+  "holdout": 0.125
+ },
+ "sim_absent": {
+  "mode": "down",
+  "weight": 0.1
+ },
+ "pass_nine_features": true,
  "inputs": {
   "clerical-labels.csv": "0a34e766eee4afaed636c9f4b4876d98",
   "meta.parquet": "405a76a630958c82b87dd84d460b2087",
+  "p9-blocks.parquet": "52a88be9235db5e124f1c46dee354e56",
+  "p9-features.parquet": "31edd35f833fd0f443f3d230b84360ca",
+  "p9-pos.parquet": "b812c608ffcfbbcee349abfb973e8ce0",
   "pairs.parquet": "44a4d6fc9a5b5aedf43cc66f92d5763f",
   "person-attrs.parquet": "c591ea7504a24f1e849aaa2fab8faff1",
   "positions.parquet": "7bea17febf830510bf0a882709daeba7",
   "prep.json": "ed97d3658c4b321817afcf3fad493dce",
   "prod-decided.parquet": "06bbbd0ce3c474ca32694fff7853aa83"
  },
- "built": "2026-11-12 13:25"
+ "built": "2026-11-13 16:25"
 }

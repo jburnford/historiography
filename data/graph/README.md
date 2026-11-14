@@ -276,6 +276,17 @@ the volume's ISBN).
   credited (key log or any linked loader) are skipped, and the reviewed-author check (`scripts/reviewed_authors.py`)
   refuses a person who is the reviewed book's author. Loader `scripts/graph_scored_links.py` `classified_layer`; report
   `classified_links`; the explorer marks the row "classified link (p=…)". `BUILD_SCORED_OFF=1` also turns it off.
+**2026-11-13 (model links).** `scored-links/classified.csv.gz` is now the retrained classifier's output (gbt on the
+Qwen labels; `train_link_classifier.py finalize` adds `tbl` and `list_source`); the build loads every `decision = link`
+row, not only `load = True`. `scored-links/qwen-labels.csv.gz` (Qwen 3.8 27B verdicts, prompt qll-v1, greedy+sc; ids,
+verdicts, reasons) and `scored-links/qwen-positions.csv.gz` (`scripts/qwen_positions.py`: position, tbl, list_source,
+pos; rerun it whenever qwen-labels.csv.gz is rewritten) load as linked AUTHORED, source `qwen-links`, state `qwen`,
+`role_basis` "Qwen clerical read, prompt qll-v1 (…)". Loader `graph_scored_links.model_layer` (replaces
+`classified_layer` in the build); rules in its docstring: a disagreement between Qwen's key and a rule or classifier key
+links neither (`model-link-conflicts.csv` beside the tables); Qwen 'not-keyed' returns the position's rule link to
+author_candidates (reason `qwen-not-keyed`; `BUILD_QWEN_DEMOTE_OFF=1` keeps them); positions whose key or rule key the
+key log credits on the work are skipped. Report `model_links`.
+
 - The single-candidate, no-fact class (ARCHITECTURE.md §8 class 38): `link_work_people.py link` writes, for every position
   whose only surviving candidate is dated and uncontradicted but has no fact and no rare name, the inputs of three tested
   rules to `signals` (`x:lco` LC namesakes, `x:lcdp` of them date-possible, `x:oa`, `x:name`, `x:scholar`, `x:venue`,

@@ -60,7 +60,7 @@ EDITION_D = ("CASE WHEN bool_or(e.edition) OR any_value(e.cited_as) IS NOT NULL 
 EDITION_OF_D = "any_value(e.relation) || ', ' || any_value(e.theses) || ' citing theses moved to the original'"
 # rows resting only on a credit outside the key log are marked; key-log rows carry no note
 LINKED_D = ("CASE WHEN bool_or(e.evidence = 'keylog') THEN NULL ELSE "
-            "'linked: ' || string_agg(DISTINCT CASE WHEN e.source = 'scored-links' THEN 'scored link (score ' || round(e.score, 1) || ')' WHEN e.source = 'classified-links' THEN 'classified link (p=' || round(e.score, 3) || ')' ELSE "
+            "'linked: ' || string_agg(DISTINCT CASE WHEN e.source = 'scored-links' THEN 'scored link (score ' || round(e.score, 1) || ')' WHEN e.source = 'classified-links' THEN 'classified link (p=' || round(e.score, 3) || ')' WHEN e.source = 'qwen-links' THEN 'Qwen clerical read (' || replace(e.role_basis, 'Qwen clerical read, ', '') || ')' ELSE "
             "CASE WHEN e.state = 'exact' THEN 'by identifier' WHEN e.role_basis LIKE 'evidence: %' THEN substr(e.role_basis, 11) ELSE 'by rule' END || ' ('"
             " || CASE e.source WHEN 'lc' THEN 'LC' WHEN 'openalex' THEN 'OpenAlex' WHEN 'work-people:reviewer' THEN 'printed reviewer'"
             " WHEN 'work-people:jstor-author' THEN 'JSTOR author' WHEN 'work-people:author' THEN 'OpenAlex/Crossref author list'"

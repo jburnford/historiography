@@ -210,3 +210,29 @@ the finished chunks via `write --policy greedy+sc`, temp name then moved):
 `bash scripts/label_links_qwen_rest_merge.sh` (`FETCH=0` to merge local results only). Retraining on the larger label set
 is a separate decision (linkclf_final_run.sh; the rest rows carry weight 1 and cells `rest|…`, so `rule_weak_by_qwen`
 is unaffected).
+
+## Loaded into the graph (2026-11-13 evening; evidence linked, nothing in the key log)
+- Classifier: out-final fetched (build/linkclf-2026-11-13/out-final/classified.csv.gz), `finalize` run (classifier-report.json,
+  -manifest.json; under the old certification rule `load` = 0 rows). The build now loads every decision = link row
+  (83,842) through `graph_scored_links.model_layer`, source `classified-links`: 5,937 new credits; already linked by the
+  rule linker or scorer 75,669 (work-people reviewer 46,544, JSTOR author 20,197, scored-links 6,505, …); 1,133 the same
+  key Qwen links (loaded as qwen-links); 166 key-log pairs, 459 pairs credited elsewhere, 199 refused as the reviewed
+  author, 165 author-role links on reviews with unknown reviewed author, 19 where the rule names another key, 68 unresolved.
+- Qwen 'key' verdicts (28,633): 17,410 new credits, source `qwen-links`, state `qwen`; 9,230 already linked by the rule;
+  449 skipped (key log credits the position), 145 pair credited elsewhere, 421 reviewed-author refusals, 841 author-role
+  on reviews with unknown reviewed author, 86 positions unresolved; 67 conflicts with a rule key (neither linked, both
+  candidates; build/graph/model-link-conflicts.csv; 30 of the first 79 had the same label on both keys, i.e. split keys);
+  12 where Qwen named the rule key as a duplicate count as agreement.
+- Qwen 'not-keyed' (7,515): 324 rule links returned to author_candidates (reason qwen-not-keyed); 7,185 positions had no
+  rule link; 3 identifier links kept. Plus 67 conflict demotions: 391 in all. `BUILD_QWEN_DEMOTE_OFF=1` keeps them.
+- 'error' (2,128): the greedy pass (temperature 0) returned text that did not parse; every one of them is at least 600
+  characters (the stored raw is cut at 600) against max_tokens 450, consistent with the JSON being cut off by the token
+  cap. The three sampled passes on these: same key 1,082, not-keyed 341, mixed 677, all error 28 (policy greedy+sc
+  makes them 'error'). Not fixed; a rerun with --max-tokens 700 on those 2,128 would settle them.
+- Hand checks: 30 random new classifier links 29 right, 1 unclear (role); 30 new Qwen links 25 right, 2 wrong
+  (Jeffrey H. Richards WMQ review on the British film historian's key; Acadiensis bibliography on John Macleod 1966-,
+  a key already mixed), 3 unclear. 20 not-keyed demotions: 9 were right links (career moves read as affiliation
+  mismatch: Corrigan at Arizona State, Churella at Ohio State, Linda E. Mitchell at Alfred, Colin Richmond on Belsen …),
+  7 right demotions, 4 unclear. Qwen's not-keyed verdicts are weak; consider switching demotions off.
+- Note: when label_links_qwen_rest_merge.sh rewrites qwen-labels.csv.gz, rerun `python3 scripts/qwen_positions.py`
+  (needs build/linkclf-2026-11-13/clf-inputs/meta.parquet with the rest pids) before the next build.

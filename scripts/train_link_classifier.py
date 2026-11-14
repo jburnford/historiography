@@ -1313,7 +1313,8 @@ def write_classified(out, D, pc, M):
 
 
 def finalize(args):
-    """production table for the loader: the classifier's decisions beside the round-two scorer's; `load` marks the
+    """production table for the loader: the classifier's decisions beside the round-two scorer's (since 2026-11-13 the
+    build loads every decision = link row, source classified-links; `load` is kept as the earlier certified subset); `load` marks the
     classifier links the scorer did not make whose stratum passes the bound on the gold test as additions
     (scorer + classifier policy, added links only: upper 95% bound <= bound, 300+ links); everything else the classifier
     links but cannot certify as an addition stays a candidate. Writes data/graph/scored-links/classified.csv.gz,
@@ -1329,6 +1330,10 @@ def finalize(args):
     d = pd.read_parquet(Path(args.inputs) / 'prod-decided.parquet', columns=['pid', 'decision', 'key'])
     d = d.rename(columns={'pid': 'position', 'decision': 'scorer_decision', 'key': 'scorer_key'})
     c = c.merge(d, on='position', how='left')
+    # 2026-11-13: the position's table (wp work-people, no name-only) and printed-list source, so the build can find the
+    # rule linker's row for the same position (claims work-people:<role>:<pos>, name-only:<source>:<pos>)
+    m = pd.read_parquet(Path(args.inputs) / 'meta.parquet', columns=['pid', 'tbl', 'source'])
+    c = c.merge(m.rename(columns={'pid': 'position', 'source': 'list_source'}), on='position', how='left')
     c['load'] = (c.decision == 'link') & (c.scorer_decision != 'link') & c.stratum.isin(ok)
     c['model'] = f"{best} {man['built']} seed {man['seed']}"
     c.to_csv(out / 'classified.csv.gz', index=False, compression='gzip')
