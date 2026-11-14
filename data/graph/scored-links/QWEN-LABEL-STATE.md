@@ -155,3 +155,58 @@ Fir labels now: fetch + write by hand (same as the first two lines of linkclf_fi
 Local copies of the session scratch: build/linkclf-2026-11-13/{qwen, clf-inputs (classifier inputs + p9 inputs),
 sc-positions.parquet, p9-analysis}. Not verified: the dry-run report contents (job still running at hand-back), the
 Task 2 numbers, whether the Fir run finishes inside three or four resubmissions.
+- 08:49 dry run 6022362 finished OK (28.5 min, 6.8 GB; the per-feature explanation pass is most of it). DRY RUN, not
+  results, gold test split only (Opus/Qwen held-out numbers are in out-dry/train-report.json, not yet read):
+  gbt 22,161 links, 0.30% wrong (upper 0.41%), recall 77.1%; two-stage 0.32% / 76.2%; logit 0.25% / 64.7%;
+  calibrated FS 0.26% / 59.2%; scorer C2 0.24% / 55.3%; rule 6.1% / 80.4%; scorer+gbt 0.40% (upper 0.52%) / 77.7%.
+
+## Remaining review positions (2026-11-13)
+Owner: go on running Qwen over the rest of the undecided middle. Source: the final classifier's production file
+(Plato linkclf/out-final/classified.csv.gz, md5 909645e2…, local copy build/linkclf-2026-11-13/out-final/): 479,174
+`review` positions, of which 28,359 are already in qwen-labels.csv.gz (the `prod` run) -> **450,815 to read**.
+Queue: `python3 scripts/qwen_rest_queue.py` (anchors and thesis citations from the scorer's graph snapshot
+build/session-scratch-2026-11-13/scored/graph, i.e. the same snapshot the dossiers use). Tiers, in this order:
+
+| tier | rule | positions |
+| --- | --- | --- |
+| 1 | classifier's top candidate holds a diss-person / diss-author / aha-phd / aha / lcnaf anchor AND the position's work is cited by a thesis (cites source thesis or thesis-matched); any stratum except unmeasured/initials | 65,357 (single-2-5 26,573; single-unique 22,171; multi 11,465; single-6-25 4,784; single-26+ 364) |
+| 2 | other single-unique, then single-2-5 | 231,026 (unique 92,523; 2-5 138,503) |
+| 3 | other multi, then single-6-25, then single-26+ | 101,903 (multi 73,106; 6-25 26,768; 26+ 2,029) |
+| 4 | single-unmeasured, then single-initials | 52,529 (unmeasured 39,342; initials 13,187) |
+
+Inside a tier: anchored first, thesis-cited first, then position id. 420,432 of the 450,815 top candidates hold one of
+the anchors (so "anchored" alone barely ranks; the thesis citation does the work: 73,581 positions).
+Chunks of 40,000 (build/linkclf-2026-11-13/qwen-rest/, not committed): rest-01 = tier 1; rest-02 = tier 1 rest + tier 2;
+rest-03 … rest-07 = tier 2; rest-08 = tier 2 end + tier 3; rest-09 = tier 3; rest-10 = tier 3 end + 1,714 tier 4;
+rest-11 = tier 4; rest-12 = 10,815 (tier 4 end). Per chunk: rest-NN-positions.csv (item, pid), rest-NN-dossiers.jsonl.gz
+(label_links_qwen.py `dossiers` with SL_SCRATCH=build/session-scratch-2026-11-13/scored, the production run's format;
+~45 s and < 0.6 GB per chunk; metadata only); rest-queue.csv (all, with tier, chunk, anchored, thesis_cited),
+rest-queue.json (counts), rest-sample.csv (the `write` sample columns; cell `rest|tierN|stratum`, weight 1, nofact by
+label_links_qwen.sample's definition). Hard rule (own reviewed book) leaves 189 positions with no candidate left
+(not-keyed by rule, no model call). Check: 300 production positions rebuilt from the same snapshot gave identical candidate lists and
+top-level fields; 107 differed only in which works/relations/co-authors were sampled into a candidate's list
+(order-unstable ties), so the rest dossiers match the production format but are not byte-identical in those samples.
+Cost: the `prod` run read 40,000 in 7 h 55 min on one H100, so about 8 h per chunk, **≈ 90 GPU-hours** for all 12.
+
+**Submitted on Fir, 2026-11-13 evening** (GPU fair share 0.336 at submission, no other jobs of ours queued; all 12
+chunks copied to /scratch/jic823/linklabel/data/, md5 checked): rest-01 job 3944948, rest-02 3945025, rest-03 3945028,
+rest-04 3945031, each `--time=10:00:00`, all PENDING (Priority) at hand-back, no start estimate shown. Fir's scripts
+are the ones `prod` ran with (label_links_qwen.py md5 identical to the local copy); do not overwrite them with local
+copies (train_link_classifier.py holds `render` and has uncommitted local edits).
+Fir login node that evening: every CVMFS binary (ls, cat, tail, rsync, md5sum …) died with "Bus error"; /usr/bin
+binaries, Slurm (/opt) and sftp worked. Work-around used: `PATH=/usr/bin:/bin` for shell tools and
+`rsync --rsync-path=/usr/bin/rsync`. Submit the rest (05–12) four at a time as these finish:
+```bash
+cd /home/jic823/historiography; R=build/linkclf-2026-11-13/qwen-rest
+ssh fir 'sshare -U -u jic823; squeue -u jic823'
+# (already done) rsync -a --rsync-path=/usr/bin/rsync $R/rest-*-dossiers.jsonl.gz fir:/scratch/jic823/linklabel/data/
+for n in 05 06 07 08; do ssh fir "cd /scratch/jic823/linklabel/scripts && sbatch --time=10:00:00 label_links_qwen_fir.slurm ../data/rest-$n-dossiers.jsonl.gz rest-$n --greedy --samples 3"; done
+# then n in 09 10 11 12 (rest-12 has 10,815 positions: --time=4:00:00 is enough)
+```
+Resume: a chunk that ends on its time limit without results/rest-NN/DONE is resubmitted with the same line (same NAME):
+the slurm script skips verdicts already written. Check: `ssh fir 'ls /scratch/jic823/linklabel/results/rest-*/; squeue -u $USER'`.
+Fetch + merge (idempotent; fetches every rest-NN with DONE, skips the others, rebuilds qwen-labels.csv.gz from `prod` +
+the finished chunks via `write --policy greedy+sc`, temp name then moved):
+`bash scripts/label_links_qwen_rest_merge.sh` (`FETCH=0` to merge local results only). Retraining on the larger label set
+is a separate decision (linkclf_final_run.sh; the rest rows carry weight 1 and cells `rest|…`, so `rule_weak_by_qwen`
+is unaffected).
