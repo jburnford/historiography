@@ -1,0 +1,334 @@
+{
+ "class_": "ARCHITECTURE.md §8 class 39: one career on several person keys with the same full name (thin review-credit, H-Net, thesis, AHA PhD, repository-advisor and name-only keys)",
+ "script": "scripts/key_career_merges.py",
+ "built_on": {
+  "graph": "build/graph after the Macfarlane apply (commit ef59374f)",
+  "keylog_seq": 5821772
+ },
+ "applied": false,
+ "run": {
+  "candidate_positions_fewer_claimants": 4222,
+  "candidate_positions_single_after": 2468,
+  "candidate_positions_total": 242805,
+  "dry_run_events": 10502,
+  "duplicate_groups_fully_resolved": 1915,
+  "duplicate_groups_live": 4903,
+  "duplicate_groups_partly_resolved": 183,
+  "groups": 8782,
+  "keylog_seq": 5821772,
+  "keys_read": 37417,
+  "person_keys": 258639,
+  "person_keys_removed_if_applied": 10502,
+  "possibly_same_pairs": 6426,
+  "possibly_same_pairs_resolved": 2586,
+  "probe_macfarlane": {},
+  "review_by_why": {
+   "tie-below-strict-bar": 3708,
+   "two-or-more-anchored-keys": 1570,
+   "merge-guard": 9
+  },
+  "strict_by_band": {
+   "6-25": 334,
+   "2-5": 7152,
+   "unique": 3016
+  },
+  "strict_by_thin_type": {
+   "thesis": 93,
+   "review": 10033,
+   "aha": 347,
+   "name": 18,
+   "advisor": 11
+  },
+  "strict_by_tie": {
+   "topic>=6": 4062,
+   "venue": 6048,
+   "institution": 217,
+   "network": 175
+  },
+  "strict_into_anchored": 5859,
+  "strict_into_thin": 4643,
+  "thin_keys": {
+   "thesis": 8427,
+   "name": 9408,
+   "aha": 32482,
+   "review": 29206,
+   "advisor": 757
+  },
+  "thin_keys_sharing_a_name_block": 26788,
+  "thin_rows": 25990,
+  "thin_rows_status": {
+   "blocked:every compatible key separated": 2810,
+   "candidate:": 21610,
+   "review:two-or-more-anchored-keys": 1570
+  },
+  "tiers": {
+   "none": 7058,
+   "strict": 10502,
+   "review": 5287,
+   "survivor": 3143
+  },
+  "topic_min": 6.0
+ },
+ "measurement": {
+  "strict_sample_all": {
+   "n": 156,
+   "right": 154,
+   "wrong": 0,
+   "unclear": 2,
+   "wrong_share": 0.0,
+   "wrong_upper95": 0.019,
+   "wrong_or_unclear_upper95": 0.0398
+  },
+  "strict_sample_by_band": {
+   "2-5": {
+    "n": 67,
+    "right": 67,
+    "wrong": 0,
+    "unclear": 0,
+    "wrong_share": 0.0,
+    "wrong_upper95": 0.0437,
+    "wrong_or_unclear_upper95": 0.0437
+   },
+   "6-25": {
+    "n": 33,
+    "right": 32,
+    "wrong": 0,
+    "unclear": 1,
+    "wrong_share": 0.0,
+    "wrong_upper95": 0.0868,
+    "wrong_or_unclear_upper95": 0.1359
+   },
+   "unique": {
+    "n": 56,
+    "right": 55,
+    "wrong": 0,
+    "unclear": 1,
+    "wrong_share": 0.0,
+    "wrong_upper95": 0.0521,
+    "wrong_or_unclear_upper95": 0.0819
+   }
+  },
+  "strict_sample_by_tie": {
+   "institution": {
+    "n": 27,
+    "right": 27,
+    "wrong": 0,
+    "unclear": 0,
+    "wrong_share": 0.0,
+    "wrong_upper95": 0.105,
+    "wrong_or_unclear_upper95": 0.105
+   },
+   "network": {
+    "n": 28,
+    "right": 28,
+    "wrong": 0,
+    "unclear": 0,
+    "wrong_share": 0.0,
+    "wrong_upper95": 0.1015,
+    "wrong_or_unclear_upper95": 0.1015
+   },
+   "topic": {
+    "n": 60,
+    "right": 58,
+    "wrong": 0,
+    "unclear": 2,
+    "wrong_share": 0.0,
+    "wrong_upper95": 0.0487,
+    "wrong_or_unclear_upper95": 0.1012
+   },
+   "venue": {
+    "n": 40,
+    "right": 40,
+    "wrong": 0,
+    "unclear": 0,
+    "wrong_share": 0.0,
+    "wrong_upper95": 0.0722,
+    "wrong_or_unclear_upper95": 0.0722
+   },
+   "weak-topic": {
+    "n": 1,
+    "right": 1,
+    "wrong": 0,
+    "unclear": 0,
+    "wrong_share": 0.0,
+    "wrong_upper95": 0.95,
+    "wrong_or_unclear_upper95": 0.95
+   }
+  },
+  "all_sampled_by_band_first_rule": {
+   "2-5": {
+    "n": 83,
+    "right": 81,
+    "wrong": 1,
+    "unclear": 1,
+    "wrong_share": 0.012,
+    "wrong_upper95": 0.0559,
+    "wrong_or_unclear_upper95": 0.0739
+   },
+   "26+": {
+    "n": 47,
+    "right": 26,
+    "wrong": 15,
+    "unclear": 6,
+    "wrong_share": 0.3191,
+    "wrong_upper95": 0.4481,
+    "wrong_or_unclear_upper95": 0.5766
+   },
+   "6-25": {
+    "n": 58,
+    "right": 50,
+    "wrong": 5,
+    "unclear": 3,
+    "wrong_share": 0.0862,
+    "wrong_upper95": 0.1728,
+    "wrong_or_unclear_upper95": 0.2351
+   },
+   "unique": {
+    "n": 65,
+    "right": 63,
+    "wrong": 0,
+    "unclear": 2,
+    "wrong_share": 0.0,
+    "wrong_upper95": 0.045,
+    "wrong_or_unclear_upper95": 0.0937
+   }
+  },
+  "all_sampled_by_tie_first_rule": {
+   "institution": {
+    "n": 41,
+    "right": 40,
+    "wrong": 1,
+    "unclear": 0,
+    "wrong_share": 0.0244,
+    "wrong_upper95": 0.1106,
+    "wrong_or_unclear_upper95": 0.1106
+   },
+   "network": {
+    "n": 33,
+    "right": 32,
+    "wrong": 1,
+    "unclear": 0,
+    "wrong_share": 0.0303,
+    "wrong_upper95": 0.1359,
+    "wrong_or_unclear_upper95": 0.1359
+   },
+   "topic": {
+    "n": 79,
+    "right": 73,
+    "wrong": 2,
+    "unclear": 4,
+    "wrong_share": 0.0253,
+    "wrong_upper95": 0.0776,
+    "wrong_or_unclear_upper95": 0.1444
+   },
+   "venue": {
+    "n": 60,
+    "right": 49,
+    "wrong": 5,
+    "unclear": 6,
+    "wrong_share": 0.0833,
+    "wrong_upper95": 0.1673,
+    "wrong_or_unclear_upper95": 0.2852
+   },
+   "weak-topic": {
+    "n": 40,
+    "right": 26,
+    "wrong": 12,
+    "unclear": 2,
+    "wrong_share": 0.3,
+    "wrong_upper95": 0.4403,
+    "wrong_or_unclear_upper95": 0.4919
+   }
+  },
+  "review_tier_sample": {
+   "n": 91,
+   "right": 65,
+   "wrong": 16,
+   "unclear": 10,
+   "wrong_share": 0.1758,
+   "wrong_upper95": 0.2547,
+   "wrong_or_unclear_upper95": 0.3737
+  },
+  "strict_population_by_stratum": {
+   "2-5|institution": 102,
+   "2-5|network": 113,
+   "2-5|topic": 2445,
+   "2-5|venue": 4492,
+   "6-25|institution": 31,
+   "6-25|network": 13,
+   "6-25|topic": 290,
+   "unique|institution": 84,
+   "unique|network": 49,
+   "unique|topic": 1327,
+   "unique|venue": 1556
+  },
+  "strict_weighted_wrong_share": 0.0,
+  "strict_strata_covered_share": 1.0
+ },
+ "recall_probe_macfarlane": {
+  "note": "run on a copy of build/graph taken before the Macfarlane merges (same rule): all five thin keys strict into p-143231",
+  "result": {
+   "p-151402": {
+    "tier": "strict",
+    "into": "p-143231",
+    "why": null,
+    "institution": null,
+    "venue": null,
+    "network": null,
+    "lrs": 9.0,
+    "lrf": 0.0
+   },
+   "p-151403": {
+    "tier": "strict",
+    "into": "p-143231",
+    "why": null,
+    "institution": null,
+    "venue": null,
+    "network": "p-955",
+    "lrs": 4.28,
+    "lrf": 6.0
+   },
+   "p-171364": {
+    "tier": "strict",
+    "into": "p-143231",
+    "why": null,
+    "institution": null,
+    "venue": "h-environment",
+    "network": null,
+    "lrs": 0.0,
+    "lrf": 3.0
+   },
+   "p-173252": {
+    "tier": "strict",
+    "into": "p-143231",
+    "why": null,
+    "institution": null,
+    "venue": "h-environment",
+    "network": null,
+    "lrs": 9.74,
+    "lrf": 0.0
+   },
+   "p-96495": {
+    "tier": "strict",
+    "into": "p-143231",
+    "why": null,
+    "institution": "University of Ottawa|thesis~review-credit",
+    "venue": null,
+    "network": null,
+    "lrs": 17.23,
+    "lrf": 0.0
+   }
+  }
+ },
+ "rule_history": [
+  "first rule: any tie (any topic score, any shared venue) admitted a thin key: hand check of 190 tied candidates (10 per band x tie stratum) found 18 wrong and 11 unclear; wrong by name band: unique 0/60, 2-5 1/66, 6-25 5/58, 26+ 15/47; by tie: weak topic (subject+subfield < 6) 12/40, venue 5/47, topic >= 6 2/70, institution 1/41, network 1/33",
+  "tightened: heading life dates read (Farnham 1804-1848, Elliott 1792-1869); a hyphenated given name is one name (Peter-Michael Hahn is not Peter Hahn); topic tie needs subject+subfield >= 6; venue counts only for bearers <= 5; ties grow only through strict ties (no chaining through a weakly tied key)",
+  "second check, 41 strict rows drawn by stratum: 3 wrong (all bearers 26+: a topic score from German function words, an undated H-Net review joined to a man who died in 1976, an LC 373 institution string), 1 unclear: names with 26+ bearers left the strict tier and German/French/Spanish/Italian function words left the topic score",
+  "final strict tier: 156 sampled rows (134 from the earlier draws that remain strict + 22 drawn at random from the final tier): 0 wrong, 2 unclear (one editorial-office signature, one plausible Restoration-England pair); 95% upper bound on the wrong share 1.9% (4.0% counting unclear as wrong)"
+ ],
+ "not_verified": [
+  "the two unclear strict rows (S120 Samuel J. Thomas, S188 TH Darmstadt Redaktion NPL)",
+  "the sample is weighted toward German H-Soz-u-Kult reviewers because they dominate the strict tier (6,048 venue ties, mostly H-Soz-u-Kult); North American review-credit keys are a smaller share",
+  "no public-web checks were needed for the strict rows; review-tier rows were judged only as far as the sample"
+ ]
+}
