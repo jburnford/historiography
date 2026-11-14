@@ -40,7 +40,9 @@ ADDED = {'part_of': [('evidence', "'keylog'"), ('source', 'NULL'), ('volume_basi
          # reviews of a book found by title or a review-style label (2026-11-12, scripts/review_books.py)
          'reviews': [('evidence', "'keylog'"), ('source', 'NULL')],
          # reviewer -> editor of the reviewed volume (2026-11-13)
-         'reviewed': [('target_role', "'author'")]}
+         'reviewed': [('target_role', "'author'")],
+         # employment / education / position / affiliation (2026-11-14, scripts/pid_records.py)
+         'affiliated_with': [('kind', "'employment'")]}
 WORK_ADDED = ('issn', 'journal_source', 'kind_proposed', 'isbn', 'editors_printed', 'first_year_basis')
 WORK_ADDED_INT = ('first_year', 'first_year_catalogue')
 # credits under which a person prepared someone else's work (an edition, a translation, an introduction, a series):
@@ -412,10 +414,13 @@ class Graph:
         if rid in ('faculty', 'affiliations'):     # dated affiliations, all sources in one line
             me, other = ('to', 'from') if rid == 'faculty' else ('from', 'to')
             side = 't' if me == 'to' else 'f'
-            return (f'''SELECT "{other}" k, count(*) n, string_agg(CASE source WHEN 'aha_directory' THEN 'AHA directory'
+            return (f'''SELECT "{other}" k, count(*) n, string_agg(CASE kind WHEN 'education' THEN 'education: '
+                        WHEN 'position' THEN 'position: ' ELSE '' END || CASE source WHEN 'aha_directory' THEN 'AHA directory'
                         WHEN 'aha_advisor' THEN 'advised PhDs' WHEN 'ihr' THEN 'IHR staff list' WHEN 'orcid' THEN 'ORCID'
                         WHEN 'wikidata' THEN 'Wikidata' WHEN 'review_credit' THEN 'review credit'
                         WHEN 'jstor_signature' THEN 'JSTOR review signature' WHEN 'lc_373' THEN 'LC authority' ELSE source END
+                        || CASE WHEN source IN ('orcid', 'wikidata') AND coalesce(rank, '') <> ''
+                                THEN ' (' || left(rank, 80) || ')' ELSE '' END
                         || CASE WHEN first_year IS NULL AND last_year IS NULL THEN ''
                                 WHEN first_year = last_year OR first_year IS NULL THEN ' ' || last_year
                                 WHEN last_year IS NULL THEN ' ' || first_year || '–'

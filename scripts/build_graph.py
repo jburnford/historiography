@@ -23,7 +23,10 @@ is untracked) and writes to build/graph/ (git-ignored):
 - `AWARDED_BY` (Work -> Institution) from the works' `awarded-by:` members;
 - `AFFILIATED_WITH` (Person -> Institution): dated affiliations by source (AHA directory and advising, IHR staff
   lists, ORCID, Wikidata, review credits, JSTOR review signatures, LC 373) from data/graph/affiliations.csv.gz
-  (scripts/export_affiliations.py; user, 2026-11-08: departments should show the faculty who taught there);
+  (scripts/export_affiliations.py; user, 2026-11-08: departments should show the faculty who taught there); since
+  2026-11-14 also every key's own ORCID record and Wikidata item (scripts/pid_records.py), with `kind` (employment,
+  education, position, affiliation: education is never employment); institutions reached by ROR that the key log has
+  not keyed are unkeyed Institution nodes `ror:<id>` (data/graph/institutions-unkeyed.csv.gz);
 - `POSSIBLY_SAME` (Person -> Person, once per pair, lower key first) from `possible-same:` members: same name and
   fitting timelines, not confirmed (scripts/key_possible_same.py; user, 2026-11-08); dropped once the two merge.
   `likelihood` is 'possible' for those, 'very_likely' from `very-likely-same:` members: an outside reviewer (Terra)
@@ -193,6 +196,11 @@ REVIEW_BOOKS = ROOT / 'data/graph/review-books.csv.gz'
 # of a book credited to that person (REVIEWS linked, source review-books:titled)
 NOTE_BOOKS = ROOT / 'data/graph/lc-note-books.csv.gz'
 REVIEW_TITLED = ROOT / 'data/graph/review-titled-books.csv.gz'
+# 2026-11-14 (§8 class 42, scripts/pid_records.py, export_affiliations.py): institutions a person's ORCID record or
+# Wikidata item reaches by ROR that the key log has not keyed (unkeyed Institution nodes `ror:<id>`), and Wikidata
+# P184/P185 doctoral advisor pairs between keyed people (linked ADVISED)
+UNKEYED_INST = ROOT / 'data/graph/institutions-unkeyed.csv.gz'
+PID_ADVISORS = ROOT / 'data/graph/pid-records/advisors.csv.gz'
 # pass seven (2026-11-12): printed reviewed authors of review-like records (scripts/review_books.py; class 29b) and works
 # held under two keys (scripts/work_dup_pairs.py; class 11)
 REVIEW_AUTHORS = ROOT / 'data/graph/review-authors.csv.gz'
@@ -1400,7 +1408,8 @@ def main():
     no_files = [NAME_ONLY / 'credits.csv.gz', NAME_ONLY / 'chapters.csv.gz']
     no_files = no_files if all(p.exists() for p in no_files) else []
     prize_files = PRIZE_FILES if all(p.exists() for p in PRIZE_FILES) else []
-    p5_files = [p for p in (LC_CREDITS, REVIEW_BOOKS, LC_BOOKS, REVIEW_AUTHORS, WORK_DUPS, NOTE_BOOKS, REVIEW_TITLED) if p.exists()]
+    p5_files = [p for p in (LC_CREDITS, REVIEW_BOOKS, LC_BOOKS, REVIEW_AUTHORS, WORK_DUPS, NOTE_BOOKS, REVIEW_TITLED,
+                            UNKEYED_INST, PID_ADVISORS) if p.exists()]
     if os.environ.get('BUILD_PASS5_OFF'):          # a baseline build without the pass-five layers (check builds only)
         prize_files, p5_files = [], []
     require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS) if p.exists()] + crossref_parts + article_parts
@@ -1532,6 +1541,15 @@ def main():
                                                     ('journal_source', s), ('kind_proposed', s), ('isbn', s),
                                                     ('editors_printed', s), ('first_year', pa.int32()),
                                                     ('first_year_catalogue', pa.int32()), ('first_year_basis', s)]))
+    if UNKEYED_INST.exists():       # ROR organisations reached by ORCID/Wikidata affiliations, not yet keyed (2026-11-14)
+        with gzip.open(UNKEYED_INST, 'rt', newline='', encoding='utf-8') as f:
+            for r in csv.DictReader(f):
+                k = f"ror:{r['ror']}"
+                if state.lookup(k) or k in types:
+                    continue
+                types[k] = 'institution'
+                insts.append(dict(key=k, label=r['name'], resolution='unkeyed', anchors=[k], ror=r['ror']))
+                report['Institution_unkeyed'] += 1
     report['Institution'] = write('institution', insts, pa.schema([('key', s), ('label', s), ('resolution', s),
                                                                   ('anchors', L), ('ror', s)]))
 
@@ -1641,8 +1659,10 @@ def main():
         linked['AUTHORED'] += add
         del have, add
     if nb_rows:                     # note books: the authority's key (anchored: exact; a proposed tie: linked)
-        have = {(r['from'], r['to']) for r in rels['AUTHORED']} | {(x['from'], x['to']) for x in linked['AUTHORED']}
-        add = []
+        # role editor (the note prints 'ed.', '(ed.)', 'edited by'; 2026-11-14 spot check): linked EDITED, not AUTHORED
+        have = ({(r['from'], r['to']) for r in rels['AUTHORED']} | {(x['from'], x['to']) for x in linked['AUTHORED']}
+                | {(r['from'], r['to']) for r in rels['EDITED']} | {(x['from'], x['to']) for x in linked['EDITED']})
+        add, add_e = [], []
         for r in nb_rows:
             anchored = person1(f"lcnaf:{r['lcnaf']}")
             k = anchored or person1(r['person'])
@@ -1651,12 +1671,16 @@ def main():
                 continue
             if (k, r['work']) not in have:
                 have.add((k, r['work']))
-                add.append({'from': k, 'to': r['work'], 'claim': f"lc-authority-note:{r['lcnaf']}:{r['work']}",
-                            'resolution': 'linked', 'source': 'lc-authority-note', 'state': 'exact' if anchored else 'linked',
-                            'role': 'author', 'role_basis': 'lc-670'})
+                ed = (r.get('role') or 'author') == 'editor'
+                (add_e if ed else add).append({'from': k, 'to': r['work'], 'claim': f"lc-authority-note:{r['lcnaf']}:{r['work']}",
+                                               'resolution': 'linked', 'source': 'lc-authority-note',
+                                               'state': 'exact' if anchored else 'linked',
+                                               'role': 'editor' if ed else 'author', 'role_basis': 'lc-670'})
         report['lc_note_books_AUTHORED_added'] = len(add)
+        report['lc_note_books_EDITED_added'] = len(add_e)
         linked['AUTHORED'] += add
-        del have, add
+        linked['EDITED'] += add_e
+        del have, add, add_e
     if any(r.get('lc_main_lcnaf') for r in rb_rows):   # pass seven: the LC main entry of a reviewed book found in LC
         have_w = ({r['to'] for r in rels['AUTHORED']} | {r['to'] for r in rels['EDITED']}
                   | {x['to'] for x in linked['AUTHORED']} | {x['to'] for x in linked['EDITED']})
@@ -2132,6 +2156,16 @@ def main():
         for b in lauth_all.get(r['to'], ()):
             if b != r['from']:
                 advised.setdefault((r['from'], b), (r['claim'], r['to'], 'linked'))
+    if PID_ADVISORS.exists():       # Wikidata P184/P185 read from every keyed item (2026-11-14): linked where not in the log
+        with gzip.open(PID_ADVISORS, 'rt', newline='', encoding='utf-8') as f:
+            for r in csv.DictReader(f):
+                a_, b_ = state.lookup(f"wd:{r['advisor_qid']}"), state.lookup(f"wd:{r['student_qid']}")
+                if len(a_) != 1 or len(b_) != 1 or types.get(a_[0]) != 'person' or types.get(b_[0]) != 'person' or a_[0] == b_[0]:
+                    report['ADVISED_wikidata_not_both_keyed'] += 1
+                    continue
+                if (a_[0], b_[0]) not in advised:
+                    advised[(a_[0], b_[0])] = (f"wikidata:{r['props']}:{r['advisor_qid']}>{r['student_qid']}", '', 'linked')
+                    report['ADVISED_wikidata_linked'] += 1
     report['ADVISED'] = write('advised', [{'from': a, 'to': b, 'claim': c, 'thesis': t, 'evidence': ev}
                                           for (a, b), (c, t, ev) in sorted(advised.items())],
                               pa.schema([('from', s), ('to', s), ('claim', s), ('thesis', s), ('evidence', s)]))
@@ -2284,20 +2318,24 @@ def main():
         with gzip.open(AFFILIATIONS, 'rt', newline='', encoding='utf-8') as f:
             for r in csv.DictReader(f):
                 pk, ik = state.lookup(r['person']), state.lookup(r['institution'])
+                if not ik and types.get(r['institution']) == 'institution':     # an unkeyed ROR institution node
+                    ik = [r['institution']]
                 if len(pk) != 1 or len(ik) != 1 or types.get(pk[0]) != 'person' or types.get(ik[0]) != 'institution':
                     report['affiliations_unresolved'] += 1
                     continue
                 yv = lambda v: int(v) if v else None
-                akey = (pk[0], ik[0], r['source'])
+                kind = r.get('kind') or 'employment'   # employment / education / position / affiliation (2026-11-14)
+                akey = (pk[0], ik[0], r['source'], kind)
                 old = aff.get(akey)
                 y0 = min([v for v in (yv(r['first_year']), old and old['first_year']) if v] or [None])
                 y1 = max([v for v in (yv(r['last_year']), old and old['last_year']) if v] or [None])
-                aff[akey] = {'from': pk[0], 'to': ik[0], 'source': r['source'], 'first_year': y0, 'last_year': y1,
+                aff[akey] = {'from': pk[0], 'to': ik[0], 'source': r['source'], 'kind': kind, 'first_year': y0, 'last_year': y1,
                             'n': int(r['n']) + (old['n'] if old else 0), 'rank': r['rank'] or (old and old['rank']) or None,
                             'department': r['department'] or (old and old['department']) or None}
     report['AFFILIATED_WITH'] = write('affiliated_with', list(aff.values()), pa.schema([
         ('from', s), ('to', s), ('source', s), ('first_year', pa.int32()), ('last_year', pa.int32()), ('n', pa.int32()),
-        ('rank', s), ('department', s)]))
+        ('rank', s), ('department', s), ('kind', s)]))
+    report['AFFILIATED_WITH_by_source_kind'] = dict(Counter(f"{v['source']}:{v['kind']}" for v in aff.values()))
     report['POSSIBLY_SAME'] = write('possibly_same', [{'from': a, 'to': b, 'likelihood': l} for (a, b), l in sorted(possible.items())],
                                     pa.schema([('from', s), ('to', s), ('likelihood', s)]))
     report['POSSIBLY_SAME_very_likely'] = sum(1 for l in possible.values() if l == 'very_likely')
@@ -2534,7 +2572,7 @@ def load_db(report):
     conn.execute('CREATE REL TABLE AWARDED_BY(FROM Work TO Institution)')
     conn.execute('CREATE REL TABLE POSSIBLY_SAME(FROM Person TO Person, likelihood STRING)')
     conn.execute('CREATE REL TABLE AFFILIATED_WITH(FROM Person TO Institution, source STRING, first_year INT32, '
-                 'last_year INT32, n INT32, rank STRING, department STRING)')
+                 'last_year INT32, n INT32, rank STRING, department STRING, kind STRING)')
     conn.execute('CREATE REL TABLE CITES(FROM Work TO Work, edition BOOL, source STRING, cited_as STRING)')
     if (OUT / 'edition_of.parquet').exists():
         conn.execute('CREATE REL TABLE EDITION_OF(FROM Work TO Work, relation STRING, route STRING, theses INT32)')
