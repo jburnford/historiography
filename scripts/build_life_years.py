@@ -16,6 +16,10 @@ The graph keeps every date, including living people's (user, 2026-11-07: these a
 the website does not put living people's birth years front and centre: scripts/historian_life_review.withhold_living_birth).
 
     python3 scripts/build_life_years.py --wd /mnt/e/kg-facts/wd-life-years.json
+    python3 scripts/build_life_years.py --wd /mnt/e/kg-facts/wd-life-years-v2.json /mnt/e/kg-facts/wd-life-years-2026-11-14.json
+
+Several caches merge in order, a later one winning for a QID it holds (2026-11-14: scripts/pid_records.py export writes
+the dates read from every keyed item, so new wd: anchors get their years on the next run).
 """
 import argparse
 import csv
@@ -55,13 +59,17 @@ def choose(reviewed, lc, wd, lc_id, wd_id, first_work=None):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument('--wd', type=Path, required=True, help='scripts/wd_life_years.py cache')
+    ap.add_argument('--wd', type=Path, nargs='+', required=True, help='scripts/wd_life_years.py or pid_records.py caches')
     args = ap.parse_args()
     db = duckdb.connect()
     people = db.execute(f"SELECT key, lcnaf, wd FROM '{ROOT}/build/graph/person.parquet'").fetchall()
     lc = {i: (year(b), year(d)) for i, b, d in db.execute(
         f"SELECT lcid, birth, death FROM '{LC_NAMES}' WHERE coalesce(birth, '') <> '' OR coalesce(death, '') <> ''").fetchall()}
-    wd = json.loads(args.wd.read_text())
+    wd = {}
+    for path in args.wd:
+        for q, v in json.loads(path.read_text()).items():
+            if v and (v[0] is not None or v[1] is not None or q not in wd):
+                wd[q] = v
     first = dict(db.execute(f"""SELECT a."from", min(w.year) FROM {keylog(ROOT / 'build/graph', 'authored')} a
                                 JOIN '{ROOT}/build/graph/work.parquet' w ON w.key = a."to"
                                 WHERE w.year BETWEEN 1500 AND 2100 GROUP BY 1""").fetchall())
