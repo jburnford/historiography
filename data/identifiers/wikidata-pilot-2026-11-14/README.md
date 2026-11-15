@@ -231,3 +231,61 @@ Before scaling:
 - `existing-items.csv`: every identifier hit, including REVIEW and CONFLICT rows.
 - `held-same-name.csv`, `excluded.csv`, `report.json`, `statement-items-check.csv`.
 - `checked-100.csv`, `checked-sample-keys.json`, `hand-notes.json`, `wikidata-existence-check-100.tsv`.
+
+## Finalised 2026-11-14 evening (user decisions; supersedes the counts above where they differ)
+
+The batches were regenerated after the user's decisions. **The current files are the final ones**:
+`pilot-500.csv`, `pilot-batch-01.qs` … `05.qs`, `report.json`, `statement-items-check.csv`, `keylog-changes.csv` and
+`lookups-left-out.csv`.
+
+1. **No occupation-less rows.** The rows whose only signal was an AHA directory listing or supervision are dropped.
+   - The pilot now takes only rows with an `aha-phd:` record (493) or a History thesis (7).
+   - All 500 state occupation historian.
+   - The 51 places were refilled in citation rank through every screen, including the label-only-item rule.
+   - **The 500th row is now at pool rank 1,816, cited 20.** Before, it was rank 1,658, cited 22.
+   - On the way, 126 occupation-less rows were passed over.
+2. **Birth years stay.** 232 rows carry a year, each referenced to the LC record (the user: "birth year is fine if it is public").
+3. **Re-read against the key log.**
+   - The re-read was made after 408194e2 (656 wd attaches, 86 thesis-twin person merges, 198 thesis merges) and the 8,685 co-author mints.
+   - It used `build/keylog-state.sqlite`, checked to end exactly at the log's last byte (events-0052.jsonl, 25,958,947).
+   - In the walked range, 74 keys gained a `wd:` anchor (the applied proposal) and are passed over (`keylog-changes.csv`).
+   - **No pilot key was merged away, gained a `wd:`, or changed its AHA or LC anchor, and no pilot thesis key was merged.**
+   - The original `existing-items-proposal.json` and `existing-items.csv` are kept as applied. The residue after the
+     apply is in `existing-items-proposal-2.json`: 4 attaches, dry run clean, not applied. The rest is in `existing-items-2.csv`.
+4. **ORCID and GND retried.**
+   - ORCID: 10 statements written. The eleventh ORCID row is no longer in the pilot.
+   - GND: the 18 lobid failures came from a lower-case check digit `x` in our anchors. GND ids end in an upper-case
+     `X`, and with that corrected all resolved: 247 GND statements.
+   - Nothing is left out (`lookups-left-out.csv` is empty).
+5. **Statements in the final 500:**
+   - Q5, P244 and P106 historian: 500 each;
+   - P69 PhD school: 497;
+   - P227 GND: 247;
+   - P569 birth year: 232;
+   - P184 advisor: 142;
+   - P108 employer: 62;
+   - P496 ORCID: 10;
+   - P214 VIAF: 6;
+   - P213 ISNI: 8.
+
+   All 701 school, employer and advisor items were read back with 0 flags.
+6. **Hand check.**
+   - 87 of the 100 checked rows are in the final 500. The 13 others are 12 occupation-less rows and the Delgado duplicate.
+   - A spot check of 10 of the 51 new rows (seed 20261114) found 10 right on identity and statements.
+
+**Running batch 1 and reading it back.**
+- Batch 1 holds the top 100 by citations (pool ranks 4 to 416 in order). The user runs it at
+  https://quickstatements.toolforge.org/ under their own account (New batch, Import V1 commands, Run), once only.
+- Then:
+
+```
+python3 scripts/wikidata_pilot_readback.py data/identifiers/wikidata-pilot-2026-11-14/pilot-batch-01.qs
+```
+
+- The read-back finds each new item by its LC id on the Wikidata Query Service. It reads the item from
+  Special:EntityData and checks that the label, the description and every statement landed, with qualifiers and a
+  reference.
+- It writes `pilot-batch-01.readback.csv` and `pilot-batch-01.readback-proposal.json`. The proposal holds `wd:`
+  attaches with member `wd-via:published-from-key-log`, as in the 11-02 batches. It is dry-run validated and NOT applied.
+- Items that are missing, incomplete or found twice are listed, not proposed.
+- If the query service lags behind the run, pass `--qids lc_qid.csv`.

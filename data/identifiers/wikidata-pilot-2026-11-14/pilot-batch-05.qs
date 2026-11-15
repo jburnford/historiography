@@ -1,403 +1,4 @@
 CREATE
-LAST|Len|"James O. Gump"
-LAST|Den|"historian"
-LAST|Aen|"James Oliver Gump"
-LAST|Aen|"James O. (James Oliver) Gump"
-LAST|P31|Q5|S248|Q18912790|S244|"n82228490"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n82228490"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P227|"173638155"|S248|Q36578|S227|"173638155"|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q1202716|P512|Q752297|P582|+1980-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Gillian Poulter"
-LAST|Den|"historian"
-LAST|P31|Q5|S248|Q18912790|S244|"no2009114488"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"no2009114488"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q849751|P512|Q752297|P582|+1999-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P184|Q133638138|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P569|+1952-00-00T00:00:00Z/9|S248|Q18912790|S244|"no2009114488"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Paul E. Kopperman"
-LAST|Den|"historian"
-LAST|Aen|"Paul Kopperman"
-LAST|P31|Q5|S248|Q18912790|S244|"n88107213"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n88107213"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q457281|P512|Q752297|P582|+1972-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Mark Hugh Leff"
-LAST|Den|"historian"
-LAST|Aen|"Mark Leff"
-LAST|P31|Q5|S248|Q18912790|S244|"n82127614"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n82127614"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q131252|P512|Q752297|P582|+1978-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Colleen M. O'Neill"
-LAST|Den|"historian"
-LAST|Aen|"Colleen O'Neill"
-LAST|P31|Q5|S248|Q18912790|S244|"n93029135"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n93029135"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q499451|P512|Q752297|P582|+1997-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P184|Q4725941|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P569|+1961-00-00T00:00:00Z/9|S248|Q18912790|S244|"n93029135"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Stephen E. Patterson"
-LAST|Den|"historian"
-LAST|Aen|"Stephen Patterson"
-LAST|P31|Q5|S248|Q18912790|S244|"no2015051752"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"no2015051752"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q838330|P512|Q752297|P582|+1968-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P184|Q5882161|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P569|+1937-00-00T00:00:00Z/9|S248|Q18912790|S244|"no2015051752"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Jackson K. Putnam"
-LAST|Den|"historian"
-LAST|Aen|"Jackson Putnam"
-LAST|P31|Q5|S248|Q18912790|S244|"n89644255"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n89644255"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P227|"1146070284"|S248|Q36578|S227|"1146070284"|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q41506|P512|Q752297|P582|+1964-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P569|+1929-00-00T00:00:00Z/9|S248|Q18912790|S244|"n89644255"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Martin J. Schiesl"
-LAST|Den|"historian"
-LAST|Aen|"Martin Schiesl"
-LAST|P31|Q5|S248|Q18912790|S244|"n77002392"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n77002392"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P227|"1233207008"|S248|Q36578|S227|"1233207008"|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q681025|P512|Q752297|P582|+1972-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Hobart Spalding"
-LAST|Den|"historian"
-LAST|P31|Q5|S248|Q18912790|S244|"n88101562"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n88101562"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q168756|P512|Q752297|P582|+1965-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Henry Lee Swint"
-LAST|Den|"historian"
-LAST|Aen|"Henry Swint"
-LAST|P31|Q5|S248|Q18912790|S244|"n84034191"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n84034191"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q29052|P512|Q752297|P582|+1939-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P108|Q29052|S248|Q18912790|S244|"n84034191"|S813|+2026-11-14T00:00:00Z/11
-LAST|P569|+1909-00-00T00:00:00Z/9|S248|Q18912790|S244|"n84034191"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Charles McGovern"
-LAST|P31|Q5|S248|Q18912790|S244|"no00001275"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"no00001275"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P227|"1067779868"|S248|Q36578|S227|"1067779868"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Lilia Fernandez"
-LAST|P31|Q5|S248|Q18912790|S244|"no2012027180"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"no2012027180"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P227|"1028966482"|S248|Q36578|S227|"1028966482"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Kenneth J. Logue"
-LAST|Den|"historian"
-LAST|Aen|"K.J. Logue"
-LAST|P31|Q5|S248|Q18912790|S244|"n79062446"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n79062446"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q160302|P512|Q752297|P582|+1977-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Tom Sitton"
-LAST|Den|"historian"
-LAST|P31|Q5|S248|Q18912790|S244|"n92014820"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n92014820"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P227|"1255454571"|S248|Q36578|S227|"1255454571"|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q1075148|P512|Q752297|P582|+1983-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P569|+1949-00-00T00:00:00Z/9|S248|Q18912790|S244|"n92014820"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Janaina Martins Cordeiro"
-LAST|P31|Q5|S248|Q18912790|S244|"no2010174965"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"no2010174965"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Raymond H. Dominick III"
-LAST|Den|"historian"
-LAST|Aen|"Raymond H., III, 1945- Dominick"
-LAST|P31|Q5|S248|Q18912790|S244|"n81111659"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n81111659"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q192334|P512|Q752297|P582|+1973-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P569|+1945-00-00T00:00:00Z/9|S248|Q18912790|S244|"n81111659"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Nancy Barbara Bouchier"
-LAST|Den|"historian"
-LAST|Aen|"Nancy Bouchier"
-LAST|P31|Q5|S248|Q18912790|S244|"no2003038139"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"no2003038139"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q1144262|P512|Q752297|P582|+1990-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P569|+1958-00-00T00:00:00Z/9|S248|Q18912790|S244|"no2003038139"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Nathan J. Citino"
-LAST|Den|"historian"
-LAST|Aen|"Nathan Citino"
-LAST|P31|Q5|S248|Q18912790|S244|"n2002026436"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n2002026436"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P227|"1127590154"|S248|Q36578|S227|"1127590154"|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q309331|P512|Q752297|P582|+1999-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P569|+1971-00-00T00:00:00Z/9|S248|Q18912790|S244|"n2002026436"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Nicholas H. Clulee"
-LAST|Den|"historian"
-LAST|Aen|"Nicholas Clulee"
-LAST|P31|Q5|S248|Q18912790|S244|"n88073742"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n88073742"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q131252|P512|Q752297|P582|+1973-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Arthur F. Corwin"
-LAST|Den|"historian"
-LAST|Aen|"Arthur Corwin"
-LAST|P31|Q5|S248|Q18912790|S244|"n89611726"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n89611726"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P227|"170801918"|S248|Q36578|S227|"170801918"|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q131252|P512|Q752297|P582|+1958-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Steven J. Diner"
-LAST|Den|"historian"
-LAST|Aen|"Steven Diner"
-LAST|P31|Q5|S248|Q18912790|S244|"n79069127"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n79069127"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P227|"1076932878"|S248|Q36578|S227|"1076932878"|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q131252|P512|Q752297|P582|+1972-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P569|+1944-00-00T00:00:00Z/9|S248|Q18912790|S244|"n79069127"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Jean E. Friedman"
-LAST|Den|"historian"
-LAST|Aen|"Jean Friedman"
-LAST|P31|Q5|S248|Q18912790|S244|"n82084327"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n82084327"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q622137|P512|Q752297|P582|+1976-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P184|Q112454366|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P108|Q761534|S248|Q18912790|S244|"n82084327"|S813|+2026-11-14T00:00:00Z/11
-LAST|P569|+1941-00-00T00:00:00Z/9|S248|Q18912790|S244|"n82084327"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Nancy Felice Gabin"
-LAST|Den|"historian"
-LAST|P31|Q5|S248|Q18912790|S244|"n86862490"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n86862490"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P227|"170202771"|S248|Q36578|S227|"170202771"|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q230492|P512|Q752297|P582|+1984-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Walter A. Jackson"
-LAST|Den|"historian"
-LAST|Aen|"Walter Jackson"
-LAST|P31|Q5|S248|Q18912790|S244|"n89116691"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n89116691"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P227|"1273654404"|S248|Q36578|S227|"1273654404"|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q13371|P512|Q752297|P582|+1983-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"D. Clayton James"
-LAST|Den|"historian"
-LAST|P31|Q5|S248|Q18912790|S244|"n84108439"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n84108439"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q49213|P512|Q752297|P582|+1964-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Rebecca Manley"
-LAST|Den|"historian"
-LAST|P31|Q5|S248|Q18912790|S244|"no2009038858"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"no2009038858"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q168756|P512|Q752297|P582|+2004-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P569|+1973-00-00T00:00:00Z/9|S248|Q18912790|S244|"no2009038858"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Joseph Klaits"
-LAST|Den|"historian"
-LAST|P31|Q5|S248|Q18912790|S244|"n88164274"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n88164274"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q238101|P512|Q752297|P582|+1970-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Walton Look Lai"
-LAST|Den|"historian"
-LAST|Aen|"Walter Look Lai"
-LAST|P31|Q5|S248|Q18912790|S244|"n92095456"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n92095456"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q49210|P512|Q752297|P582|+1991-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Peter McCandless"
-LAST|Den|"historian"
-LAST|P31|Q5|S248|Q18912790|S244|"n85083560"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n85083560"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q838330|P512|Q752297|P582|+1974-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Neil Adams McNall"
-LAST|Den|"historian"
-LAST|Aen|"Neil McNall"
-LAST|P31|Q5|S248|Q18912790|S244|"no2014102839"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"no2014102839"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q49115|P512|Q752297|P582|+1945-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P569|+1913-00-00T00:00:00Z/9|S248|Q18912790|S244|"no2014102839"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"J. Orin Oliphant"
-LAST|Den|"historian"
-LAST|Aen|"James Orin Oliphant"
-LAST|P31|Q5|S248|Q18912790|S244|"n83146508"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n83146508"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q13371|P512|Q752297|P582|+1930-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P569|+1894-00-00T00:00:00Z/9|S248|Q18912790|S244|"n83146508"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Tom W. Shick"
-LAST|Den|"historian"
-LAST|Aen|"Tom Shick"
-LAST|P31|Q5|S248|Q18912790|S244|"n79115418"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n79115418"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q838330|P512|Q752297|P582|+1976-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P184|Q4011970|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Morris J. Vogel"
-LAST|Den|"historian"
-LAST|Aen|"Morris Vogel"
-LAST|P31|Q5|S248|Q18912790|S244|"n79135860"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n79135860"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P227|"136443753"|S248|Q36578|S227|"136443753"|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q131252|P512|Q752297|P582|+1974-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"David W. Conroy"
-LAST|Den|"historian"
-LAST|P31|Q5|S248|Q18912790|S244|"n94085619"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n94085619"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q49206|P512|Q752297|P582|+1987-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Adrian A. Bantjes"
-LAST|Den|"historian"
-LAST|P31|Q5|S248|Q18912790|S244|"n97030571"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n97030571"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P227|"1056692812"|S248|Q36578|S227|"1056692812"|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q49213|P512|Q752297|P582|+1991-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P184|Q4707081|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P569|+1959-00-00T00:00:00Z/9|S248|Q18912790|S244|"n97030571"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Marguerite Van Die"
-LAST|Den|"historian"
-LAST|P31|Q5|S248|Q18912790|S244|"nr90009039"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"nr90009039"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q1144262|P512|Q752297|P582|+1987-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Catherine Lyle Cleverdon"
-LAST|Den|"historian"
-LAST|Aen|"Catherine L. Cleverdon"
-LAST|P31|Q5|S248|Q18912790|S244|"no2014129827"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"no2014129827"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q49088|P512|Q752297|P582|+1948-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Shelley Bookspan"
-LAST|Den|"historian"
-LAST|P31|Q5|S248|Q18912790|S244|"n90727212"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n90727212"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q263064|P512|Q752297|P582|+1987-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P569|+1949-00-00T00:00:00Z/9|S248|Q18912790|S244|"n90727212"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Lawrence M. Bryant"
-LAST|Den|"historian"
-LAST|Aen|"Lawrence McBride Bryant"
-LAST|Aen|"Lawrence Bryant"
-LAST|P31|Q5|S248|Q18912790|S244|"n85311745"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n85311745"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q182973|P512|Q752297|P582|+1978-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Dominic J. Capeci"
-LAST|Den|"historian"
-LAST|Aen|"Dominic Capeci"
-LAST|P31|Q5|S248|Q18912790|S244|"n77018256"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n77018256"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q1075148|P512|Q752297|P582|+1970-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Sherrill Cohen"
-LAST|Den|"historian"
-LAST|P31|Q5|S248|Q18912790|S244|"n86816853"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n86816853"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q21578|P512|Q752297|P582|+1985-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Frederick C. Corney"
-LAST|Den|"historian"
-LAST|P31|Q5|S248|Q18912790|S244|"n2004033525"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n2004033525"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q49088|P512|Q752297|P582|+1997-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Timothy Cuff"
-LAST|Den|"historian"
-LAST|P31|Q5|S248|Q18912790|S244|"no2001031251"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"no2001031251"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q235034|P512|Q752297|P582|+1998-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Nancy J. Curtin"
-LAST|Den|"historian"
-LAST|Aen|"Nancy Curtin"
-LAST|P31|Q5|S248|Q18912790|S244|"n93077486"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n93077486"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P227|"172805961"|S248|Q36578|S227|"172805961"|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q838330|P512|Q752297|P582|+1988-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P184|Q6142625|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Arthur L. Donovan"
-LAST|Den|"historian"
-LAST|Aen|"Arthur Donovan"
-LAST|P31|Q5|S248|Q18912790|S244|"n80153740"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n80153740"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q21578|P512|Q752297|P582|+1970-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P184|Q1064544|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Francis Duncan"
-LAST|Den|"historian"
-LAST|P31|Q5|S248|Q18912790|S244|"n88179030"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n88179030"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q131252|P512|Q752297|P582|+1954-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P569|+1922-00-00T00:00:00Z/9|S248|Q18912790|S244|"n88179030"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"William D. Estrada"
-LAST|Den|"historian"
-LAST|Aen|"William Estrada"
-LAST|P31|Q5|S248|Q18912790|S244|"n84135636"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n84135636"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q174710|P512|Q752297|P582|+2003-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Geoffrey G. Field"
-LAST|Den|"historian"
-LAST|Aen|"Geoffrey Field"
-LAST|P31|Q5|S248|Q18912790|S244|"n80102797"|S813|+2026-11-14T00:00:00Z/11
-LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n80102797"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P69|Q49088|P512|Q752297|P582|+1972-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
-CREATE
 LAST|Len|"Caitlin Fitz"
 LAST|Den|"historian"
 LAST|P31|Q5|S248|Q18912790|S244|"n2016015071"|S813|+2026-11-14T00:00:00Z/11
@@ -482,10 +83,6 @@ LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/m
 LAST|P244|"n2002118139"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
 LAST|P69|Q131252|P512|Q752297|P582|+1999-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
 CREATE
-LAST|Len|"Jayeeta Sharma"
-LAST|P31|Q5|S248|Q18912790|S244|"nr2003027434"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"nr2003027434"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-CREATE
 LAST|Len|"R. Scott Sheffield"
 LAST|Den|"historian"
 LAST|Aen|"Robert Scott Sheffield"
@@ -537,11 +134,6 @@ LAST|P244|"n90631889"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
 LAST|P227|"1041916507"|S248|Q36578|S227|"1041916507"|S813|+2026-11-14T00:00:00Z/11
 LAST|P69|Q230492|P512|Q752297|P582|+1981-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
 LAST|P569|+1951-00-00T00:00:00Z/9|S248|Q18912790|S244|"n90631889"|S813|+2026-11-14T00:00:00Z/11
-CREATE
-LAST|Len|"Orlando de Barros"
-LAST|P31|Q5|S248|Q18912790|S244|"no2002067767"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"no2002067767"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
-LAST|P569|+1942-00-00T00:00:00Z/9|S248|Q18912790|S244|"no2002067767"|S813|+2026-11-14T00:00:00Z/11
 CREATE
 LAST|Len|"Colin Bonwick"
 LAST|Den|"historian"
@@ -601,6 +193,7 @@ LAST|Aen|"Scott Dewey"
 LAST|P31|Q5|S248|Q18912790|S244|"no98083575"|S813|+2026-11-14T00:00:00Z/11
 LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
 LAST|P244|"no98083575"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"115857312X"|S248|Q36578|S227|"115857312X"|S813|+2026-11-14T00:00:00Z/11
 LAST|P69|Q503415|P512|Q752297|P582|+1994-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
 LAST|P184|Q18631249|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
 CREATE
@@ -841,6 +434,452 @@ LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/m
 LAST|P244|"n82124536"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
 LAST|P69|Q193727|P512|Q752297|P582|+1992-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
 CREATE
-LAST|Len|"John Lamphear"
-LAST|P31|Q5|S248|Q18912790|S244|"n91071403"|S813|+2026-11-14T00:00:00Z/11
-LAST|P244|"n91071403"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|Len|"John Macnicol"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n81121161"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n81121161"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"131752715"|S248|Q36578|S227|"131752715"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q160302|P512|Q752297|P582|+1978-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Donald E. Green"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n79046236"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n79046236"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q640652|P512|Q752297|P582|+1969-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1936-00-00T00:00:00Z/9|S248|Q18912790|S244|"n79046236"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"George Donham Bearce"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n81139383"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n81139383"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q838330|P512|Q752297|P582|+1952-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P184|Q11994923|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1922-00-00T00:00:00Z/9|S248|Q18912790|S244|"n81139383"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Rebecca Conard"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n84148222"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n84148222"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q263064|P512|Q752297|P582|+1984-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Ann Crabb"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n99054110"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n99054110"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"1146229011"|S248|Q36578|S227|"1146229011"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q777403|P512|Q752297|P582|+1980-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1940-00-00T00:00:00Z/9|S248|Q18912790|S244|"n99054110"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Cecilia Danysk"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"nr97035933"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://mcgill.scholaris.ca/items/69de2db4-310b-4e28-87ae-48b9839e81e8"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"nr97035933"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q201492|P512|Q752297|P582|+1991-00-00T00:00:00Z/9|S854|"https://mcgill.scholaris.ca/items/69de2db4-310b-4e28-87ae-48b9839e81e8"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"George W. Egerton"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n77012375"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n77012375"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"142249939"|S248|Q36578|S227|"142249939"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q180865|P512|Q752297|P582|+1970-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1942-00-00T00:00:00Z/9|S248|Q18912790|S244|"n77012375"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"A. J. Engel"
+LAST|Den|"historian"
+LAST|Aen|"Arthur Jason Engel"
+LAST|Aen|"Arthur Engel"
+LAST|P31|Q5|S248|Q18912790|S244|"n82084582"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n82084582"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"140004858"|S248|Q36578|S227|"140004858"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q21578|P512|Q752297|P582|+1975-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1944-00-00T00:00:00Z/9|S248|Q18912790|S244|"n82084582"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Michael Feldberg"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n79076077"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n79076077"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q149990|P512|Q752297|P582|+1970-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P184|Q5734278|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1943-00-00T00:00:00Z/9|S248|Q18912790|S244|"n79076077"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Julia Rodríguez"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n2005056593"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n2005056593"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"136483291"|S248|Q36578|S227|"136483291"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q49088|P512|Q752297|P582|+2000-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1967-00-00T00:00:00Z/9|S248|Q18912790|S244|"n2005056593"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Donald E. Ginter"
+LAST|Den|"historian"
+LAST|Aen|"Donald Ginter"
+LAST|P31|Q5|S248|Q18912790|S244|"n85225719"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n85225719"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q168756|P512|Q752297|P582|+1964-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Kolleen M. Guy"
+LAST|Den|"historian"
+LAST|Aen|"Kolleen M., 1964- Guy"
+LAST|P31|Q5|S248|Q18912790|S244|"n2002014002"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n2002014002"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q6608367|P512|Q752297|P582|+1996-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1964-00-00T00:00:00Z/9|S248|Q18912790|S244|"n2002014002"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Douglas Melvin Haynes"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n00121386"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n00121386"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q168756|P512|Q752297|P582|+1992-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P108|Q868421|S248|Q18912790|S244|"n00121386"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Rita Headrick"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n88220862"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n88220862"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q131252|P512|Q752297|P582|+1988-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Edward L. Homze"
+LAST|Den|"historian"
+LAST|Aen|"Edward Homze"
+LAST|P31|Q5|S248|Q18912790|S244|"n50028175"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n50028175"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"127212795"|S248|Q36578|S227|"127212795"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q739627|P512|Q752297|P582|+1963-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P184|Q112462382|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Kirk Arden Hoppe"
+LAST|Den|"historian"
+LAST|Aen|"Kirk Hoppe"
+LAST|P31|Q5|S248|Q18912790|S244|"n98800754"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n98800754"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q49110|P512|Q752297|P582|+1995-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Brendan C. Lindsay"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n2011077788"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n2011077788"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q1075148|P512|Q752297|P582|+2007-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P184|Q112536753|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Ira Kipnis"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"no2026059114"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"no2026059114"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q131252|P512|Q752297|P582|+1950-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P108|Q131252|S248|Q18912790|S244|"no2026059114"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1921-00-00T00:00:00Z/9|S248|Q18912790|S244|"no2026059114"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Andrew J. Kirkendall"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"no97056433"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"no97056433"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"1056424095"|S248|Q36578|S227|"1056424095"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q192334|P512|Q752297|P582|+1996-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1958-00-00T00:00:00Z/9|S248|Q18912790|S244|"no97056433"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Emilio Kourí"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n2004095349"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n2004095349"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"173948383"|S248|Q36578|S227|"173948383"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q13371|P512|Q752297|P582|+1996-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Thomas J. Lewin"
+LAST|Den|"historian"
+LAST|Aen|"Thomas Lewin"
+LAST|P31|Q5|S248|Q18912790|S244|"n78016005"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n78016005"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q309350|P512|Q752297|P582|+1974-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1944-00-00T00:00:00Z/9|S248|Q18912790|S244|"n78016005"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Tessie P. Liu"
+LAST|Den|"historian"
+LAST|Aen|"Tessie Liu"
+LAST|P31|Q5|S248|Q18912790|S244|"n93115045"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n93115045"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"1053300638"|S248|Q36578|S227|"1053300638"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q230492|P512|Q752297|P582|+1987-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P108|Q309350|S248|Q18912790|S244|"n93115045"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1955-00-00T00:00:00Z/9|S248|Q18912790|S244|"n93115045"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Mary Lou Lustig"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n82222194"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n82222194"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q617433|P512|Q752297|P582|+1982-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Timothy R. Mahoney"
+LAST|Den|"historian"
+LAST|Aen|"Timothy Mahoney"
+LAST|P31|Q5|S248|Q18912790|S244|"n88199577"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n88199577"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"1165095165"|S248|Q36578|S227|"1165095165"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q131252|P512|Q752297|P582|+1982-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1953-00-00T00:00:00Z/9|S248|Q18912790|S244|"n88199577"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Robert M. Maxon"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n80082537"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n80082537"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"171203909"|S248|Q36578|S227|"171203909"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q617433|P512|Q752297|P582|+1972-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1939-00-00T00:00:00Z/9|S248|Q18912790|S244|"n80082537"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Clare V. McKanna, Jr."
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n96081299"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n96081299"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q1202716|P512|Q752297|P582|+1994-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P184|Q55949712|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1935-00-00T00:00:00Z/9|S248|Q18912790|S244|"n96081299"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Fraser M. Ottanelli"
+LAST|Den|"historian"
+LAST|Aen|"Fraser Ottanelli"
+LAST|P31|Q5|S248|Q18912790|S244|"n90618542"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n90618542"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q617433|P512|Q752297|P582|+1987-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1954-00-00T00:00:00Z/9|S248|Q18912790|S244|"n90618542"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Leslie Howard Owens"
+LAST|Den|"historian"
+LAST|Aen|"Leslie Owens"
+LAST|P31|Q5|S248|Q18912790|S244|"no2007049249"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"no2007049249"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q1075148|P512|Q752297|P582|+1972-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P184|Q113808872|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P108|Q230492|S248|Q18912790|S244|"no2007049249"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Dennis Charles Rousey"
+LAST|Den|"historian"
+LAST|Aen|"Dennis Rousey"
+LAST|P31|Q5|S248|Q18912790|S244|"n87830744"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n87830744"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"173439519"|S248|Q36578|S227|"173439519"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q49115|P512|Q752297|P582|+1978-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1951-00-00T00:00:00Z/9|S248|Q18912790|S244|"n87830744"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Howard B. Schonberger"
+LAST|Den|"historian"
+LAST|Aen|"Howard Schonberger"
+LAST|P31|Q5|S248|Q18912790|S244|"n88099215"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n88099215"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q838330|P512|Q752297|P582|+1968-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P184|Q1033321|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Patricia J. Tracy"
+LAST|Den|"historian"
+LAST|Aen|"Patricia Tracy"
+LAST|P31|Q5|S248|Q18912790|S244|"n80023463"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n80023463"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q15142|P512|Q752297|P582|+1977-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1947-00-00T00:00:00Z/9|S248|Q18912790|S244|"n80023463"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Arthur E. Barbeau"
+LAST|Den|"historian"
+LAST|Aen|"Arthur Barbeau"
+LAST|P31|Q5|S248|Q18912790|S244|"n95102416"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n95102416"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q235034|P512|Q752297|P582|+1970-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Richard S. Tompson"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n79133666"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n79133666"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q230492|P512|Q752297|P582|+1967-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Barbara M. Tucker"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n84036855"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n84036855"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q129421|P512|Q752297|P582|+1974-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Daniel B. Thorp"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n85830998"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n85830998"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q193727|P512|Q752297|P582|+1982-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1954-00-00T00:00:00Z/9|S248|Q18912790|S244|"n85830998"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Kathleen J. Higgins"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n98079525"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n98079525"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"173474381"|S248|Q36578|S227|"173474381"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q49112|P512|Q752297|P582|+1987-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P184|Q10272607|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1956-00-00T00:00:00Z/9|S248|Q18912790|S244|"n98079525"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Darren Ferry"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"no2009009680"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://macsphere.mcmaster.ca/items/a204a241-219c-4ee7-b185-d813bd9cbcab"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"no2009009680"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q632891|P512|Q752297|P582|+2003-00-00T00:00:00Z/9|S854|"https://macsphere.mcmaster.ca/items/a204a241-219c-4ee7-b185-d813bd9cbcab"|S813|+2026-11-14T00:00:00Z/11
+LAST|P184|Q56856759|S854|"https://macsphere.mcmaster.ca/items/a204a241-219c-4ee7-b185-d813bd9cbcab"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1969-00-00T00:00:00Z/9|S248|Q18912790|S244|"no2009009680"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Christina Ann Burr"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"no99082516"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://memorial.scholaris.ca/items/e44c0671-41a5-46e0-99e4-470d9247b466"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"no99082516"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"171808908"|S248|Q36578|S227|"171808908"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q1895354|P512|Q752297|P582|+1991-00-00T00:00:00Z/9|S854|"https://memorial.scholaris.ca/items/e44c0671-41a5-46e0-99e4-470d9247b466"|S813|+2026-11-14T00:00:00Z/11
+LAST|P184|Q5607005|S854|"https://memorial.scholaris.ca/items/e44c0671-41a5-46e0-99e4-470d9247b466"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1959-00-00T00:00:00Z/9|S248|Q18912790|S244|"no99082516"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Stephen V. Bittner"
+LAST|Den|"historian"
+LAST|Aen|"Stephen V., 1970- Bittner"
+LAST|P31|Q5|S248|Q18912790|S244|"n2006081464"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n2006081464"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q131252|P512|Q752297|P582|+2000-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P184|Q453863|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1970-00-00T00:00:00Z/9|S248|Q18912790|S244|"n2006081464"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Charlotte G. Borst"
+LAST|Den|"historian"
+LAST|Aen|"Charlotte Borst"
+LAST|P31|Q5|S248|Q18912790|S244|"n95004802"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n95004802"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"1158346247"|S248|Q36578|S227|"1158346247"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q838330|P512|Q752297|P582|+1989-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P184|Q6303734|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Edith Burley"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n98034043"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://mspace.lib.umanitoba.ca/items/9fd274f9-1504-4ca5-81b8-90a748bbf0db"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n98034043"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"1157438059"|S248|Q36578|S227|"1157438059"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q1191833|P512|Q752297|P582|+1993-00-00T00:00:00Z/9|S854|"https://mspace.lib.umanitoba.ca/items/9fd274f9-1504-4ca5-81b8-90a748bbf0db"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1949-00-00T00:00:00Z/9|S248|Q18912790|S244|"n98034043"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Jean-Pierre Collin"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n88609930"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n88609930"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q1634522|P512|Q752297|P582|+1990-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1947-00-00T00:00:00Z/9|S248|Q18912790|S244|"n88609930"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Nellis Maynard Crouse"
+LAST|Den|"historian"
+LAST|Aen|"Nellis Crouse"
+LAST|P31|Q5|S248|Q18912790|S244|"n00145973"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n00145973"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"1145363768"|S248|Q36578|S227|"1145363768"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q49115|P512|Q752297|P582|+1924-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1884-00-00T00:00:00Z/9|S248|Q18912790|S244|"n00145973"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Susan M. Deeds"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n98013343"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n98013343"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"1056539267"|S248|Q36578|S227|"1056539267"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q503419|P512|Q752297|P582|+1981-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P184|Q25706660|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1943-00-00T00:00:00Z/9|S248|Q18912790|S244|"n98013343"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Jack D. Ellis"
+LAST|Den|"historian"
+LAST|Aen|"Jack Ellis"
+LAST|P31|Q5|S248|Q18912790|S244|"n79091328"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n79091328"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q1193547|P512|Q752297|P582|+1967-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P108|Q1068072|S248|Q18912790|S244|"n79091328"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1941-00-00T00:00:00Z/9|S248|Q18912790|S244|"n79091328"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Lee Finkle"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"no2014090952"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"no2014090952"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q49210|P512|Q752297|P582|+1971-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1935-00-00T00:00:00Z/9|S248|Q18912790|S244|"no2014090952"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Venus Green"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"nr97014886"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"nr97014886"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q49088|P512|Q752297|P582|+1990-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Diana Selig"
+LAST|Den|"historian"
+LAST|P31|Q5|S248|Q18912790|S244|"n2007080903"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n2007080903"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q168756|P512|Q752297|P582|+2001-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P184|Q24310869|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Jeff Horn"
+LAST|Den|"historian"
+LAST|Aen|"Historian Horn"
+LAST|Aen|"Jeff (Historian) Horn"
+LAST|P31|Q5|S248|Q18912790|S244|"no2003112388"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"no2003112388"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"1071362224"|S248|Q36578|S227|"1071362224"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q49117|P512|Q752297|P582|+1993-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Carl J. Bon Tempo"
+LAST|Den|"historian"
+LAST|Aen|"Carl Joseph Bon Tempo"
+LAST|P31|Q5|S248|Q18912790|S244|"no2001048225"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"no2001048225"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P227|"136653871"|S248|Q36578|S227|"136653871"|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q213439|P512|Q752297|P582|+2004-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P184|Q6990609|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P569|+1971-00-00T00:00:00Z/9|S248|Q18912790|S244|"no2001048225"|S813|+2026-11-14T00:00:00Z/11
+CREATE
+LAST|Len|"Joseph E. Illick"
+LAST|Den|"historian"
+LAST|Aen|"Joseph Illick"
+LAST|P31|Q5|S248|Q18912790|S244|"n88018826"|S813|+2026-11-14T00:00:00Z/11
+LAST|P106|Q201788|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11
+LAST|P244|"n88018826"|S248|Q18912790|S813|+2026-11-14T00:00:00Z/11
+LAST|P69|Q49117|P512|Q752297|P582|+1963-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-14T00:00:00Z/11

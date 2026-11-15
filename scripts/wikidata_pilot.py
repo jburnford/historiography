@@ -710,7 +710,8 @@ def screen(args):
         inst = institution_qids(block, instc)
         for r in block:
             res[r['key']] = classify(r, idc, nmc, itc, inst, keyed_wd)
-        n_noitem = sum(1 for r in pool[:pos] if r['key'] in res and res[r['key']]['status'] == 'no item')
+        n_noitem = sum(1 for r in pool[:pos] if r['key'] in res and res[r['key']]['status'] == 'no item'
+                       and (r['aha_phd'] or r['thesis']))     # user 2026-11-14: only rows with a PhD record count
         print('screened to rank', min(pos, len(pool)), 'no-item', n_noitem, flush=True)
     # no-history-signal people cited >= 50: identifier screen only (for the attach proposal)
     nb = [r for r in nohs if 'two LC authorities on the key' not in r['excl']]
@@ -721,16 +722,36 @@ def screen(args):
 
 
 def keyed_qids():
-    import duckdb
-    con = duckdb.connect(str(EXPLORER), read_only=True)
-    return {a[3:]: k for a, k in con.execute("select anchor, key from anchors where anchor like 'wd:%'").fetchall()}
+    """wd: anchors from the key-log cache (current after every apply; the explorer can lag)."""
+    import sqlite3
+    sq = sqlite3.connect(f'file:{ROOT}/build/keylog-state.sqlite?mode=ro', uri=True)
+    return {a[3:]: k for a, k in sq.execute("select anchor, key from anchor where anchor like 'wd:%'").fetchall()}
+
+
+def keylog_now(keys):
+    """Current key-log state of these keys (cache checked against the log's end): status, replaced_by, anchors."""
+    import sqlite3
+    sys.path.insert(0, str(ROOT / 'scripts'))
+    import keylog_snapshot as KS
+    sq = sqlite3.connect(f'file:{ROOT}/build/keylog-state.sqlite?mode=ro', uri=True)
+    pos = json.loads(dict(sq.execute('select k, v from meta').fetchall())['pos'])
+    end = KS.log_end(ROOT / 'data/identifiers')
+    if list(end) != pos:
+        raise SystemExit(f'key-log cache at {pos}, log ends at {end}: refresh the cache first')
+    out = {}
+    for k in keys:
+        row = sq.execute('select status, replaced_by, anchors from keys where key=?', (k,)).fetchone()
+        out[k] = dict(status=row[0], replaced_by=json.loads(row[1] or '[]'), anchors=json.loads(row[2] or '[]')) if row else None
+    return out
 
 
 def classify(r, idc, nmc, itc, inst, keyed_wd, names=True):
     hits = idc.get(r['key'], {})
     if hits:
         qs = sorted(hits)
-        taken = {q: keyed_wd[q] for q in qs if q in keyed_wd}
+        if all(keyed_wd.get(q) == r['key'] for q in qs):
+            return dict(status='already attached in the key log', items={q: dict(via=hits[q]) for q in qs})
+        taken = {q: keyed_wd[q] for q in qs if q in keyed_wd and keyed_wd[q] != r['key']}
         det = {q: dict(via=hits[q], label=itc.get(q, {}).get('label', ''), desc=itc.get(q, {}).get('desc', ''),
                        lc=itc.get(q, {}).get('lc', []), keyed_on=taken.get(q)) for q in qs}
         if len(qs) > 1:
@@ -789,7 +810,7 @@ def thesis_ref(t, urls):
 
 
 def lobid_gnd(gnd, cache):
-    if gnd in cache:
+    if cache.get(gnd) is not None:
         return cache[gnd]
     try:
         req = urllib.request.Request(f'https://lobid.org/gnd/{gnd}.json', headers={'User-Agent': UA})
@@ -803,7 +824,7 @@ def lobid_gnd(gnd, cache):
 
 
 def orcid_public(orcid, cache):
-    if orcid in cache:
+    if cache.get(orcid) is not None:
         return cache[orcid]
     try:
         req = urllib.request.Request(f'https://pub.orcid.org/v3.0/{orcid}/person', headers={'User-Agent': UA, 'Accept': 'application/json'})
@@ -836,6 +857,10 @@ def write(args):
     ror_q = {r: q for r, q in instc.get('ror', {}).items()}
     # walk the ranking
     counts, pilot, existing, held, excluded, conflicts = Counter(), [], [], [], [], []
+    changed_rows = []
+    klog = keylog_now([r['key'] for r in pool[:4000]])
+    wkeys = sorted({t['w'] for r in pool[:4000] for t in r['theses']})
+    wlog = keylog_now(wkeys)
     last = None
     for r in pool:
         if len(pilot) >= TARGET:
@@ -848,9 +873,24 @@ def write(args):
             counts['excluded (first reason): ' + r['excl'][0]] += 1
             excluded.append(r)
             continue
+        if not (r['aha_phd'] or r['thesis']):
+            counts['dropped: only an AHA directory listing or supervision (user decision 2026-11-14)'] += 1
+            continue
         s = res.get(r['key'])
         if s is None:
             raise SystemExit(f"rank {r['rank']} not screened; run the screen stage further")
+        kl = klog.get(r['key'])
+        change = None
+        if not kl or kl['status'] != 'active':
+            change = f"key {kl['status'] if kl else 'missing'} since the screen" + (f" (now {kl['replaced_by']})" if kl and kl['replaced_by'] else '')
+        elif any(a.startswith('wd:') for a in kl['anchors']):
+            change = 'gained a wd: anchor since the screen'
+        elif sorted(a for a in kl['anchors'] if a.startswith(('aha-phd:', 'lcnaf:'))) != sorted(a for a in r['anchors'] if a.startswith(('aha-phd:', 'lcnaf:'))):
+            change = 'AHA or LC anchor changed since the screen'
+        if change:
+            counts['key log changed: ' + change.split(' (')[0]] += 1
+            changed_rows.append([r['rank'], r['key'], r['label'], change])
+            continue
         counts[s['status']] += 1
         if s['status'] == 'no item':
             pilot.append((r, s))
@@ -865,7 +905,7 @@ def write(args):
     OUT.mkdir(parents=True, exist_ok=True)
 
     # statements
-    out_rows, qs_batches = [], []
+    out_rows, qs_batches, failed = [], [], []
     lines_all = []
     for idx, (r, s) in enumerate(pilot):
         lcid = r['lcnaf'][0]
@@ -906,14 +946,23 @@ def write(args):
                 st.append(('P213', '"' + ' '.join(v[j:j + 4] for j in range(0, 16, 4)) + '"', '', ref_lc(lcid), 'ISNI printed in the LC record'))
         for a in r['anchors']:
             if a.startswith('gnd:'):
-                same = lobid_gnd(a[4:], gndc)
+                gid = a[4:-1] + a[-1].upper()        # GND check digit is an upper-case X; some anchors carry 'x'
+                same = lobid_gnd(gid, gndc)
+                if same is None:
+                    failed.append([r['key'], label, 'gnd', gid, 'lobid read failed'])
                 if same and any(x.rstrip('/').endswith('/' + lcid) for x in same):
-                    st.append(('P227', f'"{a[4:]}"', '', f'S248|Q36578|S227|"{a[4:]}"|S813|{TODAY}', 'GND record names this LC authority'))
+                    st.append(('P227', f'"{gid}"', '', f'S248|Q36578|S227|"{gid}"|S813|{TODAY}', 'GND record names this LC authority'))
             if a.startswith('orcid:'):
                 nm = orcid_public(a[6:], orcc)
+                if nm is None:
+                    failed.append([r['key'], label, 'orcid', a[6:], 'ORCID public API refused or failed'])
+                elif fold(fam).split()[-1] not in fold(nm):
+                    failed.append([r['key'], label, 'orcid', a[6:], f'public record name differs: {nm}'])
                 if nm and fold(fam).split()[-1] in fold(nm):
                     st.append(('P496', f'"{a[6:]}"', '', ref_url(f'https://orcid.org/{a[6:]}'), f'public ORCID record ({nm})'))
         thesis_note = ''
+        if th and wlog.get(th['w']) and wlog[th['w']]['status'] != 'active':
+            thesis_note = f"thesis key {th['w']} {wlog[th['w']]['status']} into {wlog[th['w']]['replaced_by']} (thesis-twin merge; same doctorate) "
         if th:
             u, what = thesis_ref(th, urls)
             qids = sorted({q for x in th['inst'] for ror in x['ror'] for q in ror_q.get(ror, [])})
@@ -921,7 +970,7 @@ def write(args):
                 qual = f'|P512|{PHD}' + (f'|P582|+{th["year"]}-00-00T00:00:00Z/9' if th.get('year') else '')
                 st.append(('P69', qids[0], qual, ref_url(u), f'doctorate {th["inst"][0]["label"]} {th.get("year") or ""} ({what})'))
             else:
-                thesis_note = f'school QID not unique ({qids})'
+                thesis_note += f'school QID not unique ({qids})'
             for adv in th['advisors']:
                 if len(adv['wd']) == 1:
                     st.append(('P184', adv['wd'][0], '', ref_url(u), f'advisor {adv["label"]} ({what})'))
@@ -966,6 +1015,14 @@ def write(args):
             references=' || '.join(f'{p}: {ref}' for p, v, q, ref, note in st),
             name_candidates_ruled_out='; '.join(f'{q} {c["label"]} ({"; ".join(c["why"])[:120]})' for q, c in s['items'].items()),
             notes=thesis_note))
+    with open(OUT / 'lookups-left-out.csv', 'w', newline='', encoding='utf-8') as fh:
+        w = csv.writer(fh)
+        w.writerow(['key', 'label', 'scheme', 'id', 'why'])
+        w.writerows(failed)
+    with open(OUT / 'keylog-changes.csv', 'w', newline='', encoding='utf-8') as fh:
+        w = csv.writer(fh)
+        w.writerow(['pool_rank', 'key', 'label', 'change'])
+        w.writerows(changed_rows)
     save_cache('gnd.json', gndc)
     save_cache('orcid.json', orcc)
     with open(OUT / 'pilot-500.csv', 'w', newline='', encoding='utf-8') as fh:
@@ -1002,8 +1059,8 @@ def write(args):
     proposal = dict(basis='Wikidata items that carry the key\'s LC authority (P244) or that the LC record itself links, '
                           'found by the Wikidata pilot screen 2026-11-14; NOT applied',
                     decided_by='rule', ops=ops)
-    (OUT / 'existing-items-proposal.json').write_text(json.dumps(proposal, ensure_ascii=False, indent=0) + '\n', encoding='utf-8')
-    with open(OUT / 'existing-items.csv', 'w', newline='', encoding='utf-8') as fh:
+    (OUT / 'existing-items-proposal-2.json').write_text(json.dumps(proposal, ensure_ascii=False, indent=0) + '\n', encoding='utf-8')
+    with open(OUT / 'existing-items-2.csv', 'w', newline='', encoding='utf-8') as fh:
         w = csv.writer(fh)
         w.writerow(['group', 'key', 'label', 'cited', 'item', 'item_label', 'item_desc', 'via'])
         w.writerows(prow)
