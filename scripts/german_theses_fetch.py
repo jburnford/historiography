@@ -389,7 +389,7 @@ def fetch(gate, rob, url, sink=None, hops=6):
     return 'too many redirects', url, None, {}
 
 
-MAN_FIELDS = ['dnb_id', 'host', 'status', 'url', 'landing_url', 'sha256', 'bytes', 'path', 'date', 'note']
+MAN_FIELDS = ['dnb_id', 'host', 'status', 'url', 'landing_url', 'sha256', 'bytes', 'path', 'date', 'note', 'screen']
 
 
 def cmd_download(a):
@@ -422,7 +422,8 @@ def cmd_download(a):
 
     def record(r, host, status, url='', landing_url='', sha='', size='', path='', note=''):
         mw.writerow({'dnb_id': r['dnb_id'], 'host': host, 'status': status, 'url': url, 'landing_url': landing_url,
-                     'sha256': sha, 'bytes': size, 'path': path, 'date': now(), 'note': note[:300]})
+                     'sha256': sha, 'bytes': size, 'path': path, 'date': now(), 'note': note[:300],
+                     'screen': r.get('screen', '')})
         man.flush()
         done[r['dnb_id']] = status
 
@@ -434,6 +435,9 @@ def cmd_download(a):
             record(r, r['host'], 'skipped:habil')
         elif r.get('duplicate_of'):
             record(r, r['host'], 'skipped:duplicate', note=r['duplicate_of'])
+        elif r['confidence'] == 'low' and r.get('screen') in ('adjacent', 'not-history'):
+            # title screen 2026-11-15: low-confidence rows read as not History are not fetched
+            record(r, r['host'], 'skipped:screen ' + r['screen'], note=r.get('screen_reason', ''))
     todo = [r for r in todo if r['dnb_id'] not in done]
     if a.only_host:
         todo = [r for r in todo if any(host_of(u) == a.only_host for u in r['free_links'].split()) or r['host'] == a.only_host]

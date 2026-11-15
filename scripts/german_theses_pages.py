@@ -64,6 +64,7 @@ def main():
             for r in csv.DictReader(f):
                 man[r['dnb_id']] = r  # last row wins
     pick = collections.defaultdict(list)
+    special = {'unclear': [], 'church-history': []}
     reasons = collections.Counter()
     for r in rows:
         if not r['free_links'] or r['held_id'] or r['degree_type'] == 'habil' or r.get('duplicate_of'):
@@ -88,52 +89,94 @@ def main():
             continue  # class A, not yet tried
         if r['free_link_is_pdf'] and links and host_of(links[0]) == h:
             url = links[0]
+        # title screen (2026-11-15): low rows only when read as History; unclear and church-history
+        # go to their own pages at the end; adjacent / not-history are on no page
+        scr = r.get('screen', '')
+        if r['confidence'] == 'low' and scr != 'history':
+            if scr in ('unclear', 'church-history'):
+                special[scr].append((r, url, why))
+            else:
+                reasons['left off: low, screened ' + (scr or 'unscreened')] += 1
+            continue
         reasons[why[:50]] += 1
         pick[h or 'unknown'].append((r, url, why))
 
     out = a.fetch_dir / 'download-pages'
     out.mkdir(parents=True, exist_ok=True)
     index_rows, total = [], 0
-    for h in sorted(pick, key=lambda h: (-len(pick[h]), h)):
-        items = sorted(pick[h], key=lambda x: (CONF.get(x[0]['confidence'], 3), -int(x[0]['degree_year'])))
+    written = set()
+
+    def write_pages(label, stem, items, section):
+        nonlocal total
+        items = sorted(items, key=lambda x: (CONF.get(x[0]['confidence'], 3), -int(x[0]['degree_year'])))
         for p in range(0, len(items), a.per_page):
             chunk = items[p:p + a.per_page]
             n = p // a.per_page + 1
-            name = f'{slug(h)}-{n}.html'
-            parts = [f'<!doctype html><meta charset="utf-8"><title>{html.escape(h)} {n}</title><style>{STYLE}</style>',
-                     f'<p><a href="index.html">&larr; index</a></p><h1>{html.escape(h)}, page {n} ({len(chunk)} theses)</h1>',
-                     f'<div class="hdr">Save each PDF into <code>{DROP_WIN}</code> (any file name works; the '
-                     f'registration script matches by DNB id, URN or title page). Faster matching: save as '
-                     f'<code>&lt;DNB id&gt;.pdf</code> (the id is shown in each row). Links open in a new tab; '
+            name = f'{stem}-{n}.html'
+            parts = [f'<!doctype html><meta charset="utf-8"><title>{html.escape(label)} {n}</title><style>{STYLE}</style>',
+                     f'<p><a href="index.html">&larr; index</a></p><h1>{html.escape(label)}, page {n} ({len(chunk)} theses)</h1>',
+                     f'<div class="hdr"><b>Save each PDF into <code>{DROP_WIN}</code></b> (any file name works; the '
+                     f'registration script matches by DNB id, URN or title page; zip/tgz archives are fine). Faster matching: save as '
+                     f'<code>&lt;DNB id&gt;.pdf</code> (the id is shown in each row). "[DNB copy]" links are the Deutsche '
+                     f'Nationalbibliothek archive copy of a record flagged free; the [repository] link is the second route. Links open in a new tab; '
                      f'tick the box when done (kept in this browser only).</div>',
                      f'<ol start="{p + 1}">']
             for r, url, why in chunk:
                 low = ' class="low"' if r['confidence'] == 'low' else ''
+                # first link: the DNB archive copy of a free-flagged record (one click, no challenge
+                # page); second: the repository link
+                arch = r.get('dnb_archive_link') or ''
+                first = arch or url
+                alt = (f' <a href="{html.escape(url)}" target="_blank" rel="noopener" class="m">[repository]</a>'
+                       if arch else '')
+                scr = r.get('screen') or 'not screened'
                 parts.append(
                     f'<li><input type="checkbox" data-id="{r["dnb_id"]}"> '
-                    f'<a href="{html.escape(url)}" target="_blank" rel="noopener">{html.escape(r["author"] or "?")} '
-                    f'({r["degree_year"]})</a> &mdash; {html.escape(r["title"][:220])}'
+                    f'<a href="{html.escape(first)}" target="_blank" rel="noopener">{html.escape(r["author"] or "?")} '
+                    f'({r["degree_year"]}){" [DNB copy]" if arch else ""}</a>{alt} &mdash; {html.escape(r["title"][:220])}'
                     f'<br><span class="m">{html.escape(r["university"][:80])} &middot; <span{low}>{r["confidence"]}</span>'
-                    f' &middot; {r["degree_country"]} &middot; DNB <code>{r["dnb_id"]}</code> &middot; {html.escape(why[:70])}</span></li>')
+                    f' &middot; screen: <b>{html.escape(scr)}</b>{(" (" + html.escape(r.get("screen_reason", "")[:50]) + ")") if r.get("screen") else ""}'
+                    f' &middot; {r["degree_country"]} &middot; DNB <code>{r["dnb_id"]}</code> &middot; {html.escape(why[:60])}</span></li>')
             parts += ['</ol>', SCRIPT]
             (out / name).write_text('\n'.join(parts) + '\n', encoding='utf-8')
-            index_rows.append({'page': name, 'host': h, 'class': hosts.get(h, {}).get('class', ''), 'links': len(chunk),
+            written.add(name)
+            index_rows.append({'page': name, 'host': label, 'section': section,
+                               'class': hosts.get(label, {}).get('class', ''), 'links': len(chunk),
                                'high': sum(1 for x in chunk if x[0]['confidence'] == 'high')})
             total += len(chunk)
+
+    for h in sorted(pick, key=lambda h: (-len(pick[h]), h)):
+        write_pages(h, slug(h), pick[h], 'History (high, medium, low screened history)')
+    write_pages('UNCLEAR by title screen (check before downloading)', 'zz-unclear', special['unclear'], 'unclear')
+    write_pages('CHURCH HISTORY by title screen (scope not yet ruled)', 'zz-church-history', special['church-history'],
+                'church-history')
+    for old_page in out.glob('*.html'):  # pages from earlier runs: overwrite with a pointer, never delete
+        if old_page.name not in written and old_page.name != 'index.html':
+            old_page.write_text('<!doctype html><meta charset="utf-8"><p>This page was superseded on 2026-11-15. '
+                                'Use <a href="index.html">the index</a>.</p>\n', encoding='utf-8')
+    main_n = sum(x['links'] for x in index_rows if x['section'].startswith('History'))
     parts = [f'<!doctype html><meta charset="utf-8"><title>German History theses to download</title><style>{STYLE}</style>',
-             f'<h1>German History theses for browser download: {total} links on {len(index_rows)} pages</h1>',
-             f'<div class="hdr">Save every PDF into <code>{DROP_WIN}</code>. Then run '
-             '<code>python3 -I scripts/german_theses_register.py</code> in the historiography repo to match them to DNB '
-             'records. Pages are grouped by repository, high-confidence History first; "low" marks archaeology, '
-             'ancient world, theology or records with no History subject group.</div><ol>']
+             f'<div class="hdr" style="font-size:16px"><b>SAVE EVERY FILE INTO: <code>{DROP_WIN}</code></b><br>'
+             'PDFs saved into <code>E:\\historiography-dissertation-pdfs</code> are picked up too (matched only by DNB id, URN '
+             'or title page), but the folder above is preferred. Zip/tgz archives are fine; unfinished .crdownload files are ignored. '
+             'Then run <code>python3 -I scripts/german_theses_register.py</code> in the historiography repo.</div>',
+             f'<h1>German History theses for browser download: {main_n} History links'
+             f' (+ {total - main_n} unclear / church history) on {len(index_rows)} pages</h1>',
+             '<p>Only History rows are listed: high and medium DNB confidence, and low-confidence rows whose title was '
+             'read as History (2026-11-15). Low rows read as archaeology, art history, literature, social science, '
+             'engineering etc. are on no page. Each row shows its screen label. Pages are grouped by repository.</p><ol>']
+    sec = None
     for x in index_rows:
+        if x['section'] != sec:
+            sec = x['section']
+            parts.append(f'</ol><h2>{html.escape(sec)}</h2><ol>')
         parts.append(f'<li><a href="{x["page"]}">{html.escape(x["host"])} &ndash; {x["page"]}</a> '
                      f'<span class="m">{x["links"]} links, {x["high"]} high; host class {x["class"] or "?"}</span></li>')
     parts.append('</ol>')
     (out / 'index.html').write_text('\n'.join(parts) + '\n', encoding='utf-8')
     if a.index_csv:
         with a.index_csv.open('w', newline='') as f:
-            w = csv.DictWriter(f, fieldnames=['page', 'host', 'class', 'links', 'high'])
+            w = csv.DictWriter(f, fieldnames=['page', 'host', 'section', 'class', 'links', 'high'])
             w.writeheader()
             w.writerows(index_rows)
     print(f'{total} links on {len(index_rows)} pages; {out / "index.html"}')

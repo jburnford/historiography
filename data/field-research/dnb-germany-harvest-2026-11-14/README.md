@@ -94,3 +94,73 @@ One plain request to `https://d-nb.info/1240316119/34` (a Leipzig thesis whose r
 free): **200, application/pdf, 2.1 MB, 195 pages, no login**. That says the archive copy of a
 free-flagged record is served openly; it says nothing about records without the free flag. The
 archive copies were not used further.
+
+### What the DNB's documentation says about automated retrieval of the free objects (read 2026-11-14)
+
+- `https://d-nb.info/robots.txt`: `User-agent: *` / `Disallow:` (empty: everything allowed), plus a
+  sitemap. `https://www.dnb.de/robots.txt`: `Crawl-delay: 10`, disallows `/SiteGlobals/`, `/DE/Service/`,
+  `/EN/Service/` (the website, not d-nb.info).
+- DNBLab overview
+  (https://www.dnb.de/EN/Professionell/Services/WissenschaftundForschung/DNBLab/dnblab_node.html):
+  "DNBLab allows users to access our data, object files and full texts." "The access is available by
+  download and through various interfaces." "If you are interested in automated analyses of protected
+  full texts, images or AV media", the DH-Call (an application) applies. "Do you have questions about
+  access and automated use of our data and free full texts?" → contact form / lab@dnb.de.
+- Free object collections
+  (https://www.dnb.de/EN/Professionell/Services/WissenschaftundForschung/DNBLab/dnblabFreieDigitaleObjektsammlung.html):
+  "More than 336,000 online dissertations and postdoctoral theses from Germany with no access
+  restrictions" (MARC21-xml set at https://data.dnb.de/FreieOnlineHochschulschriften); "The data sets
+  only contain objects that can be freely accessed online." Licence text there covers the
+  bibliographic and authority data (CC0); "Information on rights and licensing can usually be found in
+  the bibliographic metadata".
+- Interfaces page
+  (https://www.dnb.de/EN/Professionell/Services/WissenschaftundForschung/DNBLab/dnblabSchnittstellen.html):
+  OAI2 gives "links to image files of digitised works in the public domain without registering
+  beforehand"; nothing on d-nb.info object files, request rates or bulk conditions.
+- "Using digital media" (https://dnb.de/EN/Benutzung/Digital/digital_node.html): access rights are set
+  by the rights holder; restricted online publications only in the reading rooms ("It is not possible
+  to download online publications" refers to those).
+
+**Reading:** the documentation says free full texts are accessible "by download", but it states no
+terms, rate or bulk conditions for retrieving object files from d-nb.info, and it sends questions about
+automated use of free full texts to DNBLab. That is silent, not a permission, so **no archive copy is
+downloaded by script.** Instead, every browser-page row whose record carries the free flag (3,179 of
+3,182 distinct free-link works) shows the DNB archive link `https://d-nb.info/<id>/34` first, marked
+"[DNB copy]", with the repository link second. Records without the free flag never get that link
+(`dnb_archive_link` column in `theses.csv.gz`). Asking lab@dnb.de would settle a scripted route.
+
+## Title screen of the low-confidence free-link rows (2026-11-15)
+
+After the user hit non-History theses on the first pages (DNB 1404629661, Ni Zan, art history), every
+low-confidence work with a free link (1,853 distinct) was screened by reading its title with its
+subject groups, university and supervisor: `screen-low-free.csv` (dnb_id, screen, one-phrase reason).
+Rule: History PhDs; history of science, technology, medicine and economic/social/business history count;
+ancient history counts; archaeology (prehistoric and classical), art history, literature, philology,
+musicology, political science, economics modelling, geography, computer science and engineering do not.
+
+| screen | rows |
+| --- | ---: |
+| history | 636 |
+| adjacent (archaeology, art history, literature, philology, Egyptology/Assyriology, musicology) | 654 |
+| not-history (social science, geography, natural science, engineering, CS, didactics) | 465 |
+| unclear | 50 |
+| church-history (user has not ruled) | 48 |
+
+`theses.csv.gz` carries `screen` and `screen_reason` (blank for high/medium rows, which were not
+screened; duplicates inherit their first record's label). The low rows without a free link (about
+2,290) are not screened yet.
+
+Hand check (`screen-check-60.csv`): 60 random screened rows against the DNB record's GND subject
+headings, DDC and 502 note (60 single SRU requests): 58 agree, 2 debatable (an archaeology-method study
+of historical alpine farming that DNB tags "Geschichte"; an EU memory-politics thesis in political
+science).
+
+Effects: the download job skips low rows screened adjacent/not-history (`skipped:screen ...`); the
+manifest has a `screen` column, and the 164 PDFs already fetched that were read as adjacent or
+not-history stay on disk, marked, not to be ingested. The browser pages list only high, medium and
+low-screened-History rows, with unclear and church-history on separate pages at the end.
+
+`german_theses_register.py` now reads several drop folders: `E:\german-theses-2026-11-14\browser-drop\`
+and files modified since 2026-11-14 in `E:\historiography-dissertation-pdfs\` (matched only by DNB id,
+URN or title page); it ignores `.crdownload`, and lists .tgz/.zip archives and extracts only their
+PDFs into a new folder per archive under `browser-extracted/`.

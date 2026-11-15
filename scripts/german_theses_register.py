@@ -9,6 +9,12 @@ For each PDF in the drop folder (recursively):
   3. otherwise title page match: the record whose author surname appears on pages 1-3 and whose
      title shares the most distinctive words (at least 60% of its first 8 title words of 4+ letters,
      and at least 3 words), one clear winner only.
+Several drop folders (default: /mnt/e/german-theses-2026-11-14/browser-drop and, for files modified
+since --since, the shared /mnt/e/historiography-dissertation-pdfs, which also holds other countries'
+PDFs: matched only by DNB id, URN or title page). .crdownload/.part files are ignored. Archives
+(.tgz/.tar/.zip, e.g. heiDOK multi-file theses or DNB-id-named zips) are listed and only their PDF
+members are extracted into a new directory per archive under <fetch-dir>/browser-extracted/; an
+archive named by a DNB id hints that id.
 Matched files are COPIED (never moved or deleted) to <fetch-dir>/browser/<dnb-id>.pdf and a row
 with status 'downloaded' and note 'browser:<rule>' is appended to manifest.csv. Files that are not
 PDFs, already registered (same sha256), or unmatched are listed in register-report.csv.
@@ -31,7 +37,8 @@ import unicodedata
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 FETCH = pathlib.Path('/mnt/e/german-theses-2026-11-14')
-MAN_FIELDS = ['dnb_id', 'host', 'status', 'url', 'landing_url', 'sha256', 'bytes', 'path', 'date', 'note']
+MAN_FIELDS = ['dnb_id', 'host', 'status', 'url', 'landing_url', 'sha256', 'bytes', 'path', 'date', 'note', 'screen']
+SHARED = pathlib.Path('/mnt/e/historiography-dissertation-pdfs')
 
 
 def fold(text):
@@ -48,6 +55,41 @@ def first_pages(path, n=3):
         return ''
 
 
+def extract_pdfs(archive, root, report):
+    """List an archive (tar/tgz/zip) and extract only its PDF members, by base name, into a NEW
+    directory <root>/<archive name>/ (reused on later runs). Nothing in it is ever executed."""
+    import tarfile
+    import zipfile
+    dest = root / archive.name.replace('.', '_')
+    out = []
+    if dest.exists():
+        return sorted(dest.glob('*.pdf'))
+    try:
+        if zipfile.is_zipfile(archive):
+            with zipfile.ZipFile(archive) as z:
+                members = [(i.filename, i) for i in z.infolist() if i.filename.lower().endswith('.pdf') and not i.is_dir()]
+                dest.mkdir(parents=True)
+                for name, info in members:
+                    target = dest / pathlib.PurePosixPath(name).name
+                    with z.open(info) as src, open(target, 'wb') as dst:
+                        shutil.copyfileobj(src, dst)
+                    out.append(target)
+        else:
+            with tarfile.open(archive) as t:
+                members = [m for m in t.getmembers() if m.isfile() and m.name.lower().endswith('.pdf')]
+                dest.mkdir(parents=True)
+                for m in members:
+                    target = dest / pathlib.PurePosixPath(m.name).name
+                    with t.extractfile(m) as src, open(target, 'wb') as dst:
+                        shutil.copyfileobj(src, dst)
+                    out.append(target)
+    except Exception as e:
+        report.append({'file': str(archive), 'result': f'archive unreadable ({type(e).__name__})'})
+        return []
+    report.append({'file': str(archive), 'result': f'archive: {len(out)} PDF(s) extracted to {dest}'})
+    return out
+
+
 def sha256(path):
     h = hashlib.sha256()
     with open(path, 'rb') as f:
@@ -58,7 +100,11 @@ def sha256(path):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('--drop', type=pathlib.Path, default=FETCH / 'browser-drop')
+    ap.add_argument('--drop', type=pathlib.Path, nargs='+', default=[FETCH / 'browser-drop', SHARED],
+                    help='drop folders (default: browser-drop and the shared thesis PDF folder)')
+    ap.add_argument('--since', default='2026-11-14',
+                    help='in the shared thesis folder only consider files modified on or after this date '
+                         '(it also holds other countries\' PDFs)')
     ap.add_argument('--fetch-dir', type=pathlib.Path, default=FETCH)
     ap.add_argument('--table', type=pathlib.Path,
                     default=ROOT / 'data/field-research/dnb-germany-harvest-2026-11-14/theses.csv.gz')
@@ -89,9 +135,22 @@ def main():
                     have.add(m['dnb_id'])
                     have_sha.add(m['sha256'])
     report, new = [], []
-    for p in sorted(a.drop.rglob('*')):
-        if not p.is_file() or p.suffix.lower() != '.pdf':
-            continue
+    since = dt.datetime.fromisoformat(a.since).replace(tzinfo=dt.timezone.utc).timestamp()
+    cands = []  # (path, dnb id hinted by an archive name)
+    for drop in a.drop:
+        shared = drop.resolve() == SHARED.resolve()
+        for p in sorted(drop.rglob('*') if not shared else drop.glob('*')):
+            if not p.is_file() or p.name.endswith(('.crdownload', '.part', '.tmp')):
+                continue
+            if shared and p.stat().st_mtime < since:
+                continue
+            low = p.name.lower()
+            if low.endswith(('.tgz', '.tar.gz', '.tar', '.zip')):
+                for x in extract_pdfs(p, a.fetch_dir / 'browser-extracted', report):
+                    cands.append((x, p.stem.split('.')[0]))
+            elif low.endswith('.pdf'):
+                cands.append((p, ''))
+    for p, hint in cands:
         with open(p, 'rb') as f:
             if not f.read(1024).startswith(b'%PDF'):
                 report.append({'file': str(p), 'result': 'not a PDF'})
@@ -101,7 +160,7 @@ def main():
             report.append({'file': str(p), 'result': 'already registered'})
             continue
         rec, rule = None, ''
-        for m in re.finditer(r'\d{9}[\dX]', p.name):
+        for m in re.finditer(r'\d{8,9}[\dX]', hint + ' ' + p.name):
             if m.group(0) in by_id:
                 rec, rule = by_id[m.group(0)], 'dnb id in file name'
                 break
@@ -137,19 +196,22 @@ def main():
             report.append({'file': str(p), 'result': 'no match'})
             continue
         if rec['dnb_id'] in have:
-            report.append({'file': str(p), 'result': f'record already downloaded ({rec["dnb_id"]})', 'dnb_id': rec['dnb_id']})
+            report.append({'file': str(p), 'result': f'record already downloaded ({rec["dnb_id"]})', 'dnb_id': rec['dnb_id'],
+                           'screen': rec.get('screen', ''), 'title': rec['title'][:120]})
             continue
         dest = a.fetch_dir / 'browser' / f'{rec["dnb_id"]}.pdf'
+        scr = rec.get('screen') or f'not screened ({rec["confidence"]})'
         new.append({'dnb_id': rec['dnb_id'], 'host': 'browser', 'status': 'downloaded', 'url': '', 'landing_url': '',
                     'sha256': sha, 'bytes': p.stat().st_size, 'path': str(dest),
                     'date': dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
-                    'note': f'browser:{rule}; from {p.name}'})
-        report.append({'file': str(p), 'result': 'matched: ' + rule, 'dnb_id': rec['dnb_id']})
+                    'note': f'browser:{rule}; from {p.name}', 'screen': scr})
+        report.append({'file': str(p), 'result': 'matched: ' + rule, 'dnb_id': rec['dnb_id'], 'screen': scr,
+                       'title': rec['title'][:120]})
         have.add(rec['dnb_id'])
         have_sha.add(sha)
         if not a.dry_run:
             dest.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(p, dest)
+            shutil.copyfile(p, dest)  # copy, never move (copy2 fails on the NTFS mount's utime)
     if not a.dry_run and new:
         exists = mp.exists()
         with mp.open('a', newline='') as f:
@@ -160,9 +222,12 @@ def main():
     rp = a.fetch_dir / 'register-report.csv'
     if not a.dry_run:
         with rp.open('w', newline='') as f:
-            w = csv.DictWriter(f, fieldnames=['file', 'result', 'dnb_id'])
+            w = csv.DictWriter(f, fieldnames=['file', 'result', 'dnb_id', 'screen', 'title'], extrasaction='ignore')
             w.writeheader()
             w.writerows(report)
+    for r in report:
+        if r.get('screen') in ('adjacent', 'not-history', 'unclear', 'church-history'):
+            print(f"  {r['screen']}: {r['dnb_id']} {r.get('title', '')[:80]} <- {r['file']}")
     c = collections.Counter(r['result'].split(':')[0].split(' (')[0] for r in report)
     print(f'{len(new)} newly registered{" (dry run)" if a.dry_run else ""}; ' + ', '.join(f'{k} {v}' for k, v in c.items()))
 

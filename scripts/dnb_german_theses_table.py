@@ -249,6 +249,10 @@ def main():
                 if norm_link(u) in held_links:
                     held = held_links[norm_link(u)]
                     break
+        # DNB long-term archive copy (d-nb.info/<id>/34) of a free-flagged edition only; records
+        # without the free flag never get this link
+        archive = next((u['u'] for r in group if any(x.get('z') == 'kostenfrei' for x in r['urls'])
+                        for u in r['urls'] if u.get('x', '').startswith('Langzeitarchivierung') and u.get('u')), '')
         sups = []
         for r in group:
             for s in r['supervisors']:
@@ -280,7 +284,17 @@ def main():
             'resolved_link': final if final and final not in links else '',
             'route_class': route,
             'held_id': held,
+            'dnb_archive_link': archive,
         })
+    # title screen of low-confidence rows (screen-low-free.csv, read by hand 2026-11-15); high and
+    # medium rows are 'not screened'; a duplicate inherits its first record's label
+    screen = {}
+    sp = a.out / 'screen-low-free.csv'
+    if sp.exists():
+        with sp.open(newline='') as f:
+            screen = {x['dnb_id']: (x['screen'], x['screen_reason']) for x in csv.DictReader(f)}
+    for r in rows:
+        r['screen'], r['screen_reason'] = screen.get(r['dnb_id'], ('', ''))
     rows.sort(key=lambda r: (r['degree_year'], r['dnb_id']))
     # same author and title on two works not linked by MARC 776 (e.g. a corrected second online
     # version): keep the first (the one with a free link), mark the rest
@@ -289,6 +303,10 @@ def main():
         k = (fold(r['author']), fold(r['title'])[:60])
         r['duplicate_of'] = first_of.get(k, '') if k[0] and k[1] else ''
         first_of.setdefault(k, r['dnb_id'])
+    by_id = {r['dnb_id']: r for r in rows}
+    for r in rows:
+        if r['duplicate_of'] and not r['screen'] and by_id[r['duplicate_of']]['screen']:
+            r['screen'], r['screen_reason'] = by_id[r['duplicate_of']]['screen'], 'as duplicate_of'
     path = a.out / 'theses.csv.gz'
     with gzip.open(path, 'wt', newline='', encoding='utf-8') as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0]))
@@ -306,6 +324,7 @@ def main():
         'free_link_by_confidence': dict(c(r['confidence'] for r in rows if r['free_links'])),
         'free_link_by_route_class': dict(c(r['route_class'] for r in rows if r['free_links'])),
         'held_already': sum(1 for r in rows if r['held_id']),
+        'screen_low_free_link': dict(c(r['screen'] for r in rows if r['confidence'] == 'low' and r['free_links'] and not r['duplicate_of'])),
         'same_author_title_duplicates': sum(1 for r in rows if r['duplicate_of']),
         'per_degree_year': dict(sorted(c(r['degree_year'] for r in rows).items())),
     }
