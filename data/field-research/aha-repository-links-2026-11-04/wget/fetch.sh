@@ -3,8 +3,8 @@
 #   bash fetch.sh open-urls.tsv          # sites whose robots.txt allows any client
 #   bash fetch.sh ai-excluded-urls.tsv   # sites that allow general clients but exclude named AI crawlers
 # One file at a time, a pause after every request (the site's crawl delay, else 10 s), plain curl identity.
-# Safe to stop (Ctrl-C) and rerun: finished files are skipped. A site that answers with a refusal (401/403/429)
-# or three times in a row with something that is not a PDF is dropped for the rest of the run and its links are written to
+# Safe to stop (Ctrl-C) and rerun: finished files are skipped. A site that answers 429, or misses ten times in a row
+# (refusals, login pages, anything that is not a PDF), is dropped for the rest of the run and its links are written to
 # back-to-browser.tsv, so nothing is retried against a site that said no.
 set -u
 LIST="${1:?usage: bash fetch.sh <list.tsv> [output folder]}"
@@ -28,10 +28,10 @@ while IFS=$'\t' read -r url name host delay; do
     rm -f "$OUT/$name.part"; res="failed:$code [$ctype] $what"
     printf '%s\t%s\t%s\n' "$url" "$name" "$host" >> "$BACK"
     MISS[$host]=$(( ${MISS[$host]:-0} + 1 ))
-    case "$code" in
-      401|403|429) STOPPED[$host]=1; echo "stopping $host for this run (refused: $code)";;
-      *) if [ "${MISS[$host]}" -ge 3 ]; then STOPPED[$host]=1; echo "stopping $host for this run (3 answers in a row that were not PDFs)"; fi;;
-    esac
+    # one thesis answering 401/403 or a login page is usually an embargo, not the site refusing scripts:
+    # stop a site at once only when it says "too many requests", otherwise after 10 misses in a row
+    if [ "$code" = "429" ]; then STOPPED[$host]=1; echo "stopping $host for this run (429: too many requests)"
+    elif [ "${MISS[$host]}" -ge 10 ]; then STOPPED[$host]=1; echo "stopping $host for this run (10 misses in a row)"; fi
   fi
   printf '%s\t%s\t%s\t%s\n' "$(date -u +%FT%TZ)" "$res" "$host" "$name" >> "$LOG"
   echo "[$n] $res $host $name"
