@@ -405,11 +405,12 @@ def model_layer(read_rows, clf_path, qwen_path, qpos_path, person1, resolve, wi,
                       'role_basis': c['basis']})
         credited.add((k, w))
     R['added|classified-links'] = len(add_c)
-    # demotions: the rule rows leave the credits and join the candidates. BUILD_QWEN_DEMOTE_OFF=1 keeps them (counted):
+    # demotions: the rule rows would leave the credits and join the candidates. OFF by default since 2026-11-14
+    # (BUILD_QWEN_DEMOTE_ON=1 turns them back on); the would-be demotions are still counted:
     # a hand check of 20 not-keyed demotions (2026-11-13) found about half of Qwen's not-keyed verdicts wrong (an
     # affiliation from another career stage read as a mismatch)
     import os
-    if os.environ.get('BUILD_QWEN_DEMOTE_OFF'):
+    if not os.environ.get('BUILD_QWEN_DEMOTE_ON'):
         R['demotions_switched_off'] = len(demote)
         demote = {}
     for x, why, sig in demote.values():
