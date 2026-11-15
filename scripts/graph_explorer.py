@@ -43,7 +43,7 @@ ADDED = {'part_of': [('evidence', "'keylog'"), ('source', 'NULL'), ('volume_basi
          'reviewed': [('target_role', "'author'")],
          # employment / education / position / affiliation (2026-11-14, scripts/pid_records.py)
          'affiliated_with': [('kind', "'employment'")]}
-WORK_ADDED = ('issn', 'journal_source', 'kind_proposed', 'isbn', 'editors_printed', 'first_year_basis')
+WORK_ADDED = ('issn', 'journal_source', 'kind_proposed', 'isbn', 'editors_printed', 'first_year_basis', 'variant_titles')
 WORK_ADDED_INT = ('first_year', 'first_year_catalogue')
 # credits under which a person prepared someone else's work (an edition, a translation, an introduction, a series):
 # shown apart and never counted as citations of the person's own work (class 15, 2026-11-12)
@@ -248,7 +248,9 @@ def build():
               WHERE coalesce(x.role, 'author') NOT IN {EDITION_ROLES}) a
         JOIN work_w w ON w.key = a."to" GROUP BY 1""")
     wcols = {r[0] for r in db.execute(f"DESCRIBE SELECT * FROM '{G}/work.parquet'").fetchall()}
-    wx = ', '.join([f'w.{c}' if c in wcols else f'NULL::VARCHAR AS {c}' for c in WORK_ADDED]
+    # variant_titles (2026-11-14): other titles of the work kept by a merge (list in work.parquet), shown as one line
+    wsql = {'variant_titles': "array_to_string(w.variant_titles, ' | ') AS variant_titles"}
+    wx = ', '.join([(wsql.get(c) or f'w.{c}') if c in wcols else f'NULL::VARCHAR AS {c}' for c in WORK_ADDED]
                    + [f'w.{c}' if c in wcols else f'NULL::INTEGER AS {c}' for c in WORK_ADDED_INT])
     nx = ', '.join([f'NULL::VARCHAR AS {c}' for c in WORK_ADDED] + [f'NULL::INTEGER AS {c}' for c in WORK_ADDED_INT])
     # prizes (2026-11-12): kind = the honours most rows give, year = first year, journal = the awarding body
@@ -504,13 +506,13 @@ class Graph:
         r = self.cur().execute("""SELECT key, type, label, kind, year, journal, resolution, anchors, weight, works, cited, reviewed,
                                   kind_proposed, issn, journal_source, isbn, editors_printed,
                                   (SELECT note FROM vol_note WHERE vol_note.key = nodes.key),
-                                  first_year, first_year_catalogue, first_year_basis
+                                  first_year, first_year_catalogue, first_year_basis, variant_titles
                                   FROM nodes WHERE key = ?""", [key]).fetchone()
         if not r:
             return None
         n = dict(zip(['key', 'type', 'label', 'kind', 'year', 'journal', 'resolution', 'anchors', 'weight', 'works',
                       'cited', 'reviewed', 'kind_proposed', 'issn', 'journal_source', 'isbn', 'editors_printed',
-                      'in_volume', 'first_year', 'first_year_catalogue', 'first_year_basis'], r))
+                      'in_volume', 'first_year', 'first_year_catalogue', 'first_year_basis', 'variant_titles'], r))
         n['ids'] = ids(n.pop('anchors'))
         if n['type'] == 'work':          # identifiers of its other keys (SAME_WORK hidden), 'also held as'
             have = {(i['scheme'], i['value'].lower()) for i in n['ids']}

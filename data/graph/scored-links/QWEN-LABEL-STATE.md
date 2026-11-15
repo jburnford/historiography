@@ -240,3 +240,16 @@ is unaffected).
 ## Chunks 5–12 resubmitted as chained short jobs (2026-11-14)
 
 The 10-hour jobs for rest-05 … rest-12 were cancelled while pending and each chunk resubmitted as a chain of short jobs with the same result name (the job script resumes from the verdicts already written): three jobs of 3:30 per chunk (rest-12: two of 2:30), each later part with `--dependency=afternotok:<previous> --kill-on-invalid-dep=yes`, so it runs only if the previous part timed out or failed and is cancelled automatically when the chunk finishes. First parts: 4020870, 4020873, 4020876, 4020879, 4020882, 4020885, 4020888, 4020891. rest-01 … rest-04 run as single 10-hour jobs (3944948, 3945025, 3945028, 3945031). Never run two jobs with the same result name at once. Collect with `bash scripts/label_links_qwen_rest_merge.sh`.
+
+## Merge of rest-01 … rest-04 and relink (2026-11-14 evening)
+
+Fir at 21:00: rest-01 … rest-04 DONE (already local, sizes identical); rest-05 … rest-12 chains (4020870–4020892) all
+still PENDING, first parts on "ReqNodeNotAvail, UnavailableNodes:fc11013", nothing started, no chain failed.
+`FETCH=0 bash scripts/label_links_qwen_rest_merge.sh` + `python3 scripts/qwen_positions.py`: qwen-labels.csv.gz now
+200,000 positions (prod 40,000 + 4 × 40,000): key 175,306, not-keyed 12,248, error 7,831 (cut-off JSON, see above),
+cannot-tell 4,615; the rest chunks added key 146,673, not-keyed 4,733, error 5,703, cannot-tell 2,891; every position
+has a list position. Relink on the post-merge key log (build/relink-2026-11-14b/). Build (default behaviour, demotions on):
+qwen-links credits 17,169 -> 46,119 (27,804 pairs new to the graph); demoted rule links 379 -> 2,459 (qwen-not-keyed
+326 -> 2,323, conflicts 53 -> 136), i.e. about 2,080 more rule links returned to candidates on Qwen's word. The
+2026-11-13 hand check found 9 of 20 not-keyed demotions were right links: the switch (`BUILD_QWEN_DEMOTE_OFF=1`)
+awaits the owner.

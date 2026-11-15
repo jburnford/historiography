@@ -242,8 +242,13 @@ the volume's ISBN).
   demoted to `author_candidates` (reason names it); key-log claims of that kind are counted (`class_29b_reviewed_author`)
   and every case is listed in `reviewed_author_credits.csv` beside the tables. Scorer links on reviews load only when the
   reviewed author is known and the person is not it (`scored_links`: `link|<role>|review|…`).
-- Works listed twice (class 11): AUTHORED and EDITED have `n_claims` and `claims` (rows unchanged; the claims of a pair
-  with their routes); `same_work.parquet` (SAME_WORK, Work → Work, hidden → shown, `basis`) from `work-duplicates.csv.gz`.
+- Works listed twice (class 11): AUTHORED and EDITED have `n_claims` and `claims` (the claims of a pair with their
+  routes). Since 2026-11-14 (evening) one row per (person, work): a pair with two or more key-log claims is stored once, `claim` =
+  the first claim key, `all_claims` = every claim key (NULL for one claim); `graph_tables.keylog()` unnests
+  `all_claims`, so identity scripts still read one row per claim (141,083 AUTHORED and 609 EDITED rows collapsed on
+  the 2026-11-14 build). Work nodes carry `variant_titles` (list): other titles a merge kept as `variant-title:`
+  members (the AHA working title of a thesis-twin merge, class 44), shown on the work page, never the label;
+  `same_work.parquet` (SAME_WORK, Work → Work, hidden → shown, `basis`) from `work-duplicates.csv.gz`.
   The explorer lists a pair once on a person page and does not count the hidden key.
 - Unkeyed records of keyed works (class 11, pass ten, 2026-11-13): `work_dup_pairs.py` also pairs an unkeyed record with
   a keyed work by `same-volume-title` (same folded title over 15 characters, both PART_OF one volume, not the volume's

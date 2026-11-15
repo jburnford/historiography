@@ -273,7 +273,7 @@ def work_kind(anchors, members=()):
 # Member prefixes the build reads (works: dates, kind, reviewers, journal, degree-granting institution; people: the
 # possibly-same and not-same marks). The cache view loads only these.
 MEMBER_PREFIXES = ('year:', 'lc-first-year:', 'kind:', 'reviewer-name:', 'journal:', 'awarded-by:',
-                   'possible-same:', 'very-likely-same:', 'not-same:')
+                   'possible-same:', 'very-likely-same:', 'not-same:', 'variant-title:')
 NODE_TYPES = ('person', 'work', 'institution')
 
 
@@ -1433,7 +1433,10 @@ def main():
                               year=year_of(members, 'year:') or year_of(members, 'lc-first-year:'),
                               # a review's reviewers as printed (key_jstor_reviews: no name-only person keys)
                               reviewer_names=sorted(m.split(':', 1)[1] for m in members if m.startswith('reviewer-name:')),
-                              journal=next((m.split(':', 1)[1] for m in members if m.startswith('journal:')), None)))
+                              journal=next((m.split(':', 1)[1] for m in members if m.startswith('journal:')), None),
+                              # 2026-11-14: other titles of the same work kept by a merge (the AHA working title of a
+                              # thesis-twin merge, class 44); shown on the work page, never the label
+                              variant_titles=sorted(m.split(':', 1)[1] for m in members if m.startswith('variant-title:')) or None))
         elif t == 'institution':
             insts.append(dict(base, ror=first(anchors, 'ror')))
     # unkeyed citing articles (Crossref): a node unless the key log has since keyed the DOI (then the key stands)
@@ -1540,7 +1543,8 @@ def main():
                                                     ('reviewer_names', L), ('journal', s), ('issn', s),
                                                     ('journal_source', s), ('kind_proposed', s), ('isbn', s),
                                                     ('editors_printed', s), ('first_year', pa.int32()),
-                                                    ('first_year_catalogue', pa.int32()), ('first_year_basis', s)]))
+                                                    ('first_year_catalogue', pa.int32()), ('first_year_basis', s),
+                                                    ('variant_titles', L)]))
     if UNKEYED_INST.exists():       # ROR organisations reached by ORCID/Wikidata affiliations, not yet keyed (2026-11-14)
         with gzip.open(UNKEYED_INST, 'rt', newline='', encoding='utf-8') as f:
             for r in csv.DictReader(f):
@@ -1966,7 +1970,8 @@ def main():
         same_new, rels['AUTHORED'], linked.get('AUTHORED', []), possible_authors, plabel)
     del scored_wi, ra, plabel, same_new
     ev_schema = pa.schema([('from', s), ('to', s), ('claim', s), ('resolution', s), ('evidence', s), ('source', s), ('state', s),
-                           ('role', s), ('role_basis', s), ('score', pa.float64()), ('n_claims', pa.int32()), ('claims', s)])
+                           ('role', s), ('role_basis', s), ('score', pa.float64()), ('n_claims', pa.int32()), ('claims', s),
+                           ('all_claims', pa.list_(s))])
     # pass seven (class 11): two or more key-log claims for one person and work. The rows stay (identity scripts and
     # audits read claims); every row of such a pair carries n_claims and the claims with the routes that asserted them
     # (their anchors' schemes), and the explorer lists the pair once with that provenance
@@ -2017,7 +2022,20 @@ def main():
         lrows = [r for r in linked.get(name, []) if (r['from'], r['to']) not in keyed]
         report[f'{name}_linked_dropped_as_in_keylog'] = len(linked.get(name, [])) - len(lrows)
         rows_ = []
-        for ev, src in (('keylog', rels[name]), ('linked', lrows)):
+        # 2026-11-14 (class 11, form A): one stored row per (person, work). A pair the key log holds two or more claims
+        # for was written once per claim (the same person twice on one work); now one row, `claim` = the first claim
+        # key, `all_claims` = every claim key (NULL for a single claim). graph_tables.keylog() unnests all_claims, so
+        # identity scripts that read claim keys still see one row per claim.
+        pair_claims = defaultdict(list)
+        for r in rels[name]:
+            pair_claims[r['from'], r['to']].append(r)
+        first_rows = []
+        for (f_, t_), rs in pair_claims.items():
+            rs = sorted(rs, key=lambda x: x['claim'])
+            first_rows.append(dict(rs[0], _all=[x['claim'] for x in rs] if len(rs) > 1 else None))
+        report[f'class_11_{name}_rows_collapsed'] = len(rels[name]) - len(first_rows)
+        del pair_claims
+        for ev, src in (('keylog', first_rows), ('linked', lrows)):
             for r in src:
                 role, basis = role_of(name, r)
                 if name == 'AUTHORED' and role not in ('author', 'author-editor'):
@@ -2032,7 +2050,8 @@ def main():
                               'evidence': ev, 'source': r.get('source') if ev == 'linked' else None,
                               'state': r.get('state') if ev == 'linked' else None, 'role': role, 'role_basis': basis,
                               'score': r.get('score') if ev == 'linked' else None,
-                              'n_claims': dp[0] if dp else 1, 'claims': dp[1] if dp else None})
+                              'n_claims': dp[0] if dp else 1, 'claims': dp[1] if dp else None,
+                              'all_claims': r.get('_all') if ev == 'keylog' else None})
         report[name] = write(name.lower(), rows_, ev_schema)
         report[f'{name}_by_evidence'] = dict(keylog=len(rels[name]), linked=len(lrows))
         report[f'{name}_by_role'] = {k.split('|', 1)[1]: v for k, v in sorted(role_count.items()) if k.startswith(name + '|')}
@@ -2548,12 +2567,13 @@ def load_db(report):
     conn.execute('CREATE NODE TABLE Work(key STRING, label STRING, resolution STRING, anchors STRING[], kind STRING, '
                  'lccn STRING, year INT32, reviewer_names STRING[], journal STRING, issn STRING, journal_source STRING, '
                  'kind_proposed STRING, isbn STRING, editors_printed STRING, first_year INT32, first_year_catalogue INT32, '
-                 'first_year_basis STRING, PRIMARY KEY (key))')
+                 'first_year_basis STRING, variant_titles STRING[], PRIMARY KEY (key))')
     conn.execute('CREATE NODE TABLE Institution(key STRING, label STRING, resolution STRING, anchors STRING[], '
                  'ror STRING, PRIMARY KEY (key))')
     for name in ('AUTHORED', 'EDITED'):
         conn.execute(f'CREATE REL TABLE {name}(FROM Person TO Work, claim STRING, resolution STRING, evidence STRING, '
-                     'source STRING, state STRING, role STRING, role_basis STRING, score DOUBLE, n_claims INT32, claims STRING)')
+                     'source STRING, state STRING, role STRING, role_basis STRING, score DOUBLE, n_claims INT32, claims STRING, '
+                     'all_claims STRING[])')
     conn.execute('CREATE REL TABLE SUPERVISED(FROM Person TO Work, claim STRING, resolution STRING)')
     conn.execute('CREATE REL TABLE PUBLISHED_AS(FROM Work TO Work, claim STRING, resolution STRING)')
     conn.execute('CREATE REL TABLE REVIEWS(FROM Work TO Work, claim STRING, resolution STRING, evidence STRING, source STRING)')

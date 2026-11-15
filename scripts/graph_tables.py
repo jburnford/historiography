@@ -19,11 +19,20 @@ _HAS = {}
 
 
 def keylog(graph, name):
+    """2026-11-14: authored/edited store one row per (person, work); a pair with two or more key-log claims carries
+    them in `all_claims`, unnested here so readers still get one row per claim (as before the collapse)."""
     path = Path(graph) / f'{name}.parquet'
     key = str(path)
     if key not in _HAS:
         try:
-            _HAS[key] = 'evidence' in pq.read_schema(path).names
+            names = pq.read_schema(path).names
+            _HAS[key] = ('evidence' in names, 'all_claims' in names)
         except Exception:
-            _HAS[key] = False
-    return f"(SELECT * FROM '{path}' WHERE evidence = 'keylog')" if _HAS[key] else f"'{path}'"
+            _HAS[key] = (False, False)
+    ev, allc = _HAS[key]
+    if not ev:
+        return f"'{path}'"
+    if allc:
+        return (f"(SELECT * REPLACE (unnest(coalesce(all_claims, [claim])) AS claim) FROM '{path}' "
+                f"WHERE evidence = 'keylog')")
+    return f"(SELECT * FROM '{path}' WHERE evidence = 'keylog')"

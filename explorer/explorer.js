@@ -228,6 +228,7 @@ function renderPanel() {
     ? `first published ${node.first_year}` + (node.first_year_basis ? ` (${node.first_year_basis.replaceAll(';', ', ')})` : '') : null;
   const facts = node.type === 'work' ? [kindNote(node), first, node.in_volume,
     node.editors_printed ? `editors as printed: ${node.editors_printed}` : null,
+    node.variant_titles ? `also titled: ${node.variant_titles}` : null,
     node.isbn ? `ISBN ${node.isbn}` : null, node.issn ? `ISSN ${node.issn}` : null,
     node.journal && node.journal_source && node.journal_source !== 'keylog' && node.journal_source !== 'node-source'
       ? `journal from the ${node.journal_source} record` : null].filter(Boolean) : [];
