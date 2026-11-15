@@ -132,30 +132,35 @@ def doc_title(label):
 class Graph:
     """the facts of the keys that matter, from build/graph (key-log rows only) and the side files"""
 
-    def __init__(self, G, keys, people):
+    def __init__(self, G, keys, people, remap=None):
+        """remap: merged key -> live survivor (key log newer than the graph): the merged key's graph facts are read
+        as the survivor's"""
         self.G = G
         db = self.db = duckdb.connect()
         db.execute(f"SET memory_limit='4GB'; SET threads=3; SET temp_directory='{SCRATCH}/duck'")
-        db.execute('CREATE TEMP TABLE want(key VARCHAR)')
-        db.executemany('INSERT INTO want VALUES (?)', [(k,) for k in keys])
+        db.execute('CREATE TEMP TABLE want0(src VARCHAR, key VARCHAR)')
+        pairs = [(k, k) for k in keys] + [(m, s) for m, s in (remap or {}).items() if s in keys]
+        db.executemany('INSERT INTO want0 VALUES (?, ?)', pairs)
+        db.execute('CREATE TEMP VIEW want AS SELECT DISTINCT key FROM want0')
+        rmap = dict(pairs)
         ins = dict(db.execute(f"SELECT key, label FROM '{G}/institution.parquet'").fetchall())
         self.inst_label = ins
         self.works = defaultdict(dict)      # key -> work -> (title, year, kind, venue)
         for k, w, lab, y, fy, kind, j in db.execute(f"""
-                SELECT a."from", a."to", w.label, w.year, w.first_year, w.kind, w.journal FROM (
+                SELECT want0.key, a."to", w.label, w.year, w.first_year, w.kind, w.journal FROM (
                   SELECT "from", "to" FROM '{G}/authored.parquet' WHERE evidence = 'keylog'
                   UNION SELECT "from", "to" FROM '{G}/edited.parquet' WHERE evidence = 'keylog') a
-                JOIN want ON want.key = a."from" JOIN '{G}/work.parquet' w ON w.key = a."to" """).fetchall():
+                JOIN want0 ON want0.src = a."from" JOIN '{G}/work.parquet' w ON w.key = a."to" """).fetchall():
             m = HNET.search(lab or '')
             venue = journal_key(j) if j else (m.group(1).lower() if m else '')
             yr = fy if (kind == 'book' and fy) else y
             self.works[k][w] = (lab or '', yr, kind or '', venue)
         self.affs = defaultdict(list)       # key -> (inst key or None, label, year)
-        for k, i, src, lo, hi in db.execute(f"""SELECT a."from", a."to", a.source, a.first_year, a.last_year
-                FROM '{G}/affiliated_with.parquet' a JOIN want ON want.key = a."from" """).fetchall():
+        for k, i, src, lo, hi in db.execute(f"""SELECT want0.key, a."to", a.source, a.first_year, a.last_year
+                FROM '{G}/affiliated_with.parquet' a JOIN want0 ON want0.src = a."from" """).fetchall():
             self.affs[k].append((i, ins.get(i, ''), lo or hi, src))
-        for k, i, y in db.execute(f"""SELECT a."from", b."to", w.year FROM (SELECT "from", "to" FROM '{G}/authored.parquet'
-                WHERE evidence = 'keylog') a JOIN want ON want.key = a."from" JOIN '{G}/work.parquet' w ON w.key = a."to"
+        for k, i, y in db.execute(f"""SELECT want0.key, b."to", w.year FROM (SELECT "from", "to" FROM '{G}/authored.parquet'
+                WHERE evidence = 'keylog') a JOIN want0 ON want0.src = a."from" JOIN '{G}/work.parquet' w ON w.key = a."to"
                 JOIN '{G}/awarded_by.parquet' b ON b."from" = a."to" WHERE w.kind = 'thesis'""").fetchall():
             self.affs[k].append((i, ins.get(i, ''), y, 'thesis'))
         self.partners = defaultdict(set)    # network partners (key-log evidence)
@@ -163,10 +168,11 @@ class Graph:
                         ('advised', '"from", "to"')):
             try:
                 rows = db.execute(f"""SELECT {cols} FROM '{G}/{t}.parquet' WHERE evidence = 'keylog'
-                        AND ("from" IN (SELECT key FROM want) OR "to" IN (SELECT key FROM want))""").fetchall()
+                        AND ("from" IN (SELECT src FROM want0) OR "to" IN (SELECT src FROM want0))""").fetchall()
             except duckdb.Error:
                 continue
             for a, b in rows:
+                a, b = (remap or {}).get(a, a), (remap or {}).get(b, b)
                 if a != b:
                     self.partners[a].add((t, b))
                     self.partners[b].add((t, a))
@@ -368,20 +374,50 @@ def network_tie(ft, frest, rest_keys):
     return None
 
 
-def main():
+def keylog_people():
+    """live person keys (label, anchors, resolution) from the key-log cache, and merged key -> final live survivor"""
+    con = sqlite3.connect(f'file:{CACHE}?mode=ro', uri=True)
+    people, rb = {}, {}
+    for k, l, st, r, a, rep_ in con.execute("SELECT key, label, status, resolution, anchors, replaced_by FROM keys "
+                                            "WHERE type = 'person'"):
+        if st == 'merged':
+            x = json.loads(rep_ or '[]')
+            if len(x) == 1:
+                rb[k] = x[0]
+        else:
+            people[k] = dict(label=l or '', anchors=json.loads(a or '[]'), resolution=r)
+    con.close()
+    remap = {}
+    for k in rb:
+        s, n = rb[k], 0
+        while s in rb and n < 50:
+            s, n = rb[s], n + 1
+        if s in people:
+            remap[k] = s
+    return people, remap
+
+
+def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('--graph', type=Path, default=ROOT / 'build/graph')
     ap.add_argument('--out', type=Path, default=IDS / 'career-merges-2026-11-13')
     ap.add_argument('--no-validate', action='store_true')
-    args = ap.parse_args()
+    ap.add_argument('--keylog-people', action='store_true',
+                    help='read person keys, labels and anchors from the key-log cache (the graph may lag the key log); '
+                         'graph facts of keys merged since are read as their survivor\'s')
+    args = ap.parse_args(argv)
     SCRATCH.mkdir(parents=True, exist_ok=True)
     (SCRATCH / 'duck').mkdir(exist_ok=True)
     G = args.graph
     R = Counter()
     db0 = duckdb.connect()
     db0.execute(f"SET memory_limit='4GB'; SET threads=3; SET temp_directory='{SCRATCH}/duck'")
-    people = {k: dict(label=l or '', anchors=list(a or []), resolution=r) for k, l, r, a in
-              db0.execute(f"SELECT key, label, resolution, anchors FROM '{G}/person.parquet'").fetchall()}
+    remap = {}
+    if args.keylog_people:
+        people, remap = keylog_people()
+    else:
+        people = {k: dict(label=l or '', anchors=list(a or []), resolution=r) for k, l, r, a in
+                  db0.execute(f"SELECT key, label, resolution, anchors FROM '{G}/person.parquet'").fetchall()}
     R['person_keys'] = len(people)
     # not-same marks (key-log cache)
     con = sqlite3.connect(f'file:{CACHE}?mode=ro', uri=True)
@@ -426,7 +462,7 @@ def main():
         need |= init_block.get((bk[0], bk[1][0]), set())
     R['keys_read'] = len(need)
     print('blocks', len(cand_groups), 'keys', len(need), flush=True)
-    GR = Graph(G, need, people)
+    GR = Graph(G, need, people, remap)
     facts = {k: GR.facts(k, people[k]['anchors'], people[k]['label']) for k in need}
 
     # ---- LC authorities by family key and OpenAlex counts (name frequency)
@@ -741,6 +777,9 @@ def main():
     json.dump(dict(rows=[{k: v for k, v in r.items()} for r in rows], people={k: people[k] for k in need}),
               gzip.open(SCRATCH / f'state-{out.name}.json.gz', 'wt', encoding='utf-8'), default=list)
     print(json.dumps(rep, indent=1, default=list))
+    return dict(rows=rows, rowmap=rowmap, people=people, facts=facts, thin=thin, merges=merges, GR=GR, TP=TP,
+                docs_of=docs_of, nforms=nforms, lc_by=lc_by, state=state, blocked=blocked, compatible=compatible,
+                tie=tie, strong=strong, career_fits=career_fits, clash_in=clash_in, notsame=notsame, G=G, R=R)
 
 
 if __name__ == '__main__':
