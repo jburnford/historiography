@@ -161,9 +161,9 @@ def flatten(meta):
                                 d = {f.get('name'): f.text for f in bs.findall(X + 'field')}
                                 bits.append((bname, d))
                     continue
-                walk(ch, path + ([name] if name not in ('none',) and not re.fullmatch(r'[a-z]{2}(_[A-Z]{2})?|\*', name or '') else []))
+                walk(ch, path + ([name] if name == 'dc' or (name not in ('none',) and not re.fullmatch(r'[a-z]{2}(_[A-Z]{2})?|\*', name or '')) else []))
             elif ch.tag == X + 'field' and ch.get('name') == 'value' and ch.text:
-                out['.'.join(path)].append(ch.text.strip())
+                out['.'.join(path)].append(html.unescape(ch.text.strip()))
     walk(meta, [])
     return out, bits
 
@@ -266,7 +266,7 @@ def main():
             print(f'{host:45s} {c["cls"]:12s} {c["rule"][:90]}', flush=True)
 
     # 2. OAI on open DSpace 7 hosts (cached in canada-oai-history-phd.json; rerun a host by removing its entry)
-    cache = U.CACHE.parent / 'canada-oai-history-phd.json'
+    cache = U.CACHE.parent / 'canada-oai-history-phd-v3.json'  # v3: 'dc' kept, entities unescaped
     store = {h: v for h, v in (json.loads(cache.read_text()).items() if cache.exists() else []) if v[0] == 'ok'}
     threads = []
     for key, uni, aha, regkey, src, hosts, note, sets in UNIS:
@@ -327,13 +327,26 @@ def main():
             missing.append(dict(university=uni, record_id=rid, author=r['author'], year=r['year'], title=r['title'],
                                 source=f'OAI {hosts[0][0]} ({r["set"]})', status='record without public PDF bitstream' + (f' (embargo {r["embargo"]})' if r['embargo'] else ''),
                                 landing=r['handle'], lac_pointer=''))
-        # 4b. AHA records not held
+        # 4b. AHA records not held (first: any record of the open host's harvested thesis sets with the same title,
+        # whatever its department fields say; retrospective theses often carry no department)
         a_linked = 0
+        idx = oai_title_index(hosts[0][0]) if hosts and hostclass.get(hosts[0][0]) == 'open' else {}
         for r in a_q:
             tk = U.title_key(r['title'])
             if tk in listed_titles:
                 continue
             listed_titles.add(tk)
+            hit = idx.get(tk)
+            if hit and hit['files']:
+                rid = f"aha{r['id']}"
+                url = direct_dspace(sorted(hit['files'], key=lambda f: -int(f[2] or 0))[0][1], hosts[0][0])
+                name = f"ca-{key}-{rid}-{U.slug(r['dissertator'].split(',')[0], 30)}-{r['year']}.pdf"
+                delay = str(int(float(next(x for x in hostrows if x['host'] == hosts[0][0])['crawl_delay'] or 10)))
+                if url and url not in already:
+                    lists['open'].append((url, name, hosts[0][0], delay, key, rid, r['title'], r['year']))
+                    n_open += 1
+                    a_linked += 1
+                    continue
             m = aha_m.get(r['id']) or {}
             url = m.get('pdf_url') or ''
             land = m.get('landing_url') or ''
@@ -404,6 +417,33 @@ def main():
 
 
 _other = {}
+_idx = {}
+
+
+def oai_title_index(host):
+    """title_key -> {files, handle} for every record in the cached OAI pages of an open host (no requests)."""
+    if host in _idx:
+        return _idx[host]
+    import xml.etree.ElementTree as ET
+    out = {}
+    stem = 'https_' + re.sub(r'[^A-Za-z0-9]+', '_', host) + '_server_oai_request'
+    for p in (U.CACHE / 'oai').glob(stem + '*ListRecords*.xml'):
+        try:
+            root = ET.fromstring(p.read_text())
+        except ET.ParseError:
+            continue
+        for rec in root.iter(U.OAI + 'record'):
+            md = rec.find(U.OAI + 'metadata')
+            if md is None or not len(md):
+                continue
+            m, bits = flatten(md[0])
+            tk = U.title_key((m.get('dc.title') or [''])[0])
+            files = [(d.get('name'), d.get('url'), d.get('size')) for b, d in bits
+                     if b == 'ORIGINAL' and (d.get('format') or '').endswith('pdf') and d.get('url')]
+            if tk and (tk not in out or files):
+                out[tk] = dict(files=files, handle=next((v for v in m.get('dc.identifier.uri', []) if 'handle' in v), ''))
+    _idx[host] = out
+    return out
 
 
 def classify_other(host):
