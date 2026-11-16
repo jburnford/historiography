@@ -1,0 +1,412 @@
+{
+ "screen_rows": 13626,
+ "held": 1058,
+ "not_held": 12568,
+ "route": {
+  "unknown": 9280,
+  "restricted": 1635,
+  "retry": 166,
+  "open": 560,
+  "browser": 127,
+  "ai-excluded": 800
+ },
+ "route_by_origin": {
+  "accessible=non in snapshot": {
+   "unknown": 8280,
+   "restricted": 267,
+   "open": 6,
+   "browser": 13,
+   "ai-excluded": 33
+  },
+  "accessible=oui, not in old screen": {
+   "restricted": 191,
+   "retry": 124,
+   "open": 233,
+   "browser": 50,
+   "ai-excluded": 290
+  },
+  "added by corrected screen": {
+   "unknown": 681,
+   "restricted": 34,
+   "open": 57,
+   "browser": 38,
+   "retry": 41,
+   "ai-excluded": 102
+  },
+  "after Jan 2024 snapshot": {
+   "unknown": 318,
+   "open": 109,
+   "ai-excluded": 192,
+   "browser": 7,
+   "restricted": 6
+  },
+  "old candidate": {
+   "ai-excluded": 183,
+   "open": 155,
+   "restricted": 1137,
+   "browser": 19,
+   "retry": 1
+  },
+  "old screen, held/deduped": {
+   "unknown": 1
+  }
+ },
+ "route_by_screen": {
+  "ancient": {
+   "unknown": 345,
+   "restricted": 43,
+   "retry": 38,
+   "browser": 18,
+   "open": 34,
+   "ai-excluded": 68
+  },
+  "economic": {
+   "unknown": 21,
+   "retry": 1,
+   "browser": 5,
+   "open": 1,
+   "ai-excluded": 2
+  },
+  "economic-subject": {
+   "unknown": 69,
+   "restricted": 2,
+   "browser": 3,
+   "open": 11,
+   "retry": 1,
+   "ai-excluded": 13
+  },
+  "history": {
+   "unknown": 8564,
+   "restricted": 1550,
+   "retry": 125,
+   "open": 465,
+   "browser": 88,
+   "ai-excluded": 652
+  },
+  "science": {
+   "unknown": 281,
+   "open": 49,
+   "restricted": 40,
+   "retry": 1,
+   "browser": 13,
+   "ai-excluded": 65
+  }
+ },
+ "restriction_reasons": {
+  "library copy": 305,
+  "library copy; login (CAS) at intranet/sso.u-bordeaux-montaigne.fr": 175,
+  "library copy; login (CAS) at cas.univ-lyon3.fr": 16,
+  "intranet; library copy": 135,
+  "ESR-only; library copy": 986,
+  "ESR-only": 6,
+  "theses.fr robots disallows this page (takedown)": 1,
+  "confidential until 31-12-2027": 1,
+  "confidential until 01-01-2028": 3,
+  "confidential until 10-12-2027": 1,
+  "ESR-only; embargo until 31-05-2033; library copy": 1,
+  "confidential until 04-12-2026": 1,
+  "confidential until 03-12-2027": 1,
+  "ESR-only; embargo until 09-09-2029; library copy": 1,
+  "ESR-only; embargo until 01-06-2030; library copy": 1,
+  "ESR-only; embargo until 08-04-2028; library copy": 1
+ },
+ "kind": {
+  "('retry', 'reproduction listed by theses.fr', 'theses.fr button')": 165,
+  "('open', 'reproduction listed by theses.fr', 'theses.fr button')": 50,
+  "('browser', 'landing', 'theses.fr button')": 21,
+  "('ai-excluded', 'HAL', 'theses.fr button')": 21,
+  "('browser', 'reproduction listed by theses.fr', 'theses.fr button')": 59,
+  "('ai-excluded', 'reproduction listed by theses.fr', 'theses.fr button')": 1,
+  "('ai-excluded', 'HAL', 'OpenAlex')": 777,
+  "('open', 'national deposit', 'theses.fr button')": 472,
+  "('open', 'file', 'OpenAlex')": 31,
+  "('browser', 'landing', 'OpenAlex')": 47,
+  "('retry', 'file', 'OpenAlex')": 1,
+  "('open', 'national deposit (incomplete version)', 'theses.fr button')": 7,
+  "('ai-excluded', 'file', 'OpenAlex')": 1
+ },
+ "published_version_only": 55,
+ "buttons_checked_not_held": 3199,
+ "hosts": {
+  "air.unipr.it": [
+   "open",
+   1
+  ],
+  "americanae.aecid.es": [
+   "retry",
+   0
+  ],
+  "amsdottorato.unibo.it": [
+   "open",
+   2
+  ],
+  "archipel.uqam.ca": [
+   "ai-excluded",
+   0
+  ],
+  "archiv.ub.uni-heidelberg.de": [
+   "open",
+   0
+  ],
+  "archive-ouverte.unige.ch": [
+   "open",
+   5
+  ],
+  "archive.bu.univ-nantes.fr": [
+   "open",
+   10
+  ],
+  "bdr.parisnanterre.fr": [
+   "open",
+   1
+  ],
+  "bu.dauphine.psl.eu": [
+   "browser",
+   3
+  ],
+  "cdn.unilim.fr": [
+   "browser",
+   6
+  ],
+  "cyberdoc.univ-lemans.fr": [
+   "open",
+   23
+  ],
+  "demeter.univ-lyon2.fr": [
+   "retry",
+   2
+  ],
+  "demeter.univ-lyon2.fr:8080": [
+   "retry",
+   1
+  ],
+  "docnum.univ-lorraine.fr": [
+   "open",
+   34
+  ],
+  "doktori.bibl.u-szeged.hu": [
+   "open",
+   1
+  ],
+  "dspace.unitus.it": [
+   "retry",
+   0
+  ],
+  "ecampus.u-pec.fr": [
+   "browser",
+   4
+  ],
+  "edit.elte.hu": [
+   "open",
+   0
+  ],
+  "edoc.hu-berlin.de": [
+   "ai-excluded",
+   0
+  ],
+  "elgebar.univ-reunion.fr": [
+   "browser",
+   13
+  ],
+  "eprints-phd.biblio.unitn.it": [
+   "retry",
+   0
+  ],
+  "espace.inrs.ca": [
+   "open",
+   1
+  ],
+  "etd.adm.unipi.it": [
+   "open",
+   1
+  ],
+  "etheses.bham.ac.uk": [
+   "open",
+   1
+  ],
+  "extranet.u-bordeaux-montaigne.fr": [
+   "open",
+   0
+  ],
+  "figshare.com": [
+   "open",
+   0
+  ],
+  "ged.uphf.fr": [
+   "browser",
+   4
+  ],
+  "hal.science": [
+   "ai-excluded",
+   3
+  ],
+  "halshs.archives-ouvertes.fr": [
+   "ai-excluded",
+   0
+  ],
+  "hdl.handle.net": [
+   "open",
+   39
+  ],
+  "iris.unicas.it": [
+   "open",
+   1
+  ],
+  "iris.unito.it": [
+   "open",
+   2
+  ],
+  "nuxeo.u-bourgogne.fr": [
+   "retry",
+   3
+  ],
+  "octaviana.fr": [
+   "open",
+   11
+  ],
+  "orbi.uliege.be": [
+   "open",
+   2
+  ],
+  "paduaresearch.cab.unipd.it": [
+   "retry",
+   0
+  ],
+  "pepite-depot.univ-lille.fr": [
+   "open",
+   3
+  ],
+  "publication-theses.unistra.fr": [
+   "browser",
+   20
+  ],
+  "repositorio.filo.uba.ar": [
+   "open",
+   0
+  ],
+  "repositorio.filo.uba.ar:8080": [
+   "retry",
+   0
+  ],
+  "repositorio.unicamp.br": [
+   "open",
+   0
+  ],
+  "repositoriouba.sisbi.uba.ar": [
+   "open",
+   0
+  ],
+  "research.vu.nl": [
+   "open",
+   0
+  ],
+  "run.unl.pt": [
+   "browser",
+   1
+  ],
+  "scbd-sto.univ-paris13.fr": [
+   "retry",
+   6
+  ],
+  "scd-resnum.univ-lyon3.fr": [
+   "open",
+   0
+  ],
+  "serval.unil.ch": [
+   "browser",
+   0
+  ],
+  "shs.hal.science": [
+   "ai-excluded",
+   1
+  ],
+  "spire.sciences-po.fr": [
+   "retry",
+   1
+  ],
+  "spire.sciencespo.fr": [
+   "browser",
+   4
+  ],
+  "summit.sfu.ca": [
+   "open",
+   1
+  ],
+  "theses.edel.univ-poitiers.fr": [
+   "retry",
+   2
+  ],
+  "theses.fr": [
+   "open",
+   479
+  ],
+  "theses.hal.science": [
+   "ai-excluded",
+   793
+  ],
+  "theses.univ-lyon2.fr": [
+   "retry",
+   146
+  ],
+  "theses.univ-poitiers.fr": [
+   "open",
+   1
+  ],
+  "theses.univ-reims.fr": [
+   "open",
+   3
+  ],
+  "ube.hal.science": [
+   "ai-excluded",
+   1
+  ],
+  "univ-guyane.hal.science": [
+   "ai-excluded",
+   1
+  ],
+  "wrap.warwick.ac.uk": [
+   "ai-excluded",
+   1
+  ],
+  "www.archipel.uqam.ca": [
+   "ai-excluded",
+   0
+  ],
+  "www.biblio.univ-evry.fr": [
+   "open",
+   1
+  ],
+  "www.bium.parisdescartes.fr": [
+   "browser",
+   1
+  ],
+  "www.biusante.parisdescartes.fr": [
+   "browser",
+   5
+  ],
+  "www.bu.univ-rennes2.fr": [
+   "open",
+   2
+  ],
+  "www.enssib.fr": [
+   "open",
+   1
+  ],
+  "www.persee.fr": [
+   "browser",
+   0
+  ],
+  "www.teses.usp.br": [
+   "retry",
+   0
+  ],
+  "www.theses.paris-sorbonne.fr": [
+   "retry",
+   4
+  ],
+  "www.theses.ulaval.ca": [
+   "retry",
+   1
+  ]
+ }
+}
