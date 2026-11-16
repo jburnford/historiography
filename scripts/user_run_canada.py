@@ -603,6 +603,9 @@ def build_from_listings():
                     e = parse_eprints_dc(md[0])
                     if not any(re.search(r'doctora', t, re.I) for t in e['types']):
                         continue
+                    # the set is every doctoral thesis; the printed citation names the programme
+                    if not any(re.search(r"doctorat en histoire(?!\s+de\s+l)", t, re.I) for t in e['ids']):
+                        continue
                     title, author, year = e['title'], e['author'], e['year']
                     files = [(u, '0') for u in e['ids'] if u.lower().endswith('.pdf')]
                     embargo = ''
