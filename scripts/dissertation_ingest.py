@@ -243,7 +243,7 @@ def us_entry(r, source_harvest):
                 advisors=r.get('advisors', []), issued_dates=r.get('issued_dates', []),
                 graduation_dates=r.get('graduation_dates', []), copyright_dates=r.get('copyright_dates', []),
                 history_scope=r.get('history_scope', 'unchecked'), language=r.get('language', []),
-                item_url=r['item_url'], source_harvest=source_harvest, country='US',
+                item_url=r['item_url'], source_harvest=source_harvest, country=r.get('country') or 'US',
                 eligibility_basis=r.get('eligibility_basis'), access_category=r.get('access_category'))
 
 
