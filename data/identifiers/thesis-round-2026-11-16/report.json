@@ -1,0 +1,314 @@
+{
+ "key_log_seq": 5908712,
+ "counts": {
+  "aha_match:corpus record aha_id": 665,
+  "aha_match:institution, year and title": 42,
+  "aha_match:surname+given_initial+year (title differs)": 6,
+  "aha_match:surname+year+title": 70,
+  "aha_names_differ_held": 3,
+  "authored:minted": 3538,
+  "authored:second_source_on_aha_claim": 919,
+  "authored:skipped_unresolved_or_present": 1006,
+  "authored_backlog_minted": 2716,
+  "authored_backlog_theses": 2853,
+  "authors:ingest:AT:seed": 1,
+  "authors:ingest:CA:attach:aha": 93,
+  "authors:ingest:CA:attach:same thesis already in the graph": 3,
+  "authors:ingest:CA:mint": 61,
+  "authors:ingest:CH:attach:GND record names an LC/Wikidata id on the key; the record's ": 1,
+  "authors:ingest:CH:seed": 1,
+  "authors:ingest:DE:attach:GND record names an LC/Wikidata id on the key": 2,
+  "authors:ingest:DE:attach:GND record names an LC/Wikidata id on the key; thesis as pub": 1,
+  "authors:ingest:DE:attach:gnd anchor on the key": 11,
+  "authors:ingest:DE:attach:gnd anchor on the key; the record's DOI is on w-630785": 1,
+  "authors:ingest:DE:attach:gnd anchor on the key; thesis as published": 11,
+  "authors:ingest:DE:attach:same thesis already in the graph": 14,
+  "authors:ingest:DE:attach:thesis as published": 3,
+  "authors:ingest:DE:seed": 997,
+  "authors:ingest:GB:seed": 1,
+  "authors:ingest:US:attach:aha": 613,
+  "authors:ingest:US:mint": 1,
+  "authors:mexico:FR:mint": 6,
+  "authors:mexico:MX:attach:canon own book": 15,
+  "authors:mexico:MX:attach:same thesis already in the graph": 1,
+  "authors:mexico:MX:mint": 684,
+  "authors:us-backlog:US:attach:aha": 76,
+  "authors:us-backlog:US:mint": 7,
+  "dnb_people:referee:linked": 109,
+  "dnb_people:referee:unlinked": 259,
+  "dnb_people:supervisor:linked": 208,
+  "dnb_people:supervisor:unlinked": 482,
+  "held_items": 7,
+  "optional_dnb_name_and_works_attaches": 10,
+  "optional_dnb_single_bearer_candidates": 98,
+  "same_thesis_in_graph": 18,
+  "same_thesis_in_graph_held": 3,
+  "supervisors:advisor_already_keyed": 38,
+  "supervisors:advisor_joined_same_thesis": 296,
+  "supervisors:advisor_minted": 372,
+  "supervisors:committee_lists_skipped": 108,
+  "supervisors:supervised_already": 743,
+  "supervisors:supervised_claims:ingest": 61,
+  "supervisors:supervised_claims:mexico": 676,
+  "supervisors:supervised_claims:us-backlog": 13,
+  "theses:ingest:AT:history_phd_not_strict": 1,
+  "theses:ingest:CA:history_phd_not_strict": 14,
+  "theses:ingest:CA:strict": 143,
+  "theses:ingest:CH:strict": 2,
+  "theses:ingest:DE:history_phd_not_strict": 128,
+  "theses:ingest:DE:strict": 914,
+  "theses:ingest:GB:strict": 1,
+  "theses:ingest:US:history_phd_not_strict": 15,
+  "theses:ingest:US:strict": 600,
+  "theses:mexico:FR:history_phd_not_strict": 3,
+  "theses:mexico:FR:strict": 3,
+  "theses:mexico:MX:history_phd_not_strict": 136,
+  "theses:mexico:MX:strict": 565,
+  "theses:us-backlog:US:history_phd_not_strict": 3,
+  "theses:us-backlog:US:strict": 82,
+  "theses_to_key": 2610,
+  "works:ingest:attach_to_aha_work": 707,
+  "works:ingest:mint": 1091,
+  "works:mexico:attach_to_aha_work": 0,
+  "works:mexico:mint": 705,
+  "works:us-backlog:attach_to_aha_work": 76,
+  "works:us-backlog:mint": 7,
+  "works_with_institution_key": 438,
+  "works_without_institution_key": 2151
+ },
+ "held_by_kind": {
+  "two_records_of_one_thesis_in_this_round": 2,
+  "same_thesis_in_graph_unclear": 1,
+  "aha_record_names_differ": 3,
+  "thesis_matches_several_books": 1
+ },
+ "dry_run": [
+  {
+   "part": "01-works-ingest",
+   "ops": 1798,
+   "events": 1798,
+   "by_event": {
+    "attach": 707,
+    "mint": 1091
+   },
+   "minted_by_type": {
+    "work": 1091
+   }
+  },
+  {
+   "part": "01-works-mexico",
+   "ops": 705,
+   "events": 705,
+   "by_event": {
+    "mint": 705
+   },
+   "minted_by_type": {
+    "work": 705
+   }
+  },
+  {
+   "part": "01-works-us-backlog",
+   "ops": 83,
+   "events": 83,
+   "by_event": {
+    "attach": 76,
+    "mint": 7
+   },
+   "minted_by_type": {
+    "work": 7
+   }
+  },
+  {
+   "part": "01b-same-thesis-in-graph",
+   "ops": 36,
+   "events": 36,
+   "by_event": {
+    "attach": 36
+   },
+   "minted_by_type": {}
+  },
+  {
+   "part": "02-author-attaches-ingest",
+   "ops": 1231,
+   "events": 1231,
+   "by_event": {
+    "attach": 736,
+    "status": 495
+   },
+   "minted_by_type": {}
+  },
+  {
+   "part": "03-author-mints-ingest",
+   "ops": 62,
+   "events": 62,
+   "by_event": {
+    "mint": 62
+   },
+   "minted_by_type": {
+    "person": 62
+   }
+  },
+  {
+   "part": "02-author-attaches-mexico",
+   "ops": 15,
+   "events": 15,
+   "by_event": {
+    "attach": 15
+   },
+   "minted_by_type": {}
+  },
+  {
+   "part": "03-author-mints-mexico",
+   "ops": 690,
+   "events": 690,
+   "by_event": {
+    "mint": 690
+   },
+   "minted_by_type": {
+    "person": 690
+   }
+  },
+  {
+   "part": "02-author-attaches-us-backlog",
+   "ops": 134,
+   "events": 134,
+   "by_event": {
+    "attach": 76,
+    "status": 58
+   },
+   "minted_by_type": {}
+  },
+  {
+   "part": "03-author-mints-us-backlog",
+   "ops": 7,
+   "events": 7,
+   "by_event": {
+    "mint": 7
+   },
+   "minted_by_type": {
+    "person": 7
+   }
+  },
+  {
+   "part": "04-authored-claims",
+   "ops": 2386,
+   "events": 2386,
+   "by_event": {
+    "attach": 782,
+    "status": 782,
+    "mint": 822
+   },
+   "minted_by_type": {
+    "claim": 822
+   }
+  },
+  {
+   "part": "04b-authored-claims-backlog",
+   "ops": 2990,
+   "events": 2990,
+   "by_event": {
+    "mint": 2716,
+    "attach": 137,
+    "status": 137
+   },
+   "minted_by_type": {
+    "claim": 2716
+   }
+  },
+  {
+   "part": "05-supervisors-repository",
+   "ops": 1424,
+   "events": 1424,
+   "by_event": {
+    "attach": 290,
+    "status": 12,
+    "mint": 1122
+   },
+   "minted_by_type": {
+    "person": 372,
+    "claim": 750
+   }
+  },
+  {
+   "part": "05b-supervisors-dnb",
+   "ops": 208,
+   "events": 208,
+   "by_event": {
+    "mint": 208
+   },
+   "minted_by_type": {
+    "claim": 208
+   }
+  },
+  {
+   "part": "06-published-as",
+   "ops": 40,
+   "events": 40,
+   "by_event": {
+    "mint": 40
+   },
+   "minted_by_type": {
+    "claim": 40
+   }
+  },
+  {
+   "part": "07-dnb-name-and-works-OPTIONAL",
+   "ops": 20,
+   "events": 20,
+   "by_event": {
+    "attach": 10,
+    "mint": 10
+   },
+   "minted_by_type": {
+    "claim": 10
+   }
+  }
+ ],
+ "files": {
+  "01-works-ingest": 1798,
+  "01-works-mexico": 705,
+  "01-works-us-backlog": 83,
+  "01b-same-thesis-in-graph": 36,
+  "02-author-attaches-ingest": 1231,
+  "03-author-mints-ingest": 62,
+  "02-author-attaches-mexico": 15,
+  "03-author-mints-mexico": 690,
+  "02-author-attaches-us-backlog": 134,
+  "03-author-mints-us-backlog": 7,
+  "04-authored-claims": 2386,
+  "04b-authored-claims-backlog": 2990,
+  "05-supervisors-repository": 1424,
+  "05b-supervisors-dnb": 208,
+  "06-published-as": 40,
+  "07-dnb-name-and-works-OPTIONAL": 20
+ },
+ "ocap_review": [
+  {
+   "id": "aha_37701",
+   "institution": "ottawa",
+   "year": "1992",
+   "title": "Une conspiration générale: The Exercise of Power by the Amerindians of the Great Lakes during the War of the Austrian Succession, 1744-1748"
+  },
+  {
+   "id": "aha_16240",
+   "institution": "ottawa",
+   "year": "1995",
+   "title": "Federal/Provincial Disputes, Natural Resources, and the Treaty #3 Ojibway, 1867-1924"
+  },
+  {
+   "id": "aha_32829",
+   "institution": "ottawa",
+   "year": "1996",
+   "title": "Le temps de cayoge: la vie quotidienne des femmes métisses au Manitoba de 1850 à 1900"
+  },
+  {
+   "id": "oai-1807-125060",
+   "institution": "toronto",
+   "year": "2022",
+   "title": "The Cold War on Cancer: Inuit and the Canadian Epidemiological Imagination"
+  }
+ ],
+ "seeds": 1000,
+ "referee_rows": 109,
+ "twins": 75
+}

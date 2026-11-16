@@ -1,0 +1,57 @@
+--- a/scripts/build_graph.py	2026-11-15 20:20:07.674987644 -0600
++++ b/scripts/build_graph.py	2026-11-16 13:35:37.837912728 -0600
+@@ -155,6 +155,9 @@
+ CROSSREF_PARTS = ROOT / 'data/graph/crossref-cites'           # the same in parts (2026-11-10), and articles/: its
+ CROSSREF_ARTICLES = CROSSREF_PARTS / 'articles'                # unkeyed citing articles (doi, title, year, journal)
+ AFFILIATIONS = ROOT / 'data/graph/affiliations.csv.gz'  # scripts/export_affiliations.py (dated person -> institution)
++# 2026-11-16 (scripts/key_thesis_round.py): referees ('Gutachter', MARC 700 $e) of DNB theses whose GND id reaches a key;
++# person and thesis as anchors, resolved here. Not SUPERVISED: a referee examined the thesis, a supervisor directed it.
++REFEREED_TABLE = ROOT / 'data/graph/refereed.csv.gz'
+ CITED = ROOT / 'data/graph/cited-works'   # scripts/export_cited_works.py (2026-11-10): works.csv.gz, cites*.csv.gz,
+                                           # authors.csv.gz, report.json (the corpus's citation count)
+ WORK_PEOPLE = ROOT / 'data/graph/work-people'   # scripts/link_work_people.py (2026-11-11): printed reviewers, JSTOR
+@@ -1422,7 +1425,7 @@
+                             UNKEYED_INST, PID_ADVISORS) if p.exists()]
+     if os.environ.get('BUILD_PASS5_OFF'):          # a baseline build without the pass-five layers (check builds only)
+         prize_files, p5_files = [], []
+-    require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS) if p.exists()] + crossref_parts + article_parts
++    require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS, REFEREED_TABLE) if p.exists()] + crossref_parts + article_parts
+                     + ([] if args.untracked_ok else cited_files + edition_files + jc_files + wp_files + aw_files + fact_files
+                        + pass4_files + no_files + prize_files + p5_files + ([SCORED_LINKS] if SCORED_LINKS.exists() else []) + ([CLASSIFIED_LINKS] if CLASSIFIED_LINKS.exists() else [])))
+     state = ReplayView(args.state) if args.replay else CacheView(args.state)
+@@ -2365,6 +2368,18 @@
+         ('from', s), ('to', s), ('source', s), ('first_year', pa.int32()), ('last_year', pa.int32()), ('n', pa.int32()),
+         ('rank', s), ('department', s), ('kind', s)]))
+     report['AFFILIATED_WITH_by_source_kind'] = dict(Counter(f"{v['source']}:{v['kind']}" for v in aff.values()))
++    refereed = {}
++    if REFEREED_TABLE.exists():
++        with gzip.open(REFEREED_TABLE, 'rt', newline='', encoding='utf-8') as f:
++            for r in csv.DictReader(f):
++                pk, wk = state.lookup(r['person']), state.lookup(r['thesis'])
++                if len(pk) != 1 or len(wk) != 1 or types.get(pk[0]) != 'person' or types.get(wk[0]) != 'work':
++                    report['refereed_unresolved'] += 1
++                    continue
++                refereed[pk[0], wk[0]] = {'from': pk[0], 'to': wk[0], 'source': r['source'], 'role_text': r['role_text'],
++                                          'record': r['dnb_id']}
++    report['REFEREED'] = write('refereed', list(refereed.values()), pa.schema([
++        ('from', s), ('to', s), ('source', s), ('role_text', s), ('record', s)]))
+     report['POSSIBLY_SAME'] = write('possibly_same', [{'from': a, 'to': b, 'likelihood': l} for (a, b), l in sorted(possible.items())],
+                                     pa.schema([('from', s), ('to', s), ('likelihood', s)]))
+     report['POSSIBLY_SAME_very_likely'] = sum(1 for l in possible.values() if l == 'very_likely')
+@@ -2585,6 +2600,7 @@
+                      'source STRING, state STRING, role STRING, role_basis STRING, score DOUBLE, n_claims INT32, claims STRING, '
+                      'all_claims STRING[])')
+     conn.execute('CREATE REL TABLE SUPERVISED(FROM Person TO Work, claim STRING, resolution STRING)')
++    conn.execute('CREATE REL TABLE REFEREED(FROM Person TO Work, source STRING, role_text STRING, record STRING)')
+     conn.execute('CREATE REL TABLE PUBLISHED_AS(FROM Work TO Work, claim STRING, resolution STRING)')
+     conn.execute('CREATE REL TABLE REVIEWS(FROM Work TO Work, claim STRING, resolution STRING, evidence STRING, source STRING)')
+     conn.execute('CREATE REL TABLE SAME_WORK(FROM Work TO Work, basis STRING)')
+@@ -2611,7 +2627,7 @@
+                         ('PUBLISHED_AS', 'published_as'), ('REVIEWS', 'reviews'), ('SAME_WORK', 'same_work'), ('PART_OF', 'part_of'), ('EDITOR_OF', 'editor_of'), ('REVIEWED', 'reviewed'), ('ADVISED', 'advised'),
+                         ('COAUTHORED', 'coauthored'), ('COEDITED', 'coedited'),
+                         ('AWARDED_BY', 'awarded_by'), ('POSSIBLY_SAME', 'possibly_same'), ('AFFILIATED_WITH', 'affiliated_with'),
+-                        ('CITES', 'cites'), ('CONTRIBUTED', 'contributed')):
++                        ('CITES', 'cites'), ('CONTRIBUTED', 'contributed'), ('REFEREED', 'refereed')):
+         conn.execute(f"COPY {table} FROM '{OUT / (file + '.parquet')}'")
+     if (OUT / 'edition_of.parquet').exists():
+         conn.execute(f"COPY EDITION_OF FROM '{OUT / 'edition_of.parquet'}'")
