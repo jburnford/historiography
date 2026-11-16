@@ -528,7 +528,20 @@ Early Germans* and E. M. Thompson's *The Carthusian Order in England*.
 - **Extraction** (with OCR, 6 workers, about 42 minutes): bibliographies for 1,661 of 1,818 new theses, 693k entries.
   US 600 of 615 (193k); Canada 144 of 157 (42k); Germany 917 of 1,046 (459k entries, median 333 a thesis), with 76 no
   heading, 42 suspect spans and 11 few entries. 65 theses needed OCR (54 whole scans), mostly old Ottawa theses.
-- **Rebuild:** not run here (the build needs Plato). Build, link, rebuild, summaries and TF-IDF are next.
+- **Rebuild.** Build, link, rebuild, summaries and TF-IDF ran on Plato as job 6026642 (`us-ca-de-2026-11-16-build.slurm`, a
+  CPU job with no `--gres`; 2 h 22 m, peak 28.1 GB; every step exit 0; step logs `logs/6026642-<step>.log` there).
+  - The main graph went from 13,996 to 15,656 strict (works 2,443,998 → 2,699,282; cited people 1,521,052 → 1,690,443;
+    CITES edges 3,375,008 → 3,751,323). Sub-graphs are still BR, CA, GB and US.
+  - United States 3,088 → 3,688; Canada 2,249 → 2,392 (96 `canada_user_run`, 47 from the AHA register); Germany 224 → 1,138
+    (914 from this round, below the 2,000 bar, so no sub-graph and no provisional one: `--provisional-subgraph DE` would add DE
+    to `meta.subgraphs` and a `cited_by_DE` column to the main `works.csv`); United Kingdom 2,656 → 2,657 (one DNB thesis); no
+    country went down and no earlier strict thesis dropped out.
+  - 1,660 of the 1,818 new theses are strict; the other 158 have no usable bibliography (102 no heading, 42 suspect span, 13
+    few entries, 1 front matter unverified, counted across sources); none failed eligibility. The new scopes count:
+    `history_of_education_programme` 11 strict, `history_of_science_department` 45, `dnb_history_screen` 917.
+  - The five German stub files (DNB 1061055043, 1115337106, 1115730673, 1238242014, 128647938X) are not strict.
+  - The link step matched 129,160 works to an authority (was 121,355). Of the new theses' 376k strict citations, 12.4% go
+    to an authority-linked work: US 21.5%, Canada 13.3%, Germany 4.6%.
 
 ## Corpus and eligibility
 
