@@ -19,8 +19,14 @@ History PhDs only: the record's basis (the listing screen's department/degree va
 department) is kept in eligibility_basis. Economic history counts as History; history and philosophy of
 science programmes are registered with history_scope 'history_of_science_department' (user decision
 2026-11-04) when the title shows a historical period, date or history wording (HISTORY_SIGNAL; else held
-for a decision, as possibly philosophy of science); art history is held as not History and history of education in an education faculty is
-held for a decision.
+for a decision, as possibly philosophy of science); art history is held as not History.
+User ruling 2026-11-16 (RULING): history of science and history of education count as History. History of
+education PhDs in an education faculty are registered with history_scope 'history_of_education_programme'.
+HPS theses without a history signal in the title are registered or held by a reviewed decision in
+<out>/reviewed-*.csv (file, decision 'register' or 'hold', note): a thesis that is plainly philosophy of science
+with no historical content stays held ('held: philosophy of science (reviewed)'); one not yet reviewed is
+held for a decision as before. ``--recheck-kind KIND`` drops the held rows of a kind so the files are taken
+again (the same whole-file and title-page validation); released records carry ``review_note``.
 
 Not registered (held.jsonl, with the reason): files registered already by the AHA title-page route
 (us-dissertations-expansion-2026-10-20/manual-aha-2026-11-04, by file name), theses already held (title key
@@ -80,6 +86,8 @@ OCAP = re.compile(r'(first nation|indigenous|aboriginal|m[ée]tis|inuit|inuk|cre
 HISTORY_SIGNAL = re.compile(r'(\b1[0-9]{3}\b|\b20[0-2][0-9]\b|histor|centur|antiquity|ancient|medieval|middle ages|'
                             r'renaissance|early[- ]modern|enlightenment|victorian|edwardian|interwar|postwar|post-war|'
                             r'cold war|colonial|soviet|(seven|eigh|nine|twen)teenth|origins of|\bera\b)', re.I)
+RULING = ('user ruling 2026-11-16: history of science and history of education count as History '
+          '(released from held.jsonl)')
 
 
 def now():
@@ -227,6 +235,9 @@ def main():
     ap.add_argument('--dry-run', action='store_true')
     ap.add_argument('--recheck-held', action='store_true',
                     help="validate again the files held for 'held: validation' (their old held rows are replaced)")
+    ap.add_argument('--recheck-kind', action='append', default=[], metavar='KIND',
+                    help="take again the files held under this kind (e.g. 'held: adjacent (history of education)'); "
+                         "their old held rows are replaced by this run's outcome")
     args = ap.parse_args()
 
     listed = {}
@@ -260,6 +271,11 @@ def main():
     old_held = rows(args.out/'held.jsonl')
     if args.recheck_held:
         old_held = [r for r in old_held if r.get('kind') != 'held: validation']
+    if args.recheck_kind:
+        old_held = [r for r in old_held if r.get('kind') not in set(args.recheck_kind)]
+    reviewed = {}
+    for p in sorted(args.out.glob('reviewed-*.csv')):
+        reviewed.update({r['file']: r for r in csv.DictReader(p.open(newline='', encoding='utf-8'))})
     seen = {Path(r['source_pdf']).name for r in out_records} | {r['file'] for r in old_held}
     used_aha = {r.get('aha_id') for r in out_records if r.get('aha_id')}
 
@@ -294,6 +310,7 @@ def main():
                  'held: screen')
             continue
         scope = 'explicit_history_program_or_department'
+        note = None
         if m:
             values = f"{m['dept']}; {m['degree']}"
             plain = re.search(r'(department of history\b(?! in art| of art)|\bhistory and classic|^history\b|; history\b|'
@@ -302,9 +319,8 @@ def main():
                 hold(path, uni, f"Not History: art history programme ({m['dept'][:120]})", 'held: not History (art history)')
                 continue
             if re.search(r'history of education', values, re.I) and not re.search(r'department of history\b', values, re.I):
-                hold(path, uni, f"Adjacent programme, decision needed: history of education PhD in an education faculty "
-                                f"({m['dept'][:120]})", 'held: adjacent (history of education)')
-                continue
+                scope = 'history_of_education_programme'  # RULING 2026-11-16
+                note = f"{RULING}; history of education PhD in an education faculty ({m['dept'][:120]})"
             if re.search(r'history and philosophy of science', values, re.I) and not re.search(r'department of history\b', values, re.I):
                 scope = 'history_of_science_department'  # user decision 2026-11-04: history of science is history
         if not aha_id:
@@ -313,7 +329,7 @@ def main():
         author = (m or {}).get('author') or (a or {}).get('dissertator') or ''
         title = (m or {}).get('title') or row['title'] or (a or {}).get('title')
         plan.append(dict(path=path, uni=uni, row=row, rid=rid, meta=m, aha=a, aha_id=aha_id if a else None,
-                         author=author, title=title, scope=scope))
+                         author=author, title=title, scope=scope, note=note))
 
     print(f'{len(files)} PDFs; {len(plan)} to validate', flush=True)
     with ProcessPoolExecutor(max_workers=args.workers) as pool:
@@ -353,9 +369,16 @@ def main():
             hold(path, uni, f'Title key matches held thesis {h[1]} {h[2]} by another surname; review', 'held: title collision')
             continue
         if p['scope'] == 'history_of_science_department' and not a and not HISTORY_SIGNAL.search(p['title'] or ''):
-            hold(path, uni, f"HPS programme thesis whose title shows no historical period, date or history wording "
-                            f"(may be philosophy of science); decision needed: {p['title'][:150]}", 'held: adjacent (HPS, no history signal)')
-            continue
+            rv = reviewed.get(path.name)
+            if rv and rv['decision'] == 'hold':
+                hold(path, uni, f"Philosophy of science with no historical content (reviewed: {rv['note']}): {p['title'][:150]}",
+                     'held: philosophy of science (reviewed)')
+                continue
+            if not rv or rv['decision'] != 'register':
+                hold(path, uni, f"HPS programme thesis whose title shows no historical period, date or history wording "
+                                f"(may be philosophy of science); decision needed: {p['title'][:150]}", 'held: adjacent (HPS, no history signal)')
+                continue
+            p['note'] = f"{RULING}; HPS thesis with historical content (reviewed: {rv['note']})"
         if p['aha_id'] and p['aha_id'] in used_aha:
             hold(path, uni, f"AHA record {p['aha_id']} already registered from another file here", 'held: duplicate record')
             continue
@@ -400,6 +423,9 @@ def main():
             oai_id=(m or {}).get('oai_id'), access_category='user_supplied_pdf',
             source_harvest=str(args.out.relative_to(ROOT)), source_pdf=file['path'], source=SOURCE, checked_at=stamp,
             provenance_note='Original file left in place on E:; repository checksum not independently verified.')
+        if p.get('note'):
+            record['review_note'] = p['note']
+            record['eligibility_basis'] += f" {p['note']}."
         if ocap:
             record['ocap_review'] = ('Title names Indigenous peoples or communities: OCAP review before any use beyond '
                                      'citation metadata (historiography-ocap-practice)')

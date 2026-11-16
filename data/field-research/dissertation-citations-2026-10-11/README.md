@@ -498,6 +498,38 @@ Early Germans* and E. M. Thompson's *The Carthusian Order in England*.
     "History of science is history"). This added the AHA-matched Harvard and Oklahoma History of
     Science theses, and the United States went from 3,006 to 3,088.
 
+### US, Canada and Germany round (2026-11-16)
+
+- **Merge.** Manifest 17,530 → 19,348 entries (logs `ingest-20261116-085348.json`, `ingest-20261116-093656.json`).
+  - `us_expansion`: the AHA title-page register (`../us-dissertations-expansion-2026-10-20/manual-aha-2026-11-04`, 697
+    records) through a second manifest, `collection-manifest-manual-aha-2026-11-16.csv`, written by
+    `scripts/audit_us_dissertation_collection.py`. That script can no longer verify the earlier collections (their logged
+    paths moved to E:), so its full output would have replaced the 3,088-row `collection-manifest.csv` with 698 rows; the
+    old manifest was restored and the new rows kept in their own file. 666 new (615 US, 51 CA, by the record's country);
+    25 dropped as title duplicates and 7 as SHA-256 duplicates of theses already held. Rerunning this source also
+    dropped the 2,103 earlier `us_expansion` rows of `downloads-ingest.jsonl` (their manifest paths are stale, so the
+    files could not be re-checked); they were put back unchanged (now at the end of the file), and `merge()` now keeps
+    an entry's old row when a run cannot re-check its files (`ingest_log_rows_kept_unchecked` in the report).
+  - `canada_user_run`: 117 registered records (94 + 23 released under the ruling below); 106 new, 11 title duplicates of
+    theses already held. The adapter previously treated this register's log as already in D, which would have left its
+    PDFs unextracted; only logs inside D now count as logged.
+  - `dnb_germany` (new source): 1,448 PDFs downloaded; 1,046 pass the screen (1,042 DE, 2 CH, 1 AT, 1 GB), 2 more were
+    title duplicates of BASE theses. Left out: 148 ancient world/archaeology (DNB group 930 on a high/medium row), 70
+    ancient history by the title screen, 9 church history (user has not ruled on these), 82 adjacent, 83 not History,
+    8 unclear.
+- **User ruling 2026-11-16:** history of science and history of education count as History.
+  - Canada: the 16 Alberta History of Education PhDs and 40 Toronto HPS theses held on 2026-11-15 were taken again by
+    `register_canada_user_run.py --recheck-kind ...`. 15 Alberta theses registered (`history_scope:
+    history_of_education_programme`, which `eligibility()` now counts); 1 (Mabindisa 1984) failed the title-page check.
+    8 HPS theses with historical content registered; 32 that read as philosophy of science stay held
+    (`../canada-user-run-register-2026-11-15/reviewed-2026-11-16.csv`; Claude's reading, not the user's).
+  - Germany: 5 screened rows released (`../dnb-germany-harvest-2026-11-14/screen-overrides-2026-11-16.csv`), 1 of them
+    downloaded.
+- **Extraction** (with OCR, 6 workers, about 42 minutes): bibliographies for 1,661 of 1,818 new theses, 693k entries.
+  US 600 of 615 (193k); Canada 144 of 157 (42k); Germany 917 of 1,046 (459k entries, median 333 a thesis), with 76 no
+  heading, 42 suspect spans and 11 few entries. 65 theses needed OCR (54 whole scans), mostly old Ottawa theses.
+- **Rebuild:** not run here (the build needs Plato). Build, link, rebuild, summaries and TF-IDF are next.
+
 ## Corpus and eligibility
 
 Canadian doctoral records come from four harvests:
@@ -871,6 +903,8 @@ absolute, `data/...` from the repository root, or bare names in this directory; 
 | `japan` | `japan_records` | `../japan-dissertations-2026-10-20/records.jsonl` and its PDF logs. `"ingest": false` until the extractor reads Japanese headings (参考文献, 文献目録, 引用文献) |
 | `base` | `base_clusters` | `../base-history-theses-2026-10-19/clusters.jsonl` and `downloads-base.jsonl`; only `history_label: history`; country from the cluster's repository country, else the link's country-code domain |
 | `mexico_records` | `mexico_records` | `../mexico-theses-2026-11-04/records.jsonl` from `scripts/register_mexico_theses.py` (title-page check); each record carries its PDF parts with SHA-256 |
+| `canada_user_run` | `canadian_harvest` | `../canada-user-run-register-2026-11-15/records.jsonl` and its `downloads.jsonl` (from `scripts/register_canada_user_run.py`). Its log lies outside this directory, so the adapter writes ingest-log rows for it (only logs inside this directory count as already logged) |
+| `dnb_germany` | `dnb_germany` | `../dnb-germany-harvest-2026-11-14/theses.csv.gz` (DNB catalogue, CC0) and the download manifest `E:\german-theses-2026-11-14\manifest.csv`; screen in `dnb_screen()`, reviewed overrides in `screen-overrides-*.csv`; PDFs stay in `E:\german-theses-2026-11-14` (`pdf_root`), reached as `pdf/../german-theses-2026-11-14/...` |
 
 To add a source: add an entry to the registry. If its inputs are of a new kind, also write a small
 adapter function that yields `candidate(entry, files)` and add it to `ADAPTERS`. The entry is the

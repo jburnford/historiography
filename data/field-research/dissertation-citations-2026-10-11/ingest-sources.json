@@ -152,6 +152,18 @@
    "ingest": true,
    "about": "Mexican History doctorates: TesiUNAM (OAI; 'Título otorgado: Doctorado en Historia', all open access), Instituto Mora, El Colegio de Michoacán (Centro de Estudios Históricos), El Colegio de San Luis and Ibero (DSpace OAI), each kept only when the title page names the History doctorate (scripts/register_mexico_theses.py). El Colegio de México's PDFs sit behind a captcha for scripts and are not included. User, 2026-11-04: 'start mexico'; 'stick with history for now'.",
    "root": "data/field-research/mexico-theses-2026-11-04"
+  },
+  {
+   "name": "dnb_germany",
+   "adapter": "dnb_germany",
+   "ingest": true,
+   "about": "German-language History doctorates from the Deutsche Nationalbibliothek catalogue (CC0 metadata, degree years 2000-2027; scripts/dnb_german_theses_table.py) with the open PDFs of scripts/german_theses_fetch.py and the user's browser downloads registered by scripts/german_theses_register.py (manifest on E:, status 'downloaded'). History: DNB subject group 940/943 ('high') or another 9xx group ('medium'), or a 'low' row title-screened 'history'; economic and social history, history of science, technology and medicine count. Held out until the user rules: ancient history and archaeology (DNB group 930, or ancient Rome/Greece/Near East/Qin-Han in the screen), Egyptology/Assyriology, church history. Rows that duplicate another (duplicate_of) or are already held (held_id) are left out. User ruling 2026-11-16: history of science and history of education count as History (screen-overrides-2026-11-16.csv). Country: the degree place (DE, AT, CH; others by city). Thesis authors are seeds only: no person keys from this source until the user approves a proposal.",
+   "root": "data/field-research/dnb-germany-harvest-2026-11-14",
+   "manifest": "/mnt/e/german-theses-2026-11-14/manifest.csv",
+   "pdf_root": "/mnt/e/german-theses-2026-11-14",
+   "screen_overrides": [
+    "data/field-research/dnb-germany-harvest-2026-11-14/screen-overrides-*.csv"
+   ]
   }
  ]
 }

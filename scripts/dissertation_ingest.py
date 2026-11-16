@@ -158,6 +158,16 @@ class Store:
         self.cache_path = sha_cache
         self.cache = json.loads(sha_cache.read_text()) if sha_cache.exists() else {}
         self.now = time.time()
+        self.extra = []  # sibling storage folders a source declares ('pdf_root'); see add_root
+
+    def add_root(self, path):
+        """A storage folder beside the store on the same drive (the German DNB harvest keeps its PDFs in
+        /mnt/e/german-theses-2026-11-14; drvfs allows no symlink and no second copy is wanted). Its files
+        get store-relative paths through the store symlink ('../german-theses-2026-11-14/...'), so the
+        download-log path 'pdf/../german-theses-2026-11-14/...' resolves from D like any other."""
+        real = Path(os.path.realpath(path))
+        if real != self.root and real not in self.extra:
+            self.extra.append(real)
 
     def check(self, path, declared_bytes=None, declared_sha=None):
         """(status, info): status is 'ok' or why the file is not taken."""
@@ -166,7 +176,10 @@ class Store:
         try:
             rel = real.relative_to(self.root)
         except ValueError:
-            return 'outside_pdf_store', dict(path=str(path))
+            extra = next((x for x in self.extra if real.is_relative_to(x)), None)
+            if not extra:
+                return 'outside_pdf_store', dict(path=str(path))
+            rel = Path(os.path.relpath(real, self.root))
         # The top level is the user's browser download folder, personal files included. Take
         # only files a download log registered with a SHA-256 after validation (manual-uc,
         # manual-johnshopkins), and only while the file still has that hash.
@@ -252,7 +265,11 @@ def adapter_canadian_harvest(src, d):
     doctoral filter of fetch_dissertation_pdfs.py; PDFs (or UBC texts) from D's download logs."""
     sys.path.insert(0, str(HERE))
     from fetch_dissertation_pdfs import doctoral_records
-    logs = downloads_index(expand(src.get('logs', []), d))
+    log_paths = expand(src.get('logs', []), d)
+    logs = downloads_index(log_paths)
+    # Files are 'logged' (no ingest-log row needed) only when their download log lies in D, where the
+    # extractor and the builder read logs; a register kept elsewhere (canada_user_run) needs ingest rows.
+    in_d = all(p.parent == d for p in log_paths)
     for path in expand(src['records'], d):
         for r in doctoral_records([path.relative_to(ROOT) if path.is_relative_to(ROOT) else path]):
             entry = dict(institution=r['institution'], id=r['id'], title=r['title'], authors=r['authors'],
@@ -261,8 +278,10 @@ def adapter_canadian_harvest(src, d):
                          history_scope=r.get('history_scope', 'explicit_history_program_or_department'
                                              if r.get('history_metadata_exact') else 'unchecked'),
                          language=r.get('language', []), item_url=r['item_url'], source_harvest=r['source_harvest'])
+            if r.get('ocap_review'):
+                entry['ocap_review'] = r['ocap_review']
             row = logs.get((r['institution'], r['id']))
-            yield candidate(entry, logged_files(row, d), logged=True, closed=not row or row.get('status') != 'downloaded')
+            yield candidate(entry, logged_files(row, d), logged=in_d, closed=not row or row.get('status') != 'downloaded')
 
 
 def adapter_us_records(src, d):
@@ -720,7 +739,108 @@ def adapter_mexico_records(src, d):
         yield candidate(entry, files)
 
 
+DNB_COUNTRY_CITIES = {'Durham': 'GB'}  # 'other:<city>' degree places seen among downloaded rows
+DNB_UNIVERSITY_KEYS = [('Freie Univ', 'fu'), ('Humboldt', 'hu'), ('Technische Univ', 'tu'), ('TU ', 'tu'),
+                       ('Ludwig-Maximilians', 'lmu'), ('Bundeswehr', 'unibw'), ('Viadrina', 'viadrina'),
+                       ('Kunsthochschule', 'kh'), ('Hochschule für', 'hs'), ('Pädagogische Hochschule', 'ph')]
+DNB_ANCIENT = re.compile(r'\b(roman|rome|ancient|antiquity|antique|athenian|papyrus|assyri\w*|babylon\w*|mesopotam\w*|'
+                         r'augustus|qin|han|middle kingdom|pharaonic|hellenistic|egyptology)\b', re.I)
+DNB_BCE = re.compile(r'v\. ?Chr\.|\bBCE\b|\bB\.C\.', re.I)
+
+
+def dnb_screen(r, overrides):
+    """(include, reason) for one theses.csv.gz row of the DNB harvest. History: DNB subject group rule
+    'high'/'medium' (not title-screened), or a 'low' row title-screened 'history'. Held out until the user
+    rules: ancient history/archaeology (any row carrying DNB group 930, or a 'history' screen reason or
+    title naming Rome, antiquity, the ancient Near East, Qin/Han, BCE dates), Egyptology/Assyriology
+    (screened 'adjacent'), church history (screened 'church-history'). Reviewed overrides
+    (``screen_overrides``) apply the user's rulings to screened rows."""
+    groups = set((r.get('subject_groups') or '').split('|'))
+    o = overrides.get(r['dnb_id'])
+    if r.get('duplicate_of'):
+        return False, 'duplicate of DNB ' + r['duplicate_of']
+    if r.get('held_id'):
+        return False, 'already held as ' + r['held_id']
+    if o:
+        return o['decision'] == 'include', 'reviewed: ' + o['note']
+    if r['confidence'] in ('high', 'medium'):
+        if '930' in groups:
+            return False, 'ancient world/archaeology (DNB group 930): user has not ruled'
+        return True, f"DNB subject groups {r.get('subject_groups')} ({r['confidence']}: {r['confidence_reason']})"
+    if r.get('screen') == 'history':
+        # The title reader's phrase decides here, not group 930: 'low' rows carry 930 alone for
+        # non-ancient topics too (1793 Venezuela, Chola India, the Northern Crusades, Byzantium).
+        if DNB_ANCIENT.search(r.get('screen_reason') or '') or DNB_BCE.search(r.get('title') or ''):
+            return False, 'ancient history (title screen: ' + (r.get('screen_reason') or '') + '): user has not ruled'
+        return True, f"title screen: history ({r.get('screen_reason')}); DNB subject groups {r.get('subject_groups') or 'none visible'}"
+    if r.get('screen') == 'church-history':
+        return False, 'church history (title screen): user has not ruled'
+    return False, f"not History by the title screen ({r.get('screen') or 'low, unscreened'}: {r.get('screen_reason')})"
+
+
+def dnb_institution(university, country):
+    """'Berlin, Freie Universität Berlin' -> 'de:berlin-fu'; 'Bonn' and 'Bonn, Rheinische ...' -> 'de:bonn'."""
+    city, _, rest = (university or 'unknown').partition(',')
+    key = next((k for pat, k in DNB_UNIVERSITY_KEYS if pat.casefold() in rest.casefold()), '')
+    slug = re.sub(r'[^a-z0-9]+', '-', fold(re.sub(r'\(.*?\)', '', city))).strip('-') or 'unknown'
+    return f"{country.lower()}:{slug}" + (f'-{key}' if key else '')
+
+
+def adapter_dnb_germany(src, d):
+    """German-language History doctorates from the Deutsche Nationalbibliothek catalogue
+    (data/field-research/dnb-germany-harvest-2026-11-14: theses.csv.gz, one row per work, CC0 metadata)
+    with the open PDFs of its download job and the user's browser downloads (``manifest`` on E:, status
+    'downloaded', files in ``pdf_root``). Rows pass ``dnb_screen``; duplicates (``duplicate_of``) and
+    theses already held (``held_id``) are left out. Country: the 502 degree place (DE, AT, CH; others by
+    city). Thesis authors are seeds only: no person key is minted here."""
+    import gzip
+    out = resolve(src['root'], d)
+    table = {r['dnb_id']: r for r in csv.DictReader(gzip.open(out / 'theses.csv.gz', 'rt', encoding='utf-8'))}
+    overrides = {}
+    for p in expand(src.get('screen_overrides', []), d):
+        with open(p, newline='', encoding='utf-8') as fh:
+            overrides.update({r['dnb_id']: r for r in csv.DictReader(fh)})
+    latest = {}
+    with open(resolve(src['manifest'], d), newline='', encoding='utf-8') as fh:
+        for m in csv.DictReader(fh):
+            if m.get('status') == 'downloaded' and m.get('path'):
+                latest[m['dnb_id']] = m
+    harvest = rel_root(out)
+    for dnb_id, m in latest.items():
+        r = table.get(dnb_id)
+        if not r:
+            continue
+        ok, why = dnb_screen(r, overrides)
+        if not ok:
+            continue
+        dc = r.get('degree_country') or 'unknown'
+        country = dc if re.fullmatch(r'[A-Z]{2}', dc) else DNB_COUNTRY_CITIES.get(dc.split(':', 1)[-1], 'DE')
+        year = r.get('degree_year') or None
+        title = re.sub(r'[\x98\x9c]', '', r.get('title') or '').strip()
+        sup = [s.strip() for s in (r.get('supervisors') or '').split('|') if s.strip()]
+        entry = dict(institution=dnb_institution(r.get('university'), country), id='dnb-' + dnb_id, title=title,
+                     authors=[r['author']] if r.get('author') else [],
+                     advisors=[re.sub(r'\s*\[[^\]]*\]$', '', s) for s in sup],
+                     issued_dates=[year] if year else [],
+                     graduation_dates=[year] if year and r.get('year_basis') == 'degree' else [], copyright_dates=[],
+                     history_scope='dnb_history_screen', language=[x for x in (r.get('language') or '').split('|') if x],
+                     item_url=r.get('resolved_link') or (r.get('free_links') or '').split('|')[0] or f'https://d-nb.info/{dnb_id}',
+                     source_harvest=harvest, country=country,
+                     eligibility_basis=(f"DNB thesis record {dnb_id} (Diss., {r.get('university') or 'place not given'}, "
+                                        f"{year or 'year not given'}"
+                                        + (', publication year' if r.get('year_basis') == 'pub' else '') + f"); {why}"),
+                     access_category='open_pdf', year=int(year) if year and year.isdigit() else None,
+                     degree=[r.get('degree_type') or 'diss'], awarding_institution=r.get('university') or None,
+                     dnb_id=dnb_id, urn=r.get('urn') or None, doi=r.get('doi') or None,
+                     author_gnd=r.get('author_gnd') or None,
+                     advisor_gnd=[(re.search(r'\[([^\]]+)\]$', s) or [None, None])[1] for s in sup],
+                     pdf_source='browser' if m.get('host') == 'browser' else 'repository')
+        yield candidate(entry, [file_spec(Path(m['path']), int(m['bytes']) if m.get('bytes') else None, m.get('sha256') or None,
+                                          None, Path(m['path']).name, m.get('date'))])
+
+
 ADAPTERS = {
+    'dnb_germany': adapter_dnb_germany,
     'brazil_capes': adapter_brazil_capes,
     'mexico_records': adapter_mexico_records,
     'france_thesesfr': adapter_france_thesesfr,
@@ -759,8 +879,9 @@ def merge(d, sources, store, only=None, include_disabled=False):
     rows, report, appended = {}, dict(sources={}), []
     # Rows of sources not read in this run (--sources) are kept as they are.
     run_names = {s['name'] for s in sources if not only or s['name'] in only}
-    previous = {(r['institution'], r['id']) for r in read_jsonl(d / 'downloads-ingest.jsonl')}
-    for r in read_jsonl(d / 'downloads-ingest.jsonl'):
+    previous_rows = read_jsonl(d / 'downloads-ingest.jsonl')
+    previous = {(r['institution'], r['id']) for r in previous_rows}
+    for r in previous_rows:
         if r.get('source', '').split(':', 1)[-1] not in run_names and (r['institution'], r['id']) in keys:
             rows[(r['institution'], r['id'])] = r
     for src in sources:
@@ -780,6 +901,8 @@ def merge(d, sources, store, only=None, include_disabled=False):
                 ex.append(dict(institution=cand['entry']['institution'], id=cand['entry']['id'],
                                title=(cand['entry'].get('title') or '')[:90], **(extra or {})))
 
+        if src.get('pdf_root'):
+            store.add_root(resolve(src['pdf_root'], d))
         for cand in ADAPTERS[src['adapter']](src, d):
             rep['candidates'] += 1
             e = cand['entry']
@@ -866,6 +989,15 @@ def merge(d, sources, store, only=None, include_disabled=False):
                     sha_owner.setdefault(f['sha256'], k)
                 if not cand['logged']:
                     rows[k] = ingest_row(k, src, good)
+    # A manifest entry keeps its ingest-log row when this run could not re-check its files (moved since:
+    # the 2026-11-16 run would otherwise have dropped 2,103 us_expansion rows whose manifest paths are stale).
+    kept = 0
+    for r in previous_rows:
+        k = (r['institution'], r['id'])
+        if k in keys and k not in rows:
+            rows[k] = r
+            kept += 1
+    report['ingest_log_rows_kept_unchecked'] = kept
     return manifest, appended, list(rows.values()), report
 
 

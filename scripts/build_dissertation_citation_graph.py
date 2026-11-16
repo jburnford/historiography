@@ -407,7 +407,10 @@ def eligibility(d, index, overrides=None):
     if d.get('eligibility_basis'):
         status += f"; {d['eligibility_basis']}"
     # User decision 2026-11-04: "History of science is history" (Harvard, Oklahoma departments).
-    return ('history_phd' if scope.startswith('explicit_history') or scope == 'history_of_science_department'
+    # User ruling 2026-11-16: history of education counts as History (Alberta History of Education PhDs).
+    # 'dnb_history_screen': the DNB subject-group rule plus title screen (dissertation_ingest.dnb_screen).
+    return ('history_phd' if scope.startswith('explicit_history') or scope in (
+        'history_of_science_department', 'history_of_education_programme', 'dnb_history_screen')
             else 'needs_review'), status
 
 
