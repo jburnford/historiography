@@ -1351,7 +1351,7 @@ class Pass9:
                                                   any(HIST_WORD.search(nfold(t)) for t in titles or ())))
         # people credited on the position works and their volumes: only their pairs are kept
         oa = sorted(others_all)
-        db.register('p9o', db.execute('SELECT unnest(?) AS k', [oa]).df())
+        db.register('p9o', db.execute('SELECT unnest(?::VARCHAR[]) AS k', [oa]).df())
         # tie (a): REVIEWED either way, with the review and the book (hidden with the masked work)
         self.rev = defaultdict(list)
         for a, b, rv, bk, ev in db.execute(f"""SELECT "from", "to", review, book, evidence FROM '{G}/reviewed.parquet'

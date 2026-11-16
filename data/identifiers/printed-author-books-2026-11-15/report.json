@@ -1,0 +1,143 @@
+{
+ "proposal|proposal.json": {
+  "merges": 569,
+  "dry_run_events": 569,
+  "skipped": {
+   "into-twin-with-lccn": 251
+  }
+ },
+ "proposal|proposal-year-missing.json": {
+  "merges": 41,
+  "dry_run_events": 41,
+  "skipped": {
+   "into-twin-with-lccn": 13
+  }
+ },
+ "positions_stage": {
+  "books_with_printed_statement": 19177,
+  "class_books_no_author_or_editor_row": 8215,
+  "class_books_with_names|hnet-book|author": 7062,
+  "class_books_with_names|hnet-book|editor": 607,
+  "class_books_with_names|lc-statement|author": 150,
+  "class_books_with_names|lc-statement|editor": 39,
+  "class_by|keyed|hnet": 6302,
+  "class_by|keyed|hnet+lccn": 1702,
+  "class_by|keyed|lccn": 18,
+  "class_by|unkeyed|lccn": 193,
+  "class_hnet_lc_outcome|ambiguous_heading": 5,
+  "class_hnet_lc_outcome|ambiguous_heading+credit_not_in_record": 3,
+  "class_hnet_lc_outcome|credit_not_in_record": 360,
+  "class_hnet_lc_outcome|credit_not_in_record+lc_record_not_same_book": 2,
+  "class_hnet_lc_outcome|credit_not_in_record+lcnaf:qid_lacks_lcnaf": 1,
+  "class_hnet_lc_outcome|credit_not_in_record+lcnaf:undifferentiated": 3,
+  "class_hnet_lc_outcome|heading_ambiguous_heading": 2,
+  "class_hnet_lc_outcome|heading_deprecated_heading": 12,
+  "class_hnet_lc_outcome|heading_not_in_dump": 190,
+  "class_hnet_lc_outcome|heading_not_in_dump+lcnaf:new_for_unresolved_credit": 1,
+  "class_hnet_lc_outcome|lc_record_not_same_book": 642,
+  "class_hnet_lc_outcome|lcnaf:agrees_with_registry": 2,
+  "class_hnet_lc_outcome|lcnaf:conflicts_with_registry": 17,
+  "class_hnet_lc_outcome|lcnaf:new_for_known_individual": 1,
+  "class_hnet_lc_outcome|lcnaf:qid_lacks_lcnaf": 56,
+  "class_hnet_lc_outcome|lcnaf:undifferentiated": 87,
+  "class_hnet_lc_outcome|no credit row": 693,
+  "class_hnet_lc_outcome|no_lc_record": 5850,
+  "class_hnet_lc_outcome|no_personal_heading": 77,
+  "class_hnet_lc_outcome|not an H-Net book": 211,
+  "class_no_readable_name|hnet-book": 213,
+  "class_no_readable_name|lc-statement": 144,
+  "class_with_author_candidates": 148,
+  "positions": 10505,
+  "twin_held_reasons": {
+   "book-unkeyed": 3,
+   "twin-kind-article": 235,
+   "years-over-2-apart": 164,
+   "two-lccns": 59,
+   "book-has-several-twins": 97,
+   "name-variant": 5,
+   "name-initial": 23,
+   "twin-credits-a-person-not-printed": 40,
+   "twin-kind-thesis": 14,
+   "twin-kind-chapter": 6,
+   "book-credits-a-person-not-printed": 26,
+   "twin-has-several-books": 4,
+   "volume-marker": 1,
+   "year-missing-short-title": 2
+  },
+  "twin_merge_book_credits_person": 72,
+  "twin_merge_book_uncredited": 507,
+  "twin_merge_twin_anchor_kinds": {
+   "lccn": 264,
+   "hnet-book": 57,
+   "orcid-work": 317,
+   "openalex": 33,
+   "doi": 35,
+   "isbn": 5,
+   "atlas": 1
+  },
+  "twin_pairs": 1138,
+  "twin_pairs_by_tier": {
+   "held": 517,
+   "already-same-work": 11,
+   "merge": 569,
+   "merge-year-missing": 41
+  },
+  "twin_title_person_rows": 2085
+ },
+ "links": {
+  "books_gaining_a_link": 2682,
+  "books_gaining_a_link_by_role": {
+   "editor": 234,
+   "author": 2448
+  },
+  "books_with_candidates_only": 1540,
+  "books_with_no_keyed_name": 3159,
+  "linked_branch|dupgroup:unique-rare": 229,
+  "linked_branch|dupgroup:unique-rare-fullname": 10,
+  "linked_branch|dupgroup:unique-rare-span": 25,
+  "linked_branch|own-claimed-twin": 303,
+  "linked_branch|several-dated-one-fact": 42,
+  "linked_branch|several-one-survives": 5,
+  "linked_branch|unique-rare": 1971,
+  "linked_branch|unique-rare-fullform": 6,
+  "linked_branch|unique-rare-fullname": 128,
+  "linked_branch|unique-rare-span": 280,
+  "linked_branch|unique-rare-sup-aff": 2,
+  "linked_branch|unique-rare-variant": 10,
+  "linked_branch|unique-second-fact": 179,
+  "positions": 10505,
+  "state_by_role|author|ambiguous": 544,
+  "state_by_role|author|linked": 2896,
+  "state_by_role|author|none": 4131,
+  "state_by_role|author|possible": 1763,
+  "state_by_role|editor|ambiguous": 88,
+  "state_by_role|editor|linked": 294,
+  "state_by_role|editor|none": 571,
+  "state_by_role|editor|possible": 218,
+  "state|ambiguous": 632,
+  "state|linked": 3190,
+  "state|none": 4702,
+  "state|possible": 1981,
+  "twin_fact_promoted": 303
+ },
+ "causes": {
+  "A": "scripts/key_reviews.py:203 credits an H-Net book author only when credits.csv carries an lcnaf (LC record of the same book resolved the printed name); other outcomes (no_lc_record 5,850 of the class, lc_record_not_same_book 642, ...) were dropped. link_work_people.nameonly_targets (line 3283) reads only works with doi:/openalex: anchors; lc_catalogue_credits needs an LC record (2016 file + SRU caches; probe LCCN 2024732967 planned, not fetched).",
+  "B": "scripts/key_orcid_works.py:97-99 joins an ORCID work to a keyed work only if the claimant already holds a claim on it (own, line 75) and the title before the first colon agrees; work_dup_pairs.py form B needs a person credited on both works and both years present (line 84)."
+ },
+ "hand_check": {
+  "seed": 20261115,
+  "A": {
+   "right": 39,
+   "wrong": 0,
+   "unclear": 1
+  },
+  "B": {
+   "right": 40,
+   "wrong": 0,
+   "unclear": 0
+  },
+  "file": "sample-checked.csv",
+  "method": "read from title, printed name, key label and field; no web lookup"
+ },
+ "books_gaining_a_link_including_twin_merges": 2682
+}

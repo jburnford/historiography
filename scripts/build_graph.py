@@ -184,6 +184,9 @@ UNSAFE_PROFILE = AUTHOR_WORKS / 'unsafe-profile-credits.csv.gz'   # linked credi
 NAME_ONLY = ROOT / 'data/graph/name-only'   # scripts/link_work_people.py nameonly-* (2026-11-12): printed authors of works whose
                                             # author list no linker had read, linked to person keys (credits.csv.gz), and the
                                             # chapters of key-log edited volumes they wrote that the graph lacked (chapters.csv.gz)
+PRINTED_BOOKS = ROOT / 'data/graph/printed-author-books/credits.csv.gz'   # scripts/printed_author_books.py (2026-11-15,
+                                            # section 8 class 46): printed authors / editors of H-Net and LC books with no
+                                            # credit, name-only format + printed_role; loaded with the name-only credits
 # 2026-11-12 (integration pass five):
 PRIZES = ROOT / 'data/graph/prizes'          # scripts/prizes_harvest.py, prizes_link.py (+ found.csv.gz, recent books):
                                              # Prize nodes, AWARDED, prize work nodes (scripts/graph_prizes.py)
@@ -856,7 +859,9 @@ def name_only_credits(state, types, rels, resolve, chapter_node, report):
     def person(name):
         ks = [k for k in state.lookup(name) if types.get(k) == 'person'] if name else []
         return ks[0] if len(ks) == 1 else None
-    for r in read_rows(NAME_ONLY / 'credits.csv.gz'):
+    import itertools
+    pb = read_rows(PRINTED_BOOKS) if PRINTED_BOOKS.exists() else ()
+    for r in itertools.chain(read_rows(NAME_ONLY / 'credits.csv.gz'), pb):
         w = chapter_node.get(r['work']) or resolve(r['work'])
         st = r['state']
         if not w:
@@ -881,8 +886,13 @@ def name_only_credits(state, types, rels, resolve, chapter_node, report):
                 if tie:             # class 37: found through a stated alternate family-name form of the key
                     row.update(role='author', role_basis=f"name-form-tie: printed as \"{r['printed_name']}\"; tie: {tie[14:]}")
                     report['name_only|linked_through_name_form_tie'] += 1
+                if r.get('printed_role') == 'editor':      # class 46: 'eds' printed on the catalogue / review record
+                    row.update(role='volume-editor', role_basis='printed as editor on the catalogue or review record')
+                    report['name_only|printed_books_editor'] += 1
+                if r['source'].startswith('printed-'):
+                    report[f"name_only|{st}|{r['source']}"] += 1
                 ab = adopted_evidence(r)
-                if ab and not tie:
+                if ab and not tie and r.get('printed_role') != 'editor':
                     row.update(role='author', role_basis=ab)
                     report[f"name_only|{st}|{r['branch']}"] += 1
                 linked.append(row)
