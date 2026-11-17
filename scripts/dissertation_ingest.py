@@ -839,7 +839,38 @@ def adapter_dnb_germany(src, d):
                                           None, Path(m['path']).name, m.get('date'))])
 
 
+def adapter_sweden_swepub(src, d):
+    """Swedish History doctorates (data/field-research/diva-sweden-pilot-2026-11-14): records.jsonl of
+    scripts/register_sweden_theses.py, which ties each PDF fetched by sweden_theses_fetch.py (files on E: in
+    ``pdf_root``) to its SwePub record, validates the whole file and applies the History screen (pilot screen
+    'history' or 'economic_history'; church history, ancient history, art/film/literature and other-subject
+    doctorates held). Entries carry the SwePub record ids, the supervisors as advisors and, as their own field,
+    ``opponents`` (the fakultetsopponent: the outside examiner at the public defence, not a supervisor and not a
+    committee member). Authors and people are seeds: no person key is minted here."""
+    out = resolve(src['root'], d)
+    harvest = rel_root(out)
+    for r in read_jsonl(out / src.get('records', 'records.jsonl')):
+        year = r.get('year')
+        entry = dict(institution=r['institution'], id=r['id'], title=r['title'], authors=r['authors'], advisors=r['advisors'],
+                     issued_dates=[str(year)] if year else [],
+                     graduation_dates=[r['defence_date']] if r.get('defence_date') else [], copyright_dates=[],
+                     history_scope='swepub_history_screen', language=r.get('language') or [], item_url=r.get('item_url'),
+                     source_harvest=harvest, country='SE', eligibility_basis=r['eligibility_basis'],
+                     access_category='open_pdf', year=year, degree=['doktorsexamen'],
+                     awarding_institution=r.get('awarding_institution'), swepub_id=r['record_id'],
+                     swepub_duplicate_ids=r.get('duplicate_ids') or [], urn=r.get('urn'), isbn=r.get('isbn'), doi=r.get('doi'),
+                     series=r.get('series'), author_orcid=r.get('author_orcid'),
+                     assistant_supervisors=r.get('assistant_supervisors') or [], opponents=r.get('opponents') or [],
+                     local_subjects=r.get('local_subjects') or [], ssif=r.get('ssif') or [],
+                     swepub_screen=r.get('screen'), register_flags=r.get('register_flags') or [])
+        multi = len(r['files']) > 1
+        files = [file_spec(Path(f['path']), f['bytes'], f['sha256'], n if multi else None, Path(f['path']).name,
+                           r.get('checked_at')) for n, f in enumerate(r['files'], 1)]
+        yield candidate(entry, files)
+
+
 ADAPTERS = {
+    'sweden_swepub': adapter_sweden_swepub,
     'dnb_germany': adapter_dnb_germany,
     'brazil_capes': adapter_brazil_capes,
     'mexico_records': adapter_mexico_records,

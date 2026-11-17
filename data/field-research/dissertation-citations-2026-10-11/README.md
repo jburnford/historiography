@@ -543,6 +543,40 @@ Early Germans* and E. M. Thompson's *The Carthusian Order in England*.
   - The link step matched 129,160 works to an authority (was 121,355). Of the new theses' 376k strict citations, 12.4% go
     to an authority-linked work: US 21.5%, Canada 13.3%, Germany 4.6%.
 
+### US second pass, France re-survey and Sweden (2026-11-17)
+
+- **Registration** (offline; no request to any host, nothing moved or deleted on E:).
+  - **US** (`us-wget-2026-11-16`, 668 PDFs from the 2026-11-16 re-survey lists): `register_aha_browser_downloads.py --since 1900`
+    registered 611 into `../us-dissertations-expansion-2026-10-20/manual-aha-2026-11-04/` and held 57: 29 whose opening pages
+    do not read as a doctorate (mostly old scans with no text layer), 24 with no unique AHA match, 3 fragments (3–31 pages),
+    1 incomplete file. `audit_us_dissertation_collection.py` was not run (it rewrites `collection-manifest.csv`);
+    `scripts/us_manual_aha_manifest.py` wrote the 611 rows to `collection-manifest-manual-aha-2026-11-17.csv` instead.
+  - **France** (`france-wget-2026-11-16`, 1,134 PDFs): `scripts/register_france_resurvey.py` ties each file to its ABES
+    record by NNT (corrected History screen of the 2026-11-12 snapshot) and writes `candidates.json` + `downloads.jsonl` in the
+    `france_thesesfr` shape (`../france-theses-resurvey-2026-11-15/register-2026-11-17/`), read as source `france_resurvey`.
+    931 registered; 203 held: ancient history 151 (75 the screen's ancient group, incl. Études médiévales; 41 ancient-history
+    disciplines; 35 ancient topics by title), 22 economics doctorates with history only in their subjects, 17 EPHE "Histoire
+    des religions et anthropologie religieuse", 3 ecology, 1 architecture option, 8 fragments (1–54 pages), 1 incomplete file.
+    40 registered theses in History disciplines have art, music or theatre topics (flagged, kept by department).
+  - **Sweden** (`/mnt/e/diva-history-theses-2026-11-14/pdfs`, 669 PDFs): `scripts/register_sweden_theses.py` reads the SwePub
+    pilot rows (`../diva-sweden-pilot-2026-11-14/`), writes `register-2026-11-17/records.jsonl`, read by the new
+    `sweden_swepub` adapter (`history_scope: swepub_history_screen`, counted by `eligibility()`). 640 registered (477 History,
+    163 economic history); 29 held: 12 doctorates in another subject with a History code, 4 art/film/literature/fashion,
+    3 church history, 2 ancient, 2 archaeology, 2 art or church-building titles with no subject, 4 files of 1–12 pages
+    (spikblad). Files of 30–59 pages (10, compilation-thesis summaries) are kept and flagged. Each record carries the
+    supervisors as `advisors` (`assistant_supervisors` marks the biträdande ones) and the **fakultetsopponent as its own field,
+    `opponents`** (name, affiliation, title, ORCID where SwePub gives them): 435 opponents on 640 theses, for a later edge of
+    its own. Degree years 2000–2025. No person keys.
+- **Merge** (`ingest-20261117-113533.json`): manifest 19,348 → 21,324. US 583 new (24 SHA-256 and 36 title duplicates of
+  theses already held, counted over the whole register); France 931 new; Sweden 462 new, 178 title duplicates of BASE theses
+  from the same repositories (the BASE entry stays; its opponents are not attached). 2,103 unre-checkable log rows kept.
+- **Extraction** (with OCR, 6 workers, 50 minutes): bibliographies for 1,729 of 1,976 new theses, 664k entries. US 543 of 583
+  (126k), France 768 of 931 (406k; 104 no heading, 36 few entries, 21 suspect spans, 2 errors), Sweden 418 of 462 (131k).
+- Indigenous-related titles (metadata only): about 30 US (Cherokee, Kiowa, Potawatomi, Apache, Pueblo, Iroquois, Hawaiian
+  and other nations), 4 French (Maori wars, Indigenous peoples of Mexico, an Indigenous agency study, the Mississippi valley)
+  and 12 Swedish (Sámi history at Umeå, KTH, SLU; Tornedalen; one Native American study). The French and Swedish ones are flagged in the register
+  files for OCAP review.
+
 ## Corpus and eligibility
 
 Canadian doctoral records come from four harvests:
@@ -918,6 +952,8 @@ absolute, `data/...` from the repository root, or bare names in this directory; 
 | `mexico_records` | `mexico_records` | `../mexico-theses-2026-11-04/records.jsonl` from `scripts/register_mexico_theses.py` (title-page check); each record carries its PDF parts with SHA-256 |
 | `canada_user_run` | `canadian_harvest` | `../canada-user-run-register-2026-11-15/records.jsonl` and its `downloads.jsonl` (from `scripts/register_canada_user_run.py`). Its log lies outside this directory, so the adapter writes ingest-log rows for it (only logs inside this directory count as already logged) |
 | `dnb_germany` | `dnb_germany` | `../dnb-germany-harvest-2026-11-14/theses.csv.gz` (DNB catalogue, CC0) and the download manifest `E:\german-theses-2026-11-14\manifest.csv`; screen in `dnb_screen()`, reviewed overrides in `screen-overrides-*.csv`; PDFs stay in `E:\german-theses-2026-11-14` (`pdf_root`), reached as `pdf/../german-theses-2026-11-14/...` |
+| `france_resurvey` | `france_thesesfr` | `../france-theses-resurvey-2026-11-15/register-2026-11-17/` (`candidates.json`, `downloads.jsonl`) from `scripts/register_france_resurvey.py` |
+| `sweden_swepub` | `sweden_swepub` | `../diva-sweden-pilot-2026-11-14/register-2026-11-17/records.jsonl` from `scripts/register_sweden_theses.py`; PDFs in `E:\diva-history-theses-2026-11-14` (`pdf_root`); entries carry `opponents` |
 
 To add a source: add an entry to the registry. If its inputs are of a new kind, also write a small
 adapter function that yields `candidate(entry, files)` and add it to `ADAPTERS`. The entry is the

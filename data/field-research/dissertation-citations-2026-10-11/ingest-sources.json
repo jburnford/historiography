@@ -140,6 +140,13 @@
    "root": "data/field-research/france-theses-2026-10-30"
   },
   {
+   "name": "france_resurvey",
+   "adapter": "france_thesesfr",
+   "ingest": true,
+   "about": "French History doctorates from the 2026-11-15 access re-survey (france-theses-resurvey-2026-11-15: corrected History screen of the ABES 2026-11-12 snapshot, theses.fr access buttons, OpenAlex HAL copies), downloaded by the user's wget run of open-urls.tsv and ai-excluded-urls.tsv on 2026-11-16 (/mnt/e/historiography-dissertation-pdfs/france-wget-2026-11-16). Registered offline by scripts/register_france_resurvey.py (whole-file check, ABES record by NNT, scope screen): candidates.json and downloads.jsonl in the france_thesesfr shape. Held until the user rules: ancient history, the EPHE religious-studies doctorate, economics doctorates with history only in their subjects; art/film/literature and ecology out.",
+   "root": "data/field-research/france-theses-resurvey-2026-11-15/register-2026-11-17"
+  },
+  {
    "name": "brazil_capes",
    "adapter": "brazil_capes",
    "ingest": true,
@@ -164,6 +171,14 @@
    "screen_overrides": [
     "data/field-research/dnb-germany-harvest-2026-11-14/screen-overrides-*.csv"
    ]
+  },
+  {
+   "name": "sweden_swepub",
+   "adapter": "sweden_swepub",
+   "ingest": true,
+   "about": "Swedish History doctorates (incl. economic history, history of science and ideas, history of technology, history of education) from the SwePub pilot (diva-sweden-pilot-2026-11-14: SSIF 601/50203 doctoral theses 2000-2025, screened by local subject, SSIF code and title), open PDFs fetched by scripts/sweden_theses_fetch.py to E: and registered offline by scripts/register_sweden_theses.py. Held until the user rules: church history/theology, ancient history/classics/archaeology; out: art, film, literature, music and doctorates in another subject. Entries carry supervisors as advisors and the fakultetsopponent as its own field 'opponents' (outside examiner at the defence; a separate role for a later edge). Authors and people are seeds: no person keys from this source.",
+   "root": "data/field-research/diva-sweden-pilot-2026-11-14/register-2026-11-17",
+   "pdf_root": "/mnt/e/diva-history-theses-2026-11-14"
   }
  ]
 }
