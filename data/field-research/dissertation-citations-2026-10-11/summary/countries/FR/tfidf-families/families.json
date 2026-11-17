@@ -1,0 +1,3151 @@
+{
+ "scope": "FR",
+ "generated": "2026-11-17",
+ "script": "scripts/dissertation_tfidf_families.py",
+ "strict_dissertations_in_scope": 2218,
+ "rows": 725,
+ "rows_excluded_lt_min_works": 1493,
+ "works": 284,
+ "excluded_profile": {
+  "by_institution": [
+   [
+    "base:theses.hal.science",
+    322
+   ],
+   [
+    "base:tel.archives-ouvertes.fr",
+    244
+   ],
+   [
+    "fr:paris-ehess",
+    63
+   ],
+   [
+    "base:hal.science",
+    55
+   ],
+   [
+    "base:hal.univ-lorraine.fr",
+    53
+   ],
+   [
+    "fr:paris-1",
+    44
+   ],
+   [
+    "base:hal.archives-ouvertes.fr",
+    35
+   ],
+   [
+    "fr:lyon",
+    35
+   ],
+   [
+    "fr:universite-de-lorraine",
+    34
+   ],
+   [
+    "fr:strasbourg",
+    27
+   ],
+   [
+    "fr:bordeaux-3",
+    25
+   ],
+   [
+    "fr:aix-marseille",
+    24
+   ]
+  ],
+  "by_country": [
+   [
+    "FR",
+    1493
+   ]
+  ],
+  "by_decade": [
+   [
+    0,
+    73
+   ],
+   [
+    1980,
+    1
+   ],
+   [
+    1990,
+    3
+   ],
+   [
+    2000,
+    104
+   ],
+   [
+    2010,
+    813
+   ],
+   [
+    2020,
+    499
+   ]
+  ],
+  "share_by_institution": {
+   "base:theses.hal.science": 0.66,
+   "base:tel.archives-ouvertes.fr": 0.7,
+   "fr:paris-ehess": 0.56,
+   "base:hal.science": 0.6,
+   "fr:paris-1": 0.55,
+   "base:hal.univ-lorraine.fr": 0.85,
+   "base:hal.archives-ouvertes.fr": 0.65,
+   "fr:universite-de-lorraine": 0.72,
+   "fr:lyon": 0.76,
+   "fr:strasbourg": 0.68,
+   "fr:bordeaux-3": 0.76,
+   "fr:paris-sciences-et-lettres-comue": 0.64
+  },
+  "median_bibliography_entries": 276,
+  "median_bibliography_entries_rows": 519
+ },
+ "parameters": {
+  "min_cited": 15,
+  "min_works": 3,
+  "seed": 0,
+  "bootstrap": 20,
+  "tfidf": "binary tf, smoothed idf ln((1+N)/(1+df))+1, row L2 norm",
+  "nmf": "frobenius, cd solver, nndsvd init, max_iter 800, tol 1e-4"
+ },
+ "k": 8,
+ "k_rule": "no k had mean matched cosine >= 0.75: most stable k",
+ "elbow": 14,
+ "sweep": [
+  {
+   "k": 8,
+   "reconstruction_error": 25.2204,
+   "relative_error": 0.9367,
+   "iterations": 700,
+   "stability_mean": 0.715,
+   "stability_median_family": 0.705,
+   "stability_p10_family": 0.604,
+   "stability_min_family": 0.561,
+   "families_reproduced": 2
+  },
+  {
+   "k": 10,
+   "reconstruction_error": 24.9628,
+   "relative_error": 0.9271,
+   "iterations": 114,
+   "stability_mean": 0.698,
+   "stability_median_family": 0.7,
+   "stability_p10_family": 0.548,
+   "stability_min_family": 0.517,
+   "families_reproduced": 2
+  },
+  {
+   "k": 12,
+   "reconstruction_error": 24.7319,
+   "relative_error": 0.9185,
+   "iterations": 101,
+   "stability_mean": 0.674,
+   "stability_median_family": 0.671,
+   "stability_p10_family": 0.453,
+   "stability_min_family": 0.403,
+   "families_reproduced": 3
+  },
+  {
+   "k": 14,
+   "reconstruction_error": 24.4988,
+   "relative_error": 0.9099,
+   "iterations": 126,
+   "stability_mean": 0.689,
+   "stability_median_family": 0.704,
+   "stability_p10_family": 0.481,
+   "stability_min_family": 0.337,
+   "families_reproduced": 4
+  },
+  {
+   "k": 16,
+   "reconstruction_error": 24.2937,
+   "relative_error": 0.9022,
+   "iterations": 114,
+   "stability_mean": 0.65,
+   "stability_median_family": 0.694,
+   "stability_p10_family": 0.393,
+   "stability_min_family": 0.303,
+   "families_reproduced": 5
+  },
+  {
+   "k": 18,
+   "reconstruction_error": 24.08,
+   "relative_error": 0.8943,
+   "iterations": 120,
+   "stability_mean": 0.652,
+   "stability_median_family": 0.677,
+   "stability_p10_family": 0.424,
+   "stability_min_family": 0.328,
+   "families_reproduced": 4
+  },
+  {
+   "k": 20,
+   "reconstruction_error": 23.8845,
+   "relative_error": 0.887,
+   "iterations": 128,
+   "stability_mean": 0.631,
+   "stability_median_family": 0.681,
+   "stability_p10_family": 0.372,
+   "stability_min_family": 0.312,
+   "families_reproduced": 3
+  },
+  {
+   "k": 22,
+   "reconstruction_error": 23.6843,
+   "relative_error": 0.8796,
+   "iterations": 168,
+   "stability_mean": 0.622,
+   "stability_median_family": 0.639,
+   "stability_p10_family": 0.383,
+   "stability_min_family": 0.344,
+   "families_reproduced": 3
+  },
+  {
+   "k": 24,
+   "reconstruction_error": 23.4933,
+   "relative_error": 0.8725,
+   "iterations": 240,
+   "stability_mean": 0.62,
+   "stability_median_family": 0.629,
+   "stability_p10_family": 0.404,
+   "stability_min_family": 0.315,
+   "families_reproduced": 3
+  },
+  {
+   "k": 26,
+   "reconstruction_error": 23.3086,
+   "relative_error": 0.8657,
+   "iterations": 217,
+   "stability_mean": 0.605,
+   "stability_median_family": 0.61,
+   "stability_p10_family": 0.417,
+   "stability_min_family": 0.272,
+   "families_reproduced": 3
+  },
+  {
+   "k": 28,
+   "reconstruction_error": 23.1172,
+   "relative_error": 0.8586,
+   "iterations": 167,
+   "stability_mean": 0.627,
+   "stability_median_family": 0.626,
+   "stability_p10_family": 0.429,
+   "stability_min_family": 0.311,
+   "families_reproduced": 3
+  },
+  {
+   "k": 30,
+   "reconstruction_error": 22.9106,
+   "relative_error": 0.8509,
+   "iterations": 116,
+   "stability_mean": 0.629,
+   "stability_median_family": 0.622,
+   "stability_p10_family": 0.417,
+   "stability_min_family": 0.33,
+   "families_reproduced": 5
+  }
+ ],
+ "stability": {
+  "bootstrap_mean": 0.715,
+  "init_random_mean": 0.9,
+  "note": "bootstrap: mean matched cosine of work loadings over resampled refits; init: 4 random-init + 1 nndsvda refit"
+ },
+ "membership_note": "soft memberships are each family's share of the reconstructed column (works) or row (dissertations)",
+ "families": [
+  {
+   "id": 0,
+   "provisional_label": "Foucault — knowledge, condition, society, critique",
+   "label_is_provisional": true,
+   "louvain_hint": "Foucault · Said",
+   "title_terms": [
+    "knowledge",
+    "condition",
+    "society",
+    "critique",
+    "esprit",
+    "raison"
+   ],
+   "bootstrap_stability": 0.734,
+   "unstable": false,
+   "init_stability": 0.957,
+   "dominated_dissertations": 150,
+   "member_works": 56,
+   "years": {
+    "median": 2018,
+    "by_5yr": {
+     "2005-2009": 5,
+     "2010-2014": 32,
+     "2015-2019": 51,
+     "2020-2024": 48,
+     "2025-2029": 11,
+     "unknown": 3
+    },
+    "share_of_bin": {
+     "2010-2014": 0.242,
+     "2015-2019": 0.21,
+     "2020-2024": 0.191,
+     "2025-2029": 0.193
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:foucault|mots et les choses",
+     "title": "Les mots et les choses",
+     "first_author": "Foucault, Michel",
+     "year": 1966,
+     "loading": 1.0,
+     "citing": 56,
+     "membership": 0.985
+    },
+    {
+     "id": "W:foucault|discipline and punish",
+     "title": "Discipline and Punish: The Birth of the Prison",
+     "first_author": "Foucault, Michel",
+     "year": 1977,
+     "loading": 0.869,
+     "citing": 90,
+     "membership": 0.697
+    },
+    {
+     "id": "W:foucault|archaeology of knowledge",
+     "title": "The Archaeology of Knowledge",
+     "first_author": "Foucault, Michel",
+     "year": 1969,
+     "loading": 0.791,
+     "citing": 50,
+     "membership": 0.819
+    },
+    {
+     "id": "W:foucault|histoire de la sexualite",
+     "title": "Histoire de la sexualité",
+     "first_author": "Foucault, Michel",
+     "year": 1976,
+     "loading": 0.774,
+     "citing": 41,
+     "membership": 0.8
+    },
+    {
+     "id": "W:foucault|dits et ecrits",
+     "title": "Dits et écrits",
+     "first_author": "Foucault, Michel",
+     "year": 1994,
+     "loading": 0.662,
+     "citing": 37,
+     "membership": 0.931
+    },
+    {
+     "id": "W:descola|par dela nature et culture",
+     "title": "Par-delà nature et culture",
+     "first_author": "Descola, Philippe",
+     "year": 2005,
+     "loading": 0.481,
+     "citing": 25,
+     "membership": 1.0
+    },
+    {
+     "id": "W:deleuze|mille plateaux",
+     "title": "Mille plateaux",
+     "first_author": "Deleuze, Gilles",
+     "year": 1980,
+     "loading": 0.394,
+     "citing": 15,
+     "membership": 1.0
+    },
+    {
+     "id": "W:arendt|human condition",
+     "title": "The Human Condition",
+     "first_author": "Arendt, Hannah",
+     "year": 1958,
+     "loading": 0.389,
+     "citing": 19,
+     "membership": 0.788
+    },
+    {
+     "id": "W:lyotard|postmodern condition",
+     "title": "The Postmodern Condition: A Report on Knowledge",
+     "first_author": "Lyotard, Jean-François",
+     "year": 1984,
+     "loading": 0.381,
+     "citing": 17,
+     "membership": 0.901
+    },
+    {
+     "id": "W:levi strauss|savage mind",
+     "title": "The Savage Mind",
+     "first_author": "Lévi-Strauss, Claude",
+     "year": 1962,
+     "loading": 0.378,
+     "citing": 23,
+     "membership": 0.883
+    },
+    {
+     "id": "W:canguilhem|normal et le pathologique",
+     "title": "Le normal et le pathologique",
+     "first_author": "Canguilhem, Georges",
+     "year": 1966,
+     "loading": 0.365,
+     "citing": 16,
+     "membership": 1.0
+    },
+    {
+     "id": "W:foucault|lordre du discours",
+     "title": "A ordem do discurso",
+     "first_author": "Foucault, Michel",
+     "year": 1996,
+     "loading": 0.354,
+     "citing": 18,
+     "membership": 0.946
+    },
+    {
+     "id": "W:debord|societe du spectacle",
+     "title": "La société du spectacle",
+     "first_author": "Debord, Guy",
+     "year": 1967,
+     "loading": 0.344,
+     "citing": 20,
+     "membership": 0.9
+    },
+    {
+     "id": "W:merleau ponty|phenomenologie de la perception",
+     "title": "Phénoménologie de la perception",
+     "first_author": "Merleau-Ponty, Maurice",
+     "year": 1945,
+     "loading": 0.339,
+     "citing": 15,
+     "membership": 1.0
+    },
+    {
+     "id": "W:barthes|mythologies",
+     "title": "Mythologies",
+     "first_author": "Barthes, Roland",
+     "year": 1957,
+     "loading": 0.325,
+     "citing": 27,
+     "membership": 0.791
+    },
+    {
+     "id": "W:simondon|mode dexistence des objets techniques",
+     "title": "Du mode d’existence des objets techniques",
+     "first_author": "Simondon, Gilbert",
+     "year": 1989,
+     "loading": 0.323,
+     "citing": 15,
+     "membership": 0.962
+    },
+    {
+     "id": "W:bourdieu|distinction",
+     "title": "Distinction: A Social Critique of the Judgement of Taste",
+     "first_author": "Bourdieu, Pierre",
+     "year": 1984,
+     "loading": 0.313,
+     "citing": 59,
+     "membership": 0.404
+    },
+    {
+     "id": "W:latour|science in action",
+     "title": "Science in Action: How to Follow Scientists and Engineers through Society",
+     "first_author": "Latour, Bruno",
+     "year": 1987,
+     "loading": 0.297,
+     "citing": 22,
+     "membership": 0.755
+    },
+    {
+     "id": "W:foucault|espaces autres|a",
+     "title": "Des espaces autres",
+     "first_author": "Foucault, Michel",
+     "year": 2004,
+     "loading": 0.293,
+     "citing": 15,
+     "membership": 0.978
+    },
+    {
+     "id": "W:kuhn|structure of scientific revolution",
+     "title": "La structure des révolutions scientifiques",
+     "first_author": "Kuhn, Thomas S",
+     "year": 1998,
+     "loading": 0.293,
+     "citing": 26,
+     "membership": 0.705
+    },
+    {
+     "id": "W:said|orientalism",
+     "title": "Orientalism",
+     "first_author": "Said, Edward",
+     "year": 1978,
+     "loading": 0.283,
+     "citing": 45,
+     "membership": 0.45
+    },
+    {
+     "id": "W:goody|raison graphique",
+     "title": "La raison graphique. La domestication de la pensée sauvage",
+     "first_author": "Goody, Jack",
+     "year": 1979,
+     "loading": 0.269,
+     "citing": 22,
+     "membership": 0.656
+    },
+    {
+     "id": "W:baudrillard|societe de consommation",
+     "title": "The Consumer Society: Myths and Structures",
+     "first_author": "Baudrillard, Jean",
+     "year": 1970,
+     "loading": 0.269,
+     "citing": 15,
+     "membership": 0.969
+    },
+    {
+     "id": "W:ricoeur|temps et recit",
+     "title": "Temps et récit",
+     "first_author": "Ricoeur, Paul",
+     "year": 1983,
+     "loading": 0.265,
+     "citing": 56,
+     "membership": 0.27
+    },
+    {
+     "id": "W:fanon|black skin white masks",
+     "title": "Black Skin, White Masks",
+     "first_author": "Fanon, Frantz",
+     "year": 2008,
+     "loading": 0.264,
+     "citing": 18,
+     "membership": 0.547
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Foucault, Michel",
+     "loading_share": 0.2402
+    },
+    {
+     "name": "Bourdieu, Pierre",
+     "loading_share": 0.0662
+    },
+    {
+     "name": "Arendt, Hannah",
+     "loading_share": 0.029
+    },
+    {
+     "name": "Lévi-Strauss, Claude",
+     "loading_share": 0.0284
+    },
+    {
+     "name": "Weber, Max",
+     "loading_share": 0.0268
+    },
+    {
+     "name": "Barthes, Roland",
+     "loading_share": 0.0241
+    },
+    {
+     "name": "Descola, Philippe",
+     "loading_share": 0.0226
+    },
+    {
+     "name": "Kuhn, Thomas S",
+     "loading_share": 0.0224
+    },
+    {
+     "name": "Elias, Norbert",
+     "loading_share": 0.0205
+    },
+    {
+     "name": "Goffman, Erving",
+     "loading_share": 0.0201
+    },
+    {
+     "name": "Fanon, Frantz",
+     "loading_share": 0.0187
+    },
+    {
+     "name": "Deleuze, Gilles",
+     "loading_share": 0.0185
+    },
+    {
+     "name": "Lyotard, Jean-François",
+     "loading_share": 0.0179
+    },
+    {
+     "name": "Canguilhem, Georges",
+     "loading_share": 0.0172
+    },
+    {
+     "name": "Certeau, Michel de",
+     "loading_share": 0.0162
+    }
+   ],
+   "top_institutions": [
+    [
+     "base:theses.hal.science",
+     41
+    ],
+    [
+     "base:tel.archives-ouvertes.fr",
+     24
+    ],
+    [
+     "fr:paris-ehess",
+     9
+    ],
+    [
+     "base:hal.science",
+     8
+    ],
+    [
+     "base:halshs.archives-ouvertes.fr",
+     4
+    ],
+    [
+     "fr:paris-1",
+     4
+    ]
+   ],
+   "sample_dissertations": [
+    "Structures de navigation immersives pour l’exposition des archives d’Aimé Bonpland : dispositifs hybrides, médiation et patrimoine virtuel",
+    "Des robots ''sociaux'' ? : enquête philosophique sur l'altérité des artefacts",
+    "Le dépistage prénatal en France : quand l'histoire éclaire la réflexion éthique",
+    "Writing science. Scientific prose in vulgar in Sixteenth-Century Italy. ; Les mots des sciences. La prose scientifique en langue vulgaire da",
+    "Qu'est-ce qu'une pratique ? : théories et théorisation des pratiques",
+    "Philosophie et histoire dans la pensée d'Eric Weil ; Filosofia e historia no pensamento de Eric Weil",
+    "Penser l'existence de vie dans les profondeurs marines au XIXe siècle : entre abîme impossible et origine du vivant (1804-1885)",
+    "Représentations des aborigènes de Taïwan au musée : entre art et ethnographie dans un contexte post-colonial"
+   ]
+  },
+  {
+   "id": 1,
+   "provisional_label": "Perrot · Thébaud · Schweitzer — femmes, xixe, histoire, xxe",
+   "label_is_provisional": true,
+   "louvain_hint": "Charle · Corbin · Agulhon",
+   "title_terms": [
+    "femmes",
+    "xixe",
+    "histoire",
+    "xxe",
+    "siècle",
+    "genre"
+   ],
+   "bootstrap_stability": 0.68,
+   "unstable": false,
+   "init_stability": 0.95,
+   "dominated_dissertations": 135,
+   "member_works": 64,
+   "years": {
+    "median": 2019,
+    "by_5yr": {
+     "2000-2004": 1,
+     "2005-2009": 5,
+     "2010-2014": 20,
+     "2015-2019": 48,
+     "2020-2024": 52,
+     "2025-2029": 8,
+     "unknown": 1
+    },
+    "share_of_bin": {
+     "2010-2014": 0.152,
+     "2015-2019": 0.198,
+     "2020-2024": 0.207,
+     "2025-2029": 0.14
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:perrot|femmes ou les silences de lhistoire",
+     "title": "Les femmes ou les silences de l’histoire",
+     "first_author": "Perrot, Michelle",
+     "year": 1998,
+     "loading": 1.0,
+     "citing": 40,
+     "membership": 0.994
+    },
+    {
+     "id": "W:thebaud|ecrire lhistoire des femmes",
+     "title": "Écrire l’histoire des femmes et du genre",
+     "first_author": "Thébaud, Françoise",
+     "year": 2007,
+     "loading": 0.949,
+     "citing": 34,
+     "membership": 1.0
+    },
+    {
+     "id": "W:schweitzer|femmes ont toujours travaille",
+     "title": "Les femmes ont toujours travaillé. Une histoire du travail des femmes aux XIXe et XXe siècles",
+     "first_author": "Schweitzer, Sylvie",
+     "year": 2002,
+     "loading": 0.759,
+     "citing": 22,
+     "membership": 1.0
+    },
+    {
+     "id": "W:charle|histoire sociale de la france au xixe siecle",
+     "title": "Histoire sociale de la France au XIXe siècle",
+     "first_author": "Charle, Christophe",
+     "year": 1991,
+     "loading": 0.647,
+     "citing": 32,
+     "membership": 0.982
+    },
+    {
+     "id": "W:bard|femmes dans la societe francaise au 20e siecle",
+     "title": "Les femmes dans la société française au 20e siècle",
+     "first_author": "Bard, Christine",
+     "year": 2001,
+     "loading": 0.645,
+     "citing": 20,
+     "membership": 0.864
+    },
+    {
+     "id": "W:noiriel|ouvriers dans la societe francaise",
+     "title": "Les ouvriers dans la société française : XIXe-XXe siècle",
+     "first_author": "Noiriel, Gérard",
+     "year": 1986,
+     "loading": 0.637,
+     "citing": 29,
+     "membership": 0.906
+    },
+    {
+     "id": "W:corbin|filles de noce",
+     "title": "Les filles de noce. Misère sexuelle et prostitution au XIXe siècle",
+     "first_author": "Corbin, Alain",
+     "year": 1978,
+     "loading": 0.635,
+     "citing": 25,
+     "membership": 0.947
+    },
+    {
+     "id": "W:duby georges|histoire des femmes en occident",
+     "title": "Histoire des femmes en Occident",
+     "first_author": "DUBY Georges, PERROT Michelle",
+     "year": 2002,
+     "loading": 0.553,
+     "citing": 21,
+     "membership": 0.963
+    },
+    {
+     "id": "W:daumard|bourgeois et la bourgeoisie en france depuis 1815",
+     "title": "Les bourgeois et la bourgeoisie en France depuis 1815",
+     "first_author": "Daumard, Adeline",
+     "year": 1987,
+     "loading": 0.45,
+     "citing": 22,
+     "membership": 0.978
+    },
+    {
+     "id": "W:bard|filles de marianne",
+     "title": "Les filles de Marianne. Histoire des féminismes 1914-1940",
+     "first_author": "Bard, Christine",
+     "year": 1995,
+     "loading": 0.45,
+     "citing": 15,
+     "membership": 0.943
+    },
+    {
+     "id": "W:corbin alain|histoire du corps",
+     "title": "Histoire du corps",
+     "first_author": "CORBIN Alain, COURTINE Jean-Jacques",
+     "year": 2005,
+     "loading": 0.449,
+     "citing": 25,
+     "membership": 0.935
+    },
+    {
+     "id": "W:dupaquier|histoire de la population francaise",
+     "title": "Histoire de la population française",
+     "first_author": "Dupâquier, Jacques",
+     "year": 1988,
+     "loading": 0.449,
+     "citing": 38,
+     "membership": 0.593
+    },
+    {
+     "id": "W:noiriel|creuset francais",
+     "title": "Le creuset français: histoire de l’immigration, XIXe-XXe siècle",
+     "first_author": "Noiriel, Gérard",
+     "year": 1988,
+     "loading": 0.446,
+     "citing": 33,
+     "membership": 0.577
+    },
+    {
+     "id": "W:woronoff|histoire de lindustrie en france du xvie siecle a nos jours",
+     "title": "Histoire de l’industrie en France du XVIe siècle à nos jours",
+     "first_author": "Woronoff, Denis",
+     "year": 1994,
+     "loading": 0.444,
+     "citing": 23,
+     "membership": 0.93
+    },
+    {
+     "id": "W:bourdieu|domination masculine",
+     "title": "La domination masculine",
+     "first_author": "Bourdieu, Pierre",
+     "year": 1998,
+     "loading": 0.419,
+     "citing": 24,
+     "membership": 0.759
+    },
+    {
+     "id": "W:chevalier|classes laborieuses et classes dangereuses a paris pendant la premiere moitie du",
+     "title": "Classes laborieuses et classes dangereuses à Paris pendant la première moitié du XIXe siècle",
+     "first_author": "Chevalier, Louis",
+     "year": 1958,
+     "loading": 0.418,
+     "citing": 18,
+     "membership": 0.948
+    },
+    {
+     "id": "W:aries philippe|histoire de la vie privee",
+     "title": "Histoire de la vie privée",
+     "first_author": "ARIES Philippe, DUBY Georges",
+     "year": 1987,
+     "loading": 0.416,
+     "citing": 16,
+     "membership": 0.944
+    },
+    {
+     "id": "W:vigna|histoire des ouvriers en france au xxe siecle",
+     "title": "Histoire des ouvriers en France au XXe siècle",
+     "first_author": "Vigna, Xavier",
+     "year": 2012,
+     "loading": 0.416,
+     "citing": 18,
+     "membership": 0.948
+    },
+    {
+     "id": "W:dewerpe|monde du travail en france 1800 1950",
+     "title": "Le monde du travail en France, 1800-1950",
+     "first_author": "Dewerpe, Alain",
+     "year": 1998,
+     "loading": 0.355,
+     "citing": 17,
+     "membership": 0.819
+    },
+    {
+     "id": "W:weber|fin des terroirs",
+     "title": "La fin des terroirs. La modernisation de la France rurale 1870-1914",
+     "first_author": "Weber, Eugen",
+     "year": 1983,
+     "loading": 0.351,
+     "citing": 23,
+     "membership": 0.768
+    },
+    {
+     "id": "W:aries|histoire de la vie privee",
+     "title": "Histoire de la vie privée",
+     "first_author": "Ariès, Philippe",
+     "year": 1985,
+     "loading": 0.332,
+     "citing": 16,
+     "membership": 0.85
+    },
+    {
+     "id": "W:prost|histoire de lenseignement en france 1800 1967",
+     "title": "Histoire de l’enseignement en France 1800-1967",
+     "first_author": "Prost, Antoine",
+     "year": 1968,
+     "loading": 0.315,
+     "citing": 24,
+     "membership": 0.641
+    },
+    {
+     "id": "W:becker|1914",
+     "title": "1914 : comment les Français sont entrés dans la guerre",
+     "first_author": "Becker, Jean-Jacques",
+     "year": 1977,
+     "loading": 0.304,
+     "citing": 19,
+     "membership": 0.681
+    },
+    {
+     "id": "W:charle|elites de la republique 1880 1900",
+     "title": "Les élites de la République (1880-1900)",
+     "first_author": "Charle, Christophe",
+     "year": 1987,
+     "loading": 0.289,
+     "citing": 24,
+     "membership": 0.574
+    },
+    {
+     "id": "W:lemercier claire|methodes quantitatives pour lhistorien",
+     "title": "Méthodes quantitatives pour l’historien",
+     "first_author": "LEMERCIER Claire, ZALC Claire",
+     "year": 2008,
+     "loading": 0.285,
+     "citing": 15,
+     "membership": 0.686
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Corbin, Alain",
+     "loading_share": 0.0627
+    },
+    {
+     "name": "Charle, Christophe",
+     "loading_share": 0.051
+    },
+    {
+     "name": "Noiriel, Gérard",
+     "loading_share": 0.0505
+    },
+    {
+     "name": "Bard, Christine",
+     "loading_share": 0.0412
+    },
+    {
+     "name": "Perrot, Michelle",
+     "loading_share": 0.0376
+    },
+    {
+     "name": "Thébaud, Françoise",
+     "loading_share": 0.0357
+    },
+    {
+     "name": "Schweitzer, Sylvie",
+     "loading_share": 0.0286
+    },
+    {
+     "name": "Bourdieu, Pierre",
+     "loading_share": 0.0271
+    },
+    {
+     "name": "Ariès, Philippe",
+     "loading_share": 0.0248
+    },
+    {
+     "name": "Kalifa, Dominique",
+     "loading_share": 0.0231
+    },
+    {
+     "name": "Foucault, Michel",
+     "loading_share": 0.0222
+    },
+    {
+     "name": "DUBY Georges, PERROT Michelle",
+     "loading_share": 0.0208
+    },
+    {
+     "name": "Daumard, Adeline",
+     "loading_share": 0.0169
+    },
+    {
+     "name": "CORBIN Alain, COURTINE Jean-Jacques",
+     "loading_share": 0.0169
+    },
+    {
+     "name": "Dupâquier, Jacques",
+     "loading_share": 0.0169
+    }
+   ],
+   "top_institutions": [
+    [
+     "base:theses.hal.science",
+     31
+    ],
+    [
+     "base:tel.archives-ouvertes.fr",
+     16
+    ],
+    [
+     "base:hal.science",
+     8
+    ],
+    [
+     "fr:paris-1",
+     7
+    ],
+    [
+     "fr:paris-ehess",
+     6
+    ],
+    [
+     "base:hal.archives-ouvertes.fr",
+     5
+    ]
+   ],
+   "sample_dissertations": [
+    "Family farming and gender dynamics in Cameroon, from the end of nineteenth century to the independances ; Agricultures familiales et dynamiq",
+    "Image(s) fantasmée(s), construction et promotion d'une femme nouvelle dans les années trente",
+    "The Deaf-Mutes of the Belle Epoque, a changing community ; Les Sourds-Muets de la Belle Epoque, une communauté en mutation.",
+    "L'engagement des femmes dans les sociétés françaises de la Croix-Rouge 1864-1940",
+    "« We laughed as if we were at the Palais-Royal ! » An archival overview of a Parisian theatre during the entertainment's industrialisation (",
+    "The birth of the social movement in the Midi Aquitain 1870-1914 ; La naissance du mouvement social dans le midi aquitain 1870-1914",
+    "Les courants socialistes et communistes en France sous la IIIe République, du local au transnational, de la monographie à la prosopographie",
+    "Enfant de la faute, enfant du malheur : grandir sous la tutelle de l'Assistance publique dans les Basses-Alpes durant la IIIe République (18"
+   ]
+  },
+  {
+   "id": 2,
+   "provisional_label": "Bély · Mousnier · Furetière — régime, ancien, xviiie, institutions",
+   "label_is_provisional": true,
+   "louvain_hint": "Bély · Roche · Furetière",
+   "title_terms": [
+    "régime",
+    "ancien",
+    "xviiie",
+    "institutions",
+    "dictionnaire",
+    "siècle"
+   ],
+   "bootstrap_stability": 0.852,
+   "unstable": false,
+   "init_stability": 0.999,
+   "dominated_dissertations": 113,
+   "member_works": 53,
+   "years": {
+    "median": 2019,
+    "by_5yr": {
+     "2000-2004": 1,
+     "2005-2009": 2,
+     "2010-2014": 20,
+     "2015-2019": 34,
+     "2020-2024": 43,
+     "2025-2029": 12,
+     "unknown": 1
+    },
+    "share_of_bin": {
+     "2010-2014": 0.152,
+     "2015-2019": 0.14,
+     "2020-2024": 0.171,
+     "2025-2029": 0.211
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:bely|dictionnaire de lancien regime",
+     "title": "Dictionnaire de l’Ancien Régime",
+     "first_author": "Bély, Lucien",
+     "year": 1996,
+     "loading": 1.0,
+     "citing": 42,
+     "membership": 1.0
+    },
+    {
+     "id": "W:mousnier|institutions de la france sous la monarchie absolue",
+     "title": "Les institutions de la France sous la monarchie absolue",
+     "first_author": "Mousnier, Roland",
+     "year": 1974,
+     "loading": 0.668,
+     "citing": 23,
+     "membership": 1.0
+    },
+    {
+     "id": "W:furetiere|dictionnaire universel contenant generalement tous les mots francois tant vieux ",
+     "title": "Dictionnaire universel, contenant généralement tous les mots françois tant vieux que modernes, et les termes de toutes les sciences et des arts",
+     "first_author": "Furetière, Antoine",
+     "year": 1690,
+     "loading": 0.626,
+     "citing": 30,
+     "membership": 0.84
+    },
+    {
+     "id": "W:roche|siecle des lumieres en province",
+     "title": "Le siècle des Lumières en province : académies et académiciens provinciaux, 1680-1789",
+     "first_author": "Roche, Daniel",
+     "year": 1978,
+     "loading": 0.623,
+     "citing": 32,
+     "membership": 0.895
+    },
+    {
+     "id": "W:marion|dictionnaire des institutions de la france aux xviie et xviiie siecles",
+     "title": "Dictionnaire des institutions de la France aux XVIIe et XVIIIe siècles",
+     "first_author": "Marion, Marcel",
+     "year": 1923,
+     "loading": 0.561,
+     "citing": 20,
+     "membership": 1.0
+    },
+    {
+     "id": "W:roche|culture des apparences",
+     "title": "La culture des apparences",
+     "first_author": "Roche, Daniel",
+     "year": 1989,
+     "loading": 0.53,
+     "citing": 29,
+     "membership": 0.876
+    },
+    {
+     "id": "W:barbiche|institutions de la monarchie francaise a lepoque moderne",
+     "title": "Les institutions de la monarchie française à l’époque moderne",
+     "first_author": "Barbiche, Bernard",
+     "year": 1999,
+     "loading": 0.524,
+     "citing": 17,
+     "membership": 1.0
+    },
+    {
+     "id": "W:beauvalet boutouyrie|etre veuve sous lancien regime",
+     "title": "Être veuve sous l’Ancien Régime",
+     "first_author": "Beauvalet-Boutouyrie, Scarlett",
+     "year": 2001,
+     "loading": 0.488,
+     "citing": 21,
+     "membership": 0.913
+    },
+    {
+     "id": "W:bluche|dictionnaire du grand siecle",
+     "title": "Dictionnaire du Grand Siècle",
+     "first_author": "Bluche, François",
+     "year": 1990,
+     "loading": 0.478,
+     "citing": 21,
+     "membership": 0.977
+    },
+    {
+     "id": "W:pardailhe galabrun|naissance de lintime",
+     "title": "La naissance de l’intime : 3000 foyers parisiens XVIIe-XVIIIe siècles",
+     "first_author": "Pardailhé-Galabrun, Annik",
+     "year": 1988,
+     "loading": 0.466,
+     "citing": 21,
+     "membership": 0.964
+    },
+    {
+     "id": "W:chartier|origines culturelles de la revolution francaise",
+     "title": "Les origines culturelles de la Révolution française",
+     "first_author": "Chartier, Roger",
+     "year": 1990,
+     "loading": 0.46,
+     "citing": 28,
+     "membership": 0.792
+    },
+    {
+     "id": "W:vovelle|piete baroque et dechristianisation en provence au xviiie siecle",
+     "title": "Piété baroque et déchristianisation en Provence au XVIIIe siècle",
+     "first_author": "Vovelle, Michel",
+     "year": 1973,
+     "loading": 0.453,
+     "citing": 19,
+     "membership": 0.998
+    },
+    {
+     "id": "W:grenier|leconomie dancien regime",
+     "title": "L’économie d’Ancien Régime. Un monde de l’échange et de l’incertitude",
+     "first_author": "Grenier, Jean-Yves",
+     "year": 1996,
+     "loading": 0.443,
+     "citing": 24,
+     "membership": 0.799
+    },
+    {
+     "id": "W:fogel|ceremonies de linformation dans la france du xvie au xviiie siecle",
+     "title": "Les cérémonies de l’information dans la France du XVIe au XVIIIe siècle",
+     "first_author": "Fogel, M. L",
+     "year": 1989,
+     "loading": 0.435,
+     "citing": 17,
+     "membership": 1.0
+    },
+    {
+     "id": "W:lilti|monde des salons",
+     "title": "Le monde des salons : sociabilité et mondanité à Paris au XVIIIe siècle",
+     "first_author": "Lilti, Antoine",
+     "year": 2005,
+     "loading": 0.434,
+     "citing": 31,
+     "membership": 0.611
+    },
+    {
+     "id": "W:michaud|biographie universelle ancienne et moderne",
+     "title": "Biographie universelle ancienne et moderne",
+     "first_author": "Michaud, Louis-Gabriel",
+     "year": 1843,
+     "loading": 0.409,
+     "citing": 20,
+     "membership": 0.918
+    },
+    {
+     "id": "W:farge|dire et mal dire",
+     "title": "Dire et mal dire. L’opinion publique au XVIIIe siècle",
+     "first_author": "Farge, Arlette",
+     "year": 1992,
+     "loading": 0.403,
+     "citing": 28,
+     "membership": 0.726
+    },
+    {
+     "id": "W:jouanna|devoir de revolte",
+     "title": "Le devoir de révolte. La noblesse française et la gestation de l’État moderne, 1559-1661",
+     "first_author": "Jouanna, Arlette",
+     "year": 1989,
+     "loading": 0.391,
+     "citing": 20,
+     "membership": 0.881
+    },
+    {
+     "id": "W:roche|histoire des choses banales",
+     "title": "Histoire des choses banales : naissance de la consommation dans les sociétés traditionnelles, XVIIe-XIXe siècle",
+     "first_author": "Roche, Daniel",
+     "year": 1997,
+     "loading": 0.38,
+     "citing": 34,
+     "membership": 0.595
+    },
+    {
+     "id": "W:maire|cause de dieu a la cause de la nation",
+     "title": "De la cause de Dieu à la cause de la Nation. Le jansénisme au XVIIIe siècle",
+     "first_author": "Maire, Catherine",
+     "year": 1998,
+     "loading": 0.369,
+     "citing": 18,
+     "membership": 0.946
+    },
+    {
+     "id": "W:gutton|domestiques et serviteurs dans la france de lancien regime",
+     "title": "Domestiques et serviteurs dans la France de l’Ancien Régime",
+     "first_author": "Gutton, Jean-Pierre",
+     "year": 1981,
+     "loading": 0.368,
+     "citing": 15,
+     "membership": 0.938
+    },
+    {
+     "id": "W:chartier|lectures et lecteurs dans la france dancien regime",
+     "title": "Lectures et lecteurs dans la France d’Ancien Régime",
+     "first_author": "Chartier, Roger",
+     "year": 1987,
+     "loading": 0.363,
+     "citing": 20,
+     "membership": 0.83
+    },
+    {
+     "id": "W:roche|peuple de paris",
+     "title": "Le peuple de Paris. Essai sur la culture populaire au XVIIIe siècle",
+     "first_author": "Roche, Daniel",
+     "year": 1981,
+     "loading": 0.351,
+     "citing": 24,
+     "membership": 0.674
+    },
+    {
+     "id": "W:fontaine|leconomie morale",
+     "title": "L’économie morale. Pauvreté, crédit et confiance dans l’Europe préindustrielle",
+     "first_author": "Fontaine, Laurence",
+     "year": 2008,
+     "loading": 0.319,
+     "citing": 20,
+     "membership": 0.759
+    },
+    {
+     "id": "W:muchembled|culture populaire et culture des elites dans la france moderne",
+     "title": "Culture populaire et culture des élites dans la France moderne (XVe-XVIIIe siècle)",
+     "first_author": "Muchembled, Robert",
+     "year": 1978,
+     "loading": 0.312,
+     "citing": 15,
+     "membership": 0.828
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Roche, Daniel",
+     "loading_share": 0.1014
+    },
+    {
+     "name": "Bély, Lucien",
+     "loading_share": 0.0434
+    },
+    {
+     "name": "Chartier, Roger",
+     "loading_share": 0.0433
+    },
+    {
+     "name": "Farge, Arlette",
+     "loading_share": 0.0343
+    },
+    {
+     "name": "Mousnier, Roland",
+     "loading_share": 0.029
+    },
+    {
+     "name": "Gutton, Jean-Pierre",
+     "loading_share": 0.0282
+    },
+    {
+     "name": "Furetière, Antoine",
+     "loading_share": 0.0271
+    },
+    {
+     "name": "Muchembled, Robert",
+     "loading_share": 0.0257
+    },
+    {
+     "name": "Marion, Marcel",
+     "loading_share": 0.0243
+    },
+    {
+     "name": "Lilti, Antoine",
+     "loading_share": 0.0243
+    },
+    {
+     "name": "Ariès, Philippe",
+     "loading_share": 0.0239
+    },
+    {
+     "name": "Barbiche, Bernard",
+     "loading_share": 0.0228
+    },
+    {
+     "name": "Beauvalet-Boutouyrie, Scarlett",
+     "loading_share": 0.0212
+    },
+    {
+     "name": "Bluche, François",
+     "loading_share": 0.0207
+    },
+    {
+     "name": "Delumeau, Jean",
+     "loading_share": 0.0206
+    }
+   ],
+   "top_institutions": [
+    [
+     "base:tel.archives-ouvertes.fr",
+     18
+    ],
+    [
+     "base:theses.hal.science",
+     17
+    ],
+    [
+     "fr:paris-ehess",
+     8
+    ],
+    [
+     "base:hal.science",
+     5
+    ],
+    [
+     "fr:le-mans",
+     3
+    ],
+    [
+     "fr:paris-10",
+     3
+    ]
+   ],
+   "sample_dissertations": [
+    "Real property structures and social transformation : studies on the consulate and the real propertymarket in Montesquieu-Volvestre from the ",
+    "Food supplies and society in the countryside of the north western Bas-Maine in the XVIIIth century ; Approvisionnements alimentaires et soci",
+    "Magistrat, diplomate, courtisan : parcours d'un honnête homme au temps des Lumières : Jean-François Ogier d'Hénonville (1703-1775)",
+    "choirboys of Maîtrises in the center of France : capitular education institutions and their students in the seventeenth and eighteenth centu",
+    "The Administration of the King's Buildings under the reigns of Louis XV and Louis XVI. ; L’administration des Bâtiments du Roi sous les règn",
+    "De la coexistence religieuse au déchirement : le diocèse de Nîmes des Lumières à la Révolution",
+    "Les bibliothèques des clercs séculiers du duché de savoie du XVIIIe siècle à 1860",
+    "Les officiers des Albret-Bourbon à la Renaissance en Aquitaine"
+   ]
+  },
+  {
+   "id": 3,
+   "provisional_label": "Bourdieu · Lemercier · Delpu — biographique, analyse, réseaux, micro",
+   "label_is_provisional": true,
+   "louvain_hint": null,
+   "title_terms": [
+    "biographique",
+    "analyse",
+    "réseaux",
+    "micro",
+    "social",
+    "histoire"
+   ],
+   "bootstrap_stability": 0.561,
+   "unstable": true,
+   "init_stability": 0.99,
+   "dominated_dissertations": 87,
+   "member_works": 37,
+   "years": {
+    "median": 2018,
+    "by_5yr": {
+     "2000-2004": 1,
+     "2005-2009": 7,
+     "2010-2014": 12,
+     "2015-2019": 31,
+     "2020-2024": 29,
+     "2025-2029": 7
+    },
+    "share_of_bin": {
+     "2010-2014": 0.091,
+     "2015-2019": 0.128,
+     "2020-2024": 0.116,
+     "2025-2029": 0.123
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:bourdieu|lillusion biographique|a",
+     "title": "L’illusion biographique",
+     "first_author": "Bourdieu, Pierre",
+     "year": 1986,
+     "loading": 1.0,
+     "citing": 55,
+     "membership": 0.988
+    },
+    {
+     "id": "W:lemercier|analyse de reseaux et histoire|a",
+     "title": "Analyse de réseaux et histoire",
+     "first_author": "Lemercier, Claire",
+     "year": 2005,
+     "loading": 0.962,
+     "citing": 51,
+     "membership": 0.987
+    },
+    {
+     "id": "W:delpu|prosopographie une ressource pour lhistoire sociale|a",
+     "title": "La prosopographie, une ressource pour l’histoire sociale",
+     "first_author": "Delpu, P-M",
+     "year": 2015,
+     "loading": 0.574,
+     "citing": 15,
+     "membership": 1.0
+    },
+    {
+     "id": "W:braudel|mediterranean and the mediterranean world in the age of philip ii",
+     "title": "The Mediterranean and the Mediterranean World in the Age of Philip II",
+     "first_author": "Braudel, Fernand",
+     "year": 1972,
+     "loading": 0.397,
+     "citing": 42,
+     "membership": 0.677
+    },
+    {
+     "id": "W:levi|usages de la biographie|a",
+     "title": "Les usages de la biographie",
+     "first_author": "Levi, Giovanni",
+     "year": 1989,
+     "loading": 0.39,
+     "citing": 16,
+     "membership": 0.992
+    },
+    {
+     "id": "W:dosse|pari biographique",
+     "title": "Le pari biographique. Écrire une vie",
+     "first_author": "Dosse, François",
+     "year": 2005,
+     "loading": 0.365,
+     "citing": 24,
+     "membership": 0.822
+    },
+    {
+     "id": "W:jacob|lieux de savoir",
+     "title": "Lieux de savoir. Espaces et communautés",
+     "first_author": "Jacob, Christian",
+     "year": 2007,
+     "loading": 0.355,
+     "citing": 17,
+     "membership": 1.0
+    },
+    {
+     "id": "W:ginzburg|fromage et les vers",
+     "title": "Le fromage et les vers",
+     "first_author": "Ginzburg, Carlo",
+     "year": 1980,
+     "loading": 0.352,
+     "citing": 45,
+     "membership": 0.522
+    },
+    {
+     "id": "W:revel|jeux dechelles",
+     "title": "Jeux d’échelles. La micro-analyse à l’expérience",
+     "first_author": "Revel, Jacques",
+     "year": 1996,
+     "loading": 0.348,
+     "citing": 45,
+     "membership": 0.537
+    },
+    {
+     "id": "W:revel|micro analyse et construction du social|a",
+     "title": "Micro-analyse et construction du social",
+     "first_author": "Revel, Jacques",
+     "year": 1996,
+     "loading": 0.337,
+     "citing": 18,
+     "membership": 0.871
+    },
+    {
+     "id": "W:weber|economie et societe",
+     "title": "Économie et société",
+     "first_author": "Weber, Max",
+     "year": 1995,
+     "loading": 0.32,
+     "citing": 50,
+     "membership": 0.488
+    },
+    {
+     "id": "W:farge|gout de larchive",
+     "title": "Le goût de l’archive",
+     "first_author": "Farge, Arlette",
+     "year": 1989,
+     "loading": 0.288,
+     "citing": 61,
+     "membership": 0.331
+    },
+    {
+     "id": "W:levi|pouvoir au village",
+     "title": "Le pouvoir au village",
+     "first_author": "Levi, Giovanni",
+     "year": 1989,
+     "loading": 0.26,
+     "citing": 26,
+     "membership": 0.721
+    },
+    {
+     "id": "W:merckle|sociologie des reseaux sociaux",
+     "title": "Sociologie des réseaux sociaux",
+     "first_author": "Mercklé, Pierre",
+     "year": 2011,
+     "loading": 0.225,
+     "citing": 15,
+     "membership": 0.661
+    },
+    {
+     "id": "W:lilti|monde des salons",
+     "title": "Le monde des salons : sociabilité et mondanité à Paris au XVIIIe siècle",
+     "first_author": "Lilti, Antoine",
+     "year": 2005,
+     "loading": 0.213,
+     "citing": 31,
+     "membership": 0.379
+    },
+    {
+     "id": "W:bourdieu|capital social|a",
+     "title": "Le capital social",
+     "first_author": "Bourdieu, Pierre",
+     "year": 1980,
+     "loading": 0.21,
+     "citing": 17,
+     "membership": 0.721
+    },
+    {
+     "id": "W:gauvard claude|dictionnaire du moyen age",
+     "title": "Dictionnaire du Moyen Âge",
+     "first_author": "GAUVARD Claude, DE LIBERA Alain",
+     "year": 2002,
+     "loading": 0.207,
+     "citing": 19,
+     "membership": 0.775
+    },
+    {
+     "id": "W:nordman|frontieres de france",
+     "title": "Frontières de France, de l’espace au territoire : XVIe-XIXe siècles",
+     "first_author": "Nordman, Daniel",
+     "year": 1998,
+     "loading": 0.196,
+     "citing": 18,
+     "membership": 0.513
+    },
+    {
+     "id": "W:elias|societe des individus",
+     "title": "La société des individus",
+     "first_author": "Elias, Norbert",
+     "year": 1991,
+     "loading": 0.177,
+     "citing": 15,
+     "membership": 0.651
+    },
+    {
+     "id": "W:lemercier|methodes quantitatives pour lhistorien",
+     "title": "Méthodes quantitatives pour l’historien",
+     "first_author": "Lemercier, Claire",
+     "year": 2008,
+     "loading": 0.173,
+     "citing": 22,
+     "membership": 0.507
+    },
+    {
+     "id": "W:charle|republique des universitaires 1870 1940",
+     "title": "La République des universitaires (1870-1940)",
+     "first_author": "Charle, Christophe",
+     "year": 1994,
+     "loading": 0.17,
+     "citing": 20,
+     "membership": 0.459
+    },
+    {
+     "id": "W:charle|naissance des intellectuels",
+     "title": "Naissance des « intellectuels » : 1880-1900",
+     "first_author": "Charle, Christophe",
+     "year": 1990,
+     "loading": 0.16,
+     "citing": 18,
+     "membership": 0.508
+    },
+    {
+     "id": "W:corbin|monde retrouve de louis francois pinagot",
+     "title": "Le monde retrouvé de Louis-François Pinagot. Sur les traces d’un inconnu (1798-1876)",
+     "first_author": "Corbin, Alain",
+     "year": 1998,
+     "loading": 0.153,
+     "citing": 23,
+     "membership": 0.419
+    },
+    {
+     "id": "W:le goff|saint louis",
+     "title": "Saint Louis",
+     "first_author": "Le Goff, Jacques",
+     "year": 1996,
+     "loading": 0.153,
+     "citing": 15,
+     "membership": 0.745
+    },
+    {
+     "id": "W:lilti|figures publiques",
+     "title": "Figures publiques. L’invention de la célébrité, 1750-1850",
+     "first_author": "Lilti, Antoine",
+     "year": 2014,
+     "loading": 0.149,
+     "citing": 17,
+     "membership": 0.5
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Bourdieu, Pierre",
+     "loading_share": 0.1158
+    },
+    {
+     "name": "Lemercier, Claire",
+     "loading_share": 0.078
+    },
+    {
+     "name": "Revel, Jacques",
+     "loading_share": 0.0557
+    },
+    {
+     "name": "Levi, Giovanni",
+     "loading_share": 0.0447
+    },
+    {
+     "name": "Braudel, Fernand",
+     "loading_share": 0.0433
+    },
+    {
+     "name": "Delpu, P-M",
+     "loading_share": 0.0395
+    },
+    {
+     "name": "Charle, Christophe",
+     "loading_share": 0.035
+    },
+    {
+     "name": "Ginzburg, Carlo",
+     "loading_share": 0.0334
+    },
+    {
+     "name": "Dosse, François",
+     "loading_share": 0.029
+    },
+    {
+     "name": "Weber, Max",
+     "loading_share": 0.0262
+    },
+    {
+     "name": "Lilti, Antoine",
+     "loading_share": 0.0249
+    },
+    {
+     "name": "Jacob, Christian",
+     "loading_share": 0.0244
+    },
+    {
+     "name": "Roche, Daniel",
+     "loading_share": 0.0244
+    },
+    {
+     "name": "Farge, Arlette",
+     "loading_share": 0.0238
+    },
+    {
+     "name": "Corbin, Alain",
+     "loading_share": 0.0236
+    }
+   ],
+   "top_institutions": [
+    [
+     "base:theses.hal.science",
+     12
+    ],
+    [
+     "base:tel.archives-ouvertes.fr",
+     11
+    ],
+    [
+     "fr:paris-1",
+     11
+    ],
+    [
+     "fr:paris-ehess",
+     9
+    ],
+    [
+     "base:hal.science",
+     4
+    ],
+    [
+     "base:hal.archives-ouvertes.fr",
+     3
+    ]
+   ],
+   "sample_dissertations": [
+    "Des savants aux chercheurs : les sciences physiques comme métier (France, 1945-1968)",
+    "Élites cambodgiennes en situation coloniale : essai d'histoire sociale des réseaux de pouvoir dans l'administration cambodgienne sous le pro",
+    "Médecine et milieu médical à la cour pontificale d’Avignon (1305-1413)",
+    "L'oeil du médecin et la main du peintre : peindre le soin à Leyde au XVIIe siècle, une circulation des savoirs médicaux et picturaux",
+    "Camillo Berneri (1897-1937) : Myths, roots and realities of an intellectual anarchist. ; Camillo Berneri (1897-1937) : Mythes, racines et ré",
+    "The Networks of Intellectual Cooperation. The League of Nations as an Actor of the Scientific and Cultural Exchanges in the Inter-War Period",
+    "State and officers in Russia (1796-1853) : genesis of a socoal-professional identity ; L'État et les officiers en Russie (1796-1853) : genès",
+    "Fluid Communities. The \"Societies of Christian Brethren\" in northern Rhineland (Juelich, Berg, city of Cologne), ca. 1530-1694 ; Des communa"
+   ]
+  },
+  {
+   "id": 4,
+   "provisional_label": "Prost · Bloch · Veyne — histoire, historien, historique, sociales",
+   "label_is_provisional": true,
+   "louvain_hint": "Prost · Veyne · Hartog",
+   "title_terms": [
+    "histoire",
+    "historien",
+    "historique",
+    "sociales",
+    "temps",
+    "sciences"
+   ],
+   "bootstrap_stability": 0.635,
+   "unstable": false,
+   "init_stability": 0.479,
+   "dominated_dissertations": 81,
+   "member_works": 24,
+   "years": {
+    "median": 2018,
+    "by_5yr": {
+     "2005-2009": 5,
+     "2010-2014": 16,
+     "2015-2019": 27,
+     "2020-2024": 21,
+     "2025-2029": 9,
+     "unknown": 3
+    },
+    "share_of_bin": {
+     "2010-2014": 0.121,
+     "2015-2019": 0.111,
+     "2020-2024": 0.084,
+     "2025-2029": 0.158
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:prost|douze lecons sur lhistoire",
+     "title": "Douze leçons sur l’histoire",
+     "first_author": "Prost, Antoine",
+     "year": 1996,
+     "loading": 1.0,
+     "citing": 78,
+     "membership": 0.9
+    },
+    {
+     "id": "W:bloch|apologie pour lhistoire ou metier dhistorien",
+     "title": "Apologie pour l’histoire ou métier d’historien",
+     "first_author": "Bloch, Marc",
+     "year": 1949,
+     "loading": 0.97,
+     "citing": 71,
+     "membership": 0.948
+    },
+    {
+     "id": "W:veyne|comment on ecrit lhistoire",
+     "title": "Comment on écrit l’histoire",
+     "first_author": "Veyne, Paul",
+     "year": 1971,
+     "loading": 0.956,
+     "citing": 75,
+     "membership": 0.913
+    },
+    {
+     "id": "W:marrou|connaissance historique",
+     "title": "De la connaissance historique",
+     "first_author": "Marrou, Henri-Irénée",
+     "year": 1954,
+     "loading": 0.59,
+     "citing": 25,
+     "membership": 1.0
+    },
+    {
+     "id": "W:febvre|combats pour lhistoire",
+     "title": "Combats pour l’histoire",
+     "first_author": "Febvre, Lucien",
+     "year": 1953,
+     "loading": 0.365,
+     "citing": 19,
+     "membership": 0.959
+    },
+    {
+     "id": "W:certeau|lecriture de lhistoire",
+     "title": "L’écriture de l’histoire",
+     "first_author": "Certeau, Michel de",
+     "year": 1975,
+     "loading": 0.333,
+     "citing": 31,
+     "membership": 0.643
+    },
+    {
+     "id": "W:braudel|on history",
+     "title": "On History",
+     "first_author": "Braudel, Fernand",
+     "year": 1969,
+     "loading": 0.32,
+     "citing": 19,
+     "membership": 0.98
+    },
+    {
+     "id": "W:dosse|lhistoire en miettes",
+     "title": "L’histoire en miettes. Des « Annales » à la « nouvelle histoire »",
+     "first_author": "Dosse, François",
+     "year": 1987,
+     "loading": 0.27,
+     "citing": 19,
+     "membership": 0.774
+    },
+    {
+     "id": "W:chartier|au bord de la falaise",
+     "title": "Au bord de la falaise. L’histoire entre certitudes et inquiétude",
+     "first_author": "Chartier, Roger",
+     "year": 1998,
+     "loading": 0.236,
+     "citing": 29,
+     "membership": 0.594
+    },
+    {
+     "id": "W:noiriel|sur la crise de lhistoire",
+     "title": "Sur la « crise » de l’histoire",
+     "first_author": "Noiriel, Gérard",
+     "year": 1996,
+     "loading": 0.234,
+     "citing": 18,
+     "membership": 0.752
+    },
+    {
+     "id": "W:dumoulin|role social de lhistorien",
+     "title": "Le rôle social de l’historien. De la chaire au prétoire",
+     "first_author": "Dumoulin, Olivier",
+     "year": 2003,
+     "loading": 0.224,
+     "citing": 17,
+     "membership": 0.749
+    },
+    {
+     "id": "W:jablonka|lhistoire est une litterature contemporaine",
+     "title": "L’histoire est une littérature contemporaine. Manifeste pour les sciences sociales",
+     "first_author": "Jablonka, Ivan",
+     "year": 2014,
+     "loading": 0.22,
+     "citing": 21,
+     "membership": 0.583
+    },
+    {
+     "id": "W:chartier|monde comme representation|a",
+     "title": "Le monde comme représentation",
+     "first_author": "Chartier, Roger",
+     "year": 1989,
+     "loading": 0.196,
+     "citing": 39,
+     "membership": 0.394
+    },
+    {
+     "id": "W:ginzburg|fromage et les vers",
+     "title": "Le fromage et les vers",
+     "first_author": "Ginzburg, Carlo",
+     "year": 1980,
+     "loading": 0.195,
+     "citing": 45,
+     "membership": 0.306
+    },
+    {
+     "id": "W:koselleck|futur passe",
+     "title": "Le futur passé. Contribution à la sémantique des temps historiques",
+     "first_author": "Koselleck, Reinhart",
+     "year": 1990,
+     "loading": 0.181,
+     "citing": 35,
+     "membership": 0.384
+    },
+    {
+     "id": "W:ric ur|memoire lhistoire loubli",
+     "title": "La mémoire, l’histoire, l’oubli",
+     "first_author": "Ricoeur, Paul",
+     "year": 2000,
+     "loading": 0.167,
+     "citing": 35,
+     "membership": 0.278
+    },
+    {
+     "id": "W:koselleck|lexperience de lhistoire",
+     "title": "L’expérience de l’histoire",
+     "first_author": "Koselleck, Reinhart",
+     "year": 1997,
+     "loading": 0.156,
+     "citing": 16,
+     "membership": 0.511
+    },
+    {
+     "id": "W:le goff|histoire et memoire",
+     "title": "Histoire et mémoire",
+     "first_author": "Le Goff, Jacques",
+     "year": 1988,
+     "loading": 0.154,
+     "citing": 32,
+     "membership": 0.272
+    },
+    {
+     "id": "W:bachelard|formation de lesprit scientifique",
+     "title": "La formation de l’esprit scientifique",
+     "first_author": "Bachelard, Gaston",
+     "year": 1938,
+     "loading": 0.146,
+     "citing": 20,
+     "membership": 0.414
+    },
+    {
+     "id": "W:jauss|pour une esthetique de la reception",
+     "title": "Pour une esthétique de la réception",
+     "first_author": "Jauss, Hans Robert",
+     "year": 1978,
+     "loading": 0.144,
+     "citing": 17,
+     "membership": 0.548
+    },
+    {
+     "id": "W:braudel|histoire et sciences sociales|a",
+     "title": "Histoire et sciences sociales : la longue durée",
+     "first_author": "Braudel, Fernand",
+     "year": 1958,
+     "loading": 0.141,
+     "citing": 18,
+     "membership": 0.483
+    },
+    {
+     "id": "W:ricoeur|temps et recit",
+     "title": "Temps et récit",
+     "first_author": "Ricoeur, Paul",
+     "year": 1983,
+     "loading": 0.14,
+     "citing": 56,
+     "membership": 0.156
+    },
+    {
+     "id": "W:guenee|histoire et culture historique dans loccident medieval",
+     "title": "Histoire et culture historique dans l’Occident médiéval",
+     "first_author": "Guenée, Bernard",
+     "year": 1980,
+     "loading": 0.139,
+     "citing": 17,
+     "membership": 0.516
+    },
+    {
+     "id": "W:farge|gout de larchive",
+     "title": "Le goût de l’archive",
+     "first_author": "Farge, Arlette",
+     "year": 1989,
+     "loading": 0.136,
+     "citing": 61,
+     "membership": 0.165
+    },
+    {
+     "id": "W:wachtel|vision des vaincus",
+     "title": "La Vision des vaincus",
+     "first_author": "Wachtel, Nathan",
+     "year": 1971,
+     "loading": 0.13,
+     "citing": 15,
+     "membership": 0.499
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Bloch, Marc",
+     "loading_share": 0.0925
+    },
+    {
+     "name": "Prost, Antoine",
+     "loading_share": 0.0868
+    },
+    {
+     "name": "Veyne, Paul",
+     "loading_share": 0.078
+    },
+    {
+     "name": "Braudel, Fernand",
+     "loading_share": 0.0533
+    },
+    {
+     "name": "Marrou, Henri-Irénée",
+     "loading_share": 0.0481
+    },
+    {
+     "name": "Chartier, Roger",
+     "loading_share": 0.0364
+    },
+    {
+     "name": "Certeau, Michel de",
+     "loading_share": 0.0329
+    },
+    {
+     "name": "Ginzburg, Carlo",
+     "loading_share": 0.0319
+    },
+    {
+     "name": "Febvre, Lucien",
+     "loading_share": 0.0298
+    },
+    {
+     "name": "Noiriel, Gérard",
+     "loading_share": 0.0285
+    },
+    {
+     "name": "Koselleck, Reinhart",
+     "loading_share": 0.0274
+    },
+    {
+     "name": "Bourdieu, Pierre",
+     "loading_share": 0.0274
+    },
+    {
+     "name": "Ricoeur, Paul",
+     "loading_share": 0.0255
+    },
+    {
+     "name": "Dosse, François",
+     "loading_share": 0.0244
+    },
+    {
+     "name": "Farge, Arlette",
+     "loading_share": 0.0225
+    }
+   ],
+   "top_institutions": [
+    [
+     "base:tel.archives-ouvertes.fr",
+     22
+    ],
+    [
+     "base:theses.hal.science",
+     16
+    ],
+    [
+     "base:hal.science",
+     6
+    ],
+    [
+     "fr:paris-ehess",
+     4
+    ],
+    [
+     "fr:paris-1",
+     3
+    ],
+    [
+     "base:hal.archives-ouvertes.fr",
+     2
+    ]
+   ],
+   "sample_dissertations": [
+    "Robert de Boron and the writing of history ; Robert de Boron et l'écriture de l'histoire",
+    "Pour une histoire impliquée : étude méthodologique de la pratique de l’histoire environnementale en contexte interdisciplinaire, à partir du",
+    "The \"Futuh al-Habasa\" : the writing of history, war and society in the \"Bar Sa'ad ad-din\" (Ethiopia, 16th century) ; Le\" Futuh al-Habasa\" : ",
+    "Damot in Ethiopian history (13th-20th centuries) : religious, political and hagiographical reconstructions ; Le Damot dans l'histoire de l'E",
+    "Writing History at the Beginning of the 14th Century : the Chronicle of Dominican Friar Francesco Pipino from Bologna ; Ecrire l'histoire au",
+    "From historical knowledge to game knowledge : history mediatisation within roleplaying games ; Du savoir historique au savoir ludique : La m",
+    "L'expression du milieu pro-impérial dans le royaume d'Italie médiéval : personnages, discours, symboles (XIIIe - XIVe siècle)",
+    "Un historien par sa bibliothèque. Étude d'une culture historique et professionnelle"
+   ]
+  },
+  {
+   "id": 5,
+   "provisional_label": "Halbwachs · Hartog — mémoire, temps, oubli, histoire",
+   "label_is_provisional": true,
+   "louvain_hint": "Prost · Veyne · Hartog",
+   "title_terms": [
+    "mémoire",
+    "temps",
+    "oubli",
+    "histoire",
+    "culturelle",
+    "mythes"
+   ],
+   "bootstrap_stability": 0.73,
+   "unstable": false,
+   "init_stability": 0.835,
+   "dominated_dissertations": 62,
+   "member_works": 20,
+   "years": {
+    "median": 2018,
+    "by_5yr": {
+     "2005-2009": 1,
+     "2010-2014": 12,
+     "2015-2019": 20,
+     "2020-2024": 26,
+     "2025-2029": 2,
+     "unknown": 1
+    },
+    "share_of_bin": {
+     "2010-2014": 0.091,
+     "2015-2019": 0.082,
+     "2020-2024": 0.104,
+     "2025-2029": 0.035
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:halbwachs|cadres sociaux de la memoire",
+     "title": "Les cadres sociaux de la mémoire",
+     "first_author": "Halbwachs, Maurice",
+     "year": 1925,
+     "loading": 1.0,
+     "citing": 40,
+     "membership": 0.969
+    },
+    {
+     "id": "W:halbwachs|memoire collective",
+     "title": "La mémoire collective",
+     "first_author": "Halbwachs, Maurice",
+     "year": 1950,
+     "loading": 0.977,
+     "citing": 43,
+     "membership": 1.0
+    },
+    {
+     "id": "W:hartog|regimes dhistoricite",
+     "title": "Régimes d’historicité. Présentisme et expériences du temps",
+     "first_author": "Hartog, François",
+     "year": 2003,
+     "loading": 0.959,
+     "citing": 72,
+     "membership": 0.813
+    },
+    {
+     "id": "W:ricoeur|memoire lhistoire loubli",
+     "title": "La mémoire, l’histoire, l’oubli",
+     "first_author": "Ricoeur, Paul",
+     "year": 2000,
+     "loading": 0.907,
+     "citing": 39,
+     "membership": 0.977
+    },
+    {
+     "id": "W:nora|lieux de memoire",
+     "title": "Les lieux de mémoire",
+     "first_author": "Nora, Pierre",
+     "year": 1984,
+     "loading": 0.891,
+     "citing": 63,
+     "membership": 0.748
+    },
+    {
+     "id": "W:ricoeur|temps et recit",
+     "title": "Temps et récit",
+     "first_author": "Ricoeur, Paul",
+     "year": 1983,
+     "loading": 0.66,
+     "citing": 56,
+     "membership": 0.574
+    },
+    {
+     "id": "W:le goff|histoire et memoire",
+     "title": "Histoire et mémoire",
+     "first_author": "Le Goff, Jacques",
+     "year": 1988,
+     "loading": 0.507,
+     "citing": 32,
+     "membership": 0.701
+    },
+    {
+     "id": "W:ric ur|memoire lhistoire loubli",
+     "title": "La mémoire, l’histoire, l’oubli",
+     "first_author": "Ricoeur, Paul",
+     "year": 2000,
+     "loading": 0.465,
+     "citing": 35,
+     "membership": 0.607
+    },
+    {
+     "id": "W:traverso|passe modes demploi",
+     "title": "Le passé, modes d’emploi. Histoire, mémoire, politique",
+     "first_author": "Traverso, Enzo",
+     "year": 2005,
+     "loading": 0.397,
+     "citing": 17,
+     "membership": 0.771
+    },
+    {
+     "id": "W:choay|lallegorie du patrimoine",
+     "title": "L’allégorie du patrimoine",
+     "first_author": "Choay, Françoise",
+     "year": 1992,
+     "loading": 0.341,
+     "citing": 16,
+     "membership": 0.952
+    },
+    {
+     "id": "W:chaumont|concurrence des victimes",
+     "title": "La concurrence des victimes",
+     "first_author": "Chaumont, Jean-Michel",
+     "year": 1997,
+     "loading": 0.311,
+     "citing": 15,
+     "membership": 0.706
+    },
+    {
+     "id": "W:wieviorka|lere du temoin",
+     "title": "L’ère du témoin",
+     "first_author": "Wieviorka, Annette",
+     "year": 1998,
+     "loading": 0.24,
+     "citing": 22,
+     "membership": 0.465
+    },
+    {
+     "id": "W:duby|dimanche de bouvines",
+     "title": "Le dimanche de Bouvines",
+     "first_author": "Duby, Georges",
+     "year": 1973,
+     "loading": 0.235,
+     "citing": 17,
+     "membership": 0.674
+    },
+    {
+     "id": "W:rousso|vichy syndrome",
+     "title": "The Vichy Syndrome: History and Memory in France since 1944",
+     "first_author": "Rousso, Henry",
+     "year": 1990,
+     "loading": 0.225,
+     "citing": 30,
+     "membership": 0.265
+    },
+    {
+     "id": "W:benjamin|arcades project",
+     "title": "The Arcades Project",
+     "first_author": "Benjamin, Walter",
+     "year": 1999,
+     "loading": 0.21,
+     "citing": 15,
+     "membership": 0.564
+    },
+    {
+     "id": "W:wieviorka|deportation et genocide",
+     "title": "Déportation et génocide. Entre la mémoire et l’oubli",
+     "first_author": "Wieviorka, Annette",
+     "year": 1992,
+     "loading": 0.187,
+     "citing": 16,
+     "membership": 0.34
+    },
+    {
+     "id": "W:descamps|lhistorien larchiviste et le magnetophone",
+     "title": "L’historien, l’archiviste et le magnétophone. De la constitution de la source orale à son exploitation",
+     "first_author": "Descamps, Florence",
+     "year": 2001,
+     "loading": 0.185,
+     "citing": 24,
+     "membership": 0.392
+    },
+    {
+     "id": "W:genette|palimpsestes",
+     "title": "Palimpsestes. La littérature au second degré",
+     "first_author": "Genette, Gérard",
+     "year": 1982,
+     "loading": 0.182,
+     "citing": 15,
+     "membership": 0.474
+    },
+    {
+     "id": "W:girardet|mythes et mythologies politiques",
+     "title": "Mythes et mythologies politiques",
+     "first_author": "Girardet, Raoul",
+     "year": 1986,
+     "loading": 0.178,
+     "citing": 20,
+     "membership": 0.412
+    },
+    {
+     "id": "W:ory|lhistoire culturelle",
+     "title": "L’histoire culturelle",
+     "first_author": "Ory, Pascal",
+     "year": 2004,
+     "loading": 0.178,
+     "citing": 31,
+     "membership": 0.287
+    },
+    {
+     "id": "W:ferro|cinema et histoire",
+     "title": "Cinéma et histoire",
+     "first_author": "Ferro, Marc",
+     "year": 1977,
+     "loading": 0.175,
+     "citing": 15,
+     "membership": 0.535
+    },
+    {
+     "id": "W:poirrier|enjeux de lhistoire culturelle",
+     "title": "Les enjeux de l’histoire culturelle",
+     "first_author": "Poirrier, Philippe",
+     "year": 2004,
+     "loading": 0.175,
+     "citing": 27,
+     "membership": 0.325
+    },
+    {
+     "id": "W:koselleck|lexperience de lhistoire",
+     "title": "L’expérience de l’histoire",
+     "first_author": "Koselleck, Reinhart",
+     "year": 1997,
+     "loading": 0.151,
+     "citing": 16,
+     "membership": 0.388
+    },
+    {
+     "id": "W:ginzburg|mythes emblemes traces",
+     "title": "Mythes, emblèmes, traces : morphologie et histoire",
+     "first_author": "Ginzburg, Carlo",
+     "year": 2010,
+     "loading": 0.138,
+     "citing": 16,
+     "membership": 0.402
+    },
+    {
+     "id": "W:bourdieu|distinction",
+     "title": "Distinction: A Social Critique of the Judgement of Taste",
+     "first_author": "Bourdieu, Pierre",
+     "year": 1984,
+     "loading": 0.136,
+     "citing": 59,
+     "membership": 0.15
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Ricoeur, Paul",
+     "loading_share": 0.15
+    },
+    {
+     "name": "Halbwachs, Maurice",
+     "loading_share": 0.146
+    },
+    {
+     "name": "Hartog, François",
+     "loading_share": 0.0708
+    },
+    {
+     "name": "Nora, Pierre",
+     "loading_share": 0.0657
+    },
+    {
+     "name": "Le Goff, Jacques",
+     "loading_share": 0.0374
+    },
+    {
+     "name": "Wieviorka, Annette",
+     "loading_share": 0.0315
+    },
+    {
+     "name": "Traverso, Enzo",
+     "loading_share": 0.0293
+    },
+    {
+     "name": "Bourdieu, Pierre",
+     "loading_share": 0.0293
+    },
+    {
+     "name": "Choay, Françoise",
+     "loading_share": 0.0252
+    },
+    {
+     "name": "Chaumont, Jean-Michel",
+     "loading_share": 0.023
+    },
+    {
+     "name": "Duby, Georges",
+     "loading_share": 0.0173
+    },
+    {
+     "name": "Farge, Arlette",
+     "loading_share": 0.0168
+    },
+    {
+     "name": "Rousso, Henry",
+     "loading_share": 0.0166
+    },
+    {
+     "name": "Koselleck, Reinhart",
+     "loading_share": 0.0163
+    },
+    {
+     "name": "Benjamin, Walter",
+     "loading_share": 0.0155
+    }
+   ],
+   "top_institutions": [
+    [
+     "base:theses.hal.science",
+     30
+    ],
+    [
+     "base:tel.archives-ouvertes.fr",
+     6
+    ],
+    [
+     "base:hal.science",
+     2
+    ],
+    [
+     "base:hal.archives-ouvertes.fr",
+     2
+    ],
+    [
+     "fr:reims",
+     2
+    ],
+    [
+     "fr:paris-ehess",
+     2
+    ]
+   ],
+   "sample_dissertations": [
+    "A forgotten war ? History and memories of french veterans during the first Indochina War ; Une guerre oubliée ? Histoire et mémoires combatt",
+    "The Atlantic Wall in Vendée, between forgotten monumentality and difficult present? ; Le Mur de l’Atlantique en Vendée, entre monumentalité ",
+    "Le Mur de l’Atlantique en Vendée, entre monumentalité oubliée et présent difficile ?",
+    "La commémoration du génocide arménien en France de 1965 à 2015 : religion et identité",
+    "Memory at work : Drieu La Rochelle and the construction of meaning : the man and the First World War ; La mémoire à l’œuvre : Drieu La Roche",
+    "Writing, understanding and explaining the History of one's time in the XIVth Century : study and translation of the Books XI-XIII of Giovann",
+    "The process of struggle against mafia from 1982 to 2012's public memory, studing a martyr's list : Pio La Torre, Carlo Alberto dalla Chiesa,",
+    "L’écho de Valmy : mémoires d’une bataille de la Révolution française"
+   ]
+  },
+  {
+   "id": 6,
+   "provisional_label": "Anderson · Thiesse · Hobsbawm — nation, culturelle, immigration, pouvoir",
+   "label_is_provisional": true,
+   "louvain_hint": null,
+   "title_terms": [
+    "nation",
+    "culturelle",
+    "immigration",
+    "pouvoir",
+    "sociologie",
+    "histoire"
+   ],
+   "bootstrap_stability": 0.91,
+   "unstable": false,
+   "init_stability": 0.995,
+   "dominated_dissertations": 58,
+   "member_works": 14,
+   "years": {
+    "median": 2018,
+    "by_5yr": {
+     "2005-2009": 2,
+     "2010-2014": 13,
+     "2015-2019": 21,
+     "2020-2024": 17,
+     "2025-2029": 4,
+     "unknown": 1
+    },
+    "share_of_bin": {
+     "2010-2014": 0.098,
+     "2015-2019": 0.086,
+     "2020-2024": 0.068,
+     "2025-2029": 0.07
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:anderson|imagined communities",
+     "title": "Imagined Communities: Reflections on the Origin and Spread of Nationalism",
+     "first_author": "Anderson, Benedict",
+     "year": 1991,
+     "loading": 1.0,
+     "citing": 88,
+     "membership": 1.0
+    },
+    {
+     "id": "W:thiesse|creation des identites nationales",
+     "title": "La création des identités nationales",
+     "first_author": "Thiesse, Anne-Marie",
+     "year": 1999,
+     "loading": 0.501,
+     "citing": 62,
+     "membership": 0.788
+    },
+    {
+     "id": "W:hobsbawm|nations et nationalisme depuis 1780",
+     "title": "Nations et nationalisme depuis 1780",
+     "first_author": "Hobsbawm, Eric",
+     "year": 1992,
+     "loading": 0.227,
+     "citing": 18,
+     "membership": 0.9
+    },
+    {
+     "id": "W:said|orientalism",
+     "title": "Orientalism",
+     "first_author": "Said, Edward",
+     "year": 1978,
+     "loading": 0.221,
+     "citing": 45,
+     "membership": 0.55
+    },
+    {
+     "id": "W:renan|what is a nation|a",
+     "title": "What is a Nation?",
+     "first_author": "Renan, Ernest",
+     "year": 1882,
+     "loading": 0.176,
+     "citing": 18,
+     "membership": 0.739
+    },
+    {
+     "id": "W:fanon|wretched of the earth",
+     "title": "The Wretched of the Earth",
+     "first_author": "Fanon, Frantz",
+     "year": 1963,
+     "loading": 0.16,
+     "citing": 19,
+     "membership": 0.618
+    },
+    {
+     "id": "W:fanon|black skin white masks",
+     "title": "Black Skin, White Masks",
+     "first_author": "Fanon, Frantz",
+     "year": 2008,
+     "loading": 0.14,
+     "citing": 18,
+     "membership": 0.453
+    },
+    {
+     "id": "W:noiriel|introduction a la socio histoire",
+     "title": "Introduction à la socio-histoire",
+     "first_author": "Noiriel, Gérard",
+     "year": 2006,
+     "loading": 0.136,
+     "citing": 27,
+     "membership": 0.448
+    },
+    {
+     "id": "W:levi strauss|anthropologie structurale",
+     "title": "Structural Anthropology",
+     "first_author": "Lévi-Strauss, Claude",
+     "year": 1958,
+     "loading": 0.119,
+     "citing": 24,
+     "membership": 0.413
+    },
+    {
+     "id": "W:bourdieu|langage et pouvoir symbolique",
+     "title": "Langage et pouvoir symbolique",
+     "first_author": "Bourdieu, Pierre",
+     "year": 2001,
+     "loading": 0.095,
+     "citing": 25,
+     "membership": 0.385
+    },
+    {
+     "id": "W:ory|lhistoire culturelle",
+     "title": "L’histoire culturelle",
+     "first_author": "Ory, Pascal",
+     "year": 2004,
+     "loading": 0.094,
+     "citing": 31,
+     "membership": 0.279
+    },
+    {
+     "id": "W:noiriel|creuset francais",
+     "title": "Le creuset français: histoire de l’immigration, XIXe-XXe siècle",
+     "first_author": "Noiriel, Gérard",
+     "year": 1988,
+     "loading": 0.091,
+     "citing": 33,
+     "membership": 0.234
+    },
+    {
+     "id": "W:espagne|transferts culturels franco allemands",
+     "title": "Les transferts culturels franco-allemands",
+     "first_author": "Espagne, Michel",
+     "year": 1999,
+     "loading": 0.089,
+     "citing": 19,
+     "membership": 0.465
+    },
+    {
+     "id": "W:weber|economie et societe",
+     "title": "Économie et société",
+     "first_author": "Weber, Max",
+     "year": 1995,
+     "loading": 0.089,
+     "citing": 50,
+     "membership": 0.207
+    },
+    {
+     "id": "W:charle|siecle de la presse 1830 1939",
+     "title": "Le siècle de la presse (1830-1939)",
+     "first_author": "Charle, Christophe",
+     "year": 2004,
+     "loading": 0.079,
+     "citing": 23,
+     "membership": 0.289
+    },
+    {
+     "id": "W:gruzinski|pensee metisse",
+     "title": "La pensée métisse",
+     "first_author": "Gruzinski, Serge",
+     "year": 1999,
+     "loading": 0.076,
+     "citing": 15,
+     "membership": 0.46
+    },
+    {
+     "id": "W:bourdieu|questions de sociologie",
+     "title": "Questions de sociologie",
+     "first_author": "Bourdieu, Pierre",
+     "year": 1984,
+     "loading": 0.075,
+     "citing": 26,
+     "membership": 0.287
+    },
+    {
+     "id": "W:memmi|colonizer and the colonized",
+     "title": "The Colonizer and the Colonized",
+     "first_author": "Memmi, Albert",
+     "year": 1965,
+     "loading": 0.073,
+     "citing": 15,
+     "membership": 0.354
+    },
+    {
+     "id": "W:bourdieu|raisons pratiques",
+     "title": "Raisons pratiques : sur la théorie de l’action",
+     "first_author": "Bourdieu, Pierre",
+     "year": 1994,
+     "loading": 0.072,
+     "citing": 19,
+     "membership": 0.351
+    },
+    {
+     "id": "W:bourdieu|homo academicus",
+     "title": "Homo Academicus",
+     "first_author": "Bourdieu, Pierre",
+     "year": 1984,
+     "loading": 0.068,
+     "citing": 19,
+     "membership": 0.324
+    },
+    {
+     "id": "W:bertrand|lhistoire a parts egales",
+     "title": "L’histoire à parts égales : récits d’une rencontre Orient-Occident, XVIe-XVIIe siècle",
+     "first_author": "Bertrand, Romain",
+     "year": 2011,
+     "loading": 0.065,
+     "citing": 20,
+     "membership": 0.348
+    },
+    {
+     "id": "W:chanet|lecole republicaine et les petites patries",
+     "title": "L’école républicaine et les petites patries",
+     "first_author": "Chanet, Jean-François",
+     "year": 1996,
+     "loading": 0.061,
+     "citing": 20,
+     "membership": 0.273
+    },
+    {
+     "id": "W:espagne|notion de transfert culturel|a",
+     "title": "La notion de transfert culturel",
+     "first_author": "Espagne, Michel",
+     "year": 2013,
+     "loading": 0.06,
+     "citing": 15,
+     "membership": 0.35
+    },
+    {
+     "id": "W:nora|lieux de memoire",
+     "title": "Les lieux de mémoire",
+     "first_author": "Nora, Pierre",
+     "year": 1984,
+     "loading": 0.059,
+     "citing": 63,
+     "membership": 0.091
+    },
+    {
+     "id": "W:bourdieu|regles de lart",
+     "title": "Les règles de l’art. Genèse et structure du champ littéraire",
+     "first_author": "Bourdieu, Pierre",
+     "year": 1992,
+     "loading": 0.059,
+     "citing": 31,
+     "membership": 0.2
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Anderson, Benedict",
+     "loading_share": 0.1654
+    },
+    {
+     "name": "Bourdieu, Pierre",
+     "loading_share": 0.0872
+    },
+    {
+     "name": "Thiesse, Anne-Marie",
+     "loading_share": 0.0829
+    },
+    {
+     "name": "Fanon, Frantz",
+     "loading_share": 0.0496
+    },
+    {
+     "name": "Noiriel, Gérard",
+     "loading_share": 0.0476
+    },
+    {
+     "name": "Charle, Christophe",
+     "loading_share": 0.0382
+    },
+    {
+     "name": "Hobsbawm, Eric",
+     "loading_share": 0.0376
+    },
+    {
+     "name": "Said, Edward",
+     "loading_share": 0.0365
+    },
+    {
+     "name": "Renan, Ernest",
+     "loading_share": 0.0292
+    },
+    {
+     "name": "Espagne, Michel",
+     "loading_share": 0.0248
+    },
+    {
+     "name": "Weber, Max",
+     "loading_share": 0.0244
+    },
+    {
+     "name": "Lévi-Strauss, Claude",
+     "loading_share": 0.0197
+    },
+    {
+     "name": "Ory, Pascal",
+     "loading_share": 0.0156
+    },
+    {
+     "name": "Braudel, Fernand",
+     "loading_share": 0.0154
+    },
+    {
+     "name": "Goffman, Erving",
+     "loading_share": 0.0145
+    }
+   ],
+   "top_institutions": [
+    [
+     "base:theses.hal.science",
+     12
+    ],
+    [
+     "fr:paris-ehess",
+     7
+    ],
+    [
+     "base:tel.archives-ouvertes.fr",
+     6
+    ],
+    [
+     "base:hal.science",
+     3
+    ],
+    [
+     "fr:paris-1",
+     3
+    ],
+    [
+     "fr:paris-sciences-et-lettres-comue",
+     3
+    ]
+   ],
+   "sample_dissertations": [
+    "Une université dans un processus de construction nationale : l'université du Dahomey-Bénin en Afrique occidentale (1950-2002)",
+    "Paysage européen et paysage extrême-oriental : regards croisés. Une approche transculturelle de la représentation du paysage",
+    "Penser la crise dans le périphérie : les sciences sociales en Serbie et Croatie durant la dissolution de la Yougoslavie",
+    "La genèse d'un ''islam du juste milieu'' en Indonésie : histoire et portée de l'institutionnalisation d'une notion ambigüe",
+    "Définir l'''Afrique'' entre Panafricanisme et Nationalisme en Afrique de l'Ouest. Analyses à travers les transformations sociales au Sénégal",
+    "Role and power of the press editorial writers in the middle of the Meiji era (1884-1894). Fukuzawa Yukichi, Kuga Katsunan, Tokutomi Sohô. ; ",
+    "La Société de radiodiffusion de la France d'outre-mer. Naissance d'un empire radiophonique franco-africain au temps des décolonisations (193",
+    "Connaître les Turcs et l’Empire ottoman en Italie : construction et usages des savoirs sur l’Orient de l’Unité à la guerre italo-turque"
+   ]
+  },
+  {
+   "id": 7,
+   "provisional_label": "Paxton · Laborie · Rousso — vichy, france, sous, français",
+   "label_is_provisional": true,
+   "louvain_hint": "Paxton · Laborie · Noiriel",
+   "title_terms": [
+    "vichy",
+    "france",
+    "sous",
+    "français",
+    "état",
+    "française"
+   ],
+   "bootstrap_stability": 0.623,
+   "unstable": false,
+   "init_stability": 0.997,
+   "dominated_dissertations": 39,
+   "member_works": 16,
+   "years": {
+    "median": 2020,
+    "by_5yr": {
+     "2010-2014": 7,
+     "2015-2019": 11,
+     "2020-2024": 15,
+     "2025-2029": 4,
+     "unknown": 2
+    },
+    "share_of_bin": {
+     "2010-2014": 0.053,
+     "2015-2019": 0.045,
+     "2020-2024": 0.06,
+     "2025-2029": 0.07
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:paxton|vichy france",
+     "title": "Vichy France: Old Guard and New Order, 1940-1944",
+     "first_author": "Paxton, Robert O",
+     "year": 1972,
+     "loading": 1.0,
+     "citing": 33,
+     "membership": 1.0
+    },
+    {
+     "id": "W:laborie|lopinion francaise sous vichy",
+     "title": "L’opinion française sous Vichy",
+     "first_author": "Laborie, Pierre",
+     "year": 1990,
+     "loading": 0.834,
+     "citing": 31,
+     "membership": 0.982
+    },
+    {
+     "id": "W:rousso|vichy syndrome",
+     "title": "The Vichy Syndrome: History and Memory in France since 1944",
+     "first_author": "Rousso, Henry",
+     "year": 1990,
+     "loading": 0.719,
+     "citing": 30,
+     "membership": 0.73
+    },
+    {
+     "id": "W:baruch|servir letat francais",
+     "title": "Servir l’État français. L’administration en France de 1940 à 1944",
+     "first_author": "Baruch, Marc-Olivier",
+     "year": 1997,
+     "loading": 0.657,
+     "citing": 23,
+     "membership": 0.969
+    },
+    {
+     "id": "W:burrin|france a lheure allemande 1940 1944",
+     "title": "La France à l’heure allemande, 1940-1944",
+     "first_author": "Burrin, Philippe",
+     "year": 1995,
+     "loading": 0.636,
+     "citing": 21,
+     "membership": 0.976
+    },
+    {
+     "id": "W:wieviorka|deportation et genocide",
+     "title": "Déportation et génocide. Entre la mémoire et l’oubli",
+     "first_author": "Wieviorka, Annette",
+     "year": 1992,
+     "loading": 0.422,
+     "citing": 16,
+     "membership": 0.66
+    },
+    {
+     "id": "W:bloch|letrange defaite",
+     "title": "L’étrange défaite",
+     "first_author": "Bloch, Marc",
+     "year": 1990,
+     "loading": 0.367,
+     "citing": 20,
+     "membership": 0.749
+    },
+    {
+     "id": "W:hilberg|destruction of the european jews",
+     "title": "The Destruction of the European Jews",
+     "first_author": "Hilberg, Raul",
+     "year": 1961,
+     "loading": 0.317,
+     "citing": 16,
+     "membership": 0.559
+    },
+    {
+     "id": "W:prost|anciens combattants et la societe francaise 1914 1939",
+     "title": "Les anciens combattants et la société française 1914-1939",
+     "first_author": "Prost, Antoine",
+     "year": 1977,
+     "loading": 0.308,
+     "citing": 23,
+     "membership": 0.661
+    },
+    {
+     "id": "W:berstein|histoire du parti radical",
+     "title": "Histoire du Parti radical",
+     "first_author": "Berstein, Serge",
+     "year": 1982,
+     "loading": 0.296,
+     "citing": 15,
+     "membership": 0.773
+    },
+    {
+     "id": "W:mayeur|vie politique sous la troisieme republique 1870 1940",
+     "title": "La vie politique sous la Troisième République 1870-1940",
+     "first_author": "Mayeur, Jean-Marie",
+     "year": 1984,
+     "loading": 0.258,
+     "citing": 19,
+     "membership": 0.65
+    },
+    {
+     "id": "W:berstein|france des annees 30",
+     "title": "La France des années 30",
+     "first_author": "Berstein, Serge",
+     "year": 2011,
+     "loading": 0.201,
+     "citing": 15,
+     "membership": 0.654
+    },
+    {
+     "id": "W:wieviorka|lere du temoin",
+     "title": "L’ère du témoin",
+     "first_author": "Wieviorka, Annette",
+     "year": 1998,
+     "loading": 0.191,
+     "citing": 22,
+     "membership": 0.319
+    },
+    {
+     "id": "W:remond|droites en france",
+     "title": "Les droites en France",
+     "first_author": "Rémond, René",
+     "year": 1982,
+     "loading": 0.162,
+     "citing": 16,
+     "membership": 0.489
+    },
+    {
+     "id": "W:noiriel|creuset francais",
+     "title": "Le creuset français: histoire de l’immigration, XIXe-XXe siècle",
+     "first_author": "Noiriel, Gérard",
+     "year": 1988,
+     "loading": 0.156,
+     "citing": 33,
+     "membership": 0.189
+    },
+    {
+     "id": "W:chaumont|concurrence des victimes",
+     "title": "La concurrence des victimes",
+     "first_author": "Chaumont, Jean-Michel",
+     "year": 1997,
+     "loading": 0.149,
+     "citing": 15,
+     "membership": 0.291
+    },
+    {
+     "id": "W:rosanvallon|letat en france de 1789 a nos jours",
+     "title": "L’État en France de 1789 à nos jours",
+     "first_author": "Rosanvallon, Pierre",
+     "year": 1990,
+     "loading": 0.147,
+     "citing": 24,
+     "membership": 0.273
+    },
+    {
+     "id": "W:remond|pour une histoire politique",
+     "title": "Pour une histoire politique",
+     "first_author": "Rémond, René",
+     "year": 1988,
+     "loading": 0.143,
+     "citing": 15,
+     "membership": 0.349
+    },
+    {
+     "id": "W:ageron|histoire de lalgerie contemporaine",
+     "title": "Histoire de l’Algérie contemporaine",
+     "first_author": "- Ageron, Charles-Robert",
+     "year": 1979,
+     "loading": 0.134,
+     "citing": 15,
+     "membership": 0.432
+    },
+    {
+     "id": "W:prost|douze lecons sur lhistoire",
+     "title": "Douze leçons sur l’histoire",
+     "first_author": "Prost, Antoine",
+     "year": 1996,
+     "loading": 0.126,
+     "citing": 78,
+     "membership": 0.076
+    },
+    {
+     "id": "W:delporte|journalistes en france 1880 1950",
+     "title": "Les Journalistes en France 1880-1950. Naissance et construction d’une profession",
+     "first_author": "Delporte, Christian",
+     "year": 1999,
+     "loading": 0.121,
+     "citing": 16,
+     "membership": 0.33
+    },
+    {
+     "id": "W:lemercier|methodes quantitatives pour lhistorien",
+     "title": "Méthodes quantitatives pour l’historien",
+     "first_author": "Lemercier, Claire",
+     "year": 2008,
+     "loading": 0.115,
+     "citing": 22,
+     "membership": 0.24
+    },
+    {
+     "id": "W:bard|femmes dans la societe francaise au 20e siecle",
+     "title": "Les femmes dans la société française au 20e siècle",
+     "first_author": "Bard, Christine",
+     "year": 2001,
+     "loading": 0.108,
+     "citing": 20,
+     "membership": 0.136
+    },
+    {
+     "id": "W:cohen|siecle des chefs",
+     "title": "Le Siècle des chefs. Une histoire transnationale du commandement et de l’autorité (1890-1940)",
+     "first_author": "Cohen, Yves",
+     "year": 2013,
+     "loading": 0.108,
+     "citing": 17,
+     "membership": 0.244
+    },
+    {
+     "id": "W:jolly|dictionnaire des parlementaires francais",
+     "title": "Dictionnaire des parlementaires français",
+     "first_author": "Jolly, Jean",
+     "year": 1960,
+     "loading": 0.106,
+     "citing": 16,
+     "membership": 0.324
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Paxton, Robert O",
+     "loading_share": 0.098
+    },
+    {
+     "name": "Laborie, Pierre",
+     "loading_share": 0.0817
+    },
+    {
+     "name": "Rousso, Henry",
+     "loading_share": 0.0705
+    },
+    {
+     "name": "Baruch, Marc-Olivier",
+     "loading_share": 0.0644
+    },
+    {
+     "name": "Burrin, Philippe",
+     "loading_share": 0.0623
+    },
+    {
+     "name": "Wieviorka, Annette",
+     "loading_share": 0.0601
+    },
+    {
+     "name": "Prost, Antoine",
+     "loading_share": 0.0498
+    },
+    {
+     "name": "Berstein, Serge",
+     "loading_share": 0.0487
+    },
+    {
+     "name": "Bloch, Marc",
+     "loading_share": 0.0363
+    },
+    {
+     "name": "Hilberg, Raul",
+     "loading_share": 0.031
+    },
+    {
+     "name": "Noiriel, Gérard",
+     "loading_share": 0.0302
+    },
+    {
+     "name": "Rémond, René",
+     "loading_share": 0.0299
+    },
+    {
+     "name": "Mayeur, Jean-Marie",
+     "loading_share": 0.0253
+    },
+    {
+     "name": "Foucault, Michel",
+     "loading_share": 0.0179
+    },
+    {
+     "name": "Chaumont, Jean-Michel",
+     "loading_share": 0.0146
+    }
+   ],
+   "top_institutions": [
+    [
+     "base:theses.hal.science",
+     10
+    ],
+    [
+     "fr:paris-ehess",
+     5
+    ],
+    [
+     "fr:paris-1",
+     4
+    ],
+    [
+     "base:tel.archives-ouvertes.fr",
+     3
+    ],
+    [
+     "fr:lyon",
+     2
+    ],
+    [
+     "fr:universite-paris-saclay",
+     2
+    ]
+   ],
+   "sample_dissertations": [
+    "Expliquer la survie : la hiérarchie de la persécution et les Juifs du département de Vaucluse, 1933-1945",
+    "L'administration des personnes déplacées dans les zones françaises d’occupation en Allemagne et en Autriche : une politique de la France en ",
+    "Jean Luchaire et la revue ''Notre temps'' (1927-1940)",
+    "French navy and shipbuilding workers at the Brest arsenal (1918-1970) : from the state paternalism to the globalization, a trade union movem",
+    "Commanding a public force under the Occupation : the direction of the gendarmerie in France from 1940 to 1944 ; Commander une force publique",
+    "French internment camps (1938-1946) ; Les camps français d'internement (1938-1946) - Doctorat d'Etat",
+    "Les échanges de l'ombre : passages des services de renseignements suisse et alliés à travers la frontière de l'Arc jurassien 1939-1945",
+    "Droits communs deported by Germans from France occupied : repressions, representations and exclusions ; Les droit commun déportés par les Al"
+   ]
+  }
+ ]
+}

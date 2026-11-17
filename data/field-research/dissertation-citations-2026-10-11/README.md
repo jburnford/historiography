@@ -576,6 +576,18 @@ Early Germans* and E. M. Thompson's *The Carthusian Order in England*.
   and other nations), 4 French (Maori wars, Indigenous peoples of Mexico, an Indigenous agency study, the Mississippi valley)
   and 12 Swedish (Sámi history at Umeå, KTH, SLU; Tornedalen; one Native American study). The French and Swedish ones are flagged in the register
   files for OCAP review.
+- **Rebuild.** Build, link, rebuild, summaries and TF-IDF ran on Plato as job 6027361 (`us-fr-se-2026-11-17-build.slurm`, a
+  copy of the 2026-11-16 script; CPU job, no `--gres`; 2 h 36 m, peak 29.8 GB; every step exit 0).
+  - The main graph went from 15,656 to 17,380 strict (works 2,699,282 → 2,973,599; cited people 1,690,443 → 1,872,525; CITES
+    edges 3,751,323 → 4,155,933). 1,724 of the 1,976 new theses are strict (US 541, France 765, Sweden 418); the other 252 have
+    no usable bibliography. No earlier strict thesis dropped out.
+  - United States 3,688 → 4,229; **France 1,453 → 2,218, past the 2,000 bar: France is now a sub-graph** (`summary/countries/FR/`;
+    sub-graphs BR, CA, FR, GB, US); Sweden 287 → 705 (2000s 118, 2010s 192, 2020s 108 of the new ones); Canada, UK, Brazil,
+    Germany and Mexico unchanged.
+  - France's most cited people by citing History PhDs: Bourdieu 366, Foucault 322, Prost 202, Chartier 199, Ricœur 188,
+    Braudel 186, Bloch 185, Noiriel 175, Roche 170, Le Goff 165.
+  - The region comparison pages and the canon maps (`historian-network.html`, `historian-cocitation-pairs.csv`) were not
+    regenerated; the Plato copies are older than the local ones and were not brought back.
 
 ## Corpus and eligibility
 
