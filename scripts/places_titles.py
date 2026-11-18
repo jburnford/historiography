@@ -64,13 +64,18 @@ CANDIDATES = {
     'Regina': ('Q2123', r'\bRegina\b'),
     # Canada as a whole (coordinator 2026-11-18): the country, the adjective, regions and period polities
     'Canada': ('Q16', r'\bCanada\b'), 'Canadian': ('Q16', r'\bCanadi(an|en|enne)s?\b'),
+    # the adjective without the institution names that read wrong in the raw sample (a journal, an association, a
+    # publisher, the Dictionary of Canadian Biography)
+    'Canadian (no institutions)': ('Q16', r'(?<!Dictionary of )\bCanadi(an|en|enne)s?\b(?! (Institute|Association|Society|Journal|Biography|Museum|Historical Association|Historical Review|Political Science|Press|Broadcasting|Medical Association|Pacific Railway|Studies|Review))'),
     'New France': ('Q170604', r'\bNew France\b|\bNouvelle-France\b|\bNueva Francia\b'),
     'Upper Canada': ('Q795427', r'\bUpper Canada\b|\bHaut-Canada\b'), 'Lower Canada': ('Q1134180', r'\bLower Canada\b|\bBas-Canada\b'),
     "Rupert's Land": ('Q738395', r"\bRupert['’]?s Land\b"), 'Acadia': ('Q207353', r'\bAcadi(a|e)\b'),
-    'Klondike': ('Q602965', r'\bKlondike\b'), 'Maritimes': ('Q731613', r'\bMaritime Provinces\b|\bthe Maritimes\b'),
+    'Klondike': ('Q602965', r'\bKlondike\b'), 'Maritimes': ('Q731613', r'\bMaritime Provinces\b(?! of (Ceylon|Sri Lanka))|\bthe Maritimes\b'),
     'Atlantic Canada': ('Q246972', r'\bAtlantic Canada\b|\bAtlantic Provinces\b'),
     'Canadian Prairies': ('Q1364746', r'\bPrairie Provinces\b|\bCanadian Prairies\b|\bPrairie West\b'),
     'Northern Canada': ('Q764146', r'\bCanadian North\b|\bNorthern Canada\b|\bCanadian Arctic\b'),
+    # without 'Canadian North-West' (the prairie North-West, another region: 3 of the 40 read)
+    'Northern Canada (not North-West)': ('Q764146', r'\bCanadian North\b(?!-?[Ww]est)|\bNorthern Canada\b|\bCanadian Arctic\b'),
     'British North America': ('Q248452', r'\bBritish North America\b'),
     'Great Lakes': ('Q7347', r'\bGreat Lakes\b'), 'St. Lawrence': ('Q134750', r'\b(St\.?|Saint)[ -]Lawrence (River|Valley)\b'),
     'Victoria': ('Q2132', r'\bVictoria, B\.? ?C\b|\bVictoria\b'), 'Kingston': ('Q202973', r'\bKingston\b'),
@@ -124,7 +129,22 @@ def works(c):
 
 def sql_rx(rx):
     """The regex for DuckDB's prefilter (RE2 has no lookaround): lookarounds dropped; keep() applies the full one."""
-    return re.sub(r'\(\?<?[!=][^)]*\)', '', rx)
+    out, i = [], 0
+    while i < len(rx):
+        if rx.startswith(('(?!', '(?=', '(?<!', '(?<='), i):
+            depth = 0
+            while i < len(rx):              # skip the balanced group
+                if rx[i] == '\\':
+                    i += 2
+                    continue
+                depth += {'(': 1, ')': -1}.get(rx[i], 0)
+                i += 1
+                if depth == 0:
+                    break
+            continue
+        out.append(rx[i])
+        i += 1
+    return ''.join(out)
 
 
 def gate_for(name):
@@ -190,6 +210,10 @@ def active_rules():
     return rules
 
 
+# the places the pilot's full reading covered: a work read wrong there is never tagged to them by a rule
+PILOT_FAMILY = {'Q854', 'Q203197', 'Q1530762', 'Q215277', 'Q5724', 'Q1989'}
+
+
 def tag(out):
     c = con()
     works(c)
@@ -201,10 +225,17 @@ def tag(out):
             if r['verdict'] != 'right':
                 wrong.add(r['work'])
             checked.append(r)
+    # a work read wrong for a name in its 40-title reading is never tagged by that name's rules
+    read_wrong = set()
+    for path in READ.glob('*.csv'):
+        name = path.stem.rsplit('-', 1)[0].replace('_', ' ')
+        for r in csv.DictReader(open(path)):
+            if r['verdict'] != 'right':
+                read_wrong.add((r['key'], CANDIDATES.get(name, (None,))[0]))
     rows = []
     for name, (qid, rx, gate) in rules.items():
         for key, label in c.execute('SELECT key, label FROM w WHERE regexp_matches(label, ?)', [sql_rx(rx)]).fetchall():
-            if key in wrong or not keep(label, rx, gate):
+            if (key in wrong and qid in PILOT_FAMILY) or (key, qid) in read_wrong or not keep(label, rx, gate):
                 continue
             m = re.search(rx, label)
             rows.append((key, qid, 'title-rule', name + (' (gated)' if gate else ''), m.group(0)))

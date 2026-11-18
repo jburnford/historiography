@@ -21,7 +21,9 @@ ROOT = Path(__file__).resolve().parents[1]
 PROBES = ['p-24137', 'w-1025226', 'doi:10.1515/9781552387443-004', 'w-916866', 'p-1025', 'p-15018',
           'w-689154', 'w-1477380',
           # place pages (2026-11-18): Sri Lanka, Saskatchewan, Prince Albert, Canada, a period polity; a tagged book
-          'place:Q854', 'place:Q1989', 'place:Q671431', 'place:Q16', 'place:Q918153', 'p-10088']
+          'place:Q854', 'place:Q1989', 'place:Q671431', 'place:Q16', 'place:Q918153', 'p-10088',
+          # hard-grounding probes: small places named like a person or another place (Regina, London Ont.)
+          'place:Q2123', 'place:Q92561', 'place:Q170604']
 
 
 def sample(G, n, seed):

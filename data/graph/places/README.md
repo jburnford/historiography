@@ -17,9 +17,9 @@ Rules (user, 2026-11-18):
 
 | File | Rows | Content |
 | --- | --- | --- |
-| `work-places.csv.gz` | 835,837 | `work, qid, place_label, source, heading, lc_id, confidence`, one row per (work, place, source) |
+| `work-places.csv.gz` | 849,985 | `work, qid, place_label, source, heading, lc_id, confidence`, one row per (work, place, source) |
 | `places.csv.gz` | 14,108 | `qid, label, kind, country, lc_id, lc_heading, variants, period_of, sitelinks, inception, dissolved, works` |
-| `place-hierarchy.csv.gz` | 21,764 | `child, parent, basis` |
+| `place-hierarchy.csv.gz` | 21,772 | `child, parent, basis` |
 | `ungrounded.csv.gz` | 22,916 headings | LC place headings on graph books that did not ground to a place, with uses, books and the reason |
 | `report.json` | | counts |
 | `title-readings/*.csv` | | hand readings of 40 random title matches per name (raw or gated) |
@@ -73,19 +73,50 @@ Rules (user, 2026-11-18):
 - indirect: 60 of 60 right;
 - exact: 39 of 40 right. The wrong one was "Developing countries", a category; that class is now excluded.
 
-**Title rules ≥ 95%:**
+**Title rules.** A rule needs ≥ 95% on a reading of 40 random matches (or of every match where there are fewer). A work read wrong is never tagged by that name.
 
-| Group | Names |
+| Group | Names (right / read) |
 | --- | --- |
-| Pilot readings | Ceylon, Sri Lanka, Kandy, Kingdom of Kandy, Jaffna, Anuradhapura, Jamaica, Mediterranean, Danzig/Gdańsk |
-| Read here: raw | Manitoba, British Columbia, Nova Scotia, Newfoundland, Prince Edward Island, Nunavut, Northwest Territories, Ontario (not Lake Ontario), Quebec, Winnipeg (not Lake Winnipeg or the river) |
-| Read here: gated | Alberta, New Brunswick |
+| Pilot readings | Ceylon 391/395, Sri Lanka 646/667, Kandy and Kingdom of Kandy 49/49, Jaffna 6/6, Anuradhapura 7/7, Jamaica 40/40, Mediterranean 39/40, Danzig/Gdańsk 38/40 |
+| Canada, raw | Canada 40/40, New France 40/40, Upper Canada 40/40, Lower Canada 40/40, Rupert's Land 19/19, Acadia 39/40, Klondike 39/40, Maritime Provinces 39/40, Atlantic Canada/Provinces 39/40, Canadian Prairies/Prairie Provinces 40/40, St. Lawrence River/Valley 18/18 |
+| Provinces and territories, raw | Manitoba 39/40, British Columbia 40/40, Nova Scotia 40/40, Newfoundland 40/40, Prince Edward Island 40/40, Nunavut 15/15, Northwest Territories 36/36, Ontario 39/40 (not Lake Ontario), Quebec 39/40 |
+| Cities | Winnipeg 39/40 (not Lake Winnipeg or the Winnipeg River) |
+| Gated (a regional word in the title too) | Alberta 39/40, New Brunswick 35/35 (raw 95%, gated chosen as the more precise) |
 
-**No rule** (raw precision read here):
-- Yukon 72.5% (the Yukon River in Alaska);
-- Toronto 77.5%, Montreal 82.5%, Calgary 82.5%, Edmonton 67.5% (places of publication, venues);
-- Vancouver 72.5% (George Vancouver, Vancouver Island, Fort Vancouver);
-- Halifax 52.5% (Lord Halifax, Halifax, Yorkshire);
-- Ottawa 67.5% (the Ottawa Agreements, the Ottawa people, Ottawa, Illinois);
-- Saskatoon 4/5 (a venue);
-- Regina, Prince Albert, Colombo, Galle, London, Prairies, Normandy: from the pilot.
+**Rescued by a narrower rule:**
+- "Canadian": raw 35/40 (87.5%). Without institution names ("Canadian Journal / Association / Institute / Dictionary of Canadian Biography ...") it reads 38/40 (95.0%).
+- "Canadian North / Northern Canada / Canadian Arctic": raw 37/40. Without "Canadian North-West" (the prairie West) it reads 40/40.
+
+**No rule.** LC headings and the pilot's checked sets only:
+
+| Name | Read | Why it fails |
+| --- | --- | --- |
+| Yukon | 29/40 | the Yukon River in Alaska |
+| Toronto | 31/40 | places of publication, series, venues |
+| Montreal | 33/40 | the same |
+| Vancouver | 29/40 | George Vancouver, Vancouver Island, Fort Vancouver |
+| Calgary | 33/40 | places of publication, venues |
+| Edmonton | 27/40 | the same, and Edmonton, Middlesex |
+| Halifax | 21/40 | Lord Halifax; Halifax, Yorkshire |
+| Ottawa | 27/40 | the Ottawa Agreements, the Ottawa people, Ottawa, Illinois |
+| Saskatoon | 4/5 | a venue |
+| Victoria (B.C.) | 0/40 | the queen, people, Victoria, Australia |
+| Kingston | 10/40 | Kingston, Jamaica; Kingston upon Thames |
+| Hamilton | 5/40 | Alexander Hamilton and others |
+| Great Lakes | 36/40 | the African Great Lakes |
+| British North America | 26/40 | the colonies that became the United States. Also dropped as a period node of Canada for the same reason. |
+| Regina, Prince Albert, Colombo, Galle, London, Prairies, Normandy | | from the pilot |
+
+Not read: Windsor, Sydney, Saint John / St. John's, London, Ont.
+
+**Period polities linked by hand** (`CURATED_PERIODS` in `scripts/places_build.py`; Wikidata's succession chain lacks them or splits them):
+
+| Territory | Period polities |
+| --- | --- |
+| Sri Lanka | Portuguese Ceylon, Dutch Ceylon |
+| Canada | New France, Province of Quebec (1763–1791), Province of Canada (1841–1867), Rupert's Land, North-Western Territory |
+| Ontario | Upper Canada |
+| Quebec | Lower Canada |
+| Manitoba | Red River Colony |
+
+The NWT of 1870–1905 is the same Wikidata item as today's Northwest Territories (Q2007). Its districts (Assiniboia, Saskatchewan, Athabasca) are part-predecessors of the prairie provinces.

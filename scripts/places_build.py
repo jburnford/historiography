@@ -93,7 +93,6 @@ CURATED_PERIODS = {
     'Q1121436': ('Q16', 'Province of Canada (1841-1867): LC Canada -- History -- 1841-1867'),
     'Q738395':  ('Q16', "Rupert's Land (1670-1870): transferred whole to Canada in 1870 (Rupert's Land Act 1868)"),
     'Q1998931': ('Q16', 'North-Western Territory (to 1870): transferred whole to Canada in 1870'),
-    'Q248452':  ('Q16', 'British North America: the British colonies that became Canada (LC: Canada -- History -- 1763-1867)'),
     'Q795427':  ('Q1904', 'Upper Canada (1791-1841): became Canada West and then Ontario; LC Ontario -- History -- 1791-1841'),
     'Q1134180': ('Q176', 'Lower Canada (1791-1841): became Canada East and then Quebec; LC Québec (Province) -- History -- 1791-1841'),
     'Q2032545': ('Q1948', 'Red River Colony (1812-1870): its land became Manitoba in 1870'),

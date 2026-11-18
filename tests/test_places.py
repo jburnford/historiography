@@ -102,3 +102,19 @@ class Tables(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+@unittest.skipUnless((P / 'work-places.csv.gz').exists(), 'place tables not built')
+class Canada(unittest.TestCase):
+    def test_canada_periods(self):
+        h = {(r['child'], r['parent']): r['basis'] for r in rows('place-hierarchy.csv.gz')}
+        for x, t in (('Q170604', 'Q16'), ('Q738395', 'Q16'), ('Q1121436', 'Q16'), ('Q795427', 'Q1904'), ('Q1134180', 'Q176')):
+            self.assertTrue(h.get((x, t), '').startswith('period-of'), (x, t))
+        self.assertNotIn(('Q248452', 'Q16'), h)       # British North America is ambiguous (the US colonies too)
+
+    def test_read_wrong_never_tagged(self):
+        for r in rows('work-places.csv.gz'):
+            if r['work'] == 'doi:10.1080/00856400903049465':       # Maritime Provinces of Ceylon
+                self.assertNotEqual(r['qid'], 'Q731613')
+            if r['work'] == 'w-2154390':                          # Ontario, Oregon
+                self.assertNotEqual(r['qid'], 'Q1904')
