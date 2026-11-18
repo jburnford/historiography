@@ -1,0 +1,656 @@
+{
+ "source": "Crossref public data file, March 2026 (spark /mnt/data/jic823/crossref-2026-parquet), via the history slice",
+ "built": "2026-11-17",
+ "scripts": [
+  "scripts/crossref_cites_journals.py",
+  "scripts/crossref_history_slice_add.py",
+  "scripts/crossref_cites_2026.py"
+ ],
+ "journals": {
+  "listed": 440,
+  "listed_selected_405": 405,
+  "listed_econ_history": 35,
+  "by_status": {
+   "econ-history:exact": 33,
+   "econ-history:exact+mixed": 2,
+   "selected-405:ambiguous": 1,
+   "selected-405:close": 5,
+   "selected-405:exact": 331,
+   "selected-405:exact+mixed": 5,
+   "selected-405:main_title_only": 2,
+   "selected-405:title_only": 9,
+   "selected-405:unresolved": 52
+  },
+  "used": 387,
+  "not_used": [
+   {
+    "label": "Agricultural History Review",
+    "status": "unresolved",
+    "issns": "00021490",
+    "note": ""
+   },
+   {
+    "label": "American Educational History Journal",
+    "status": "unresolved",
+    "issns": "15350584",
+    "note": ""
+   },
+   {
+    "label": "Analecta Hibernica",
+    "status": "unresolved",
+    "issns": "07916167",
+    "note": ""
+   },
+   {
+    "label": "Anglican & Episcopal History",
+    "status": "unresolved",
+    "issns": "08968039",
+    "note": ""
+   },
+   {
+    "label": "Archivio Storico Italiano",
+    "status": "unresolved",
+    "issns": "03917770",
+    "note": ""
+   },
+   {
+    "label": "Bollettino Storico - Bibliografico Subalpino",
+    "status": "unresolved",
+    "issns": "03916715",
+    "note": ""
+   },
+   {
+    "label": "Catalan Historical Review",
+    "status": "unresolved",
+    "issns": "2013407X",
+    "note": ""
+   },
+   {
+    "label": "Communisme",
+    "status": "unresolved",
+    "issns": "07513496",
+    "note": ""
+   },
+   {
+    "label": "Cuadernos Medievales",
+    "status": "unresolved",
+    "issns": "24516821",
+    "note": ""
+   },
+   {
+    "label": "Dublin Historical Record",
+    "status": "unresolved",
+    "issns": "00126861",
+    "note": ""
+   },
+   {
+    "label": "Essays in Economic & Business History",
+    "status": "unresolved",
+    "issns": "0896226X",
+    "note": ""
+   },
+   {
+    "label": "Film & History",
+    "status": "ambiguous",
+    "issns": "03603695",
+    "note": "15489922  Film &amp; History: An Interdisciplinary Journal of Film and Television Studies | Project MUSE | 822 || 15489922  Film &amp; History: An Interdisciplinary Journal | Project MUSE | 394"
+   },
+   {
+    "label": "Florida Historical Quarterly",
+    "status": "unresolved",
+    "issns": "00154113",
+    "note": ""
+   },
+   {
+    "label": "Glossae",
+    "status": "unresolved",
+    "issns": "0214669X",
+    "note": ""
+   },
+   {
+    "label": "Historia et Ius",
+    "status": "unresolved",
+    "issns": "22797416",
+    "note": ""
+   },
+   {
+    "label": "Historia Regional",
+    "status": "unresolved",
+    "issns": "03298213",
+    "note": ""
+   },
+   {
+    "label": "Historical Social Research",
+    "status": "unresolved",
+    "issns": "01726404",
+    "note": ""
+   },
+   {
+    "label": "Historisk Tidskrift för Finland",
+    "status": "unresolved",
+    "issns": "00467596",
+    "note": ""
+   },
+   {
+    "label": "History of Economic Ideas",
+    "status": "unresolved",
+    "issns": "11228792",
+    "note": ""
+   },
+   {
+    "label": "History of Intellectual Culture",
+    "status": "unresolved",
+    "issns": "14927810",
+    "note": ""
+   },
+   {
+    "label": "Journal of Presbyterian History",
+    "status": "unresolved",
+    "issns": "15219216",
+    "note": ""
+   },
+   {
+    "label": "Journal of the Royal Australian Historical Society",
+    "status": "unresolved",
+    "issns": "00358762 18387381",
+    "note": ""
+   },
+   {
+    "label": "Journal of the West",
+    "status": "unresolved",
+    "issns": "00225169",
+    "note": ""
+   },
+   {
+    "label": "Journal on European History of Law",
+    "status": "unresolved",
+    "issns": "30499089",
+    "note": ""
+   },
+   {
+    "label": "Judaica Bohemiae",
+    "status": "unresolved",
+    "issns": "00225738",
+    "note": ""
+   },
+   {
+    "label": "Kansas History",
+    "status": "unresolved",
+    "issns": "01499114",
+    "note": ""
+   },
+   {
+    "label": "Lias",
+    "status": "unresolved",
+    "issns": "03040003",
+    "note": ""
+   },
+   {
+    "label": "Mediterranea - Ricerche Storiche",
+    "status": "unresolved",
+    "issns": "18243010",
+    "note": ""
+   },
+   {
+    "label": "Minnesota History",
+    "status": "unresolved",
+    "issns": "00265497",
+    "note": ""
+   },
+   {
+    "label": "Missouri Historical Review",
+    "status": "unresolved",
+    "issns": "00266582",
+    "note": ""
+   },
+   {
+    "label": "New Mexico Historical Review",
+    "status": "unresolved",
+    "issns": "00286206",
+    "note": ""
+   },
+   {
+    "label": "New Zealand Journal of History",
+    "status": "unresolved",
+    "issns": "00288322",
+    "note": ""
+   },
+   {
+    "label": "Nuova Rivista Storica",
+    "status": "unresolved",
+    "issns": "00296236",
+    "note": ""
+   },
+   {
+    "label": "Popolazione e Storia",
+    "status": "unresolved",
+    "issns": "15914798",
+    "note": ""
+   },
+   {
+    "label": "Publishing History",
+    "status": "unresolved",
+    "issns": "03092445",
+    "note": ""
+   },
+   {
+    "label": "Quaderni Storici",
+    "status": "unresolved",
+    "issns": "03016307 26121972",
+    "note": ""
+   },
+   {
+    "label": "Rassegna Storica del Risorgimento",
+    "status": "unresolved",
+    "issns": "00339873",
+    "note": ""
+   },
+   {
+    "label": "Revista Chilena de Historia del Derecho",
+    "status": "unresolved",
+    "issns": "07165447",
+    "note": ""
+   },
+   {
+    "label": "Rhodesiana",
+    "status": "unresolved",
+    "issns": "05569605",
+    "note": ""
+   },
+   {
+    "label": "Ricerche di Storia Politica",
+    "status": "unresolved",
+    "issns": "11209526",
+    "note": ""
+   },
+   {
+    "label": "Rivista di storia della chiesa in Italia",
+    "status": "unresolved",
+    "issns": "00356557",
+    "note": ""
+   },
+   {
+    "label": "Rivista Storica Italiana",
+    "status": "unresolved",
+    "issns": "00357073",
+    "note": ""
+   },
+   {
+    "label": "Saskatchewan History",
+    "status": "unresolved",
+    "issns": "00364908",
+    "note": ""
+   },
+   {
+    "label": "Studi Medievali",
+    "status": "unresolved",
+    "issns": "03918467",
+    "note": ""
+   },
+   {
+    "label": "Studi Storici",
+    "status": "unresolved",
+    "issns": "00393037",
+    "note": ""
+   },
+   {
+    "label": "The Chronicles of Oklahoma",
+    "status": "unresolved",
+    "issns": "00096024",
+    "note": ""
+   },
+   {
+    "label": "The Irish Sword",
+    "status": "unresolved",
+    "issns": "00211389",
+    "note": ""
+   },
+   {
+    "label": "The Medieval Review",
+    "status": "unresolved",
+    "issns": "1096746X",
+    "note": ""
+   },
+   {
+    "label": "The Mennonite Quarterly Review",
+    "status": "unresolved",
+    "issns": "00259373",
+    "note": ""
+   },
+   {
+    "label": "Victorian Historical Journal",
+    "status": "unresolved",
+    "issns": "03134938 10307710",
+    "note": ""
+   },
+   {
+    "label": "Wisconsin Magazine of History",
+    "status": "unresolved",
+    "issns": "00436534",
+    "note": ""
+   },
+   {
+    "label": "Journal of the Historical Society of Nigeria",
+    "status": "unresolved",
+    "issns": "00182540",
+    "note": ""
+   },
+   {
+    "label": "History Workshop — earlier ISSN",
+    "status": "unresolved",
+    "issns": "03092984",
+    "note": ""
+   }
+  ]
+ },
+ "citing_works": 114960,
+ "citing_by_kind": {
+  "bibliography": 395,
+  "review": 11751,
+  "editorial": 931,
+  "front-matter": 393,
+  "short": 2765,
+  "article": 98725
+ },
+ "citing_by_kind_basis": {
+  "title": 110390,
+  "pages<=2": 2765,
+  "listing-title": 395,
+  "name-comma-citation": 1410
+ },
+ "citing_by_in_graph": {
+  "keyed": 39691,
+  "unkeyed-node": 13131,
+  "new": 62138
+ },
+ "citing_loaded": 114172,
+ "citing_with_loaded_edges": 87143,
+ "citing_by_decade": {
+  "1870s": {
+   "article": 54,
+   "review": 1,
+   "short": 1
+  },
+  "1880s": {
+   "article": 45,
+   "review": 1
+  },
+  "1890s": {
+   "article": 39,
+   "bibliography": 1
+  },
+  "1900s": {
+   "article": 61
+  },
+  "1910s": {
+   "article": 122,
+   "short": 5,
+   "review": 4
+  },
+  "1920s": {
+   "article": 270,
+   "short": 22,
+   "review": 11
+  },
+  "1930s": {
+   "article": 625,
+   "review": 18,
+   "short": 16,
+   "editorial": 1,
+   "front-matter": 1
+  },
+  "1940s": {
+   "article": 953,
+   "review": 31,
+   "short": 50,
+   "editorial": 1
+  },
+  "1950s": {
+   "article": 1918,
+   "front-matter": 10,
+   "review": 50,
+   "editorial": 3,
+   "short": 360
+  },
+  "1960s": {
+   "article": 4136,
+   "review": 106,
+   "short": 406,
+   "editorial": 5,
+   "bibliography": 12,
+   "front-matter": 7
+  },
+  "1970s": {
+   "article": 6203,
+   "short": 313,
+   "review": 330,
+   "editorial": 8,
+   "bibliography": 34,
+   "front-matter": 27
+  },
+  "1980s": {
+   "short": 170,
+   "article": 9007,
+   "editorial": 28,
+   "review": 602,
+   "front-matter": 58,
+   "bibliography": 38
+  },
+  "1990s": {
+   "article": 12336,
+   "editorial": 106,
+   "short": 199,
+   "bibliography": 31,
+   "review": 850,
+   "front-matter": 49
+  },
+  "2000s": {
+   "article": 16333,
+   "short": 304,
+   "review": 3421,
+   "editorial": 200,
+   "front-matter": 106,
+   "bibliography": 88
+  },
+  "2010s": {
+   "article": 27932,
+   "review": 5203,
+   "short": 660,
+   "editorial": 363,
+   "bibliography": 148,
+   "front-matter": 85
+  },
+  "2020s": {
+   "article": 18691,
+   "review": 1123,
+   "editorial": 216,
+   "short": 259,
+   "bibliography": 43,
+   "front-matter": 50
+  }
+ },
+ "references": 4982763,
+ "references_with_doi": 1077737,
+ "references_with_doi_by_asserted_by": {
+  "crossref": 385740,
+  "publisher": 691997
+ },
+ "references_without_doi": 3905026,
+ "references_without_doi_structured": 2533566,
+ "references_without_doi_unstructured_only": 1206225,
+ "references_without_doi_file": "spark:/mnt/data/jic823/tools/crossref-extract/cites/out/nodoi-refs.parquet (157 MB, not in git)",
+ "edges_all": 1069292,
+ "edges_excluded_listing_or_front_matter": 56719,
+ "edges_loaded": 1012573,
+ "edges_loaded_by_cited_node": {
+  "keyed": 176609,
+  "unkeyed-node": 172762,
+  "new": 663202
+ },
+ "edges_loaded_by_asserted_by": {
+  "publisher": 658203,
+  "crossref": 353665,
+  "crossref;publisher": 705
+ },
+ "cited_dois_loaded": {
+  "keyed": 70472,
+  "unkeyed-node": 71915,
+  "new": 381085
+ },
+ "cited_new_in_crossref": 377439,
+ "cited_new_by_type": {
+  "journal-article": 258253,
+  "book-chapter": 39144,
+  "monograph": 35208,
+  "edited-book": 20715,
+  "book": 18979,
+  "(not in Crossref)": 3646,
+  "report": 1648,
+  "other": 1603,
+  "journal-issue": 502,
+  "proceedings-article": 324,
+  "dataset": 270,
+  "reference-entry": 257,
+  "reference-book": 158,
+  "posted-content": 129,
+  "dissertation": 93,
+  "journal": 67,
+  "book-series": 28,
+  "report-component": 17,
+  "component": 16,
+  "report-series": 10,
+  "book-part": 7,
+  "book-section": 5,
+  "proceedings": 3,
+  "journal-volume": 1,
+  "database": 1,
+  "book-set": 1
+ },
+ "overlap": {
+  "citing_works_with_existing_cites": 9188,
+  "existing_sources_of_those": {
+   "jstor": 141655,
+   "jstor-matched": 87227,
+   "jstor,jstor-matched": 3581,
+   "jstor-edition": 2516,
+   "thesis": 47,
+   "thesis-matched": 27,
+   "jstor,jstor-edition": 20,
+   "jstor-matched,jstor-edition": 15,
+   "jstor,jstor-matched,jstor-edition": 4,
+   "thesis,thesis-matched": 1
+  },
+  "crossref_edges_on_those": 90042,
+  "crossref_edges_on_those_to_graph_nodes": 40226,
+  "crossref_edges_already_in_graph": 25531,
+  "existing_edges_on_those": 235093,
+  "existing_edges_on_those_to_doi_bearing_works": 63065,
+  "existing_doi_edges_found_by_crossref": 25531,
+  "agreement_crossref_side": 0.6347,
+  "agreement_graph_side": 0.4048,
+  "note": "crossref side: of Crossref DOI edges from citing works the graph already cites from, whose cited DOI is a graph node, the share the graph already has; graph side: of the graph's edges from those works to works holding a DOI, the share Crossref also gives"
+ },
+ "edges_loaded_not_in_graph": 987042,
+ "hand_check": {
+  "edges": {
+   "drawn": 30,
+   "with_reference_text": 15,
+   "right": 12,
+   "wrong": 2,
+   "unclear": 1,
+   "doi_only_plausible": 14,
+   "doi_only_unclear": 1,
+   "note": "two wrong DOI assignments by the depositor or Crossref matching (an archival letter matched to a 1914 article in Man; a book reference given another author's article DOI); one sampled edge came from the Slavery & Abolition bibliographical supplement, a listing now excluded"
+  },
+  "kinds": {
+   "review": {
+    "drawn": 20,
+    "right": 18,
+    "wrong": 2
+   },
+   "article": {
+    "drawn": 20,
+    "right": 20,
+    "wrong": 0
+   },
+   "note": "review sample: the Slavery & Abolition annual bibliographical supplement (now kind bibliography) and one article read as a citation heading; samples drawn from the run before the last two listing patterns were added"
+  }
+ },
+ "top_journals": [
+  {
+   "journal": "Annales. Histoire, Sciences sociales",
+   "citing": 6678,
+   "edges": 11143
+  },
+  {
+   "journal": "Journal of Economic History",
+   "citing": 2957,
+   "edges": 29210
+  },
+  {
+   "journal": "Journal of Interdisciplinary History",
+   "citing": 2788,
+   "edges": 9494
+  },
+  {
+   "journal": "The Historical Journal",
+   "citing": 2548,
+   "edges": 19575
+  },
+  {
+   "journal": "Historische Zeitschrift",
+   "citing": 2276,
+   "edges": 252
+  },
+  {
+   "journal": "History of Political Economy",
+   "citing": 2180,
+   "edges": 29497
+  },
+  {
+   "journal": "Church History",
+   "citing": 1947,
+   "edges": 12002
+  },
+  {
+   "journal": "The Economic History Review",
+   "citing": 1896,
+   "edges": 54245
+  },
+  {
+   "journal": "Comparative Studies in Society and History",
+   "citing": 1806,
+   "edges": 26069
+  },
+  {
+   "journal": "History of European Ideas",
+   "citing": 1606,
+   "edges": 11415
+  },
+  {
+   "journal": "Labor History",
+   "citing": 1593,
+   "edges": 15977
+  },
+  {
+   "journal": "The Journal of African History",
+   "citing": 1563,
+   "edges": 9883
+  },
+  {
+   "journal": "Pacific Historical Review",
+   "citing": 1521,
+   "edges": 1532
+  },
+  {
+   "journal": "Journal of the Society of Architectural Historians",
+   "citing": 1439,
+   "edges": 1559
+  },
+  {
+   "journal": "The Journal of Modern History",
+   "citing": 1438,
+   "edges": 7176
+  }
+ ]
+}
