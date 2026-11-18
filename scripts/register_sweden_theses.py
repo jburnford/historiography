@@ -11,7 +11,8 @@ A file is registered when:
   'spikblad' or abstract only), pdfinfo and pdftotext read it;
 - its row passes scope() below. History: the pilot's screen 'history' or 'economic_history' (economic history,
   history of science and ideas, history of technology and history of education count, user rulings 2026-11-15/16).
-  Held until the user rules: church history and theology, ancient history/classics/archaeology, art, film,
+  Ancient history counts unless it is archaeology, philology or history of religions (ruling 2026-11-17,
+  ancient_ruling.verdict). Held until the user rules: church history and theology. Out: archaeology, art, film,
   literature, music and fashion; and rows whose local doctoral subject (DiVA forskarutbildningsämne) is
   another discipline with no History-family subject (screen 'medium' or a History code on a non-History
   subject), except education subjects (history of education counts). Rows with no subject and no code
@@ -40,6 +41,10 @@ from concurrent.futures import ProcessPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from ancient_ruling import HELD_REASON, verdict  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[1]
 PILOT = ROOT / 'data/field-research/diva-sweden-pilot-2026-11-14'
 OUT = PILOT / 'register-2026-11-17'
@@ -58,10 +63,6 @@ ANCIENT_TITLE = re.compile(r'\bantik(en|ens|a)?\b|antiquity|\bancient\b|romersk|
                            r'järnålder|stenålder|bronze age|iron age|neolithic|pharao|\bathen|\bsumer|assyri|babylon', re.I)
 ROMAN_EN = re.compile(r'\bRoman\b')
 MEDIEVAL = re.compile(r'medieval|middle ages|medeltid|papacy|påve|byzan', re.I)
-# Reviewed releases of rows the title screen holds by mistake (Claude's reading, 2026-11-17).
-RELEASED = {
-    'Kultiveringens politik': 'history of ideas thesis on Martha Nussbaum (20th century); antiquity is her subject, not the thesis period',
-}
 ART_TITLE = re.compile(r'\bkonst\b|konstnär|konsthist|målning|måleri|arkitektur|architect|\bmusik|\bmusic|\bfilm|litteratur|'
                        r'literature|\bkyrkor\b|altar|\bart\b|painting|opera', re.I)
 INDIGENOUS = re.compile(r'\bsam(er|erna|isk\w*|i|ernas)\b|sápmi|sapmi|\blapp|urfolk|ursprungsfolk|indigenous|aborigin|native '
@@ -91,11 +92,12 @@ def scope(row):
         return False, f"pilot screen {row['screen']}: not History"
     if CHURCH_SUBJECT.search(joined):
         return False, f'church history / theology / religion subject ({joined}): user has not ruled'
-    released = next((note for start, note in RELEASED.items() if row['title'].startswith(start)), None)
-    ancient_title = (ANCIENT_TITLE.search(title) or (row.get('language') == 'eng' and ROMAN_EN.search(title))) \
-        and not MEDIEVAL.search(title) and not released
-    if '60105' in codes or ancient_title:
-        return False, f'ancient history / archaeology by code or title (SSIF {row.get("ssif5") or "none"}): user has not ruled'
+    ancient = '60105' in codes or ((ANCIENT_TITLE.search(title) or (row.get('language') == 'eng' and ROMAN_EN.search(title)))
+                                   and not MEDIEVAL.search(title))
+    if ancient:  # ruling 2026-11-17: ancient history is History unless archaeology (philology, religion held)
+        v = verdict(title)
+        if v != 'history':
+            return False, f'{HELD_REASON[v]} (SSIF {row.get("ssif5") or "none"})'
     if '60103' in codes and not any(HIST_SUBJECT.search(s) for s in subs):
         return False, f'archaeology code 60103 without a History subject ({joined or "no subject"}): out'
     if ART_SUBJECT.search(joined) and not any(HIST_SUBJECT.search(s) and not ART_SUBJECT.search(s) for s in subs):

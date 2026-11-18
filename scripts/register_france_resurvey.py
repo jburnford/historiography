@@ -11,11 +11,11 @@ snapshot (/mnt/e/france-theses-snapshot-2026-11-12/screen/history-screen.jsonl.g
 A file is registered when:
 - the whole file validates: PDF header and %%EOF, at least MIN_PAGES pages, pdfinfo and pdftotext read it;
 - its NNT is in the History screen, with an ABES record;
-- the History scope holds (scope() below). Held until the user rules (2026-11-17 brief): ancient history
-  (screen 'ancient', ancient-history disciplines, ancient topics by title), art/architecture/film/music/literature
-  history, the EPHE religious-studies doctorate ('Histoire des religions et anthropologie religieuse'),
-  economics doctorates whose only history signal is a RAMEAU subject ('economic-subject'), and ecology
-  disciplines. Kept: History in its period/area forms, history of science and techniques, history of education
+- the History scope holds (scope() below). Ancient history counts unless it is archaeology, philology/text
+  edition or history of religions (ruling 2026-11-17; ancient_ruling.verdict); economics doctorates whose only
+  history signal is a RAMEAU subject ('economic-subject') count when the title reads as economic history. Held:
+  art/architecture/film/music/literature history, the EPHE religious-studies doctorate ('Histoire des religions
+  et anthropologie religieuse'), ecology disciplines. Kept: History in its period/area forms, history of science and techniques, history of education
   and economic history disciplines (user rulings 2026-11-15/16), history of religions inside History doctorates.
 
 Everything else goes to held.jsonl with its reason. The opening pages are also checked for doctorate wording
@@ -36,6 +36,10 @@ import unicodedata
 from concurrent.futures import ProcessPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
+
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from ancient_ruling import HELD_REASON, verdict  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 SURVEY = ROOT / 'data/field-research/france-theses-resurvey-2026-11-15'
@@ -66,27 +70,39 @@ def fold(text):
     return re.sub(r'\s+', ' ', ''.join(c for c in text if not unicodedata.combining(c))).strip()
 
 
+ECON_HISTORY_TITLE = re.compile(r"histoire|historique|cliometr|\bsiecles?\b|ancien regime|old regime|entre-deux|colonis|"
+                                r"\b1[5-9]\d\d\b|\b[xvi]+e siecle|long terme|grande depression|revolution|capitalisme", re.I)
+ARCHAEOLOGY_DISCIPLINE = re.compile(r"archeolog|prehistoire|protohistoire", re.I)
+
+
 def scope(rec, survey_row):
-    """(include, reason)."""
+    """(include, reason). Rulings applied: ancient history is History unless archaeology (user 2026-11-17), with
+    philology/text edition held (coordinator's reading) and history of religions/theology held (not ruled), all by
+    ancient_ruling.verdict(); economics doctorates count only when their title reads as economic history (user
+    2026-11-17: 'we're looking for economic history and not economics')."""
     screen = survey_row.get('screen') or rec.get('screen')
     disc = fold(rec.get('discipline'))
     title = fold((rec.get('titres') or {}).get('fr') or next(iter((rec.get('titres') or {}).values()), ''))
     ldisc = disc.lower()
-    if screen == 'ancient':
-        return False, f'ancient history group of the corrected screen (discipline: {rec.get("discipline")}): user has not ruled'
     if screen == 'economic-subject':
-        return False, (f'economics doctorate ({rec.get("discipline")}) with history only in its subjects: '
-                       'economic history by department? user has not ruled')
+        if ECON_HISTORY_TITLE.search(title):
+            return True, f'economics doctorate ({rec.get("discipline")}) whose title reads as economic history (ruling 2026-11-17)'
+        return False, f'economics doctorate ({rec.get("discipline")}), title not economic history: economics is out (ruling 2026-11-17)'
     if 'anthropologie religieuse' in ldisc:
         return False, f'religious-studies doctorate ({rec.get("discipline")}): with church history/theology, user has not ruled'
     if 'ecolog' in ldisc:
         return False, f'ecology discipline ({rec.get("discipline")}): adjacent, not History'
-    if ANCIENT_DISCIPLINE.search(ldisc) and 'medievaux' not in ldisc:  # mixed ancient+medieval labels: the title screen decides
-        return False, f'ancient history discipline ({rec.get("discipline")}): user has not ruled'
     if re.search(r"option ?: ?architecture", ldisc):
         return False, f'architecture option ({rec.get("discipline")}): art/architecture history is out'
-    if ANCIENT_TITLE.search(title) and not LATE_ANTIQUE_OK.search(title):
-        return False, f'ancient topic by title (discipline: {rec.get("discipline")}): user has not ruled'
+    ancient = (screen == 'ancient' or (ANCIENT_DISCIPLINE.search(ldisc) and 'medievaux' not in ldisc)
+               or (ANCIENT_TITLE.search(title) and not LATE_ANTIQUE_OK.search(title)))
+    if ancient:
+        if ARCHAEOLOGY_DISCIPLINE.search(ldisc) and 'histoire' not in ldisc:
+            return False, f'{HELD_REASON["archaeology"]} (discipline: {rec.get("discipline")})'
+        v = verdict(title)
+        if v != 'history':
+            return False, f'{HELD_REASON[v]} (discipline: {rec.get("discipline")})'
+        return True, f'ancient history, released by the ruling of 2026-11-17 (screen {screen}; discipline: {rec.get("discipline")})'
     if ART_DISCIPLINE.search(ldisc) or ("de l'art" in ldisc):
         if ART_TITLE.search(title):
             return False, f'art/film/music/literature topic in a mixed discipline ({rec.get("discipline")}): out'

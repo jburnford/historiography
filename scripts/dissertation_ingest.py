@@ -748,12 +748,42 @@ DNB_ANCIENT = re.compile(r'\b(roman|rome|ancient|antiquity|antique|athenian|papy
 DNB_BCE = re.compile(r'v\. ?Chr\.|\bBCE\b|\bB\.C\.', re.I)
 
 
+def dnb_ancient(r, groups, basis):
+    """Ancient-history ruling (user, 2026-11-17: "ancient history is history unless it is archeology"; Assyriology,
+    Egyptology and classics count when historical, philology/text edition and history of religions stay held: the
+    coordinator's reading). DNB group 930 joins ancient history and archaeology, so the other subject groups and the
+    title decide: a science or technology group (5xx/6xx: archaeometry, bioarchaeology, geoarchaeology) is
+    archaeology; an arts group (7xx: classical art and architecture) is archaeology/art unless the row also carries
+    a history group other than 930 or the title names a historical subject; a religion group (2xx) is history of
+    religions unless the title names the state, law, war or society; a language or literature group (4xx/8xx) is
+    philology on the same terms. Then ancient_ruling.verdict(title)."""
+    sys.path.insert(0, str(HERE))
+    from ancient_ruling import HELD_REASON, HISTORY_WORDS, RELIGION_BUT_HISTORY, fold as afold, verdict
+    title = r.get('title') or ''
+    t = afold(title)
+    v = verdict(title)
+    hist_groups = {g for g in groups if g.startswith('9') and g not in ('930', '910')}
+    if v == 'history':
+        if any(g[:1] in '56' for g in groups if g):
+            v = 'archaeology'
+        elif any(g[:1] == '7' for g in groups if g) and not hist_groups and not HISTORY_WORDS.search(t):
+            v = 'archaeology'
+        elif any(g[:1] == '2' for g in groups if g) and not RELIGION_BUT_HISTORY.search(t):
+            v = 'religion'
+        elif any(g[:1] in '48' for g in groups if g) and not hist_groups and not HISTORY_WORDS.search(t):
+            v = 'philology'
+    if v != 'history':
+        return False, f'{HELD_REASON[v]} ({basis}; DNB groups {r.get("subject_groups") or "none"})'
+    return True, f'ancient history, released by the ruling of 2026-11-17 ({basis}; DNB groups {r.get("subject_groups") or "none"})'
+
+
 def dnb_screen(r, overrides):
     """(include, reason) for one theses.csv.gz row of the DNB harvest. History: DNB subject group rule
-    'high'/'medium' (not title-screened), or a 'low' row title-screened 'history'. Held out until the user
-    rules: ancient history/archaeology (any row carrying DNB group 930, or a 'history' screen reason or
-    title naming Rome, antiquity, the ancient Near East, Qin/Han, BCE dates), Egyptology/Assyriology
-    (screened 'adjacent'), church history (screened 'church-history'). Reviewed overrides
+    'high'/'medium' (not title-screened), or a 'low' row title-screened 'history'. Ancient history (any row
+    carrying DNB group 930, or a 'history' screen reason or title naming Rome, antiquity, the ancient Near East,
+    Qin/Han, BCE dates) counts unless it is archaeology, philology or history of religions (``dnb_ancient``,
+    ruling 2026-11-17). Held out until the user rules: church history (screened 'church-history');
+    'adjacent' rows (archaeology, art, philology by the title reader) stay out. Reviewed overrides
     (``screen_overrides``) apply the user's rulings to screened rows."""
     groups = set((r.get('subject_groups') or '').split('|'))
     o = overrides.get(r['dnb_id'])
@@ -765,13 +795,13 @@ def dnb_screen(r, overrides):
         return o['decision'] == 'include', 'reviewed: ' + o['note']
     if r['confidence'] in ('high', 'medium'):
         if '930' in groups:
-            return False, 'ancient world/archaeology (DNB group 930): user has not ruled'
+            return dnb_ancient(r, groups, 'DNB group 930')
         return True, f"DNB subject groups {r.get('subject_groups')} ({r['confidence']}: {r['confidence_reason']})"
     if r.get('screen') == 'history':
         # The title reader's phrase decides here, not group 930: 'low' rows carry 930 alone for
         # non-ancient topics too (1793 Venezuela, Chola India, the Northern Crusades, Byzantium).
         if DNB_ANCIENT.search(r.get('screen_reason') or '') or DNB_BCE.search(r.get('title') or ''):
-            return False, 'ancient history (title screen: ' + (r.get('screen_reason') or '') + '): user has not ruled'
+            return dnb_ancient(r, groups, 'title screen: ' + (r.get('screen_reason') or ''))
         return True, f"title screen: history ({r.get('screen_reason')}); DNB subject groups {r.get('subject_groups') or 'none visible'}"
     if r.get('screen') == 'church-history':
         return False, 'church history (title screen): user has not ruled'

@@ -589,6 +589,45 @@ Early Germans* and E. M. Thompson's *The Carthusian Order in England*.
   - The region comparison pages and the canon maps (`historian-network.html`, `historian-cocitation-pairs.csv`) were not
     regenerated; the Plato copies are older than the local ones and were not brought back.
 
+### Ancient history and economic history released (2026-11-17, second round)
+
+- **User ruling, 2026-11-17:** "ancient history is history unless it is archeology; the corpus is big enough that I'm not
+  worried about a few random economics dissertations sneaking through; we're looking for economic history and not
+  economics".
+- **Reading applied** (the coordinator's, recorded as such): Assyriology, Egyptology and classics count when the thesis is
+  historical, and stay held when it is philology or text edition, or archaeology. Church history, theology and the history
+  of religions were not ruled on and stay held, as do art history, film, literature and fashion, and other-subject theses
+  that merely carry a History code.
+- **The rule in code:** `scripts/ancient_ruling.py`, `verdict(title)` → archaeology (excavation, material culture,
+  ancient art and architecture, archaeometry, prehistory), religion (unless the title names the state, law, war, society
+  or administration), philology (edition, translation, commentary, text history, grammar always; literary study unless
+  the title names a historical subject), else history. Title rules are multilingual (EN, DE, FR, SV). Used by:
+  - `dissertation_ingest.dnb_ancient` (Germany: DNB group 930 and the ancient title screen; other subject groups weigh
+    in: 5xx/6xx = archaeology, 7xx = art/archaeology unless a history group or historical words, 2xx = religion, 4xx/8xx
+    = philology on the same terms);
+  - `register_france_resurvey.scope` (France; economics doctorates with a history subject heading count when the title
+    reads as economic history);
+  - `register_sweden_theses.scope` (Sweden; replaces the hand release of *Kultiveringens politik*);
+  - `scripts/uk_ancient_ruling_overrides.py` (Edinburgh 'classical_school_title' entries, which are already in the
+    manifest: record-level rows in `eligibility-overrides.csv`, reviewer "rule ancient_ruling.verdict").
+  - Canada needs no change: its 12 adjacent overrides are Classics philology (McGill, Oxford commentary) and classical
+    archaeology/art (Alberta), both still held under the ruling.
+- **Released and still held, theses with a PDF on disk:**
+
+  | Source | Released | Still held: archaeology | philology | religion | economics |
+  |---|---|---|---|---|---|
+  | Germany (DNB) | 77 new (+2 title duplicates) | 112 | 12 | 17 | – |
+  | France (re-survey) | 98 ancient + 13 economic history | 26 | 13 | 16 (+17 EPHE) | 9 |
+  | Sweden | *Femina princeps* (already held via BASE; title duplicate) | 1 (+2 by SSIF 60103) | 0 | 3 church history | – |
+  | UK (Edinburgh) | 7 overrides | 9 | 12 | 6 | – |
+
+  Earlier France ingests held no ancient history (the 2026-10-30 screen kept "Histoire ancienne").
+- **No PDF on disk (not fetched):** Germany 385 released rows; France 870 released (ancient 39 with an open, user-run or
+  browser route, 25 retry, 143 restricted, 663 unchecked; economics 3 with a route, 37 unchecked); Sweden 21 (SSIF 60105
+  rows read as history: 8 with an open link, 12 with none; 1 more by title).
+- **Merge and extraction** (`ingest-20261117-233505.json`): manifest 21,324 → 21,512 (France 111, Germany 77);
+  bibliographies for 151 of 188 (France 86, 45k entries; Germany 65, 28k entries).
+
 ## Corpus and eligibility
 
 Canadian doctoral records come from four harvests:
