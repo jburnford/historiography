@@ -154,6 +154,16 @@ JSTOR_CITES = ROOT / 'data/graph/jstor-cites.csv.gz'   # scripts/export_jstor_ci
 CROSSREF_CITES = ROOT / 'data/graph/crossref-cites.csv.gz'   # scripts/crossref_citations.py (Crossref reference lists)
 CROSSREF_PARTS = ROOT / 'data/graph/crossref-cites'           # the same in parts (2026-11-10), and articles/: its
 CROSSREF_ARTICLES = CROSSREF_PARTS / 'articles'                # unkeyed citing articles (doi, title, year, journal)
+# Crossref public data file, March 2026 (scripts/crossref_cites_2026.py, 2026-11-17): reference lists of the screened
+# history journals + economic-history journals (listings and front matter excluded: edges-excluded/, not loaded). edges/part-NN.csv.gz (citing_work, cited_work, citations, basis 'doi',
+# source, asserted_by, ...), citing-works.csv.gz (in_graph 'new' rows become unkeyed Work nodes, kind from `kind`),
+# cited-works.csv.gz (cited DOIs no graph node held; with Crossref metadata they become unkeyed dead-end Work nodes)
+CROSSREF_2026 = ROOT / 'data/graph/crossref-cites-2026-11-17'
+CR26_KIND = {'article': 'article', 'review': 'review', 'short': 'other', 'editorial': 'other', 'front-matter': 'other',
+             'other': 'other'}
+CR26_TYPE = {'journal-article': 'article', 'book': 'book', 'monograph': 'book', 'edited-book': 'book',
+             'reference-book': 'book', 'book-chapter': 'chapter', 'dissertation': 'thesis', 'proceedings-article': 'article',
+             'posted-content': 'preprint', 'dataset': 'dataset'}
 AFFILIATIONS = ROOT / 'data/graph/affiliations.csv.gz'  # scripts/export_affiliations.py (dated person -> institution)
 CITED = ROOT / 'data/graph/cited-works'   # scripts/export_cited_works.py (2026-11-10): works.csv.gz, cites*.csv.gz,
                                           # authors.csv.gz, report.json (the corpus's citation count)
@@ -407,14 +417,19 @@ def crossref_cites(cites, parts, state, types, unkeyed, report, schema, cited_as
     db.execute(f"SET memory_limit = '4GB'; SET temp_directory = '{OUT}/duckdb-tmp'; SET preserve_insertion_order = false")
     files = [str(p) for p in parts]
     cited_as = cited_as or {}
+    # union_by_name: the 2026-11-17 parts carry provenance columns (source, asserted_by, DOIs) after the four read here
     db.execute(f"""CREATE TABLE xr AS SELECT citing_work, cited_work, basis = 'edition' AS ed, 4::TINYINT AS src FROM read_csv({files}, header = true,
-                   columns = {{'citing_work': 'VARCHAR', 'cited_work': 'VARCHAR', 'citations': 'INTEGER', 'basis': 'VARCHAR'}})""")
+                   union_by_name = true, all_varchar = true)""")
     names, keys = [], []
     for (n,) in db.execute('SELECT DISTINCT citing_work FROM xr UNION SELECT DISTINCT cited_work FROM xr').fetchall():
         k = state.lookup(n) or ([n] if n in unkeyed else [])
         if len(k) == 1 and types.get(k[0]) == 'work':
             names.append(n); keys.append(k[0])
-    db.register('name_map', pa.table({'name': names, 'key': keys}))
+    # materialised as DuckDB tables, not joined as registered Arrow scans: joining the Arrow view directly spilled
+    # 47 GB+ of temp files without finishing on the 2026-11-17 layer (Plato check, 2026-11-18)
+    db.register('name_map_arrow', pa.table({'name': names, 'key': keys}))
+    db.execute('CREATE TABLE name_map AS SELECT * FROM name_map_arrow')
+    db.unregister('name_map_arrow')
     del names, keys
     db.execute("""CREATE TABLE xr2 AS SELECT m1.key AS a, m2.key AS b, ed, src, NULL::VARCHAR AS ca FROM xr
                   JOIN name_map m1 ON m1.name = xr.citing_work JOIN name_map m2 ON m2.name = xr.cited_work WHERE m1.key <> m2.key""")
@@ -422,11 +437,13 @@ def crossref_cites(cites, parts, state, types, unkeyed, report, schema, cited_as
     report['crossref_cites_unresolved'] = n_xr - n_xr2
     report['crossref_cites_edition'] = db.execute('SELECT count(*) FROM xr2 WHERE ed').fetchone()[0]
     db.execute('DROP TABLE xr')
-    db.register('base', pa.table({'a': [a for a, _ in cites], 'b': [b for _, b in cites],
-                                  'ed': [bool(v & 1) for v in cites.values()],
-                                  'src': pa.array([v >> 1 for v in cites.values()], pa.int8()),
-                                  'ca': pa.array([';'.join(sorted(cited_as[k])) if k in cited_as else None for k in cites],
-                                                 pa.string())}))
+    db.register('base_arrow', pa.table({'a': [a for a, _ in cites], 'b': [b for _, b in cites],
+                                        'ed': [bool(v & 1) for v in cites.values()],
+                                        'src': pa.array([v >> 1 for v in cites.values()], pa.int8()),
+                                        'ca': pa.array([';'.join(sorted(cited_as[k])) if k in cited_as else None for k in cites],
+                                                       pa.string())}))
+    db.execute('CREATE TABLE base AS SELECT * FROM base_arrow')
+    db.unregister('base_arrow')
     report['cites_from_crossref'] = db.execute("""SELECT count(*) FROM (SELECT DISTINCT a, b FROM xr2) x
                                                   ANTI JOIN base USING (a, b)""").fetchone()[0]
     names = ' '.join(f"CASE WHEN m & {b} > 0 THEN '{n}' END," for n, b in SRC).rstrip(',')
@@ -1402,6 +1419,10 @@ def main():
     shards = sorted(args.state.glob('events-*.jsonl*'))
     article_parts = sorted(CROSSREF_ARTICLES.glob('part-*.csv.gz'))
     crossref_parts = ([CROSSREF_CITES] if CROSSREF_CITES.exists() else []) + sorted(CROSSREF_PARTS.glob('part-*.csv.gz'))
+    cr26_files = [CROSSREF_2026 / n for n in ('citing-works.csv.gz', 'cited-works.csv.gz')]
+    cr26_files = cr26_files if all(p.exists() for p in cr26_files) else []
+    if cr26_files:
+        crossref_parts += sorted((CROSSREF_2026 / 'edges').glob('part-*.csv.gz'))
     cited_files = cited_parts('works') + cited_parts('cites') + cited_parts('authors')
     cited_files += [CITED / 'report.json'] if cited_files else []
     edition_files = [CITED / 'editions.csv.gz'] if (CITED / 'editions.csv.gz').exists() else []
@@ -1423,6 +1444,7 @@ def main():
     if os.environ.get('BUILD_PASS5_OFF'):          # a baseline build without the pass-five layers (check builds only)
         prize_files, p5_files = [], []
     require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS) if p.exists()] + crossref_parts + article_parts
+                    + cr26_files
                     + ([] if args.untracked_ok else cited_files + edition_files + jc_files + wp_files + aw_files + fact_files
                        + pass4_files + no_files + prize_files + p5_files + ([SCORED_LINKS] if SCORED_LINKS.exists() else []) + ([CLASSIFIED_LINKS] if CLASSIFIED_LINKS.exists() else [])))
     state = ReplayView(args.state) if args.replay else CacheView(args.state)
@@ -1464,6 +1486,29 @@ def main():
                                   lccn=None, year=int(r['year']) if r['year'] else None, reviewer_names=[],
                                   journal=r['journal'] or None))
     report['Work_unkeyed_articles'] = len(unkeyed)
+    # Crossref 2026-03 layer: citing articles of the history journals the graph lacks, then the cited works no node held
+    # (dead ends: their own references are not read). A DOI the key log has keyed since the export stands as its key.
+    for path, how in ((CROSSREF_2026 / 'citing-works.csv.gz', 'citing'), (CROSSREF_2026 / 'cited-works.csv.gz', 'cited')):
+        if not cr26_files:
+            break
+        for r in read_rows(path):
+            if how == 'citing' and (r['in_graph'] != 'new' or r['kind'] in ('bibliography', 'front-matter')):
+                continue                # listings and front matter: their rows are in edges-excluded/, not loaded
+            if how == 'cited' and not r['type']:
+                report['crossref26_cited_not_in_crossref'] += 1      # no metadata: no node, its edges stay unresolved
+                continue
+            k = f"doi:{r['doi']}"
+            if state.lookup(k) or k in unkeyed:
+                report[f'crossref26_{how}_held_since'] += 1
+                continue
+            unkeyed.add(k)
+            types[k] = 'work'
+            kind = CR26_KIND.get(r['kind'], 'other') if how == 'citing' else CR26_TYPE.get(r['type'], 'other')
+            y = r.get('year') or ''
+            works.append(dict(key=k, label=r['title'] or None, resolution='unkeyed', anchors=[k], kind=kind,
+                              lccn=None, year=int(y) if y.isdigit() else None, reviewer_names=[],
+                              journal=(r['journal'] if how == 'citing' else r['container']) or None))
+            report[f'crossref26_{how}_nodes'] += 1
     # cited works matched 2026-11-10 (data/graph/cited-works): unkeyed Work nodes unless the log holds an identifier
     cited_index = {}
     cited_key = cited_work_nodes(state, types, works, unkeyed, report, cited_index) if cited_files else {}

@@ -3,8 +3,8 @@
 Source: the Crossref public data file, March 2026 (on spark: `/mnt/data/jic823/crossref-2026-parquet`), read through
 the history slice (`data/field-research/crossref-history-slice-2026-11-17/README.md`). Every edge carries
 `source = crossref-2026-03` and `asserted_by` (`publisher`: the DOI was deposited with the reference; `crossref`:
-Crossref matched the reference text to the DOI). **Not loaded yet**: `build-graph.patch` loads the layer into
-`scripts/build_graph.py`. It has not been applied or run in a build.
+Crossref matched the reference text to the DOI). **Loaded since 2026-11-18**: `build-graph.patch` is applied to
+`scripts/build_graph.py` (with a fix, see "Build on Plato" below); the patch file is kept as the record of the change.
 
 ## Numbers first
 
@@ -123,7 +123,7 @@ without a DOI is not done here either: another agent does title matching (`data/
 | `journals-resolved.csv`, `issn-containers.csv`, `journals-input.json` | | journal resolution (status, ISSNs used, containers, notes) and its input |
 | `report.json` | | all counts above |
 | `sample-edges-checked.csv`, `sample-kinds-checked.csv` | 30, 40 | hand check |
-| `build-graph.patch` | | loads the layer: edge parts into the Crossref CITES reader (union_by_name, so the provenance columns pass), new citing works (not listings/front matter) and cited works with Crossref metadata as unkeyed Work nodes. Untested in a build |
+| `build-graph.patch` | | loads the layer: edge parts into the Crossref CITES reader (union_by_name, so the provenance columns pass), new citing works (not listings/front matter) and cited works with Crossref metadata as unkeyed Work nodes. Applied 2026-11-18 |
 
 Kept on spark only (`/mnt/data/jic823/tools/crossref-extract/cites/out/`): `nodoi-refs.parquet` (157 MB; 3,905,026
 references without a DOI: citing_doi, idx, unstructured, author, year, article_title, journal_title, volume_title,
@@ -131,3 +131,36 @@ series_title, volume, issue, first_page, isbn, issn, edition).
 
 Graph status is read from `build/graph/explorer.duckdb` (build of 2026-11-16; read-only exports of anchors, work nodes
 and CITES). A DOI keyed since then resolves to its key at build time.
+
+## Build on Plato (2026-11-18)
+
+The first local build with the patch (2026-11-17) took the machine down. Cause: `crossref_cites()` joined the name map as
+a registered Arrow view (`db.register` then `JOIN name_map`); with this layer DuckDB 1.5.3 spilled temp files without
+end (29 GB left in `build/graph/duckdb-tmp` locally; 47 GB in 15 minutes on Plato, unfinished). The fix materialises
+the name map and the base edges as DuckDB tables first (`CREATE TABLE ... AS SELECT * FROM <arrow view>`); the step
+then takes about a second. Both builds below ran on Plato (`scripts/plato/kg-build.slurm`, 8 CPUs, from a clean copy
+of commit 1376b08b: tracked scripts, data/graph, key-log shards, the three data/identifiers tables the build reads,
+and build/keylog-state.sqlite).
+
+| | baseline (no layer) | with the layer |
+| --- | --- | --- |
+| build_graph.py peak RSS / wall | 11.5 GB / 8 min 11 s | 12.4 GB / 8 min 39 s |
+| graph_explorer.py build peak RSS / wall | 2.9 GB / 22 s | 3.2 GB / 23 s |
+| Work nodes | 3,284,004 (957,042 unkeyed) | 3,705,839 (1,378,877 unkeyed) |
+| CITES | 2,615,262 | 3,597,308 |
+| CITES with source crossref | 0 | 1,007,491 (981,940 crossref only; 25,551 also from JSTOR or theses) |
+| explorer.duckdb | 756 MB | 881 MB |
+
+- New Work nodes: 421,835, all unkeyed `doi:` nodes: 61,436 citing works and 360,399 cited works (17,040 cited DOIs were
+  already a node: mostly citing works of the layer itself; 3,646 have no Crossref record and get no node). By kind:
+  article 291,969, book 75,060, chapter 39,144, review 8,202, other 6,968, dataset 270, preprint 129, thesis 93
+  (Crossref `dissertation` records, not corpus theses).
+- Edges: 1,007,491 of the 1,012,573 loaded; 4,942 unresolved (cited DOIs with no node) and a few on merged keys.
+  No edge is edition-only. Listings and front matter give no CITES (0 crossref edges out of the excluded records).
+- Nothing lost: every Person, Work and Institution key of the baseline is in the new build. Other tables unchanged except
+  AUTHORED +10, author_candidates +31 and SAME_WORK +9: rows of the existing scored/classified/Qwen link tables on
+  chapter DOIs that only now have a node (9 are title-year-person twins of keyed works); JSTOR-matched CITES +102.
+- No DOI is an anchor of more than one Work node, before or after; no new DOI was an anchor of a baseline node.
+- Spot check (10 citing, 10 cited) right on title, year and journal except Crossref's own metadata: one 2018 citing
+  review dated 1970, and a cited 'Editorial board' record.
+- Memory: both builds fit a 21 GB machine with nothing else large running (peaks 11.5 and 12.4 GB).
