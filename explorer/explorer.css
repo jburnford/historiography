@@ -83,3 +83,23 @@ button.moreb { font: inherit; font-size: 12px; margin: 4px 0 0 22px; padding: 2p
 .empty { color: var(--muted); padding: 40px; text-align: center; }
 /* credits under an edition role (edition editor, translator, introducer, series editor): not the person's own work */
 details[data-rel="editions_prepared"] summary, details[data-rel="edition_people"] summary { font-style: italic; color: var(--text-2); }
+/* places (2026-11-18) */
+:root { --place: #b0417a; }
+@media (prefers-color-scheme: dark) { :root { --place: #d36a9f; } }
+.place { margin-top: 8px; display: flex; flex-direction: column; gap: 6px; }
+.place a { color: var(--accent); }
+.pctl { display: flex; flex-wrap: wrap; gap: 10px; font-size: 12px; color: var(--text-2); align-items: center; }
+.pctl select { font: inherit; font-size: 12px; padding: 1px 4px; background: var(--surface); color: var(--text); border: 1px solid var(--line); border-radius: 4px; }
+.badge { display: inline-block; font-size: 10px; line-height: 1.5; padding: 0 5px; margin-right: 5px; border-radius: 8px;
+  border: 1px solid var(--line); color: var(--text-2); background: var(--surface-2); vertical-align: 1px; white-space: nowrap; }
+.badge.src-lc { border-color: var(--book); color: var(--book); }
+.badge.src-title { border-color: var(--article); color: var(--article); }
+.badge.src-review { border-color: var(--review); color: var(--review); }
+details.pworks { margin-top: 2px; font-size: 12px; color: var(--text-2); }
+details.pworks summary { cursor: pointer; }
+details.pworks ul { list-style: none; margin: 2px 0 4px; padding-left: 10px; }
+details.pworks li { cursor: pointer; padding: 1px 0; }
+details.pworks li:hover { color: var(--text); text-decoration: underline; }
+table.frames { border-collapse: collapse; font-size: 12px; margin: 4px 0; }
+table.frames th, table.frames td { text-align: left; padding: 2px 10px 2px 0; border-bottom: 1px solid var(--line); }
+.pctl input[type=search] { font: inherit; font-size: 12px; padding: 1px 4px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); color: var(--text); }

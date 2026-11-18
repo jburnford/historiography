@@ -112,6 +112,10 @@ is untracked) and writes to build/graph/ (git-ignored):
   counted; chapters.csv.gz gives the chapters the graph lacked that a keyed person wrote (unkeyed chapter nodes, PART_OF
   evidence linked, source name-only-volume, volume_basis chapter-doi / isbn). Report:
   `name_only_works_with_a_keyed_name_candidate_and_no_link` and the name_only|* counts.
+- 2026-11-18 (place layer, scripts/graph_places.py): `Place` nodes (key place:<QID>), `ABOUT_PLACE` (Work -> Place:
+  LC subject headings on books, hand-checked and rule-read titles, and reviews inheriting the reviewed book's places)
+  and `PLACE_IN` (Place -> Place: containment, wider regions, overlaps, period polities) from data/graph/places/
+  (scripts/places_build.py). Places attach to works only; a person's places are derived from their works.
 The key-log state comes from the SQLite cache (build/keylog-state.sqlite, scripts/keylog_snapshot.py; 2026-11-10),
 caught up to the log's last event first and then read in bulk, so the build no longer replays the whole log (10 GB);
 --replay replays it instead (the old path, for checking one against the other).
@@ -201,6 +205,8 @@ PRINTED_BOOKS = ROOT / 'data/graph/printed-author-books/credits.csv.gz'   # scri
 PRIZES = ROOT / 'data/graph/prizes'          # scripts/prizes_harvest.py, prizes_link.py (+ found.csv.gz, recent books):
                                              # Prize nodes, AWARDED, prize work nodes (scripts/graph_prizes.py)
 PRIZE_FILES = [PRIZES / f'{n}.csv.gz' for n in ('prizes', 'winners', 'works', 'lc', 'found')]
+PLACE_FILES = [ROOT / 'data/graph/places' / n for n in ('work-places.csv.gz', 'places.csv.gz', 'place-hierarchy.csv.gz')]
+                                                # place layer (scripts/places_build.py, loaded by graph_places.py; 2026-11-18)
 LC_CREDITS = ROOT / 'data/graph/lc-credits.csv.gz'   # scripts/lc_catalogue_credits.py: LC main / added entries on a key
                                                      # for works with an LCCN and no credit
 REVIEW_BOOKS = ROOT / 'data/graph/review-books.csv.gz'
@@ -287,6 +293,21 @@ def work_kind(anchors, members=()):
 # possibly-same and not-same marks). The cache view loads only these.
 MEMBER_PREFIXES = ('year:', 'lc-first-year:', 'kind:', 'reviewer-name:', 'journal:', 'awarded-by:',
                    'possible-same:', 'very-likely-same:', 'not-same:', 'variant-title:')
+def lccn_forms(name):
+    """The forms of one LCCN key (2026-11-18): LC prints a prefix of up to three letters padded to three characters
+    ('lccn:sa 67004090', 'lccn:a  54009746'); other sources write the normalised number without spaces
+    ('lccn:sa67004090'). Both name the same record, so a lookup or an unkeyed node under one form finds the other
+    (the duplicate class found on the place-nodes probe: Abeyasinghe's Portuguese rule in Ceylon on two nodes)."""
+    if not name or not name.startswith('lccn:'):
+        return [name]
+    n = name[5:].replace(' ', '')
+    forms = [name, 'lccn:' + n]
+    m = re.fullmatch(r'([a-z]{1,3})(\d{8})', n)
+    if m:
+        forms.append('lccn:' + m.group(1).ljust(3) + m.group(2))
+    return list(dict.fromkeys(forms))
+
+
 NODE_TYPES = ('person', 'work', 'institution')
 
 
@@ -310,7 +331,11 @@ class ReplayView:
             yield claim, subj, pred, obj, self.state.keys[claim]['resolution']
 
     def lookup(self, name):
-        return self.state.lookup(name)
+        for f in lccn_forms(name):
+            out = self.state.lookup(f)
+            if out:
+                return out
+        return []
 
     def claim_anchors(self, claims):
         return {c: sorted(self.state.keys[c]['anchors']) for c in claims if c in self.state.keys}
@@ -389,7 +414,7 @@ class CacheView:
         hit = self._memo.get(name)
         if hit is not None:
             return hit
-        key = self._key(name)
+        key = next((k for k in map(self._key, lccn_forms(name)) if k), None)
         if not key:
             out = []
         else:
@@ -502,9 +527,11 @@ def cited_work_nodes(state, types, works, unkeyed, report, index=None):
                 report['cited_works_keyed'] += 1
                 continue
             node = next((x for x in ids if x in unkeyed), None)     # already a node (a Crossref citing article)
+            if not node:            # an LCCN node under its other form (2026-11-18)
+                node = next((index[f] for x in ids for f in lccn_forms(x)[1:] if f in index), None)
             if node:
                 out[wid] = node
-                report['cited_works_on_crossref_nodes'] += 1
+                report['cited_works_on_crossref_nodes' if not node.startswith('lccn:') else 'cited_works_on_lccn_form_nodes'] += 1
                 continue
             unkeyed.add(wid)
             types[wid] = 'work'
@@ -514,7 +541,8 @@ def cited_work_nodes(state, types, works, unkeyed, report, index=None):
                               journal=r['container'] or None))
             out[wid] = wid
             for x in ids:
-                index.setdefault(x, wid)
+                for f in lccn_forms(x):
+                    index.setdefault(f, wid)
             report['Work_unkeyed_cited_works'] += 1
     return out
 
@@ -537,7 +565,8 @@ def jstor_cited_nodes(state, types, works, unkeyed, index, report):
             out[wid] = hits.pop()
             report['jstor_cited_works_keyed'] += 1
             continue
-        node = next((index[x] for x in ids if x in index), None) or next((x for x in ids if x in unkeyed), None)
+        node = (next((index[f] for x in ids for f in lccn_forms(x) if f in index), None)
+                or next((f for x in ids for f in lccn_forms(x) if f in unkeyed), None))
         if node:
             out[wid] = node
             report['jstor_cited_works_on_cited_works_nodes'] += 1
@@ -701,7 +730,11 @@ def work_resolver(state, types, unkeyed, index):
         ks = [k for k in state.lookup(name) if types.get(k) == 'work']
         if ks:
             return ks[0] if len(ks) == 1 else None
-        return index.get(name) or (name if name in unkeyed else None)
+        for f in lccn_forms(name):      # an LCCN under its other form (spaced or normalised; 2026-11-18)
+            hit = index.get(f) or (f if f in unkeyed else None)
+            if hit:
+                return hit
+        return None
     return resolve
 
 
@@ -1446,7 +1479,7 @@ def main():
     require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS) if p.exists()] + crossref_parts + article_parts
                     + cr26_files
                     + ([] if args.untracked_ok else cited_files + edition_files + jc_files + wp_files + aw_files + fact_files
-                       + pass4_files + no_files + prize_files + p5_files + ([SCORED_LINKS] if SCORED_LINKS.exists() else []) + ([CLASSIFIED_LINKS] if CLASSIFIED_LINKS.exists() else [])))
+                       + pass4_files + no_files + prize_files + p5_files + [p for p in PLACE_FILES if p.exists()] + ([SCORED_LINKS] if SCORED_LINKS.exists() else []) + ([CLASSIFIED_LINKS] if CLASSIFIED_LINKS.exists() else [])))
     state = ReplayView(args.state) if args.replay else CacheView(args.state)
     OUT.mkdir(parents=True, exist_ok=True)
     report = Counter()
@@ -2602,6 +2635,9 @@ def main():
         report['linkage'] = lk
     del cites, cited_as, works, rels, linked, possible_authors
     class_measures(OUT, report)     # classes 15 and 17 from the tables just written (2026-11-12)
+    # place layer (2026-11-18, scripts/graph_places.py): Place nodes, ABOUT_PLACE, PLACE_IN from data/graph/places
+    from graph_places import place_layer
+    place_layer(OUT, report)
     if args.db:
         load_db(report)
     (OUT / 'report.json').write_text(json.dumps(dict(sorted(report.items())), indent=1) + '\n')
@@ -2660,6 +2696,15 @@ def load_db(report):
         conn.execute(f"COPY {table} FROM '{OUT / (file + '.parquet')}'")
     if (OUT / 'edition_of.parquet').exists():
         conn.execute(f"COPY EDITION_OF FROM '{OUT / 'edition_of.parquet'}'")
+    if (OUT / 'place.parquet').exists():          # place layer (2026-11-18, scripts/graph_places.py)
+        conn.execute('CREATE NODE TABLE Place(key STRING, qid STRING, label STRING, kind STRING, country STRING, lc_id STRING, '
+                     'lc_heading STRING, variants STRING[], period_of STRING, sitelinks INT32, inception INT32, dissolved INT32, '
+                     'works INT64, works_lc INT64, works_title INT64, PRIMARY KEY (key))')
+        conn.execute('CREATE REL TABLE ABOUT_PLACE(FROM Work TO Place, source STRING, heading STRING, lc_id STRING, '
+                     'confidence STRING, via STRING)')
+        conn.execute('CREATE REL TABLE PLACE_IN(FROM Place TO Place, basis STRING)')
+        for table, file in (('Place', 'place'), ('ABOUT_PLACE', 'about_place'), ('PLACE_IN', 'place_in')):
+            conn.execute(f"COPY {table} FROM '{OUT / (file + '.parquet')}'")
     report['db'] = str(path.relative_to(ROOT))
 
 

@@ -19,7 +19,9 @@ import duckdb
 
 ROOT = Path(__file__).resolve().parents[1]
 PROBES = ['p-24137', 'w-1025226', 'doi:10.1515/9781552387443-004', 'w-916866', 'p-1025', 'p-15018',
-          'w-689154', 'w-1477380']
+          'w-689154', 'w-1477380',
+          # place pages (2026-11-18): Sri Lanka, Saskatchewan, Prince Albert, Canada, a period polity; a tagged book
+          'place:Q854', 'place:Q1989', 'place:Q671431', 'place:Q16', 'place:Q918153', 'p-10088']
 
 
 def sample(G, n, seed):
@@ -33,6 +35,9 @@ def sample(G, n, seed):
          (f"SELECT \"from\" FROM '{G}/same_work.parquet'", n // 16)]
     if (G / 'prize.parquet').exists():
         q.append((f"SELECT key FROM '{G}/prize.parquet'", n // 16))
+    if (G / 'place.parquet').exists():   # place pages, and works with a place
+        q.append((f"SELECT key FROM '{G}/place.parquet'", n // 16))
+        q.append((f"SELECT DISTINCT \"from\" FROM '{G}/about_place.parquet'", n // 16))
     for sql, k in q:
         keys += [r[0] for r in db.execute(f'SELECT * FROM ({sql}) USING SAMPLE {max(k, 1)} ROWS').fetchall()]
     return keys
@@ -57,17 +62,23 @@ def get(base, path, params):
 
 
 def sweep(base, key):
-    errors, calls = [], 1
-    node, err = get(base, '/api/node', dict(key=key))
-    if err:
-        return [err], calls
-    shown = node['node']['key']
-    for g in node.get('groups', []):
-        for sort in ('weight', 'year'):
-            calls += 1
-            _, err = get(base, '/api/group', dict(key=shown, rel=g['id'], offset=0, limit=50, sort=sort))
-            if err:
-                errors.append(err)
+    errors, calls = [], 0
+    # a place page also with the places within it and with each filter (2026-11-18)
+    variants = [{}] + ([dict(children='1'), dict(children='1', kind='book', decade='1990', source='lc', fiction='0')]
+                       if key.startswith('place:') else [])
+    for opts in variants:
+        calls += 1
+        node, err = get(base, '/api/node', dict(key=key, **opts))
+        if err:
+            errors.append(err)
+            continue
+        shown = node['node']['key']
+        for g in node.get('groups', []):
+            for sort in ('weight', 'year'):
+                calls += 1
+                _, err = get(base, '/api/group', dict(key=shown, rel=g['id'], offset=0, limit=50, sort=sort, **opts))
+                if err:
+                    errors.append(err)
     return errors, calls
 
 
