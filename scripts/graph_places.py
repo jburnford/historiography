@@ -27,6 +27,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PLACES = ROOT / 'data/graph/places'
 FILES = [PLACES / n for n in ('work-places.csv.gz', 'places.csv.gz', 'place-hierarchy.csv.gz')]
+# optional: authors as catalogued on books with no linked author (display only)
 
 
 def place_layer(out, report):
@@ -58,9 +59,12 @@ def place_layer(out, report):
                   FROM wpk WHERE gkey IS NOT NULL ORDER BY gkey, qid, source, confidence""")
     # reviews inherit the reviewed book's places (REVIEWS: review -> book), unless the review already has the place
     if (out / 'reviews.parquet').exists():
-        db.execute(f"""CREATE TABLE rv AS SELECT DISTINCT "from" AS review, "to" AS book FROM '{out}/reviews.parquet'""")
+        # the REVIEWS edge class is kept on the row (audit 2026-11-18: rule-linked 20/20, key-log 19/20 right)
+        db.execute(f"""CREATE TABLE rv AS SELECT "from" AS review, "to" AS book,
+                         CASE WHEN bool_or(coalesce(evidence, 'keylog') = 'keylog') THEN 'keylog' ELSE any_value(source) END AS cls
+                         FROM '{out}/reviews.parquet' GROUP BY 1, 2""")
         db.execute("""INSERT INTO ab SELECT DISTINCT ON (rv.review, a.qid) rv.review, a."to", a.qid, 'review-of',
-                             'review of ' || rv.book, NULL, 'review-of', rv.book
+                             'review of ' || rv.book, NULL, 'review-of:' || CASE WHEN rv.cls = 'keylog' THEN 'keylog' ELSE 'linked' END, rv.book
                       FROM rv JOIN ab a ON a."from" = rv.book AND a.source <> 'review-of'
                       WHERE NOT EXISTS (SELECT 1 FROM ab x WHERE x."from" = rv.review AND x.qid = a.qid)
                       ORDER BY rv.review, a.qid, a.source""")
@@ -88,6 +92,13 @@ def place_layer(out, report):
                    FROM pl LEFT JOIN cnt c USING (qid) ORDER BY key) TO '{out}/place.parquet' (FORMAT parquet, COMPRESSION zstd)""")
     db.execute(f"""COPY (SELECT 'place:' || child AS "from", 'place:' || parent AS "to", basis FROM ph ORDER BY 1, 2)
                    TO '{out}/place_in.parquet' (FORMAT parquet, COMPRESSION zstd)""")
+    # authors as catalogued (a display fact from the LC record, never a credit; scripts/places_printed_authors.py)
+    pa = PLACES / 'lc-printed-authors.csv.gz'
+    if pa.exists():
+        db.execute(f"""COPY (SELECT p.* FROM read_csv('{pa}', all_varchar=true, header=true) p JOIN wk ON wk.key = p.work
+                       WHERE NOT EXISTS (SELECT 1 FROM '{out}/authored.parquet' a WHERE a."to" = p.work)
+                       ORDER BY p.work) TO '{out}/printed_author.parquet' (FORMAT parquet, COMPRESSION zstd)""")
+        r['printed_author_rows'] = db.execute(f"SELECT count(*) FROM '{out}/printed_author.parquet'").fetchone()[0]
     r['Place'] = db.execute('SELECT count(*) FROM pl').fetchone()[0]
     r['PLACE_IN'] = db.execute('SELECT count(*) FROM ph').fetchone()[0]
     r['PLACE_IN_by_basis'] = dict(db.execute('SELECT basis, count(*) FROM ph GROUP BY 1 ORDER BY 2 DESC').fetchall())

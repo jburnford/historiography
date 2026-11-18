@@ -66,7 +66,7 @@ def get(base, path, params):
 def sweep(base, key):
     errors, calls = [], 0
     # a place page also with the places within it and with each filter (2026-11-18)
-    variants = [{}] + ([dict(children='1'), dict(children='1', kind='book', decade='1990', source='lc', fiction='0')]
+    variants = [{}] + ([dict(children='1'), dict(children='1', kind='book', decade='1990', source='lc', fiction='1', hist='1')]
                        if key.startswith('place:') else [])
     for opts in variants:
         calls += 1
@@ -95,6 +95,11 @@ def main():
     keys = PROBES + sample(args.graph, args.n, args.seed)
     t0 = time.time()
     errors, calls = [], 0
+    for q in ('a=place:Q854&b=place:Q16&children=1', 'a=place:Q1989&b=place:Q854'):   # the two-place comparison
+        calls += 1
+        _, err = get(base, '/api/compare', dict(urllib.parse.parse_qsl(q)))
+        if err:
+            errors.append(f'compare {q}: {err}')
     with ThreadPoolExecutor(4) as ex:
         for key, (errs, n) in zip(keys, ex.map(lambda k: sweep(base, k), keys)):
             calls += n

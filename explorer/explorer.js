@@ -23,7 +23,7 @@ const state = {
   trail: [],
   // place pages (2026-11-18): include the places within it; kind, decade and source filters (reset on a new place)
   popts: { children: localStorage.getItem('gx-children') === '1' ? '1' : '0', kind: '', decade: '', source: '',
-    fiction: localStorage.getItem('gx-fiction') === '0' ? '0' : '' },
+    fiction: localStorage.getItem('gx-fiction') === '1' ? '1' : '', hist: localStorage.getItem('gx-hist') === '1' ? '1' : '' },
 };
 const placeQuery = (key) => key && key.startsWith('place:')
   ? '&' + new URLSearchParams(Object.entries(state.popts).filter(([, v]) => v)).toString() : '';
@@ -238,7 +238,9 @@ function renderPanel() {
   // first publication year where it differs from the key's year (a reprint or a translation; data/graph/work-years)
   const first = node.type === 'work' && node.first_year && node.first_year !== node.year
     ? `first published ${node.first_year}` + (node.first_year_basis ? ` (${node.first_year_basis.replaceAll(';', ', ')})` : '') : null;
-  const facts = node.type === 'work' ? [kindNote(node), first, node.in_volume,
+  const catd = node.catalogued ? `author as catalogued (LC record; not a linked person): ${node.catalogued.printed || node.catalogued.heading}`
+    + (node.catalogued.lcnaf ? ` [LC ${node.catalogued.lcnaf}]` : '') : null;
+  const facts = node.type === 'work' ? [catd, kindNote(node), first, node.in_volume,
     node.editors_printed ? `editors as printed: ${node.editors_printed}` : null,
     node.variant_titles ? `also titled: ${node.variant_titles}` : null,
     node.isbn ? `ISBN ${node.isbn}` : null, node.issn ? `ISSN ${node.issn}` : null,
@@ -280,6 +282,15 @@ function renderPanel() {
 // a place tag arrives as 'badge|line' (LC subject heading, title read or ruled, review of a book about the place)
 const BADGED = new Set(['about', 'wider', 'places']);
 function row(it, gid) {
+  if (it.type === 'catalogued') {          // an LC main entry, not a person key: shown, never linked as a person
+    const li = h('li', { class: 'catalogued' }, icon('person'), h('span', { class: 'lab' },
+      h('span', { class: 'badge' }, 'catalogued'), it.label,
+      it.lcnaf ? h('a', { href: `https://id.loc.gov/authorities/names/${it.lcnaf}`, target: '_blank', rel: 'noopener', onclick: (ev) => ev.stopPropagation() }, ' LC ' + it.lcnaf) : null,
+      h('span', { class: 'sub' }, it.detail)));
+    if (it.works && it.works.length) li.querySelector('.lab').append(h('details', { class: 'pworks' }, h('summary', {}, 'the works'),
+      h('ul', {}, it.works.map((w) => h('li', { onclick: () => go(w.key) }, icon(CAT[w.kind] ? w.kind : 'other'), ' ', w.label, w.year ? ` (${w.year})` : '')))));
+    return li;
+  }
   const c = cat(it);
   let badge = null, detail = it.detail;
   if (BADGED.has(gid) && detail && /^(LC|title \(read\)|title \(rule\)|review)\|/.test(detail)) {
@@ -307,7 +318,8 @@ function row(it, gid) {
 // ---------- place header (2026-11-18) ----------
 function placeHeader(node) {
   const p = node.place, o = state.popts;
-  const reload = () => { localStorage.setItem('gx-children', o.children); localStorage.setItem('gx-fiction', o.fiction || '1'); load(state.key, true); };
+  const reload = () => { localStorage.setItem('gx-children', o.children); localStorage.setItem('gx-fiction', o.fiction || '');
+    localStorage.setItem('gx-hist', o.hist || ''); load(state.key, true); };
   const sel = (name, label, options) => h('label', {}, label + ' ',
     h('select', { onchange: (ev) => { o[name] = ev.target.value; reload(); } },
       h('option', { value: '' }, 'all'), options.map(([v, n, t]) => h('option', { value: v, selected: o[name] === String(v) ? true : null }, `${t ?? v} (${fmt(n)})`))));
@@ -320,7 +332,7 @@ function placeHeader(node) {
   ].filter(Boolean);
   const counts = h('div', { class: 'stats' },
     h('span', {}, h('b', {}, fmt(p.works)), 'works about it'),
-    h('span', {}, h('b', {}, fmt(p.works_no_author)), 'of them with no linked author'),
+    h('span', {}, h('b', {}, fmt(p.works_no_author)), `of them with no linked author (${fmt(p.works_catalogued_author)} with an author as catalogued)`),
     p.children_places ? h('span', {}, h('b', {}, fmt(p.works_with_children)), `with the ${fmt(p.children_places)} places within it (${fmt(p.works_with_children_no_author)} with no linked author)`) : null);
   const wider = p.wider && p.wider.length ? h('div', { class: 'muted' }, 'Wider regions (shown apart, not counted here): ',
     p.wider.map(([k, l, n], i) => h('span', {}, i ? ', ' : '', h('a', { href: '#' + k }, l), ` (${fmt(n)} works)`))) : null;
@@ -328,8 +340,11 @@ function placeHeader(node) {
     p.children_places ? h('label', {}, h('input', { type: 'checkbox', checked: o.children === '1' ? true : null,
       onchange: (ev) => { o.children = ev.target.checked ? '1' : '0'; reload(); } }), ` include the ${fmt(p.children_places)} places within it`) : null,
     h('label', { title: 'LC subject headings with the subdivision Fiction give the setting of a novel, not its subject' },
-      h('input', { type: 'checkbox', checked: o.fiction === '0' ? true : null,
-        onchange: (ev) => { o.fiction = ev.target.checked ? '0' : ''; reload(); } }), ' leave out fiction settings'),
+      h('input', { type: 'checkbox', checked: o.fiction === '1' ? true : null,
+        onchange: (ev) => { o.fiction = ev.target.checked ? '1' : ''; reload(); } }), ` include fiction settings (${fmt(p.works_fiction)})`),
+    h('label', { title: 'A thesis in the dissertation corpus, a supervision, an AHA PhD record, a review, or an article in the JSTOR or Crossref history-journal sets' },
+      h('input', { type: 'checkbox', checked: o.hist === '1' ? true : null,
+        onchange: (ev) => { o.hist = ev.target.checked ? '1' : ''; reload(); } }), ` people list: only ${p.hist_label}`),
     sel('kind', 'kind', p.by_kind.map(([k, n]) => [k, n])),
     sel('decade', 'decade', p.by_decade.map(([d, n]) => [d, n, d === 'none' ? 'no year' : d + 's'])),
     sel('source', 'evidence', p.by_source.map(([s, n]) => [s, n, srcName[s] || s])));
@@ -400,8 +415,11 @@ async function loadCompare(key) {
     sec('People with works about both', d.people_both_total, people, true),
     sec('Works about both', d.works_both, h('ul', { class: 'items' }, d.works_both_list.map((w) => h('li', {}, h('span', { class: 'lab' }, wlink(w))))), d.works_both > 0),
     sec('Citations between the two sets', d.cites_a_to_b + d.cites_b_to_a, h('ul', { class: 'items' }, d.cites.map((c) =>
-      h('li', {}, h('span', { class: 'lab' }, wlink(c.citing), h('span', { class: 'sub' }, '→ cites ', wlink(c.cited)))))), true),
-    sec('Shared frames', d.frames.length, frames, true));
+      h('li', {}, h('span', { class: 'lab' }, h('span', { class: 'badge' }, c.direction === 'a>b' ? `${A} → ${B}` : `${B} → ${A}`),
+        wlink(c.citing), h('span', { class: 'sub' }, 'cites ', wlink(c.cited)))))), true),
+    sec('Shared frames', d.frames.length, frames, true),
+    sec('Works per decade', d.decades.length, h('table', { class: 'frames' }, h('tr', {}, h('th', {}, 'decade'), h('th', {}, A), h('th', {}, B)),
+      d.decades.map((x) => h('tr', {}, h('td', {}, x.decade + 's'), h('td', {}, fmt(x.a)), h('td', {}, fmt(x.b))))), false));
   const svg = $('#viz');
   const { width: W, height: H } = svg.getBoundingClientRect();
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);

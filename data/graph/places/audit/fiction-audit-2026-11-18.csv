@@ -1,0 +1,4 @@
+sample,n_read,right,wrong,note
+flagged lc-fiction (40 random),40,40,0,"all novels, plays, poems or juvenile fiction whose LC heading gives the setting (Anne of Avonlea, Life of Pi, Telegraph Avenue, The honest whore); a book about plays (Shakespeare in performance, Denmark -- Drama) is flagged as the setting of Hamlet, which is the intended reading"
+"unflagged works by authors with 2+ flagged works, first read",40,31,9,"9 misses: older LC records carry 'Fiction' in $x, not $v ('Kentucky -- Fiction', 'Brazil -- Fiction', 'Private investigators -- England -- Fiction'); fixed in scripts/places_build.py (FICTION on the heading string); lc-fiction rows 8,048 -> 13,235"
+"unflagged works by authors with 2+ flagged works, after the fix (new sample, seed 20261119)",40,40,0,"travel writing, essays, memoirs, history, juvenile non-fiction and folklore: subjects, not fiction settings"

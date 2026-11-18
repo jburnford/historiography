@@ -118,3 +118,24 @@ class Canada(unittest.TestCase):
                 self.assertNotEqual(r['qid'], 'Q731613')
             if r['work'] == 'w-2154390':                          # Ontario, Oregon
                 self.assertNotEqual(r['qid'], 'Q1904')
+
+
+class Increment3(unittest.TestCase):
+    def test_fiction_heading(self):
+        from places_build import FICTION
+        self.assertTrue(FICTION.search('Kentucky -- Fiction'))
+        self.assertTrue(FICTION.search('Teachers -- Prince Edward Island -- Juvenile fiction'))
+        self.assertFalse(FICTION.search('Fiction writers -- Canada -- Biography'))
+
+    def test_city_patterns(self):
+        to = CANDIDATES['Toronto (pattern)'][1]
+        self.assertTrue(keep('The Genesis of Public Health Reform in Toronto, 1869-1890', to, None))
+        self.assertFalse(keep('Lectures given in the University of Toronto', to, None))
+        self.assertFalse(keep('Report of the Annual Meeting: Toronto, Canada', to, None))
+        mo = CANDIDATES['Montreal (pattern)'][1]
+        self.assertFalse(keep('Penser la nation, Montréal, Québec Amérique, 2000', mo, None))
+
+    @unittest.skipUnless((P / 'overrides.csv').exists(), 'no overrides')
+    def test_overrides_have_basis(self):
+        for r in csv.DictReader(open(P / 'overrides.csv', encoding='utf-8')):
+            self.assertTrue(r['qid'].startswith('Q') and r['basis'].strip(), r)

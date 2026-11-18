@@ -80,11 +80,26 @@ CANDIDATES = {
     'Great Lakes': ('Q7347', r'\bGreat Lakes\b'), 'St. Lawrence': ('Q134750', r'\b(St\.?|Saint)[ -]Lawrence (River|Valley)\b'),
     'Victoria': ('Q2132', r'\bVictoria, B\.? ?C\b|\bVictoria\b'), 'Kingston': ('Q202973', r'\bKingston\b'),
     'Hamilton': ('Q133116', r'\bHamilton\b'),
+    # larger Canadian cities by pattern (2026-11-18): the bare names failed (places of publication, namesakes); a city
+    # counts when the title says 'in/of/at ... <city>', '<city>'s', or '<city>, <province or Canada>', without the
+    # institution names (University of, Press, Studies, Star) and the namesakes read in the bare-name samples
+    'Toronto (pattern)': ('Q172', r"(?<!University )(?<!Université )\b(in|of|at|from|across|around|to|for) (the )?(city of |metropolitan |Metropolitan |Greater |early |postwar |modern |colonial |nineteenth-century |twentieth-century |Victorian )?Toronto\b(?! (Press|University|Studies|Italian Studies|Star|Board))|\bToronto['’]s\b|\bToronto,? (Ont|Ontario|Canada|Upper Canada)\b"),
+    'Montreal (pattern)': ('Q340', r"(?<!Université )(?<!University )\b(in|of|at|from|across|around|to|for|à|de|du) (la ville de |the city of |early |postwar |nineteenth-century |)Montr[eé]al\b(?! (Press|University|Gazette|Studies))|\bMontr[eé]al['’]s\b|\bMontr[eé]al,? (Qu[eé]bec|Canada|Lower Canada)\b"),
+    'Vancouver (pattern)': ('Q24639', r"\b(in|of|at|from|across|around|to|for) (the city of |early |postwar |Greater |)Vancouver\b(?! (Island|Press))|\bVancouver['’]s\b(?! Island)|\bVancouver,? (B\.? ?C|British Columbia|Canada)\b"),
+    'Ottawa (pattern)': ('Q1930', r"\b(in|of|at|from|across|around|for) (the city of |early |)Ottawa\b(?! (Agreements?|Conference|Convention|River|Valley|Indians|people|Press|Treaty))|\bOttawa['’]s\b|\bOttawa,? (Ont|Ontario|Canada)\b"),
+    'Halifax (pattern)': ('Q2141', r"\bHalifax,? (N\.? ?S|Nova Scotia)\b|\bHalifax (Explosion|explosion|Harbour|harbour|Citadel)\b|\bVictorian Halifax\b"),
+    'Calgary (pattern)': ('Q36312', r"(?<!University )\b(in|of|at|from|across|around|to|for) (the city of |early |)Calgary\b(?! (Press|Herald))|\bCalgary['’]s\b|\bCalgary,? (Alta|Alberta|Canada)\b|\bCalgary Stampede\b"),
+    'Edmonton (pattern)': ('Q2096', r"(?<!Witch )(?<!University )\b(in|at|from|across|around|to|for) (the city of |early |)Edmonton\b(?! Press)|\bEdmonton['’]s\b|\bEdmonton,? (Alta|Alberta|Canada)\b"),
+    'Quebec City (pattern)': ('Q2145', r"\bQu[eé]bec City\b|\b(ville|Ville) de Qu[eé]bec\b|\bcity of Qu[eé]bec\b"),
+    'Victoria (pattern)': ('Q2132', r"\bVictoria,? (B\.? ?C\b|British Columbia)"),
     # Sri Lankan child places: gated rules measured on the pilot's full reading (precision())
     'Colombo': ('Q35381', r'\bColombo\b'), 'Jaffna': ('Q215277', r'\bJaffna'), 'Galle': ('Q319366', r'\bGalle\b'),
     'Trincomalee': ('Q323873', r'\bTrincomal'), 'Batticaloa': ('Q810963', r'\bBatticaloa'),
     'Anuradhapura': ('Q5724', r'\bAnuradhapura'), 'Polonnaruwa': ('Q394443', r'\bPolonnaruw'),
 }
+
+
+PATTERN_RX = {rx for n, (q, rx) in CANDIDATES.items() if n.endswith('(pattern)')}
 
 
 def cite_tail(name_rx):
@@ -100,10 +115,18 @@ def cite_tail(name_rx):
 CITE_CTX = re.compile(r'(Press|\bpp\.|\bPp\.|ISBN|£|\$\d)')
 
 
+# city pattern rules also drop meeting reports (a venue), acknowledgement text that leaked into a title, and a city as
+# place of publication followed by a publisher and a year ('Montréal, Québec Amérique, 2000')
+PATTERN_DROP = re.compile(r"(?i)\b(annual meeting|meetings? (in|at)|conference|congress|symposium|colloque|proceedings)\b|(?i:we thank)|"
+                          r"\b(Montr[eé]al|Toronto|Vancouver|Ottawa|Calgary|Edmonton|Qu[eé]bec|Halifax|Victoria)\s*[,:]\s*[^,;]{2,40},\s*(1[89]|20)\d\d\b")
+
+
 def keep(title, name_rx, gate):
     """True when the title names the place outside a citation tail (and, for a gated rule, has a regional word too)."""
     rx = re.compile(name_rx)
     if not rx.search(title):
+        return False
+    if name_rx in PATTERN_RX and PATTERN_DROP.search(title):
         return False
     ct = cite_tail(name_rx)
     stripped = ct.sub(' ', title)

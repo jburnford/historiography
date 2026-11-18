@@ -205,7 +205,8 @@ PRINTED_BOOKS = ROOT / 'data/graph/printed-author-books/credits.csv.gz'   # scri
 PRIZES = ROOT / 'data/graph/prizes'          # scripts/prizes_harvest.py, prizes_link.py (+ found.csv.gz, recent books):
                                              # Prize nodes, AWARDED, prize work nodes (scripts/graph_prizes.py)
 PRIZE_FILES = [PRIZES / f'{n}.csv.gz' for n in ('prizes', 'winners', 'works', 'lc', 'found')]
-PLACE_FILES = [ROOT / 'data/graph/places' / n for n in ('work-places.csv.gz', 'places.csv.gz', 'place-hierarchy.csv.gz')]
+PLACE_FILES = [ROOT / 'data/graph/places' / n for n in ('work-places.csv.gz', 'places.csv.gz', 'place-hierarchy.csv.gz',
+                                                         'lc-printed-authors.csv.gz')]
                                                 # place layer (scripts/places_build.py, loaded by graph_places.py; 2026-11-18)
 LC_CREDITS = ROOT / 'data/graph/lc-credits.csv.gz'   # scripts/lc_catalogue_credits.py: LC main / added entries on a key
                                                      # for works with an LCCN and no credit

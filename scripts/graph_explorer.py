@@ -8,7 +8,8 @@ Reads the graph build (build/graph/*.parquet from scripts/build_graph.py), never
 API (JSON): /api/search?q=   /api/node?key=   /api/group?key=&rel=&offset=&limit=&sort=weight|year
 /api/compare?a=place:<QID>&b=place:<QID> (two places side by side; the page is #cmp:<QID>+<QID>).
 Place pages (key place:<QID>, 2026-11-18) take &children=1 (include the places within it), &kind=, &decade=,
-&source=lc|title|review, &fiction=0 (leave out LC tags that give the setting of a work of fiction).
+&source=lc|title|review, &fiction=1 (include LC tags that give the setting of a work of fiction; left out by default),
+&hist=1 (people list: only people with a history thesis, history-journal article or review in the graph).
 Weights: a work's weight is the number of works citing it plus reviews of it; a person's is the sum over the works
 they authored. Life years are not shown (site rule for living people); the explorer is local for now.
 """
@@ -196,6 +197,7 @@ REL = {
     'place': [
         ('about', 'Works about this place', None, None, None, None),
         ('people', 'People with works about this place (derived from their works)', None, None, None, None),
+        ('catalogued', 'Catalogued authors not yet in the people index (LC main entries of works with no linked author)', None, None, None, None),
         ('wider', 'Wider region: works about a region that contains this place (not about the place itself)', None, None, None, None),
         ('periods', 'Period polities (searched together with this place)', None, None, None, None),
         ('parents', 'Located in', None, None, None, None),
@@ -317,6 +319,37 @@ def build():
             SELECT anc, des, min(depth) AS depth FROM d WHERE anc <> des GROUP BY 1, 2 ORDER BY anc""")
         db.execute("""CREATE TABLE place_period AS SELECT "to" AS territory, "from" AS period FROM e_place_in_t
                       WHERE basis LIKE 'period-of%' ORDER BY territory""")
+        # pw (2026-11-18, for sub-second place pages): one row per (place, work) for the place with its period polities
+        # (pscope self) and for the places within it (pscope desc), with the evidence classes, fiction-only flag, kind, year,
+        # weight and whether the work has a linked author or a catalogued one
+        db.execute("""CREATE TABLE pmap AS SELECT key AS place, key AS member, 'self' AS pscope FROM place
+              UNION ALL SELECT territory, period, 'self' FROM place_period
+              UNION ALL SELECT d.anc, d.des, 'desc' FROM place_desc d
+                        WHERE NOT EXISTS (SELECT 1 FROM place_period p WHERE p.territory = d.anc AND p.period = d.des)
+              ORDER BY place""")
+        db.execute("""CREATE TEMP TABLE au_any AS SELECT DISTINCT "to" w FROM e_authored_t UNION SELECT DISTINCT "to" FROM e_edited_t""")
+        has_pa = (G / 'printed_author.parquet').exists()
+        if has_pa:
+            db.execute(f"""CREATE TABLE printed AS SELECT * FROM '{G}/printed_author.parquet' ORDER BY work""")
+        db.execute(f"""CREATE TABLE pw AS SELECT g.place, g.pscope, g.work, g.lc, g.title, g.review, g.fiction,
+                  coalesce(n.kind, 'other') AS kind, n.year, coalesce(n.weight, 0) AS weight, (u.w IS NOT NULL) AS has_author,
+                  {'(pr.work IS NOT NULL)' if has_pa else 'false'} AS has_printed
+              FROM (SELECT m.place, CASE WHEN bool_or(m.pscope = 'self') THEN 'self' ELSE 'desc' END AS pscope, t."from" AS work,
+                       bool_or(starts_with(t.source, 'lc-')) AS lc, bool_or(starts_with(t.source, 'title')) AS title,
+                       bool_or(t.source = 'review-of') AS review, bool_and(t.confidence = 'lc-fiction') AS fiction
+                    FROM pmap m JOIN e_about_place_t t ON t."to" = m.member GROUP BY m.place, t."from") g
+              JOIN nodes n ON n.key = g.work LEFT JOIN au_any u ON u.w = g.work
+              {'LEFT JOIN (SELECT DISTINCT work FROM printed) pr ON pr.work = g.work' if has_pa else ''}
+              ORDER BY g.place, g.pscope""")
+        # an optional people filter, labelled plainly (never 'historians'): a thesis in the corpus, a supervision, a
+        # review, an AHA PhD record, or an article in the JSTOR history set or the Crossref history-journal set
+        db.execute("""CREATE TABLE hist_person AS SELECT DISTINCT p AS key FROM (
+              SELECT a."from" p FROM e_authored_t a JOIN nodes w ON w.key = a."to" WHERE w.kind = 'thesis'
+              UNION SELECT "from" FROM e_supervised_f UNION SELECT "from" FROM e_reviewed_f
+              UNION SELECT a."from" FROM e_authored_t a JOIN (SELECT DISTINCT "from" w FROM e_cites_f
+                     WHERE source LIKE '%jstor%' OR source LIKE '%crossref%') c ON c.w = a."to"
+              UNION SELECT key FROM (SELECT key, unnest(anchors) a FROM nodes WHERE type = 'person') WHERE a LIKE 'aha-phd:%')
+              ORDER BY 1""")
         db.execute("""CREATE TABLE place_names AS SELECT DISTINCT key, strip_accents(lower(unnest(variants))) AS name, works
                       FROM place ORDER BY name""")
     db.execute("""CREATE TABLE search AS SELECT key, type, weight, strip_accents(lower(label)) AS s FROM nodes
@@ -387,8 +420,8 @@ def work_filter(opts, alias='w'):
         out.append(f'{alias}.year BETWEEN {d} AND {d + 9}')
     elif opts.get('decade') == 'none':
         out.append(f'{alias}.year IS NULL')
-    if opts.get('fiction') == '0':     # leave out LC tags that give the setting of a work of fiction ($v Fiction)
-        out.append("a.confidence <> 'lc-fiction'")
+    if opts.get('fiction') != '1':     # LC tags that give the setting of a work of fiction ($v Fiction) are left out
+        out.append("a.confidence <> 'lc-fiction'")       # unless asked for (&fiction=1; demo default, 2026-11-18)
     src = opts.get('source') or ''
     if src == 'lc':
         out.append("starts_with(a.source, 'lc-')")
@@ -397,6 +430,30 @@ def work_filter(opts, alias='w'):
     elif src == 'review':
         out.append("a.source = 'review-of'")
     return (' AND ' + ' AND '.join(out)) if out else ''
+
+
+def pw_where(opts, alias='x'):
+    """The precomputed place-work table `pw` (explorer build) filtered for a place page: the place and its period polities
+    (pscope self), with the places within it on the toggle (pscope desc); kind, decade, evidence; fiction settings left
+    out unless &fiction=1."""
+    out = [f'{alias}.place = $k']
+    if opts.get('children') != '1':
+        out.append(f"{alias}.pscope = 'self'")
+    if re.fullmatch(r'[a-z_]+', opts.get('kind') or ''):
+        out.append(f"{alias}.kind = '{opts['kind']}'")
+    if re.fullmatch(r'\d{4}', opts.get('decade') or ''):
+        d = int(opts['decade'])
+        out.append(f'{alias}.year BETWEEN {d} AND {d + 9}')
+    elif opts.get('decade') == 'none':
+        out.append(f'{alias}.year IS NULL')
+    if opts.get('source') in ('lc', 'title', 'review'):
+        out.append(f"{alias}.{opts['source']}")
+    if opts.get('fiction') != '1':
+        out.append(f'NOT {alias}.fiction')
+    return ' AND '.join(out)
+
+
+HIST_LABEL = 'people with a history thesis, history-journal article or review in the graph'
 
 
 ITEM_COLS = 'o.key, o.type, o.kind, o.label, o.year, o.weight, o.resolution, o.kind_proposed'
@@ -596,6 +653,8 @@ class Graph:
         return f'SELECT e."{other}" k, {n} n, {d} d, {lk} lk FROM e_{table}_{side} e WHERE e."{me}" = $k{where} GROUP BY 1'
 
     def group(self, key, rel, offset=0, limit=12, sort='weight'):
+        if node_type(key) == 'place' and rel[0] in ('about', 'people', 'wider', 'catalogued') and self.has_table('pw'):
+            return self.place_group(key, rel[0], offset, limit, sort, getattr(self.local, 'opts', None) or {})
         order = 'o.year DESC NULLS LAST, o.weight DESC' if sort == 'year' else 'g.n DESC, o.weight DESC, o.year DESC NULLS LAST'
         sql = self.group_sql(rel, key)
         if ' lk' not in sql:
@@ -624,7 +683,125 @@ class Graph:
                 i['works'] = by.get(i['key'], [])[:40]
         return items, total
 
+    def place_group(self, key, rid, offset, limit, sort, opts):
+        """Place-page lists from the precomputed table pw (2026-11-18, under a second): works, people (derived from their
+        works), catalogued authors not yet in the people index, and the wider-region band."""
+        c, lim = self.cur(), f'LIMIT {int(limit)} OFFSET {int(offset)}'
+        where = pw_where(opts)
+        self.local.last_linked = 0
+        if rid in ('about', 'wider'):
+            if rid == 'wider':
+                where = (pw_where(dict(opts, children='0')).replace('x.place = $k', """x.place IN (SELECT "to" FROM e_place_in_f
+                         WHERE "from" = $k AND basis LIKE 'region-contains%')""")
+                         + " AND x.work NOT IN (SELECT work FROM pw WHERE place = $k)")
+            order = 'x.year DESC NULLS LAST, x.weight DESC' if sort == 'year' else 'x.weight DESC, x.year DESC NULLS LAST'
+            rows = c.execute(f"""SELECT DISTINCT x.work, x.weight, x.year, count(*) OVER () FROM (SELECT DISTINCT work, weight, year FROM pw x
+                                 WHERE {where}) x ORDER BY {order}, x.work {lim}""", dict(k=key)).fetchall()
+            total = rows[0][3] if rows else (0 if offset == 0 else None)
+            keys = [r[0] for r in rows]
+            members = ("(SELECT \"to\" FROM e_place_in_f WHERE \"from\" = $k AND basis LIKE 'region-contains%')" if rid == 'wider' else
+                       f"(SELECT member FROM pmap WHERE place = $k {'' if opts.get('children') == '1' else "AND pscope = 'self'"})")
+            det = dict(c.execute(f"""SELECT a."from", {SRC_BADGE} || '|' || {SRC_LINE}
+                                     FROM e_about_place_t a WHERE a."from" IN (SELECT unnest($w)) AND a."to" IN {members}
+                                     GROUP BY 1""", dict(w=keys, k=key)).fetchall())
+            cat = dict(c.execute("""SELECT work, coalesce(nullif(printed, ''), heading) FROM printed WHERE work IN (SELECT unnest($w))""",
+                                 dict(w=keys)).fetchall()) if self.has_table('printed') else {}
+            nodes = {r[0]: r for r in c.execute(f"""SELECT {ITEM_COLS.replace('o.', '')}, NULL, NULL FROM nodes WHERE key IN (SELECT unnest($w))""",
+                                                dict(w=keys)).fetchall()}
+            items = []
+            for k in keys:
+                it = item(nodes[k])
+                it['n'] = 1
+                d = det.get(k, '')
+                if k in cat:
+                    d += ' · author as catalogued (not linked): ' + cat[k]
+                it['detail'] = d
+                items.append(it)
+            return items, total
+        if rid == 'people':
+            hist = 'AND au."from" IN (SELECT key FROM hist_person)' if opts.get('hist') == '1' else ''
+            rows = c.execute(f"""WITH g AS (SELECT au."from" k, count(DISTINCT x.work) n, bool_and(au.evidence = 'linked') lk
+                                   FROM pw x JOIN e_authored_t au ON au."to" = x.work
+                                   WHERE {where} AND coalesce(au.role, 'author') NOT IN {EDITION_ROLES} {hist} GROUP BY 1)
+                                 SELECT {ITEM_COLS}, g.n, g.n || CASE WHEN g.n = 1 THEN ' work' ELSE ' works' END || ' about the place'
+                                        || CASE WHEN g.lk THEN ' (linked author credits)' ELSE '' END,
+                                        count(*) OVER (), sum(g.lk::INT) OVER (), (g.k IN (SELECT key FROM hist_person))
+                                 FROM g JOIN nodes o ON o.key = g.k ORDER BY g.n DESC, o.weight DESC, o.key {lim}""", dict(k=key)).fetchall()
+            total = rows[0][-3] if rows else (0 if offset == 0 else None)
+            self.local.last_linked = int(rows[0][-2] or 0) if rows else 0
+            items = []
+            for r in rows:
+                it = item(r[:-3])
+                it['hist'] = bool(r[-1])
+                items.append(it)
+            if items:
+                ws = c.execute(f"""SELECT au."from", w.key, w.label, w.year, w.kind, CASE WHEN x.lc THEN 'LC' WHEN x.title THEN 'title'
+                                   ELSE 'review' END FROM pw x JOIN e_authored_t au ON au."to" = x.work JOIN nodes w ON w.key = x.work
+                                   WHERE {where} AND au."from" IN (SELECT unnest($p)) AND coalesce(au.role, 'author') NOT IN {EDITION_ROLES}
+                                   ORDER BY w.year NULLS LAST""", dict(k=key, p=[i['key'] for i in items])).fetchall()
+                by = {}
+                for pk, wk, wl, wy, wkind, badge in ws:
+                    lst = by.setdefault(pk, [])
+                    if all(x['key'] != wk for x in lst):
+                        lst.append(dict(key=wk, label=wl, year=wy, kind=wkind, source=badge))
+                for i in items:
+                    i['works'] = by.get(i['key'], [])[:40]
+            return items, total
+        # catalogued authors not yet in the people index: LC main entries of works with no linked author
+        if not self.has_table('printed'):
+            return [], 0
+        rows = c.execute(f"""WITH g AS (SELECT coalesce(p.lcnaf, 'heading:' || p.heading) gk, any_value(p.heading) heading,
+                                   any_value(p.lcnaf) lcnaf, any_value(p.state) state, count(DISTINCT x.work) n, list(DISTINCT x.work) works
+                                   FROM pw x JOIN printed p ON p.work = x.work WHERE {where} GROUP BY 1)
+                             SELECT gk, heading, lcnaf, state, n, works, count(*) OVER () FROM g ORDER BY n DESC, heading {lim}""",
+                         dict(k=key)).fetchall()
+        total = rows[0][-1] if rows else (0 if offset == 0 else None)
+        wl = {r[0]: r for r in c.execute("SELECT key, label, year, kind FROM nodes WHERE key IN (SELECT unnest($w))",
+                                          dict(w=[w for r in rows for w in r[5][:40]])).fetchall()}
+        items = []
+        for gk, heading, lcnaf, state, n, works, _ in rows:
+            items.append(dict(key=None, type='catalogued', kind=None, label=(heading or '').rstrip(' .'), year=None, weight=n,
+                              resolution=None, kind_proposed=None, n=n, lcnaf=lcnaf, state=state,
+                              detail=f"{n} work{'s' if n != 1 else ''} about the place; LC main entry"
+                                     + (f' (LC authority {lcnaf}' + ('' if state != 'on-key' else ', on a person key: credit pending') + ')' if lcnaf else ', no LC authority found'),
+                              works=sorted([dict(key=w, label=wl[w][1], year=wl[w][2], kind=wl[w][3], source='LC') for w in works[:40] if w in wl],
+                                           key=lambda x: x['year'] or 0)))
+        return items, total
+
     def place_summary(self, key, opts):
+        """Header facts of a place page from pw: identifiers, period of, counts (the place with its period polities; with
+        the places within it; works with no linked author; fiction settings left out), and the filter breakdowns."""
+        c = self.cur()
+        r = c.execute("""SELECT qid, kind, lc_id, lc_heading, (SELECT label FROM place x WHERE x.key = 'place:' || p.country),
+                            period_of, (SELECT label FROM place x WHERE x.key = 'place:' || p.period_of), variants, sitelinks
+                            FROM place p WHERE key = ?""", [key]).fetchone()
+        out = dict(zip(['qid', 'place_kind', 'lc_id', 'lc_heading', 'country', 'period_of', 'period_of_label', 'variants',
+                        'sitelinks'], r))
+        out['variants'] = (out['variants'] or [])[:30]
+        fic = '' if opts.get('fiction') == '1' else 'AND NOT fiction'
+        cnt = c.execute(f"""SELECT count(DISTINCT work) FILTER (WHERE pscope = 'self' {fic}),
+                   count(DISTINCT work) FILTER (WHERE pscope = 'self' AND NOT has_author {fic}),
+                   count(DISTINCT work) FILTER (WHERE true {fic}), count(DISTINCT work) FILTER (WHERE NOT has_author {fic}),
+                   count(DISTINCT work) FILTER (WHERE fiction AND pscope = 'self'),
+                   count(DISTINCT work) FILTER (WHERE pscope = 'self' AND NOT has_author AND has_printed {fic})
+                   FROM pw WHERE place = $k""", dict(k=key)).fetchone()
+        (out['works'], out['works_no_author'], out['works_with_children'], out['works_with_children_no_author'],
+         out['works_fiction'], out['works_catalogued_author']) = cnt
+        out['children_places'] = c.execute('SELECT count(*) FROM place_desc WHERE anc = ?', [key]).fetchone()[0]
+        w0 = pw_where(dict(children=opts.get('children'), fiction=opts.get('fiction')))
+        out['by_kind'] = c.execute(f"SELECT kind, count(DISTINCT work) FROM pw x WHERE {w0} GROUP BY 1 ORDER BY 2 DESC", dict(k=key)).fetchall()
+        out['by_decade'] = c.execute(f"""SELECT CASE WHEN year IS NULL THEN 'none' ELSE (year // 10 * 10)::VARCHAR END d, count(DISTINCT work)
+                                         FROM pw x WHERE {w0} GROUP BY 1 ORDER BY 1""", dict(k=key)).fetchall()
+        out['by_source'] = [(s, c.execute(f'SELECT count(DISTINCT work) FROM pw x WHERE {w0} AND x.{s}', dict(k=key)).fetchone()[0])
+                            for s in ('lc', 'title', 'review')]
+        out['wider'] = c.execute("""SELECT p.key, p.label, (SELECT count(DISTINCT work) FROM pw WHERE pw.place = p.key AND pscope = 'self' AND NOT fiction)
+                       FROM e_place_in_f r JOIN place p ON p.key = r."to" WHERE r."from" = $k AND r.basis LIKE 'region-contains%'
+                       ORDER BY 3 DESC""", dict(k=key)).fetchall()
+        out['hist_label'] = HIST_LABEL
+        out['opts'] = opts
+        return out
+
+    def place_summary_old(self, key, opts):
         """Header facts of a place page: identifiers, period of, counts (direct, with places within, without a linked
         author, wider region), and the works by kind, decade and source for the filters."""
         c = self.cur()
@@ -679,12 +856,10 @@ class Graph:
         """Two places side by side (the Ceylon-Canada connection): people with works about both, works tagged to both,
         citations between the two sets, and the shared frames in the LC headings and titles of each set. Counts first."""
         c = self.cur()
-        pa, pb = place_set(opts).replace('$k', '$a'), place_set(opts).replace('$k', '$b')
-        wf = work_filter(opts)
+        wa, wb = pw_where(opts).replace('$k', '$a'), pw_where(opts).replace('$k', '$b')
         c.execute(f'''CREATE OR REPLACE TEMP TABLE cmp_w AS
-            SELECT DISTINCT 'a' AS side, a."from" AS work FROM e_about_place_t a JOIN nodes w ON w.key = a."from" WHERE a."to" IN {pa} {wf}
-            UNION SELECT DISTINCT 'b', a."from" FROM e_about_place_t a JOIN nodes w ON w.key = a."from" WHERE a."to" IN {pb} {wf}''',
-                  dict(a=a, b=b))
+            SELECT DISTINCT 'a' AS side, x.work FROM pw x WHERE {wa}
+            UNION SELECT DISTINCT 'b', x.work FROM pw x WHERE {wb}''', dict(a=a, b=b))
         c.execute(f'''CREATE OR REPLACE TEMP TABLE cmp_p AS SELECT au."from" AS person, w.side, au."to" AS work FROM cmp_w w
             JOIN e_authored_t au ON au."to" = w.work WHERE coalesce(au.role, 'author') NOT IN {EDITION_ROLES}''')
         lab = dict(c.execute('SELECT key, label FROM nodes WHERE key IN (?, ?)', [a, b]).fetchall())
@@ -727,6 +902,10 @@ class Graph:
             frames.append(dict(frame=name, a=na, b=nb,
                                a_share=round(100 * na / max(1, out['works_a']), 1), b_share=round(100 * nb / max(1, out['works_b']), 1)))
         out['frames'] = frames
+        # works per decade on each side (a time profile)
+        out['decades'] = [dict(decade=d, a=na, b=nb) for d, na, nb in c.execute('''SELECT (w.year // 10 * 10) d,
+                   count(DISTINCT x.work) FILTER (WHERE x.side = 'a'), count(DISTINCT x.work) FILTER (WHERE x.side = 'b')
+                   FROM cmp_w x JOIN nodes w ON w.key = x.work WHERE w.year BETWEEN 1500 AND 2030 GROUP BY 1 ORDER BY 1''').fetchall()]
         return out
 
     def node(self, key, limit=12, sort='weight'):
@@ -763,6 +942,10 @@ class Graph:
         n['ids'] = ids(n.pop('anchors'))
         if n['type'] == 'place':
             n['place'] = self.place_summary(key, getattr(self.local, 'opts', None) or {})
+        if n['type'] == 'work' and self.has_table('printed'):   # author as catalogued (LC record; display only, not a link)
+            pr = self.cur().execute('SELECT heading, printed, lcnaf, person, state FROM printed WHERE work = ?', [key]).fetchone()
+            if pr:
+                n['catalogued'] = dict(zip(['heading', 'printed', 'lcnaf', 'person', 'state'], pr))
         if n['type'] == 'work':          # identifiers of its other keys (SAME_WORK hidden), 'also held as'
             have = {(i['scheme'], i['value'].lower()) for i in n['ids']}
             for h, anc in self.cur().execute("""SELECT sw.hidden, n.anchors FROM sw JOIN nodes n ON n.key = sw.hidden
@@ -854,7 +1037,7 @@ class Handler(SimpleHTTPRequestHandler):
         if not u.path.startswith('/api/'):
             return super().do_GET()
         p = {k: v[0] for k, v in urllib.parse.parse_qs(u.query).items()}
-        GRAPH.local.opts = {k: p[k] for k in ('children', 'kind', 'decade', 'source', 'fiction') if p.get(k)}   # place-page filters
+        GRAPH.local.opts = {k: p[k] for k in ('children', 'kind', 'decade', 'source', 'fiction', 'hist') if p.get(k)}   # place-page filters
         try:
             if u.path == '/api/search':
                 return self.send_json(GRAPH.search(p.get('q', '')))

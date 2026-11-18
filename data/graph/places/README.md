@@ -20,10 +20,14 @@ Rules (user, 2026-11-18):
 | `work-places.csv.gz` | 849,985 | `work, qid, place_label, source, heading, lc_id, confidence`, one row per (work, place, source) |
 | `places.csv.gz` | 14,108 | `qid, label, kind, country, lc_id, lc_heading, variants, period_of, sitelinks, inception, dissolved, works` |
 | `place-hierarchy.csv.gz` | 21,772 | `child, parent, basis` |
-| `ungrounded.csv.gz` | 22,916 headings | LC place headings on graph books that did not ground to a place, with uses, books and the reason |
+| `overrides.csv` | 35 | hand groundings with a stated basis: LC headings with no QID or no authority match (South Asia, Acadia, Klondike River Valley, Quebec (Province) ...) and the Canadiana French headings for Canadian places |
+| `lc-printed-authors.csv.gz` | 229,437 | authors as catalogued: for works with an LCCN and no linked author, the LC 100 main entry (heading, dates, relators), the 245 $c statement as printed, the name authority it resolves to and the person key holding it (state on-key / no-key / unresolved). A display fact, never a credit (`scripts/places_printed_authors.py`) |
+| `ungrounded.csv.gz` | ~22,900 headings | LC place headings on graph books that did not ground to a place, with uses, books and the reason |
 | `report.json` | | counts |
 | `title-readings/*.csv` | | hand readings of 40 random title matches per name (raw or gated) |
 | `audit/grounding-audit-2026-11-18.csv` | 100 | hand reading of 60 random indirect and 40 random exact LC groundings |
+| `audit/fiction-audit-2026-11-18.csv` | 120 | fiction-setting flag: 40 flagged (40 right), 40 unflagged literary-adjacent (9 misses, fixed), 40 after the fix (40 right) |
+| `audit/review-inheritance-audit-2026-11-18.csv` | 40 | review-of tags: rule-linked REVIEWS 20/20, key-log REVIEWS 19/20 (one wrong key-log REVIEWS claim) |
 
 ### Sources and confidence
 
@@ -32,7 +36,8 @@ Rules (user, 2026-11-18):
 | `lc-651`, `lc-z`, `lc-610` | `lc-exact`, `lc-indirect`, `lc-fiction` | An LC subject heading on the book, from LC Books All 2016: a 651 geographic heading, a `$z` subdivision, or a 610 jurisdiction. `lc-exact`: the heading is the authority's label. `lc-indirect`: a bare `$z` grounded through the `$z` before it ("England -- London" -> "London (England)"). `lc-fiction`: the field carries `$v Fiction` (or Drama, Poetry), so the place is the setting of a novel, not its subject. |
 | `title-checked` | `title-checked` | The pilot's full hand reading of every Ceylon-family and Saskatchewan-family title match. Only rows read right are tagged. A Saskatchewan River row is tagged to the river, and the Prince Albert National Park rows to the park. |
 | `title-rule` | `title-rule`, `title-rule-gated` | A name rule on non-book works. It is kept only when its reading reached 95% (`scripts/places_titles.py`). The citation-tail rule drops places of publication. A gated rule also needs a regional word in the title. |
-| `review-of` | `review-of` | Not in this file. The build adds it: a review inherits the places of the book it reviews, through REVIEWS. |
+| `review-of` | `review-of:keylog`, `review-of:linked` | Not in this file. The build adds it: a review inherits the places of the book it reviews, through REVIEWS; the confidence names the REVIEWS edge class (audit: both read ≥ 95%). |
+| `lc-*` | `lc-override` | A heading grounded by `overrides.csv`. |
 
 ### Hierarchy bases
 
@@ -82,6 +87,10 @@ Rules (user, 2026-11-18):
 | Provinces and territories, raw | Manitoba 39/40, British Columbia 40/40, Nova Scotia 40/40, Newfoundland 40/40, Prince Edward Island 40/40, Nunavut 15/15, Northwest Territories 36/36, Ontario 39/40 (not Lake Ontario), Quebec 39/40 |
 | Cities | Winnipeg 39/40 (not Lake Winnipeg or the Winnipeg River) |
 | Gated (a regional word in the title too) | Alberta 39/40, New Brunswick 35/35 (raw 95%, gated chosen as the more precise) |
+
+**Cities by pattern** ('in/of/at ... <city>', '<city>'s', '<city>, <province>', without University of / Press / meeting reports / places of publication): Toronto 39/40, Montreal 40/40, Vancouver 39/40, Halifax 18/18 (only 'Halifax, N.S.', the Explosion, the harbour), Edmonton 11/11, Quebec City 40/40 pass; Ottawa 26/35 (the 1932 conference, the federal government, the Ottawa people), Calgary 23/27, Victoria 6/8 fail. Recall against the LC-tagged books of the same city (the rule run on their titles): Toronto 26%, Montreal 32%, Vancouver 25%, Halifax 25%, Edmonton 29%, Quebec City 10%, Winnipeg 40%.
+
+**Grounding after the overrides and the abbreviation fix** (an indirect `$z` pair whose LC qualifier is the parent's LC abbreviation: 'Vancouver' under 'British Columbia' -> 'Vancouver (B.C.)'; 795 pairs graph-wide): 1,445,473 LC uses grounded, plus 5,882 Canadiana French uses. Canada-related heading uses grounded: 77.7% -> 91.7%; Sri Lanka-related: 95.1% (unchanged; the 48 left are districts and basins without a QID). Still ungrounded for Canada: "Northwest, Canadian" (584 uses; no Wikidata item for the region), Halifax and St. John's pairs with several plain candidates, Yukon River Valley, Toronto Region, Muskoka.
 
 **Rescued by a narrower rule:**
 - "Canadian": raw 35/40 (87.5%). Without institution names ("Canadian Journal / Association / Institute / Dictionary of Canadian Biography ...") it reads 38/40 (95.0%).

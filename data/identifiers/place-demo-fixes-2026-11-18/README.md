@@ -20,3 +20,29 @@ These fixes come from the place-nodes demo probes (Sri Lanka, Saskatchewan, Cana
 - (a) Mint people from the LC main entries of books with a place heading. This adds up to 82,902 people, mostly not historians, which runs against the 2026-11-10 two-layer rule.
 - (b) Show the LC main-entry name on unkeyed books as an unlinked printed author on place pages, counted apart, with no minting.
 - (c) Mint only for books on the demo places.
+
+## Increment 3 (2026-11-18, later)
+
+**The 79 main entries on a person key but not credited.** Class: a stale table, not a key-log gap. `data/graph/lc-credits.csv.gz` (scripts/lc_catalogue_credits.py) was last built on 2026-11-14. The graph has since gained unkeyed `lccn:` book nodes (the 11-17 Crossref layer and cited works), and key anchors have changed. The credits table was rerun against the 11-18 build:
+- rows went from 12,806 to 13,128 (+322 credits graph-wide);
+- 60 of the 79 place-book cases are now credited;
+- 19 remain. My resolver tied their heading to an authority that `lc_catalogue_credits.py` does not use; mostly the heading carries dates, or there is a 700/relator difference. They are listed in `unlinked-lc-authors.csv.gz`.
+
+**`mint-place-authors.proposal.json.gz`** (NOT applied) mints people under the standing user rule of 2026-11-10: a person is minted only with an LC authority and 2+ citing theses. It is limited to LC authorities that are the main entry of a graph book carrying an LC place heading and that are on no person key.
+- Candidates: 87,276 such authorities, of which 6,653 have 2+ citing theses over all their graph books.
+- The proposal holds 6,653 person mints and 17,828 authored claims, on the works by key or LCCN node.
+- Dry run (`scripts/keylog_dryrun.py`, 2026-11-18, cache seq 5,908,712): 24,481 events, none rejected.
+- The claims name unkeyed `lccn:` works by their node key. Under the two-layer rule they would also need work mints before the build can resolve them; that is not in the proposal.
+- Top candidates include figures who are not historians, e.g. Mário de Andrade and Samuel Johnson. The rule counts citing theses, not field.
+
+**Dry runs.** The other proposals pass the dry run (`scripts/keylog_dryrun.py`):
+- relabel: 1 event;
+- LCCN merges: 31 events;
+- probe mints: 12 events.
+
+**Authors as catalogued.** `data/graph/places/lc-printed-authors.csv.gz` covers 229,437 works with no linked author. By the main entry's authority:
+- on no key: 192,330;
+- unresolved: 36,650;
+- on a key: 457 (credit pending).
+
+The explorer shows these as "author as catalogued (not linked)" on work rows and work pages. Each place page has a band "Catalogued authors not yet in the people index".

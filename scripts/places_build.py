@@ -44,6 +44,8 @@ STRUCTURE = {'Q34442', 'Q83620', 'Q41176', 'Q811979'}
 PEOPLES = {'Q41710', 'Q2472587', 'Q33829'}
 NATION_LABEL = re.compile(r'\b(Nation|Tribe|Band|Indians|people)\b')
 
+FICTION = re.compile(r'(?i) -- (juvenile )?(fiction|drama|poetry|comic books, strips, etc|graphic novels)\b')
+
 # LC abbreviations used as qualifiers (LC rule: AACR2 Appendix B / LC-PCC PS 16.2.2.9)
 ABBR = {
     'Alta.': 'Alberta', 'B.C.': 'British Columbia', 'Man.': 'Manitoba', 'N.B.': 'New Brunswick', 'N.L.': 'Newfoundland and Labrador',
@@ -106,7 +108,7 @@ def tsv(*paths):
 
 
 def wd_tables():
-    d = [B / 'wd', B / 'wd-extra', B / 'wd-extra2']
+    d = [B / 'wd', B / 'wd-extra', B / 'wd-extra2', B / 'wd-extra3']
     basic = {r['i']: r for r in tsv(*[x / 'basic.tsv' for x in d])}
     kinds, p131, anc, p17, alias, peoples = (defaultdict(set) for _ in range(6))
     for r in tsv(*[x / 'kinds.tsv' for x in d]):
@@ -198,6 +200,7 @@ def main():
     c.execute("SET memory_limit='4GB'; SET threads=4")
     c.execute(f"CREATE TABLE u AS SELECT * FROM '{B}/uses.parquet'")
     c.execute(f"CREATE TABLE auth AS SELECT file, id, label, variants FROM '{B}/auth.parquet'")
+    c.execute(f"CREATE TABLE auth2 AS SELECT file, id, qids, lc_qids FROM '{B}/auth.parquet'")
     auth_label = {f'{f}:{i}': l for f, i, l, v in c.execute('SELECT file, id, label, variants FROM auth').fetchall()}
     auth_var = {f'{f}:{i}': v for f, i, l, v in c.execute('SELECT file, id, label, variants FROM auth').fetchall()}
     label_auth = defaultdict(list)
@@ -209,7 +212,43 @@ def main():
                          FROM u WHERE used GROUP BY ALL""").fetchall()
     ground = {}                 # (heading, parent) -> (qid, auth key, route) or (None, reason)
     unground = []
+    # hand groundings with a stated basis (data/graph/places/overrides.csv, 2026-11-18): lc rows for headings with no
+    # QID or no authority match, fr rows for Canadiana French headings (second indicator 6)
+    ovr = {}
+    for r in csv.DictReader(open(OUT / 'overrides.csv', encoding='utf-8')):
+        ovr[(r['heading'], r['parent'] or None, r['thesaurus'])] = r['qid']
+    # an indirect $z pair whose LC qualifier is the parent's LC abbreviation ('Vancouver' under 'British Columbia' ->
+    # 'Vancouver (B.C.)'): the pilot's rule only compared the qualifier's letters with the parent's start
+    abbr_of = defaultdict(set)
+    for a, full in ABBR.items():
+        abbr_of[full].add(a)
+        abbr_of[re.sub(r'\s*\(.*\)$', '', full)].add(a)
+    abbr_of['Québec (Province)'].add('Québec')
+    abbr_of['Quebec (Province)'].add('Québec')
+    by_base = defaultdict(list)
+    for k, l in auth_label.items():
+        m = re.match(r'^(.*?)\s*\(([^)]*)\)$', l)
+        if m:
+            by_base[m.group(1)].append((k, m.group(2).split(' : ')[0], ' : ' in m.group(2)))
+    auth_qids = {f'{f}:{i}': (q, lq) for f, i, q, lq in c.execute('SELECT file, id, qids, lc_qids FROM auth2').fetchall()}
+    rep['indirect_abbr_pairs'] = 0
     for h, p, route, af, ai, qids, lcq, uses, books in pairs:
+        if (h, p, 'lc') in ovr:
+            q = ovr[(h, p, 'lc')]
+            if q in basic:
+                ground[(h, p)] = (q, f'{af}:{ai}' if ai else None, 'override')
+                continue
+        if route.startswith('ambiguous') and p:
+            cands = [(k, sub) for k, qual, sub in by_base.get(h, []) if qual in abbr_of.get(p, ())]
+            if len(cands) > 1:          # 'Halifax (N.S.)' over 'Halifax (N.S. : Regional municipality)': the plain form
+                cands = [x for x in cands if not x[1]]
+            cands = [k for k, _ in cands]
+            if len(cands) == 1 and auth_qids.get(cands[0], ([],))[0]:
+                q = primary(auth_qids[cands[0]][0], auth_qids[cands[0]][1] or [])
+                if q and q in basic and not excluded(q):
+                    ground[(h, p)] = (q, cands[0], 'indirect')
+                    rep['indirect_abbr_pairs'] += 1
+                    continue
         ak = f'{af}:{ai}' if ai else None
         if re.search(r'\bcountries\b', h, re.I):
             unground.append((h, p, route, ak, uses, books, 'a category of countries (developing, Arab, Islamic ...), not a place'))
@@ -231,24 +270,37 @@ def main():
         ground[(h, p)] = (q, ak, route)
     rows = {}
     form_src = {'651': 'lc-651', 'z': 'lc-z', '610-jurisdiction': 'lc-610'}
-    for key, form, h, p, full, fiction in c.execute(
-            "SELECT key, form, heading, parent, full_heading, fiction FROM u WHERE used ORDER BY key, tag, occ").fetchall():
-        g = ground.get((h, p))
+    fr = {(h, p): q for (h, p, t), q in ovr.items() if t == 'fr' and q in basic}
+    rep['fr_override_uses'] = 0
+    for key, form, h, p, full, fiction, used in c.execute(
+            "SELECT key, form, heading, parent, full_heading, fiction, used FROM u ORDER BY key, tag, occ").fetchall():
+        if not used:
+            if (h, p) not in fr:
+                continue
+            g = (fr[(h, p)], None, 'override')
+            rep['fr_override_uses'] += 1
+        else:
+            g = ground.get((h, p))
         if not g:
             continue
         q, ak, route = g
         src = form_src[form]
-        conf = 'lc-fiction' if fiction else ('lc-exact' if route == 'exact' else 'lc-indirect')
+        # fiction: the $v form subdivision (places_lc.py), or the same words as any later part of the heading string
+        # (older records carry 'Fiction' in $x: 'Kentucky -- Fiction'; fiction audit 2026-11-18)
+        fiction = fiction or bool(FICTION.search(full or ''))
+        conf = 'lc-fiction' if fiction else {'exact': 'lc-exact', 'override': 'lc-override'}.get(route, 'lc-indirect')
         k = (key, q, src)
         old = rows.get(k)
-        rank = {'lc-exact': 0, 'lc-indirect': 1, 'lc-fiction': 2}
+        rank = {'lc-exact': 0, 'lc-indirect': 1, 'lc-override': 2, 'lc-fiction': 3}
         if old is None or rank[conf] < rank[old['confidence']]:
-            rows[k] = dict(work=key, qid=q, source=src, heading=full, lc_id=ak.split(':', 1)[1], confidence=conf)
+            rows[k] = dict(work=key, qid=q, source=src, heading=full, lc_id=ak.split(':', 1)[1] if ak else '', confidence=conf)
     rep['lc_rows'] = len(rows)
     rep['lc_books'] = len({k[0] for k in rows})
     # unused thesauri (French Canadiana, $2 thesauri): counted with the ungrounded headings
     for h, p, uses, books in c.execute("""SELECT heading, parent, count(*), count(DISTINCT key) FROM u WHERE NOT used
                                           GROUP BY ALL""").fetchall():
+        if (h, p) in fr:
+            continue
         unground.append((h, p, 'not-used', None, uses, books, 'heading from a non-LC thesaurus (French Canadiana, $2 fast/swd/...), not used to tag'))
 
     # ---- title rows --------------------------------------------------------------------------------------------
