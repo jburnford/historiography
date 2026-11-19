@@ -1,274 +1,274 @@
 {
  "louvain_settings": "min_cited 15, cosine >= 0.12, pair support >= 3, 40 Louvain runs at resolution 1.5, 80% consensus",
- "louvain_fields": 9,
- "louvain_clustered": 221,
- "louvain_vocabulary": 284,
- "nmf_vocabulary": 284,
- "shared_works": 221,
+ "louvain_fields": 8,
+ "louvain_clustered": 216,
+ "louvain_vocabulary": 292,
+ "nmf_vocabulary": 292,
+ "shared_works": 216,
  "work_assignment_agreement": {
-  "adjusted_rand": 0.47,
-  "nmi": 0.599,
+  "adjusted_rand": 0.449,
+  "nmi": 0.556,
   "note": "NMF top family vs Louvain field, over works clustered by Louvain and in the NMF vocabulary"
  },
- "entropy_vs_louvain_link_split_spearman": 0.333,
+ "entropy_vs_louvain_link_split_spearman": 0.341,
  "families": [
   {
    "family": 0,
-   "label": "Foucault — knowledge, condition, society, critique",
-   "dominated": 150,
-   "member_works": 56,
+   "label": "Foucault — knowledge, critique, raison, condition",
+   "dominated": 193,
+   "member_works": 68,
    "best_by_member_works": {
     "field": "Foucault · Said",
     "field_id": 3,
-    "jaccard": 0.439,
-    "field_size": 26
+    "jaccard": 0.301,
+    "field_size": 27
    },
    "best_by_top25": {
     "field": "Foucault · Said",
     "field_id": 3,
-    "jaccard": 0.545,
-    "top25_inside": 0.72
+    "jaccard": 0.333,
+    "top25_inside": 0.52
    },
    "best_by_dissertations": {
     "field": "Foucault · Said",
     "field_id": 3,
-    "jaccard": 0.323,
-    "engaged": 63
+    "jaccard": 0.203,
+    "engaged": 56
    },
    "top25_spread": [
     [
      "Foucault · Said",
-     0.72
+     0.52
     ]
    ]
   },
   {
    "family": 1,
-   "label": "Perrot · Thébaud · Schweitzer — femmes, xixe, histoire, xxe",
-   "dominated": 135,
-   "member_works": 64,
-   "best_by_member_works": {
-    "field": "Charle · Corbin · Agulhon",
-    "field_id": 4,
-    "jaccard": 0.328,
-    "field_size": 25
-   },
-   "best_by_top25": {
-    "field": "Foucault · Perrot · Thébaud",
-    "field_id": 7,
-    "jaccard": 0.345,
-    "top25_inside": 0.4
-   },
-   "best_by_dissertations": {
-    "field": "Charle · Corbin · Agulhon",
-    "field_id": 4,
-    "jaccard": 0.233,
-    "engaged": 45
-   },
-   "top25_spread": [
-    [
-     "Foucault · Perrot · Thébaud",
-     0.4
-    ],
-    [
-     "Charle · Corbin · Agulhon",
-     0.24
-    ],
-    [
-     "Polanyi · Noiriel · Woronoff",
-     0.16
-    ]
-   ]
-  },
-  {
-   "family": 2,
-   "label": "Bély · Mousnier · Furetière — régime, ancien, xviiie, institutions",
-   "dominated": 113,
-   "member_works": 53,
+   "label": "Bély · Roche · Mousnier — xviiie, ancien, régime, institutions",
+   "dominated": 157,
+   "member_works": 71,
    "best_by_member_works": {
     "field": "Bély · Roche · Furetière",
     "field_id": 0,
-    "jaccard": 0.714,
+    "jaccard": 0.541,
     "field_size": 43
    },
    "best_by_top25": {
     "field": "Bély · Roche · Furetière",
     "field_id": 0,
-    "jaccard": 0.447,
-    "top25_inside": 0.84
+    "jaccard": 0.417,
+    "top25_inside": 0.8
    },
    "best_by_dissertations": {
     "field": "Bély · Roche · Furetière",
     "field_id": 0,
-    "jaccard": 0.569,
+    "jaccard": 0.463,
     "engaged": 102
    },
    "top25_spread": [
     [
      "Bély · Roche · Furetière",
-     0.84
+     0.8
     ],
     [
      "Lemercier · Roche · Lilti",
-     0.16
-    ]
-   ]
-  },
-  {
-   "family": 3,
-   "label": "Bourdieu · Lemercier · Delpu — biographique, analyse, réseaux, micro",
-   "dominated": 87,
-   "member_works": 37,
-   "best_by_member_works": {
-    "field": "Lemercier · Roche · Lilti",
-    "field_id": 6,
-    "jaccard": 0.182,
-    "field_size": 15
-   },
-   "best_by_top25": {
-    "field": "Lemercier · Roche · Lilti",
-    "field_id": 6,
-    "jaccard": 0.212,
-    "top25_inside": 0.28
-   },
-   "best_by_dissertations": {
-    "field": "Lemercier · Roche · Lilti",
-    "field_id": 6,
-    "jaccard": 0.098,
-    "engaged": 25
-   },
-   "top25_spread": [
-    [
-     "Lemercier · Roche · Lilti",
-     0.28
-    ],
-    [
-     "Bourdieu · Weber",
      0.12
     ]
    ]
   },
   {
-   "family": 4,
+   "family": 2,
+   "label": "Perrot · Thébaud · Schweitzer — femmes, xixe, histoire, siècle",
+   "dominated": 137,
+   "member_works": 66,
+   "best_by_member_works": {
+    "field": "Foucault · Perrot · Thébaud",
+    "field_id": 2,
+    "jaccard": 0.31,
+    "field_size": 27
+   },
+   "best_by_top25": {
+    "field": "Foucault · Perrot · Thébaud",
+    "field_id": 2,
+    "jaccard": 0.333,
+    "top25_inside": 0.52
+   },
+   "best_by_dissertations": {
+    "field": "Foucault · Perrot · Thébaud",
+    "field_id": 2,
+    "jaccard": 0.316,
+    "engaged": 67
+   },
+   "top25_spread": [
+    [
+     "Foucault · Perrot · Thébaud",
+     0.52
+    ],
+    [
+     "Charle · Corbin · Agulhon",
+     0.24
+    ]
+   ]
+  },
+  {
+   "family": 3,
    "label": "Prost · Bloch · Veyne — histoire, historien, historique, sociales",
-   "dominated": 81,
-   "member_works": 24,
+   "dominated": 83,
+   "member_works": 27,
    "best_by_member_works": {
     "field": "Prost · Veyne · Hartog",
     "field_id": 1,
-    "jaccard": 0.37,
-    "field_size": 39
+    "jaccard": 0.391,
+    "field_size": 37
    },
    "best_by_top25": {
     "field": "Prost · Veyne · Hartog",
     "field_id": 1,
-    "jaccard": 0.422,
-    "top25_inside": 0.76
+    "jaccard": 0.512,
+    "top25_inside": 0.84
    },
    "best_by_dissertations": {
     "field": "Prost · Veyne · Hartog",
     "field_id": 1,
-    "jaccard": 0.223,
-    "engaged": 160
+    "jaccard": 0.249,
+    "engaged": 153
    },
    "top25_spread": [
     [
      "Prost · Veyne · Hartog",
-     0.76
+     0.84
+    ]
+   ]
+  },
+  {
+   "family": 4,
+   "label": "Anderson · Thiesse · Hobsbawm — nation, culturelle, immigration, micro",
+   "dominated": 60,
+   "member_works": 18,
+   "best_by_member_works": {
+    "field": "Bourdieu · Weber",
+    "field_id": 6,
+    "jaccard": 0.086,
+    "field_size": 20
+   },
+   "best_by_top25": {
+    "field": "Bourdieu · Weber",
+    "field_id": 6,
+    "jaccard": 0.098,
+    "top25_inside": 0.16
+   },
+   "best_by_dissertations": {
+    "field": "Prost · Veyne · Hartog",
+    "field_id": 1,
+    "jaccard": 0.039,
+    "engaged": 153
+   },
+   "top25_spread": [
+    [
+     "Bourdieu · Weber",
+     0.16
     ]
    ]
   },
   {
    "family": 5,
    "label": "Halbwachs · Hartog — mémoire, temps, oubli, histoire",
-   "dominated": 62,
-   "member_works": 20,
+   "dominated": 60,
+   "member_works": 21,
    "best_by_member_works": {
     "field": "Prost · Veyne · Hartog",
     "field_id": 1,
-    "jaccard": 0.439,
-    "field_size": 39
+    "jaccard": 0.381,
+    "field_size": 37
    },
    "best_by_top25": {
     "field": "Prost · Veyne · Hartog",
     "field_id": 1,
-    "jaccard": 0.488,
-    "top25_inside": 0.84
+    "jaccard": 0.409,
+    "top25_inside": 0.72
    },
    "best_by_dissertations": {
     "field": "Prost · Veyne · Hartog",
     "field_id": 1,
-    "jaccard": 0.22,
-    "engaged": 160
+    "jaccard": 0.21,
+    "engaged": 153
    },
    "top25_spread": [
     [
      "Prost · Veyne · Hartog",
-     0.84
+     0.72
+    ],
+    [
+     "Paxton · Laborie · Noiriel",
+     0.16
     ]
    ]
   },
   {
    "family": 6,
-   "label": "Anderson · Thiesse · Hobsbawm — nation, culturelle, immigration, pouvoir",
-   "dominated": 58,
-   "member_works": 14,
+   "label": "Paxton · Laborie · Rousso — vichy, france, sous, français",
+   "dominated": 41,
+   "member_works": 17,
    "best_by_member_works": {
-    "field": "Bourdieu · Weber",
-    "field_id": 2,
-    "jaccard": 0.079,
-    "field_size": 27
+    "field": "Paxton · Laborie · Noiriel",
+    "field_id": 5,
+    "jaccard": 0.464,
+    "field_size": 24
    },
    "best_by_top25": {
-    "field": "Bourdieu · Weber",
-    "field_id": 2,
-    "jaccard": 0.106,
-    "top25_inside": 0.2
+    "field": "Paxton · Laborie · Noiriel",
+    "field_id": 5,
+    "jaccard": 0.4,
+    "top25_inside": 0.56
    },
    "best_by_dissertations": {
-    "field": "Bourdieu · Weber",
-    "field_id": 2,
-    "jaccard": 0.046,
-    "engaged": 55
+    "field": "Paxton · Laborie · Noiriel",
+    "field_id": 5,
+    "jaccard": 0.423,
+    "engaged": 60
    },
    "top25_spread": [
     [
-     "Bourdieu · Weber",
-     0.2
+     "Paxton · Laborie · Noiriel",
+     0.56
     ]
    ]
   },
   {
    "family": 7,
-   "label": "Paxton · Laborie · Rousso — vichy, france, sous, français",
-   "dominated": 39,
-   "member_works": 16,
+   "label": "STRABON · PLINE L'ANCIEN ·  TACITE — histoire, mots, dictionnaire, langue",
+   "dominated": 18,
+   "member_works": 4,
    "best_by_member_works": {
-    "field": "Paxton · Laborie · Noiriel",
-    "field_id": 5,
-    "jaccard": 0.44,
-    "field_size": 20
+    "field": "Bély · Roche · Furetière",
+    "field_id": 0,
+    "jaccard": 0.0,
+    "field_size": 43
    },
    "best_by_top25": {
-    "field": "Paxton · Laborie · Noiriel",
-    "field_id": 5,
-    "jaccard": 0.364,
-    "top25_inside": 0.48
+    "field": "Foucault · Said",
+    "field_id": 3,
+    "jaccard": 0.156,
+    "top25_inside": 0.28
    },
    "best_by_dissertations": {
-    "field": "Paxton · Laborie · Noiriel",
-    "field_id": 5,
-    "jaccard": 0.381,
-    "engaged": 48
+    "field": "Bély · Roche · Furetière",
+    "field_id": 0,
+    "jaccard": 0.0,
+    "engaged": 102
    },
    "top25_spread": [
     [
-     "Paxton · Laborie · Noiriel",
-     0.48
+     "Foucault · Said",
+     0.28
     ],
     [
      "Prost · Veyne · Hartog",
-     0.24
+     0.16
+    ],
+    [
+     "Bély · Roche · Furetière",
+     0.12
     ]
    ]
   }
@@ -278,12 +278,12 @@
    "field": "Bély · Roche · Furetière",
    "field_id": 0,
    "works": 43,
-   "best_family": 2,
-   "family_label": "Bély · Mousnier · Furetière — régime, ancien, xviiie, institutions",
-   "jaccard": 0.714,
+   "best_family": 1,
+   "family_label": "Bély · Roche · Mousnier — xviiie, ancien, régime, institutions",
+   "jaccard": 0.541,
    "work_spread": [
     [
-     2,
+     1,
      40
     ],
     [
@@ -291,11 +291,11 @@
      1
     ],
     [
-     6,
+     2,
      1
     ],
     [
-     1,
+     4,
      1
     ]
    ]
@@ -303,69 +303,77 @@
   {
    "field": "Prost · Veyne · Hartog",
    "field_id": 1,
-   "works": 39,
-   "best_family": 5,
-   "family_label": "Halbwachs · Hartog — mémoire, temps, oubli, histoire",
-   "jaccard": 0.439,
+   "works": 37,
+   "best_family": 3,
+   "family_label": "Prost · Bloch · Veyne — histoire, historien, historique, sociales",
+   "jaccard": 0.391,
    "work_spread": [
     [
-     5,
+     3,
      18
     ],
     [
+     5,
+     16
+    ],
+    [
+     0,
+     1
+    ],
+    [
      4,
-     17
-    ],
-    [
-     7,
-     3
-    ],
-    [
-     1,
      1
     ]
    ]
   },
   {
-   "field": "Bourdieu · Weber",
+   "field": "Foucault · Perrot · Thébaud",
    "field_id": 2,
    "works": 27,
-   "best_family": 0,
-   "family_label": "Foucault — knowledge, condition, society, critique",
-   "jaccard": 0.186,
+   "best_family": 2,
+   "family_label": "Perrot · Thébaud · Schweitzer — femmes, xixe, histoire, siècle",
+   "jaccard": 0.31,
    "work_spread": [
     [
+     2,
+     22
+    ],
+    [
+     1,
+     2
+    ],
+    [
      0,
-     13
+     2
     ],
     [
      3,
-     6
-    ],
-    [
-     4,
-     3
-    ],
-    [
-     6,
-     3
+     1
     ]
    ]
   },
   {
    "field": "Foucault · Said",
    "field_id": 3,
-   "works": 26,
+   "works": 27,
    "best_family": 0,
-   "family_label": "Foucault — knowledge, condition, society, critique",
-   "jaccard": 0.439,
+   "family_label": "Foucault — knowledge, critique, raison, condition",
+   "jaccard": 0.301,
    "work_spread": [
     [
      0,
-     25
+     22
     ],
     [
-     6,
+     3,
+     2
+    ],
+    [
+     5,
+     2
+    ],
+    [
+     4,
      1
     ]
    ]
@@ -373,21 +381,21 @@
   {
    "field": "Charle · Corbin · Agulhon",
    "field_id": 4,
-   "works": 25,
-   "best_family": 1,
-   "family_label": "Perrot · Thébaud · Schweitzer — femmes, xixe, histoire, xxe",
-   "jaccard": 0.328,
+   "works": 24,
+   "best_family": 2,
+   "family_label": "Perrot · Thébaud · Schweitzer — femmes, xixe, histoire, siècle",
+   "jaccard": 0.304,
    "work_spread": [
     [
-     1,
-     22
+     2,
+     21
     ],
     [
      0,
      2
     ],
     [
-     7,
+     6,
      1
     ]
    ]
@@ -395,80 +403,70 @@
   {
    "field": "Paxton · Laborie · Noiriel",
    "field_id": 5,
-   "works": 20,
-   "best_family": 7,
+   "works": 24,
+   "best_family": 6,
    "family_label": "Paxton · Laborie · Rousso — vichy, france, sous, français",
-   "jaccard": 0.44,
+   "jaccard": 0.464,
    "work_spread": [
-    [
-     7,
-     11
-    ],
-    [
-     1,
-     6
-    ],
     [
      6,
-     1
-    ],
-    [
-     5,
-     1
-    ]
-   ]
-  },
-  {
-   "field": "Lemercier · Roche · Lilti",
-   "field_id": 6,
-   "works": 15,
-   "best_family": 3,
-   "family_label": "Bourdieu · Lemercier · Delpu — biographique, analyse, réseaux, micro",
-   "jaccard": 0.182,
-   "work_spread": [
-    [
-     3,
-     8
+     13
     ],
     [
      2,
      6
     ],
     [
-     0,
+     5,
+     3
+    ],
+    [
+     3,
      1
     ]
    ]
   },
   {
-   "field": "Foucault · Perrot · Thébaud",
+   "field": "Bourdieu · Weber",
+   "field_id": 6,
+   "works": 20,
+   "best_family": 0,
+   "family_label": "Foucault — knowledge, critique, raison, condition",
+   "jaccard": 0.205,
+   "work_spread": [
+    [
+     0,
+     15
+    ],
+    [
+     4,
+     3
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     1,
+     1
+    ]
+   ]
+  },
+  {
+   "field": "Lemercier · Roche · Lilti",
    "field_id": 7,
    "works": 14,
    "best_family": 1,
-   "family_label": "Perrot · Thébaud · Schweitzer — femmes, xixe, histoire, xxe",
-   "jaccard": 0.2,
+   "family_label": "Bély · Roche · Mousnier — xviiie, ancien, régime, institutions",
+   "jaccard": 0.149,
    "work_spread": [
     [
      1,
-     13
+     11
     ],
     [
      0,
      1
-    ]
-   ]
-  },
-  {
-   "field": "Polanyi · Noiriel · Woronoff",
-   "field_id": 8,
-   "works": 12,
-   "best_family": 1,
-   "family_label": "Perrot · Thébaud · Schweitzer — femmes, xixe, histoire, xxe",
-   "jaccard": 0.152,
-   "work_spread": [
-    [
-     1,
-     10
     ],
     [
      3,
@@ -485,12 +483,12 @@
   {
    "title": "Discipline and Punish: The Birth of the Prison",
    "first_author": "Foucault, Michel",
-   "citing": 90,
-   "entropy": 0.445,
+   "citing": 92,
+   "entropy": 0.348,
    "nmf_top": 0,
-   "nmf_top_share": 0.7,
-   "nmf_second": 1,
-   "nmf_second_share": 0.15,
+   "nmf_top_share": 0.79,
+   "nmf_second": 2,
+   "nmf_second_share": 0.09,
    "louvain": "unclustered"
   },
   {
@@ -498,7 +496,7 @@
    "first_author": "Anderson, Benedict",
    "citing": 88,
    "entropy": 0.0,
-   "nmf_top": 6,
+   "nmf_top": 4,
    "nmf_top_share": 1.0,
    "nmf_second": 0,
    "nmf_second_share": 0.0,
@@ -507,99 +505,110 @@
   {
    "title": "La création des identités nationales",
    "first_author": "Thiesse, Anne-Marie",
-   "citing": 62,
-   "entropy": 0.345,
-   "nmf_top": 6,
-   "nmf_top_share": 0.79,
-   "nmf_second": 1,
-   "nmf_second_share": 0.11,
+   "citing": 63,
+   "entropy": 0.319,
+   "nmf_top": 4,
+   "nmf_top_share": 0.8,
+   "nmf_second": 2,
+   "nmf_second_share": 0.12,
    "louvain": "unclustered"
   },
   {
    "title": "Le goût de l’archive",
    "first_author": "Farge, Arlette",
    "citing": 61,
-   "entropy": 0.856,
-   "nmf_top": 3,
-   "nmf_top_share": 0.33,
-   "nmf_second": 0,
-   "nmf_second_share": 0.21,
+   "entropy": 0.827,
+   "nmf_top": 0,
+   "nmf_top_share": 0.34,
+   "nmf_second": 3,
+   "nmf_second_share": 0.23,
    "louvain": "unclustered"
   },
   {
    "title": "L’illusion biographique",
    "first_author": "Bourdieu, Pierre",
-   "citing": 55,
-   "entropy": 0.031,
-   "nmf_top": 3,
-   "nmf_top_share": 0.99,
-   "nmf_second": 5,
-   "nmf_second_share": 0.01,
+   "citing": 56,
+   "entropy": 0.706,
+   "nmf_top": 1,
+   "nmf_top_share": 0.41,
+   "nmf_second": 0,
+   "nmf_second_share": 0.26,
    "louvain": "unclustered"
   },
   {
    "title": "Économie et société",
    "first_author": "Weber, Max",
-   "citing": 50,
-   "entropy": 0.688,
-   "nmf_top": 3,
-   "nmf_top_share": 0.49,
-   "nmf_second": 6,
-   "nmf_second_share": 0.21,
+   "citing": 54,
+   "entropy": 0.636,
+   "nmf_top": 0,
+   "nmf_top_share": 0.52,
+   "nmf_second": 4,
+   "nmf_second_share": 0.19,
    "louvain": "unclustered"
   },
   {
    "title": "Le fromage et les vers",
    "first_author": "Ginzburg, Carlo",
    "citing": 45,
-   "entropy": 0.527,
+   "entropy": 0.57,
    "nmf_top": 3,
-   "nmf_top_share": 0.52,
-   "nmf_second": 4,
-   "nmf_second_share": 0.31,
+   "nmf_top_share": 0.47,
+   "nmf_second": 1,
+   "nmf_second_share": 0.38,
    "louvain": "unclustered"
   },
   {
    "title": "Jeux d’échelles. La micro-analyse à l’expérience",
    "first_author": "Revel, Jacques",
    "citing": 45,
-   "entropy": 0.668,
-   "nmf_top": 3,
+   "entropy": 0.769,
+   "nmf_top": 1,
+   "nmf_top_share": 0.28,
+   "nmf_second": 0,
+   "nmf_second_share": 0.22,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Orientalism",
+   "first_author": "Said, Edward",
+   "citing": 45,
+   "entropy": 0.332,
+   "nmf_top": 4,
    "nmf_top_share": 0.54,
-   "nmf_second": 1,
-   "nmf_second_share": 0.14,
+   "nmf_second": 0,
+   "nmf_second_share": 0.46,
    "louvain": "unclustered"
   },
   {
    "title": "The Mediterranean and the Mediterranean World in the Age of Philip II",
    "first_author": "Braudel, Fernand",
    "citing": 42,
-   "entropy": 0.472,
+   "entropy": 0.745,
    "nmf_top": 3,
-   "nmf_top_share": 0.68,
-   "nmf_second": 4,
-   "nmf_second_share": 0.17,
+   "nmf_top_share": 0.33,
+   "nmf_second": 0,
+   "nmf_second_share": 0.22,
    "louvain": "unclustered"
   },
   {
    "title": "La civilisation des mœurs",
    "first_author": "Elias, Norbert",
-   "citing": 40,
-   "entropy": 0.634,
-   "nmf_top": 1,
-   "nmf_top_share": 0.35,
-   "nmf_second": 0,
-   "nmf_second_share": 0.3,
+   "citing": 41,
+   "entropy": 0.543,
+   "nmf_top": 0,
+   "nmf_top_share": 0.53,
+   "nmf_second": 2,
+   "nmf_second_share": 0.25,
    "louvain": "unclustered"
   },
   {
    "title": "Histoire de la population française",
    "first_author": "Dupâquier, Jacques",
    "citing": 38,
-   "entropy": 0.376,
-   "nmf_top": 1,
+   "entropy": 0.374,
+   "nmf_top": 2,
    "nmf_top_share": 0.59,
-   "nmf_second": 2,
+   "nmf_second": 1,
    "nmf_second_share": 0.38,
    "louvain": "unclustered"
   },
@@ -607,10 +616,10 @@
    "title": "L’espace public. Archéologie de la publicité comme dimension constitutive de la société bourgeoise",
    "first_author": "Habermas, Jürgen",
    "citing": 33,
-   "entropy": 0.823,
-   "nmf_top": 2,
+   "entropy": 0.828,
+   "nmf_top": 1,
    "nmf_top_share": 0.35,
-   "nmf_second": 1,
+   "nmf_second": 2,
    "nmf_second_share": 0.18,
    "louvain": "unclustered"
   },
@@ -618,308 +627,297 @@
    "title": "Le creuset français: histoire de l’immigration, XIXe-XXe siècle",
    "first_author": "Noiriel, Gérard",
    "citing": 33,
-   "entropy": 0.468,
-   "nmf_top": 1,
-   "nmf_top_share": 0.58,
-   "nmf_second": 6,
+   "entropy": 0.46,
+   "nmf_top": 2,
+   "nmf_top_share": 0.59,
+   "nmf_second": 4,
    "nmf_second_share": 0.23,
    "louvain": "unclustered"
   },
   {
-   "title": "Essai sur le don. Forme et raison de l’échange dans les sociétés archaïques",
-   "first_author": "Mauss, Marcel",
-   "citing": 27,
-   "entropy": 0.656,
-   "nmf_top": 0,
-   "nmf_top_share": 0.5,
-   "nmf_second": 1,
-   "nmf_second_share": 0.19,
+   "title": "Géographie",
+   "first_author": "STRABON, Edition de",
+   "citing": 32,
+   "entropy": 0.015,
+   "nmf_top": 7,
+   "nmf_top_share": 1.0,
+   "nmf_second": 5,
+   "nmf_second_share": 0.0,
    "louvain": "unclustered"
   },
   {
-   "title": "La structure des révolutions scientifiques",
-   "first_author": "Kuhn, Thomas S",
-   "citing": 26,
-   "entropy": 0.374,
+   "title": "Les origines culturelles de la Révolution française",
+   "first_author": "Chartier, Roger",
+   "citing": 28,
+   "entropy": 0.263,
+   "nmf_top": 1,
+   "nmf_top_share": 0.84,
+   "nmf_second": 5,
+   "nmf_second_share": 0.08,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Mythologies",
+   "first_author": "Barthes, Roland",
+   "citing": 27,
+   "entropy": 0.226,
    "nmf_top": 0,
-   "nmf_top_share": 0.71,
-   "nmf_second": 4,
-   "nmf_second_share": 0.24,
+   "nmf_top_share": 0.86,
+   "nmf_second": 2,
+   "nmf_second_share": 0.12,
    "louvain": "unclustered"
   },
   {
    "title": "Le pouvoir au village",
    "first_author": "Levi, Giovanni",
    "citing": 26,
-   "entropy": 0.302,
-   "nmf_top": 3,
-   "nmf_top_share": 0.72,
-   "nmf_second": 2,
-   "nmf_second_share": 0.27,
+   "entropy": 0.531,
+   "nmf_top": 1,
+   "nmf_top_share": 0.62,
+   "nmf_second": 0,
+   "nmf_second_share": 0.21,
    "louvain": "unclustered"
   },
   {
    "title": "Les filles de noce. Misère sexuelle et prostitution au XIXe siècle",
    "first_author": "Corbin, Alain",
    "citing": 25,
-   "entropy": 0.107,
-   "nmf_top": 1,
+   "entropy": 0.091,
+   "nmf_top": 2,
    "nmf_top_share": 0.95,
    "nmf_second": 0,
    "nmf_second_share": 0.05,
    "louvain": "unclustered"
   },
   {
+   "title": "Les élites de la République (1880-1900)",
+   "first_author": "Charle, Christophe",
+   "citing": 24,
+   "entropy": 0.409,
+   "nmf_top": 2,
+   "nmf_top_share": 0.69,
+   "nmf_second": 4,
+   "nmf_second_share": 0.23,
+   "louvain": "unclustered"
+  },
+  {
    "title": "Le pari biographique. Écrire une vie",
    "first_author": "Dosse, François",
    "citing": 24,
-   "entropy": 0.313,
-   "nmf_top": 3,
-   "nmf_top_share": 0.82,
-   "nmf_second": 2,
-   "nmf_second_share": 0.08,
+   "entropy": 0.67,
+   "nmf_top": 1,
+   "nmf_top_share": 0.46,
+   "nmf_second": 3,
+   "nmf_second_share": 0.23,
    "louvain": "unclustered"
   },
   {
    "title": "Sécurité, territoire, population. Cours au Collège de France. 1977-1978",
    "first_author": "Foucault, Michel",
    "citing": 24,
-   "entropy": 0.573,
+   "entropy": 0.377,
    "nmf_top": 0,
-   "nmf_top_share": 0.43,
-   "nmf_second": 3,
-   "nmf_second_share": 0.34,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Structural Anthropology",
-   "first_author": "Lévi-Strauss, Claude",
-   "citing": 24,
-   "entropy": 0.477,
-   "nmf_top": 0,
-   "nmf_top_share": 0.5,
-   "nmf_second": 6,
-   "nmf_second_share": 0.41,
+   "nmf_top_share": 0.68,
+   "nmf_second": 1,
+   "nmf_second_share": 0.26,
    "louvain": "unclustered"
   },
   {
    "title": "Dictionnaire historique de la langue française",
    "first_author": "Rey, Alain",
    "citing": 24,
-   "entropy": 0.665,
-   "nmf_top": 3,
-   "nmf_top_share": 0.39,
-   "nmf_second": 0,
-   "nmf_second_share": 0.37,
+   "entropy": 0.729,
+   "nmf_top": 0,
+   "nmf_top_share": 0.43,
+   "nmf_second": 1,
+   "nmf_second_share": 0.19,
    "louvain": "unclustered"
   },
   {
    "title": "Le monde retrouvé de Louis-François Pinagot. Sur les traces d’un inconnu (1798-1876)",
    "first_author": "Corbin, Alain",
    "citing": 23,
-   "entropy": 0.574,
-   "nmf_top": 3,
-   "nmf_top_share": 0.42,
+   "entropy": 0.64,
+   "nmf_top": 2,
+   "nmf_top_share": 0.47,
    "nmf_second": 1,
-   "nmf_second_share": 0.41,
+   "nmf_second_share": 0.31,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Histoire naturelle",
+   "first_author": "PLINE L'ANCIEN, éd. 1848-",
+   "citing": 23,
+   "entropy": 0.0,
+   "nmf_top": 7,
+   "nmf_top_share": 1.0,
+   "nmf_second": 0,
+   "nmf_second_share": 0.0,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "L’éthique protestante et l’esprit du capitalisme",
+   "first_author": "Weber, Max",
+   "citing": 23,
+   "entropy": 0.299,
+   "nmf_top": 0,
+   "nmf_top_share": 0.82,
+   "nmf_second": 3,
+   "nmf_second_share": 0.13,
    "louvain": "unclustered"
   },
   {
    "title": "Les caractères originaux de l’histoire rurale française",
    "first_author": "Bloch, Marc",
    "citing": 22,
-   "entropy": 0.626,
+   "entropy": 0.723,
    "nmf_top": 0,
-   "nmf_top_share": 0.52,
-   "nmf_second": 2,
-   "nmf_second_share": 0.25,
+   "nmf_top_share": 0.39,
+   "nmf_second": 1,
+   "nmf_second_share": 0.26,
    "louvain": "unclustered"
   },
   {
    "title": "L’identité de la France",
    "first_author": "Braudel, Fernand",
    "citing": 22,
-   "entropy": 0.812,
+   "entropy": 0.809,
    "nmf_top": 1,
-   "nmf_top_share": 0.26,
+   "nmf_top_share": 0.27,
    "nmf_second": 2,
-   "nmf_second_share": 0.24,
+   "nmf_second_share": 0.26,
    "louvain": "unclustered"
   },
   {
    "title": "Méthodes quantitatives pour l’historien",
    "first_author": "Lemercier, Claire",
    "citing": 22,
-   "entropy": 0.665,
-   "nmf_top": 3,
-   "nmf_top_share": 0.51,
-   "nmf_second": 7,
-   "nmf_second_share": 0.24,
+   "entropy": 0.861,
+   "nmf_top": 6,
+   "nmf_top_share": 0.28,
+   "nmf_second": 2,
+   "nmf_second_share": 0.18,
    "louvain": "unclustered"
   },
   {
-   "title": "Géographie",
-   "first_author": "STRABON, Edition de",
+   "title": "Dictionnaire de l’ancienne langue française et de tous ses dialectes du IXe au XVe siècle",
+   "first_author": "Godefroy, Frédéric",
    "citing": 21,
-   "entropy": 0.154,
-   "nmf_top": 0,
-   "nmf_top_share": 0.93,
-   "nmf_second": 5,
-   "nmf_second_share": 0.04,
+   "entropy": 0.497,
+   "nmf_top": 1,
+   "nmf_top_share": 0.56,
+   "nmf_second": 0,
+   "nmf_second_share": 0.28,
    "louvain": "unclustered"
   },
   {
-   "title": "La formation de l’esprit scientifique",
-   "first_author": "Bachelard, Gaston",
-   "citing": 20,
-   "entropy": 0.437,
+   "title": "La production de l’espace",
+   "first_author": "Lefebvre, Henri",
+   "citing": 21,
+   "entropy": 0.596,
    "nmf_top": 0,
-   "nmf_top_share": 0.53,
-   "nmf_second": 4,
-   "nmf_second_share": 0.41,
+   "nmf_top_share": 0.58,
+   "nmf_second": 2,
+   "nmf_second_share": 0.15,
    "louvain": "unclustered"
   },
   {
    "title": "L’histoire à parts égales : récits d’une rencontre Orient-Occident, XVIe-XVIIe siècle",
    "first_author": "Bertrand, Romain",
    "citing": 20,
-   "entropy": 0.629,
-   "nmf_top": 3,
-   "nmf_top_share": 0.36,
-   "nmf_second": 6,
-   "nmf_second_share": 0.35,
+   "entropy": 0.668,
+   "nmf_top": 4,
+   "nmf_top_share": 0.42,
+   "nmf_second": 3,
+   "nmf_second_share": 0.3,
    "louvain": "unclustered"
   },
   {
    "title": "La République des universitaires (1870-1940)",
    "first_author": "Charle, Christophe",
    "citing": 20,
-   "entropy": 0.568,
-   "nmf_top": 3,
-   "nmf_top_share": 0.46,
-   "nmf_second": 1,
-   "nmf_second_share": 0.29,
+   "entropy": 0.496,
+   "nmf_top": 2,
+   "nmf_top_share": 0.53,
+   "nmf_second": 4,
+   "nmf_second_share": 0.36,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "La société du spectacle",
+   "first_author": "Debord, Guy",
+   "citing": 20,
+   "entropy": 0.109,
+   "nmf_top": 0,
+   "nmf_top_share": 0.94,
+   "nmf_second": 4,
+   "nmf_second_share": 0.06,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Les transferts culturels franco-allemands",
+   "first_author": "Espagne, Michel",
+   "citing": 20,
+   "entropy": 0.647,
+   "nmf_top": 4,
+   "nmf_top_share": 0.5,
+   "nmf_second": 0,
+   "nmf_second_share": 0.22,
    "louvain": "unclustered"
   },
   {
    "title": "Penser la Révolution française",
    "first_author": "Furet, François",
    "citing": 20,
-   "entropy": 0.698,
-   "nmf_top": 2,
+   "entropy": 0.691,
+   "nmf_top": 1,
    "nmf_top_share": 0.45,
    "nmf_second": 5,
-   "nmf_second_share": 0.17,
+   "nmf_second_share": 0.18,
    "louvain": "unclustered"
   },
   {
-   "title": "La production de l’espace",
-   "first_author": "Lefebvre, Henri",
+   "title": "Histoires",
+   "first_author": "HÉRODOTE, Pierre Giguet",
    "citing": 20,
-   "entropy": 0.639,
-   "nmf_top": 0,
-   "nmf_top_share": 0.46,
-   "nmf_second": 3,
-   "nmf_second_share": 0.25,
+   "entropy": 0.08,
+   "nmf_top": 7,
+   "nmf_top_share": 0.96,
+   "nmf_second": 0,
+   "nmf_second_share": 0.04,
    "louvain": "unclustered"
   },
   {
-   "title": "Les transferts culturels franco-allemands",
-   "first_author": "Espagne, Michel",
-   "citing": 19,
-   "entropy": 0.614,
-   "nmf_top": 6,
-   "nmf_top_share": 0.46,
-   "nmf_second": 3,
-   "nmf_second_share": 0.32,
+   "title": "Annales",
+   "first_author": " TACITE, Paris",
+   "citing": 20,
+   "entropy": 0.0,
+   "nmf_top": 7,
+   "nmf_top_share": 1.0,
+   "nmf_second": 0,
+   "nmf_second_share": 0.0,
    "louvain": "unclustered"
   },
   {
    "title": "The Wretched of the Earth",
    "first_author": "Fanon, Frantz",
    "citing": 19,
-   "entropy": 0.392,
-   "nmf_top": 6,
-   "nmf_top_share": 0.62,
+   "entropy": 0.394,
+   "nmf_top": 4,
+   "nmf_top_share": 0.59,
    "nmf_second": 0,
-   "nmf_second_share": 0.33,
+   "nmf_second_share": 0.37,
    "louvain": "unclustered"
   },
   {
-   "title": "De la division du travail social",
-   "first_author": "Durkheim, Emile",
-   "citing": 18,
-   "entropy": 0.752,
+   "title": "Dictionnaire du Moyen Âge",
+   "first_author": "GAUVARD Claude, DE LIBERA Alain",
+   "citing": 19,
+   "entropy": 0.645,
    "nmf_top": 0,
-   "nmf_top_share": 0.38,
+   "nmf_top_share": 0.39,
    "nmf_second": 1,
-   "nmf_second_share": 0.27,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Black Skin, White Masks",
-   "first_author": "Fanon, Frantz",
-   "citing": 18,
-   "entropy": 0.331,
-   "nmf_top": 0,
-   "nmf_top_share": 0.55,
-   "nmf_second": 6,
-   "nmf_second_share": 0.45,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Nations et nationalisme depuis 1780",
-   "first_author": "Hobsbawm, Eric",
-   "citing": 18,
-   "entropy": 0.187,
-   "nmf_top": 6,
-   "nmf_top_share": 0.9,
-   "nmf_second": 3,
-   "nmf_second_share": 0.06,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Dictionnaire de la langue française",
-   "first_author": "Littré, Émile. Review of",
-   "citing": 18,
-   "entropy": 0.616,
-   "nmf_top": 0,
-   "nmf_top_share": 0.44,
-   "nmf_second": 2,
-   "nmf_second_share": 0.26,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "L’Idée républicaine en France (1789-1924)",
-   "first_author": "Nicolet, Claude",
-   "citing": 18,
-   "entropy": 0.886,
-   "nmf_top": 1,
-   "nmf_top_share": 0.26,
-   "nmf_second": 5,
-   "nmf_second_share": 0.17,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "What is a Nation?",
-   "first_author": "Renan, Ernest",
-   "citing": 18,
-   "entropy": 0.356,
-   "nmf_top": 6,
-   "nmf_top_share": 0.74,
-   "nmf_second": 4,
-   "nmf_second_share": 0.18,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Micro-analyse et construction du social",
-   "first_author": "Revel, Jacques",
-   "citing": 18,
-   "entropy": 0.226,
-   "nmf_top": 3,
-   "nmf_top_share": 0.87,
-   "nmf_second": 6,
-   "nmf_second_share": 0.1,
+   "nmf_second_share": 0.34,
    "louvain": "unclustered"
   }
  ],
@@ -929,7 +927,7 @@
    "first_author": "Anderson, Benedict",
    "citing": 88,
    "entropy": 0.0,
-   "nmf_top": 6,
+   "nmf_top": 4,
    "nmf_top_share": 1.0,
    "nmf_second": 0,
    "nmf_second_share": 0.0,
@@ -939,199 +937,210 @@
    "title": "Orientalism",
    "first_author": "Said, Edward",
    "citing": 45,
-   "entropy": 0.331,
-   "nmf_top": 6,
-   "nmf_top_share": 0.55,
+   "entropy": 0.332,
+   "nmf_top": 4,
+   "nmf_top_share": 0.54,
    "nmf_second": 0,
-   "nmf_second_share": 0.45,
-   "louvain": "Foucault · Said"
+   "nmf_second_share": 0.46,
+   "louvain": "unclustered"
   },
   "Discipline and Punish": {
    "title": "Discipline and Punish: The Birth of the Prison",
    "first_author": "Foucault, Michel",
-   "citing": 90,
-   "entropy": 0.445,
+   "citing": 92,
+   "entropy": 0.348,
    "nmf_top": 0,
-   "nmf_top_share": 0.7,
-   "nmf_second": 1,
-   "nmf_second_share": 0.15,
+   "nmf_top_share": 0.79,
+   "nmf_second": 2,
+   "nmf_second_share": 0.09,
    "louvain": "unclustered"
   }
  },
  "bridges_top30": [
   {
-   "title": "Le goût de l’archive",
-   "first_author": "Farge, Arlette",
-   "citing": 61,
-   "entropy": 0.856,
-   "nmf_top": 3,
-   "nmf_top_share": 0.33,
-   "nmf_second": 0,
-   "nmf_second_share": 0.21,
-   "louvain": "unclustered"
-  },
-  {
    "title": "L’espace public. Archéologie de la publicité comme dimension constitutive de la société bourgeoise",
    "first_author": "Habermas, Jürgen",
    "citing": 33,
-   "entropy": 0.823,
-   "nmf_top": 2,
+   "entropy": 0.828,
+   "nmf_top": 1,
    "nmf_top_share": 0.35,
-   "nmf_second": 1,
+   "nmf_second": 2,
    "nmf_second_share": 0.18,
    "louvain": "unclustered"
   },
   {
-   "title": "Distinction: A Social Critique of the Judgement of Taste",
-   "first_author": "Bourdieu, Pierre",
-   "citing": 59,
-   "entropy": 0.772,
+   "title": "Le goût de l’archive",
+   "first_author": "Farge, Arlette",
+   "citing": 61,
+   "entropy": 0.827,
    "nmf_top": 0,
-   "nmf_top_share": 0.4,
+   "nmf_top_share": 0.34,
    "nmf_second": 3,
-   "nmf_second_share": 0.18,
-   "louvain": "Bourdieu · Weber"
-  },
-  {
-   "title": "Le monde comme représentation",
-   "first_author": "Chartier, Roger",
-   "citing": 39,
-   "entropy": 0.765,
-   "nmf_top": 4,
-   "nmf_top_share": 0.39,
-   "nmf_second": 0,
-   "nmf_second_share": 0.2,
-   "louvain": "Prost · Veyne · Hartog"
-  },
-  {
-   "title": "L’histoire culturelle",
-   "first_author": "Ory, Pascal",
-   "citing": 31,
-   "entropy": 0.755,
-   "nmf_top": 5,
-   "nmf_top_share": 0.29,
-   "nmf_second": 6,
-   "nmf_second_share": 0.28,
-   "louvain": "Prost · Veyne · Hartog"
-  },
-  {
-   "title": "Le savant et le politique",
-   "first_author": "Weber, Max",
-   "citing": 35,
-   "entropy": 0.755,
-   "nmf_top": 0,
-   "nmf_top_share": 0.49,
-   "nmf_second": 6,
-   "nmf_second_share": 0.15,
-   "louvain": "Bourdieu · Weber"
-  },
-  {
-   "title": "The Great Transformation: The Political and Economic Origins of Our Time",
-   "first_author": "Polanyi, Karl",
-   "citing": 31,
-   "entropy": 0.745,
-   "nmf_top": 1,
-   "nmf_top_share": 0.29,
-   "nmf_second": 0,
-   "nmf_second_share": 0.26,
-   "louvain": "Polanyi · Noiriel · Woronoff"
-  },
-  {
-   "title": "Le futur passé. Contribution à la sémantique des temps historiques",
-   "first_author": "Koselleck, Reinhart",
-   "citing": 35,
-   "entropy": 0.737,
-   "nmf_top": 4,
-   "nmf_top_share": 0.38,
-   "nmf_second": 0,
-   "nmf_second_share": 0.28,
-   "louvain": "Prost · Veyne · Hartog"
-  },
-  {
-   "title": "Les règles de l’art. Genèse et structure du champ littéraire",
-   "first_author": "Bourdieu, Pierre",
-   "citing": 31,
-   "entropy": 0.724,
-   "nmf_top": 0,
-   "nmf_top_share": 0.37,
-   "nmf_second": 5,
-   "nmf_second_share": 0.21,
-   "louvain": "Bourdieu · Weber"
-  },
-  {
-   "title": "Économie et société",
-   "first_author": "Weber, Max",
-   "citing": 50,
-   "entropy": 0.688,
-   "nmf_top": 3,
-   "nmf_top_share": 0.49,
-   "nmf_second": 6,
-   "nmf_second_share": 0.21,
+   "nmf_second_share": 0.23,
    "louvain": "unclustered"
   },
   {
    "title": "Jeux d’échelles. La micro-analyse à l’expérience",
    "first_author": "Revel, Jacques",
    "citing": 45,
-   "entropy": 0.668,
-   "nmf_top": 3,
-   "nmf_top_share": 0.54,
-   "nmf_second": 1,
-   "nmf_second_share": 0.14,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "La civilisation des mœurs",
-   "first_author": "Elias, Norbert",
-   "citing": 40,
-   "entropy": 0.634,
+   "entropy": 0.769,
    "nmf_top": 1,
-   "nmf_top_share": 0.35,
+   "nmf_top_share": 0.28,
    "nmf_second": 0,
-   "nmf_second_share": 0.3,
+   "nmf_second_share": 0.22,
    "louvain": "unclustered"
-  },
-  {
-   "title": "Le fromage et les vers",
-   "first_author": "Ginzburg, Carlo",
-   "citing": 45,
-   "entropy": 0.527,
-   "nmf_top": 3,
-   "nmf_top_share": 0.52,
-   "nmf_second": 4,
-   "nmf_second_share": 0.31,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Histoire des choses banales : naissance de la consommation dans les sociétés traditionnelles, XVIIe-XIXe siècle",
-   "first_author": "Roche, Daniel",
-   "citing": 34,
-   "entropy": 0.498,
-   "nmf_top": 2,
-   "nmf_top_share": 0.59,
-   "nmf_second": 3,
-   "nmf_second_share": 0.26,
-   "louvain": "Bély · Roche · Furetière"
   },
   {
    "title": "The Mediterranean and the Mediterranean World in the Age of Philip II",
    "first_author": "Braudel, Fernand",
    "citing": 42,
-   "entropy": 0.472,
+   "entropy": 0.745,
    "nmf_top": 3,
-   "nmf_top_share": 0.68,
-   "nmf_second": 4,
-   "nmf_second_share": 0.17,
+   "nmf_top_share": 0.33,
+   "nmf_second": 0,
+   "nmf_second_share": 0.22,
    "louvain": "unclustered"
+  },
+  {
+   "title": "Le futur passé. Contribution à la sémantique des temps historiques",
+   "first_author": "Koselleck, Reinhart",
+   "citing": 35,
+   "entropy": 0.725,
+   "nmf_top": 3,
+   "nmf_top_share": 0.38,
+   "nmf_second": 0,
+   "nmf_second_share": 0.3,
+   "louvain": "Prost · Veyne · Hartog"
+  },
+  {
+   "title": "Le monde comme représentation",
+   "first_author": "Chartier, Roger",
+   "citing": 39,
+   "entropy": 0.718,
+   "nmf_top": 3,
+   "nmf_top_share": 0.35,
+   "nmf_second": 0,
+   "nmf_second_share": 0.32,
+   "louvain": "Prost · Veyne · Hartog"
+  },
+  {
+   "title": "L’illusion biographique",
+   "first_author": "Bourdieu, Pierre",
+   "citing": 56,
+   "entropy": 0.706,
+   "nmf_top": 1,
+   "nmf_top_share": 0.41,
+   "nmf_second": 0,
+   "nmf_second_share": 0.26,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "L’histoire culturelle",
+   "first_author": "Ory, Pascal",
+   "citing": 31,
+   "entropy": 0.695,
+   "nmf_top": 4,
+   "nmf_top_share": 0.3,
+   "nmf_second": 5,
+   "nmf_second_share": 0.28,
+   "louvain": "Prost · Veyne · Hartog"
+  },
+  {
+   "title": "Économie et société",
+   "first_author": "Weber, Max",
+   "citing": 54,
+   "entropy": 0.636,
+   "nmf_top": 0,
+   "nmf_top_share": 0.52,
+   "nmf_second": 4,
+   "nmf_second_share": 0.19,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Analyse de réseaux et histoire",
+   "first_author": "Lemercier, Claire",
+   "citing": 51,
+   "entropy": 0.617,
+   "nmf_top": 1,
+   "nmf_top_share": 0.44,
+   "nmf_second": 2,
+   "nmf_second_share": 0.29,
+   "louvain": "Lemercier · Roche · Lilti"
+  },
+  {
+   "title": "Les règles de l’art. Genèse et structure du champ littéraire",
+   "first_author": "Bourdieu, Pierre",
+   "citing": 31,
+   "entropy": 0.578,
+   "nmf_top": 0,
+   "nmf_top_share": 0.52,
+   "nmf_second": 5,
+   "nmf_second_share": 0.2,
+   "louvain": "Bourdieu · Weber"
+  },
+  {
+   "title": "Le fromage et les vers",
+   "first_author": "Ginzburg, Carlo",
+   "citing": 45,
+   "entropy": 0.57,
+   "nmf_top": 3,
+   "nmf_top_share": 0.47,
+   "nmf_second": 1,
+   "nmf_second_share": 0.38,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Le savant et le politique",
+   "first_author": "Weber, Max",
+   "citing": 36,
+   "entropy": 0.559,
+   "nmf_top": 0,
+   "nmf_top_share": 0.64,
+   "nmf_second": 6,
+   "nmf_second_share": 0.12,
+   "louvain": "Bourdieu · Weber"
+  },
+  {
+   "title": "The Great Transformation: The Political and Economic Origins of Our Time",
+   "first_author": "Polanyi, Karl",
+   "citing": 33,
+   "entropy": 0.554,
+   "nmf_top": 0,
+   "nmf_top_share": 0.54,
+   "nmf_second": 2,
+   "nmf_second_share": 0.23,
+   "louvain": "Foucault · Perrot · Thébaud"
+  },
+  {
+   "title": "La civilisation des mœurs",
+   "first_author": "Elias, Norbert",
+   "citing": 41,
+   "entropy": 0.543,
+   "nmf_top": 0,
+   "nmf_top_share": 0.53,
+   "nmf_second": 2,
+   "nmf_second_share": 0.25,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Temps et récit",
+   "first_author": "Ricoeur, Paul",
+   "citing": 56,
+   "entropy": 0.462,
+   "nmf_top": 5,
+   "nmf_top_share": 0.61,
+   "nmf_second": 3,
+   "nmf_second_share": 0.2,
+   "louvain": "Prost · Veyne · Hartog"
   },
   {
    "title": "Le creuset français: histoire de l’immigration, XIXe-XXe siècle",
    "first_author": "Noiriel, Gérard",
    "citing": 33,
-   "entropy": 0.468,
-   "nmf_top": 1,
-   "nmf_top_share": 0.58,
-   "nmf_second": 6,
+   "entropy": 0.46,
+   "nmf_top": 2,
+   "nmf_top_share": 0.59,
+   "nmf_second": 4,
    "nmf_second_share": 0.23,
    "louvain": "unclustered"
   },
@@ -1139,154 +1148,143 @@
    "title": "L’écriture de l’histoire",
    "first_author": "Certeau, Michel de",
    "citing": 31,
-   "entropy": 0.467,
-   "nmf_top": 4,
-   "nmf_top_share": 0.64,
+   "entropy": 0.455,
+   "nmf_top": 3,
+   "nmf_top_share": 0.66,
    "nmf_second": 0,
    "nmf_second_share": 0.25,
    "louvain": "Prost · Veyne · Hartog"
   },
   {
-   "title": "Temps et récit",
-   "first_author": "Ricoeur, Paul",
-   "citing": 56,
-   "entropy": 0.463,
-   "nmf_top": 5,
-   "nmf_top_share": 0.57,
-   "nmf_second": 0,
-   "nmf_second_share": 0.27,
-   "louvain": "Prost · Veyne · Hartog"
-  },
-  {
-   "title": "Discipline and Punish: The Birth of the Prison",
-   "first_author": "Foucault, Michel",
-   "citing": 90,
-   "entropy": 0.445,
-   "nmf_top": 0,
-   "nmf_top_share": 0.7,
-   "nmf_second": 1,
-   "nmf_second_share": 0.15,
-   "louvain": "unclustered"
-  },
-  {
    "title": "La mémoire, l’histoire, l’oubli",
    "first_author": "Ricoeur, Paul",
    "citing": 35,
-   "entropy": 0.436,
+   "entropy": 0.415,
    "nmf_top": 5,
-   "nmf_top_share": 0.61,
-   "nmf_second": 4,
-   "nmf_second_share": 0.28,
+   "nmf_top_share": 0.64,
+   "nmf_second": 3,
+   "nmf_second_share": 0.29,
    "louvain": "Prost · Veyne · Hartog"
+  },
+  {
+   "title": "Distinction: A Social Critique of the Judgement of Taste",
+   "first_author": "Bourdieu, Pierre",
+   "citing": 60,
+   "entropy": 0.375,
+   "nmf_top": 0,
+   "nmf_top_share": 0.79,
+   "nmf_second": 5,
+   "nmf_second_share": 0.08,
+   "louvain": "Bourdieu · Weber"
   },
   {
    "title": "Histoire de la population française",
    "first_author": "Dupâquier, Jacques",
    "citing": 38,
-   "entropy": 0.376,
-   "nmf_top": 1,
+   "entropy": 0.374,
+   "nmf_top": 2,
    "nmf_top_share": 0.59,
-   "nmf_second": 2,
+   "nmf_second": 1,
    "nmf_second_share": 0.38,
    "louvain": "unclustered"
-  },
-  {
-   "title": "Régimes d’historicité. Présentisme et expériences du temps",
-   "first_author": "Hartog, François",
-   "citing": 72,
-   "entropy": 0.366,
-   "nmf_top": 5,
-   "nmf_top_share": 0.81,
-   "nmf_second": 0,
-   "nmf_second_share": 0.05,
-   "louvain": "Prost · Veyne · Hartog"
   },
   {
    "title": "Les lieux de mémoire",
    "first_author": "Nora, Pierre",
    "citing": 63,
-   "entropy": 0.351,
+   "entropy": 0.365,
    "nmf_top": 5,
    "nmf_top_share": 0.75,
-   "nmf_second": 1,
+   "nmf_second": 2,
    "nmf_second_share": 0.16,
    "louvain": "Prost · Veyne · Hartog"
   },
   {
-   "title": "La création des identités nationales",
-   "first_author": "Thiesse, Anne-Marie",
-   "citing": 62,
-   "entropy": 0.345,
-   "nmf_top": 6,
+   "title": "Discipline and Punish: The Birth of the Prison",
+   "first_author": "Foucault, Michel",
+   "citing": 92,
+   "entropy": 0.348,
+   "nmf_top": 0,
    "nmf_top_share": 0.79,
-   "nmf_second": 1,
-   "nmf_second_share": 0.11,
+   "nmf_second": 2,
+   "nmf_second_share": 0.09,
    "louvain": "unclustered"
   },
   {
-   "title": "Le monde des salons : sociabilité et mondanité à Paris au XVIIIe siècle",
-   "first_author": "Lilti, Antoine",
-   "citing": 31,
-   "entropy": 0.344,
-   "nmf_top": 2,
-   "nmf_top_share": 0.61,
-   "nmf_second": 3,
-   "nmf_second_share": 0.38,
-   "louvain": "Lemercier · Roche · Lilti"
+   "title": "Histoire des choses banales : naissance de la consommation dans les sociétés traditionnelles, XVIIe-XIXe siècle",
+   "first_author": "Roche, Daniel",
+   "citing": 34,
+   "entropy": 0.346,
+   "nmf_top": 1,
+   "nmf_top_share": 0.75,
+   "nmf_second": 0,
+   "nmf_second_share": 0.17,
+   "louvain": "Bély · Roche · Furetière"
   },
   {
    "title": "Histoire et mémoire",
    "first_author": "Le Goff, Jacques",
    "citing": 32,
-   "entropy": 0.337,
+   "entropy": 0.341,
    "nmf_top": 5,
    "nmf_top_share": 0.7,
-   "nmf_second": 4,
-   "nmf_second_share": 0.27,
+   "nmf_second": 3,
+   "nmf_second_share": 0.28,
    "louvain": "Prost · Veyne · Hartog"
   },
   {
    "title": "Orientalism",
    "first_author": "Said, Edward",
    "citing": 45,
-   "entropy": 0.331,
-   "nmf_top": 6,
-   "nmf_top_share": 0.55,
+   "entropy": 0.332,
+   "nmf_top": 4,
+   "nmf_top_share": 0.54,
    "nmf_second": 0,
-   "nmf_second_share": 0.45,
-   "louvain": "Foucault · Said"
+   "nmf_second_share": 0.46,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Régimes d’historicité. Présentisme et expériences du temps",
+   "first_author": "Hartog, François",
+   "citing": 72,
+   "entropy": 0.325,
+   "nmf_top": 5,
+   "nmf_top_share": 0.83,
+   "nmf_second": 0,
+   "nmf_second_share": 0.07,
+   "louvain": "Prost · Veyne · Hartog"
+  },
+  {
+   "title": "La création des identités nationales",
+   "first_author": "Thiesse, Anne-Marie",
+   "citing": 63,
+   "entropy": 0.319,
+   "nmf_top": 4,
+   "nmf_top_share": 0.8,
+   "nmf_second": 2,
+   "nmf_second_share": 0.12,
+   "louvain": "unclustered"
   },
   {
    "title": "The Archaeology of Knowledge",
    "first_author": "Foucault, Michel",
    "citing": 50,
-   "entropy": 0.317,
+   "entropy": 0.287,
    "nmf_top": 0,
-   "nmf_top_share": 0.82,
-   "nmf_second": 6,
-   "nmf_second_share": 0.08,
+   "nmf_top_share": 0.83,
+   "nmf_second": 4,
+   "nmf_second_share": 0.1,
    "louvain": "Foucault · Said"
-  },
-  {
-   "title": "The Vichy Syndrome: History and Memory in France since 1944",
-   "first_author": "Rousso, Henry",
-   "citing": 30,
-   "entropy": 0.292,
-   "nmf_top": 7,
-   "nmf_top_share": 0.73,
-   "nmf_second": 5,
-   "nmf_second_share": 0.27,
-   "louvain": "Prost · Veyne · Hartog"
   },
   {
    "title": "Dictionnaire universel, contenant généralement tous les mots françois tant vieux que modernes, et les termes de toutes les sciences et des arts",
    "first_author": "Furetière, Antoine",
    "citing": 30,
-   "entropy": 0.264,
-   "nmf_top": 2,
-   "nmf_top_share": 0.84,
-   "nmf_second": 0,
-   "nmf_second_share": 0.09,
+   "entropy": 0.282,
+   "nmf_top": 1,
+   "nmf_top_share": 0.83,
+   "nmf_second": 7,
+   "nmf_second_share": 0.1,
    "louvain": "Bély · Roche · Furetière"
   }
  ]

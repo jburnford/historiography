@@ -627,6 +627,13 @@ Early Germans* and E. M. Thompson's *The Carthusian Order in England*.
   rows read as history: 8 with an open link, 12 with none; 1 more by title).
 - **Merge and extraction** (`ingest-20261117-233505.json`): manifest 21,324 → 21,512 (France 111, Germany 77);
   bibliographies for 151 of 188 (France 86, 45k entries; Germany 65, 28k entries).
+- **Rebuild.** Build, link, rebuild, summaries and TF-IDF ran on Plato as job 6027966
+  (`ancient-ruling-2026-11-17-build.slurm`, a copy of the previous script; CPU job, no `--gres`; 2 h 48 m, peak 30.2 GB;
+  every step exit 0). The canon-map files and `summary/corpus-overview/` were excluded when the outputs were brought back.
+  - Main graph 17,380 → 17,538 strict (works 2,973,599 → 3,008,432; cited people 1,872,525 → 1,898,865; CITES edges
+    4,155,933 → 4,199,029). No earlier strict thesis dropped out.
+  - Germany 1,138 → 1,203 (65 of the 77 new); France 2,218 → 2,304 (86 of the 111 new); United Kingdom 2,657 → 2,664 (the 7
+    Edinburgh overrides); US, Canada, Brazil, Mexico and Sweden unchanged. Sub-graphs still BR, CA, FR, GB, US.
 
 ## Corpus and eligibility
 
