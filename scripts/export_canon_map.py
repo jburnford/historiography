@@ -9,7 +9,9 @@ with these additions:
   lines from ``links``, ``link_top``, ``keep`` and ``min_co``;
 - ``region_theses``: the per-region thesis counts the page states;
 - ``nodes[].reading``: the person's key in the Dissertation reading export, where exactly one person
-  there has the same display name. This is a link only. The two use different builds.
+  there has the same display name, or else where the reading export's key is the node's graph person key
+  (a rebuild can change a key's display name: 'Innis, Harold A' became 'Innis, Harold' on 2026-11-17).
+  This is a link only. The two use different builds.
 - ``nodes[].key``, ``nodes[].key_status``: the person's internal key and its status (established or
   unresolved) from data/identifiers/events-NNNN.jsonl. People awaiting merge review have none yet.
 - ``nodes[].lc``: the person's LC name authority (an `lcnaf:` anchor in the identifier log), the public
@@ -50,7 +52,8 @@ def label(name):
     return f"{surname}, {' '.join(parts)}"
 
 
-NAMES = {'Canada': 'CA', 'United States': 'US', 'Britain': 'GB', 'Brazil': 'BR', 'Rest of Europe': 'EU', 'elsewhere': 'OTHER'}
+NAMES = {'Canada': 'CA', 'United States': 'US', 'Britain': 'GB', 'Brazil': 'BR', 'France': 'FR', 'Rest of Europe': 'EU',
+         'elsewhere': 'OTHER'}
 
 
 def life_years(row):
@@ -69,10 +72,11 @@ def life_years(row):
     return f'{approx}{era(born[0])}–{era(died[0])}' if born else f'd. {approx}{era(died[0])}'
 
 
-def attach_keys(nodes, pairs=None):
+def attach_keys(nodes, pairs=None, reading=frozenset()):
     """``key`` and ``key_status`` from the identifier log (PID-PLAN.md), via the person's graph key.
 
-    People deferred for merge review have no key yet and carry neither field."""
+    People deferred for merge review have no key yet and carry neither field. A node the display name did
+    not link to the Dissertation reading export links by its graph key when ``reading`` holds 'P:<key>'."""
     from identifiers import State
     from key_canon_map import canon_keys
     from namesake_check_groups import given_names_agree
@@ -88,8 +92,12 @@ def attach_keys(nodes, pairs=None):
             for r in csv.DictReader(f):
                 renamed[r['new_key']].append(r['old_key'])
     keyed = 0
+    taken = {n['reading'] for n in nodes if 'reading' in n}
     for n in nodes:
         gk = graph_key[n['name'], n['qid']]
+        if 'reading' not in n and f'P:{gk}' in reading and f'P:{gk}' not in taken:
+            n['reading'] = f'P:{gk}'
+            taken.add(n['reading'])
         found = state.lookup(f"diss-person:{gk}")
         if not found:
             found = sorted({k for old in renamed.get(gk, []) for k in state.lookup(f'diss-person:{old}')})
@@ -127,7 +135,7 @@ def attach_keys(nodes, pairs=None):
     return keyed
 
 
-SCOPES = ['BR', 'CA', 'GB', 'US']  # sub-graph maps (user, 2026-11-03: "select a sub-graph and see its map")
+SCOPES = ['BR', 'CA', 'FR', 'GB', 'US']  # sub-graph maps (user, 2026-11-03: "select a sub-graph and see its map"); FR 2026-11-21
 
 
 def export(scope=None):
@@ -144,7 +152,7 @@ def export(scope=None):
         view.pop('edges')
     counts = re.search(r'next\s+region\'s \(([^)]*) theses\)', page).group(1)
     data['region_theses'] = {NAMES[m.group(1)]: int(m.group(2).replace(',', ''))
-                             for m in re.finditer(r'(Canada|United States|Britain|Brazil|Rest of Europe|elsewhere) ([\d,]+)', counts)}
+                             for m in re.finditer(rf"({'|'.join(map(re.escape, NAMES))}) ([\d,]+)", counts)}
     assert set(data['region_theses']) == set(NAMES.values()), data['region_theses']
     data['scope'] = scope or 'main'
     data['scopes'] = ['main', *SCOPES]
@@ -153,14 +161,15 @@ def export(scope=None):
     for s in index['sources']:
         if s['key'].startswith('P:'):
             by_name.setdefault(s['short'], []).append(s['key'])
-    linked = 0
     for n in data['nodes']:
         n['label'] = label(n['name'])
         keys = by_name.get(n['name'], [])
         if len(keys) == 1:
             n['reading'] = keys[0]
-            linked += 1
-    keyed = attach_keys(data['nodes'], source.parents[1] / 'network' / 'historian-cocitation-pairs.csv' if scope else None)
+    reading = {s['key'] for s in index['sources'] if s['key'].startswith('P:')}
+    keyed = attach_keys(data['nodes'], source.parents[1] / 'network' / 'historian-cocitation-pairs.csv' if scope else None,
+                        reading)
+    linked = sum('reading' in n for n in data['nodes'])
     text = json.dumps(data, ensure_ascii=False, separators=(',', ':'))
     out.write_text(text, encoding='utf-8')
     print(f"wrote {out.relative_to(ROOT)} ({len(text) / 1e6:.2f} MB): {len(data['nodes'])} people, "

@@ -336,10 +336,10 @@ class DissertationBrowserTests(unittest.TestCase):
         self.assertFalse(any('/data/graph.json' in r for r in self.requests))
         self.assertEqual(self.page.title(), 'Canon map · History in Conversation')
         find = self.page.locator('.canon-find')
-        find.fill('Innis, Harold A.')
+        find.fill('Innis, Harold')   # 'Innis, Harold A.' until the 2026-11-17 graph rebuild renamed the key's display form
         find.dispatch_event('change')
         # Since cd0e66a the heading carries LC life years for the dead only (Innis died 1952).
-        expect(self.page.locator('.canon-detail h3')).to_contain_text('Innis, Harold A.')
+        expect(self.page.locator('.canon-detail h3')).to_contain_text('Innis, Harold')
         expect(self.page.locator('.canon-detail h3 .canon-life')).to_have_text('1894–1952')
         expect(self.page.locator('.canon-detail a[href^="#tab=dissertations&source="]')).to_have_count(1)
         partner = self.page.locator('.canon-partners button').first
@@ -366,7 +366,7 @@ class DissertationBrowserTests(unittest.TestCase):
         self.assertIn('scope=BR', self.page.evaluate('location.hash'))
         expect(self.page.locator('.canon-scope')).to_have_value('BR')
         self.page.select_option('.canon-scope', 'main')
-        expect(self.page.locator('.reading-scope')).to_contain_text('Brazil and elsewhere')
+        expect(self.page.locator('.reading-scope')).to_contain_text('Brazil, France and elsewhere')
         self.assertNotIn('scope=', self.page.evaluate('location.hash'))
         self.open('#tab=canon&scope=CA')
         expect(self.page.locator('.reading-scope')).to_contain_text('from Canada only')

@@ -44,7 +44,7 @@ class DissertationExportTests(unittest.TestCase):
         layer = json.loads((EXPORT / 'manifest.json').read_text())
         # the main map and each sub-graph's (user, 2026-11-03: "select a sub-graph and see its map")
         maps = {'main': layer['canon_map'], **layer['canon_map_scopes']}
-        self.assertEqual(set(maps), {'main', 'BR', 'CA', 'GB', 'US'})
+        self.assertEqual(set(maps), {'main', 'BR', 'CA', 'FR', 'GB', 'US'})
         for scope, manifest in maps.items():
             with self.subTest(scope=scope):
                 self.check_canon_map(scope, manifest, sorted(maps))

@@ -58,7 +58,7 @@ READING_FILES = ['index.json', 'links.json', *(f'{i:02x}.json' for i in range(32
 READING_ASSETS = {name: f'data/dissertations/{name}' for name in READING_FILES}
 # Canon map: exported by scripts/export_canon_map.py, hash-pinned under `canon_map` in the manifest.
 CANON_ASSET = 'data/dissertations/canon-map.json'
-CANON_SCOPE_ASSETS = {f'data/dissertations/canon-map-{cc}.json' for cc in ('BR', 'CA', 'GB', 'US')}   # sub-graph maps
+CANON_SCOPE_ASSETS = {f'data/dissertations/canon-map-{cc}.json' for cc in ('BR', 'CA', 'FR', 'GB', 'US')}   # sub-graph maps
 ASSETS = {**PAGE_ASSETS, **DATA_ASSETS}
 
 

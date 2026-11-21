@@ -5,9 +5,9 @@ const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;',
 const fmt = n => Number(n).toLocaleString('en');
 const NS = 'http://www.w3.org/2000/svg', S = 1000;
 const X = v => v * S * 0.46 + S / 2, Y = X;
-const REGION_LABELS = {CA: 'Canada', US: 'United States', GB: 'Britain', BR: 'Brazil', EU: 'Rest of Europe'};
+const REGION_LABELS = {CA: 'Canada', US: 'United States', GB: 'Britain', BR: 'Brazil', FR: 'France', EU: 'Rest of Europe'};
 // Sub-graph maps (2026-11-03): one data file per scope; `scope` in the hash picks one (#tab=canon&scope=BR).
-const SCOPE_LABELS = {main: 'All countries', BR: 'Brazil', CA: 'Canada', GB: 'Britain', US: 'United States'};
+const SCOPE_LABELS = {main: 'All countries', BR: 'Brazil', CA: 'Canada', FR: 'France', GB: 'Britain', US: 'United States'};
 const scopeOf = hash => { const s = new URLSearchParams(hash.replace(/^#/, '')).get('scope'); return s in SCOPE_LABELS ? s : 'main'; };
 const loads = {};
 // no-cache: revalidate with the server, so a cached older data file never meets newer code
@@ -24,7 +24,7 @@ function shell(data) {
   const leans = Object.entries(data.leans).map(([k, v]) => `<span class="canon-key ${k}">${esc(v)}</span>`).join('');
   return `<div class="section-heading"><div><p class="eyebrow">THE READING RECORD · RESEARCH PREVIEW</p><h2>Canon map</h2></div></div>
     <p class="reading-intro">Who do doctoral historians cite together? Each circle is a person cited in History PhD bibliographies; two people are linked when the same theses cite them both. Raise the threshold to keep only the most cited, or switch the links to find the fields hidden behind the famous names.</p>
-    <p class="reading-scope">${fmt(data.theses)} History PhDs ${local ? `from ${esc(SCOPE_LABELS[data.scope])} only` : 'from Canada, the United States, Britain, Brazil and elsewhere'} · ${fmt(data.nodes.length)} people cited by at least ${fmt(data.steps[0])} of them · build of ${esc(data.snapshot)}</p>
+    <p class="reading-scope">${fmt(data.theses)} History PhDs ${local ? `from ${esc(SCOPE_LABELS[data.scope])} only` : 'from Canada, the United States, Britain, Brazil, France and elsewhere'} · ${fmt(data.nodes.length)} people cited by at least ${fmt(data.steps[0])} of them · build of ${esc(data.snapshot)}</p>
     <div class="canon-controls">
       ${(data.scopes || []).length > 1 ? `<label>Theses from <select class="canon-scope">${data.scopes.map(s => `<option value="${esc(s)}"${s === (data.scope || 'main') ? ' selected' : ''}>${esc(SCOPE_LABELS[s] || s)}</option>`).join('')}</select></label>` : ''}
       <label>Cited by at least <input type="range" class="canon-threshold" min="0" max="${data.steps.length - 1}" step="1" aria-valuetext=""> <output class="canon-threshold-value"></output></label>
