@@ -13,6 +13,8 @@
 # Inputs are metadata only (copied from the WSL workspace; see data/graph/scored-links/QWEN-LABEL-STATE.md).
 # Usage: STEP=features sbatch scripts/linkclf_plato.slurm
 #        STEP=train QWEN=$LC/qwen-labels.csv.gz OUT=$LC/out-final sbatch scripts/linkclf_plato.slurm
+# QWEN: one .csv.gz assembled from the tracked parts (qwen_labels_io.py assemble; linkclf_final_run.sh) or a parts dir;
+# train_link_classifier.py reads it through scripts/qwen_labels_io.py (copy that script beside it).
 source /project/clifford/historiography-kg/env.sh
 source /project/clifford/historiography-kg/venv-linkclf/bin/activate
 set -euo pipefail

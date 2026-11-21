@@ -2,7 +2,7 @@
 
 Owner (2026-11-13): go on running Qwen over the rest of the undecided middle. Input: the final classifier's production
 file (build/linkclf-2026-11-13/out-final/classified.csv.gz, decision = review) minus the positions Qwen has already read
-(data/graph/scored-links/qwen-labels.csv.gz). Tiers (first to last):
+(data/graph/scored-links/qwen-labels/, parts read via scripts/qwen_labels_io.py). Tiers (first to last):
   1  the classifier's top candidate holds a thesis / AHA / LC anchor (diss-person, diss-author, aha-phd, aha, lcnaf)
      AND the position's work is cited by a thesis (cites source thesis / thesis-matched); strata other than
      single-unmeasured and single-initials
@@ -26,13 +26,14 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from label_links_qwen import has_fact  # noqa: E402
+from qwen_labels_io import LABELS, read_frame  # noqa: E402
 ANCH = ('diss-person', 'diss-author', 'aha-phd', 'aha', 'lcnaf')
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--classified', default=str(ROOT / 'build/linkclf-2026-11-13/out-final/classified.csv.gz'))
-    ap.add_argument('--qwen', default=str(ROOT / 'data/graph/scored-links/qwen-labels.csv.gz'))
+    ap.add_argument('--qwen', default=str(LABELS), help='the qwen-labels parts directory or a single .csv.gz')
     ap.add_argument('--graph', default=str(ROOT / 'build/session-scratch-2026-11-13/scored/graph'))
     ap.add_argument('--decided', default=str(ROOT / 'build/session-scratch-2026-11-13/scored/prod-decided.parquet'))
     ap.add_argument('--out', default=str(ROOT / 'build/linkclf-2026-11-13/qwen-rest'))
@@ -42,7 +43,7 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     C = pd.read_csv(a.classified, usecols=['position', 'work', 'role', 'printed_name', 'decision', 'person_key', 'stratum'])
     C = C[C.decision == 'review']
-    seen = set(pd.read_csv(a.qwen, usecols=['position']).position)
+    seen = set(read_frame(a.qwen, usecols=['position']).position)
     C = C[~C.position.isin(seen)].copy()
     db = duckdb.connect()
     db.execute("SET memory_limit='3GB'; SET threads=3")

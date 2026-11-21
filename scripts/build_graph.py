@@ -227,7 +227,8 @@ REVIEW_AUTHORS = ROOT / 'data/graph/review-authors.csv.gz'
 WORK_DUPS = ROOT / 'data/graph/work-duplicates.csv.gz'
 SCORED_LINKS = ROOT / 'data/graph/scored-links/links.csv.gz'   # scripts/score_links.py (Fellegi-Sunter scorer), loaded by graph_scored_links.py
 CLASSIFIED_LINKS = ROOT / 'data/graph/scored-links/classified.csv.gz'   # the classifier's links (decision = link, 2026-11-13)
-QWEN_LABELS = ROOT / 'data/graph/scored-links/qwen-labels.csv.gz'       # Qwen's direct verdicts (2026-11-13, source qwen-links)
+QWEN_LABELS = ROOT / 'data/graph/scored-links/qwen-labels'   # Qwen's direct verdicts (2026-11-13, source qwen-links); parts
+# + manifest.json since 2026-11-21 (the single file passed 60 MB), read through scripts/qwen_labels_io.py
 QWEN_POSITIONS = ROOT / 'data/graph/scored-links/qwen-positions.csv.gz'  # their list positions (scripts/qwen_positions.py)
 LC_BOOKS = ROOT / 'data/graph/lc-books-by-authority.csv.gz'   # lc_catalogue_credits.py measure: LC books of keys with
                                                               # scholarly evidence the graph lacked (unkeyed lccn: nodes)   # scripts/review_books.py: articles that review a book (class 29)
@@ -496,6 +497,10 @@ def source_names(mask):
 
 
 def read_rows(path):
+    if path.is_dir():               # a table stored as parts + manifest (qwen-labels, 2026-11-21)
+        from qwen_labels_io import iter_rows
+        yield from iter_rows(path)
+        return
     with gzip.open(path, 'rt', newline='', encoding='utf-8') as f:
         yield from csv.DictReader(f)
 
@@ -1480,7 +1485,8 @@ def main():
     require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS) if p.exists()] + crossref_parts + article_parts
                     + cr26_files
                     + ([] if args.untracked_ok else cited_files + edition_files + jc_files + wp_files + aw_files + fact_files
-                       + pass4_files + no_files + prize_files + p5_files + [p for p in PLACE_FILES if p.exists()] + ([SCORED_LINKS] if SCORED_LINKS.exists() else []) + ([CLASSIFIED_LINKS] if CLASSIFIED_LINKS.exists() else [])))
+                       + pass4_files + no_files + prize_files + p5_files + [p for p in PLACE_FILES if p.exists()] + ([SCORED_LINKS] if SCORED_LINKS.exists() else []) + ([CLASSIFIED_LINKS] if CLASSIFIED_LINKS.exists() else [])
+                       + ([QWEN_LABELS / 'manifest.json'] + sorted(QWEN_LABELS.glob('part-*.csv.gz')) if QWEN_LABELS.exists() else [])))
     state = ReplayView(args.state) if args.replay else CacheView(args.state)
     OUT.mkdir(parents=True, exist_ok=True)
     report = Counter()

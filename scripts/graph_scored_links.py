@@ -220,7 +220,7 @@ def model_layer(read_rows, clf_path, qwen_path, qpos_path, person1, resolve, wi,
 
     Classifier (data/graph/scored-links/classified.csv.gz, train_link_classifier.py finalize): every decision = link row
     (all roles; replaces pass eight's load = True reviewer subset) becomes a linked AUTHORED row, source
-    `classified-links`, state `classified`, score = probability. Qwen (qwen-labels.csv.gz, Qwen3.8-27B, prompt qll-v1,
+    `classified-links`, state `classified`, score = probability. Qwen (qwen-labels/ parts, Qwen3.8-27B, prompt qll-v1,
     policy greedy+sc, no linkage facts; positions placed by qwen-positions.csv.gz): a 'key' verdict becomes a linked
     AUTHORED row, source `qwen-links`, state `qwen`.
     Per position (work, role, list position; the rule linker's row found by its claim):

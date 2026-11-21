@@ -1,0 +1,59 @@
+{
+ "table": "qwen-labels",
+ "note": "logical content = header once + every part's rows in part order; read with scripts/qwen_labels_io.py",
+ "columns": [
+  "item",
+  "position",
+  "work",
+  "role",
+  "tbl",
+  "printed_name",
+  "candidates_shown",
+  "excluded",
+  "decision",
+  "confidence",
+  "duplicate_keys",
+  "reason",
+  "facts",
+  "model",
+  "prompt_version",
+  "policy",
+  "votes",
+  "passes",
+  "cell",
+  "band",
+  "rg",
+  "n",
+  "freq",
+  "scorer_decision",
+  "rule_state",
+  "rule_key",
+  "nofact",
+  "weight"
+ ],
+ "rows": 330815,
+ "sha256": "7463b6fe1627abcfdd8e0d82d871245b9482b3873657e7a4709102cfecbe920b",
+ "rows_per_part": 100000,
+ "parts": [
+  {
+   "name": "part-000.csv.gz",
+   "rows": 100000,
+   "bytes": 18158709
+  },
+  {
+   "name": "part-001.csv.gz",
+   "rows": 100000,
+   "bytes": 20008558
+  },
+  {
+   "name": "part-002.csv.gz",
+   "rows": 100000,
+   "bytes": 20002864
+  },
+  {
+   "name": "part-003.csv.gz",
+   "rows": 30815,
+   "bytes": 6200102
+  }
+ ]
+}

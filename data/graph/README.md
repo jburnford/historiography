@@ -286,9 +286,10 @@ the volume's ISBN).
   `classified_links`; the explorer marks the row "classified link (p=…)". `BUILD_SCORED_OFF=1` also turns it off.
 **2026-11-13 (model links).** `scored-links/classified.csv.gz` is now the retrained classifier's output (gbt on the
 Qwen labels; `train_link_classifier.py finalize` adds `tbl` and `list_source`); the build loads every `decision = link`
-row, not only `load = True`. `scored-links/qwen-labels.csv.gz` (Qwen 3.8 27B verdicts, prompt qll-v1, greedy+sc; ids,
-verdicts, reasons) and `scored-links/qwen-positions.csv.gz` (`scripts/qwen_positions.py`: position, tbl, list_source,
-pos; rerun it whenever qwen-labels.csv.gz is rewritten) load as linked AUTHORED, source `qwen-links`, state `qwen`,
+row, not only `load = True`. `scored-links/qwen-labels/` (Qwen 3.8 27B verdicts, prompt qll-v1, greedy+sc; ids,
+verdicts, reasons; since 2026-11-21 stored as `part-NNN.csv.gz` parts of 100,000 rows plus `manifest.json`, read through
+`scripts/qwen_labels_io.py`; the single `qwen-labels.csv.gz` passed 60 MB and is in history only) and `scored-links/qwen-positions.csv.gz` (`scripts/qwen_positions.py`: position, tbl, list_source,
+pos; rerun it whenever the qwen-labels parts are rewritten) load as linked AUTHORED, source `qwen-links`, state `qwen`,
 `role_basis` "Qwen clerical read, prompt qll-v1 (…)". Loader `graph_scored_links.model_layer` (replaces
 `classified_layer` in the build); rules in its docstring: a disagreement between Qwen's key and a rule or classifier key
 links neither (`model-link-conflicts.csv` beside the tables); Qwen 'not-keyed' returns the position's rule link to

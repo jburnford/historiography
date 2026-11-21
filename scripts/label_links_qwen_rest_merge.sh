@@ -1,8 +1,8 @@
 #!/bin/bash
 # Fetch every finished Fir labelling chunk of the remaining review positions (rest-01 ... rest-NN, 2026-11-13) and
-# rebuild data/graph/scored-links/qwen-labels.csv.gz from the production run (`prod`) plus those chunks, with the
+# rebuild data/graph/scored-links/qwen-labels/ (parts + manifest, scripts/qwen_labels_io.py) from the production run (`prod`) plus those chunks, with the
 # existing `write` step (policy greedy+sc). Idempotent: always rebuilds from prod + every chunk that has its DONE
-# marker on Fir (unfinished chunks are skipped and listed); temp name, then moved into place.
+# marker on Fir (unfinished chunks are skipped and listed); each part to a temp name, then moved, manifest last.
 #   bash scripts/label_links_qwen_rest_merge.sh            # fetch + merge
 #   FETCH=0 bash scripts/label_links_qwen_rest_merge.sh    # merge only what is already local
 # Queue, dossiers and the rest sample come from scripts/qwen_rest_queue.py + label_links_qwen.py dossiers
@@ -39,6 +39,6 @@ S = S[~S.item.isin(set(P.item))]
 pd.concat([P, S], ignore_index=True).to_csv(sys.argv[3], index=False)
 EOF
 python3 scripts/label_links_qwen.py write --verdicts "$V" --dossiers "$T/dossiers.jsonl.gz" --sample "$T/sample.csv" \
-    --policy greedy+sc --out data/graph/scored-links/qwen-labels.tmp.csv.gz
-mv data/graph/scored-links/qwen-labels.tmp.csv.gz data/graph/scored-links/qwen-labels.csv.gz
+    --policy greedy+sc --out data/graph/scored-links/qwen-labels
+python3 scripts/qwen_labels_io.py verify
 echo "temp files left in $T"

@@ -83,7 +83,7 @@ ssh nibi 'cd ~/projects/def-jic823/historiography-topics/linklabel/scripts && sb
 - Production labelling run submitted on Fir: `prod`, 40,000 dossiers, `--greedy --samples 3`, --time 12:00:00 (job id in
   the commit message / `ssh fir squeue -u $USER`). Resubmit the same command to resume if it hits the limit.
   Fetch: `mkdir -p $QL/prod; rsync -a fir:/scratch/jic823/linklabel/results/prod/ $QL/prod/` then
-  `python3 scripts/label_links_qwen.py write ...` (see --help) to make data/graph/scored-links/qwen-labels.csv.gz,
+  `python3 scripts/label_links_qwen.py write ...` (see --help) to make data/graph/scored-links/qwen-labels.csv.gz (parts in qwen-labels/ since 2026-11-21),
   applying policy greedy+sc. Next: extend scripts/train_link_classifier.py to train on these labels (Plato CPU).
 
 ## Retraining on the Qwen labels (2026-11-13; Task 1) — ready, final run waits for the Fir labels
@@ -205,8 +205,8 @@ for n in 05 06 07 08; do ssh fir "cd /scratch/jic823/linklabel/scripts && sbatch
 ```
 Resume: a chunk that ends on its time limit without results/rest-NN/DONE is resubmitted with the same line (same NAME):
 the slurm script skips verdicts already written. Check: `ssh fir 'ls /scratch/jic823/linklabel/results/rest-*/; squeue -u $USER'`.
-Fetch + merge (idempotent; fetches every rest-NN with DONE, skips the others, rebuilds qwen-labels.csv.gz from `prod` +
-the finished chunks via `write --policy greedy+sc`, temp name then moved):
+Fetch + merge (idempotent; fetches every rest-NN with DONE, skips the others, rebuilds the qwen-labels/ parts from `prod` +
+the finished chunks via `write --policy greedy+sc`, each part to a temp name then moved, manifest last):
 `bash scripts/label_links_qwen_rest_merge.sh` (`FETCH=0` to merge local results only). Retraining on the larger label set
 is a separate decision (linkclf_final_run.sh; the rest rows carry weight 1 and cells `rest|…`, so `rule_weak_by_qwen`
 is unaffected).
@@ -234,7 +234,7 @@ is unaffected).
   a key already mixed), 3 unclear. 20 not-keyed demotions: 9 were right links (career moves read as affiliation
   mismatch: Corrigan at Arizona State, Churella at Ohio State, Linda E. Mitchell at Alfred, Colin Richmond on Belsen …),
   7 right demotions, 4 unclear. Qwen's not-keyed verdicts are weak; consider switching demotions off.
-- Note: when label_links_qwen_rest_merge.sh rewrites qwen-labels.csv.gz, rerun `python3 scripts/qwen_positions.py`
+- Note: when label_links_qwen_rest_merge.sh rewrites the qwen-labels/ parts, rerun `python3 scripts/qwen_positions.py`
   (needs build/linkclf-2026-11-13/clf-inputs/meta.parquet with the rest pids) before the next build.
 
 ## Chunks 5–12 resubmitted as chained short jobs (2026-11-14)
@@ -253,3 +253,19 @@ qwen-links credits 17,169 -> 46,119 (27,804 pairs new to the graph); demoted rul
 326 -> 2,323, conflicts 53 -> 136), i.e. about 2,080 more rule links returned to candidates on Qwen's word. The
 2026-11-13 hand check found 9 of 20 not-keyed demotions were right links: the switch (`BUILD_QWEN_DEMOTE_OFF=1`)
 awaits the owner.
+
+## Labels stored as parts (2026-11-21)
+
+`qwen-labels.csv.gz` reached 61 MB (GitHub warns at 50 MB, rejects at 100 MB; four more chunks would take it to about
+100 MB). The labels now live in `data/graph/scored-links/qwen-labels/`: `part-000.csv.gz`, `part-001.csv.gz`, ... (each
+a complete CSV with header, 100,000 rows in position order, about 20 MB) and `manifest.json` (columns, rows per part,
+total rows, sha256 of the logical uncompressed CSV = header once + every part's rows in order, byte for byte what
+`write` produced). The single file was removed from the tree (history keeps it). Every reader (build_graph,
+qwen_positions, qwen_rest_queue, train_link_classifier) goes through `scripts/qwen_labels_io.py`, and each `--labels` /
+`--qwen` / `--qwen-labels` option takes the parts directory or a single .csv.gz.
+- `python3 scripts/qwen_labels_io.py verify` recomputes the hash and row counts against the manifest.
+- `label_links_qwen.py write --out <dir>` writes parts (an `--out` ending in .csv.gz still writes one file).
+- Plato training takes one file: `python3 scripts/qwen_labels_io.py assemble --out build/linkclf-2026-11-13/qwen-labels.csv.gz`
+  (linkclf_final_run.sh does this and copies it as `$LC/qwen-labels.csv.gz`, with qwen_labels_io.py).
+- train_link_classifier's train-report records `qwen_labels.content_sha256` (the manifest hash; same value for the
+  assembled single file) instead of the md5 of the gzip bytes.

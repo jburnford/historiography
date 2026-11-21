@@ -944,7 +944,7 @@ def _qhash(pid, salt):
 
 
 def load_qwen(path, exclude, args):
-    """qwen-labels.csv.gz (label_links_qwen.py write, policy greedy+sc) -> one row per decided position: decision (a key
+    """qwen labels (label_links_qwen.py write, policy greedy+sc; parts dir or one .csv.gz) -> one row per decided position: decision (a key
     or not-keyed), duplicates it named, the keys it saw (shown + own-book excluded), training weight `tw`, production
     weight `weight`, split qwen-train / qwen-cal / qwen-test. Positions in the Opus clerical sets are left out (the
     held-out half stays untouched). Label weights (owner, 2026-11-13; the labeller's measured errors were plausible-topic
@@ -954,7 +954,8 @@ def load_qwen(path, exclude, args):
     calibration."""
     import numpy as np
     import pandas as pd
-    Q = pd.read_csv(path, dtype=str, keep_default_na=False)
+    from qwen_labels_io import read_frame
+    Q = read_frame(path, dtype=str, keep_default_na=False)
     n0 = len(Q)
     Q['position'] = Q.position.astype('int64')
     Q = Q[~Q.position.isin(exclude)].copy()
@@ -985,7 +986,8 @@ def rule_weak_by_qwen(path):
     another key or not-keyed; undecided = cannot-tell / error (reported, not counted)"""
     import numpy as np
     import pandas as pd
-    Q = pd.read_csv(path, dtype=str, keep_default_na=False)
+    from qwen_labels_io import read_frame
+    Q = read_frame(path, dtype=str, keep_default_na=False)
     Q = Q[Q.cell.str.startswith('rule-weak|')].copy()
     if not len(Q):
         return {}
@@ -1274,6 +1276,7 @@ def top_features(m, X, feats, k=3):
 
 def save_models(out, models, st1, st2, feats, mono, f2, raw, C, cm, args):
     import pickle
+    from qwen_labels_io import content_sha256
     for name, m in list(models.items()) + [('stage1', st1), ('stage2', st2)]:
         if getattr(m, 'kind_', '') == 'lightgbm':
             m.booster_.save_model(str(out / f'model-{name}.txt'))
@@ -1286,7 +1289,7 @@ def save_models(out, models, st1, st2, feats, mono, f2, raw, C, cm, args):
                         '3 test; clerical-dev labels validate thresholds (or train at the clerical weight); clerical-test never used before the '
                         'final evaluation; Qwen production labels (when given): qwen-train in training at their label weights, qwen-cal in '
                         'calibration and as a threshold check (production weights), qwen-test (5,000 positions) held out',
-               qwen_labels=dict(path=args.qwen_labels, md5=hashlib.md5(Path(args.qwen_labels).read_bytes()).hexdigest()) if args.qwen_labels else None,
+               qwen_labels=dict(path=args.qwen_labels, content_sha256=content_sha256(args.qwen_labels)) if args.qwen_labels else None,
                qwen_weights=dict(base=args.qwen_weight, band26=args.qwen_w26, nofact=args.qwen_wnofact, holdout=args.qwen_holdout),
                sim_absent=dict(mode=args.sim_absent, weight=args.sim_absent_weight), pass_nine_features=USE_P9[0],
                inputs={p.name: hashlib.md5(p.read_bytes()).hexdigest() for p in sorted(Path(args.inputs).glob('*')) if p.is_file() and p.stat().st_size < 2e9},
@@ -1452,7 +1455,7 @@ def main():
     a.add_argument('--clerical-mode', default='validate', choices=['validate', 'train'])
     a.add_argument('--key-features', action='store_true', help='use key attributes as features (run 2; confounded)')
     a.add_argument('--sample', type=float, default=0.0, help='development: keep this share of positions (by pid hash)')
-    a.add_argument('--qwen-labels', help='qwen-labels.csv.gz (label_links_qwen.py write): production training labels')
+    a.add_argument('--qwen-labels', help='Qwen production training labels (label_links_qwen.py write): the parts directory data/graph/scored-links/qwen-labels or one .csv.gz (qwen_labels_io.py assemble)')
     a.add_argument('--qwen-weight', type=float, default=1.0)
     a.add_argument('--qwen-w26', type=float, default=0.3, help='x weight of single-candidate links in the 26+ name band')
     a.add_argument('--qwen-wnofact', type=float, default=0.5, help='x weight of single-candidate links with no positive fact')

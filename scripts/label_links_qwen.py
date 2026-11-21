@@ -24,7 +24,7 @@ Subcommands
              strict JSON by guided decoding (xgrammar); resumable in chunks
   evaluate   (local) verdicts against the clerical labels (fixed dev/test split): agreement, dangerous links, abstentions,
              by stratum, Jeffreys intervals, for each vote policy
-  write      (local) production verdicts -> data/graph/scored-links/qwen-labels.csv.gz
+  write      (local) production verdicts -> data/graph/scored-links/qwen-labels/ (parts + manifest; --out x.csv.gz: one file)
 
 Writes no proposal and touches no key log. Never copies thesis text, JSTOR text or notes, or any API key.
 """
@@ -581,7 +581,7 @@ def evaluate(args):
 # ------------------------------------------------------------------------------------------------ local: write
 
 def write(args):
-    """production verdicts -> qwen-labels.csv.gz: position, work, role, printed name, candidates shown, decision, reason,
+    """production verdicts -> qwen-labels parts (or one .csv.gz): position, work, role, printed name, candidates shown, decision, reason,
     facts, model, prompt version, votes (policy), the sample cell and weight"""
     import pandas as pd
     V = load_verdicts(args.verdicts.split(','))
@@ -606,7 +606,11 @@ def write(args):
     W = pd.DataFrame(rows).merge(P[['item', 'cell', 'band', 'rg', 'n', 'freq', 'decision', 'rule_state', 'rule_key', 'nofact', 'weight']]
                                  .rename(columns={'decision': 'scorer_decision'}), on='item', how='left')
     W = W.sort_values('position')
-    W.to_csv(args.out, index=False, compression='gzip')
+    if str(args.out).endswith('.csv.gz'):
+        W.to_csv(args.out, index=False, compression='gzip')
+    else:                                   # the tracked form: parts + manifest (2026-11-21, qwen_labels_io)
+        from qwen_labels_io import write_parts
+        write_parts(W, args.out)
     print(len(W), W.decision.map(lambda x: 'key' if str(x).startswith('p-') else x).value_counts().to_dict())
 
 
@@ -650,7 +654,8 @@ def main():
     a.add_argument('--dossiers', required=True)
     a.add_argument('--sample', required=True)
     a.add_argument('--policy', default='greedy')
-    a.add_argument('--out', default=str(ROOT / 'data/graph/scored-links/qwen-labels.csv.gz'))
+    a.add_argument('--out', default=str(ROOT / 'data/graph/scored-links/qwen-labels'),
+                   help='parts directory (default, tracked) or a single .csv.gz')
     args = ap.parse_args()
     {'dossiers': dossiers, 'sample': sample, 'run': run, 'evaluate': evaluate, 'write': write}[args.cmd](args)
 
