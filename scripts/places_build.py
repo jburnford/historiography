@@ -9,6 +9,7 @@ Inputs (git-ignored working files; see data/graph/places/README.md for how each 
   build/places/auth.parquet        NAF and LCSH geographic authorities (labels, variants, QIDs)
   build/places/wd*/                Wikidata facts by QID (scripts/places_wikidata.py)
   build/places/title-tags.parquet  title-rule tags (scripts/places_titles.py tag)
+  data/graph/places/title-readings/sol-*/title-reads.csv.gz   outside-reviewer title reads (scripts/places_sol_reads.py)
   data/field-research/place-nodes-scoping-2026-11-18/*-works-checked.csv   the pilot's full hand reading
 Outputs (tracked): data/graph/places/
   work-places.csv.gz      work -> place rows: work, qid, place_label, source, heading, lc_id, confidence
@@ -327,6 +328,18 @@ def main():
                                           confidence='title-rule-gated' if 'gated' in rule else 'title-rule')
         tr += 1
     rep['title_rule_rows'] = tr
+    # title reads by the outside reviewer, one tag per work read (scripts/places_sol_reads.py; audit in audit/)
+    sr = 0
+    for f in sorted((OUT / 'title-readings').glob('sol-*/title-reads.csv.gz')):
+        with gzip.open(f, 'rt', encoding='utf-8') as fh:
+            for r in csv.DictReader(fh):
+                if (r['work'], r['qid'], 'title-checked') in rows or (r['work'], r['qid'], 'title-rule') in rows:
+                    continue
+                rows[(r['work'], r['qid'], 'title-read-sol')] = dict(
+                    work=r['work'], qid=r['qid'], source='title-read-sol', heading=r['title'][:300], lc_id='',
+                    confidence='title-read-sol' if r['verdict'] == 'about-place' else 'title-read-sol:other-place')
+                sr += 1
+    rep['title_read_sol_rows'] = sr
 
     # ---- the place set -----------------------------------------------------------------------------------------
     tagged = Counter(r['qid'] for r in rows.values())

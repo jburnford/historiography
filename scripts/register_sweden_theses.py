@@ -82,6 +82,16 @@ def subjects(row):
     return [s.split(':', 1)[-1].strip() for s in (row.get('local_subjects') or '').split(' | ') if s.strip()]
 
 
+def scope_overrides(folder=PILOT):
+    """Reviewed scope decisions by SwePub record id (scope-overrides-*.csv: record_id, decision include/exclude,
+    note), applied before scope(); e.g. the outside-reviewer reads of held theses, audited (scope-overrides-2026-11-21.csv)."""
+    out = {}
+    for p in sorted(Path(folder).glob('scope-overrides-*.csv')):
+        with open(p, newline='', encoding='utf-8') as fh:
+            out.update({r['record_id']: r for r in csv.DictReader(fh)})
+    return out
+
+
 def scope(row):
     """(include, reason)."""
     subs = subjects(row)
@@ -175,6 +185,7 @@ def main():
             log[parts[3]] = dict(at=parts[0], host=parts[2], url=parts[4])
     files = sorted(p for p in PDFS.glob('*/*') if p.is_file() and p.suffix.lower() == '.pdf')
     stamp = datetime.now(timezone.utc).isoformat()
+    overrides = scope_overrides()
     records, held = [], []
     with ProcessPoolExecutor(max_workers=args.workers) as pool:
         for path, info, error in pool.map(check, files):
@@ -189,7 +200,8 @@ def main():
             if not row:
                 held.append(dict(base, reason='file name matches no SwePub record'))
                 continue
-            ok, why = scope(row)
+            o = overrides.get(row['record_id'])
+            ok, why = (o['decision'] == 'include', 'reviewed: ' + o['note']) if o else scope(row)
             if not ok:
                 held.append(dict(base, reason=why, pages=info['pages']))
                 continue

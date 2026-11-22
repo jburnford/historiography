@@ -100,9 +100,6 @@ class Tables(unittest.TestCase):
             self.assertTrue(srcs & {'lc-651', 'lc-z', 'lc-610'})
 
 
-if __name__ == '__main__':
-    unittest.main()
-
 
 @unittest.skipUnless((P / 'work-places.csv.gz').exists(), 'place tables not built')
 class Canada(unittest.TestCase):
@@ -139,3 +136,42 @@ class Increment3(unittest.TestCase):
     def test_overrides_have_basis(self):
         for r in csv.DictReader(open(P / 'overrides.csv', encoding='utf-8')):
             self.assertTrue(r['qid'].startswith('Q') and r['basis'].strip(), r)
+
+
+class SolTitleReads(unittest.TestCase):
+    """Outside-reviewer title reads (scripts/places_sol_reads.py): only high-confidence about-place rows to the queued
+    place, and other-place rows only when the reason names one target held in places.csv.gz by its LC heading."""
+
+    def test_build(self):
+        from places_sol_reads import build
+        places = {'Q92561': dict(lc_heading='London (Ont.)'), 'Q84': dict(lc_heading='London (England)'),
+                  'Q172': dict(lc_heading='Toronto (Ont.)')}
+        rows = {
+            ('w1', 'London'): dict(verdict='about-place', confidence='high', place_qid='Q92561', name='London', title='London, Ontario mills'),
+            ('w2', 'London'): dict(verdict='other-place-same-name', confidence='high', place_qid='Q92561', name='London',
+                                   reason='The title concerns London, England.'),
+            ('w3', 'London'): dict(verdict='other-place-same-name', confidence='high', place_qid='Q92561', name='London',
+                                   reason='The title concerns a London suburb.'),
+            ('w4', 'Toronto'): dict(verdict='about-place', confidence='medium', place_qid='Q172', name='Toronto'),
+            ('w5', 'Toronto'): dict(verdict='incidental', confidence='high', place_qid='Q172', name='Toronto'),
+            ('w6', "St. John's"): dict(verdict='about-place', confidence='high', place_qid='Q2082', name="St. John's"),
+            ('w7', 'British North America'): dict(verdict='about-place', confidence='high', place_qid='Q248452',
+                                                  name='British North America'),
+        }
+        out, held = build(rows, places)
+        self.assertEqual({(r['work'], r['qid']) for r in out}, {('w1', 'Q92561'), ('w2', 'Q84'), ('w7', 'Q248452')})
+        self.assertEqual(sum(held.values()), 3)
+
+    @unittest.skipUnless((P / 'title-readings/sol-2026-11-19/title-reads.csv.gz').exists(), 'no Sol reads table')
+    def test_table(self):
+        with gzip.open(P / 'title-readings/sol-2026-11-19/title-reads.csv.gz', 'rt', encoding='utf-8') as fh:
+            t = list(csv.DictReader(fh))
+        self.assertTrue(all(r['sol_confidence'] == 'high' for r in t))
+        self.assertTrue(all(r['provenance'].startswith('Sol') for r in t))
+        # a London (Ont.) tag only from an about-place read; London, England reads go to Q84
+        self.assertTrue(all(r['verdict'] == 'about-place' for r in t if r['qid'] == 'Q92561'))
+        self.assertIn('Q84', {r['qid'] for r in t if r['verdict'] == 'other-place-same-name'})
+
+
+if __name__ == '__main__':
+    unittest.main()

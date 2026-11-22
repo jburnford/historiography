@@ -25,6 +25,8 @@ Rules (user, 2026-11-18):
 | `ungrounded.csv.gz` | ~22,900 headings | LC place headings on graph books that did not ground to a place, with uses, books and the reason |
 | `report.json` | | counts |
 | `title-readings/*.csv` | | hand readings of 40 random title matches per name (raw or gated) |
+| `title-readings/sol-2026-11-19/title-reads.csv.gz` | 10,444 | outside-reviewer title reads kept as tags: `work, qid, name, verdict, sol_confidence, title, year, kind, reason, provenance` (`scripts/places_sol_reads.py`; in a subfolder, so the 40-title rule readings above are not mixed with it) |
+| `audit/sol-title-reads-audit-2026-11-21.csv` | 140 | hand audit of the Sol reads: 60 about-place, 40 not about, 40 other-place with a named target |
 | `audit/grounding-audit-2026-11-18.csv` | 100 | hand reading of 60 random indirect and 40 random exact LC groundings |
 | `audit/fiction-audit-2026-11-18.csv` | 120 | fiction-setting flag: 40 flagged (40 right), 40 unflagged literary-adjacent (9 misses, fixed), 40 after the fix (40 right) |
 | `audit/review-inheritance-audit-2026-11-18.csv` | 40 | review-of tags: rule-linked REVIEWS 20/20, key-log REVIEWS 19/20 (one wrong key-log REVIEWS claim) |
@@ -38,6 +40,7 @@ Rules (user, 2026-11-18):
 | `title-rule` | `title-rule`, `title-rule-gated` | A name rule on non-book works. It is kept only when its reading reached 95% (`scripts/places_titles.py`). The citation-tail rule drops places of publication. A gated rule also needs a regional word in the title. |
 | `review-of` | `review-of:keylog`, `review-of:linked` | Not in this file. The build adds it: a review inherits the places of the book it reviews, through REVIEWS; the confidence names the REVIEWS edge class (audit: both read ≥ 95%). |
 | `lc-*` | `lc-override` | A heading grounded by `overrides.csv`. |
+| `title-read-sol` | `title-read-sol`, `title-read-sol:other-place` | One outside-reviewer reading of the work's own title (Sol, 2026-11-19). This is not a rule: only the works read are tagged. The table is `title-readings/sol-2026-11-19/title-reads.csv.gz`, made by `scripts/places_sol_reads.py` (see below). |
 
 ### Hierarchy bases
 
@@ -117,6 +120,58 @@ Rules (user, 2026-11-18):
 | Regina, Prince Albert, Colombo, Galle, London, Prairies, Normandy | | from the pilot |
 
 Not read: Windsor, Sydney, Saint John / St. John's, London, Ont.
+
+**Outside-reviewer title reads (2026-11-19, audited 2026-11-21).** Sol read every title holding an ambiguous name
+that no rule or LC heading had tagged: 26,719 work-name cases. The names were Ottawa, Calgary, Victoria, Kingston,
+Hamilton, London, Windsor, Sydney, Saint John, St. John's, Regina, Prince Albert, Yukon, Great Lakes, British North
+America, Halifax, the city-pattern misses, and the Sri Lankan names. The reads are in
+`data/identifiers/sol-review-2026-11-19/9-place-titles/`.
+
+Sol's verdicts:
+
+| Verdict | Cases |
+| --- | ---: |
+| About the place | 2,015 |
+| Another place with the same name | 10,278 |
+| Incidental | 9,755 |
+| A person or thing with the same name | 4,592 |
+| Unclear | 79 |
+
+Audit (`audit/sol-title-reads-audit-2026-11-21.csv`):
+
+- **About the place:** 59 of 60 right, stratified by name. All 56 high-confidence rows were right. The miss was
+  medium confidence: *The Windsor Salt* is a fiction title. Per name, Montreal, Toronto and Great Lakes were each
+  10 of 10.
+- **Not about the place:** 40 of 40 right, stratified by verdict.
+- **Another place, with a named target:** 40 of 40 right, stratified by target.
+
+What became tags (`title-readings/sol-2026-11-19/report.json`):
+
+- **About the place, high confidence: 1,804.** British North America (Q248452) enters as a place of its own for
+  these rows. It stays off Canada's period links.
+- **Another place, high confidence: 8,640.** These count only when the reason names exactly one place whose LC
+  heading is held here. "London, England" -> London (England) gives 7,525, then Sydney (N.S.W.), Victoria
+  (Australia), Vancouver Island, Lake Victoria and Kingston (Jamaica).
+
+Held, and kept visible as open numbers:
+
+| What is held | Cases | Why |
+| --- | ---: | --- |
+| Another place, no single named target | 1,114 | Mostly London districts, Lake Victoria and Victoria namesakes, and Saint John River forms |
+| Another place, medium confidence | 524 | Below the confidence bar |
+| About the place, medium confidence | 165 | Below the confidence bar |
+| About St. John's, N.L. (Q2082) | 46 | The place is not in `places.csv.gz`: its LC authority has no QID and no Wikidata facts are cached. It needs an override row and a QLever fetch. |
+
+Title-rule prospects from the full reading (`title-readings/sol-2026-11-19/rule-prospects.csv`). These are
+precision of a pattern against Sol's verdicts on the works no rule had tagged yet. No rule is adopted without a
+40-title hand reading.
+
+- Great Lakes gated by a Canadian word reads 22 of 23 (95.7%), but recalls only 6%.
+- Great Lakes without African terms, the Michigan nickname, series or institutions reads 92.9%. An
+  African-journal exclusion may clear 95%.
+- Windsor, Ont. reads 6 of 6, below the 10-title floor.
+- Every other name stays read-only: St. John's, Nfld. 91%, Saint John, N.B. 83%, London, Ont. 78%, Hamilton,
+  Ont. 74%, Victoria, B.C. 60%, Kingston, Ont. 33%.
 
 **Period polities linked by hand** (`CURATED_PERIODS` in `scripts/places_build.py`; Wikidata's succession chain lacks them or splits them):
 

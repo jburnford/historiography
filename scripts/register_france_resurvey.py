@@ -75,6 +75,16 @@ ECON_HISTORY_TITLE = re.compile(r"histoire|historique|cliometr|\bsiecles?\b|anci
 ARCHAEOLOGY_DISCIPLINE = re.compile(r"archeolog|prehistoire|protohistoire", re.I)
 
 
+def scope_overrides(folder=SURVEY):
+    """Reviewed scope decisions by NNT (scope-overrides-*.csv: nnt, decision include/exclude, note), applied before
+    scope(); e.g. the outside-reviewer reads of held theses, audited (scope-overrides-2026-11-21.csv)."""
+    out = {}
+    for p in sorted(Path(folder).glob('scope-overrides-*.csv')):
+        with open(p, newline='', encoding='utf-8') as fh:
+            out.update({r['nnt']: r for r in csv.DictReader(fh)})
+    return out
+
+
 def scope(rec, survey_row):
     """(include, reason). Rulings applied: ancient history is History unless archaeology (user 2026-11-17), with
     philology/text edition held (coordinator's reading) and history of religions/theology held (not ruled), all by
@@ -153,6 +163,7 @@ def main():
     ap.add_argument('--workers', type=int, default=4)
     args = ap.parse_args()
     survey = {r['nnt']: r for r in csv.DictReader(open(SURVEY / 'records.csv', encoding='utf-8'))}
+    overrides = scope_overrides()
     urls = {}
     for name in ('open-urls.tsv', 'ai-excluded-urls.tsv'):
         for line in open(SURVEY / name, encoding='utf-8'):
@@ -182,7 +193,8 @@ def main():
             if not rec:
                 held.append(dict(base, reason='NNT not in the corrected History screen of the 2026-11-12 snapshot'))
                 continue
-            ok, why = scope(rec, srow)
+            o = overrides.get(nnt)
+            ok, why = (o['decision'] == 'include', 'reviewed: ' + o['note']) if o else scope(rec, srow)
             if not ok:
                 held.append(dict(base, reason=why, pages=info['pages']))
                 continue

@@ -7,7 +7,8 @@ the build folder. Nothing else in the build changes, and nothing here touches th
   should find it by (`variants`: its own, LC's, Wikidata's, and those of its period polities), `period_of` (the
   territory a period polity belongs to: British Ceylon -> Sri Lanka), counts.
 - ABOUT_PLACE: a work about a place, with `source` (lc-651, lc-z, lc-610: an LC subject heading on the book;
-  title-checked: the place-nodes pilot's hand reading; title-rule: a name rule read at >= 95%; review-of: a review
+  title-checked: the place-nodes pilot's hand reading; title-rule: a name rule read at >= 95%; title-read-sol: one
+  outside-reviewer read of the work's title, audited (scripts/places_sol_reads.py); review-of: a review
   inherits the places of the book it reviews, through REVIEWS) and `confidence`, the heading as catalogued and the LC
   authority id. Place facts attach to works, never to people (user 2026-11-18); a person's places are derived from
   their works by the explorer.
