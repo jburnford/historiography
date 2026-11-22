@@ -173,5 +173,49 @@ class SolTitleReads(unittest.TestCase):
         self.assertIn('Q84', {r['qid'] for r in t if r['verdict'] == 'other-place-same-name'})
 
 
+class SolGroundings(unittest.TestCase):
+    """Outside-reviewer groundings of ungrounded LC headings (scripts/places_sol_groundings.py, audit 2026-11-21) and the
+    work-level tag removals from the review of the people on the place pages (data/graph/places/tag-removals.csv)."""
+
+    def test_unit_type(self):
+        from places_sol_groundings import unit_type, fold
+        self.assertEqual(unit_type('Waterloo (Ont. : Township)'), 'township')
+        self.assertEqual(unit_type('Renfrew (Comté)'), 'county')
+        self.assertEqual(unit_type('Montréal (Québec)'), '')
+        self.assertEqual(unit_type('Thebes (Extinct city)'), '')
+        self.assertEqual(fold("St. John's (N.L.)"), 'st johns n l')
+
+    @unittest.skipUnless((P / 'sol-groundings-2026-11-21.csv.gz').exists(), 'no Sol groundings table')
+    def test_table(self):
+        with gzip.open(P / 'sol-groundings-2026-11-21.csv.gz', 'rt', encoding='utf-8') as fh:
+            t = list(csv.DictReader(fh))
+        keys = [(r['heading'], r['parent'], r['thesaurus']) for r in t]
+        self.assertEqual(len(keys), len(set(keys)))
+        for r in t:
+            self.assertTrue(r['qid'].startswith('Q') and r['basis'].strip() and r['provenance'].startswith('Sol'), r)
+            self.assertIn(r['thesaurus'], ('lc', 'fr'))
+        g = {(r['heading'], r['parent']): r['qid'] for r in t}
+        self.assertEqual(g.get(("St. John's (N.L.)", '')), 'Q2082')
+        self.assertNotIn(('Seal Lake', 'Newfoundland and Labrador'), g)       # machine check holds a heading-contradicting read
+        hand = {(r['heading'], r['parent'], r['thesaurus']) for r in csv.DictReader(open(P / 'overrides.csv', encoding='utf-8'))}
+        self.assertFalse(hand & set(keys))                                    # hand overrides are not duplicated
+        notp = {(r['heading'], r['parent'], r['thesaurus']) for r in csv.DictReader(open(P / 'sol-not-places-2026-11-21.csv', encoding='utf-8'))}
+        self.assertFalse(notp & set(keys))
+
+    @unittest.skipUnless((P / 'tag-removals.csv').exists(), 'no tag removals')
+    def test_tag_removals_applied(self):
+        rm = {(r['work'], r['qid'], r['source']) for r in csv.DictReader(open(P / 'tag-removals.csv', encoding='utf-8'))}
+        self.assertTrue(rm)
+        self.assertTrue(all(s == 'title-rule' for _, _, s in rm))
+        for r in rows('work-places.csv.gz'):
+            self.assertNotIn((r['work'], r['qid'], r['source']), rm)
+
+    @unittest.skipUnless((P / 'work-places.csv.gz').exists(), 'place tables not built')
+    def test_not_places_listed_apart(self):
+        for r in rows('ungrounded.csv.gz'):
+            if r['heading'] in ('Earth (Planet)', 'Solar system', 'Milky Way') and r['route'] != 'not-used':
+                self.assertTrue(r['reason'].startswith('not a place'), r)
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -108,3 +108,70 @@ thesis-round 03-mexico and 05a mint, and `doi:` works that are unkeyed).
 
 `check_merge_guard.py` (`scripts/merge_guard.py`, `blocked_keys` with the single-key checks ignored; `merge-guard.json`): all
 8 merges pass: every key live, none pooled, none in an open conflict.
+
+---
+
+# Job 6: people on the Sri Lanka and Canada place pages (added 2026-11-22). Nothing is applied.
+
+Input: `../sol-review-2026-11-19/6-place-people/` (806 ledger lines, 715 cases: 115 Sri Lanka keys, 600 Canada keys; 9,873
+person-work credits judged). Working files and scripts in `j6/`: `clean6.py` (latest line per case: 13 cases changed on a
+repeat, `j6/repeat-conflicts6.csv`; credits joined to their source in the 2026-11-21 explorer snapshot), `sample6.py`
+(seed 20261121), `audit6.csv` (hand audit), `build6.py` (proposals), `top25.py` (the demo lists).
+
+## Decisions for the user (job 6)
+
+1. **Editor, translator, compiler and foreword credits (06c, 111)** are the key's work in another role, not someone else's.
+   Sol marks them "not theirs" as authored credits. They are not demoted or withdrawn here: the fix is a role (volume editor,
+   edition editor, translator, introducer). The explorer already leaves edition-editor, translator and introducer credits out
+   of place-page counts, so a role fix changes the lists; a plain withdrawal would lose the link. Yes/no on a role mechanism.
+2. **06a (50 linked credits) uses the 03 / Morgan form**, but `build_graph.py` only demotes `author-works:openalex-author-orcid`
+   rows from `unsafe-profile-credits.csv.gz`; 43 of the 50 rows come from other sources (work-people, qwen-links, scored-links,
+   name-only). 03 and the Morgan file have the same limit. Applying any of the three needs that pass to accept every linked
+   source (or a separate demotion table).
+3. **Not-about-place readings of LC subject headings (06f, 21 tags) are held**: removing them overrides a cataloguer's subject
+   heading (`Cats -- Canada -- Anecdotes`, `Waiver -- Canada`, `Canada -- In literature`). Only title-rule tags were removed.
+4. **Two people on one key (06d, 13)**: verified, but no split or detach is proposed. In 7 of 13 the cause is an anchor from
+   another person (an ORCID of a namesake: Humphries/Swansea, Marcocci/Flores, Peebles/neonatology, Young, Jones/Salford,
+   Phillips/Glasgow, Scott/Reading); Sol's per-work yes/no is relative to the person the works fit, not always to the anchors
+   (p-23277 Scott is the inverse). Same finding as 04b: decide detach vs relabel per key.
+
+## Audit (`j6/audit6.csv`, `j6/audit6-agreement.json`)
+
+Read against the graph (explorer snapshot, read-only), LC name authorities (id.loc.gov MARC, 7 fetched), the ORCID public API
+(8 iDs: name and employment) and Crossref (6 review DOIs). Bar 95%.
+
+| class | n | agree | usable |
+| --- | ---: | ---: | --- |
+| some-works-not-theirs | 30 (random) | 30 | yes |
+| two-people-one-key | 13 (all) | 13 | yes as findings; review only |
+| label-defect | 8 (all) | 8 | yes |
+| works-not-about-place | 15 (random) | 14 (Dickason review of *Calumet & fleur-de-lys*: New France / Great Lakes is a judgment) | no as a class; title-rule subset 12/12 in the sample |
+| sound | 15 (random) | 15 | yes |
+
+Crossref confirms the pattern behind most "not theirs" credits: JSTOR-era review deposits list the reviewer first and the
+reviewed book's authors after it, under the book's title (Barbour+Campeau, Axtell+Campeau, Brym+Clement+Williams,
+Dumazedier+Bergeron, Shannon+Mancke+Hinderaker+Mancall, Aitken+Bliss).
+
+## Outputs
+
+| file | rows | what |
+| --- | ---: | --- |
+| `06a-place-people-credits.csv` | 50 (42 keys) | linked credits to demote to author_candidates, 03 form (person = key here). Cause in `reason`: a review by another person credited to the reviewed author 34; another author's text inside a volume the key edited 11; namesake or other author 3; other front matter 2. 12 rows dropped as already in 03, the Morgan file or `unsafe-profile-credits.csv.gz`. |
+| `06b-place-people-withdraw.proposal.json` + `.csv` | 89 claims (88 credits, 65 keys) | the same classes on key-log claims: `withdraw` of the claim key (the review mechanism `lc-editor-repair-2026-11-03` uses). Reviews by others 48, other authors' texts in edited volumes 27, front matter / series notices 5, namesakes 6, others' theses 2. |
+| `06c-place-people-role-review.csv` | 111 | role, not authorship: editor or compiler of the volume 87, edition of primary texts 15, translator 6, foreword 3. Review only. |
+| `06d-two-people-one-key-review.csv` | 13 | anchors, the credits that are not the anchored person's, Sol's evidence, my note (ORCID checks). Review only. |
+| `06e-relabel.proposal.json` | 6 | Rhodri Windsor-Liscombe, François-Marc Gagnon, El Chenier (current name; the earlier name is not added), Micheline Dumont, Robert-Lionel Séguin, Vijaya Samaraweera. Biedermann is already in `place-demo-fixes-2026-11-18`; Blake (plain catalogue inversion) is a class, not relabelled. |
+| `../../graph/places/tag-removals.csv` | 29 | work-level place-tag removals, read by `places_build.py`: title-rule tags Sol read as not about the place ("French-Canadian" emigrants in New England and New York, the Canada-WHO St Petersburg project, genetics cohorts, the US "Canadian wolves" paper, Michigan settlement). |
+| `06f-tag-removals-held.csv` | 21 | not-about readings of LC (18) and review-of (3) tags: held. |
+
+Open class numbers (visible, not fixed here; explorer snapshot 2026-11-21):
+- Class 29b (a review credited to the reviewed book's author) is already a build rule for reviews with a REVIEWS edge: the
+  last build demoted 627 linked credits and counts **1,019 key-log claims open** (`build/graph/report.json`).
+- Sol's cases are mostly reviews **without** a REVIEWS edge, filed under the book's title. Cheap proxy: an article/review/other
+  record whose title equals a book the same key authored, with no REVIEWS edge: **3,251 credits on 2,645 keys** (key log
+  2,492; work-people 332, author-works 162, qwen-links 151, others 114). An upper bound: an article can share a book's title.
+- Inverted catalogue labels ("Blake, Raymond B.") are a label class; not counted here.
+
+## Dry run
+
+See `dry-run-06.json` (`scripts/keylog_dryrun.py` on 06b and 06e).

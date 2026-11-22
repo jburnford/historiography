@@ -10,6 +10,10 @@ Inputs (git-ignored working files; see data/graph/places/README.md for how each 
   build/places/wd*/                Wikidata facts by QID (scripts/places_wikidata.py)
   build/places/title-tags.parquet  title-rule tags (scripts/places_titles.py tag)
   data/graph/places/title-readings/sol-*/title-reads.csv.gz   outside-reviewer title reads (scripts/places_sol_reads.py)
+  data/graph/places/overrides.csv               hand groundings of headings (wins over the next)
+  data/graph/places/sol-groundings-*.csv.gz     outside-reviewer groundings, audited (scripts/places_sol_groundings.py)
+  data/graph/places/sol-not-places-*.csv        headings the reviewer read as not a place (listed apart in ungrounded)
+  data/graph/places/tag-removals.csv            work-level tag removals (work, qid, source) from reviewed readings
   data/field-research/place-nodes-scoping-2026-11-18/*-works-checked.csv   the pilot's full hand reading
 Outputs (tracked): data/graph/places/
   work-places.csv.gz      work -> place rows: work, qid, place_label, source, heading, lc_id, confidence
@@ -45,6 +49,8 @@ STRUCTURE = {'Q34442', 'Q83620', 'Q41176', 'Q811979'}
 PEOPLES = {'Q41710', 'Q2472587', 'Q33829'}
 NATION_LABEL = re.compile(r'\b(Nation|Tribe|Band|Indians|people)\b')
 
+NOT_PLACE = 'not a place: read by an outside reviewer (Sol 2026-11-19, audited 2026-11-21)'
+NOT_PLACE_REASONS = (NOT_PLACE, 'a category of countries', 'a people, nation or band')
 FICTION = re.compile(r'(?i) -- (juvenile )?(fiction|drama|poetry|comic books, strips, etc|graphic novels)\b')
 
 # LC abbreviations used as qualifiers (LC rule: AACR2 Appendix B / LC-PCC PS 16.2.2.9)
@@ -109,7 +115,7 @@ def tsv(*paths):
 
 
 def wd_tables():
-    d = [B / 'wd', B / 'wd-extra', B / 'wd-extra2', B / 'wd-extra3']
+    d = [B / 'wd', B / 'wd-extra', B / 'wd-extra2', B / 'wd-extra3', B / 'wd-extra4']
     basic = {r['i']: r for r in tsv(*[x / 'basic.tsv' for x in d])}
     kinds, p131, anc, p17, alias, peoples = (defaultdict(set) for _ in range(6))
     for r in tsv(*[x / 'kinds.tsv' for x in d]):
@@ -152,6 +158,11 @@ def kind_of(q, kinds, basic):
     if k & STRUCTURE:
         return 'structure'
     return 'other'
+
+
+def q_ok(q, basic, excluded):
+    """A reviewed grounding is used only when the build holds the item's Wikidata facts and its class is a place."""
+    return q in basic and not excluded(q)
 
 
 def num(v):
@@ -218,6 +229,19 @@ def main():
     ovr = {}
     for r in csv.DictReader(open(OUT / 'overrides.csv', encoding='utf-8')):
         ovr[(r['heading'], r['parent'] or None, r['thesaurus'])] = r['qid']
+    # outside-reviewer groundings (Sol 2026-11-19, job 8; audited 2026-11-21; scripts/places_sol_groundings.py): the same
+    # form as overrides.csv, which wins on a shared key. Rows tag with confidence lc-sol. Headings Sol read as not a place
+    # (topics, peoples, organisations, categories) are listed in ungrounded.csv.gz under their own reason.
+    sol, notp = {}, set()
+    for f in sorted(OUT.glob('sol-groundings-*.csv.gz')):
+        with gzip.open(f, 'rt', encoding='utf-8') as fh:
+            for r in csv.DictReader(fh):
+                k = (r['heading'], r['parent'] or None, r['thesaurus'])
+                if k not in ovr and q_ok(r['qid'], basic, excluded):
+                    sol[k] = (r['qid'], r['lc_id'])
+    for f in sorted(OUT.glob('sol-not-places-*.csv')):
+        notp |= {(r['heading'], r['parent'] or None, r['thesaurus']) for r in csv.DictReader(open(f, encoding='utf-8'))}
+    rep['sol_groundings'] = len(sol)
     # an indirect $z pair whose LC qualifier is the parent's LC abbreviation ('Vancouver' under 'British Columbia' ->
     # 'Vancouver (B.C.)'): the pilot's rule only compared the qualifier's letters with the parent's start
     abbr_of = defaultdict(set)
@@ -239,6 +263,13 @@ def main():
             if q in basic:
                 ground[(h, p)] = (q, f'{af}:{ai}' if ai else None, 'override')
                 continue
+        if (h, p, 'lc') in sol:
+            q, lcid = sol[(h, p, 'lc')]
+            ground[(h, p)] = (q, f'{af}:{ai}' if ai else (f'sol:{lcid}' if lcid else None), 'sol')
+            continue
+        if (h, p, 'lc') in notp:
+            unground.append((h, p, route, f'{af}:{ai}' if ai else None, uses, books, NOT_PLACE))
+            continue
         if route.startswith('ambiguous') and p:
             cands = [(k, sub) for k, qual, sub in by_base.get(h, []) if qual in abbr_of.get(p, ())]
             if len(cands) > 1:          # 'Halifax (N.S.)' over 'Halifax (N.S. : Regional municipality)': the plain form
@@ -271,15 +302,18 @@ def main():
         ground[(h, p)] = (q, ak, route)
     rows = {}
     form_src = {'651': 'lc-651', 'z': 'lc-z', '610-jurisdiction': 'lc-610'}
-    fr = {(h, p): q for (h, p, t), q in ovr.items() if t == 'fr' and q in basic}
+    fr = {(h, p): (q, None, 'override') for (h, p, t), q in ovr.items() if t == 'fr' and q in basic}
+    for (h, p, t), (q, lcid) in sol.items():
+        if t == 'fr' and (h, p) not in fr:
+            fr[(h, p)] = (q, f'sol:{lcid}' if lcid else None, 'sol')
     rep['fr_override_uses'] = 0
     for key, form, h, p, full, fiction, used in c.execute(
             "SELECT key, form, heading, parent, full_heading, fiction, used FROM u ORDER BY key, tag, occ").fetchall():
         if not used:
             if (h, p) not in fr:
                 continue
-            g = (fr[(h, p)], None, 'override')
-            rep['fr_override_uses'] += 1
+            g = fr[(h, p)]
+            rep['fr_override_uses' if g[2] == 'override' else 'fr_sol_uses'] += 1
         else:
             g = ground.get((h, p))
         if not g:
@@ -289,10 +323,10 @@ def main():
         # fiction: the $v form subdivision (places_lc.py), or the same words as any later part of the heading string
         # (older records carry 'Fiction' in $x: 'Kentucky -- Fiction'; fiction audit 2026-11-18)
         fiction = fiction or bool(FICTION.search(full or ''))
-        conf = 'lc-fiction' if fiction else {'exact': 'lc-exact', 'override': 'lc-override'}.get(route, 'lc-indirect')
+        conf = 'lc-fiction' if fiction else {'exact': 'lc-exact', 'override': 'lc-override', 'sol': 'lc-sol'}.get(route, 'lc-indirect')
         k = (key, q, src)
         old = rows.get(k)
-        rank = {'lc-exact': 0, 'lc-indirect': 1, 'lc-override': 2, 'lc-fiction': 3}
+        rank = {'lc-exact': 0, 'lc-indirect': 1, 'lc-override': 2, 'lc-sol': 2, 'lc-fiction': 3}
         if old is None or rank[conf] < rank[old['confidence']]:
             rows[k] = dict(work=key, qid=q, source=src, heading=full, lc_id=ak.split(':', 1)[1] if ak else '', confidence=conf)
     rep['lc_rows'] = len(rows)
@@ -301,6 +335,9 @@ def main():
     for h, p, uses, books in c.execute("""SELECT heading, parent, count(*), count(DISTINCT key) FROM u WHERE NOT used
                                           GROUP BY ALL""").fetchall():
         if (h, p) in fr:
+            continue
+        if (h, p, 'fr') in notp:
+            unground.append((h, p, 'not-used', None, uses, books, NOT_PLACE))
             continue
         unground.append((h, p, 'not-used', None, uses, books, 'heading from a non-LC thesaurus (French Canadiana, $2 fast/swd/...), not used to tag'))
 
@@ -340,6 +377,13 @@ def main():
                     confidence='title-read-sol' if r['verdict'] == 'about-place' else 'title-read-sol:other-place')
                 sr += 1
     rep['title_read_sol_rows'] = sr
+    # work-level removals (data/graph/places/tag-removals.csv): a tag read as not about the place by a reviewed reading
+    # (outside review of the people on the Canada and Sri Lanka pages, 2026-11-22: title-rule tags only)
+    rm = 0
+    if (OUT / 'tag-removals.csv').exists():
+        for r in csv.DictReader(open(OUT / 'tag-removals.csv', encoding='utf-8')):
+            rm += rows.pop((r['work'], r['qid'], r['source']), None) is not None
+    rep['tag_removals_applied'] = rm
 
     # ---- the place set -----------------------------------------------------------------------------------------
     tagged = Counter(r['qid'] for r in rows.values())
@@ -546,6 +590,10 @@ def main():
     rep['works_by_source'] = {s: len({r['work'] for r in out_rows if r['source'] == s}) for s in rep['rows_by_source']}
     rep['ungrounded_uses_by_reason'] = dict(ug.most_common())
     rep['ungrounded_headings'] = len(ug_rows)
+    # the open number: headings that are places (not categories, peoples or headings read as not a place)
+    place_rows = [r for r in ug_rows if not r['reason'].startswith(NOT_PLACE_REASONS)]
+    rep['ungrounded_place_headings'] = len(place_rows)
+    rep['ungrounded_place_uses'] = sum(r['uses'] for r in place_rows)
     rep['lc_uses_total'] = c.execute('SELECT count(*) FROM u').fetchone()[0]
     rep['lc_uses_grounded'] = sum(n for (h, p), n in Counter(
         {(h, p): uses for h, p, *_r, uses, books in [(x[0], x[1], x[7], x[8]) for x in pairs]}).items() if (h, p) in ground)

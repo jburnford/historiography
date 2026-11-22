@@ -398,7 +398,7 @@ SRC_BADGE = ("CASE WHEN bool_or(starts_with(a.source, 'lc-')) THEN 'LC' WHEN boo
              "WHEN bool_or(a.source = 'title-rule') THEN 'title (rule)' WHEN bool_or(a.source = 'title-read-sol') THEN 'title (read)' "
              "ELSE 'review' END")
 SRC_LINE = ("string_agg(DISTINCT CASE WHEN starts_with(a.source, 'lc-') THEN 'LC subject: ' || a.heading "
-            "|| CASE a.confidence WHEN 'lc-fiction' THEN ' (setting of fiction)' WHEN 'lc-indirect' THEN '' ELSE '' END "
+            "|| CASE a.confidence WHEN 'lc-fiction' THEN ' (setting of fiction)' WHEN 'lc-sol' THEN ' (heading grounded by an outside reviewer, audited)' ELSE '' END "
             "WHEN a.source = 'title-checked' THEN 'title, read by hand' WHEN a.source = 'title-rule' THEN 'title: ' || a.heading "
             "WHEN a.source = 'title-read-sol' THEN 'title, read by an outside reviewer (audited)' "
             "ELSE 'review of a book about the place' END "
