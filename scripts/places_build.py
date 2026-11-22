@@ -267,9 +267,6 @@ def main():
             q, lcid = sol[(h, p, 'lc')]
             ground[(h, p)] = (q, f'{af}:{ai}' if ai else (f'sol:{lcid}' if lcid else None), 'sol')
             continue
-        if (h, p, 'lc') in notp:
-            unground.append((h, p, route, f'{af}:{ai}' if ai else None, uses, books, NOT_PLACE))
-            continue
         if route.startswith('ambiguous') and p:
             cands = [(k, sub) for k, qual, sub in by_base.get(h, []) if qual in abbr_of.get(p, ())]
             if len(cands) > 1:          # 'Halifax (N.S.)' over 'Halifax (N.S. : Regional municipality)': the plain form
@@ -284,6 +281,9 @@ def main():
         ak = f'{af}:{ai}' if ai else None
         if re.search(r'\bcountries\b', h, re.I):
             unground.append((h, p, route, ak, uses, books, 'a category of countries (developing, Arab, Islamic ...), not a place'))
+            continue
+        if (h, p, 'lc') in notp:
+            unground.append((h, p, route, ak, uses, books, NOT_PLACE))
             continue
         if route not in ('exact', 'indirect'):
             unground.append((h, p, route, None, uses, books, 'several LC authorities fit' if route.startswith('ambiguous') else 'no LC geographic authority with this heading'))

@@ -466,8 +466,8 @@ def report():
     w1 = {r['work'] for r in rows1}
     sol_rows = [r for r in rows1 if r['confidence'] == 'lc-sol']
     k0 = {(r['heading'], r['parent']) for r in ug0}
-    k1 = {(r['heading'], r['parent']) for r in ug1}
-    newly = [r for r in ug0 if (r['heading'], r['parent']) not in k1]
+    k1 = {(r['heading'], r['parent'], r['route']) for r in ug1}
+    newly = [r for r in ug0 if (r['heading'], r['parent'], r['route']) not in k1]
     tab = {(r['heading'], r['parent'], r['thesaurus']): r for r in csv.DictReader(gzip.open(TABLE, 'rt', encoding='utf-8'))}
     top = []
     for r in sorted(newly, key=lambda r: -int(r['uses'])):

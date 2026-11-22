@@ -22,7 +22,10 @@ Rules (user, 2026-11-18):
 | `place-hierarchy.csv.gz` | 21,772 | `child, parent, basis` |
 | `overrides.csv` | 35 | hand groundings with a stated basis: LC headings with no QID or no authority match (South Asia, Acadia, Klondike River Valley, Quebec (Province) ...) and the Canadiana French headings for Canadian places |
 | `lc-printed-authors.csv.gz` | 229,437 | authors as catalogued: for works with an LCCN and no linked author, the LC 100 main entry (heading, dates, relators), the 245 $c statement as printed, the name authority it resolves to and the person key holding it (state on-key / no-key / unresolved). A display fact, never a credit (`scripts/places_printed_authors.py`) |
-| `ungrounded.csv.gz` | ~22,900 headings | LC place headings on graph books that did not ground to a place, with uses, books and the reason |
+| `sol-groundings-2026-11-21.csv.gz` | 2,236 | outside-reviewer groundings of ungrounded LC headings, audited and machine-checked by exact identifier: `heading, parent, thesaurus, qid, qid_label, uses, lc_id, confidence, case, basis, provenance` (`scripts/places_sol_groundings.py`); read by the build beside `overrides.csv`, which wins on a shared key; tags carry confidence `lc-sol` |
+| `sol-not-places-2026-11-21.csv` | 327 | headings the reviewer read as not a place (topics, organisations, peoples, planets, categories): listed in `ungrounded.csv.gz` under their own reason and left out of the open number |
+| `tag-removals.csv` | 29 | work-level tag removals `work, qid, source` from reviewed readings (title-rule tags read as not about the place, job 6 of the 2026-11-19 review) |
+| `ungrounded.csv.gz` | ~19,900 headings | LC place headings on graph books that did not ground to a place, with uses, books and the reason |
 | `report.json` | | counts |
 | `title-readings/*.csv` | | hand readings of 40 random title matches per name (raw or gated) |
 | `title-readings/sol-2026-11-19/title-reads.csv.gz` | 10,444 | outside-reviewer title reads kept as tags: `work, qid, name, verdict, sol_confidence, title, year, kind, reason, provenance` (`scripts/places_sol_reads.py`; in a subfolder, so the 40-title rule readings above are not mixed with it) |
@@ -184,3 +187,29 @@ precision of a pattern against Sol's verdicts on the works no rule had tagged ye
 | Manitoba | Red River Colony |
 
 The NWT of 1870–1905 is the same Wikidata item as today's Northwest Territories (Q2007). Its districts (Assiniboia, Saskatchewan, Athabasca) are part-predecessors of the prairie provinces.
+
+**Outside-reviewer groundings of ungrounded headings (2026-11-19, audited 2026-11-21/22).** Sol read 4,858 headings from
+`ungrounded.csv.gz` (`data/identifiers/sol-review-2026-11-19/8-ungrounded-places/`): grounded 2,758, unclear 1,681,
+not a place 329, several candidates 89, no item 1 ("Northwest, Canadian", 584 uses: no Wikidata item for the region).
+
+- Audit (`audit/sol-groundings-audit-2026-11-21.csv`), each QID checked by exact identifier (P244 or a cited GeoNames,
+  CGNDB, GND, BnF, VIAF, NRHP, OSM id on QLever, LC MARC where needed): Canada high 12/12, medium 8/8; South Asia high
+  12/12, medium 8/8; other high 31/32 (20 extra drawn); other medium 5/8 (region headings grounded to a commune or a
+  wider historical region against LC's linked item) -> held. Not a place 20/20, unclear 20/20. All 63 sampled rows that
+  pass the machine check were right; the 4 doubtful rows all fail it.
+- Machine check on every grounded row (`scripts/places_sol_groundings.py check`): the item exists; an identifier Sol
+  cites is held by the item exactly; the heading's name matches a label or alias (close spelling allowed for catalogue
+  typos: "Canda", "Haifax"); the item has a geographic class and is not a people; the heading's LC id is not P244 of a
+  different item; no unit-type collision (a township, county, regional municipality or district heading never shares a
+  QID with a same-named settlement or a different unit type). Adopted 2,236 (26,476 uses); held 522
+  (`audit/sol-groundings-held-2026-11-21.csv`: identifier 118, unit-type collision 140, LC id on another item 106,
+  name 50, class 29, LC twin not grounded 4; other/medium stratum 118). 327 QIDs on more than one heading are aliases by
+  rule (same name, or a French/other-thesaurus or misspelt form of it) unless the unit types differ.
+- Effect (`audit/sol-groundings-before-after-2026-11-22.json`; places headings only, categories/peoples/not-places
+  apart): ungrounded headings 22,031 -> 19,494, uses 87,508 -> 57,198; on works about Canada 1,894 -> 833 headings,
+  16,977 -> 8,737 uses; South Asia 839 -> 438, 10,545 -> 4,262; Sri Lanka 99 -> 54, 2,620 -> 480. Places 14,120 ->
+  14,985; 12,764 `lc-sol` tag rows on 10,998 works, 2,199 works tagged for the first time. St. John's (N.L.) is now
+  Q2082 (CGNDB ABEFS, which LC n81054238 cites), so the 46 held title reads for it are tags.
+- Still ungrounded for Canada: "Northwest, Canadian" (no item), the "X Region (Sask.)" headings (no item of that extent:
+  Prince Albert Region, Moose Jaw Region, Abernethy, Pasqua), North Saskatchewan River Region, Cypress Hills Region (held:
+  unit-type collision with Cypress Hills).

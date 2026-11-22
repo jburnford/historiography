@@ -174,4 +174,14 @@ Open class numbers (visible, not fixed here; explorer snapshot 2026-11-21):
 
 ## Dry run
 
-See `dry-run-06.json` (`scripts/keylog_dryrun.py` on 06b and 06e).
+`dry-run-06.json` (`scripts/keylog_dryrun.py`, cache seq 5,908,712): 06b 89 withdraw events, 06e 6 relabel events, none
+rejected. Run on its own; with 01-05 applied first the claims and keys are untouched by those files.
+
+## Demo lists (`j6/top25.md`, explorer rebuilt 2026-11-22 with the new place tables)
+
+Places with the places within them, fiction left out. Sri Lanka: only Kenneth Morgan (p-3125, 12 -> 0, the Morgan-file
+ANU photograph credits) leaves the top 25; everyone else in it Sol calls a scholar of the place except David Arnold
+(incidental). Biedermann stays first (relabel pending). Canada: small drops (Lamonde 77 -> 74, Granatstein 66 -> 63,
+Iacovetta 42 -> 40); Beverley Chalmers (rank 5-6, 60 -> 55 from the tag removals, 54 after 06b) is a perinatal-health
+researcher whose ORCID lists many Canadian survey and presentation records: Sol reads her as incidental, not a scholar of
+Canada, and her St Petersburg project records as not about Canada. Matteo Sanfilippo leaves the top 25 (37 -> 36).
