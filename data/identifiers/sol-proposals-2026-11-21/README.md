@@ -101,4 +101,10 @@ audited), Sol `unclear` cases in every job.
 
 ## Dry run and merge guard
 
-See `dry-run.json` and `merge-guard.json` (filled in below after the run).
+`scripts/keylog_dryrun.py` on the SQLite cache (seq 5,908,712), the five files in apply order 01, 02, 04a, 05a, 05b
+(`dry-run.json`): 15,785 events, **none rejected**, no withdrawn-claim skips (01: 13,589; 02: 1,031; 04a: 8; 05a: 334;
+05b: 823). The run validates events and anchors, not whether claim subjects/objects resolve (05b names authors that
+thesis-round 03-mexico and 05a mint, and `doi:` works that are unkeyed).
+
+`check_merge_guard.py` (`scripts/merge_guard.py`, `blocked_keys` with the single-key checks ignored; `merge-guard.json`): all
+8 merges pass: every key live, none pooled, none in an open conflict.
