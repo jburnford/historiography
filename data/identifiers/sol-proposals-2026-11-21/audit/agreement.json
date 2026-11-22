@@ -1,0 +1,224 @@
+{
+ "1-place-authors": {
+  "checked": "LC MARC authority (100/046/37x/670) read for every case with an authority; Sol role evidence read; class judged against the TASK definitions",
+  "n": 40,
+  "agree": 39,
+  "disagree": 0,
+  "unverified": 1,
+  "by_class": {
+   "scholar": {
+    "n": 14,
+    "agree": 13,
+    "disagree": 0,
+    "unverified": 1,
+    "rate": 0.929,
+    "usable": false
+   },
+   "official-or-participant": {
+    "n": 10,
+    "agree": 10,
+    "disagree": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "usable": true
+   },
+   "journalist-or-popular": {
+    "n": 6,
+    "agree": 6,
+    "disagree": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "usable": true
+   },
+   "literary": {
+    "n": 5,
+    "agree": 5,
+    "disagree": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "usable": true
+   },
+   "unclear": {
+    "n": 5,
+    "agree": 5,
+    "disagree": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "usable": true
+   }
+  }
+ },
+ "mint-combined": {
+  "checked": "LC MARC authority read for every case; for hold cases the existing key, its anchors and key-log works read in explorer.duckdb",
+  "n": 80,
+  "agree": 79,
+  "disagree": 1,
+  "unverified": 0,
+  "by_class": {
+   "yes": {
+    "n": 40,
+    "agree": 39,
+    "disagree": 1,
+    "unverified": 0,
+    "rate": 0.975,
+    "usable": true
+   },
+   "no": {
+    "n": 20,
+    "agree": 20,
+    "disagree": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "usable": true
+   },
+   "hold": {
+    "n": 20,
+    "agree": 20,
+    "disagree": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "usable": true
+   }
+  }
+ },
+ "attach": {
+  "checked": "existing key read in explorer.duckdb (label, anchors, key-log works) and compared with the LC authority and Sol proof",
+  "n": 40,
+  "agree": 39,
+  "disagree": 1,
+  "unverified": 0,
+  "by_class": {
+   "mint": {
+    "n": 30,
+    "agree": 29,
+    "disagree": 1,
+    "unverified": 0,
+    "rate": 0.967,
+    "usable": true
+   },
+   "job1": {
+    "n": 10,
+    "agree": 10,
+    "disagree": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "usable": true
+   }
+  }
+ },
+ "3-mixed-profiles": {
+  "checked": "up to two not-theirs credits per key looked up in the Crossref API (authors, affiliations, editors); key-log not-theirs works resolved to their DOI and looked up",
+  "n": 40,
+  "agree": 37,
+  "disagree": 0,
+  "unverified": 3,
+  "by_class": {
+   "mixed": {
+    "n": 20,
+    "agree": 19,
+    "disagree": 0,
+    "unverified": 1,
+    "rate": 0.95,
+    "usable": true
+   },
+   "two-people-one-key": {
+    "n": 14,
+    "agree": 12,
+    "disagree": 0,
+    "unverified": 2,
+    "rate": 0.857,
+    "usable": false
+   },
+   "unclear": {
+    "n": 5,
+    "agree": 5,
+    "disagree": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "usable": true
+   },
+   "clean": {
+    "n": 1,
+    "agree": 1,
+    "disagree": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "usable": true
+   }
+  }
+ },
+ "4-orcid": {
+  "checked": "both ORCID public records read (names, other names, employment); faulty DOIs looked up in Crossref (which iD sits on which row); for wrong-anchor cases the key label and key-log works read in explorer.duckdb",
+  "n": 66,
+  "agree": 60,
+  "disagree": 5,
+  "unverified": 1,
+  "by_class": {
+   "deposit-error": {
+    "n": 30,
+    "agree": 30,
+    "disagree": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "usable": true
+   },
+   "same-person-two-iDs": {
+    "n": 18,
+    "agree": 18,
+    "disagree": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "usable": true
+   },
+   "same-person-two-keys": {
+    "n": 8,
+    "agree": 8,
+    "disagree": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "usable": true
+   },
+   "wrong-anchor-on-key": {
+    "n": 10,
+    "agree": 4,
+    "disagree": 5,
+    "unverified": 1,
+    "rate": 0.4,
+    "usable": false
+   }
+  }
+ },
+ "5-seed-links": {
+  "checked": "confirmed DOIs looked up in Crossref (byline, affiliation, ORCID, type); Sol thesis and tie evidence read",
+  "n": 40,
+  "agree": 40,
+  "disagree": 0,
+  "unverified": 0,
+  "by_class": {
+   "yes": {
+    "n": 24,
+    "agree": 24,
+    "disagree": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "usable": true
+   },
+   "no": {
+    "n": 8,
+    "agree": 8,
+    "disagree": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "usable": true
+   },
+   "unclear": {
+    "n": 8,
+    "agree": 8,
+    "disagree": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "usable": true
+   }
+  }
+ }
+}
