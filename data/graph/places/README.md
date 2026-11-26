@@ -33,6 +33,11 @@ Rules (user, 2026-11-18):
 | `audit/grounding-audit-2026-11-18.csv` | 100 | hand reading of 60 random indirect and 40 random exact LC groundings |
 | `audit/fiction-audit-2026-11-18.csv` | 120 | fiction-setting flag: 40 flagged (40 right), 40 unflagged literary-adjacent (9 misses, fixed), 40 after the fix (40 right) |
 | `audit/review-inheritance-audit-2026-11-18.csv` | 40 | review-of tags: rule-linked REVIEWS 20/20, key-log REVIEWS 19/20 (one wrong key-log REVIEWS claim) |
+| `title-name-tags.csv.gz` | 422,954 | place names in titles, measured against LC headings: `work, qid, place_label, matched_name, tier, work_kind` (`scripts/places_title_names.py`, 2026-11-26; see below) |
+| `title-names/accepted-names.csv` | 2,381 | the names kept, with tier, context rule, LC support, precision (strict and loose), holders |
+| `title-names/held-names.csv.gz` | 17,286 | names held that occur in untagged titles, with the reason |
+| `title-names/threshold-curve.csv`, `title-names/tag-report.json` | | the precision/support curve; tag counts and top names |
+| `audit/title-names-audit-2026-11-26.csv` | 150 | hand reading of 150 new title-name tags, stratified by name frequency |
 
 ### Sources and confidence
 
@@ -44,6 +49,7 @@ Rules (user, 2026-11-18):
 | `review-of` | `review-of:keylog`, `review-of:linked` | Not in this file. The build adds it: a review inherits the places of the book it reviews, through REVIEWS; the confidence names the REVIEWS edge class (audit: both read ≥ 95%). |
 | `lc-*` | `lc-override` | A heading grounded by `overrides.csv`. |
 | `title-read-sol` | `title-read-sol`, `title-read-sol:other-place` | One outside-reviewer reading of the work's own title (Sol, 2026-11-19). This is not a rule: only the works read are tagged. The table is `title-readings/sol-2026-11-19/title-reads.csv.gz`, made by `scripts/places_sol_reads.py` (see below). |
+| `title-name` | `title-name:measured`, `title-name:low-support` | A place name in the work's title, the name kept only after measuring it against the LC headings of the works that have them (`scripts/places_title_names.py`, 2026-11-26). Only works with no LC place heading are tagged; reviews do not inherit these tags. `graph_places.py --no-title-names` (or `PLACES_TITLE_NAMES=0`) leaves the source out. |
 
 ### Hierarchy bases
 
@@ -213,3 +219,131 @@ not a place 329, several candidates 89, no item 1 ("Northwest, Canadian", 584 us
 - Still ungrounded for Canada: "Northwest, Canadian" (no item), the "X Region (Sask.)" headings (no item of that extent:
   Prince Albert Region, Moose Jaw Region, Abernethy, Pasqua), North Saskatchewan River Region, Cypress Hills Region (held:
   unit-type collision with Cypress Hills).
+
+## Place names in titles (2026-11-26)
+
+**Why.** Before this round, 910,651 of 3,847,300 works had a place tag. The probe was one historian's page. It listed London, Canada and Peru, but not West Ham, Upper Canada or Westmeath, although his titles name them. The class behind it: the title sources covered a few dozen names, or one tag per title read.
+
+**What it does** (`scripts/places_title_names.py`):
+- **Names.** Every name of every place in `places.csv.gz`: the label, the LC heading base, the Wikidata and LC variants, and the LC-qualified form ("Victoria, B.C.", "Coventry, England"). Junk codes (CA-ON, UN/LOCODE) are dropped. A name held by several places resolves to its qualified holders, then its primary holders (label or LC base), then all of them.
+- **Matching.** Titles only, never abstracts or full text. Matches are whole words, case-sensitive and leftmost-longest, so "New South Wales" is not "Wales" and "Victoria, B.C." is not bare "Victoria". A title can get several tags ("West Ham and the River Lea").
+- **Context rules.** A match is dropped when it is:
+  - in the statement of responsibility (after " / ");
+  - a place of publication or a press ("London: Routledge, 1999", "Minneapolis, Minn.: Fortress Press", "(Paris, 1999)", "Hildesheim 2012");
+  - in a title naming a meeting, congress, conference or delivered lecture (the venue);
+  - followed by an institution or title word (Press, University, Society, Journal, Star, Treaty, Conference, Codex ...);
+  - preceded by a title of office or a treaty (Duke of, Bishop of, Treaty of, Bank of, Queen, Lake, Fort ...);
+  - preceded by an initial or a given name ("Isaiah Berlin", "J. London"), or a given name used as one ("Florence Nightingale", "Chad Smith");
+  - a person "of" a place with a given name before it ("Otto von Braunschweig");
+  - part of a longer name written in lower case ("History Council of new South Wales").
+- **Common words.** Bath, Reading, Nice, Mobile and the like (single-word names whose lower-case form occurs in titles 10+ times and at 5%+ of the capitalised count) match only in sentence-case titles and never as the first word. LC titles are in sentence case, so a capital there marks a proper noun; in a Title Case article title it does not.
+
+**Measuring each name.** The ground truth is the 490,589 works that carry an LC place heading. A name's support is the number of those works whose title holds it after the context rules.
+- **Strict precision:** the share whose LC places include the name's place, a place inside it, or its period polity or territory.
+- **Loose precision:** strict, plus a place containing it. Loose is needed because LC files works on Upper Canada under "Canada -- History" (Upper Canada: strict 0.80, loose 0.97) and works on English towns under "England" or "Great Britain".
+- **Several holders:** the name is measured against each holder and the best is kept. It is flagged `shared` only when another holder, not related to the best one, explains 2+ (and 3%+) of the LC works that the best one does not. Germany, Ireland and Mexico pass this test; Punjab, Yucatán and Baja California do not.
+
+**Acceptance.** These thresholds come from `title-names/threshold-curve.csv`. At support ≥ 10, raising the loose bar from 0.85 to 0.90 costs 154 names and keeps an LC-weighted precision of 0.954. A bar of 0.95 halves the yield for +1.8 points.
+
+| Tier | Rule | Names |
+| --- | --- | ---: |
+| `measured` | support ≥ 10, loose ≥ 0.90, strict ≥ 0.60, no flag | 854 (21 of them common words under the sentence-case rule) |
+| `low-support` | support 2–9, every LC work names the place itself (strict 1.0), no flag. A single word also needs no lower-case use in titles and ≤ 2 people of that name | 1,527 |
+| held | everything else, with the reason in `held-names.csv.gz` | 17,286 with untagged matches |
+
+The strict ≥ 0.60 guard catches a name that is right only at a wider level, where the title means something other than the place: Weimar (the Republic, strict 0.15), Hollywood (the industry, 0.18), Vichy (the regime, 0.13), al-Andalus (0.38). 141 names are held this way.
+
+Flags hold a passing name in three cases:
+- `shared`: Punjab, Yucatán, Baja California, Rheinland.
+- `personal-name`: 20+ people in the graph carry the word, at 5%+ of its capitalised title count (Lorraine, Houston, Brittany, Chad, Guerrero).
+- `people-name`: a heading the layer reads as a people.
+
+Names read title by title by the outside reviewer (London, Victoria, Kingston, Hamilton, Ottawa, Halifax ...; 26 names) are held: their negative reads are in `data/identifiers/`, which this rule does not read. Names with a hand-read title rule (Upper Canada, Manitoba, Canada ...) are measured like any other name. Works their 40-title readings found wrong are never tagged to that place.
+
+Held, by reason (names with untagged matches; untagged matches in brackets):
+
+| Reason | Names |
+| --- | ---: |
+| below precision | 1,411 (514,147) |
+| right only through wider places | 141 (20,340) |
+| passes but flagged | 9 (2,144) |
+| outside-reviewer reads govern | 26 (17,004) |
+| 1–9 LC works, not low-support | 8,047 (115,843) |
+| no LC works | 7,652 (25,250) |
+
+Examples of names that fail on their own evidence:
+
+| Name | Strict precision |
+| --- | ---: |
+| America | 0.03 |
+| Atlantic | 0.09 |
+| Lincoln | 0.09 |
+| Wellington | 0.08 |
+| Reading | 0.24 |
+| Russia | 0.36 |
+| Oxford | 0.57 |
+| Washington | 0.74 |
+| Berlin | 0.86 |
+
+**Tagging.** Only works with no LC place heading are tagged, since the cataloguer has decided the others. A pair the work already has is not repeated, and neither is a place when the work already has a place inside it. A longer form of one place with no evidence of its own tags through the accepted shorter name with the same single holder ("Dutch Limburg" -> Limburg, "County Westmeath" -> Westmeath if Westmeath were accepted).
+
+| Measure | Count |
+| --- | ---: |
+| Tag rows | 422,954 (measured 406,868, low-support 16,086) |
+| Works tagged | 390,684 |
+| Works gaining their first place tag | 376,491 (works with a place tag: 910,651 -> 1,287,142) |
+
+Top names by new tags:
+
+| Name | Tags | Name | Tags | Name | Tags |
+| --- | ---: | --- | ---: | --- | ---: |
+| England | 20,905 | France | 18,724 | China | 16,345 |
+| United States | 14,991 | España | 9,350 | India | 9,176 |
+| Germany | 9,093 | Paris | 9,054 | Australia | 8,001 |
+| Italy | 6,995 | Spain | 6,871 | Japan | 6,473 |
+| Portugal | 6,338 | Ireland | 6,072 | Mexico | 5,519 |
+| New York | 5,260 | Scotland | 4,713 | South Africa | 4,566 |
+| Brasil | 4,477 | Latin America | 4,075 | Chile | 4,043 |
+| Italia | 3,542 | Brazil | 3,494 | Deutschland | 3,476 |
+| Poland | 3,420 | California | 3,230 | Egypt | 2,736 |
+| Castilla | 2,671 | Colombia | 2,615 | Chicago | 2,452 |
+
+**Audit** (`audit/title-names-audit-2026-11-26.csv`, 150 new tags judged from the title). The measured tier was drawn in four strata by tags per name, 30 per stratum, at most one tag per name. The low-support tier was a stratum of its own (30).
+
+| Stratum | Right | Near | Wrong |
+| --- | ---: | ---: | ---: |
+| q1, the rarest names | 28 | 0 | 2 |
+| q2 | 27 | 0 | 3 |
+| q3 | 27 | 2 | 1 |
+| q4, the most frequent names; 91.8% of measured tags | 29 | 0 | 1 |
+| measured, all strata | 111/120 (92.5%) | 2 | 7 |
+| low-support | 26/30 (86.7%) | 3 | 1 |
+
+"Near" means the right territory under a wider or modern QID (Ravenna -> Province of Ravenna, Baetica -> Andalusia, St Gall abbey -> the canton). Counted as right, the low-support tier is 29/30.
+
+Precision weighted by tags: 96.1% for the measured tier (near counted as wrong). A separate simple random draw of 40 tags (by volume) read 39 right and 1 near.
+
+The wrong tags were:
+- places of publication: Dresden, Baltimore;
+- a publisher body: Sachsen-Anhalt;
+- an archive location: a Besançon manuscript;
+- an exhibition venue: Hamburg-Altona;
+- a person: the comte d'Artois;
+- an incidental place: a New Haven bookseller;
+- a layer grounding error: the LC heading "Bouches-du-Rhône (France)" is grounded to Martigues (Q237516) in `places.csv.gz`. This is open, and it affects LC tags too.
+
+A first draw, before the venue, state-abbreviation-citation, person-of-place and lower-case-longer-name rules, read 102/120 measured (85% incl. near). Its errors were the classes those rules now drop.
+
+**Probes:**
+- **West Ham (Q939617):** low-support tier (2/2 LC works). 20 tags, including the thesis, the book and two articles on the historian's page.
+- **Upper Canada (Q795427):** has its own place page (historical polity, period-of Ontario). The title rule already tagged non-book works. This source adds 63 tags (23 books without LC headings, 17 reviews, 12 articles, 8 theses).
+- **Westmeath:** the layer knows only County Westmeath, Ireland (Q182633). "Westmeath" has 1 LC work and "County Westmeath" has 0, so both are held (2 + 5 untagged titles). Westmeath, Ontario is not in the layer; it is not grounded here, since grounding rounds are stopped.
+- **Ottawa Valley:** held (8 of 9 LC works right; the low tier needs all).
+
+**Re-run:**
+
+    python3 scripts/places_title_names.py measure   # ~3.5 min, ~2.1 GB; reads build/graph/{work,about_place}.parquet
+    python3 scripts/places_title_names.py tag       # writes title-name-tags.csv.gz
+    python3 scripts/places_title_names.py sample    # audit draw -> build/places/title-names/audit-draw.csv
+
+The measurement reads the current build, so re-run `measure` and `tag` after a build changes the LC tags. `measure` also writes build/places/title-names/{measure.csv, given-names.json, common-words.json}, which `tag` reads.

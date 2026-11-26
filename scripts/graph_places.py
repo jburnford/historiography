@@ -8,7 +8,9 @@ the build folder. Nothing else in the build changes, and nothing here touches th
   territory a period polity belongs to: British Ceylon -> Sri Lanka), counts.
 - ABOUT_PLACE: a work about a place, with `source` (lc-651, lc-z, lc-610: an LC subject heading on the book;
   title-checked: the place-nodes pilot's hand reading; title-rule: a name rule read at >= 95%; title-read-sol: one
-  outside-reviewer read of the work's title, audited (scripts/places_sol_reads.py); review-of: a review
+  outside-reviewer read of the work's title, audited (scripts/places_sol_reads.py); title-name: a place name in the
+  title, the name kept only after measuring it against LC headings (scripts/places_title_names.py, 2026-11-26; table
+  title-name-tags.csv.gz; switch off with --no-title-names or PLACES_TITLE_NAMES=0); review-of: a review
   inherits the places of the book it reviews, through REVIEWS) and `confidence`, the heading as catalogued and the LC
   authority id. Place facts attach to works, never to people (user 2026-11-18); a person's places are derived from
   their works by the explorer.
@@ -19,9 +21,11 @@ Work keys the build no longer holds are moved by their LCCN when one node carrie
 2026-11-18), else dropped and counted. DuckDB lesson of 2026-11-17: everything is copied into real tables first.
 
     python3 scripts/graph_places.py --out build/graph     # add the layer to an existing build (no full rebuild)
+    python3 scripts/graph_places.py --out build/graph --no-title-names    # the same without the title-name source
 """
 import argparse
 import json
+import os
 import shutil
 from pathlib import Path
 
@@ -29,9 +33,13 @@ ROOT = Path(__file__).resolve().parents[1]
 PLACES = ROOT / 'data/graph/places'
 FILES = [PLACES / n for n in ('work-places.csv.gz', 'places.csv.gz', 'place-hierarchy.csv.gz')]
 # optional: authors as catalogued on books with no linked author (display only)
+# optional: place names in titles, measured against LC headings (scripts/places_title_names.py); its own source
+TITLE_NAMES = PLACES / 'title-name-tags.csv.gz'
 
 
-def place_layer(out, report):
+def place_layer(out, report, title_names=None):
+    if title_names is None:
+        title_names = os.environ.get('PLACES_TITLE_NAMES', '1') != '0'
     import duckdb
     out = Path(out)
     if not all(p.exists() for p in FILES):
@@ -58,6 +66,16 @@ def place_layer(out, report):
     db.execute("""CREATE TABLE ab AS SELECT DISTINCT ON (gkey, qid, source) gkey AS "from", 'place:' || qid AS "to", qid, source, heading,
                          nullif(lc_id, '') AS lc_id, confidence, NULL::VARCHAR AS via
                   FROM wpk WHERE gkey IS NOT NULL ORDER BY gkey, qid, source, confidence""")
+    # place names in titles (2026-11-26): a source of its own, never inherited by reviews (a review's title is matched
+    # on its own); a pair another source already holds is not repeated
+    if title_names and TITLE_NAMES.exists():
+        db.execute(f"""INSERT INTO ab SELECT DISTINCT ON (t.work, t.qid) t.work, 'place:' || t.qid, t.qid, 'title-name',
+                             'title: ' || t.matched_name, NULL, 'title-name:' || t.tier, NULL
+                      FROM read_csv('{TITLE_NAMES}', all_varchar=true, header=true) t JOIN wk ON wk.key = t.work
+                      WHERE NOT EXISTS (SELECT 1 FROM ab x WHERE x."from" = t.work AND x.qid = t.qid)
+                      ORDER BY t.work, t.qid""")
+        r['rows_title_name'] = db.execute("SELECT count(*) FROM ab WHERE source = 'title-name'").fetchone()[0]
+    r['title_names'] = 'on' if title_names and TITLE_NAMES.exists() else 'off'
     # reviews inherit the reviewed book's places (REVIEWS: review -> book), unless the review already has the place
     if (out / 'reviews.parquet').exists():
         # the REVIEWS edge class is kept on the row (audit 2026-11-18: rule-linked 20/20, key-log 19/20 right)
@@ -66,7 +84,7 @@ def place_layer(out, report):
                          FROM '{out}/reviews.parquet' GROUP BY 1, 2""")
         db.execute("""INSERT INTO ab SELECT DISTINCT ON (rv.review, a.qid) rv.review, a."to", a.qid, 'review-of',
                              'review of ' || rv.book, NULL, 'review-of:' || CASE WHEN rv.cls = 'keylog' THEN 'keylog' ELSE 'linked' END, rv.book
-                      FROM rv JOIN ab a ON a."from" = rv.book AND a.source <> 'review-of'
+                      FROM rv JOIN ab a ON a."from" = rv.book AND a.source NOT IN ('review-of', 'title-name')
                       WHERE NOT EXISTS (SELECT 1 FROM ab x WHERE x."from" = rv.review AND x.qid = a.qid)
                       ORDER BY rv.review, a.qid, a.source""")
         r['rows_review_of'] = db.execute("SELECT count(*) FROM ab WHERE source = 'review-of'").fetchone()[0]
@@ -111,9 +129,10 @@ def place_layer(out, report):
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('--out', type=Path, default=ROOT / 'build/graph')
+    ap.add_argument('--no-title-names', action='store_true', help='leave out the title-name source')
     a = ap.parse_args()
     rep = {}
-    place_layer(a.out, rep)
+    place_layer(a.out, rep, title_names=not a.no_title_names)
     path = a.out / 'report.json'
     if path.exists():                  # keep the build report current when the layer is added on its own
         full = json.loads(path.read_text())

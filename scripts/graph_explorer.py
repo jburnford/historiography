@@ -396,11 +396,14 @@ CONTAIN = "('lc-qualifier', 'wd-p131', 'wd-country', 'region-contains (wd-p131)'
 # a work's tag as one badge and a line: LC subject heading, title (hand-checked / rule), review of a book about the place
 SRC_BADGE = ("CASE WHEN bool_or(starts_with(a.source, 'lc-')) THEN 'LC' WHEN bool_or(a.source = 'title-checked') THEN 'title (read)' "
              "WHEN bool_or(a.source = 'title-rule') THEN 'title (rule)' WHEN bool_or(a.source = 'title-read-sol') THEN 'title (read)' "
+             "WHEN bool_or(a.source = 'title-name') THEN 'title (name)' "
              "ELSE 'review' END")
 SRC_LINE = ("string_agg(DISTINCT CASE WHEN starts_with(a.source, 'lc-') THEN 'LC subject: ' || a.heading "
             "|| CASE a.confidence WHEN 'lc-fiction' THEN ' (setting of fiction)' WHEN 'lc-sol' THEN ' (heading grounded by an outside reviewer, audited)' ELSE '' END "
             "WHEN a.source = 'title-checked' THEN 'title, read by hand' WHEN a.source = 'title-rule' THEN 'title: ' || a.heading "
             "WHEN a.source = 'title-read-sol' THEN 'title, read by an outside reviewer (audited)' "
+            "WHEN a.source = 'title-name' THEN a.heading || ' (place name in the title, measured against LC headings' "
+            "|| CASE a.confidence WHEN 'title-name:low-support' THEN '; low-support tier' ELSE '' END || ')' "
             "ELSE 'review of a book about the place' END "
             "|| CASE WHEN a.\"to\" <> $k THEN ' [' || (SELECT label FROM place WHERE key = a.\"to\") || ']' ELSE '' END, '; ')")
 PLACE_OPTS = {'children': ('0', '1'), 'source': ('', 'lc', 'title', 'review')}
