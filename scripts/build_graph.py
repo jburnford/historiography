@@ -224,6 +224,10 @@ REVIEW_TITLED = ROOT / 'data/graph/review-titled-books.csv.gz'
 # 2026-03 Crossref data file; data/identifiers/crossref-slice-reviews-2026-11-25): unkeyed review nodes, REVIEWS linked
 # (source crossref-slice-reviews:<rule>), reviewer AUTHORED linked only through an ORCID a person key holds
 CROSSREF_SLICE_REVIEWS = ROOT / 'data/graph/crossref-slice-reviews.csv.gz'
+# 2026-11-26 (scripts/reviewed_wrong_credits.py): reviewed lists of (person, work) credits that are not the person's (Sol
+# jobs 3 and 6a of sol-proposals-2026-11-21, the p-3125 Morgan profile list): every linked AUTHORED / EDITED credit on a
+# pair is demoted to author_candidates whatever its source; key-log claims on the pairs are counted (keylog_open)
+REVIEWED_WRONG = ROOT / 'data/graph/author-works/reviewed-wrong-credits.csv.gz'
 # 2026-11-14 (§8 class 42, scripts/pid_records.py, export_affiliations.py): institutions a person's ORCID record or
 # Wikidata item reaches by ROR that the key log has not keyed (unkeyed Institution nodes `ror:<id>`), and Wikidata
 # P184/P185 doctoral advisor pairs between keyed people (linked ADVISED)
@@ -1054,6 +1058,67 @@ def same_work_carry(pairs, keylog_rows, linked_rows, cand_rows, plabel):
     return linked_rows + add, out_c, dict(counts)
 
 
+def reviewed_wrong_credits(table_rows, person1, resolve, rels, linked, possible_authors, same_pairs=()):
+    """Pass "reviewed wrong credits" (2026-11-26, data/graph/author-works/reviewed-wrong-credits.csv.gz): a (person, work)
+    pair a review found is not the person's. Every linked AUTHORED and EDITED credit on the pair, whatever its source, is
+    removed and listed as an author candidate (role author / editor) with the review's reason; a copy that pass ten carried
+    from a hidden record to the work it duplicates (source same-work:...) goes too. Key-log claims on the pairs are not
+    changed (only the user changes the key log): counted as keylog_open. Keys resolve through person1() / resolve(), so a
+    merged key still matches. Returns (linked, possible_authors, report)."""
+    table = {}
+    unresolved = Counter()
+    for r in table_rows:
+        k, w = person1(r['person']), (resolve(r['work']) or r['work'])
+        if not k:
+            unresolved[r['list']] += 1
+            continue
+        table.setdefault((k, w), r)
+    shown_of = {}
+    for r in same_pairs or ():
+        shown_of.setdefault(r['from'], r['to'])
+    carried = {(k, shown_of[w]): (k, w) for (k, w) in table if w in shown_of}
+    dem = Counter()
+    by_source = Counter()
+    hit = set()
+    pa_have = {(r['from'], r['to']) for r in possible_authors}
+    add_pa = []
+    for name, role in (('AUTHORED', 'author'), ('EDITED', 'editor')):
+        keep = []
+        for x in linked.get(name, []):
+            p = (x['from'], x['to'])
+            src = x.get('source') or ''
+            key = p if p in table else (carried.get(p) if src.startswith('same-work:') else None)
+            if key is None:
+                keep.append(x)
+                continue
+            r = table[key]
+            hit.add(key)
+            dem[f"{name}|{r['list']}"] += 1
+            by_source[f"{name}|{src.split(':')[0]}"] += 1
+            if p not in pa_have:
+                pa_have.add(p)
+                why = (r.get('reason') or '').replace('\n', ' ')
+                add_pa.append({'from': x['from'], 'to': x['to'], 'n_candidates': 1, 'signals': r['list'], 'source': src or None,
+                               'role': role, 'reason': f"linked credit ({src}) demoted: reviewed as not this person's work "
+                                                       f"({r['list']}): {why[:300]}"})
+        linked[name] = keep
+    kl = {(x['from'], x['to']) for n in ('AUTHORED', 'EDITED') for x in rels.get(n, [])}
+    keylog_open = Counter(r['list'] for p, r in table.items() if p in kl)
+    cand = {(r['from'], r['to']) for r in possible_authors}
+    not_found = Counter(r['list'] for p, r in table.items() if p not in hit and p not in kl and p not in cand)
+    already_cand = Counter(r['list'] for p, r in table.items() if p not in hit and p not in kl and p in cand)
+    rep = dict(
+        note=('data/graph/author-works/reviewed-wrong-credits.csv.gz (scripts/reviewed_wrong_credits.py; reviewed lists: Sol '
+              'jobs 3 mixed profiles and 6a place people of sol-proposals-2026-11-21, p-3125 Morgan profile of '
+              'place-demo-fixes-2026-11-18): every linked AUTHORED / EDITED credit on a listed (person, work), any source, '
+              'demoted to author_candidates; key-log claims on listed pairs left as they are (keylog_open, for the user)'),
+        rows_in_table=len(table_rows), pairs_resolved=len(table), person_unresolved=dict(unresolved),
+        linked_demoted=sum(dem.values()), linked_demoted_by_list=dict(dem), linked_demoted_by_source=dict(by_source),
+        keylog_open=sum(keylog_open.values()), keylog_open_by_list=dict(keylog_open),
+        already_candidate_no_credit=dict(already_cand), not_found_in_graph=dict(not_found))
+    return linked, possible_authors + add_pa, rep
+
+
 def review_book_nodes(state, types, works, wi, unkeyed, resolve, report, path=REVIEW_BOOKS, tag='review_books'):
     """Reviews filed as articles (data/graph/review-books.csv.gz, scripts/review_books.py; 2026-11-12, class 29): an
     unkeyed article/other record that reviews a book gets kind 'review'; a keyed one gets kind_proposed 'review' (the key
@@ -1554,7 +1619,7 @@ def main():
     no_files = no_files if all(p.exists() for p in no_files) else []
     prize_files = PRIZE_FILES if all(p.exists() for p in PRIZE_FILES) else []
     p5_files = [p for p in (LC_CREDITS, REVIEW_BOOKS, LC_BOOKS, REVIEW_AUTHORS, WORK_DUPS, NOTE_BOOKS, REVIEW_TITLED,
-                            UNKEYED_INST, PID_ADVISORS, CROSSREF_SLICE_REVIEWS) if p.exists()]
+                            UNKEYED_INST, PID_ADVISORS, CROSSREF_SLICE_REVIEWS, REVIEWED_WRONG) if p.exists()]
     if os.environ.get('BUILD_PASS5_OFF'):          # a baseline build without the pass-five layers (check builds only)
         prize_files, p5_files = [], []
     require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS) if p.exists()] + crossref_parts + article_parts
@@ -2153,6 +2218,11 @@ def main():
     # pass ten (class 11): the people of a hidden unkeyed record settled on the keyed work it duplicates
     linked['AUTHORED'], possible_authors, report['same_work_carry'] = same_work_carry(
         same_new, rels['AUTHORED'], linked.get('AUTHORED', []), possible_authors, plabel)
+    # reviewed wrong credits (2026-11-26): after every linked loader (scored, classifier and Qwen links, same-work carry),
+    # a reviewed (person, work) that is not the person's loses its linked credits, any source; key-log claims counted
+    if REVIEWED_WRONG in p5_files:
+        linked, possible_authors, report['reviewed_wrong_credits'] = reviewed_wrong_credits(
+            list(read_rows(REVIEWED_WRONG)), person1, resolve, rels, linked, possible_authors, same_new)
     del scored_wi, ra, plabel, same_new
     ev_schema = pa.schema([('from', s), ('to', s), ('claim', s), ('resolution', s), ('evidence', s), ('source', s), ('state', s),
                            ('role', s), ('role_basis', s), ('score', pa.float64()), ('n_claims', pa.int32()), ('claims', s),
