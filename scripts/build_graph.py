@@ -116,6 +116,10 @@ is untracked) and writes to build/graph/ (git-ignored):
   LC subject headings on books, hand-checked and rule-read titles, and reviews inheriting the reviewed book's places)
   and `PLACE_IN` (Place -> Place: containment, wider regions, overlaps, period polities) from data/graph/places/
   (scripts/places_build.py). Places attach to works only; a person's places are derived from their works.
+- 2026-11-25 (data/graph/crossref-slice-reviews.csv.gz, scripts/crossref_slice_reviews_table.py): Crossref reviews of
+  unkeyed book nodes: unkeyed `doi:` review works (or the node holding the DOI), REVIEWS evidence linked (source
+  crossref-slice-reviews:<rule>), reviewer AUTHORED linked only by an ORCID on one person key (source
+  crossref-slice-reviews:orcid). Report: crossref_slice_reviews_* counts. Reviews inherit the book's places as any REVIEWS.
 The key-log state comes from the SQLite cache (build/keylog-state.sqlite, scripts/keylog_snapshot.py; 2026-11-10),
 caught up to the log's last event first and then read in bulk, so the build no longer replays the whole log (10 GB);
 --replay replays it instead (the old path, for checking one against the other).
@@ -216,6 +220,10 @@ REVIEW_BOOKS = ROOT / 'data/graph/review-books.csv.gz'
 # of a book credited to that person (REVIEWS linked, source review-books:titled)
 NOTE_BOOKS = ROOT / 'data/graph/lc-note-books.csv.gz'
 REVIEW_TITLED = ROOT / 'data/graph/review-titled-books.csv.gz'
+# 2026-11-25 (scripts/crossref_slice_reviews_table.py): Crossref reviews of unkeyed book nodes (history slice of the
+# 2026-03 Crossref data file; data/identifiers/crossref-slice-reviews-2026-11-25): unkeyed review nodes, REVIEWS linked
+# (source crossref-slice-reviews:<rule>), reviewer AUTHORED linked only through an ORCID a person key holds
+CROSSREF_SLICE_REVIEWS = ROOT / 'data/graph/crossref-slice-reviews.csv.gz'
 # 2026-11-14 (§8 class 42, scripts/pid_records.py, export_affiliations.py): institutions a person's ORCID record or
 # Wikidata item reaches by ROR that the key log has not keyed (unkeyed Institution nodes `ror:<id>`), and Wikidata
 # P184/P185 doctoral advisor pairs between keyed people (linked ADVISED)
@@ -1085,6 +1093,73 @@ def review_book_nodes(state, types, works, wi, unkeyed, resolve, report, path=RE
     return out
 
 
+def crossref_slice_reviews(state, types, works, wi, unkeyed, resolve, report, path=CROSSREF_SLICE_REVIEWS,
+                           tag='crossref_slice_reviews'):
+    """Crossref reviews of book nodes the key log does not hold (data/graph/crossref-slice-reviews.csv.gz; 2026-11-25).
+    The book resolves through the log first (a book keyed since resolves to its key), else to its unkeyed node; a book
+    that is no node is skipped. The review is the node holding its DOI (key or unkeyed node; an unkeyed article/other
+    record is retyped review, a keyed one gets kind_proposed review), else a new unkeyed `doi:` work with the record's
+    title, journal, ISSN, year and printed reviewer names. Returns (linked REVIEWS rows, linked AUTHORED rows): a
+    reviewer is credited only when an ORCID on the record is the anchor of exactly one person key; never by name."""
+    out, credits, seen, seen_c = [], [], set(), set()
+    for r in read_rows(path):
+        report[f'{tag}_rows'] += 1
+        bk = resolve(r['book'])
+        if not bk or bk not in wi:
+            report[f'{tag}_skipped_book_not_a_node'] += 1
+            continue
+        if bk != r['book']:
+            report[f'{tag}_book_now_keyed' if bk not in unkeyed else f'{tag}_book_on_other_node'] += 1
+        rv = resolve(r['review'])
+        if rv and rv not in wi:
+            report[f'{tag}_skipped_review_not_a_work_node'] += 1
+            continue
+        names = [n for n in (r['reviewers'] or '').split('; ') if n]
+        if not rv:
+            rv = r['review']
+            unkeyed.add(rv)
+            types[rv] = 'work'
+            w = dict(key=rv, label=r['title'] or None, resolution='unkeyed', anchors=[rv], kind='review', lccn=None,
+                     year=int(r['year']) if (r['year'] or '').isdigit() else None, reviewer_names=names,
+                     journal=r['journal'] or None, issn=r['issn'] or None)
+            works.append(w)
+            wi[rv] = w
+            report[f'{tag}_review_nodes_added'] += 1
+        else:
+            w = wi[rv]
+            report[f'{tag}_review_on_existing_{"unkeyed" if w["resolution"] == "unkeyed" else "keyed"}_node'] += 1
+            if w['resolution'] == 'unkeyed' and w['kind'] in ('article', 'other'):
+                w['kind_before_review_rule'] = w['kind']
+                w['kind'] = 'review'
+                report[f'{tag}_retyped_unkeyed'] += 1
+            elif w['resolution'] != 'unkeyed' and w['kind'] != 'review':
+                w['kind_proposed'] = 'review'
+                report[f'{tag}_kind_proposed_keyed'] += 1
+            if w['resolution'] == 'unkeyed' and not w.get('reviewer_names') and names:
+                w['reviewer_names'] = names
+        if rv == bk:
+            report[f'{tag}_skipped_review_is_the_book'] += 1
+            continue
+        if (rv, bk) in seen:
+            report[f'{tag}_skipped_duplicate_pair'] += 1
+            continue
+        seen.add((rv, bk))
+        out.append({'from': rv, 'to': bk, 'claim': f"crossref-slice-reviews:{r['rule']}:{r['review'][4:]}",
+                    'resolution': 'linked', 'evidence': 'linked', 'source': f"crossref-slice-reviews:{r['rule']}"})
+        for o in [x for x in (r['orcids'] or '').split('; ') if x]:
+            ks = [k for k in state.lookup(f'orcid:{o}') if types.get(k) == 'person']
+            if len(ks) != 1:
+                report[f'{tag}_orcid_not_on_one_person_key'] += 1
+            elif (ks[0], rv) not in seen_c:
+                seen_c.add((ks[0], rv))
+                credits.append({'from': ks[0], 'to': rv, 'claim': f"crossref-slice-reviews:orcid:{r['review'][4:]}:{o}",
+                                'resolution': 'linked', 'source': 'crossref-slice-reviews:orcid', 'state': 'exact',
+                                'role': 'author'})
+    report[f'{tag}_REVIEWS_linked'] = len(out)
+    report[f'{tag}_AUTHORED_by_orcid'] = len(credits)
+    return out, credits
+
+
 def volume_links(state, types, rels, vol_key, aw_part, resolve, report):
     """PART_OF rows with evidence linked: a chapter -> its volume, from data/graph/work-containers.csv.gz (keyed chapters;
     source orcid-container or doi-container) and author-works/works.csv.gz (author-works-container); only the bases in
@@ -1479,7 +1554,7 @@ def main():
     no_files = no_files if all(p.exists() for p in no_files) else []
     prize_files = PRIZE_FILES if all(p.exists() for p in PRIZE_FILES) else []
     p5_files = [p for p in (LC_CREDITS, REVIEW_BOOKS, LC_BOOKS, REVIEW_AUTHORS, WORK_DUPS, NOTE_BOOKS, REVIEW_TITLED,
-                            UNKEYED_INST, PID_ADVISORS) if p.exists()]
+                            UNKEYED_INST, PID_ADVISORS, CROSSREF_SLICE_REVIEWS) if p.exists()]
     if os.environ.get('BUILD_PASS5_OFF'):          # a baseline build without the pass-five layers (check builds only)
         prize_files, p5_files = [], []
     require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS) if p.exists()] + crossref_parts + article_parts
@@ -1605,6 +1680,13 @@ def main():
                 report['lc_authority_books_nodes_added'] += 1
             lcb_rows.append(dict(work=n, person=r['person'], lcnaf=r['lcnaf'], lccn=r['lccn'], link=r.get('link') or 'anchor'))
             report[f"lc_authority_books_by|{r.get('link') or 'anchor'}|{r.get('record') or 'lc2016'}"] += 1
+    csr_credits = []                # Crossref reviews of unkeyed books (2026-11-25), after every book node is made
+    if CROSSREF_SLICE_REVIEWS in p5_files:
+        have_rb = {(r['from'], r['to']) for r in rb_rows}
+        csr_rows, csr_credits = crossref_slice_reviews(state, types, works, wi, unkeyed, resolve, report)
+        report['crossref_slice_reviews_pair_already_linked'] = sum(1 for r in csr_rows if (r['from'], r['to']) in have_rb)
+        rb_rows += [r for r in csr_rows if (r['from'], r['to']) not in have_rb]
+        del have_rb, csr_rows
     if fact_files:                  # journal, ISSN, proposed kind of keyed works (export_work_containers.py)
         work_facts(state, types, wi, report)
     if pass4[WORK_YEARS]:           # first publication year beside `year` (2026-11-12)
@@ -1719,6 +1801,14 @@ def main():
     linked = dict(linked)
     linked['AUTHORED'] = list(linked.get('AUTHORED', []))
     linked['EDITED'] = list(linked.get('EDITED', []))
+    if csr_credits:                 # reviewers of Crossref-slice reviews by an ORCID on a person key (2026-11-25)
+        have = {(r['from'], r['to']) for r in rels['AUTHORED']} | {(x['from'], x['to']) for x in linked['AUTHORED']}
+        add = [x for x in csr_credits if (x['from'], x['to']) not in have]
+        report['crossref_slice_reviews_AUTHORED_already_credited'] = len(csr_credits) - len(add)
+        report['crossref_slice_reviews_AUTHORED_added'] = len(add)
+        linked['AUTHORED'] += add
+        del have, add
+    del csr_credits
 
     def person1(name):
         ks = [k for k in state.lookup(name) if types.get(k) == 'person'] if name else []

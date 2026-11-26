@@ -1,5 +1,19 @@
 # Crossref history slice: reviews of graph books (2026-11-25) — PROPOSAL, NOT APPLIED
 
+**Superseded in part (2026-11-25, owner's decision):** `02-reviews-of-unkeyed-books.proposal.json.gz` is NOT to be
+applied. The reviews of unkeyed books load in the linked layer instead, without keying the books:
+`data/graph/crossref-slice-reviews.csv.gz` (36,075 rows, 26,035 book nodes, 36,044 review records; written by
+`scripts/crossref_slice_reviews_table.py` from `matches.csv.gz`, loaded by `scripts/build_graph.py`
+`crossref_slice_reviews`: unkeyed `doi:` review nodes, REVIEWS evidence linked, reviewer AUTHORED linked only by an
+ORCID on a person key). File 01 (keyed books) is applied by the main session. The 02 file stays here for the record;
+the owner may remove it.
+Expected in the next build (estimated from explorer.duckdb of 2026-11-25, not from a build): REVIEWS linked +36,075
+(source crossref-slice-reviews:<rule>); about 33,639 new unkeyed review nodes (2,405 DOIs are already nodes: 1,209 keyed,
+1,196 unkeyed, retyped review where article/other); at most 172 reviewer AUTHORED rows by ORCID (172 rows' ORCIDs are on
+person keys); 6,261 of the books carry a linked AUTHORED person key (821 an EDITED one). Places: graph_places.py reads
+every reviews.parquet row whatever its evidence (linked rows get source `review-of:linked`), so these reviews inherit
+their books' places.
+
 Probe: *The Dangerous Art of Text Mining* (Guldi 2023, graph node `doi:10.1017/9781009263016`) showed no reviews,
 although Crossref holds `10.1353/tech.2024.a933123` (Technology and Culture 2024, Wevers). Class: reviews in the graph
 fall from ~14k/year (2010-16, all sources) to ~1.6k/year (2023-25); books keyed by DOI average 0.1 reviews.
@@ -91,7 +105,7 @@ without the author name on a record of over eight pages 666; unkeyed book node w
 Refused, not listed: dated before the book / over eight years after, record author shares the book's family name, book
 with no known author (4,930,758 pairs, mostly coincidental titles).
 
-**Guldi probe: fixed by 02** (`10.1353/tech.2024.a933123` → `doi:10.1017/9781009263016`, action mint-review; the book is
+**Guldi probe: fixed by the linked table (originally by 02)** (`10.1353/tech.2024.a933123` → `doi:10.1017/9781009263016`, action mint-review; the book is
 minted as a work under its DOI and OpenAlex anchors first). Nothing changes for it if only 01 is applied.
 
 ## Audit (`audit.csv`; `draw_audit.py`, `write_audit.py`)
@@ -127,10 +141,8 @@ consistent with up to ~30% wrong at 95%); the pooled 84/85 is the firmer figure 
 ## Apply (owner)
 
     python3 scripts/identifiers.py apply data/identifiers/crossref-slice-reviews-2026-11-25/01-reviews-of-keyed-books.proposal.json.gz
-    python3 scripts/identifiers.py apply data/identifiers/crossref-slice-reviews-2026-11-25/02-reviews-of-unkeyed-books.proposal.json.gz   # optional, after 01
-
-02 is a separate decision: it keys 26,035 book nodes that are now unkeyed (two-layer rule of 2026-11-10) because a review
-of each was found, under the node's own DOI / LCCN / OpenAlex anchors.
+02 is superseded (see the top): do not apply it; its reviews load from `data/graph/crossref-slice-reviews.csv.gz` in
+the next build.
 
 ## Open
 
