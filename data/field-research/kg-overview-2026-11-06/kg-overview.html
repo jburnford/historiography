@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The historiography knowledge graph: scope and depth</title>
+<!-- Self-contained: no outside scripts, fonts, images or tiles. Counts are embedded by build_overview.py (stats.json). -->
 <style>
 .viz-root {
   color-scheme: light;
@@ -34,18 +35,27 @@ body { margin: 0; }
 .wrap { max-width: 1080px; margin: 0 auto; }
 header h1 { font-size: 24px; font-weight: 600; margin: 0 0 4px; }
 header p { margin: 0; color: var(--text-secondary); }
+header p.built { color: var(--text-muted); font-size: 13px; margin-top: 4px; }
 .toggle { float: right; background: none; border: 1px solid var(--ring); color: var(--text-secondary); border-radius: 6px; padding: 4px 10px; cursor: pointer; font: inherit; font-size: 13px; }
 .hero { margin: 28px 0 8px; }
 .hero .value { font-size: 56px; font-weight: 600; line-height: 1; letter-spacing: -0.01em; }
 .hero .label { color: var(--text-secondary); margin-top: 6px; }
-.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin: 20px 0 28px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 12px; margin: 20px 0 28px; }
 .card { background: var(--surface-1); border: 1px solid var(--ring); border-radius: 10px; padding: 16px 18px; }
 .tile .label { color: var(--text-secondary); font-size: 13px; }
 .tile .value { font-size: 28px; font-weight: 600; margin-top: 2px; }
 .tile .sub { color: var(--text-muted); font-size: 12.5px; margin-top: 2px; }
 .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr)); gap: 16px; margin-bottom: 16px; }
+.full { margin-bottom: 16px; }
+.cols2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr)); gap: 0 28px; }
+.scroll { overflow-x: auto; }
 h2 { font-size: 17px; font-weight: 600; margin: 0 0 2px; }
-.card > p.note { margin: 0 0 14px; color: var(--text-secondary); font-size: 13px; }
+h3 { font-size: 13.5px; font-weight: 600; margin: 16px 0 8px; color: var(--text-secondary); }
+.section-title { font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin: 30px 0 10px; }
+.card > p.note, .card p.note { margin: 0 0 14px; color: var(--text-secondary); font-size: 13px; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--text-secondary); margin: -6px 0 10px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+.legend .k { background: var(--series-1); } .legend .u { background: var(--track); }
 .bars { display: grid; grid-template-columns: minmax(150px, 38%) 1fr; gap: 2px 12px; align-items: center; }
 .bars .name { font-size: 13px; color: var(--text-primary); text-align: right; line-height: 1.2; padding: 3px 0; }
 .bars .name small { display: block; color: var(--text-muted); font-size: 11.5px; }
@@ -53,32 +63,42 @@ h2 { font-size: 17px; font-weight: 600; margin: 0 0 2px; }
 .bars .track { position: relative; width: 100%; height: 14px; }
 .bars .row:focus-visible { box-shadow: 0 0 0 2px var(--series-1); border-radius: 4px; }
 .bars .bar { position: absolute; left: 0; top: 0; height: 14px; background: var(--series-1); border-radius: 0 4px 4px 0; min-width: 2px; }
+.bars .bar.light { background: var(--track); }
+.bars .bar.part { border-radius: 0; }
 .bars .val { position: absolute; top: 50%; transform: translateY(-50%); margin-left: 8px; font-size: 12.5px; color: var(--text-secondary); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .group { grid-column: 1 / -1; font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 10px; padding-bottom: 2px; border-bottom: 1px solid var(--grid); }
 .group:first-child { margin-top: 0; }
 .meter { margin: 0 0 16px; outline: none; }
 .meter:focus-visible { box-shadow: 0 0 0 2px var(--series-1); border-radius: 4px; }
 .meter .top { display: flex; justify-content: space-between; gap: 12px; font-size: 13.5px; }
-.meter .top b { font-weight: 600; }
+.meter .top b { font-weight: 600; white-space: nowrap; }
 .meter .track { height: 8px; background: var(--track); border-radius: 4px; margin: 6px 0 4px; overflow: hidden; }
 .meter .fill { height: 100%; background: var(--series-1); border-radius: 4px; }
 .meter .sub { color: var(--text-muted); font-size: 12.5px; }
 .hist svg { display: block; width: 100%; height: auto; overflow: visible; }
 .hist .col { fill: var(--series-1); }
+.hist .col.light { fill: var(--track); }
 .hist .hit { fill: transparent; cursor: default; outline: none; }
-.hist .hit:hover + .col, .hist .hit:focus-visible + .col { fill: var(--text-primary); }
+.hist .hit:hover + g .col, .hist .hit:focus-visible + g .col { fill: var(--text-primary); }
 .hist .grid line { stroke: var(--grid); stroke-width: 1; }
 .hist .base { stroke: var(--axis); stroke-width: 1; }
+.hist .mark { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
 .hist text { fill: var(--text-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
 .hist text.peak { fill: var(--text-secondary); }
 .hist .foot { color: var(--text-muted); font-size: 12.5px; margin-top: 6px; }
-.tip { position: fixed; pointer-events: none; background: var(--surface-1); color: var(--text-primary); border: 1px solid var(--ring); border-radius: 8px; padding: 8px 10px; font-size: 12.5px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); max-width: 300px; display: none; z-index: 10; }
+.tip { position: fixed; pointer-events: none; background: var(--surface-1); color: var(--text-primary); border: 1px solid var(--ring); border-radius: 8px; padding: 8px 10px; font-size: 12.5px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); max-width: 320px; display: none; z-index: 10; }
 .tip b { font-weight: 600; }
 details { margin-top: 16px; }
 summary { cursor: pointer; color: var(--text-secondary); font-size: 14px; }
 table { border-collapse: collapse; width: 100%; font-size: 13px; margin-top: 10px; }
-th, td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--grid); }
-td.n { text-align: right; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+th { color: var(--text-secondary); font-weight: 600; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td small { color: var(--text-muted); }
+ul.limits { margin: 0; padding: 0; list-style: none; }
+ul.limits li { padding: 8px 0; border-bottom: 1px solid var(--grid); font-size: 13.5px; display: grid; grid-template-columns: 110px 1fr; gap: 12px; }
+ul.limits li:last-child { border-bottom: 0; }
+ul.limits b { font-variant-numeric: tabular-nums; text-align: right; font-weight: 600; }
 footer { color: var(--text-muted); font-size: 12.5px; margin-top: 20px; }
 </style>
 </head>
@@ -89,37 +109,81 @@ footer { color: var(--text-muted); font-size: 12.5px; margin-top: 20px; }
     <button class="toggle" id="theme" type="button">Toggle dark</button>
     <h1>The historiography knowledge graph: scope and depth</h1>
     <p id="subtitle"></p>
+    <p class="built" id="built"></p>
   </header>
   <div class="hero"><div class="value" id="hero"></div><div class="label" id="hero-label"></div></div>
   <div class="kpis" id="kpis"></div>
 
+  <section class="card full"><h2>Growth since the first overview</h2><p class="note" id="growth-note"></p><div id="growth" class="scroll"></div></section>
+
+  <div class="section-title">People</div>
   <div class="grid2">
-    <section class="card"><h2>Who the people are</h2><p class="note">Person keys by the evidence found for each, not a census of historians. Duplicate keys still count separately here.</p><div class="bars" id="roles"></div><div id="dupnote" style="margin-top:16px"></div></section>
-    <section class="card"><h2>Evidence found for each person key</h2><p class="note">Keys showing each signal; one key can show several. A historian with none of the historian signals on record is not yet counted as one.</p><div class="bars" id="signals"></div></section>
+    <section class="card"><h2>Who the people are</h2><p class="note">Person keys are not all historians. By the evidence found for each key: historians, scholars from other fields, people who appear as primary sources, and keys with too few facts to tell. Duplicate keys still count separately here.</p><div class="bars" id="roles"></div><div id="dupnote" style="margin-top:16px"></div></section>
+    <section class="card"><h2>Evidence found for each person key</h2><p class="note">Keys showing each signal; one key can show several. Only the key log's own claims count here: credits linked by rules are never used as evidence about who a person is. A historian with none of the historian signals on record is not yet counted as one.</p><div class="bars" id="signals"></div></section>
   </div>
   <div class="grid2">
-    <section class="card"><h2>How well each person is attested</h2><p class="note">Score: 2 per public identifier family (LC, Wikidata, ORCID), 1 per historian signal, up to 3 for theses and JSTOR articles citing their works (5, 20, 100), up to 2 for works (3, 10), up to 3 for network partners (1, 5, 20). Strong 6+, supported 3–5, thin 2 or less. Also thin: fewer than 5 citing theses or articles, no public identifier and no partners. Many thin keys duplicate a stronger key.</p><div class="bars" id="confidence"></div></section>
-    <section class="card"><h2>Historians you can count on</h2><p class="note">Historian keys by confidence, before duplicates are merged.</p><div id="histmeters"></div></section>
+    <section class="card"><h2>How well each person is attested</h2><p class="note">Score: 2 per public identifier family (LC, Wikidata, ORCID), 1 per historian signal, up to 3 for the theses and articles (JSTOR notes, Crossref reference lists) citing their works (5, 20, 100), up to 2 for works (3, 10), up to 3 for network partners (1, 5, 20). Strong 6+, supported 3–5, thin 2 or less. Also thin: fewer than 5 citing theses or articles, no public identifier and no partners. Many thin keys duplicate a stronger key.</p><div class="bars" id="confidence"></div></section>
+    <section class="card"><h2>Historians you can count on</h2><p class="note">Keys with historian evidence, by confidence, before duplicates are merged.</p><div id="histmeters"></div>
+      <h3>People: public identifiers held</h3><p class="note">People holding each identifier. One person can hold several.</p><div class="bars" id="ids"></div></section>
+  </div>
+
+  <div class="section-title">Works</div>
+  <div class="grid2">
+    <section class="card"><h2>Works by kind</h2><p class="note">Every work in the graph, in two layers. Works with a project identifier have a key in the project's key log; works held as references only are records from LC, OpenAlex or Crossref that the graph links to (cited works, works on scholars' profiles) without minting a key. Each work counts under one kind.</p>
+      <div class="legend"><span><i class="k"></i>With a project identifier</span><span><i class="u"></i>Held as references only</span></div><div class="bars" id="works"></div><p class="note" id="works-foot" style="margin:12px 0 0"></p></section>
+    <section class="card"><h2>Where the books come from</h2><p class="note">Book works by the record that holds them, each counted once: the LC catalogue first, then Crossref or OpenAlex, then the edited volumes that chapter records name.</p>
+      <div class="legend"><span><i class="k"></i>With a project identifier</span><span><i class="u"></i>Held as references only</span></div><div class="bars" id="booksrc"></div></section>
   </div>
   <div class="grid2">
-    <section class="card"><h2>Works by kind</h2><p class="note">Every work node in the graph, by kind.</p><div class="bars" id="works"></div></section>
-    <section class="card"><h2>Relations by kind</h2><p class="note">Edges between people, works and institutions, grouped by what they record.</p><div class="bars" id="edges"></div></section>
+    <section class="card"><h2>Where the reference-only works come from</h2><p class="note">How the works without a project identifier entered the graph. They carry citations, credits and places like any work, but no key of their own; a work gets a key once the key log holds it.</p><div class="bars" id="routes"></div></section>
+    <section class="card"><h2>Who wrote what: author credits</h2><p class="note">A credit ties a person key to a work. Some are the key log's own claims, reviewed one by one or by audited rules; others are linked from outside records by rules or identifiers. Linked credits are shown in the graph but never used as evidence in identity decisions.</p><div class="bars" id="credits"></div><div id="creditmeters" style="margin-top:16px"></div></section>
+  </div>
+
+  <div class="section-title">Citations and reviews</div>
+  <div class="grid2">
+    <section class="card"><h2>Citations by citing source</h2><p class="note" id="cites-note"></p>
+      <div class="legend"><span><i class="k"></i>To works with a project identifier</span><span><i class="u"></i>To reference-only works</span></div><div class="bars" id="cites"></div>
+      <h3>Citing works</h3><div id="citemeters"></div></section>
+    <section class="card"><h2>Book reviews</h2><p class="note">Reviews of books, from JSTOR, H-Net, Crossref and the key log. A review counts as linked when the book it reviews is a work in the graph.</p><div id="reviewmeters"></div>
+      <h3>Reviews published</h3><p class="note">By year. The fall after 2015 is coverage, not reviewing: JSTOR's runs end around 2020, and the LC catalogue copy that names many reviewed books ends in 2016.</p>
+      <div class="legend"><span><i class="k"></i>With a project identifier</span><span><i class="u"></i>Held as references only</span></div><div class="hist" id="h-reviews"></div></section>
+  </div>
+  <section class="card full"><h2>Relations by kind</h2><p class="note">Edges between people, works, institutions, places and prizes, grouped by what they record.</p><div class="cols2"><div class="bars" id="edges"></div><div class="bars" id="edges2"></div></div></section>
+
+  <div class="section-title">Places, prizes, institutions</div>
+  <div class="grid2">
+    <section class="card"><h2>Places</h2><p class="note" id="places-note"></p><div class="bars" id="placekinds"></div>
+      <h3>Works tagged with a place, by kind</h3><div id="placemeters"></div></section>
+    <section class="card"><h2>Works about each country</h2><p class="note">Works tagged with a place in each present-day country (the country itself or any place within it), the fifteen largest. A work about several countries counts under each.</p><div class="bars" id="countries-places"></div></section>
   </div>
   <div class="grid2">
-    <section class="card"><h2>Historians born</h2><p class="note">Historian keys with a birth year on record (reviewed life dates, the LC authority or Wikidata), in five-year bins. The fall after 1950 is partly coverage: LC and Wikidata record fewer birth years for younger historians.</p><div class="hist" id="h-births"></div></section>
-    <section class="card"><h2>Dissertations defended</h2><p class="note">Doctoral theses in the graph by year of the degree: AHA's directory of history PhDs and the theses read in full.</p><div class="hist" id="h-theses"></div></section>
+    <section class="card"><h2>Prizes and honours</h2><p class="note" id="prizes-note"></p><div class="bars" id="prizes"></div>
+      <h3>Largest lists harvested</h3><div id="prizetable" class="scroll"></div></section>
+    <section class="card"><h2>Institutions and affiliations</h2><p class="note" id="inst-note"></p><div class="bars" id="affkinds"></div>
+      <h3>Affiliations by source</h3><div class="bars" id="affsources"></div></section>
+  </div>
+
+  <div class="section-title">Over time</div>
+  <div class="grid2">
+    <section class="card"><h2>Historians born</h2><p class="note">Keys with historian evidence and a birth year on record (reviewed life dates, the LC authority or Wikidata), in five-year bins; no individual's birth year is shown. The fall after 1950 is partly coverage: LC and Wikidata record fewer birth years for younger historians.</p><div class="hist" id="h-births"></div></section>
+    <section class="card"><h2>Dissertations defended</h2><p class="note">Doctoral theses in the graph by year of the degree: AHA's directory of history PhDs, the theses read in full, and theses listed on scholars' profiles.</p>
+      <div class="legend"><span><i class="k"></i>With a project identifier</span><span><i class="u"></i>Held as references only</span></div><div class="hist" id="h-theses"></div></section>
   </div>
   <div class="grid2">
-    <section class="card"><h2>Books published</h2><p class="note">Book works by first year of publication: reviewed or cited books and the books of keyed authors. Most come from LC's catalogue copy, which ends in 2016, so recent years are thin.</p><div class="hist" id="h-books"></div></section>
-    <section class="card"><h2>Articles published</h2><p class="note">Journal articles by year, book reviews excluded. The recent peak is ORCID and Crossref records of living scholars; JSTOR adds the older run.</p><div class="hist" id="h-articles"></div></section>
+    <section class="card"><h2>Books published</h2><p class="note" id="books-note"></p>
+      <div class="legend"><span><i class="k"></i>With a project identifier</span><span><i class="u"></i>Held as references only</span></div><div class="hist" id="h-books"></div></section>
+    <section class="card"><h2>Articles published</h2><p class="note">Journal articles by year, book reviews excluded. JSTOR gives the older run; the recent peak is ORCID, OpenAlex and Crossref records of living scholars and the articles that cite in Crossref reference lists.</p>
+      <div class="legend"><span><i class="k"></i>With a project identifier</span><span><i class="u"></i>Held as references only</span></div><div class="hist" id="h-articles"></div></section>
   </div>
+
+  <div class="section-title">Grounding and the dissertations</div>
   <div class="grid2">
-    <section class="card"><h2>How much is grounded</h2><p class="note">Share of each layer tied to a person or work key, or to a public identifier. The rest stays in the graph as printed names and unmatched references.</p><div id="meters"></div></section>
-    <section class="card"><h2>People: public identifiers held</h2><p class="note">People holding each identifier. One person can hold several.</p><div class="bars" id="ids"></div></section>
+    <section class="card"><h2>How much is grounded</h2><p class="note">Share of each layer tied to a person or work key, or to a public identifier. The rest stays in the graph as printed names and reference-only records.</p><div id="meters"></div></section>
+    <section class="card"><h2>From bibliographies to the graph</h2><p class="note">How the dissertations' reference lists reach the graph.</p><div class="bars" id="funnel"></div></section>
   </div>
   <div class="grid2">
     <section class="card"><h2>Dissertations read in full, by country</h2><p class="note">History PhDs in the citation analysis, with bibliographies extracted from the full text. Theses and their text are never published; only counts and citation links are.</p><div class="bars" id="countries"></div></section>
-    <section class="card"><h2>From bibliographies to the graph</h2><p class="note">How the dissertations' reference lists reach the graph.</p><div class="bars" id="funnel"></div></section>
+    <section class="card"><h2>Known limits</h2><p class="note">Gaps the project tracks as numbers at every build, so that they shrink in the open rather than disappear from view.</p><ul class="limits" id="limits"></ul></section>
   </div>
 
   <details class="card"><summary>Table view: every figure on this page</summary><div id="table"></div></details>
@@ -128,53 +192,63 @@ footer { color: var(--text-muted); font-size: 12.5px; margin-top: 20px; }
 <div class="tip" id="tip" role="tooltip"></div>
 </div>
 <script>
-const S = {"people": {"total": 231229, "with_public_id": 144421, "established": 147978, "recorded": 82943, "unresolved": 308, "ids": {"Library of Congress": 123575, "GND (German National Library)": 54455, "VIAF": 54404, "ISNI": 51888, "Wikidata": 49831, "ORCID": 24637, "IdRef (France)": 383}, "roles": {"historian": 128359, "unknown": 47760, "other scholar": 45185, "primary source": 9925}, "confidence": {"other scholar|strong": 11885, "primary source|supported": 5057, "historian|thin": 80786, "historian|supported": 15409, "unknown|thin": 25720, "primary source|strong": 2764, "other scholar|supported": 24737, "historian|strong": 32164, "unknown|strong": 3896, "primary source|thin": 2104, "unknown|supported": 18144, "other scholar|thin": 8563}, "signals": {"reviewer": 49367, "history-phd": 71808, "wikidata-historian": 22382, "early": 2721, "cited-as-primary": 10403, "cited-as-scholarship": 48105, "orcid": 24637, "supervisor-or-staff-list": 16752, "articles": 42175}, "duplicates": {"candidate_pairs": 83635, "keys_in_pairs": 48005, "clusters": 16733, "surplus_upper_bound": 31272, "pair_kinds": {"review+review": 53039, "lc+review": 10359, "aha-phd+lc": 8139, "aha-phd+review": 4691, "aha-phd+orcid": 1452, "lc+orcid": 1301, "orcid+review": 1298, "aha-phd+other": 1220, "lc+other": 1062, "other+review": 414, "orcid+other": 307, "other+other": 183, "aha-phd+cited": 99, "cited+lc": 44, "cited+review": 13, "cited+other": 8, "cited+orcid": 6}}}, "works": {"total": 1819820, "by_kind": {"Books (LC catalogue)": 632306, "Book reviews": 420813, "Journal articles": 389394, "Works listed on ORCID records (type not given)": 288061, "Doctoral theses": 71376, "Books reviewed on H-Net": 13596, "Atlas sources": 2333, "Other": 1941}, "articles_recorded": 128100}, "institutions": 1235, "edges": {"ADVISED": 35785, "AUTHORED": 1407605, "AWARDED_BY": 65104, "CITES": 1465722, "COAUTHORED": 22755, "COEDITED": 20445, "EDITED": 146447, "EDITOR_OF": 8062, "PART_OF": 9312, "PUBLISHED_AS": 7196, "REVIEWED": 86404, "REVIEWS": 439223, "SUPERVISED": 36685}, "citations": {"article": {"edges": 681210, "citing": 72078}, "thesis": {"edges": 784512, "citing": 11825}}, "reviews": {"total": 420813, "with_keyed_reviewer": 76300, "printed_reviewer_names": 311205}, "corpus": {"records": 16785, "parsed": 15797, "in_analysis": 13996, "bibliography_entries": 5470106, "by_country": {"US": 3088, "GB": 2656, "BR": 2618, "CA": 2249, "FR": 1453, "MX": 591, "SE": 287, "DE": 224, "IT": 174, "ES": 131, "AU": 130, "ZZ": 104, "BE": 101, "PT": 41, "CO": 37, "GR": 24, "FI": 20, "ZA": 15, "LV": 14, "AR": 10, "PL": 8, "HU": 7, "IE": 5, "TR": 3, "MT": 3, "CH": 2, "KZ": 1}, "distinct_cited_works": 2443998, "corpus_citations": 3050449, "theses_citing_in_graph": 11825, "jstor_articles_citing": 72078, "jstor_cites": 681210, "keyed_cited_works": 300695}, "years": {"births": {"start": 1800, "width": 5, "bins": [0, 3, 2, 3, 6, 4, 9, 10, 22, 27, 47, 65, 85, 99, 123, 131, 157, 197, 218, 249, 394, 383, 453, 481, 834, 954, 1129, 1631, 2351, 2481, 2241, 2164, 2376, 2312, 2029, 1557, 996, 428, 110, 14, 68], "before": 41, "after": 0, "total": 26884, "of": 128359}, "books": {"start": 1800, "width": 5, "bins": [346, 282, 312, 362, 422, 493, 624, 726, 729, 854, 1026, 970, 1054, 1084, 1107, 1234, 1437, 1753, 2092, 2663, 3466, 3174, 3923, 3720, 5031, 6318, 7376, 7898, 7463, 8467, 9365, 10668, 16064, 29460, 36359, 40349, 41558, 48298, 54395, 60587, 64666, 64267, 58493, 12047, 2259, 241], "before": 5122, "after": 0, "total": 630604, "of": 632342, "partial_last": true}, "articles": {"start": 1800, "width": 5, "bins": [0, 0, 2, 2, 0, 1, 2, 3, 103, 81, 34, 188, 140, 119, 188, 446, 443, 682, 884, 1150, 965, 1090, 1398, 1222, 1241, 1869, 2435, 2707, 2333, 2639, 3193, 3630, 4777, 5447, 6642, 7442, 8271, 9249, 10685, 12766, 16050, 24284, 36589, 64478, 107676, 43243], "before": 28, "after": 0, "total": 386817, "of": 389394, "partial_last": true}, "theses": {"start": 1800, "width": 5, "bins": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 7, 11, 29, 59, 95, 108, 130, 147, 162, 234, 442, 717, 818, 725, 754, 1564, 1505, 2024, 3681, 5782, 4784, 3187, 2806, 3625, 4954, 5194, 5371, 6935, 7790, 6052, 1297], "before": 0, "after": 0, "total": 70990, "of": 71376, "partial_last": true}}, "built": "2026-11-07"};
+const S = {"built": "2026-11-26", "graph_built": "2026-11-25", "people": {"total": 256489, "with_public_id": 175831, "established": 177559, "recorded": 78627, "unresolved": 303, "ids": {"Library of Congress": 146586, "GND (German National Library)": 55522, "VIAF": 58872, "ISNI": 56169, "Wikidata": 50687, "ORCID": 43738, "IdRef (France)": 40767}, "roles": {"historian": 117103, "other scholar": 71925, "unknown": 57529, "primary source": 9932}, "roles_cover": 256489, "signals": {"wikidata-historian": 22746, "supervisor-or-staff-list": 16733, "reviewer": 44293, "early": 3493, "history-phd": 71530, "cited-as-scholarship": 48343, "articles": 78885, "cited-as-primary": 9655, "orcid": 43738}, "confidence": {"other scholar|strong": 16266, "unknown|strong": 3104, "unknown|thin": 32340, "primary source|strong": 2864, "unknown|supported": 22085, "other scholar|supported": 37309, "primary source|supported": 5006, "primary source|thin": 2062, "other scholar|thin": 18350, "historian|strong": 38357, "historian|supported": 19491, "historian|thin": 59255}, "duplicates": {"candidate_pairs": 28674, "keys_in_pairs": 19540, "clusters": 6686, "surplus_upper_bound": 12854, "pair_kinds": {"review+review": 12610, "aha-phd+lc": 4578, "lc+review": 4531, "aha-phd+review": 2725, "aha-phd+other": 863, "lc+other": 837, "aha-phd+orcid": 793, "lc+orcid": 516, "orcid+review": 492, "other+other": 218, "other+review": 199, "orcid+other": 143, "aha-phd+cited": 95, "cited+lc": 52, "cited+review": 12, "cited+other": 5, "cited+orcid": 5}}, "possibly_same": {"very_likely": 2, "possible": 3566}}, "works": {"total": 3848061, "resolution": {"established": 1329599, "recorded": 1109096, "unkeyed": 1409366}, "by_kind": {"article": {"keyed": 713957, "unkeyed": 621874}, "book": {"keyed": 687370, "unkeyed": 489012}, "review": {"keyed": 566223, "unkeyed": 102471}, "chapter": {"keyed": 275794, "unkeyed": 157774}, "other": {"keyed": 117017, "unkeyed": 29226}, "thesis": {"keyed": 76001, "unkeyed": 2820}, "preprint": {"keyed": 0, "unkeyed": 3789}, "dataset": {"keyed": 0, "unkeyed": 2400}, "atlas_source": {"keyed": 2333, "unkeyed": 0}}, "books_by_source": {"lc": {"keyed": 654466, "unkeyed": 285334}, "doi": {"keyed": 32885, "unkeyed": 117394}, "volume": {"keyed": 0, "unkeyed": 85012}, "prize": {"keyed": 0, "unkeyed": 1156}, "other": {"keyed": 0, "unkeyed": 116}, "hnet": {"keyed": 19, "unkeyed": 0}}, "books_with_hnet_record": 31591, "keyed": 2438695, "unkeyed": 1409366, "notes": {"articles_proposed_chapter": 31926, "other_typed_by_proposal": 193292, "books_or_theses_reviewing": 46}, "unkeyed_routes": {"profiles": 327825, "thesis_cited": 298804, "jstor_cited": 201981, "crossref_cited": 360137, "crossref_citing": 60603, "volumes": 114960, "reviews": 33581, "lc_books": 9103, "prize_works": 2372}}, "credits": {"authored": {"keylog": 1865278, "linked": 893263}, "edited": {"keylog": 148534, "linked": 15987}, "linked_by_route": {"printed": 379200, "profiles": 318454, "model": 156617, "lc": 38396, "other": 596}, "works_credited": {"keyed": 2113913, "unkeyed": 454875}, "people_credited": 251172}, "edges": {"AUTHORED": 2758541, "EDITED": 164521, "CONTRIBUTED": 138, "CITES": 3597253, "REVIEWS": 632879, "REVIEWED": 356547, "AWARDED_BY": 64906, "SUPERVISED": 36685, "ADVISED": 35967, "COAUTHORED": 402393, "COEDITED": 26503, "EDITOR_OF": 113670, "PART_OF": 386060, "PUBLISHED_AS": 7196, "EDITION_OF": 7910, "SAME_WORK": 17246, "ABOUT_PLACE": 1432200, "PLACE_IN": 23342, "AWARDED": 51384, "AFFILIATED_WITH": 217379, "POSSIBLY_SAME": 3568}, "citations": {"by_source": {"jstor": {"edges": 1355682, "citing": 81887, "cited": 510576, "to_keyed": 987342, "edition_only": 71181}, "thesis": {"edges": 1259631, "citing": 12302, "cited": 534789, "to_keyed": 941002, "edition_only": 56697}, "crossref": {"edges": 981940, "citing": 86373, "cited": 510702, "to_keyed": 164168, "edition_only": 0}}, "total": 3597253, "citing": 172040, "cited": 1287916, "cited_keyed": 436508, "to_keyed": 2092512, "edition_only": 127878, "jstor_also_crossref": 25550, "citing_keyed": {"keyed": 118045, "unkeyed": 53995}}, "reviews": {"total": 668694, "keyed": 566223, "linked_to_book": 613689, "books_reviewed": 284255, "with_credited_reviewer": 379695, "with_keylog_reviewer": 128966, "reviewer_to_author": 301586, "printed_name_only": 246066, "by_year": {"start": 1900, "width": 5, "bins": [354, 595, 901, 999, 1285, 2042, 3257, 4101, 4580, 5035, 6803, 7772, 11170, 17809, 21978, 26509, 31856, 38286, 48062, 61188, 72434, 89485, 96208, 74445, 31185, 5991], "before": 464, "after": 0, "total": 664794, "of": 668694, "partial_last": true, "keyed": [287, 490, 756, 867, 1134, 1743, 2928, 3765, 4248, 4661, 6259, 7069, 10279, 16389, 20352, 24524, 29360, 35001, 43335, 54977, 63869, 77789, 80090, 53320, 15664, 2718], "of_keyed": 566223}}, "places": {"total": 14985, "by_kind": {"settlement": 5881, "administrative unit": 4812, "historical polity": 1875, "physical feature": 1710, "region": 366, "country": 206, "structure": 133, "other": 2}, "with_works": 13195, "works_tagged": 910651, "works_tagged_by_kind": {"article": {"tagged": 17858, "of": 1335831}, "book": {"tagged": 491639, "of": 1176382}, "review": {"tagged": 393790, "of": 668694}, "chapter": {"tagged": 3476, "of": 433568}, "other": {"tagged": 1145, "of": 146243}, "thesis": {"tagged": 2553, "of": 78821}, "preprint": {"tagged": 35, "of": 3789}, "dataset": {"tagged": 15, "of": 2400}, "atlas_source": {"tagged": 140, "of": 2333}}, "by_source": {"review-of": 389262, "lc-z": 365297, "lc-651": 283943, "title-rule": 24709, "lc-610": 17684, "title-read-sol": 10423, "title-checked": 1522}, "countries_with_works": 414, "top_countries": [{"qid": "Q30", "label": "United States", "works": 274460}, {"qid": "Q145", "label": "United Kingdom", "works": 121700}, {"qid": "Q142", "label": "France", "works": 62247}, {"qid": "Q183", "label": "Germany", "works": 51413}, {"qid": "Q16", "label": "Canada", "works": 40395}, {"qid": "Q38", "label": "Italy", "works": 32498}, {"qid": "Q148", "label": "People's Republic of China", "works": 21866}, {"qid": "Q29", "label": "Spain", "works": 21272}, {"qid": "Q155", "label": "Brazil", "works": 20853}, {"qid": "Q96", "label": "Mexico", "works": 17645}, {"qid": "Q668", "label": "India", "works": 15523}, {"qid": "Q17", "label": "Japan", "works": 11459}, {"qid": "Q27", "label": "Ireland", "works": 10075}, {"qid": "Q41", "label": "Greece", "works": 9610}, {"qid": "Q408", "label": "Australia", "works": 7467}], "works_without_country": 86180}, "prizes": {"total": 12538, "lists": 315, "list_rows": 9816, "honours": 12223, "awarded": {"list|work": {"edges": 4905, "recipients": 4495}, "list|person": {"edges": 4578, "recipients": 3541}, "honour|person": {"edges": 41131, "recipients": 16355}, "honour|work": {"edges": 770, "recipients": 608}}, "people_awarded": 18142, "people_list_prize": 3541, "works_awarded": 5079, "winners_unlinked": 68819, "by_country": {"US": 81, "CA": 59, "?": 55, "FR": 39, "DE": 22, "GB": 13, "BR": 6, "MX": 5, "AU": 5, "NL": 4, "IT": 4, "ES": 4, "SE": 2, "NO": 2, "PL": 2, "RU": 1, "IL": 1, "internationality": 1, "FI": 1, "CL": 1, "CH": 1, "IS": 1, "JP": 1, "AT": 1, "DK": 1, "CZ": 1, "UA": 1}, "top_lists": [{"label": "Fellow of the Royal Historical Society", "body": "Royal Historical Society", "rows": 849, "linked": 569}, {"label": "Person of National Historic Significance", "body": "Historic Sites and Monuments Board of Canada", "rows": 627, "linked": 104}, {"label": "Margaret McWilliams Award", "body": "Manitoba Historical Society", "rows": 409, "linked": 257}, {"label": "The Clio Prizes", "body": "Canadian Historical Association", "rows": 401, "linked": 330}, {"label": "Grand Prix Gobert", "body": "Académie française", "rows": 357, "linked": 347}, {"label": "Bancroft Prize", "body": "Columbia University", "rows": 195, "linked": 195}, {"label": "Prix Guizot", "body": "Académie française", "rows": 159, "linked": 158}, {"label": "Prix Eugène Carrière", "body": "Académie française", "rows": 141, "linked": 140}, {"label": "Bolton-Johnson Prize", "body": "Conference on Latin American History", "rows": 138, "linked": 75}, {"label": "James Alexander Robertson Prize", "body": "Conference on Latin American History", "rows": 132, "linked": 74}]}, "institutions": {"total": 8468, "with_ror": 8468, "affiliations": 217379, "by_kind": {"employment": {"edges": 99192, "people": 55424, "institutions": 6877}, "education": {"edges": 64354, "people": 36561, "institutions": 3827}, "affiliation": {"edges": 48062, "people": 32722, "institutions": 1021}, "position": {"edges": 5771, "people": 3368, "institutions": 1975}}, "by_source": {"wikidata": 76046, "orcid": 75551, "lc_373": 31937, "aha_directory": 10524, "jstor_signature": 8828, "review_credit": 7297, "aha_advisor": 6802, "ihr": 394}, "people": 78958, "people_employment": 55870, "with_people": 8394, "awarding": 271}, "corpus": {"records": 20767, "parsed": 19475, "in_analysis": 17538, "bibliography_entries": 7013838, "by_country": {"US": 4229, "GB": 2664, "BR": 2618, "CA": 2392, "FR": 2304, "DE": 1203, "SE": 705, "MX": 591, "IT": 174, "ES": 131, "AU": 130, "ZZ": 104, "BE": 101, "PT": 41, "CO": 37, "GR": 24, "FI": 20, "ZA": 15, "LV": 14, "AR": 10, "PL": 8, "HU": 7, "IE": 5, "CH": 4, "TR": 3, "MT": 3, "KZ": 1}, "distinct_cited_works": 3008432, "corpus_citations": 3876485, "thesis_cites": 1259631, "thesis_cites_keyed": 941002, "theses_citing": 12302, "thesis_cited_works": 534789, "thesis_cited_keyed": 278037}, "years": {"births": {"start": 1800, "width": 5, "bins": [0, 3, 4, 3, 6, 6, 10, 10, 23, 29, 50, 73, 97, 110, 135, 144, 168, 209, 241, 292, 431, 446, 503, 548, 937, 1087, 1313, 1847, 2733, 2874, 2465, 2447, 2680, 2672, 2383, 1844, 1278, 643, 189, 18, 1], "before": 45, "after": 0, "total": 30997, "of": 117103, "partial_last": false}, "theses": {"start": 1800, "width": 5, "bins": [1, 5, 2, 1, 8, 12, 0, 0, 0, 0, 0, 0, 0, 0, 1, 7, 11, 29, 60, 97, 109, 131, 151, 168, 237, 444, 721, 825, 731, 764, 1595, 1534, 2081, 3769, 5894, 4903, 3356, 3107, 4051, 5472, 5833, 6371, 8412, 9367, 6558, 1589], "before": 0, "after": 0, "total": 78407, "of": 78821, "partial_last": true, "keyed": [1, 5, 2, 1, 8, 12, 0, 0, 0, 0, 0, 0, 0, 0, 1, 7, 11, 29, 60, 97, 109, 131, 150, 167, 236, 443, 720, 824, 728, 763, 1591, 1534, 2076, 3758, 5868, 4873, 3312, 3047, 3949, 5308, 5584, 5936, 7754, 8663, 6344, 1513], "of_keyed": 76001}, "books": {"start": 1800, "width": 5, "bins": [903, 745, 776, 933, 1160, 1299, 1612, 1821, 1827, 2128, 2511, 2529, 2649, 2734, 2753, 3129, 3827, 4269, 4885, 5870, 7663, 7561, 9027, 7573, 10307, 12619, 14037, 15081, 12664, 14600, 16686, 19153, 27166, 43520, 52947, 61104, 64047, 74137, 85954, 97992, 109060, 114292, 112688, 67210, 43175, 9433], "before": 16012, "after": 7, "total": 1174075, "of": 1176382, "partial_last": true, "keyed": [571, 390, 429, 526, 622, 730, 915, 1055, 1033, 1210, 1411, 1381, 1539, 1571, 1568, 1730, 2094, 2482, 2867, 3483, 4388, 4167, 4919, 4446, 6073, 7515, 8572, 9087, 8291, 9296, 10568, 12103, 17687, 29159, 35418, 41005, 43281, 50358, 56864, 63442, 67823, 67078, 60850, 17504, 6421, 1395], "of_keyed": 687370}, "articles": {"start": 1800, "width": 5, "bins": [74, 76, 86, 72, 84, 177, 190, 200, 322, 320, 379, 575, 668, 736, 953, 1306, 1380, 1959, 2770, 3560, 3713, 4782, 5295, 4663, 5595, 7415, 9136, 10568, 9491, 11115, 14566, 17155, 21257, 25817, 31902, 38475, 44965, 54739, 68003, 84845, 111419, 140225, 167707, 189426, 176627, 56695], "before": 689, "after": 4, "total": 1332176, "of": 1335831, "partial_last": true, "keyed": [17, 21, 38, 24, 26, 45, 27, 33, 131, 108, 96, 267, 230, 266, 414, 649, 687, 943, 1258, 1618, 1559, 2174, 2221, 1889, 2217, 3189, 4085, 4708, 4310, 4933, 6275, 7380, 9309, 10633, 12929, 15208, 17978, 22409, 28144, 36604, 47356, 64953, 87010, 117313, 138574, 50193], "of_keyed": 713957}, "books_2010_2016": 142439, "books_2017_2023": 73812, "books_keyed_2010_2016": 72341, "books_keyed_2017_2023": 11297}, "limits": {"name_only_unlinked": 122071, "works_without_place": 2937410, "books_without_place": 684743, "unkeyed_without_author": 954491, "possibly_same": 3568, "dup_upper_bound": 12854, "reviews_without_reviewer": 288999, "prize_winners_unlinked": 68819}, "growth": {"then": {"built": "2026-11-07", "people": 231229, "works": 1819820, "institutions": 1235, "reviews": 420813, "cites": 1465722, "dissertations": 13996, "relations": 3750745, "relation_kinds": ["ADVISED", "AUTHORED", "AWARDED_BY", "CITES", "COAUTHORED", "COEDITED", "EDITED", "EDITOR_OF", "PART_OF", "PUBLISHED_AS", "REVIEWED", "REVIEWS", "SUPERVISED"]}, "now": {"people": 256489, "works": 3848061, "works_keyed": 2438695, "institutions": 8468, "reviews": 668694, "cites": 3597253, "dissertations": 17538, "relations_same_kinds": 8583121, "relations": 10336288}}, "checks": {"roles cover every person key": true, "work kinds sum to the total": true, "unkeyed routes sum to the unkeyed works without remainder": true, "work total matches report": true, "authored rows match report": true, "AUTHORED matches report": true, "EDITED matches report": true, "CONTRIBUTED matches report": true, "CITES matches report": true, "REVIEWS matches report": true, "REVIEWED matches report": true, "AWARDED_BY matches report": true, "SUPERVISED matches report": true, "ADVISED matches report": true, "COAUTHORED matches report": true, "COEDITED matches report": true, "EDITOR_OF matches report": true, "PART_OF matches report": true, "PUBLISHED_AS matches report": true, "EDITION_OF matches report": true, "SAME_WORK matches report": true, "ABOUT_PLACE matches report": true, "PLACE_IN matches report": true, "AWARDED matches report": true, "AFFILIATED_WITH matches report": true, "POSSIBLY_SAME matches report": true, "citations by source sum to CITES": true, "place total matches report": true}};
 const fmt = n => n.toLocaleString('en-US');
-const compact = n => n >= 1e6 ? (n / 1e6).toFixed(n >= 1e7 ? 0 : 2).replace(/\.?0+$/, '') + 'M' : n >= 1e4 ? Math.round(n / 1e3) + 'K' : fmt(n);
-const pct = (a, b) => (100 * a / b).toFixed(a / b < 0.1 ? 1 : 0) + '%';
+const compact = n => n >= 1e6 ? (n / 1e6).toFixed(n >= 1e7 ? 1 : 2).replace(/\.?0+$/, '') + 'M' : n >= 1e4 ? Math.round(n / 1e3) + 'K' : fmt(n);
+const pct = (a, b) => b ? (100 * a / b).toFixed(a / b < 0.1 ? 1 : 0) + '%' : '–';
 const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+const $ = id => document.getElementById(id);
 const tableRows = [];
-const tip = document.getElementById('tip');
+const tip = $('tip');
 function bindTip(node, html) {
   const show = (x, y) => { tip.innerHTML = html; tip.style.display = 'block';
-    const r = tip.getBoundingClientRect(); tip.style.left = Math.min(x + 14, innerWidth - r.width - 8) + 'px'; tip.style.top = Math.min(y + 14, innerHeight - r.height - 8) + 'px'; };
+    const r = tip.getBoundingClientRect(); tip.style.left = Math.max(8, Math.min(x + 14, innerWidth - r.width - 8)) + 'px'; tip.style.top = Math.max(8, Math.min(y + 14, innerHeight - r.height - 8)) + 'px'; };
   node.addEventListener('mousemove', e => show(e.clientX, e.clientY));
   node.addEventListener('mouseleave', () => tip.style.display = 'none');
   node.addEventListener('focus', () => { const r = node.getBoundingClientRect(); show(r.left + r.width / 2, r.bottom); });
   node.addEventListener('blur', () => tip.style.display = 'none');
   node.tabIndex = 0;
 }
-// ranked bars: items = [{name, sub, value, group, tip}]
-function bars(id, section, items, total) {
-  const host = document.getElementById(id), max = Math.max(...items.map(i => i.value));
+const KEYED = 'with a project identifier', UNKEYED = 'held as references only';
+// ranked bars: items = [{name, sub, value, part, group, tip}]; with `part`, the solid share of the bar is `part`
+// and the light rest is value - part (labelled by `parts`: [solid label, light label])
+function bars(id, section, items, total, parts, scale) {
+  const host = $(id), max = scale || Math.max(...items.map(i => i.value));
   let group = null;
   for (const it of items) {
     if (it.group && it.group !== group) { group = it.group; host.append(el('div', 'group', group)); }
     host.append(el('div', 'name', it.name + (it.sub ? `<small>${it.sub}</small>` : '')));
-    const row = el('div', 'row'), track = el('div', 'track'), bar = el('div', 'bar'), val = el('span', 'val', fmt(it.value));
-    const w = (100 * it.value / max).toFixed(2);
-    bar.style.width = w + '%'; val.style.left = w + '%';
-    track.append(bar, val); row.append(track);
+    const row = el('div', 'row'), track = el('div', 'track'), val = el('span', 'val', fmt(it.value));
+    const w = max ? (100 * it.value / max) : 0;
+    if (it.part != null) {
+      const full = el('div', 'bar light'), solid = el('div', 'bar part');
+      full.style.width = w.toFixed(2) + '%'; solid.style.width = (max ? 100 * it.part / max : 0).toFixed(2) + '%';
+      if (!it.part) solid.style.minWidth = '0';
+      track.append(full, solid);
+    } else { const bar = el('div', 'bar'); bar.style.width = w.toFixed(2) + '%'; track.append(bar); }
+    val.style.left = w.toFixed(2) + '%'; track.append(val); row.append(track);
     row.setAttribute('aria-label', `${it.name}: ${fmt(it.value)}`);
-    bindTip(row, `<b>${it.name}</b><br>${fmt(it.value)}${total ? ` (${pct(it.value, total)} of ${fmt(total)})` : ''}${it.tip ? `<br>${it.tip}` : ''}`);
+    const split = it.part != null ? `<br>${parts[0]}: ${fmt(it.part)}<br>${parts[1]}: ${fmt(it.value - it.part)}` : '';
+    bindTip(row, `<b>${it.name}</b><br>${fmt(it.value)}${total ? ` (${pct(it.value, total)} of ${fmt(total)})` : ''}${split}${it.tip ? `<br>${it.tip}` : ''}`);
     host.append(row);
-    tableRows.push([section, (it.group ? it.group + ': ' : '') + it.name, it.value]);
+    tableRows.push([section, (it.group ? it.group + ': ' : '') + it.name, it.part != null ? `${fmt(it.value)} (${parts[0]} ${fmt(it.part)}; ${parts[1]} ${fmt(it.value - it.part)})` : it.value]);
   }
 }
-function meter(label, part, whole, sub) {
+function meter(host, section, label, part, whole, sub, value) {
   const m = el('div', 'meter');
-  m.innerHTML = `<div class="top"><span>${label}</span><b>${pct(part, whole)}</b></div>
+  m.innerHTML = `<div class="top"><span>${label}</span><b>${value || pct(part, whole)}</b></div>
     <div class="track"><div class="fill" style="width:${(100 * part / whole).toFixed(2)}%"></div></div>
     <div class="sub">${fmt(part)} of ${fmt(whole)}${sub ? ' · ' + sub : ''}</div>`;
   m.setAttribute('aria-label', `${label}: ${fmt(part)} of ${fmt(whole)}, ${pct(part, whole)}`);
-  bindTip(m, `<b>${label}</b><br>${fmt(part)} of ${fmt(whole)} (${pct(part, whole)})<br>Not yet: ${fmt(whole - part)}`);
-  document.getElementById('meters').append(m);
-  tableRows.push(['Grounding', label, `${fmt(part)} of ${fmt(whole)} (${pct(part, whole)})`]);
+  bindTip(m, `<b>${label}</b><br>${fmt(part)} of ${fmt(whole)} (${pct(part, whole)})<br>The rest: ${fmt(whole - part)}`);
+  $(host).append(m);
+  tableRows.push([section, label, `${fmt(part)} of ${fmt(whole)} (${pct(part, whole)})`]);
 }
 
-// column histogram: H = {start, width, bins, before, after, total, of}
-function hist(id, section, H, noun) {
-  const host = document.getElementById(id), W = 480, Ht = 190, padL = 44, padB = 22, padT = 18, n = H.bins.length;
+// column histogram: H = {start, width, bins, before, after, total, of, keyed?}; with `keyed`, the solid part of
+// each column is the works with a project identifier and the light rest the reference-only works
+function hist(id, section, H, noun, markYear, markLabel) {
+  const host = $(id), W = 480, Ht = 190, padL = 44, padB = 22, padT = 18, n = H.bins.length;
   const max = Math.max(...H.bins), step = (W - padL) / n, bw = Math.max(1, step - 2), r = Math.min(4, bw / 2);
   const y = v => padT + (Ht - padT - padB) * (1 - v / max);
   const nice = m => { const p = 10 ** Math.floor(Math.log10(m)), f = m / p; return (f <= 2 ? 0.5 : f <= 5 ? 1 : 2) * p; };
@@ -182,132 +256,271 @@ function hist(id, section, H, noun) {
   let g = '<g class="grid">';
   for (let v = tick; v <= max; v += tick) g += `<line x1="${padL}" x2="${W}" y1="${y(v)}" y2="${y(v)}"/><text x="${padL - 6}" y="${y(v) + 4}" text-anchor="end">${compact(v)}</text>`;
   g += '</g>';
-  const svgNS = 'http://www.w3.org/2000/svg';
-  const svg = document.createElementNS(svgNS, 'svg');
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('viewBox', `0 0 ${W} ${Ht}`);
   svg.setAttribute('role', 'img');
   svg.setAttribute('aria-label', `${section}: ${fmt(H.bins.reduce((a, b) => a + b, 0))} ${noun}, ${H.start} to ${H.start + n * H.width - 1}, in ${H.width}-year bins`);
   let body = g + `<line class="base" x1="${padL}" x2="${W}" y1="${Ht - padB}" y2="${Ht - padB}"/>`;
   const peak = H.bins.indexOf(max);
+  const col = (x, top, cls) => { const h = Ht - padB - top, rr = Math.min(r, h);
+    return `<path class="col${cls}" d="M${x},${Ht - padB} V${top + rr} Q${x},${top} ${x + rr},${top} H${x + bw - rr} Q${x + bw},${top} ${x + bw},${top + rr} V${Ht - padB} Z"/>`; };
   H.bins.forEach((v, i) => {
-    const x = padL + i * step + 1, top = y(v), h = Ht - padB - top, from = H.start + i * H.width;
+    const x = padL + i * step + 1, top = y(v), from = H.start + i * H.width;
     if ((from % 25) === 0) body += `<text x="${x + bw / 2}" y="${Ht - 6}" text-anchor="middle">${from}</text>`;
     if (i === peak) body += `<text class="peak" x="${x + bw / 2}" y="${top - 5}" text-anchor="middle">${fmt(v)}</text>`;
-    body += `<rect class="hit" data-i="${i}" x="${x - 1}" y="${padT}" width="${step}" height="${Ht - padT - padB}"/>`;
-    const rr = Math.min(r, h);
-    body += v ? `<path class="col" d="M${x},${Ht - padB} V${top + rr} Q${x},${top} ${x + rr},${top} H${x + bw - rr} Q${x + bw},${top} ${x + bw},${top + rr} V${Ht - padB} Z"/>` : '<g></g>';
-    tableRows.push([section, `${from}–${from + H.width - 1}`, v]);
+    body += `<rect class="hit" data-i="${i}" x="${x - 1}" y="${padT}" width="${step}" height="${Ht - padT - padB}"/><g>`;
+    if (v) body += H.keyed ? col(x, top, ' light') + (H.keyed[i] ? col(x, y(H.keyed[i]), '') : '') : col(x, top, '');
+    body += '</g>';
+    tableRows.push([section, `${from}–${from + H.width - 1}`, H.keyed ? `${fmt(v)} (${KEYED} ${fmt(H.keyed[i])})` : v]);
   });
+  if (markYear) { const xm = padL + (markYear - H.start) / H.width * step;
+    body += `<line class="mark" x1="${xm}" x2="${xm}" y1="${padT - 6}" y2="${Ht - padB}"/>`; }
   svg.innerHTML = body;
   host.append(svg);
   svg.querySelectorAll('.hit').forEach(h => { const i = +h.dataset.i, from = H.start + i * H.width;
     h.setAttribute('aria-label', `${from} to ${from + H.width - 1}: ${fmt(H.bins[i])}`);
-    bindTip(h, `<b>${from}–${from + H.width - 1}</b><br>${fmt(H.bins[i])} ${noun}${H.partial_last && i === H.bins.length - 1 ? '<br>to date: the bin is not complete' : ''}`); });
+    bindTip(h, `<b>${from}–${from + H.width - 1}</b><br>${fmt(H.bins[i])} ${noun}${H.keyed ? `<br>${KEYED}: ${fmt(H.keyed[i])}<br>${UNKEYED}: ${fmt(H.bins[i] - H.keyed[i])}` : ''}${H.partial_last && i === H.bins.length - 1 ? '<br>to date: the bin is not complete' : ''}`); });
   const shown = H.total - H.before - H.after, last = H.start + (n - 1) * H.width;
-  host.append(el('div', 'foot', `${fmt(shown)} ${noun} shown${H.before ? ` · ${fmt(H.before)} before ${H.start}` : ''}${H.after ? ` · ${fmt(H.after)} after ${H.start + n * H.width - 1}` : ''} · ${fmt(H.of - H.total)} of ${fmt(H.of)} have no year on record${H.partial_last ? ` · the ${last}–${last + H.width - 1} bin runs to ${S.built.slice(0, 4)} only` : ''}`));
+  host.append(el('div', 'foot', `${fmt(shown)} ${noun} shown${H.before ? ` · ${fmt(H.before)} before ${H.start}` : ''}${H.after ? ` · ${fmt(H.after)} dated after ${H.start + n * H.width - 1} (placeholder years)` : ''} · ${fmt(H.of - H.total)} of ${fmt(H.of)} have no year on record${H.partial_last ? ` · the ${last}–${last + H.width - 1} bin runs to ${S.built.slice(0, 4)} only` : ''}${markYear ? ` · dashed line: ${markLabel}` : ''}`));
 }
 
+// ---- header, hero, tiles
 const E = S.edges, edgeTotal = Object.values(E).reduce((a, b) => a + b, 0);
-const nodes = S.people.total + S.works.total + S.institutions;
-document.getElementById('subtitle').textContent = `People, works and institutions keyed by their works and public identifiers, never by name alone. Build of ${S.built}.`;
-document.getElementById('hero').textContent = compact(edgeTotal) + ' relations';
-document.getElementById('hero-label').textContent = `${fmt(edgeTotal)} edges among ${fmt(nodes)} nodes`;
+const P = S.people, W = S.works, C = S.citations, R = S.reviews, PL = S.places, PZ = S.prizes, I = S.institutions, K = S.corpus;
+const nodes = P.total + W.total + I.total + PL.total + PZ.total;
+$('subtitle').textContent = 'People, works, institutions, places and prizes, linked by authorship, citation, review, supervision and affiliation. People and works are keyed by their works and public identifiers, never by name alone.';
+$('built').textContent = `Counts from the graph build of ${S.graph_built}; page built ${S.built}.`;
+$('hero').textContent = compact(edgeTotal) + ' relations';
+$('hero-label').textContent = `${fmt(edgeTotal)} edges among ${fmt(nodes)} nodes: person keys, works, institutions, places and prizes`;
 tableRows.push(['Totals', 'Relations (edges)', edgeTotal], ['Totals', 'Nodes', nodes]);
 
 const kpis = [
-  ['Person keys', S.people.total, `${fmt(S.people.roles.historian)} with historian evidence; up to ${fmt(S.people.duplicates.surplus_upper_bound)} may be duplicates`],
-  ['Works', S.works.total, 'books, articles, reviews, theses'],
-  ['Institutions', S.institutions, 'with ROR identifiers'],
-  ['Dissertations read in full', S.corpus.in_analysis, `${fmt(S.corpus.bibliography_entries)} bibliography entries`],
-  ['JSTOR articles cited from', S.citations.article.citing, `${fmt(S.citations.article.edges)} citations from their notes to keyed works`],
+  ['Person keys', P.total, `not all historians: ${fmt(P.roles.historian)} show historian evidence; up to ${fmt(P.duplicates.surplus_upper_bound)} may be duplicates`],
+  ['Works with a project identifier', W.keyed, 'books, articles, reviews, chapters and theses keyed in the key log'],
+  ['Works held as references only', W.unkeyed, 'records from LC, OpenAlex and Crossref the graph links to, without a key of their own'],
+  ['Citations', C.total, `from ${fmt(C.citing)} citing works: thesis bibliographies, JSTOR notes, Crossref reference lists`],
+  ['Book reviews', R.total, `${fmt(R.linked_to_book)} linked to the book they review`],
+  ['Places', PL.total, `grounded in Wikidata; tagged on ${fmt(PL.works_tagged)} works`],
+  ['Prizes and honours', PZ.total, `${fmt(PZ.lists)} history prize lists and ${fmt(PZ.honours)} other honours`],
+  ['Institutions', I.total, `all with ROR identifiers; ${fmt(I.affiliations)} affiliations`],
+  ['Dissertations read in full', K.in_analysis, `${fmt(K.bibliography_entries)} bibliography entries`],
 ];
 for (const [l, v, sub] of kpis) {
-  const t = el('div', 'card tile', `<div class="label">${l}</div><div class="value">${fmt(v)}</div><div class="sub">${sub}</div>`);
-  document.getElementById('kpis').append(t);
+  $('kpis').append(el('div', 'card tile', `<div class="label">${l}</div><div class="value">${fmt(v)}</div><div class="sub">${sub}</div>`));
   tableRows.push(['Totals', l, v]);
 }
 
-const ROLE = { 'historian': ['Historians', 'a history PhD, supervision, AHA listing or review on record; or Wikidata historian after 1900'],
-  'other scholar': ['Other scholars', 'ORCID, articles, or cited as scholarship; no history signal yet'],
+// ---- growth since 2026-11-07
+{ const T = S.growth.then, N = S.growth.now;
+  $('growth-note').textContent = `The first overview counted the graph built on ${T.built}. Then, every work had a project identifier; the reference-only layer, places, prizes, and most affiliations and linked credits came after. Relations of the same ${T.relation_kinds.length} kinds are compared like for like.`;
+  const rows = [
+    ['Person keys', T.people, N.people, 'merges remove duplicate keys as new people are keyed'],
+    ['Works with a project identifier', T.works, N.works_keyed, ''],
+    ['Works held as references only', 0, N.works - N.works_keyed, 'a new layer'],
+    ['Citations', T.cites, N.cites, 'thesis and JSTOR then; Crossref reference lists and matched references since'],
+    ['Book reviews', T.reviews, N.reviews, ''],
+    ['Institutions', T.institutions, N.institutions, ''],
+    ['Dissertations read in full', T.dissertations, N.dissertations, ''],
+    [`Relations of the ${T.relation_kinds.length} kinds counted then`, T.relations, N.relations_same_kinds, 'now including credits and citations linked from outside records'],
+    ['All relations', T.relations, N.relations, 'adds places, prizes, affiliations, editions and doubts'],
+  ];
+  const t = el('table');
+  t.innerHTML = `<thead><tr><th></th><th class="n">${T.built}</th><th class="n">${S.graph_built}</th><th class="n">Change</th><th></th></tr></thead>`;
+  const tb = el('tbody');
+  for (const [l, a, b, note] of rows) {
+    const ch = a ? `${b >= a ? '+' : ''}${fmt(b - a)} (×${(b / a).toFixed(1)})` : 'new';
+    tb.append(el('tr', null, `<td>${l}</td><td class="n">${fmt(a)}</td><td class="n">${fmt(b)}</td><td class="n">${ch}</td><td><small>${note}</small></td>`));
+    tableRows.push(['Growth', l, `${fmt(a)} → ${fmt(b)}`]);
+  }
+  t.append(tb); $('growth').append(t); }
+
+// ---- people
+const ROLE = { 'historian': ['Historians', 'a history PhD, supervision, staff list or review on record; or Wikidata historian after 1900'],
+  'other scholar': ['Scholars in other fields', 'ORCID, articles, or cited as scholarship; no history signal yet'],
   'primary source': ['Primary-source people', 'dated before 1900, or cited mostly in primary-source sections'],
-  'unknown': ['Not yet known', 'mostly LC authors of books reviewed in JSTOR, with no other facts yet'] };
-bars('roles', 'People by role', Object.entries(S.people.roles).map(([r, v]) => ({ name: ROLE[r][0], sub: ROLE[r][1], value: v, tip: ROLE[r][1] })), S.people.total);
+  'unknown': ['Not yet known', 'mostly authors known only from an LC name authority, with no other facts yet'] };
+bars('roles', 'People by role', Object.entries(P.roles).map(([r, v]) => ({ name: ROLE[r][0], sub: ROLE[r][1], value: v, tip: ROLE[r][1] })), P.total);
 const SIG = { 'history-phd': 'History PhD on record (AHA, corpus, CAPES)', 'reviewer': 'Wrote a book review',
   'supervisor-or-staff-list': 'Supervisor, or on a staff list (AHA directory, IHR Teachers of History)', 'wikidata-historian': 'Wikidata occupation: historian',
   'cited-as-scholarship': 'Cited in theses as scholarship', 'articles': 'Journal articles on record', 'orcid': 'ORCID',
   'cited-as-primary': 'Cited in theses mostly as a primary source', 'early': 'Dated before 1900' };
-bars('signals', 'Signals', Object.keys(SIG).map(k => ({ name: SIG[k], value: S.people.signals[k] || 0, group: k === 'cited-as-scholarship' ? 'Scholar or primary-source signals' : k === 'history-phd' ? 'Historian signals' : undefined })), S.people.total);
-{ const d = S.people.duplicates, m = el('div', 'meter');
+bars('signals', 'Signals', Object.keys(SIG).map(k => ({ name: SIG[k], value: P.signals[k] || 0, group: k === 'cited-as-scholarship' ? 'Scholar or primary-source signals' : k === 'history-phd' ? 'Historian signals' : undefined })), P.total);
+{ const d = P.duplicates, ps = Object.values(P.possibly_same).reduce((a, b) => a + b, 0), m = el('div', 'meter');
   m.innerHTML = `<div class="top"><span>Possible duplicate keys</span><b>up to ${fmt(d.surplus_upper_bound)}</b></div>
-    <div class="track"><div class="fill" style="width:${(100 * d.surplus_upper_bound / S.people.total).toFixed(2)}%"></div></div>
-    <div class="sub">${pct(d.surplus_upper_bound, S.people.total)} of person keys: ${fmt(d.clusters)} same-name clusters with no conflicting identifier. An upper bound: real namesakes fall in these clusters too.</div>`;
+    <div class="track"><div class="fill" style="width:${(100 * d.surplus_upper_bound / P.total).toFixed(2)}%"></div></div>
+    <div class="sub">${pct(d.surplus_upper_bound, P.total)} of person keys: ${fmt(d.clusters)} same-name clusters with no conflicting identifier. An upper bound: real namesakes fall in these clusters too. Separately, ${fmt(ps)} pairs are flagged as possibly the same person.</div>`;
   bindTip(m, `<b>Possible duplicate keys</b><br>up to ${fmt(d.surplus_upper_bound)} surplus keys in ${fmt(d.clusters)} clusters`);
-  document.getElementById('dupnote').append(m);
-  tableRows.push(['People by role', 'Possible duplicate keys (upper bound)', d.surplus_upper_bound]); }
+  $('dupnote').append(m);
+  tableRows.push(['People by role', 'Possible duplicate keys (upper bound)', d.surplus_upper_bound], ['People by role', 'Pairs flagged possibly the same person', ps]); }
 
-{ const CF = S.people.confidence, items = [];
+{ const CF = P.confidence, items = [];
   for (const r of ['historian', 'other scholar', 'primary source', 'unknown'])
     for (const c of ['strong', 'supported', 'thin'])
       items.push({ name: c[0].toUpperCase() + c.slice(1), value: CF[`${r}|${c}`] || 0, group: ROLE[r][0] });
-  bars('confidence', 'Confidence', items, S.people.total);
-  const H = S.people.roles.historian, host = document.getElementById('histmeters');
+  bars('confidence', 'Confidence', items, P.total);
+  const H = P.roles.historian, host = $('histmeters');
   for (const [label, n, sub] of [['Strong', CF['historian|strong'], 'several independent facts'],
       ['Strong or supported', CF['historian|strong'] + CF['historian|supported'], 'at least one identifier or several facts'],
       ['Thin', CF['historian|thin'], 'one fact, no public identifier, few or no links']]) {
     const m = el('div', 'meter');
-    m.innerHTML = `<div class="top"><span>${label}</span><b>${fmt(n)}</b></div><div class="track"><div class="fill" style="width:${(100 * n / H).toFixed(2)}%"></div></div><div class="sub">${pct(n, H)} of ${fmt(H)} historian keys · ${sub}</div>`;
-    bindTip(m, `<b>${label}</b><br>${fmt(n)} of ${fmt(H)} historian keys`);
+    m.innerHTML = `<div class="top"><span>${label}</span><b>${fmt(n)}</b></div><div class="track"><div class="fill" style="width:${(100 * n / H).toFixed(2)}%"></div></div><div class="sub">${pct(n, H)} of ${fmt(H)} keys with historian evidence · ${sub}</div>`;
+    bindTip(m, `<b>${label}</b><br>${fmt(n)} of ${fmt(H)} keys with historian evidence`);
     host.append(m);
+    tableRows.push(['Historian keys by confidence', label, n]);
   } }
-
-bars('works', 'Works', Object.entries(S.works.by_kind).map(([name, value]) => ({ name, value })), S.works.total);
-
-const EDGE = {
-  'Authorship': [['AUTHORED', 'person wrote a work'], ['EDITED', 'person edited a volume']],
-  'Citation': [['CITES', 'thesis or JSTOR article cites a keyed work']],
-  'Reviewing': [['REVIEWS', 'review discusses a book'], ['REVIEWED', 'reviewer reviewed an author (both keyed)']],
-  'Training': [['AWARDED_BY', 'thesis awarded by an institution'], ['SUPERVISED', 'person supervised a thesis'], ['ADVISED', 'supervisor to student (derived)']],
-  'Collaboration': [['COAUTHORED', 'pairs who wrote together (derived, with counts)'], ['COEDITED', 'pairs who edited together (derived)'], ['EDITOR_OF', 'volume editor to contributor (derived)']],
-  'Works to works': [['PART_OF', 'chapter in a volume'], ['PUBLISHED_AS', 'thesis published as a book']],
-};
-const edgeItems = [];
-for (const [group, list] of Object.entries(EDGE))
-  for (const [k, sub] of list.sort((a, b) => E[b[0]] - E[a[0]])) edgeItems.push({ name: k, sub, value: E[k], group, tip: sub });
-bars('edges', 'Relations', edgeItems, edgeTotal);
-
-hist('h-births', 'Historians born', S.years.births, 'historians');
-hist('h-theses', 'Dissertations defended', S.years.theses, 'theses');
-hist('h-books', 'Books published', S.years.books, 'books');
-hist('h-articles', 'Articles published', S.years.articles, 'articles');
-
-const P = S.people, R = S.reviews, C = S.corpus;
-meter('People with a public identifier', P.with_public_id, P.total, 'LC, GND, VIAF, ISNI, Wikidata, ORCID or IdRef');
-meter('People established on two or more sources', P.established, P.total, `${fmt(P.recorded)} rest on one source`);
-meter('Book reviews whose reviewer is keyed', R.with_keyed_reviewer, R.total, 'the rest carry the reviewer as a printed name');
-meter('Thesis citations linked to keyed works', S.citations.thesis.edges, C.corpus_citations, 'thesis-to-work citations; JSTOR article citations are counted separately');
-meter('Distinct cited works keyed in the graph', C.keyed_cited_works, C.distinct_cited_works, 'many are archival sources, newspapers and other primary material');
-
 bars('ids', 'Public identifiers', Object.entries(P.ids).map(([name, value]) => ({ name, value })), P.total);
 
-const by = Object.entries(C.by_country), named = { US: 'United States', GB: 'United Kingdom', BR: 'Brazil', CA: 'Canada', FR: 'France', MX: 'Mexico', SE: 'Sweden', DE: 'Germany' };
+// ---- works
+const KIND = { article: ['Journal articles', 'research articles; reviews counted apart'], book: ['Books', ''],
+  review: ['Book reviews', 'whatever the journal calls them'], chapter: ['Chapters', 'in edited volumes'],
+  other: ['Type not given', 'mostly works listed on ORCID records'], thesis: ['Doctoral theses', ''],
+  preprint: ['Preprints', ''], dataset: ['Datasets', ''], atlas_source: ['Atlas sources', 'readings the atlas entries cite'] };
+const PARTS = ['With a project identifier', 'Held as references only'];
+bars('works', 'Works by kind', Object.entries(W.by_kind).map(([k, v]) => ({ name: KIND[k] ? KIND[k][0] : k, sub: KIND[k] ? KIND[k][1] : '', value: v.keyed + v.unkeyed, part: v.keyed })), W.total, PARTS);
+$('works-foot').textContent = `${fmt(W.keyed)} works with a project identifier and ${fmt(W.unkeyed)} held as references only: ${fmt(W.total)} in all. ${fmt(W.notes.other_typed_by_proposal)} works recorded without a type take the type a matched record gives; ${fmt(W.notes.articles_proposed_chapter)} recorded as articles that Crossref files as chapters stay articles.`;
+tableRows.push(['Works by kind', 'Total', W.total]);
+const BSRC = { lc: ['Library of Congress catalogue', `catalogue copy to 2016; ${fmt(W.books_with_hnet_record)} of these books also have an H-Net review record`],
+  doi: ['Crossref or OpenAlex record', 'books of keyed scholars, cited or reviewed books'], volume: ['Edited volumes named in chapter records', 'Crossref and ORCID chapter records'],
+  prize: ['Prize lists', 'winning books with no other record'], hnet: ['H-Net review record only', ''], other: ['Other', 'corpus compilations'] };
+bars('booksrc', 'Books by source', Object.entries(W.books_by_source).map(([k, v]) => ({ name: BSRC[k] ? BSRC[k][0] : k, sub: BSRC[k] ? BSRC[k][1] : '', value: v.keyed + v.unkeyed, part: v.keyed })), W.by_kind.book.keyed + W.by_kind.book.unkeyed, PARTS);
+const ROUTE = { profiles: ['On the profiles of keyed people', 'ORCID and OpenAlex works the key log did not hold'],
+  crossref_cited: ['Cited in Crossref reference lists', 'end points: their own references are not read'],
+  thesis_cited: ['Cited in thesis bibliographies', 'matched to LC, OpenAlex or Crossref records'],
+  jstor_cited: ['Cited in JSTOR article notes', 'matched to LC, OpenAlex, Crossref or JSTOR records'],
+  volumes: ['Volumes and chapters', 'named in chapter records'], crossref_citing: ['Articles that cite, from Crossref', 'in history journals the key log does not hold'],
+  reviews: ['Crossref reviews of books in the graph', ''], lc_books: ['LC records of books', 'named by reviews or LC authority notes'],
+  prize_works: ['Prize-winning works', 'from the prize lists'], other: ['Other', ''] };
+bars('routes', 'Reference-only works by route', Object.entries(W.unkeyed_routes).sort((a, b) => b[1] - a[1]).map(([k, v]) => ({ name: ROUTE[k] ? ROUTE[k][0] : k, sub: ROUTE[k] ? ROUTE[k][1] : '', value: v })), W.unkeyed);
+const CR = S.credits, LR = { printed: ['Printed names matched to one key', 'author, reviewer and JSTOR author lists, by rules and scores'],
+  profiles: ['ORCID and OpenAlex profiles', "works on a keyed person's own profile"], model: ['Printed names judged by a language model', 'Qwen verdicts on name matches'],
+  lc: ['LC name authorities', 'catalogue main entries whose authority is on a key'], other: ['Other', 'prize lists, compilations, Crossref reviews'] };
+bars('credits', 'Author credits', [
+  { name: "The key log's own claims", value: CR.authored.keylog, group: 'Author credits' },
+  { name: 'Linked from outside records', value: CR.authored.linked },
+  ...Object.entries(CR.linked_by_route).map(([k, v]) => ({ name: LR[k] ? LR[k][0] : k, sub: LR[k] ? LR[k][1] : '', value: v, group: 'Linked credits, by route' }))],
+  CR.authored.keylog + CR.authored.linked);
+meter('creditmeters', 'Author credits', 'Works with a project identifier that credit a person', CR.works_credited.keyed, W.keyed, 'authors or editors');
+meter('creditmeters', 'Author credits', 'Reference-only works that credit a person', CR.works_credited.unkeyed, W.unkeyed, 'the rest carry printed names only, or none');
+
+// ---- citations
+const CS = { thesis: ['Doctoral thesis bibliographies', 'theses citing'], jstor: ['JSTOR article notes', 'articles and review essays citing'],
+  crossref: ['Crossref reference lists', 'articles citing'], other: ['Other', 'works citing'] };
+$('cites-note').textContent = `${fmt(C.total)} citations from ${fmt(C.citing)} citing works to ${fmt(C.cited)} cited works. Each citation counts once, under the first source that gives it (thesis, then JSTOR, then Crossref); ${fmt(C.jstor_also_crossref)} JSTOR citations are also in Crossref lists. ${fmt(C.edition_only)} rest only on a citation of a later edition or a translation.`;
+meter('citemeters', 'Citations', 'Citing works with a project identifier', C.citing_keyed.keyed, C.citing, `${fmt(C.citing_keyed.unkeyed)} citing articles held as references only, from Crossref`);
+meter('citemeters', 'Citations', 'Cited works with a project identifier', C.cited_keyed, C.cited, 'the rest are LC, OpenAlex and Crossref records held as references');
+bars('cites', 'Citations by citing source', Object.entries(C.by_source).map(([k, v]) => ({ name: CS[k][0], sub: `${fmt(v.citing)} ${CS[k][1]}; ${fmt(v.cited)} works cited`, value: v.edges, part: v.to_keyed })), C.total, ['To works with a project identifier', 'To reference-only works']);
+
+// ---- reviews
+meter('reviewmeters', 'Reviews', 'Reviews linked to the book they review', R.linked_to_book, R.total, `${fmt(R.books_reviewed)} books reviewed`);
+meter('reviewmeters', 'Reviews', 'Reviews whose reviewer is credited', R.with_credited_reviewer, R.total, `${fmt(R.with_keylog_reviewer)} by the key log's own claims; of the rest, ${fmt(R.printed_name_only)} carry a printed reviewer name only`);
+meter('reviewmeters', 'Reviews', 'Reviews joining reviewer and reviewed author', R.reviewer_to_author, R.total, 'both people keyed: a reviewer-to-author edge');
+meter('reviewmeters', 'Reviews', 'Reviews with a project identifier', R.keyed, R.total, 'the rest are Crossref and profile records held as references');
+hist('h-reviews', 'Reviews published', R.by_year, 'reviews');
+
+// ---- relations
+const EDGE = {
+  'Authorship': [['AUTHORED', 'person wrote a work'], ['EDITED', 'person edited a volume'], ['CONTRIBUTED', 'foreword, series editor']],
+  'Citation': [['CITES', 'thesis or article cites a work']],
+  'Reviewing': [['REVIEWS', 'review discusses a book'], ['REVIEWED', 'reviewer reviewed an author (both keyed)']],
+  'Training': [['AWARDED_BY', 'thesis awarded by an institution'], ['SUPERVISED', 'person supervised a thesis'], ['ADVISED', 'supervisor to student']],
+  'Collaboration': [['COAUTHORED', 'pairs who wrote together (derived, with counts)'], ['COEDITED', 'pairs who edited together (derived)'], ['EDITOR_OF', 'volume editor to contributor (derived)']],
+  'Works to works': [['PART_OF', 'chapter in a volume'], ['PUBLISHED_AS', 'thesis published as a book'], ['EDITION_OF', 'translation or later edition'], ['SAME_WORK', 'two records of one work']],
+  'Places': [['ABOUT_PLACE', 'work is about a place'], ['PLACE_IN', 'place within a wider place or polity']],
+  'Prizes and posts': [['AWARDED', 'prize or honour to a person or work'], ['AFFILIATED_WITH', 'person employed, educated or placed at an institution']],
+  'Doubts': [['POSSIBLY_SAME', 'two keys that may be one person (not merged)']],
+};
+const edgeItems = [[], []], LEFT = ['Authorship', 'Citation', 'Reviewing', 'Collaboration'];
+for (const [group, list] of Object.entries(EDGE))
+  for (const [k, sub] of list.sort((a, b) => E[b[0]] - E[a[0]])) edgeItems[LEFT.includes(group) ? 0 : 1].push({ name: k, sub, value: E[k], group, tip: sub });
+{ const emax = Math.max(...Object.values(E));   // one scale for both columns
+  bars('edges', 'Relations', edgeItems[0], edgeTotal, null, emax); bars('edges2', 'Relations', edgeItems[1], edgeTotal, null, emax); }
+
+// ---- places
+const PK = { settlement: 'Settlements', 'administrative unit': 'Provinces, states, counties and other units', 'historical polity': 'Historical polities',
+  'physical feature': 'Rivers, mountains and other features', region: 'Regions', country: 'Countries', structure: 'Buildings and structures', other: 'Other' };
+$('places-note').textContent = `${fmt(PL.total)} places, each a Wikidata item; ${fmt(PL.with_works)} have works tagged. Tags come from LC subject headings on books, rule-read and hand-checked titles, and reviews that inherit the reviewed book's places: ${fmt(PL.works_tagged)} of ${fmt(W.total)} works have at least one.`;
+bars('placekinds', 'Places by kind', Object.entries(PL.by_kind).map(([k, v]) => ({ name: PK[k] || k, value: v })), PL.total);
+for (const k of ['book', 'review', 'article', 'chapter', 'thesis'])
+  meter('placemeters', 'Works tagged with a place', KIND[k][0], PL.works_tagged_by_kind[k].tagged, PL.works_tagged_by_kind[k].of);
+bars('countries-places', 'Works by country', [...PL.top_countries.map(c => ({ name: c.label, value: c.works })),
+  { name: 'No present-day country', sub: 'only regions, empires or ancient polities', value: PL.works_without_country }], PL.works_tagged);
+tableRows.push(['Places', 'Present-day countries with tagged works', PL.countries_with_works]);
+
+// ---- prizes
+{ const A = PZ.awarded, g = k => A[k] || { edges: 0, recipients: 0 };
+  $('prizes-note').textContent = `${fmt(PZ.lists)} history prizes harvested from the awarding bodies' own lists (${fmt(PZ.list_rows)} winners listed), and ${fmt(PZ.honours)} other honours (fellowships, orders, academy memberships) from Wikidata. ${fmt(PZ.people_awarded)} person keys and ${fmt(PZ.works_awarded)} works hold one or more.`;
+  bars('prizes', 'Prizes and honours', [
+    { name: 'History prizes to people', sub: `${fmt(g('list|person').recipients)} people`, value: g('list|person').edges, group: 'From the prize lists' },
+    { name: 'History prizes to books and articles', sub: `${fmt(g('list|work').recipients)} works`, value: g('list|work').edges },
+    { name: 'Honours to people', sub: `${fmt(g('honour|person').recipients)} people`, value: g('honour|person').edges, group: 'From Wikidata' },
+    { name: 'Honours to works', sub: `${fmt(g('honour|work').recipients)} works`, value: g('honour|work').edges }]);
+  const t = el('table'); t.innerHTML = '<thead><tr><th>Prize</th><th class="n">Listed</th><th class="n">Linked</th></tr></thead>';
+  const tb = el('tbody');
+  for (const p of PZ.top_lists) {
+    tb.append(el('tr', null, `<td>${p.label}<br><small>${p.body || ''}</small></td><td class="n">${fmt(p.rows)}</td><td class="n">${fmt(p.linked)}</td>`));
+    tableRows.push(['Largest prize lists', p.label, `${fmt(p.rows)} listed, ${fmt(p.linked)} linked`]);
+  }
+  t.append(tb); $('prizetable').append(t);
+  $('prizetable').append(el('p', 'note', `Listed: winners on the list. Linked: winners tied to a person key or a work. ${fmt(PZ.winners_unlinked)} listed winners and honours are not yet tied to a key.`)); }
+
+// ---- institutions
+$('inst-note').textContent = `${fmt(I.total)} institutions, all with ROR identifiers; ${fmt(I.with_people)} have people affiliated and ${fmt(I.awarding)} award theses in the graph. ${fmt(I.people)} person keys hold at least one dated affiliation, ${fmt(I.people_employment)} an employment or post. Education is never counted as employment.`;
+const AK = { employment: 'Employment', education: 'Education', affiliation: 'Affiliation printed in a record', position: 'Position or post' };
+bars('affkinds', 'Affiliations by kind', Object.entries(I.by_kind).map(([k, v]) => ({ name: AK[k] || k, sub: `${fmt(v.people)} people, ${fmt(v.institutions)} institutions`, value: v.edges })), I.affiliations);
+const AS = { wikidata: 'Wikidata', orcid: 'ORCID records', lc_373: 'LC name authorities (associated group)', aha_directory: 'AHA directory of history departments',
+  jstor_signature: 'JSTOR review signatures', review_credit: 'Review credits', aha_advisor: 'AHA dissertation advisors', ihr: 'IHR Teachers of History' };
+bars('affsources', 'Affiliations by source', Object.entries(I.by_source).map(([k, v]) => ({ name: AS[k] || k, value: v })), I.affiliations);
+
+// ---- histograms
+hist('h-births', 'Historians born', S.years.births, 'historian keys');
+hist('h-theses', 'Dissertations defended', S.years.theses, 'theses');
+{ const Y = S.years;
+  $('books-note').textContent = `Books by first year of publication. LC's catalogue copy ends in 2016, so books after 2016 are under-counted: ${fmt(Y.books_2017_2023)} books for 2017–23 against ${fmt(Y.books_2010_2016)} for 2010–16, and only ${fmt(Y.books_keyed_2017_2023)} with a project identifier against ${fmt(Y.books_keyed_2010_2016)}. Most recent books come from Crossref and OpenAlex records.`;
+  tableRows.push(['Books published', 'Books 2010–16', Y.books_2010_2016], ['Books published', 'Books 2017–23', Y.books_2017_2023],
+    ['Books published', 'With a project identifier, 2010–16', Y.books_keyed_2010_2016], ['Books published', 'With a project identifier, 2017–23', Y.books_keyed_2017_2023]); }
+hist('h-books', 'Books published', S.years.books, 'books', 2017, 'LC copy ends 2016');
+hist('h-articles', 'Articles published', S.years.articles, 'articles');
+
+// ---- grounding
+meter('meters', 'Grounding', 'People with a public identifier', P.with_public_id, P.total, 'LC, GND, VIAF, ISNI, Wikidata, ORCID or IdRef');
+meter('meters', 'Grounding', 'People established on two or more sources', P.established, P.total, `${fmt(P.recorded)} rest on one source`);
+meter('meters', 'Grounding', 'Works with a project identifier', W.keyed, W.total, `${fmt(W.unkeyed)} held as references only`);
+meter('meters', 'Grounding', 'Citations to works with a project identifier', C.to_keyed, C.total, `${fmt(C.cited_keyed)} of ${fmt(C.cited)} cited works are keyed`);
+meter('meters', 'Grounding', 'Thesis citations that reach a work in the graph', K.thesis_cites, K.corpus_citations, `${fmt(K.thesis_cites_keyed)} to keyed works; many unmatched are archival sources, newspapers and other primary material`);
+
+const by = Object.entries(K.by_country), named = { US: 'United States', GB: 'United Kingdom', BR: 'Brazil', CA: 'Canada', FR: 'France', MX: 'Mexico', SE: 'Sweden', DE: 'Germany' };
 const shown = by.filter(([c]) => named[c]), rest = by.filter(([c]) => !named[c]);
 bars('countries', 'Dissertations by country', [...shown.map(([c, v]) => ({ name: named[c], value: v })),
-  { name: 'Other', sub: `${rest.length} countries and unknown`, value: rest.reduce((a, [, v]) => a + v, 0) }], C.in_analysis);
+  { name: 'Other', sub: `${rest.length} countries and unknown`, value: rest.reduce((a, [, v]) => a + v, 0) }], K.in_analysis);
 
 bars('funnel', 'Bibliographies', [
-  { name: 'Bibliography entries extracted', value: C.bibliography_entries, tip: `from ${fmt(C.parsed)} theses` },
-  { name: 'Citations after cleaning', sub: 'thesis-to-work, in the analysis', value: C.corpus_citations },
-  { name: 'Distinct works cited', value: C.distinct_cited_works },
-  { name: 'Citations to keyed works', sub: 'thesis CITES edges in the graph', value: S.citations.thesis.edges },
-  { name: 'Keyed works cited', value: C.keyed_cited_works },
+  { name: 'Bibliography entries extracted', value: K.bibliography_entries, tip: `from ${fmt(K.parsed)} theses` },
+  { name: 'Citations after cleaning', sub: 'thesis-to-work, in the analysis', value: K.corpus_citations },
+  { name: 'Distinct works cited', sub: 'in the corpus tables', value: K.distinct_cited_works },
+  { name: 'Thesis citations in the graph', sub: `from ${fmt(K.theses_citing)} theses`, value: K.thesis_cites },
+  { name: 'of which to keyed works', value: K.thesis_cites_keyed },
+  { name: 'Works the theses cite in the graph', value: K.thesis_cited_works },
+  { name: 'of which keyed', value: K.thesis_cited_keyed },
 ]);
 
-const tbl = el('table'); tbl.innerHTML = '<thead><tr><th>Section</th><th>Item</th><th>Count</th></tr></thead>';
+// ---- known limits
+{ const L = S.limits, Y = S.years, items = [
+  [L.name_only_unlinked, 'reference-only works whose printed author has the name of a person key but no safe link to it yet'],
+  [L.unkeyed_without_author, 'reference-only works with no credited author (mostly cited works whose authors are printed names only)'],
+  [L.reviews_without_reviewer, 'book reviews with no credited reviewer'],
+  [L.works_without_place, `works with no place tag; tags come mostly from LC subject headings, so articles and chapters rarely have one (${fmt(L.books_without_place)} books have none either)`],
+  [L.dup_upper_bound, `person keys that may duplicate another (upper bound); ${fmt(L.possibly_same)} pairs flagged as possibly the same person`],
+  [Y.books_2017_2023, `books dated 2017–23 against ${fmt(Y.books_2010_2016)} for 2010–16: LC catalogue copy ends in 2016`],
+  [L.prize_winners_unlinked, 'listed prize winners and honours not yet tied to a person key or work'],
+  ];
+  for (const [n, text] of items) { $('limits').append(el('li', null, `<b>${fmt(n)}</b><span>${text}</span>`)); tableRows.push(['Known limits', text, n]); } }
+
+const tbl = el('table'); tbl.innerHTML = '<thead><tr><th>Section</th><th>Item</th><th class="n">Count</th></tr></thead>';
 const tb = el('tbody');
 for (const [s, i, v] of tableRows) tb.append(el('tr', null, `<td>${s}</td><td>${i}</td><td class="n">${typeof v === 'number' ? fmt(v) : v}</td>`));
-tbl.append(tb); document.getElementById('table').append(tbl);
-document.getElementById('footer').textContent = `Sources: the key log (data/identifiers) built by scripts/build_graph.py, and the dissertation corpus tables (counts only). Derived relations (COAUTHORED, COEDITED, EDITOR_OF, REVIEWED, ADVISED) are computed at build time from the keyed ones. Built ${S.built}.`;
-document.getElementById('theme').onclick = () => {
+tbl.append(tb); $('table').append(tbl);
+$('footer').textContent = `Sources: the key log (data/identifiers) built into tables by scripts/build_graph.py on ${S.graph_built}, with linked outside records (LC, OpenAlex, Crossref, ORCID, Wikidata, JSTOR, H-Net, AHA, prize lists), and the dissertation corpus tables (counts only). Derived relations (COAUTHORED, COEDITED, EDITOR_OF, REVIEWED, ADVISED) are computed at build time. Person roles from scripts/person_roles.py; the duplicate bound from dup_bound.py. Page built ${S.built}.`;
+$('theme').onclick = () => {
   const r = document.documentElement, dark = r.dataset.theme ? r.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
   r.dataset.theme = dark ? 'light' : 'dark';
 };

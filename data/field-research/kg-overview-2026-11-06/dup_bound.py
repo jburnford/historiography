@@ -4,6 +4,9 @@ Pairs of keys whose names agree (same family name, same first given name in full
 namesake_check_groups.given_names_agree) and that hold no conflicting identifier (two different LC, Wikidata,
 ORCID, GND, AHA-dissertation or corpus-thesis anchors) are joined into clusters; surplus = cluster size - 1. Real
 namesakes also join, so this is an upper bound, not a merge list. Names shared by more than 40 keys are skipped. Writes dup-bound.json beside this script.
+Rerun on each graph build before build_overview.py (last: the build of 2026-11-25; about 0.6 GB, a few seconds).
+
+    python3 data/field-research/kg-overview-2026-11-06/dup_bound.py
 """
 import sys
 from pathlib import Path
