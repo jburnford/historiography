@@ -149,7 +149,9 @@ def main():
         'crossref_cited': report.get('crossref26_cited_nodes', 0),
         'crossref_citing': report.get('crossref26_citing_nodes', 0) + report.get('Work_unkeyed_articles', 0),
         'volumes': report.get('Work_unkeyed_volumes', 0) + report.get('name_only_chapters_added', 0),
-        'reviews': report.get('crossref_slice_reviews_review_nodes_added', 0),
+        'reviews': (report.get('crossref_slice_reviews_review_nodes_added', 0)
+                    + report.get('crossref_recent_book_reviews_review_nodes_added', 0)),
+        'recent_books': report.get('crossref_recent_books_nodes_added', 0),   # Crossref books of 2016-2026 (2026-11-26)
         'lc_books': (report.get('review_books_lc_book_nodes_added', 0) + report.get('lc_authority_books_nodes_added', 0)
                      + report.get('lc_note_books_nodes_added', 0)),
         'prize_works': sum(v for k, v in report.get('prizes', {}).items() if k.startswith('prize_work_nodes_added')),

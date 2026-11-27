@@ -389,6 +389,7 @@ const ROUTE = { profiles: ['On the profiles of keyed people', 'ORCID and OpenAle
   jstor_cited: ['Cited in JSTOR article notes', 'matched to LC, OpenAlex, Crossref or JSTOR records'],
   volumes: ['Volumes and chapters', 'named in chapter records'], crossref_citing: ['Articles that cite, from Crossref', 'in history journals the key log does not hold'],
   reviews: ['Crossref reviews of books in the graph', ''], lc_books: ['LC records of books', 'named by reviews or LC authority notes'],
+  recent_books: ['Recent books from Crossref', '2016–2026, reviewed or cited in history journals'],
   prize_works: ['Prize-winning works', 'from the prize lists'], other: ['Other', ''] };
 bars('routes', 'Reference-only works by route', Object.entries(W.unkeyed_routes).sort((a, b) => b[1] - a[1]).map(([k, v]) => ({ name: ROUTE[k] ? ROUTE[k][0] : k, sub: ROUTE[k] ? ROUTE[k][1] : '', value: v })), W.unkeyed);
 const CR = S.credits, LR = { printed: ['Printed names matched to one key', 'author, reviewer and JSTOR author lists, by rules and scores'],

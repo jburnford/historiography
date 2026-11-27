@@ -155,6 +155,7 @@ import identifiers as I
 
 csv.field_size_limit(1 << 30)   # author-works rows carry the printed authorships as JSON
 from identifiers import DEFAULT_DIR, PREDICATES, RETIRED, ROOT, State
+from crossref_recent_books import recent_books  # recent Crossref books and their reviews, linked layer (2026-11-26)
 
 OUT = ROOT / 'build/graph'
 CITES = ROOT / 'data/graph/cites.csv.gz'
@@ -1752,6 +1753,8 @@ def main():
         report['crossref_slice_reviews_pair_already_linked'] = sum(1 for r in csr_rows if (r['from'], r['to']) in have_rb)
         rb_rows += [r for r in csr_rows if (r['from'], r['to']) not in have_rb]
         del have_rb, csr_rows
+    # Crossref books of 2016-2026 the graph lacked, with their reviews (2026-11-26): unkeyed nodes, linked rows
+    rbk_edited = recent_books(state, types, works, wi, unkeyed, resolve, report, rb_rows, csr_credits, crossref_slice_reviews)
     if fact_files:                  # journal, ISSN, proposed kind of keyed works (export_work_containers.py)
         work_facts(state, types, wi, report)
     if pass4[WORK_YEARS]:           # first publication year beside `year` (2026-11-12)
@@ -1866,6 +1869,7 @@ def main():
     linked = dict(linked)
     linked['AUTHORED'] = list(linked.get('AUTHORED', []))
     linked['EDITED'] = list(linked.get('EDITED', []))
+    linked['EDITED'] += rbk_edited
     if csr_credits:                 # reviewers of Crossref-slice reviews by an ORCID on a person key (2026-11-25)
         have = {(r['from'], r['to']) for r in rels['AUTHORED']} | {(x['from'], x['to']) for x in linked['AUTHORED']}
         add = [x for x in csr_credits if (x['from'], x['to']) not in have]
