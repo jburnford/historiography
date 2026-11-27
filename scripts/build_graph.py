@@ -4,6 +4,8 @@ The key log (data/identifiers/events-*.jsonl, closed shards gzipped) is the sour
 view of it that anyone can rebuild from a clean clone. It reads only files tracked in git (it stops if an input
 is untracked) and writes to build/graph/ (git-ignored):
 - nodes: `Person`, `Work`, `Institution` (active keys; identifiers by scheme as columns, all anchors as a list);
+- `REFEREED` (Person -> Work; 2026-11-27): DNB thesis referees (Gutachter) from data/graph/refereed.csv.gz, a
+  build-loaded table (the key log has no refereeing predicate); never SUPERVISED. Report: REFEREED, refereed_*;
 - relations from the log's claims: `AUTHORED`, `EDITED`, `SUPERVISED` (Person -> Work), `PUBLISHED_AS` and
   `REVIEWS` (Work -> Work: a review and the book it reviews), with the claim key and its resolution; claims
   whose endpoints do not resolve to one key each are left out and counted;
@@ -174,6 +176,10 @@ CR26_TYPE = {'journal-article': 'article', 'book': 'book', 'monograph': 'book', 
              'reference-book': 'book', 'book-chapter': 'chapter', 'dissertation': 'thesis', 'proceedings-article': 'article',
              'posted-content': 'preprint', 'dataset': 'dataset'}
 AFFILIATIONS = ROOT / 'data/graph/affiliations.csv.gz'  # scripts/export_affiliations.py (dated person -> institution)
+# 2026-11-16 (scripts/key_thesis_round.py; loader 2026-11-27): referees ('Gutachter', MARC 700 $e) of DNB theses whose
+# GND id reaches a key; person and thesis as anchors, resolved here. Not SUPERVISED: a referee examined the thesis, a
+# supervisor directed it (referee and opponent are their own edge types).
+REFEREED_TABLE = ROOT / 'data/graph/refereed.csv.gz'
 CITED = ROOT / 'data/graph/cited-works'   # scripts/export_cited_works.py (2026-11-10): works.csv.gz, cites*.csv.gz,
                                           # authors.csv.gz, report.json (the corpus's citation count)
 WORK_PEOPLE = ROOT / 'data/graph/work-people'   # scripts/link_work_people.py (2026-11-11): printed reviewers, JSTOR
@@ -1159,6 +1165,30 @@ def review_book_nodes(state, types, works, wi, unkeyed, resolve, report, path=RE
     return out
 
 
+def refereed_edges(state, types, report, path=REFEREED_TABLE):
+    """REFEREED (Person -> Work) from data/graph/refereed.csv.gz (2026-11-16 thesis round; loader 2026-11-27): DNB
+    thesis referees ('Gutachter') whose GND id reaches a key. `person` (an anchor, e.g. gnd:) and `thesis`
+    (diss-thesis:) are resolved through the log; a row whose person is not one person key or whose thesis is not one
+    work key is left out and counted (refereed_unresolved). One edge per (person, thesis); repeats are counted
+    (refereed_duplicate_rows). A referee is not a supervisor: SUPERVISED is never
+    read or written here, and a person who both supervised and refereed a thesis has both edges."""
+    if not path.exists():
+        return []
+    out = {}
+    with gzip.open(path, 'rt', newline='', encoding='utf-8') as f:
+        for r in csv.DictReader(f):
+            pk, wk = state.lookup(r['person']), state.lookup(r['thesis'])
+            if len(pk) != 1 or len(wk) != 1 or types.get(pk[0]) != 'person' or types.get(wk[0]) != 'work':
+                report['refereed_unresolved'] += 1
+                continue
+            if (pk[0], wk[0]) in out:
+                report['refereed_duplicate_rows'] += 1
+                continue
+            out[pk[0], wk[0]] = {'from': pk[0], 'to': wk[0], 'source': r['source'], 'role_text': r['role_text'],
+                                 'record': r['dnb_id']}
+    return list(out.values())
+
+
 def crossref_slice_reviews(state, types, works, wi, unkeyed, resolve, report, path=CROSSREF_SLICE_REVIEWS,
                            tag='crossref_slice_reviews'):
     """Crossref reviews of book nodes the key log does not hold (data/graph/crossref-slice-reviews.csv.gz; 2026-11-25).
@@ -1623,7 +1653,7 @@ def main():
                             UNKEYED_INST, PID_ADVISORS, CROSSREF_SLICE_REVIEWS, REVIEWED_WRONG) if p.exists()]
     if os.environ.get('BUILD_PASS5_OFF'):          # a baseline build without the pass-five layers (check builds only)
         prize_files, p5_files = [], []
-    require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS) if p.exists()] + crossref_parts + article_parts
+    require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS, REFEREED_TABLE) if p.exists()] + crossref_parts + article_parts
                     + cr26_files
                     + ([] if args.untracked_ok else cited_files + edition_files + jc_files + wp_files + aw_files + fact_files
                        + pass4_files + no_files + prize_files + p5_files + [p for p in PLACE_FILES if p.exists()] + ([SCORED_LINKS] if SCORED_LINKS.exists() else []) + ([CLASSIFIED_LINKS] if CLASSIFIED_LINKS.exists() else [])
@@ -2614,6 +2644,8 @@ def main():
         ('from', s), ('to', s), ('source', s), ('first_year', pa.int32()), ('last_year', pa.int32()), ('n', pa.int32()),
         ('rank', s), ('department', s), ('kind', s)]))
     report['AFFILIATED_WITH_by_source_kind'] = dict(Counter(f"{v['source']}:{v['kind']}" for v in aff.values()))
+    report['REFEREED'] = write('refereed', refereed_edges(state, types, report), pa.schema([
+        ('from', s), ('to', s), ('source', s), ('role_text', s), ('record', s)]))
     report['POSSIBLY_SAME'] = write('possibly_same', [{'from': a, 'to': b, 'likelihood': l} for (a, b), l in sorted(possible.items())],
                                     pa.schema([('from', s), ('to', s), ('likelihood', s)]))
     report['POSSIBLY_SAME_very_likely'] = sum(1 for l in possible.values() if l == 'very_likely')
@@ -2837,6 +2869,7 @@ def load_db(report):
                      'source STRING, state STRING, role STRING, role_basis STRING, score DOUBLE, n_claims INT32, claims STRING, '
                      'all_claims STRING[])')
     conn.execute('CREATE REL TABLE SUPERVISED(FROM Person TO Work, claim STRING, resolution STRING)')
+    conn.execute('CREATE REL TABLE REFEREED(FROM Person TO Work, source STRING, role_text STRING, record STRING)')
     conn.execute('CREATE REL TABLE PUBLISHED_AS(FROM Work TO Work, claim STRING, resolution STRING)')
     conn.execute('CREATE REL TABLE REVIEWS(FROM Work TO Work, claim STRING, resolution STRING, evidence STRING, source STRING)')
     conn.execute('CREATE REL TABLE SAME_WORK(FROM Work TO Work, basis STRING)')
@@ -2863,7 +2896,7 @@ def load_db(report):
                         ('PUBLISHED_AS', 'published_as'), ('REVIEWS', 'reviews'), ('SAME_WORK', 'same_work'), ('PART_OF', 'part_of'), ('EDITOR_OF', 'editor_of'), ('REVIEWED', 'reviewed'), ('ADVISED', 'advised'),
                         ('COAUTHORED', 'coauthored'), ('COEDITED', 'coedited'),
                         ('AWARDED_BY', 'awarded_by'), ('POSSIBLY_SAME', 'possibly_same'), ('AFFILIATED_WITH', 'affiliated_with'),
-                        ('CITES', 'cites'), ('CONTRIBUTED', 'contributed')):
+                        ('CITES', 'cites'), ('CONTRIBUTED', 'contributed'), ('REFEREED', 'refereed')):
         conn.execute(f"COPY {table} FROM '{OUT / (file + '.parquet')}'")
     if (OUT / 'edition_of.parquet').exists():
         conn.execute(f"COPY EDITION_OF FROM '{OUT / 'edition_of.parquet'}'")
