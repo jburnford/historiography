@@ -39,6 +39,9 @@ EXPLORER = ROOT / 'build/graph/explorer.duckdb'
 OUT_BOOKS = ROOT / 'data/graph/crossref-recent-books.csv.gz'
 OUT_REVIEWS = ROOT / 'data/graph/crossref-recent-book-reviews.csv.gz'
 N_CITES = 3
+# Owner's decision of 2026-11-27: the books whose only route is an ORCID on one person key (371; held on 2026-11-26
+# because 10 of 33 sampled were history) ARE written (routes = orcid). Set False to reproduce the 2026-11-26 table.
+INCLUDE_ORCID_ONLY = True
 ROUND_NAME = 'crossref-recent-books-2026-11-26'
 SOURCE = 'crossref-2026-03-data-file'
 BOOK_COLS = ['doi', 'title', 'subtitle', 'year', 'publisher', 'type', 'isbns', 'contributors', 'orcid_keys', 'routes',
@@ -117,8 +120,12 @@ def main():
     db.execute(f"ATTACH '{EXPLORER}' AS g (READ_ONLY)")
     # twins the spark side could not see: graph book / other nodes (volumes, ORCID / OpenAlex works) with no family
     # names, under the same main title within a year (2026-11-26 audit draw: 'Vor dem Ende', 'Handbook on Climate Mobility')
+    # the graph may already hold this layer's own book nodes (a build after 2026-11-26): they are not twins, not
+    # reviewed-elsewhere books and not 'graph books before' -- left out of every graph check by their DOI keys
+    db.execute('CREATE TEMP TABLE own(key VARCHAR)')
+    db.execute('INSERT INTO own SELECT unnest(?)', [sorted({f"doi:{r['doi']}" for rs in recs.values() for r in rs})])
     gt, gf = defaultdict(set), set()
-    for lab, y in db.execute("""SELECT label, year FROM g.nodes WHERE type = 'work' AND kind IN ('book', 'other')
+    for lab, y in db.execute("""SELECT label, year FROM g.nodes WHERE type = 'work' AND kind IN ('book', 'other') AND key NOT IN (SELECT key FROM own)
                                 AND label IS NOT NULL""").fetchall():
         t = lab.split(' / ')[0]
         if y is not None and y >= 2014:
@@ -150,7 +157,8 @@ def main():
     db.executemany('INSERT INTO d VALUES (?)', [(x,) for x in okd])
     reviewing = defaultdict(set)        # review DOI -> graph books it already REVIEWS
     for doi, book in db.execute("""SELECT d.doi, r."to" FROM d JOIN g.anchors a ON a.anchor = 'doi:' || d.doi
-                                   JOIN g.e_reviews_f r ON r."from" = a.key""").fetchall():
+                                   JOIN g.e_reviews_f r ON r."from" = a.key
+                                   WHERE r."to" NOT IN (SELECT key FROM own)""").fetchall():
         reviewing[doi].add(book)
     for r in rows(PREV):
         reviewing[r['doi'].lower()].add(r['book'])
@@ -242,7 +250,7 @@ def main():
     out, revrows, orcid_only = [], [], []
     for c in sorted(routes):
         rs = sorted(routes[c])
-        if rs == ['orcid']:     # audit 2026-11-26: 10 of 33 ORCID-only books were history; listed apart, not loaded
+        if rs == ['orcid'] and not INCLUDE_ORCID_ONLY:     # audit 2026-11-26: 10 of 33 ORCID-only books were history; listed apart, not loaded
             orcid_only.append(dict(cluster=c, doi=f"doi:{books[c]['rep']}", year=books[c]['year'],
                                    orcid_keys=books[c]['orcid_keys'],
                                    title=next((r['title'] for r in recs[c] if r['doi'] == books[c]['rep']), '')))
@@ -295,7 +303,8 @@ def main():
              ['doi', 'seg', 'cluster', 'review_title', 'journal', 'review_year', 'reviewers', 'stratum', 'eq', 'reason'])
     # graph books by year, before (explorer) and the books written here
     for y, n_all, n_keyed in db.execute("""SELECT year, count(*), count(*) FILTER (WHERE resolution <> 'unkeyed') FROM g.nodes
-                                           WHERE type = 'work' AND kind = 'book' AND year BETWEEN 2016 AND 2026
+                                           WHERE key NOT IN (SELECT key FROM own) AND
+                                           type = 'work' AND kind = 'book' AND year BETWEEN 2016 AND 2026
                                            GROUP BY 1 ORDER BY 1""").fetchall():
         report[f'graph books by year {y} (all / keyed)'] = f'{n_all} / {n_keyed}'
     rep = {k: report[k] for k in sorted(report)}

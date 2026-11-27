@@ -1,9 +1,11 @@
 # Crossref recent books (2016-2026) into the linked layer (2026-11-26). Linked layer only, nothing in the key log
 
-**Result:** 10,966 Crossref books of 2016-2026 that the graph lacked, in `data/graph/crossref-recent-books.csv.gz`
-(one `doi:` node per book, 2,359 with alternate DOIs). They bring 13,754 review→book links in
+**Result:** 11,337 Crossref books of 2016-2026 that the graph lacked, in `data/graph/crossref-recent-books.csv.gz`
+(one `doi:` node per book). 10,966 entered on 2026-11-26; 371 ORCID-only books were added on 2026-11-27 by the owner's
+decision (`INCLUDE_ORCID_ONLY = True` in the builder; set it False to rebuild the 2026-11-26 table). They bring 13,754 review→book links in
 `data/graph/crossref-recent-book-reviews.csv.gz` (13,733 review records). That file has the columns of
-`data/graph/crossref-slice-reviews.csv.gz`. Book ORCID credits: 22, on 19 books. Builder: `scripts/crossref_recent_books_table.py`.
+`data/graph/crossref-slice-reviews.csv.gz`. Book ORCID credits: 444 contributor ORCIDs on 359 books are on exactly one person key in the key log of
+2026-11-27 (`build/keylog-state.sqlite`); the loader re-checks this at build time. Builder: `scripts/crossref_recent_books_table.py`.
 Loader: `scripts/crossref_recent_books.py` (test `tests/test_crossref_recent_books.py`). The two lines it needs in
 `scripts/build_graph.py` are at the end of this file. **Not built.** Every number below comes from
 `build/graph/explorer.duckdb` of 2026-11-25 and this round's tables, not from a build.
@@ -42,8 +44,8 @@ years after the book.
 | review + cites | 209 | 209 |
 | ORCID + review | 6 | 6 |
 | ORCID + cites | 2 | 2 |
-| ORCID only | 371 | **0** (listed in `orcid-only-books.csv.gz`; see the audit) |
-| **total** | 11,337 | **10,966** |
+| ORCID only | 371 | 371 (added 2026-11-27; held on 2026-11-26, see the audit) |
+| **total** | 11,337 | **11,337** |
 
 By route, counting overlaps: review 10,505; cites 670; ORCID 379. Overlaps are small (217 books on two routes, none on
 all three).
@@ -54,9 +56,9 @@ slice, which also holds the non-history journals, the curve was 69,509 / 25,085 
 **N = 3**. At n = 1 and n = 2 a reading of 25 books each still showed many books from other fields (animal models,
 weather prediction, linguistics). Even at N = 3, 4 of 33 sampled cites-route books were outside history (see the audit).
 
-**Tracked, not linked:** 3,693 written books print a contributor name, without an ORCID, that equals the label of
+**Tracked, not linked:** 3,759 written books (2026-11-27 run, person labels of that day's explorer) print a contributor name, without an ORCID, that equals the label of
 exactly one person key (folded "given family"; LC "Family, Given, dates" turned round). This is for a later name round.
-No name-only credit was made. 1,715 books had an ORCID on one person key. Their credits (22 on 19 written books) are the
+No name-only credit was made. 1,715 books had an ORCID on one person key. Their credits (444 on 359 written books, key log of 2026-11-27) are the
 only person links this round makes.
 
 ## Method
@@ -129,8 +131,8 @@ graph title-twin rule, the earlier-edition rule and the ORCID-only cut: 34 revie
 
 The ORCID route is not a history test: an ORCID that signed one history-journal record also brings that person's
 epidemiology, conference proceedings and economics books. A higher threshold on the person's history-journal records
-did not separate history from non-history in the sample. So **ORCID-only books are not written**: 371 of them are in
-`orcid-only-books.csv.gz` for the owner. The same draw found the *Lost Unicorns* twin and the McConville reissue; both
+did not separate history from non-history in the sample. So on 2026-11-26 the 371 ORCID-only books were held. On 2026-11-27 the
+owner decided to add them (routes = orcid); they bring no review links (none of them has a matching review). The same draw found the *Lost Unicorns* twin and the McConville reissue; both
 rules above came from these finds.
 
 **100 random review→book links:** **99/100 right**. Row 24 is wrong: Art History 2022 "All that Glitters Is Not Gold"
@@ -189,5 +191,8 @@ Spark intermediates the owner may remove (all under `/mnt/data/jic823/tools/cros
     linked['EDITED'] += rbk_edited                             # right after `linked['EDITED'] = list(linked.get('EDITED', []))`
 
 The loader appends REVIEWS rows to `rb_rows` and AUTHORED credits to `csr_credits`, which build_graph already merges.
-It honours `BUILD_PASS5_OFF` and stops on an untracked input, as build_graph does. Report keys: `crossref_recent_books_*`
+It honours `BUILD_PASS5_OFF` and stops on an untracked input, as build_graph does. The builder leaves this layer's own
+`doi:` nodes out of its graph checks, so it reproduces the table from an explorer.duckdb built with the layer loaded.
+Expected in the next build: `crossref_recent_books_rows` 11,337, `crossref_recent_books_nodes_added` 11,337 (no book
+DOI is a key-log anchor; less any DOI another layer has already made a node), REVIEWS +13,754. Report keys: `crossref_recent_books_*`
 and `crossref_recent_book_reviews_*`.
