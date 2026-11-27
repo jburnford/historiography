@@ -1,0 +1,94 @@
+{
+ "basis": "Place-nodes demo probes (2026-11-18): four standard books on Sri Lanka and Saskatchewan show no author because the book is an unkeyed node and its LC main-entry author has no person key (the 2026-11-10 two-layer rule mints a cited work's author only with an LC authority and 2+ citing theses). Class count in unlinked-lc-authors.json: of 487,906 graph books with an LC place heading, 139,489 have no AUTHORED/EDITED row; 120,188 of them have an LC 100 main entry; 95,400 resolve to an LC authority that is on no person key (82,902 distinct authorities), 79 to an authority on one key (credits the LC catalogue route should make), 24,709 do not resolve to one authority. NOT APPLIED: a proposal for the user. The general fix is the user's call: mint people from LC main entries of books with a place heading (82,902 authorities, mostly not historians), or show the LC main-entry name on unkeyed books as an unlinked printed author on place pages without minting. [2026-11-27: dropped because Sol proposal 01 (applied first) already mints the person and credit: Abeyasinghe, Tikiri] [Archer person mint dropped: an earlier file in the order puts lcnaf:n81097729 on p-84788; his work and credit kept] [Archer work and credit dropped too: the credit already exists as c-2825185 after the earlier files]",
+ "decided_by": "review",
+ "ops": [
+  {
+   "event": "mint",
+   "key": "new:w0",
+   "type": "work",
+   "label": "Robe and plough : monasticism and economic interest in early medieval Sri Lanka",
+   "resolution": "recorded",
+   "anchors": [
+    "lccn:78026090"
+   ],
+   "aliases": [],
+   "members": [
+    "kind:book",
+    "year:1979"
+   ],
+   "basis": "book on the Sri Lanka / Saskatchewan place pages with no linked author; LC record 78026090, 100 main entry Guṇavardhana, Raṇavīra (authority n84207799)"
+  },
+  {
+   "event": "mint",
+   "key": "new:p0",
+   "type": "person",
+   "label": "Guṇavardhana, Raṇavīra",
+   "resolution": "established",
+   "anchors": [
+    "lcnaf:n84207799"
+   ],
+   "aliases": [],
+   "members": [],
+   "basis": "LC name authority of the author: LC record 78026090, 100 main entry Guṇavardhana, Raṇavīra (authority n84207799)"
+  },
+  {
+   "event": "mint",
+   "key": "new:c0",
+   "type": "claim",
+   "label": "",
+   "resolution": "recorded",
+   "anchors": [
+    "lc-authored:78026090:n84207799"
+   ],
+   "relation": {
+    "subject": "lcnaf:n84207799",
+    "predicate": "authored",
+    "object": "lccn:78026090"
+   }
+  },
+  {
+   "event": "mint",
+   "key": "new:w3",
+   "type": "work",
+   "label": "Politics in Sri Lanka, 1947–1979",
+   "resolution": "recorded",
+   "anchors": [
+    "doi:10.1007/978-1-349-17718-9"
+   ],
+   "aliases": [],
+   "members": [
+    "kind:book",
+    "year:1979"
+   ],
+   "basis": "book on the Sri Lanka / Saskatchewan place pages with no linked author; Springer/Palgrave book DOI record names A. Jeyaratnam Wilson as author; LC authority n83064512"
+  },
+  {
+   "event": "mint",
+   "key": "new:p3",
+   "type": "person",
+   "label": "Wilson, A. Jeyaratnam",
+   "resolution": "established",
+   "anchors": [
+    "lcnaf:n83064512"
+   ],
+   "aliases": [],
+   "members": [],
+   "basis": "LC name authority of the author: Springer/Palgrave book DOI record names A. Jeyaratnam Wilson as author; LC authority n83064512"
+  },
+  {
+   "event": "mint",
+   "key": "new:c3",
+   "type": "claim",
+   "label": "",
+   "resolution": "recorded",
+   "anchors": [
+    "doi-authored:10.1007/978-1-349-17718-9:n83064512"
+   ],
+   "relation": {
+    "subject": "lcnaf:n83064512",
+    "predicate": "authored",
+    "object": "doi:10.1007/978-1-349-17718-9"
+   }
+  }
+ ]
+}
