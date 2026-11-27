@@ -285,11 +285,19 @@ def main():
                              *(RELEASE / f'{n}.csv.gz' for n in ('dissertations', 'works', 'citations'))]},
         'outputs': {name: hashlib.sha256((DEST / name).read_bytes()).hexdigest() for name in outputs}}
     previous = DEST.parent / 'manifest.json'
-    if previous.exists() and 'canon_map' in (prior := json.loads(previous.read_text())):
-        manifest['canon_map'] = prior['canon_map']   # scripts/export_canon_map.py owns this entry
+    if previous.exists():
+        manifest.update(kept_entries(json.loads(previous.read_text())))
     (DEST.parent / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
     print(f'Exported {len(index):,} sources, {len(theses):,} dated dissertations in {len(outputs)} assets; '
           f'{sum((DEST / name).stat().st_size for name in outputs) / 1e6:.2f} MB total.')
+
+
+KEPT = ('canon_map', 'canon_map_scopes')  # owned by scripts/export_canon_map.py (sub-graph maps since 2026-11-03)
+
+
+def kept_entries(prior):
+    """The manifest entries another script owns, carried over from the previous manifest unchanged."""
+    return {k: prior[k] for k in KEPT if k in prior}
 
 
 if __name__ == '__main__':

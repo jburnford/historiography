@@ -49,6 +49,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from network_layout import EUROPE  # noqa: E402
 from render_region_comparison import proper  # noqa: E402
+from dissertation_person_unpool import load_overrides  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 D = ROOT / 'data/field-research/dissertation-citations-2026-10-11'
@@ -70,32 +71,58 @@ def region(country):
     return 'EU' if country in EUROPE else 'OTHER'
 
 
-def is_person(key, qid):
+REVIEWED_QID = ('title_verified', 'reviewed_')  # QID tiers checked against titles or by a reviewer
+
+
+def is_person(key, qid, basis=''):
+    """A 'surname|given' key that is not a stray token or a body. An initial-only key ('taylor|a', 'smith|r')
+    gathers namesakes and counts only with a reviewed or title-verified QID (2026-11-21: a catalogue match
+    alone had put 'Taylor, A' on the Britain map)."""
     if '|' not in key:
         return False
     surname, given = key.split('|', 1)
     words = set(surname.split()) | set(given.split()) | {surname, given}
     if words & NOT_PEOPLE or len(surname) < 2 or any(ch.isdigit() for ch in surname):
         return False
-    return bool(qid) or len(given.replace(' ', '')) > 1
+    if all(len(g) == 1 for g in given.split()):
+        return bool(qid) and (basis or '').startswith(REVIEWED_QID)
+    return len(given.replace(' ', '')) > 1
+
+
+def crosswalk_rows():
+    """(old graph key, new graph key) pairs from the renamed-key crosswalks: 2026-11-03 (split-key fixes) and
+    2026-11-21 (anchors whose graph key a rebuild or the pool split gave to someone else; canon_anchor_crosswalk.py)."""
+    out = []
+    for name in ('person-key-crosswalk-2026-11-03.csv', 'person-key-crosswalk-2026-11-21.csv'):
+        if (D / name).exists():
+            with (D / name).open(newline='', encoding='utf-8') as f:
+                out += [(r['old_key'], r['new_key'], name) for r in csv.DictReader(f)]
+    return out
 
 
 def identities():
     """Graph person key -> key-log person (data/identifiers): one node per person where the graph still splits
     one ('Woodward, C. Vann' / 'Woodward, Comer Vann'). Keys renamed on 2026-11-03 reach the log through
-    their old keys (person-key-crosswalk-2026-11-03.csv) until it anchors the new ones."""
+    their old keys (person-key-crosswalk-2026-11-03.csv) until it anchors the new ones. An anchor in the
+    2026-11-21 crosswalk moves: its old graph key now names someone else, so the old key leaves the person."""
     from identifiers import State
     state = State.load(ROOT / 'data/identifiers')
     ident = {a.split(':', 1)[1]: k for a, k in state.anchor.items() if a.startswith('diss-person:')}
-    renamed = defaultdict(set)
-    crosswalk = D / 'person-key-crosswalk-2026-11-03.csv'
-    if crosswalk.exists():
-        for r in csv.DictReader(crosswalk.open(newline='', encoding='utf-8')):
-            if r['old_key'] in ident:
-                renamed[r['new_key']].add(ident[r['old_key']])
+    renamed, moved = defaultdict(set), {}
+    for old, new, source in crosswalk_rows():
+        if source.endswith('11-21.csv'):
+            if old in ident:
+                moved[new] = ident[old]
+        elif old in ident:
+            renamed[new].add(ident[old])
     for new, found in renamed.items():
         if new not in ident and len(found) == 1:
             ident[new] = found.pop()
+    for old, new, source in crosswalk_rows():
+        if source.endswith('11-21.csv') and new in moved:
+            ident.pop(old, None)
+    for new, person in moved.items():
+        ident[new] = person
     return ident
 
 
@@ -164,17 +191,32 @@ def main():
     # One node per key-log person: graph keys the log anchors to the same person count as one, under the
     # most-cited key (theses counted once). A shared QID is kept where the merged keys agree on it.
     ident = identities()
+    # Keys the 2026-11-17 build pooled through a shared QID, split back (dissertation_person_unpool.py): their
+    # works' authored rows move, and their display names and QIDs come from the split.
+    moved, unpooled = load_overrides(D)
+    print(f'{len(moved):,} authored rows moved by the pool split, {len(unpooled):,} people renamed', file=sys.stderr)
+
+    def people_rows():
+        seen = set()
+        for r in csv.DictReader((D / 'cited-people.csv').open(newline='', encoding='utf-8')):
+            seen.add(r['person_key'])
+            u = unpooled.get(r['person_key'])
+            yield {**r, 'name': u['name'], 'qid': u['qid'], 'qid_basis': u['qid_basis']} if u else r
+        for k, u in unpooled.items():
+            if k not in seen:
+                yield dict(person_key=k, name=u['name'], qid=u['qid'], qid_basis=u['qid_basis'],
+                           cited_by_dissertations=u['cited_by_dissertations'])
     rows, group = {}, defaultdict(list)
-    for r in csv.DictReader((D / 'cited-people.csv').open(newline='', encoding='utf-8')):
+    for r in people_rows():
         k = r['person_key']
-        if k in ident or (int(r['cited_by_dissertations']) >= args.floor * 0.8 and is_person(k, r['qid'])):
+        if k in ident or (int(r['cited_by_dissertations']) >= args.floor * 0.8 and is_person(k, r['qid'], r['qid_basis'])):
             rows[k] = r
             # an initial-only key ('thompson|e': E. P., E. A. and E. M. Thompson) gathers namesakes; it never joins
             initial_only = all(len(g) == 1 for g in k.partition('|')[2].split())
             group[k if initial_only else ident.get(k, k)].append(k)
     people, alias = {}, {}
     for members in group.values():
-        persons = [k for k in members if is_person(k, rows[k]['qid'])]
+        persons = [k for k in members if is_person(k, rows[k]['qid'], rows[k]['qid_basis'])]
         if not persons or sum(int(rows[k]['cited_by_dissertations']) for k in members) < args.floor * 0.8:
             continue
         rep = max(persons, key=lambda k: (int(rows[k]['cited_by_dissertations']), k))
@@ -190,7 +232,7 @@ def main():
     by_thesis = defaultdict(set)
     with gzip.open(D / 'authored.csv.gz', 'rt', encoding='utf-8', newline='') as f:
         for r in csv.DictReader(f):
-            pk = alias.get(r['person_key'])
+            pk = alias.get(moved.get((r['work_id'], r['person_key']), r['person_key']))
             if pk and r['work_id'] in work_theses:
                 for d in work_theses[r['work_id']]:
                     by_thesis[d].add(pk)

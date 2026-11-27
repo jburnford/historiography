@@ -6,7 +6,7 @@ from copy import deepcopy
 import json
 from pathlib import Path
 import unittest
-from scripts.build_dissertation_site import add_reviewed_sources, validate_links
+from scripts.build_dissertation_site import add_reviewed_sources, kept_entries, validate_links
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPORT = ROOT / 'data/dissertation-layer'
@@ -39,6 +39,14 @@ class DissertationExportTests(unittest.TestCase):
                     self.assertIn(row['via'], ('bibliography', 'notes'))
                 for ref in [*(r[0] for r in source['rows']), *source['works']]:
                     self.assertIn(str(ref), data['labels'])
+
+    def test_rebuild_keeps_every_canon_map_manifest_entry(self):
+        # 2026-11-21: the reading export rebuilt the manifest keeping `canon_map` but dropping `canon_map_scopes`
+        prior = json.loads((EXPORT / 'manifest.json').read_text())
+        kept = kept_entries(prior)
+        self.assertEqual(set(kept), {'canon_map', 'canon_map_scopes'})
+        self.assertEqual(kept['canon_map_scopes'], prior['canon_map_scopes'])
+        self.assertEqual(kept_entries({'outputs': {}}), {})
 
     def test_canon_map_is_pinned_aggregate_and_links_resolve(self):
         layer = json.loads((EXPORT / 'manifest.json').read_text())

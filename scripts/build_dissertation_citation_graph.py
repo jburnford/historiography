@@ -335,6 +335,291 @@ def resolve_initials(persons):
     return alias
 
 
+def initial_only(key):
+    """'taylor|a', 'thompson|e p': no full given name in the key."""
+    return '|' in key and all(len(g) == 1 for g in key.split('|', 1)[1].split())
+
+
+def _spelling(w):
+    w = w.replace('ph', 'f')
+    w = w[:1] + w[1:].replace('h', '').replace('v', 'f')
+    return re.sub(r'(.)\1', r'\1', w.replace('th', 't'))
+
+
+def same_first_name(fa, fb):
+    """One first name in two forms: equal, a listed nickname ('bill'/'william'), a spelling ('stefan'/'stephan',
+    'steven'/'stephen', 'jon'/'john', 'antony'/'anthony', 'gary'/'garry'), a short form of three or more letters
+    ('tim'/'timothy', 'valentin'/'valentine') or a pet form in -y/-ie sharing three letters ('toby'/'tobias',
+    'gerry'/'gerard')."""
+    if NICKNAMES.get(fa, fa) == NICKNAMES.get(fb, fb) or _spelling(fa) == _spelling(fb):
+        return True
+    lo, hi = sorted((fa, fb), key=len)
+    if len(lo) >= 3 and hi.startswith(lo):
+        return True
+    stem = lo[:-2] if lo.endswith('ie') else lo[:-1] if lo.endswith('y') else None
+    stem = stem and re.sub(r'(.)\1', r'\1', stem)
+    return bool(stem) and len(stem) >= 3 and hi.startswith(stem)
+
+
+def given_compatible(a, b):
+    """Whether two person keys can name one person: the same first given name (``same_first_name``), or an initial
+    matching the other's first letter, and no conflicting middle initials (checked only within one surname: a
+    changed surname can turn a maiden name into a middle initial, 'mann|susan a' / 'trofimenkoff|susan m').
+
+    'nye|mary' and 'nye|david e', 'downs|laura' and 'downs|gregory p' cannot (2026-11-21: a QID attached to a
+    key through one work pooled such keys, and the pooled key printed the other person's name)."""
+    if '|' not in a or '|' not in b:
+        return a == b
+    ga, gb = a.split('|', 1)[1].split(), b.split('|', 1)[1].split()
+    if not ga or not gb:
+        return True
+    fa, fb = ga[0], gb[0]
+    if len(fa) > 1 and len(fb) > 1:
+        if not same_first_name(fa, fb):
+            return False
+    elif fa[0] != fb[0]:
+        return False
+    same_surname = a.split('|', 1)[0] == b.split('|', 1)[0]
+    return not (same_surname and len(ga) > 1 and len(gb) > 1 and ga[1][0] != gb[1][0])
+
+
+def names_bridge(a, b, names):
+    """A printed spelling carries both keys' first given names ('Appiah, Kwame Anthony' for 'appiah|kwame' and
+    'appiah|anthony'; 'Moses, A. Dirk' for 'moses|dirk' and 'moses|anthony'): one written out, the other written
+    out or as its initial, in a spelling of at most three given names."""
+    fa, fb = a.split('|', 1)[1].split()[0], b.split('|', 1)[1].split()[0]
+    for n, c in names.items():
+        if c <= 0 or ',' not in n:
+            continue
+        words = fold(n.split(',', 1)[1]).split()
+        if len(words) > 3:
+            continue
+        full = {w for w in words if len(w) > 1}
+        inits = {w for w in words if len(w) == 1}
+        if (fa in full and (fb in full or fb[0] in inits)) or (fb in full and fa[0] in inits):
+            return True
+    return False
+
+
+TITLE_DEBRIS = re.compile(r'\.\s+[A-ZÀ-Ý][a-zà-ÿ]{2,}|\.\s+[‘\'’]|\d{4}|[“”"―‖:(]')   # quoted titles: 2026-11-26
+
+
+def display_name(key, names):
+    """A person key's display name: its most printed spelling among those that name this key's person.
+
+    Spellings of the key's own people come first: a spelling whose given names conflict with the key's
+    ('Nye, Mary Jo' on 'nye|david e', when a merge pooled two people) or that carries title debris is used
+    only if nothing else is printed. Among the rest a full first given name beats initials ('Brown, Callum G'
+    over 'Brown, C'; 'Garnsey, Peter' over 'Garnsey, P'; 2026-11-21), then the most printed, preferring a surname
+    not in capitals (ABNT 'BOURDIEU, Pierre'; 2026-11-03)."""
+    if len(names) == 1:
+        return next(iter(names))
+
+    def rank(n):
+        k, _ = person_key(n, ',' in n)
+        own = bool(k) and (k == key or (k.split('|')[0] == key.split('|')[0] and given_compatible(k, key)))
+        clean = not TITLE_DEBRIS.search(n.split(',', 1)[-1])
+        full = name_detail(n) == 2 if ',' in n else bool(k) and not initial_only(k)
+        return (names[n] > 0, own and clean, full, not n.split(',')[0].isupper(), names[n])
+    return max(names, key=rank)
+
+
+def assign_work_authors(works, persons, authorities, add_person, person_ids, guard=True):
+    """Each work's authors from its fullest citation; catalogue full names and identifiers for its first author.
+
+    "Miller, James Rodger" in one bibliography names the "Miller, J.R." of every other citation of that work.
+    Title evidence from catalogues (link_cited_works_to_authorities.py) can supply the full name and identifiers
+    of a work's first author. With ``guard`` (2026-11-21) a catalogue identity whose name has conflicting given
+    names ('W:downs|introduction|a', an 'Introduction' by Laura Downs, on the key of Gregory P. Downs) is not
+    attached: the build merges keys sharing a QID, so one such identity pooled two people. Returns the number
+    of identities refused."""
+    refused = 0
+    for wid, w in works.items():
+        best = max(w['author_variants'].items(), key=lambda kv: (name_detail(kv[0][0]) if kv[0] else 0, kv[1]))[0]
+        w['best'] = best
+        w['authors'] = [add_person(a, True if i == 0 else 'auto', 'cited_author') for i, a in enumerate(best)]
+        auth = authorities.get(wid)
+        if auth and w['authors'] and w['authors'][0] and '|' in w['authors'][0]:
+            sur = w['authors'][0].split('|')[0]
+            if auth.get('full_name') and name_detail(best[0]) < 2:
+                key, _ = person_key(auth['full_name'], 'auto')
+                if key and key.split('|')[0] == sur:
+                    persons[key]['names'][auth['full_name']] += 0
+                    persons[key]['roles']['cited_author'] += 1
+                    w['authors'][0] = key
+            if auth.get('identity'):
+                named = auth.get('full_name') or next(iter(auth.get('names') or []), '')
+                akey = person_key(named, 'auto')[0] if named else None
+                if guard and akey and '|' in akey and akey.split('|')[0] == sur and not given_compatible(akey, w['authors'][0]):
+                    refused += 1
+                else:
+                    pid = person_ids[w['authors'][0]]
+                    if auth['identity'].get('qid'):
+                        pid['qids'][auth['identity']['qid']] += 1
+                    pid['ids'] |= set(auth['identity']['ids'])
+        if w['authors'] and w['authors'][0]:
+            first = persons[w['authors'][0]]['names']
+            for variant in w['author_variants']:
+                if variant and variant[0] not in first and fold(variant[0].split(',')[0]) == w['authors'][0].split('|')[0]:
+                    first[variant[0]] += 0  # record the spelling as evidence without inflating counts
+    # Full middle names (2026-11-03). person_key ignores a full middle word, because in bibliographies
+    # it is as often a title word, so "THOMPSON, Edward Palmer" (ABNT style) keyed as 'thompson|edward'
+    # while "Thompson, E. P." keyed as 'thompson|edward p'. A work whose fullest spelling has a full
+    # middle name moves to the key with that middle initial, when such a cited person exists.
+    moved = 0
+    for wid, w in works.items():
+        k = w['authors'][0] if w['authors'] else None
+        if not k or '|' not in k or ' ' in k.split('|', 1)[1] or len(k.split('|', 1)[1]) < 2 or not w.get('best'):
+            continue
+        given = w['best'][0].split(',', 1)[1] if ',' in w['best'][0] else ''
+        toks = trim_given(re.sub(r'\s+', ' ', HONORIFIC.sub('', given)).strip(' ,.')).split()
+        if len(toks) < 2 or len(re.sub(r'[^A-Za-zÀ-ÿ]', '', toks[1])) < 2 or not toks[1][:1].isupper():
+            continue
+        target = f'{k} {fold(toks[1])[:1]}'
+        if target == k or not persons.get(target, {}).get('roles', {}).get('cited_author'):
+            continue
+        w['authors'][0] = target
+        persons[target]['roles']['cited_author'] += 1
+        persons[target]['names'][w['best'][0]] += 0
+        persons[k]['roles']['cited_author'] -= 1
+        moved += 1
+    for k in [k for k, p in persons.items() if p['roles'] and not +p['roles']]:
+        del persons[k]  # every work moved away
+    print(f'works moved to the key with their full middle name\'s initial: {moved}', flush=True)
+    if guard:
+        print(f'catalogue identities not attached (given names conflict with the work\'s author key): {refused}', flush=True)
+    return refused
+
+
+def resolve_people(persons, works, person_ids, out, guard=True, trace=None):
+    """Merge person keys: initials, misspelt surnames, then keys sharing one Wikidata QID. Returns (alias, tiers);
+    ``persons`` and ``person_ids`` are updated in place.
+
+    With ``guard`` (2026-11-21) a shared QID merges keys only when their given names agree (``given_compatible``)
+    and never an initial-only key: a QID that reached a key through one work or one name-driven match had
+    pooled 'nye|mary' into 'nye|david e', 'downs|laura' into 'downs|gregory p' and 'taylor|a' (mostly A. J. P.
+    Taylor) into 'taylor|alan'. User rule: an initial-only form never justifies a merge with a full-name person
+    except through the initials evidence of ``resolve_initials``. ``trace`` (a dict) records each alias's step."""
+    # Initial-only names join the single full-name person sharing surname and initial.
+    alias = resolve_initials(persons)
+    if trace is not None:
+        trace.update((k, 'initials') for k in alias)
+    for k, target in resolve_surname_variants(persons, works, alias).items():
+        if k not in alias and trace is not None:
+            trace[k] = 'surname_variant'
+        alias.setdefault(k, target)
+    # Wikidata grounding of cited people (ground_cited_people_wikidata.py), by tier.
+    tiers = {}
+    if (out / 'person-wikidata.jsonl').exists():
+        for line in (out / 'person-wikidata.jsonl').open():
+            try:
+                r = json.loads(line)
+            except json.JSONDecodeError:  # line still being written by a grounding run
+                continue
+            k = r['person'][2:]
+            if r.get('qid') and k in persons and not person_ids.get(k, {}).get('qids'):
+                person_ids[k]['qids'][r['qid']] += 1
+                tiers[k] = r['tier']
+    # Reviewed decisions (person-wikidata-decisions.csv) override automatic grounding.
+    if (out / 'person-wikidata-decisions.csv').exists():
+        with (out / 'person-wikidata-decisions.csv').open(newline='') as f:
+            for r in csv.DictReader(f):
+                k = r['person'][2:]
+                if k in persons and r['decision'] == 'accept':
+                    person_ids[k]['qids'] = Counter({r['qid']: 1})
+                    tiers[k] = 'reviewed_' + r['basis']
+                elif k in persons and r['decision'] == 'reject':
+                    person_ids[k]['qids'].pop(r['qid'], None)
+                    tiers.pop(k, None)
+    by_qid = defaultdict(list)
+    for k, pid in person_ids.items():
+        if len(pid['qids']) == 1 and k in persons:
+            by_qid[next(iter(pid['qids']))].append(k)
+    blocked = 0
+    for qid, keys in by_qid.items():
+        keys = [alias.get(k, k) for k in keys]
+        if not guard:
+            head = max(set(keys), key=lambda k: (len(k.split('|')[-1]), sum(persons[k]['roles'].values())))
+            for k in set(keys) - {head}:
+                alias[k] = head
+                if trace is not None:
+                    trace[k] = 'qid'
+            continue
+        heads = []
+        for k in sorted(set(keys), key=lambda k: (len(k.split('|')[-1]), sum(persons[k]['roles'].values()), k), reverse=True):
+            if initial_only(k):
+                blocked += len(set(keys)) > 1
+                continue
+            h = next((h for h in heads if given_compatible(h, k) or names_bridge(
+                h, k, persons[h]['names'] + persons[k]['names'])), None)
+            if h is None:
+                blocked += bool(heads)
+                heads.append(k)
+            else:
+                alias[k] = h
+                if trace is not None:
+                    trace[k] = 'qid'
+    if guard:
+        print(f'shared-QID merges refused (given names conflict, or an initial-only key): {blocked}', flush=True)
+    for k in list(alias):  # follow chains, stopping at any cycle
+        seen = {k}
+        while alias[k] in alias and alias[alias[k]] not in seen:
+            seen.add(alias[k])
+            alias[k] = alias[alias[k]]
+    for k in list(alias):
+        if alias.get(alias.get(k)) == k:  # two-way cycle: the more specific key stays a person
+            alias.pop(max((k, alias[k]), key=len), None)
+    for k, target in alias.items():
+        if k in person_ids:
+            person_ids[target]['qids'].update(person_ids[k]['qids'])
+            person_ids[target]['ids'] |= person_ids[k]['ids']
+        if k in tiers and target not in tiers:
+            tiers[target] = tiers[k]
+    for short, full in alias.items():
+        if short not in persons:
+            continue
+        persons[full]['names'].update(persons[short]['names'])
+        persons[full]['roles'].update(persons[short]['roles'])
+        del persons[short]
+    return alias, tiers
+
+
+def apply_person_splits(works, persons, person_ids, tiers, out):
+    """Reviewed splits of merged namesakes (person-splits.csv, 2026-10-23): named works move from a person
+    whose name key gathers several people (Richard White of Stanford, Toronto and Sydney) to a separate person.
+    Applied after every merge, so a split is never merged back. Draft rows from namesake_review_queue.py
+    (person-splits-drafts.csv) apply once marked 'accept'. Returns {('P:<old>', work id): 'P:<new>'}."""
+    rules = defaultdict(list)
+    for name, accepted_only in (('person-splits.csv', False), ('person-splits-drafts.csv', True)):
+        if not (out / name).exists():
+            continue
+        with (out / name).open(newline='', encoding='utf-8') as f:
+            for r in csv.DictReader(f):
+                if not accepted_only or r.get('decision', '').strip().lower() == 'accept':
+                    rules[r['person']].append((title_key(r['work_title']), r))
+    moves = {}
+    if not rules:
+        return moves
+    for wid, w in works.items():
+        k = w['authors'][0] if w['authors'] else None
+        base = next((p for p in rules if k and (k == p or k.startswith(p + ' '))), None)
+        if not base:
+            continue
+        tk = wid.split('|', 1)[1].removesuffix('|a') if '|' in wid else ''
+        hit = next((r for key, r in rules[base] if key and (tk == key or tk.startswith(key))), None)
+        if not hit:
+            continue
+        new = hit['new_person']
+        moves[(f'P:{k}', wid)] = f'P:{new}'
+        w['authors'][0] = new
+        persons[new]['names'][hit['new_name']] += 1
+        persons[new]['roles']['cited_author'] += 1
+        if hit.get('qid'):
+            person_ids[new]['qids'] = Counter({hit['qid']: 1})
+            tiers[new] = 'reviewed_split'
+    return moves
+
+
 def given_names(display):
     if ',' in display:
         return fold(display.split(',', 1)[1]).split()
@@ -634,61 +919,11 @@ def main():
                           section=' > '.join(e['section']), page=e['page'], kind=e['kind'],
                           **({'via': 'notes', 'citations': e.get('citations')} if e.get('from_notes') else {})))
 
-    # A work's authors come from its fullest citation: "Miller, James Rodger" in one
-    # bibliography names the "Miller, J.R." of every other citation of that work.
-    # Title evidence from catalogues (link_cited_works_to_authorities.py) can supply the
-    # full name and identifiers of a work's first author.
     authorities = {}
     if (out / 'work-authorities.jsonl').exists():
         authorities = {r['work_id']: r for r in map(json.loads, (out / 'work-authorities.jsonl').open())}
     person_ids = defaultdict(lambda: dict(qids=Counter(), ids=set()))
-    for wid, w in works.items():
-        best = max(w['author_variants'].items(), key=lambda kv: (name_detail(kv[0][0]) if kv[0] else 0, kv[1]))[0]
-        w['best'] = best
-        w['authors'] = [add_person(a, True if i == 0 else 'auto', 'cited_author') for i, a in enumerate(best)]
-        auth = authorities.get(wid)
-        if auth and w['authors'] and w['authors'][0] and '|' in w['authors'][0]:
-            sur = w['authors'][0].split('|')[0]
-            if auth.get('full_name') and name_detail(best[0]) < 2:
-                key, _ = person_key(auth['full_name'], 'auto')
-                if key and key.split('|')[0] == sur:
-                    persons[key]['names'][auth['full_name']] += 0
-                    persons[key]['roles']['cited_author'] += 1
-                    w['authors'][0] = key
-            if auth.get('identity'):
-                pid = person_ids[w['authors'][0]]
-                if auth['identity'].get('qid'):
-                    pid['qids'][auth['identity']['qid']] += 1
-                pid['ids'] |= set(auth['identity']['ids'])
-        if w['authors'] and w['authors'][0]:
-            first = persons[w['authors'][0]]['names']
-            for variant in w['author_variants']:
-                if variant and variant[0] not in first and fold(variant[0].split(',')[0]) == w['authors'][0].split('|')[0]:
-                    first[variant[0]] += 0  # record the spelling as evidence without inflating counts
-    # Full middle names (2026-11-03). person_key ignores a full middle word, because in bibliographies
-    # it is as often a title word, so "THOMPSON, Edward Palmer" (ABNT style) keyed as 'thompson|edward'
-    # while "Thompson, E. P." keyed as 'thompson|edward p'. A work whose fullest spelling has a full
-    # middle name moves to the key with that middle initial, when such a cited person exists.
-    moved = 0
-    for wid, w in works.items():
-        k = w['authors'][0] if w['authors'] else None
-        if not k or '|' not in k or ' ' in k.split('|', 1)[1] or len(k.split('|', 1)[1]) < 2 or not w.get('best'):
-            continue
-        given = w['best'][0].split(',', 1)[1] if ',' in w['best'][0] else ''
-        toks = trim_given(re.sub(r'\s+', ' ', HONORIFIC.sub('', given)).strip(' ,.')).split()
-        if len(toks) < 2 or len(re.sub(r'[^A-Za-zÀ-ÿ]', '', toks[1])) < 2 or not toks[1][:1].isupper():
-            continue
-        target = f'{k} {fold(toks[1])[:1]}'
-        if target == k or not persons.get(target, {}).get('roles', {}).get('cited_author'):
-            continue
-        w['authors'][0] = target
-        persons[target]['roles']['cited_author'] += 1
-        persons[target]['names'][w['best'][0]] += 0
-        persons[k]['roles']['cited_author'] -= 1
-        moved += 1
-    for k in [k for k, p in persons.items() if p['roles'] and not +p['roles']]:
-        del persons[k]  # every work moved away
-    print(f'works moved to the key with their full middle name\'s initial: {moved}', flush=True)
+    assign_work_authors(works, persons, authorities, add_person, person_ids)
     strict = {k[2:] for k, n in nodes.items() if n['type'] == 'Dissertation' and n['in_analysis']}
     country_of = {k[2:]: n['country'] for k, n in nodes.items() if n['type'] == 'Dissertation'}
     strict_by_country = Counter(country_of[d] for d in strict)
@@ -716,62 +951,7 @@ def main():
                           cited_as=dict(w['sides']), title_variants=len(w['titles']))
         for k in dict.fromkeys(a for a in w['authors'] if a):
             edges.append(dict(source=f'P:{k}', target=wid, type='AUTHORED'))
-    # Initial-only names join the single full-name person sharing surname and initial.
-    alias = resolve_initials(persons)
-    for k, target in resolve_surname_variants(persons, works, alias).items():
-        alias.setdefault(k, target)
-    # Wikidata grounding of cited people (ground_cited_people_wikidata.py), by tier.
-    tiers = {}
-    if (out / 'person-wikidata.jsonl').exists():
-        for line in (out / 'person-wikidata.jsonl').open():
-            try:
-                r = json.loads(line)
-            except json.JSONDecodeError:  # line still being written by a grounding run
-                continue
-            k = r['person'][2:]
-            if r.get('qid') and k in persons and not person_ids.get(k, {}).get('qids'):
-                person_ids[k]['qids'][r['qid']] += 1
-                tiers[k] = r['tier']
-    # Reviewed decisions (person-wikidata-decisions.csv) override automatic grounding.
-    if (out / 'person-wikidata-decisions.csv').exists():
-        with (out / 'person-wikidata-decisions.csv').open(newline='') as f:
-            for r in csv.DictReader(f):
-                k = r['person'][2:]
-                if k in persons and r['decision'] == 'accept':
-                    person_ids[k]['qids'] = Counter({r['qid']: 1})
-                    tiers[k] = 'reviewed_' + r['basis']
-                elif k in persons and r['decision'] == 'reject':
-                    person_ids[k]['qids'].pop(r['qid'], None)
-                    tiers.pop(k, None)
-    by_qid = defaultdict(list)
-    for k, pid in person_ids.items():
-        if len(pid['qids']) == 1 and k in persons:
-            by_qid[next(iter(pid['qids']))].append(k)
-    for qid, keys in by_qid.items():
-        keys = [alias.get(k, k) for k in keys]
-        head = max(set(keys), key=lambda k: (len(k.split('|')[-1]), sum(persons[k]['roles'].values())))
-        for k in set(keys) - {head}:
-            alias[k] = head
-    for k in list(alias):  # follow chains, stopping at any cycle
-        seen = {k}
-        while alias[k] in alias and alias[alias[k]] not in seen:
-            seen.add(alias[k])
-            alias[k] = alias[alias[k]]
-    for k in list(alias):
-        if alias.get(alias.get(k)) == k:  # two-way cycle: the more specific key stays a person
-            alias.pop(max((k, alias[k]), key=len), None)
-    for k, target in alias.items():
-        if k in person_ids:
-            person_ids[target]['qids'].update(person_ids[k]['qids'])
-            person_ids[target]['ids'] |= person_ids[k]['ids']
-        if k in tiers and target not in tiers:
-            tiers[target] = tiers[k]
-    for short, full in alias.items():
-        if short not in persons:
-            continue
-        persons[full]['names'].update(persons[short]['names'])
-        persons[full]['roles'].update(persons[short]['roles'])
-        del persons[short]
+    alias, tiers = resolve_people(persons, works, person_ids, out)
     seen_edges, merged = set(), []
     for e in edges:
         if e['source'].startswith('P:') and e['source'][2:] in alias:
@@ -784,37 +964,8 @@ def main():
     edges[:] = merged
     for w in works.values():
         w['authors'] = [alias.get(a, a) for a in w['authors']]
-    # Reviewed splits of merged namesakes (person-splits.csv, 2026-10-23): named works move from a
-    # person whose name key gathers several people (Richard White of Stanford, Toronto and Sydney)
-    # to a separate person. Applied after every merge above, so a split is never merged back.
-    # Draft rows from namesake_review_queue.py (person-splits-drafts.csv) apply once marked 'accept'.
-    rules = defaultdict(list)
-    for name, accepted_only in (('person-splits.csv', False), ('person-splits-drafts.csv', True)):
-        if not (out / name).exists():
-            continue
-        with (out / name).open(newline='', encoding='utf-8') as f:
-            for r in csv.DictReader(f):
-                if not accepted_only or r.get('decision', '').strip().lower() == 'accept':
-                    rules[r['person']].append((title_key(r['work_title']), r))
-    if rules:
-        moves = {}
-        for wid, w in works.items():
-            k = w['authors'][0] if w['authors'] else None
-            base = next((p for p in rules if k and (k == p or k.startswith(p + ' '))), None)
-            if not base:
-                continue
-            tk = wid.split('|', 1)[1].removesuffix('|a') if '|' in wid else ''
-            hit = next((r for key, r in rules[base] if key and (tk == key or tk.startswith(key))), None)
-            if not hit:
-                continue
-            new = hit['new_person']
-            moves[(f'P:{k}', wid)] = f'P:{new}'
-            w['authors'][0] = new
-            persons[new]['names'][hit['new_name']] += 1
-            persons[new]['roles']['cited_author'] += 1
-            if hit.get('qid'):
-                person_ids[new]['qids'] = Counter({hit['qid']: 1})
-                tiers[new] = 'reviewed_split'
+    moves = apply_person_splits(works, persons, person_ids, tiers, out)
+    if moves:
         for e in edges:
             if e['type'] == 'AUTHORED' and (e['source'], e['target']) in moves:
                 e['source'] = moves[(e['source'], e['target'])]
@@ -827,7 +978,7 @@ def main():
     for k, p in persons.items():
         # Most printed spelling, preferring one whose surname is not in capitals: ABNT bibliographies
         # print 'BOURDIEU, Pierre', which outnumbered 'Bourdieu, Pierre' once Brazil came in (2026-11-03).
-        name = max(p['names'], key=lambda n: (p['names'][n] > 0, not n.split(',')[0].isupper(), p['names'][n]))
+        name = display_name(k, p['names'])
         match = atlas.get(k)
         nodes[f'P:{k}'] = dict(id=f'P:{k}', type='Person', key=k, name=name,
                                roles=dict(p['roles']), cited_by_dissertations=len(cited_by_person[f'P:{k}'] & strict),

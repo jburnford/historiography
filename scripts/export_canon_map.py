@@ -35,12 +35,14 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import unicodedata
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'data/field-research/dissertation-citations-2026-10-11/summary/comparisons/historian-network.html'
 LAYER = ROOT / 'data/dissertation-layer'
 OUT = LAYER / 'site' / 'canon-map.json'
 CROSSWALK = ROOT / 'data/field-research/dissertation-citations-2026-10-11/person-key-crosswalk-2026-11-03.csv'
+MOVED = CROSSWALK.with_name('person-key-crosswalk-2026-11-21.csv')
 INITIALS = re.compile(r'^(?:[A-Za-z]\.)*[A-Za-z]\.?$')
 
 
@@ -72,7 +74,22 @@ def life_years(row):
     return f'{approx}{era(born[0])}–{era(died[0])}' if born else f'd. {approx}{era(died[0])}'
 
 
-def attach_keys(nodes, pairs=None, reading=frozenset()):
+def surname_words(name):
+    """Folded family-name words of 'Surname, Given' or 'Given Surname'."""
+    family = name.partition(',')[0] if ',' in name else (name.split() or [''])[-1]
+    family = re.sub(r"['’`]", '', family).translate(str.maketrans({'œ': 'oe', 'Œ': 'OE', 'æ': 'ae', 'Æ': 'AE', 'ø': 'o', 'Ø': 'O',
+                                                                 'ł': 'l', 'Ł': 'L', 'ß': 'ss'}))
+    family = unicodedata.normalize('NFKD', family).encode('ascii', 'ignore').decode().lower()
+    return {w for w in re.split(r'[^a-z]+', family) if len(w) > 2}
+
+
+def inverted(heading):
+    """'Susan Mann' -> 'Mann, Susan'; a heading with a comma stays."""
+    words = heading.split()
+    return heading if ',' in heading or len(words) < 2 else f"{words[-1]}, {' '.join(words[:-1])}"
+
+
+def attach_keys(nodes, pairs=None, reading=frozenset(), reading_names=None):
     """``key`` and ``key_status`` from the identifier log (PID-PLAN.md), via the person's graph key.
 
     People deferred for merge review have no key yet and carry neither field. A node the display name did
@@ -91,20 +108,51 @@ def attach_keys(nodes, pairs=None, reading=frozenset()):
         with CROSSWALK.open(newline='', encoding='utf-8') as f:
             for r in csv.DictReader(f):
                 renamed[r['new_key']].append(r['old_key'])
+    # Anchors whose graph key a rebuild or the pool split gave to someone else (canon_anchor_crosswalk.py,
+    # 2026-11-21): the person is on the new key, and the old key is no longer theirs.
+    moved_to, moved_from = {}, set()
+    if MOVED.exists():
+        with MOVED.open(newline='', encoding='utf-8') as f:
+            for r in csv.DictReader(f):
+                moved_to[r['new_key']] = r['person']
+                moved_from.add(r['old_key'])
     keyed = 0
     taken = {n['reading'] for n in nodes if 'reading' in n}
+    reading_of = defaultdict(list)
+    for r in sorted(reading):
+        if len(hit := state.lookup(f'diss-person:{r[2:]}')) == 1:
+            reading_of[hit[0]].append(r)
     for n in nodes:
-        gk = graph_key[n['name'], n['qid']]
+        gk = graph_key.get((n['name'], n['qid'], n.get('cited'))) or graph_key[n['name'], n['qid']]
         if 'reading' not in n and f'P:{gk}' in reading and f'P:{gk}' not in taken:
             n['reading'] = f'P:{gk}'
             taken.add(n['reading'])
-        found = state.lookup(f"diss-person:{gk}")
+        if gk in moved_to:
+            found = state.lookup(moved_to[gk])
+        elif gk in moved_from:
+            found = [k for k in state.lookup(f"diss-person:{gk}") if k not in moved_to.values()]
+        else:
+            found = state.lookup(f"diss-person:{gk}")
         if not found:
             found = sorted({k for old in renamed.get(gk, []) for k in state.lookup(f'diss-person:{old}')})
         if len(found) == 1:
             n['key'] = found[0]
             n['key_status'] = state.keys[found[0]]['resolution']
             keyed += 1
+            if 'reading' not in n:
+                # the reading export may hold the person under another of their graph keys (a pool split or a
+                # rebuild moved the map's node to a sibling key: 'Brunt, P. A', 'Mann, Susan'): the key log decides,
+                # through the reading sources whose graph key it resolves to this person, when exactly one of them is a reading source not yet linked
+                mine = [r for r in reading_of[found[0]] if r not in taken]
+                if not mine and reading_names:
+                    # or the reading export's display name is the key's label ('Bolster, W. Jeffrey' when the map's
+                    # graph name became 'Bolster, Jeffrey'), as the name link before the 2026-11-21 split
+                    heading = inverted(re.sub(r'\s*\([^)]*\)|,\s*(?:approximately\s+|active\s+)?\d{3,4}\??-.*$', '',
+                                              state.keys[found[0]]['label']).strip())
+                    mine = [r for r in reading_names.get(heading.rstrip('.'), []) if r not in taken]
+                if len(mine) == 1:
+                    n['reading'] = mine[0]
+                    taken.add(mine[0])
             lc = [a.split(':', 1)[1] for a in state.keys[found[0]]['anchors'] if a.startswith('lcnaf:')]
             if len(lc) == 1:
                 n['lc'] = lc[0]
@@ -114,6 +162,14 @@ def attach_keys(nodes, pairs=None, reading=frozenset()):
                 head = re.sub(r'\s*\([^)]*\)|,\s*(?:approximately\s+|active\s+)?\d{3,4}\??-.*$', '', state.keys[found[0]]['label']).strip()
                 if not given_names_agree(n['name'], head):
                     n['label'] = head
+            # A family name the key's label does not share at all ('Trofimenkoff, Susan Mann' on the key labelled
+            # 'Susan Mann'): the person changed name, and the key's label is the current one; the earlier form is
+            # shown neither as label nor as name (user rule 2026-11-01, Samuel Rutherford).
+            current = inverted(re.sub(r'\s*\([^)]*\)|,\s*(?:approximately\s+|active\s+)?\d{3,4}\??-.*$', '',
+                                      state.keys[found[0]]['label']).strip())
+            if current and surname_words(n['name']) and surname_words(current) \
+                    and not surname_words(n['name']) & surname_words(current) and given_names_agree(n['name'], current):
+                n['label'] = n['name'] = label(current)
             row = lives.get(found[0])
             if row and (life := life_years(row)):
                 n['life'] = life
@@ -168,7 +224,7 @@ def export(scope=None):
             n['reading'] = keys[0]
     reading = {s['key'] for s in index['sources'] if s['key'].startswith('P:')}
     keyed = attach_keys(data['nodes'], source.parents[1] / 'network' / 'historian-cocitation-pairs.csv' if scope else None,
-                        reading)
+                        reading, {name.rstrip('.'): keys for name, keys in by_name.items() if len(keys) == 1})
     linked = sum('reading' in n for n in data['nodes'])
     text = json.dumps(data, ensure_ascii=False, separators=(',', ':'))
     out.write_text(text, encoding='utf-8')

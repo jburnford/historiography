@@ -42,38 +42,61 @@ def git_json(rev, path):
                                      capture_output=True, text=True, check=True).stdout)
 
 
-def canon_keys_by_pairs(pairs):
+def canon_keys_by_pairs(pairs, cited=None):
     by = defaultdict(set)
     with pairs.open(newline='', encoding='utf-8') as f:
         for r in csv.DictReader(f):
             by[(r['person_a'], r['qid_a'])].add(r['key_a'])
             by[(r['person_b'], r['qid_b'])].add(r['key_b'])
+            if cited is not None:
+                cited[r['key_a']], cited[r['key_b']] = int(r['cited_a']), int(r['cited_b'])
     return by
 
 
 def canon_keys(nodes, pairs=PAIRS):
-    """(name, qid) -> graph person key, from the co-citation pairs table of the same build
+    """(name, qid) and (name, qid, cited) -> graph person key, from the co-citation pairs table of the same build
     (a sub-graph map's own table under summary/countries/<CC>/network/)."""
-    by = canon_keys_by_pairs(pairs)
+    counts = {}
+    by = canon_keys_by_pairs(pairs, counts)
     if pairs != PAIRS:
         # a sub-graph node with no pair at the floor (Trevor-Roper in Canada): the same build's main
         # table, then cited-people.csv by the map's display name and QID
         missing = [n for n in nodes if (n['name'], n['qid']) not in by]
         if missing:
             from historian_cocitation_network import proper
+            from dissertation_person_unpool import load_overrides
             main, cited = canon_keys_by_pairs(PAIRS), defaultdict(set)
+            unpooled = load_overrides(D)[1]   # names and QIDs as the network read them (pool split, 2026-11-21)
+            cc, scoped = pairs.parents[1].name, {}
             with (D / 'cited-people.csv').open(newline='', encoding='utf-8') as f:
                 for r in csv.DictReader(f):
-                    cited[proper(r['name']), r['qid']].add(r['person_key'])
+                    scoped[r['person_key']] = int(r.get(f'cited_by_{cc}') or 0)
+                    if r['person_key'] not in unpooled:
+                        cited[proper(r['name']), r['qid']].add(r['person_key'])
+            for k, u in unpooled.items():
+                cited[proper(u['name']), u['qid']].add(k)
+                scoped[k] = json.loads(u['cited_by_country'] or '{}').get(cc, 0)
             for n in missing:
                 k = n['name'], n['qid']
                 by[k] = main.get(k) or cited.get(k, set())
+                for gk in by[k]:
+                    counts[gk] = scoped.get(gk)   # this scope's citing theses, to tell same-name keys apart
     out = {}
     for n in nodes:
         ks = by.get((n['name'], n['qid']), set())
+        if len(ks) > 1:
+            # two graph keys print one name ('Monteiro, Nuno Gonçalo' on 'monteiro|nuno' and 'monteiro|nuno g'):
+            # the node's citing-thesis count tells them apart
+            ks = {k for k in ks if counts.get(k) == n.get('cited')} or ks
+        if len(ks) > 1:
+            # the network makes nodes of 'surname|given' keys only (is_person): 'army|united' named 'United States
+            # Army' by the pool split, not the key 'united states army' (2026-11-26)
+            ks = {k for k in ks if '|' in k} or ks
         if len(ks) != 1:
             raise SystemExit(f'canon node {n["name"]!r} maps to {len(ks)} graph keys')
-        out[n['name'], n['qid']] = ks.pop()
+        k = ks.pop()
+        out[n['name'], n['qid'], n.get('cited')] = k   # per node, when two nodes print one name
+        out.setdefault((n['name'], n['qid']), k)
     return out
 
 
